@@ -21,7 +21,7 @@
     .checkbox {
       height: 16px;
       width: 16px;
-      border: 2px solid #3c9700;
+      border: 2px solid $main-color;
       border-radius: 3px;
       display: inline-block;
       position: relative;
@@ -29,10 +29,10 @@
 
     &.disabled {
       .checkbox {
-        border-color: #767676;
-        background: #e6e6e6;
+        border-color: $grey;
+        background: $whisper;
       }
-      color: #97999c;
+      color: $grey-chateau;
       &:hover {
         cursor: not-allowed;
       }
@@ -64,7 +64,7 @@
     color: white;
   }
   [type="checkbox"]:checked + .checkbox {
-    background: #3c9700;
+    background: $main-color;
   }
 </style>
 

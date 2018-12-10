@@ -1,0 +1,61 @@
+<div class="box">
+	<a href="{href}" target="{target}" class="{type}" class:disabled="disabled">{text}</a>
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.box {
+	  width: 100%;
+	  text-align: center;
+	  a {
+	    text-decoration: none;
+	    font-size: 12px;
+	    line-height: 16px;
+	    &.green {
+	      color: #3c9700;
+	      &:hover, &:focus, &:active {
+	      	color: #286400;
+	      }
+	      &:visited {
+	      	color: #66B100;
+	      }
+	      &.disabled {
+	      	color: #97999C;
+	      	&:hover {
+	      		cursor: not-allowed;
+	      	}
+	      }
+	    }
+	    &.standard {
+	      color: white;
+	      &:hover, &:focus, &:active {
+	      	color: white;
+	      	cursor: pointer;
+	      }
+	      &:visited {
+	      	color: white;
+	      }
+	      &.disabled {
+	      	color: #97999C;
+	      	&:hover {
+	      		cursor: not-allowed;
+	      	}
+	      }
+	    }
+	  }
+	}
+</style>
+
+<script>
+	export default {
+	  tag: "zoo-log-link",
+	  data() {
+	    return {
+	      href: "",
+	      text: "",
+	      target: "about:blank",
+	      type: "standard"
+	    };
+	  }
+	};
+</script>

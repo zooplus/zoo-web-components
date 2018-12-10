@@ -1,0 +1,10 @@
+{
+	"name": "@zooplus-logistics/header-module",
+	"version": "1.0.0",
+	"description": "Header elemet exported as web-component",
+	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
+	"main": "dist/header.js",
+	"files": [
+		"dist/header.js"
+	]
+}

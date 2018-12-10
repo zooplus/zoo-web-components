@@ -1,0 +1,69 @@
+<div class="box {labelPositionLeft ? 'left-label' : ''}">
+	<span class="input-label">
+		{#if labelText}
+			<InputLabel labelText="{labelText}" valid="{valid}"/>
+		{/if}
+	</span>
+	<span class="input-link">
+		{#if linkText && linkHref}
+			<InputLink linkText="{linkText}" linkTarget="{linkTarget}" linkHref="{linkHref}"/>
+		{/if}
+	</span>
+	<input on:blur="runValidators(inputValue)" 
+		disabled="{disabled ? true : null}" 
+		class:disabled="disabled" class:error="!valid"
+		bind:value=inputValue 
+		placeholder="{placeholder ? placeholder : ''}"
+	/>
+	<span class="input-info">
+		{#if !valid}
+			<InputError inputErrorMsg="{inputErrorMsg}"/>
+		{/if}
+		{#if infoText}
+			<InputInfo infoText="{infoText}"/>
+		{/if}
+	</span>
+</div>
+
+<style type='text/scss'>
+	@import "input";
+</style>
+
+<script>
+	export default {
+		tag: 'zoo-log-input',
+		onstate({ changed, current, previous }) {
+			if (changed.inputValue && previous) {
+				this.runValidators(current.inputValue);
+			}
+		},
+		oncreate() {
+			const { validationFns } = this.get();
+			console.log(validationFns);
+			this.validationFns = validationFns;
+		},
+		methods: {
+			runValidators(value) {
+				for (const key of Object.keys(this.validationFns)) {
+					this.valid = this.validationFns[key].fn.call(this, value);
+					if (!this.valid) {
+						this.inputErrorMsg = this.validationFns[key].msg;
+						break;
+					}
+				}
+			}	
+		},
+		data() {
+			return {
+				inputValue: '',
+				valid: true
+			};
+		},
+		components: {
+			InputInfo: './InputInfo.html',
+			InputLabel: './InputLabel.html',
+			InputLink: './InputLink.html',
+			InputError: './InputError.html'
+		}
+	};
+</script>

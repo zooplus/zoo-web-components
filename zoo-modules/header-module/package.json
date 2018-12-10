@@ -1,10 +1,13 @@
 {
 	"name": "@zooplus-logistics/header-module",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Header elemet exported as web-component",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"main": "dist/header.js",
 	"files": [
 		"dist/header.js"
-	]
+	],
+	"scripts": {
+		"prepublish": "npm version patch"
+	}
 }

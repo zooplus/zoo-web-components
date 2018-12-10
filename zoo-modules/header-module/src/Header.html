@@ -1,0 +1,40 @@
+<div class="box">
+	<img class="app-logo" src="{imgsrc}" alt="zooplus"/>
+	<span class="app-name">{headertext} {version}</span>
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.box {
+	  display: flex;
+	  align-items: center;
+	  background-image: -webkit-linear-gradient(left, #F2F3F4, #fff);
+
+	  .app-logo {
+		height: 56px;
+		display: inline-block;
+		padding: 0 25px;
+	  }
+
+	  .app-name {
+		display: inline-block;
+	    color: $main-color;
+		font-size: 21px;
+		line-height: 16px;
+	    font-weight: 400;
+	  }
+	}
+</style>
+
+<script>
+	export default {
+	  tag: "zoo-log-header",
+	  data() {
+	    return {
+	      headertext: '',
+		  version: '',
+		  imgsrc: ''
+	    };
+	  }
+	};
+</script>

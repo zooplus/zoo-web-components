@@ -1,0 +1,6 @@
+{
+	"name": "button-module",
+	"version": "1.0.0",
+	"main": "dist/fancy-button.js",
+	"private": true
+}

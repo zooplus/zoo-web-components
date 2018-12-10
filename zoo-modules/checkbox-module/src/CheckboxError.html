@@ -1,0 +1,25 @@
+<div class="error">
+	{#if inputerrormsg}
+		<span>{inputerrormsg}</span>
+	{/if}
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.error {
+		font-size: 12px;
+		line-height: 20px;
+		color: $error-text-color;
+	}
+</style>
+
+<script>
+	export default {
+		tag: 'zoo-log-checkbox-error',
+		data() {
+			return {
+				inputerrormsg: ''
+			};
+		},
+	};
+</script>

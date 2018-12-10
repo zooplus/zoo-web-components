@@ -1,0 +1,96 @@
+<div class="app">
+	<Header imgsrc="zooplus.png" headertext="{headertext}" version="{version}"/>
+	<form ref:form on:submit="handleSubmit(event)">
+		<Input
+			placeholder="Placeholder" 
+			infoText="Additional helpful information for our users" 
+			labelText="Very long label which should test how it behaves Label" 
+			labelPositionLeft="{true}"
+			linkText="Forgotten your password?"
+			linkHref="https://google.com"
+			linkTarget="about:blank"
+			disabled="{false}"
+			validationFns="{validationFns}"
+		/>
+		<Checkbox
+			label="Very long label which should test how it behaves Label"
+			disabled="{false}"
+			validationfns="{validationFns}"
+		/>
+		<Button on:submit="fireSubmit()"/>
+	</form>
+	<Footer footerlinks="{footerlinks}"/>
+</div>
+
+<style>
+	.app {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	form {
+		flex: 1 0 auto;
+	}
+	zoo-log-footer {
+		flex-shrink: 0;
+	}
+</style>
+
+<script>
+	export default {
+		tag: 'my-app',
+		data() {
+			return {
+				footerlinks: [
+					{
+						href: 'https://google.com',
+						text: 'google',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'long link text for testing behaviour',
+						type: 'standard'
+					}
+				],
+				headertext: 'header text',
+				version: '1.2.3',
+				imgsrc: '',
+				validationFns: {
+					maxValueFn: {
+						fn: (actualValue) => {
+							if (actualValue > 6) return false;
+							return true;
+						},
+						msg: 'Value too large'
+					},
+					requiredFn: {
+						fn: (value) => {
+							if (value) return true;
+							return false;
+						},
+						msg: 'Value is required'
+					}
+				}
+			}
+		},
+		methods: {
+			handleSubmit(event) {
+				console.log('heelo');
+				event.preventDefault();
+				console.log(event);
+			},
+			fireSubmit() {
+				console.log(this.refs.form);
+				// this.refs.form.submit();
+			}
+		},
+		components: {
+			Header: '../zoo-modules/header-module/src/Header.html',
+			Input: '../zoo-modules/input-module/src/Input.html',
+			Button: '../zoo-modules/input-module/src/Button.html',
+			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
+			Footer: '../zoo-modules/footer-module/src/Footer.html'
+		}
+	};
+</script>

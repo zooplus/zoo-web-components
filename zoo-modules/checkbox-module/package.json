@@ -1,0 +1,6 @@
+{
+	"name": "checkbox-module",
+	"version": "1.0.0",
+	"main": "dist/checkbox.js",
+	"private": true
+}

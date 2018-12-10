@@ -1,0 +1,6 @@
+{
+	"name": "link-module",
+	"version": "1.0.0",
+	"main": "dist/link.js",
+	"private": true
+}

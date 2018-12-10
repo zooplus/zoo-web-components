@@ -1,0 +1,24 @@
+<div class="info">
+	<span>{infoText}</span>
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.info {
+		padding-right: 2px;
+		font-size: 12px;
+		line-height: 20px;
+		color: $main-text-color;
+	}
+</style>
+
+<script>
+	export default {
+		tag: 'zoo-log-input-info',
+		data() {
+			return {
+				infoText: ''
+			};
+		}
+	};
+</script>

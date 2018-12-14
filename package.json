@@ -16,8 +16,7 @@
 	},
 	"scripts": {
 		"build": "rollup -c",
-		"autobuild": "rollup -c -w",
-		"dev": "serve public & rollup -c -w",
-		"test": "mocha --recursive 'zoo-modules/**/src/spec/*.js' --opts mocha.opts"
+		"start": "serve public & rollup -c -w",
+		"test": "mocha --recursive 'zoo-modules/**/src/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
 	}
 }

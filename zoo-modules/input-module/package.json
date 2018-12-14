@@ -1,0 +1,6 @@
+{
+  "name": "input-module",
+  "version": "1.0.0",
+  "main": "dist/input.js",
+  "private": true
+}

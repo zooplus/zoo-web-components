@@ -1,0 +1,5 @@
+/node_modules
+/public/*.js
+/public/*.js.map
+/zoo-modules/*/dist/*.js
+/zoo-modules/*/dist/*.js.map

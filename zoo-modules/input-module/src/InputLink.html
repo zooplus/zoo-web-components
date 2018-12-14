@@ -1,0 +1,23 @@
+<a href="{linkHref}" target="{linkTarget}">{linkText}</a>
+<style type='text/scss'>
+	@import "variables";
+	a {
+		font-size: 14px;
+		line-height: 20px;
+		color: $placeholder-color;
+		text-decoration: none;
+	}
+</style>
+
+<script>
+	export default {
+		tag: 'zoo-log-input-link',
+		data() {
+			return {
+				linkHref: undefined,
+				linkTarget: undefined,
+				linkText: undefined
+			};
+		}
+	};
+</script>

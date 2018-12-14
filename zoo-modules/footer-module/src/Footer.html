@@ -1,0 +1,61 @@
+<div class="footer-links">
+	{#each footerlinks as footerlink}
+	<div class="column">|</div>
+	<Link href="{footerlink.href}" class="link" target="{footerlink.target ? footerlink.target : 'about:blank'}" type="{footerlink.type ? footerlink.type : 'standard'}"
+	 disabled="{footerlink.disabled}" text="{footerlink.text}" />
+	{/each}
+</div>
+<div class="footer-copyright">
+	© zooplus AG 2018
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.footer-links {
+	  display: flex;
+	  background-image: -webkit-linear-gradient(left, $main-color, $main-color-light);
+	  justify-content: center;
+	  padding: 10px 30px;
+	  .link {
+	    display: inline-block;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    &:first-of-type {
+	      padding-left: 30px;
+	    }
+	    &:last-of-type {
+	      padding-right: 30px;
+	    }
+	  }
+	  .column {
+	    display: flex;
+	    justify-content: center;
+	    padding: 0 3px;
+	    color: $whisper;
+	    &:first-of-type {
+	      display: none;
+	    }
+	  }
+	}
+	.footer-copyright {
+	  font-size: 12px;
+	  line-height: 16px;
+	  background: $white;
+	  color: $main-text-color;
+	  padding: 10px 0 10px 30px;
+	}
+</style>
+
+<script>
+		export default {
+		  tag: "zoo-log-footer",
+		  data() {
+		    return {
+		      footerlinks: []
+		    };
+		  },
+		  components: {
+		    Link: "../../link-module/src/Link.html"
+		  }
+		};
+</script>

@@ -1,0 +1,66 @@
+@import "variables";
+.box {
+	max-width: 500px;
+	width: 100%;
+	display: grid;
+	grid-template-areas:
+		"label label link"
+		"input input input"
+		"info info info";
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 3px;
+	@media only screen and (min-width: 500px) {
+		&.left-label {
+			grid-template-areas:
+				"label link link"
+				"label input input"
+				"label info info";
+		}
+	}
+	.input-label {
+		grid-area: label;
+		align-self: self-start;
+		padding-right: 10px;
+		padding-top: 15px;
+	}
+	.input-link {
+		grid-area: link;
+		justify-self: right;
+	}
+	input {
+		grid-area: input;
+		font-size: 14px;
+		line-height: 20px;
+		padding: 13px 15px;
+		border: 1px solid;
+		border-color: $border-color;
+		border-radius: 3px;
+		color: $main-text-color;
+		outline: none;
+		box-sizing: content-box;
+		&::placeholder {
+			color: $placeholder-color;
+			opacity: 1;
+		}
+		&.disabled {
+			border-color: #e6e6e6;
+			background-color: #f2f3f4;
+			color: #97999c;
+			&:hover {
+				cursor: not-allowed;
+			}
+		}
+		&:focus {
+			border: 2px solid;
+			padding: 12px 14px;
+		}
+		&.error {
+			border: 2px solid;
+			padding: 12px 14px;
+			border-color: $error-text-color;
+		}
+	}
+	.input-info {
+		grid-area: info;
+	}
+}

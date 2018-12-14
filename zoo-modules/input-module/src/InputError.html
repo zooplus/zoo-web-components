@@ -1,0 +1,25 @@
+<div class="error">
+	{#if inputErrorMsg}
+		<span>{inputErrorMsg}</span>
+	{/if}
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.error {
+		font-size: 12px;
+		line-height: 20px;
+		color: $error-text-color;
+	}
+</style>
+
+<script>
+	export default {
+		tag: 'zoo-log-input-error',
+		data() {
+			return {
+				inputErrorMsg: ''
+			};
+		},
+	};
+</script>

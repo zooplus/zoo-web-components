@@ -1,0 +1,110 @@
+<div class="box">
+	<label class:disabled="disabled" class:error="!valid">
+		<input type='checkbox' disabled="{disabled ? true : null}" on:click="toggleCheckbox()"/>
+		<span class="checkbox"></span>
+		<span class="label">{label}</span>
+	</label>
+	<span class="input-info">
+		{#if !valid}<CheckboxError inputerrormsg="{inputerrormsg}" />{/if}
+	</span>
+</div>
+
+<style type='text/scss'>
+  @import "variables";
+  label {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    grid-gap: 5px;
+    input {
+      display: none;
+    }
+    .checkbox {
+      height: 16px;
+      width: 16px;
+      border: 2px solid $main-color;
+      border-radius: 3px;
+      display: inline-block;
+      position: relative;
+    }
+
+    &.disabled {
+      .checkbox {
+        border-color: $grey;
+        background: $whisper;
+      }
+      color: $grey-chateau;
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+
+    &.error {
+      .checkbox {
+        border-color: $error-text-color;
+      }
+      color: $error-text-color;
+    }
+
+    .label {
+      display: inline-block;
+      vertical-align: top;
+      padding-top: 1px;
+    }
+  }
+  [type="checkbox"]:checked + .checkbox:before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    width: 4px;
+    height: 8px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(40deg);
+    color: white;
+  }
+  [type="checkbox"]:checked + .checkbox {
+    background: $main-color;
+  }
+</style>
+
+<script>
+	export default {
+	  tag: "zoo-log-checkbox",
+	  oncreate() {
+	    const { validationfns } = this.get();
+	    this.validationfns = validationfns;
+	    this.value = false;
+	  },
+	  methods: {
+	    runValidators(value) {
+	      for (const key of Object.keys(this.validationfns)) {
+	        this.valid = this.validationfns[key].fn.call(this, value);
+	        if (!this.valid) {
+	          this.inputerrormsg = this.validationfns[key].msg;
+	          break;
+	        }
+	      }
+	    },
+	    toggleCheckbox() {
+	      if (!this.disabled) {
+	        console.log("toggled");
+	        this.value = !this.value;
+	        this.runValidators(this.value);
+	      }
+	    }
+	  },
+	  data() {
+	    return {
+	      value: false,
+	      valid: true,
+		  inputerrormsg: "",
+		  label: "",
+		  validationfns : {}
+	    };
+	  },
+	  components: {
+	    CheckboxError: "./CheckboxError.html"
+	  }
+	};
+</script>

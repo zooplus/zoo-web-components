@@ -17,7 +17,10 @@
 			disabled="{false}"
 			validationfns="{validationFns}"
 		/>
-		<Button on:submit="fireSubmit()"/>
+
+		<FancyButton on:click="handleClick(event)"/>
+
+		<zoo-my-box></zoo-my-box>
 	</form>
 	<Footer footerlinks="{footerlinks}"/>
 </div>
@@ -83,6 +86,9 @@
 			fireSubmit() {
 				console.log(this.refs.form);
 				// this.refs.form.submit();
+			},
+			handleClick(event) {
+				console.log('clicked box');
 			}
 		},
 		components: {
@@ -90,7 +96,8 @@
 			Input: '../zoo-modules/input-module/src/Input.html',
 			Button: '../zoo-modules/input-module/src/Button.html',
 			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
-			Footer: '../zoo-modules/footer-module/src/Footer.html'
+			Footer: '../zoo-modules/footer-module/src/Footer.html',
+			FancyButton: '../zoo-modules/button-module/src/FancyButton.html'
 		}
 	};
 </script>

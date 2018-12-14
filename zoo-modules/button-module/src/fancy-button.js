@@ -1,15 +1,16 @@
 export default class FancyButton extends HTMLButtonElement {
 	constructor() {
-		super(); // always call super() first in the constructor.
-		this.attachShadow({ mode: 'open' });
-		this.addEventListener('click', e => this.drawRipple(e.offsetX, e.offsetY));
+		super();
+		console.log('constructor');
+		console.log(this);
+		this.addEventListener('click', e => {
+			console.log('clicked');
+			this.drawRipple(e.offsetX, e.offsetY)
+		});
 	}
 
 	connectedCallback() {
 		console.log('connected');
-		this.shadowRoot.innerHTML = `
-			<button>ASDASDAS</button>
-			`;
 	}
 
 	adoptedCallback() {
@@ -18,6 +19,7 @@ export default class FancyButton extends HTMLButtonElement {
 
 	// Material design ripple animation.
 	drawRipple(x, y) {
+		console.log('drawing ripple');
 		let div = document.createElement('div');
 		div.classList.add('ripple');
 		this.appendChild(div);

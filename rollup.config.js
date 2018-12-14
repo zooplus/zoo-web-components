@@ -62,7 +62,7 @@ export default [
 		},
 	}),
 	{
-		input: 'zoo-modules/button-module/src/fancy-button.js',
+		input: 'zoo-modules/button-module/src/main.js',
 		output: {
 			sourcemap: true,
 			format: 'iife',
@@ -70,9 +70,32 @@ export default [
 			name: 'fancyButton'
 		},
 		plugins: [
-			terser()
+			svelte({
+				skipIntroByDefault: true,
+				nestedTransitions: true,
+				dev: !production,
+				cascade: false
+			}),
+			resolve(),
+			commonjs(),
+			production && terser()
 		]
 	},
+	// {
+	// 	input: 'zoo-modules/button-module/src/main.js',
+	// 	output: {
+	// 		sourcemap: true,
+	// 		format: 'iife',
+	// 		file: 'zoo-modules/button-module/dist/fancy-button.js',
+	// 		name: 'fancyButton'
+	// 	},
+	// 	plugins: [
+	// 		resolve(),
+	// 		commonjs(),
+	// 		babel(),
+	// 		terser()
+	// 	]
+	// },
 	Object.assign({}, shared, {
 		input: 'zoo-modules/footer-module/src/main.js',
 		output: {

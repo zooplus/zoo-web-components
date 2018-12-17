@@ -61,6 +61,24 @@ export default [
 			name: 'header'
 		},
 	}),
+	Object.assign({}, shared, {
+		input: 'zoo-modules/feedback-module/src/main.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'zoo-modules/feedback-module/dist/feedback.js',
+			name: 'feedback'
+		},
+	}),
+	Object.assign({}, shared, {
+		input: 'zoo-modules/tooltip-module/src/main.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'zoo-modules/tooltip-module/dist/tooltip.js',
+			name: 'tooltip'
+		},
+	}),
 	{
 		input: 'zoo-modules/button-module/src/main.js',
 		output: {

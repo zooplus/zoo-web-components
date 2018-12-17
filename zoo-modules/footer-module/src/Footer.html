@@ -1,6 +1,6 @@
 <div class="footer-links">
 	{#each footerlinks as footerlink}
-	<div class="column">|</div>
+	<div class="column"></div>
 	<Link href="{footerlink.href}" class="link" target="{footerlink.target ? footerlink.target : 'about:blank'}" type="{footerlink.type ? footerlink.type : 'standard'}"
 	 disabled="{footerlink.disabled}" text="{footerlink.text}" />
 	{/each}
@@ -30,8 +30,9 @@
 	  .column {
 	    display: flex;
 	    justify-content: center;
-	    padding: 0 3px;
-	    color: $whisper;
+		margin: 0 3px;
+		background: $whisper;
+		width: 1px;
 	    &:first-of-type {
 	      display: none;
 	    }
@@ -40,6 +41,7 @@
 	.footer-copyright {
 	  font-size: 12px;
 	  line-height: 16px;
+	  text-align: left;
 	  background: $white;
 	  color: $main-text-color;
 	  padding: 10px 0 10px 30px;

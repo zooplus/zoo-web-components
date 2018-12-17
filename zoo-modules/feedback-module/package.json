@@ -1,0 +1,13 @@
+{
+	"name": "@zooplus-logistics/feedback-module",
+	"version": "1.0.0",
+	"description": "Feedback elemet exported as web-component",
+	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
+	"main": "dist/feedback.js",
+	"files": [
+		"dist/feedback.js"
+	],
+	"scripts": {
+		"prepublish": "npm version patch"
+	}
+}

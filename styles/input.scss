@@ -25,42 +25,46 @@
 	}
 	.input-link {
 		grid-area: link;
-		justify-self: right;
+		text-align: right;
+		align-self: flex-end;
 	}
-	input {
+	.input-slot {
 		grid-area: input;
-		font-size: 14px;
-		line-height: 20px;
-		padding: 13px 15px;
-		border: 1px solid;
-		border-color: $border-color;
-		border-radius: 3px;
-		color: $main-text-color;
-		outline: none;
-		box-sizing: content-box;
-		&::placeholder {
-			color: $placeholder-color;
-			opacity: 1;
-		}
-		&.disabled {
-			border-color: #e6e6e6;
-			background-color: #f2f3f4;
-			color: #97999c;
-			&:hover {
-				cursor: not-allowed;
-			}
-		}
-		&:focus {
-			border: 2px solid;
-			padding: 12px 14px;
-		}
-		&.error {
-			border: 2px solid;
-			padding: 12px 14px;
-			border-color: $error-text-color;
-		}
 	}
 	.input-info {
 		grid-area: info;
 	}
+}
+::slotted(input) {
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 13px 15px;
+	border: 1px solid;
+	border-color: $border-color;
+	border-radius: 3px;
+	color: $main-text-color;
+	outline: none;
+	box-sizing: content-box;
+}
+::slotted(input::placeholder) {
+	color: $placeholder-color;
+	opacity: 1;
+}
+::slotted(input.disabled) {
+	border-color: #e6e6e6;
+	background-color: #f2f3f4;
+	color: #97999c;
+	&:hover {
+		cursor: not-allowed;
+	}
+}
+::slotted(input:focus) {
+	border: 2px solid;
+	padding: 12px 14px;
+}
+::slotted(input.error) {
+	border: 2px solid;
+	padding: 12px 14px;
+	border-color: $error-text-color;
 }

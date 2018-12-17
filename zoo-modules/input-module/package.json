@@ -1,6 +1,13 @@
 {
-  "name": "input-module",
-  "version": "1.0.0",
-  "main": "dist/input.js",
-  "private": true
+	"name": "@zooplus-logistics/input-module",
+	"version": "1.0.13",
+	"main": "dist/input.js",
+	"description": "Input elemet exported as web-component",
+	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
+	"files": [
+		"dist/input.js"
+	],
+	"scripts": {
+		"prepublish": "npm version patch"
+	}
 }

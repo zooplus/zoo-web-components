@@ -1,31 +1,51 @@
 <div class="app">
-	<Header imgsrc="zooplus.png" headertext="{headertext}" version="{version}"/>
+	<Header imgsrc="logo.png" headertext="{headertext}" version="{version}"/>
 	<form ref:form on:submit="handleSubmit(event)">
 		<Input
 			placeholder="Placeholder" 
-			infoText="Additional helpful information for our users" 
-			labelText="Very long label which should test how it behaves Label" 
-			labelPositionLeft="{true}"
-			linkText="Forgotten your password?"
-			linkHref="https://google.com"
-			linkTarget="about:blank"
+			infotext="Additional helpful information for our users" 
+			labeltext="Very long label which should test how it behaves Label" 
+			labelpositionleft="{true}"
+			linktext="Forgotten your password?"
+			linkhref="https://google.com"
+			linktarget="about:blank"
 			disabled="{false}"
-			validationFns="{validationFns}"
-		/>
+			validationfns="{validationfns}">
+			<input slot="inputelement" type="number" placeholder="input" class="disabled"/>
+		</Input>
+		<zoo-log-input labeltext="Very long label which should test how it behaves Label" 
+			labelpositionleft="{true}"
+			infotext="Additional helpful information for our users" >
+			<!-- <span slot="inputelement"> -->
+				<input slot="inputelement" type="number" placeholder="input" class="disabled"/>
+			<!-- </span> -->
+		</zoo-log-input>
 		<Checkbox
 			label="Very long label which should test how it behaves Label"
 			disabled="{false}"
-			validationfns="{validationFns}"
+			validationfns="{validationfns}"
 		/>
-
-		<FancyButton on:click="handleClick(event)"/>
-
-		<zoo-my-box></zoo-my-box>
 	</form>
+	<div class="content">
+		<Feedback type="info" text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
+		<br>
+		<Feedback type="error" text="This is an error message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
+		<br>
+		<Feedback type="success" text="This is a success message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
+		<br>
+		<div class="top-tooltip"> 
+			test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip 
+			<Tooltip text="Tooltip text Tooltip textTooltip textTooltip textTooltip text" />
+		</div>
+		<div class="top-tooltip"> 
+			test tooltip 
+			<Tooltip text="Tooltip text Tooltip textTooltip textTooltip textTooltip text" />
+		</div>
+	</div>
 	<Footer footerlinks="{footerlinks}"/>
 </div>
 
-<style>
+<style type='text/scss'>
 	.app {
 		height: 100%;
 		display: flex;
@@ -33,6 +53,21 @@
 	}
 	form {
 		flex: 1 0 auto;
+	}
+	.content {
+		flex: 1 0 auto;
+	}
+	.top-tooltip {
+		width: 200px;
+		position: relative;
+		zoo-log-tooltip {
+			display: none;
+		}
+	}
+	.test:hover {
+		zoo-log-tooltip {
+			display: block;
+		}
 	}
 	zoo-log-footer {
 		flex-shrink: 0;
@@ -59,7 +94,7 @@
 				headertext: 'header text',
 				version: '1.2.3',
 				imgsrc: '',
-				validationFns: {
+				validationfns: {
 					maxValueFn: {
 						fn: (actualValue) => {
 							if (actualValue > 6) return false;
@@ -78,26 +113,14 @@
 			}
 		},
 		methods: {
-			handleSubmit(event) {
-				console.log('heelo');
-				event.preventDefault();
-				console.log(event);
-			},
-			fireSubmit() {
-				console.log(this.refs.form);
-				// this.refs.form.submit();
-			},
-			handleClick(event) {
-				console.log('clicked box');
-			}
 		},
 		components: {
 			Header: '../zoo-modules/header-module/src/Header.html',
 			Input: '../zoo-modules/input-module/src/Input.html',
-			Button: '../zoo-modules/input-module/src/Button.html',
 			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
 			Footer: '../zoo-modules/footer-module/src/Footer.html',
-			FancyButton: '../zoo-modules/button-module/src/FancyButton.html'
+			Feedback: '../zoo-modules/feedback-module/src/Feedback.html',
+			Tooltip: '../zoo-modules/tooltip-module/src/Tooltip.html'
 		}
 	};
 </script>

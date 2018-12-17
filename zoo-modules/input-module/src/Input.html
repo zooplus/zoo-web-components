@@ -1,26 +1,23 @@
-<div class="box {labelPositionLeft ? 'left-label' : ''}">
+<div class="box {labelpositionleft ? 'left-label' : ''}">
 	<span class="input-label">
-		{#if labelText}
-			<InputLabel labelText="{labelText}" valid="{valid}"/>
+		{#if labeltext}
+			<InputLabel labeltext="{labeltext}" valid="{valid}"/>
 		{/if}
 	</span>
 	<span class="input-link">
-		{#if linkText && linkHref}
-			<InputLink linkText="{linkText}" linkTarget="{linkTarget}" linkHref="{linkHref}"/>
+		{#if linktext && linkhref}
+			<InputLink linktext="{linktext}" linktarget="{linktarget}" linkhref="{linkhref}"/>
 		{/if}
 	</span>
-	<input on:blur="runValidators(inputValue)" 
-		disabled="{disabled ? true : null}" 
-		class:disabled="disabled" class:error="!valid"
-		bind:value=inputValue 
-		placeholder="{placeholder ? placeholder : ''}"
-	/>
+	<span class="input-slot">
+		<slot name="inputelement"></slot>
+	</span>
 	<span class="input-info">
-		{#if !valid}
-			<InputError inputErrorMsg="{inputErrorMsg}"/>
+		{#if !valid && inputerrormsg}
+			<InputError inputerrormsg="{inputerrormsg}"/>
 		{/if}
-		{#if infoText}
-			<InputInfo infoText="{infoText}"/>
+		{#if infotext}
+			<InputInfo infotext="{infotext}"/>
 		{/if}
 	</span>
 </div>
@@ -32,31 +29,16 @@
 <script>
 	export default {
 		tag: 'zoo-log-input',
-		onstate({ changed, current, previous }) {
-			if (changed.inputValue && previous) {
-				this.runValidators(current.inputValue);
-			}
-		},
-		oncreate() {
-			const { validationFns } = this.get();
-			console.log(validationFns);
-			this.validationFns = validationFns;
-		},
-		methods: {
-			runValidators(value) {
-				for (const key of Object.keys(this.validationFns)) {
-					this.valid = this.validationFns[key].fn.call(this, value);
-					if (!this.valid) {
-						this.inputErrorMsg = this.validationFns[key].msg;
-						break;
-					}
-				}
-			}	
-		},
 		data() {
 			return {
-				inputValue: '',
-				valid: true
+				labelpositionleft: false,
+				labeltext: '',
+				linktext: '',
+				linkhref: '',
+				linktarget: 'about:blank',
+				infotext: '',
+				valid: true,
+				inputerrormsg: ''
 			};
 		},
 		components: {

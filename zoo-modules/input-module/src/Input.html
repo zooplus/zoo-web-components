@@ -1,11 +1,15 @@
 <div class="box {labelposition}">
 	<span class="input-label">
 		{#if labeltext}
-		<InputLabel labeltext="{labeltext}" valid="{valid}" /> {/if}
+		<div class="label" class:error="!valid">
+			<span>{labeltext}</span>
+		</div>
+		{/if}
 	</span>
 	<span class="input-link">
 		{#if linktext && linkhref}
-		<Link text="{linktext}" target="{linktarget}" href="{linkhref}" type="grey" /> {/if}
+			<a href="{linkhref}" target="{linktarget}">{linktext}</a>
+		{/if}
 	</span>
 	<span class="input-slot">
 		<slot name="inputelement">
@@ -29,6 +33,25 @@
 
 <style type='text/scss'>
 	@import "input";
+	.input-label {
+		.label {
+			font-size: 14px;
+			font-weight: 800;
+			line-height: 20px;
+			color: $matterhorn;
+		}
+		.error {
+			color: $error-text-color;
+		}
+	}
+	.input-link {
+		a {
+			font-size: 14px;
+			line-height: 20px;
+			color: $placeholder-color;
+			text-decoration: none;
+		}
+	}
 	.info {
 		font-size: 12px;
 		color: $matterhorn;
@@ -106,10 +129,6 @@
 	      infotext: "",
 	      valid: true
 	    };
-	  },
-	  components: {
-	    InputLabel: "./InputLabel.html",
-	    Link: "../../link-module/src/Link.html"
 	  }
 	};
 </script>

@@ -98,6 +98,15 @@ export default [
 		}
 	}),
 	Object.assign({}, shared, {
+		input: 'zoo-modules/select-module/src/main.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'zoo-modules/select-module/dist/select.js',
+			name: 'select'
+		}
+	}),
+	Object.assign({}, shared, {
 		input: 'zoo-modules/link-module/src/main.js',
 		output: {
 			sourcemap: true,

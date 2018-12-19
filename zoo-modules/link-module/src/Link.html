@@ -6,7 +6,7 @@
 	@import "variables";
 	.box {
 	  width: 100%;
-	  text-align: center;
+	  text-align: right;
 	  display: flex;
 	  flex-direction: column;
 	  justify-content: center;
@@ -49,6 +49,9 @@
 	        }
 	      }
 	    }
+	    &.grey {
+	      color: $placeholder-color;
+	    }
 	  }
 	}
 </style>
@@ -61,7 +64,8 @@
 	      href: "",
 	      text: "",
 	      target: "about:blank",
-	      type: "standard"
+		  type: "standard",
+		  disabled: false
 	    };
 	  }
 	};

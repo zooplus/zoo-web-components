@@ -8,19 +8,19 @@
 		<Link text="{linktext}" target="{linktarget}" href="{linkhref}" type="grey" /> {/if}
 	</span>
 	<span class="input-slot">
-		<slot name="inputelement">
-			<input/>
-		</slot>
-		{#if !valid}
-			<span class="icon-error-triangle"></span>
-		{/if}
+		<slot name="selectelement"></slot>
+		<span class="icon-angle-up" class:error="!valid"></span>
+		<span class="icon-angle-down" class:error="!valid"></span>
 	</span>
 	<span class="input-info">
 		{#if !valid && inputerrormsg}
-			<div class="error-label">{inputerrormsg}</div> {/if} 
+			<div class="error-holder">
+				<span class="icon-exclamation-circle"></span>
+				<div class="error-label">{inputerrormsg}</div>
+			</div>
+		{/if} 
 		{#if infotext}
 			<div class="info">
-				<span class="icon-info-rounded-circle"></span>
 				<span>{infotext}</span>
 			</div>
 		{/if}
@@ -30,35 +30,49 @@
 <style type='text/scss'>
 	@import "input";
 	.info {
+		padding-right: 2px;
 		font-size: 12px;
+		line-height: 20px;
 		color: $matterhorn;
+	}
+	.error-holder {
+		color: $error-text-color;
 		display: flex;
 		align-items: center;
-		.icon-info-rounded-circle {
+		.error-label {
+			font-size: 12px;
+		}
+		.icon-exclamation-circle {
 			padding-right: 2px;
-			font-size: 20px;
 			&:before {
-				content: "\EA4C";
+				content: "\EA38";
+				font-size: 18px;
 			}
 		}
 	}
-	.error-label {
-		font-size: 12px;
-		line-height: 20px;
-		color: $error-text-color;
+	.icon-angle-up, .icon-angle-down {
+		color: $matterhorn;
+		&.error {
+			color: $error-text-color;
+		}
 	}
-	.icon-error-triangle:before {
-		content: "\EA37";
+	.icon-angle-up:before {
+		content: "\EA05";
 		position: absolute;
-		right: 2%;
-		top: 18%;
-		padding: 5px;
-    	line-height: 20px;
-		color: $error-text-color;
-		font-size: 25px;
+		right: 3%;
+		top: 28%;
 	}
-	::slotted(input) {
+	.icon-angle-down:before {
+		content: "\EA02";
+		position: absolute;
+		right: 3%;
+		top: 42%;
+	}
+	::slotted(select) {
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
 	  width: 100%;
+	  background: white;
 	  font-size: 14px;
 	  line-height: 20px;
 	  padding: 13px 15px;
@@ -69,23 +83,19 @@
 	  outline: none;
 	  box-sizing: border-box;
 	}
-	::slotted(input::placeholder) {
-	  color: $placeholder-color;
-	  opacity: 1;
-	}
-	::slotted(input:disabled) {
+	::slotted(select:disabled) {
 	  border-color: #e6e6e6;
 	  background-color: #f2f3f4;
 	  color: #97999c;
 	}
-	::slotted(input:disabled:hover) {
+	::slotted(select:disabled:hover) {
 	  cursor: not-allowed;
 	}
-	::slotted(input:focus) {
+	::slotted(select:focus) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
-	::slotted(input.error) {
+	::slotted(select.error) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	  border-color: $error-text-color;
@@ -94,10 +104,10 @@
 
 <script>
 	export default {
-	  tag: "zoo-log-input",
+	  tag: "zoo-log-select",
 	  data() {
 	    return {
-	      labelposition: 'top',
+	      labelposition: 'left',
 	      labeltext: "",
 	      linktext: "",
 	      linkhref: "",

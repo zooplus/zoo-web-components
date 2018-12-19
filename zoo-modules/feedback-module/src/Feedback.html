@@ -1,22 +1,29 @@
 <div class="feedback-box {type}">
 	{#if type === 'error'}
-		<div class="icon error-icon"></div>
+		<div class="icon-sadness icon"></div>
 	{/if}
 	{#if type === 'info'}
-		<div class="icon info-icon"></div>
+		<div class="icon-info-rounded-circle-o icon"></div>
 	{/if}
 	{#if type === 'success'}
-		<div class="icon success-icon"></div>
+		<div class="icon-happiness icon"></div>
 	{/if}
 	<div class="text">{text}</div>
 </div>
 
 <style type='text/scss'>
 	@import "variables";
-	:host {
-		width: 500px;
-		display: block;
-		margin: 0 auto;
+	.icon-sadness:before {
+		color: #ED1C24;
+		content: "\EA71";
+	}
+	.icon-info-rounded-circle-o:before {
+		color: #459FD0;
+		content: "\EA4B";
+	}
+	.icon-happiness:before {
+		color: #3C9700;
+		content: "\EA42";
 	}
 	.feedback-box {
 		background: #F2F3F4;
@@ -40,9 +47,12 @@
 		}
 	}
 	.icon {
+		display: flex;
+    	align-items: center;
 		min-width: 32px;
 		min-height: 32px;
 		padding-right: 15px;
+		font-size: 32px;
 	}
 </style>
 

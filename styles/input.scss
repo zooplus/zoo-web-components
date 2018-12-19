@@ -1,6 +1,5 @@
 @import "variables";
 .box {
-	max-width: 500px;
 	width: 100%;
 	display: grid;
 	grid-template-areas:
@@ -9,8 +8,9 @@
 		"info info info";
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 3px;
+	position: relative;
 	@media only screen and (min-width: 500px) {
-		&.left-label {
+		&.left {
 			grid-template-areas:
 				"label link link"
 				"label input input"
@@ -30,41 +30,9 @@
 	}
 	.input-slot {
 		grid-area: input;
+		position: relative;
 	}
 	.input-info {
 		grid-area: info;
 	}
-}
-::slotted(input) {
-	width: 100%;
-	font-size: 14px;
-	line-height: 20px;
-	padding: 13px 15px;
-	border: 1px solid;
-	border-color: $border-color;
-	border-radius: 3px;
-	color: $main-text-color;
-	outline: none;
-	box-sizing: content-box;
-}
-::slotted(input::placeholder) {
-	color: $placeholder-color;
-	opacity: 1;
-}
-::slotted(input.disabled) {
-	border-color: #e6e6e6;
-	background-color: #f2f3f4;
-	color: #97999c;
-	&:hover {
-		cursor: not-allowed;
-	}
-}
-::slotted(input:focus) {
-	border: 2px solid;
-	padding: 12px 14px;
-}
-::slotted(input.error) {
-	border: 2px solid;
-	padding: 12px 14px;
-	border-color: $error-text-color;
 }

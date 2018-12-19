@@ -1,30 +1,36 @@
 <div class="app">
 	<Header imgsrc="logo.png" headertext="{headertext}" version="{version}"/>
-	<form ref:form on:submit="handleSubmit(event)">
-		<Input
-			placeholder="Placeholder" 
-			infotext="Additional helpful information for our users" 
-			labeltext="Very long label which should test how it behaves Label" 
+	<form ref:form>
+		<zoo-log-input labeltext="Very long label which should test how it behaves Label" 
 			labelpositionleft="{true}"
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
-			disabled="{false}"
-			validationfns="{validationfns}">
-			<input slot="inputelement" type="number" placeholder="input" class="disabled"/>
-		</Input>
-		<zoo-log-input labeltext="Very long label which should test how it behaves Label" 
-			labelpositionleft="{true}"
+			valid="{false}"
 			infotext="Additional helpful information for our users" >
-			<!-- <span slot="inputelement"> -->
-				<input slot="inputelement" type="number" placeholder="input" class="disabled"/>
-			<!-- </span> -->
+			<input slot="inputelement" type="number" placeholder="input" class:error="true"/>
 		</zoo-log-input>
-		<Checkbox
-			label="Very long label which should test how it behaves Label"
-			disabled="{false}"
-			validationfns="{validationfns}"
-		/>
+
+		<zoo-log-select labeltext="Very long label which should test how it behaves Label" 
+			labelpositionleft="{true}"
+			linktext="Forgotten your password?"
+			linkhref="https://google.com"
+			linktarget="about:blank"
+			valid="{true}"
+			inputerrormsg="Value is required"
+			infotext="Additional helpful information for our users" >
+			<select slot="selectelement">
+				<option class="placeholder" value="" disabled selected>Placeholder</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
+		</zoo-log-select>
+
+		<zoo-log-checkbox highlighted
+			labeltext="Very long label which should test how it behaves LabelVery long label which should test how it behaves LabelVery long label which should test how it behaves Label">
+			<input slot="checkboxelement" type="checkbox"/>
+		</zoo-log-checkbox>
 	</form>
 	<div class="content">
 		<Feedback type="info" text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
@@ -52,10 +58,14 @@
 		flex-direction: column;
 	}
 	form {
+		width: 70%;
 		flex: 1 0 auto;
+		margin: 50px;
 	}
 	.content {
 		flex: 1 0 auto;
+		width: 70%;
+		margin: 50px;
 	}
 	.top-tooltip {
 		width: 200px;
@@ -93,23 +103,7 @@
 				],
 				headertext: 'header text',
 				version: '1.2.3',
-				imgsrc: '',
-				validationfns: {
-					maxValueFn: {
-						fn: (actualValue) => {
-							if (actualValue > 6) return false;
-							return true;
-						},
-						msg: 'Value too large'
-					},
-					requiredFn: {
-						fn: (value) => {
-							if (value) return true;
-							return false;
-						},
-						msg: 'Value is required'
-					}
-				}
+				imgsrc: ''
 			}
 		},
 		methods: {
@@ -117,10 +111,11 @@
 		components: {
 			Header: '../zoo-modules/header-module/src/Header.html',
 			Input: '../zoo-modules/input-module/src/Input.html',
-			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
 			Footer: '../zoo-modules/footer-module/src/Footer.html',
+			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
 			Feedback: '../zoo-modules/feedback-module/src/Feedback.html',
-			Tooltip: '../zoo-modules/tooltip-module/src/Tooltip.html'
+			Tooltip: '../zoo-modules/tooltip-module/src/Tooltip.html',
+			Select: '../zoo-modules/input-module/src/Select.html'
 		}
 	};
 </script>

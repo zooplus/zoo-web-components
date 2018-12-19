@@ -91,7 +91,10 @@ The host application should provide these. Documentation here: https://wiki.web.
 `Not implemented`
 
 ## Footer
-`footer-module` implemented;
+`footer-module` implemented
+
+## Date picker
+`Not implemented`
 
 # Misc
 https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813

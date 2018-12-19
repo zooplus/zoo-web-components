@@ -1,9 +1,26 @@
+[class^="icon-"], [class*=" icon-"] {
+    font-family: "zooplus-icons" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+
 $error-text-color: #ED1C24;
 
 // grayscale
 $placeholder-color: #767676;
 $border-color: #97999C;
-$main-text-color: #555555;
+$matterhorn: #555555;
 $whisper: #E6E6E6;
 $white: #FFFFFF;
 $anti-flash-white: #FFFFFF;

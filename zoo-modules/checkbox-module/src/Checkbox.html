@@ -1,110 +1,129 @@
-<div class="box">
-	<label class:disabled="disabled" class:error="!valid">
-		<input type='checkbox' disabled="{disabled ? true : null}" on:click="toggleCheckbox()"/>
-		<span class="checkbox"></span>
-		<span class="label">{label}</span>
+<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="!valid" class:disabled="disabled">
+	<label class="input-slot" on:click="handleClick(event)">
+		<slot name="checkboxelement" on:click="handleSlotClick(event)"></slot>
+		<span class="input-label">
+			{#if labeltext}
+				{labeltext}
+			{/if}
+		</span>
 	</label>
-	<span class="input-info">
-		{#if !valid}<CheckboxError inputerrormsg="{inputerrormsg}" />{/if}
-	</span>
 </div>
 
 <style type='text/scss'>
-  @import "variables";
-  label {
-    display: grid;
-    grid-template-columns: 20px 1fr;
-    grid-gap: 5px;
-    input {
-      display: none;
-    }
-    .checkbox {
-      height: 16px;
-      width: 16px;
-      border: 2px solid $main-color;
-      border-radius: 3px;
-      display: inline-block;
-      position: relative;
-    }
+	@import "variables";
+	.box {
+	  width: 100%;
+	  display: flex;
+	  position: relative;
+	  box-sizing: border-box;
+	  cursor: pointer;
+	  &.highlighted {
+		border: 2px solid;
+		border-color: $whisper;
+		border-radius: 3px;
+		padding: 13px 15px;
+	  }
+	  &.clicked {
+		border-color: $main-color;
+	  }
+	  &.error {
+		border-color: $error-text-color;
+		.input-slot {
+			.input-label {
+				color: $error-text-color;
+			}
+		}
+	  }
+	  &.disabled {
+		  cursor: not-allowed;
+		  .input-slot {
+			.input-label {
+				color: $grey-chateau;
+				cursor: not-allowed;
+			}
+		}
+	  }
+	  .input-slot {
+	    width: 100%;
+	    display: flex;
+		flex-direction: row;
+		.input-label {
+			position: relative;
+			cursor: pointer;
+    		left: 5px;
+		}
+	  }
+	}
+	::slotted(input[type="checkbox"]) {
+	  position: relative;
+	  margin: 0;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  outline: none;
+	}
+	::slotted(input[type="checkbox"])::before {
+	  position: relative;
+	  display: inline-block;
+	  width: 16px;
+	  height: 16px;
+	  content: "";
+	  border-radius: 3px;
+	  border: 2px solid #3c9700;
+	  background: white;
+	}
+	::slotted(input[type="checkbox"]:checked)::before {
+	  background: $main-color;
+	}
+	::slotted(input[type="checkbox"]:checked)::after {
+	  content: "";
+	  position: absolute;
+	  top: 3px;
+	  left: 7px;
+	  width: 4px;
+	  height: 8px;
+	  border-bottom: 2px solid;
+	  border-right: 2px solid;
+	  transform: rotate(40deg);
+	  color: white;
+	}
 
-    &.disabled {
-      .checkbox {
-        border-color: $grey;
-        background: $whisper;
-      }
-      color: $grey-chateau;
-      &:hover {
-        cursor: not-allowed;
-      }
-    }
-
-    &.error {
-      .checkbox {
-        border-color: $error-text-color;
-      }
-      color: $error-text-color;
-    }
-
-    .label {
-      display: inline-block;
-      vertical-align: top;
-      padding-top: 1px;
-    }
-  }
-  [type="checkbox"]:checked + .checkbox:before {
-    content: "";
-    position: absolute;
-    top: 1px;
-    left: 5px;
-    width: 4px;
-    height: 8px;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-    transform: rotate(40deg);
-    color: white;
-  }
-  [type="checkbox"]:checked + .checkbox {
-    background: $main-color;
-  }
+	::slotted(input[type="checkbox"]:disabled)::after {
+	  -webkit-filter: opacity(0.4);
+	}
 </style>
 
 <script>
 	export default {
 	  tag: "zoo-log-checkbox",
-	  oncreate() {
-	    const { validationfns } = this.get();
-	    this.validationfns = validationfns;
-	    this.value = false;
-	  },
-	  methods: {
-	    runValidators(value) {
-	      for (const key of Object.keys(this.validationfns)) {
-	        this.valid = this.validationfns[key].fn.call(this, value);
-	        if (!this.valid) {
-	          this.inputerrormsg = this.validationfns[key].msg;
-	          break;
-	        }
-	      }
-	    },
-	    toggleCheckbox() {
-	      if (!this.disabled) {
-	        console.log("toggled");
-	        this.value = !this.value;
-	        this.runValidators(this.value);
-	      }
-	    }
-	  },
 	  data() {
 	    return {
-	      value: false,
+	      labeltext: "",
 	      valid: true,
-		  inputerrormsg: "",
-		  label: "",
-		  validationfns : {}
+		  disabled: false,
+		  highlighted: false,
+		  _clicked: false
 	    };
 	  },
-	  components: {
-	    CheckboxError: "./CheckboxError.html"
+	  methods: {
+		  handleClick(event) {
+			  if (this.disabled) {
+				  event.stopPropagation();
+				  event.preventDefault();
+				  return;
+			  }
+			  event.stopImmediatePropagation();
+			  const inputEl = this.shadowRoot.querySelector('slot').assignedNodes()[0];
+			  this._clicked = !this._clicked;
+			  inputEl.click();
+		  },
+		  handleSlotClick(event) {
+			  if (this.disabled) {
+				  event.stopPropagation();
+				  event.preventDefault();
+				  return;
+			  };
+			  event.stopImmediatePropagation();
+		  }
 	  }
 	};
 </script>

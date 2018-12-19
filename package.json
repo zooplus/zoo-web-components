@@ -9,14 +9,17 @@
 		"rollup": "^0.67.4",
 		"rollup-plugin-commonjs": "^9.1.8",
 		"rollup-plugin-node-resolve": "^3.4.0",
-		"rollup-plugin-svelte": "^4.3.1",
+		"rollup-plugin-svelte": "^5.0.0",
 		"rollup-plugin-terser": "^3.0.0",
 		"serve": "^10.1.1",
-		"svelte": "^2.15.3"
+		"svelte": "^2.16.0"
 	},
 	"scripts": {
 		"build": "rollup -c",
 		"start": "serve public & rollup -c -w",
 		"test": "mocha --recursive 'zoo-modules/**/src/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
+	},
+	"dependencies": {
+		"@shop/icon-fonts": "^1.0.4"
 	}
 }

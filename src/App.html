@@ -2,7 +2,6 @@
 	<Header imgsrc="logo.png" headertext="{headertext}" version="{version}"/>
 	<form ref:form>
 		<zoo-log-input labeltext="Very long label which should test how it behaves Label" 
-			labelpositionleft="{true}"
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
@@ -12,7 +11,6 @@
 		</zoo-log-input>
 
 		<zoo-log-select labeltext="Very long label which should test how it behaves Label" 
-			labelpositionleft="{true}"
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
@@ -106,8 +104,6 @@
 				imgsrc: ''
 			}
 		},
-		methods: {
-		},
 		components: {
 			Header: '../zoo-modules/header-module/src/Header.html',
 			Input: '../zoo-modules/input-module/src/Input.html',
@@ -115,7 +111,7 @@
 			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
 			Feedback: '../zoo-modules/feedback-module/src/Feedback.html',
 			Tooltip: '../zoo-modules/tooltip-module/src/Tooltip.html',
-			Select: '../zoo-modules/input-module/src/Select.html'
+			Select: '../zoo-modules/select-module/src/Select.html'
 		}
 	};
 </script>

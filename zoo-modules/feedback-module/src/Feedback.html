@@ -13,19 +13,8 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.icon-sadness:before {
-		color: #ED1C24;
-		content: "\EA71";
-	}
-	.icon-info-rounded-circle-o:before {
-		color: #459FD0;
-		content: "\EA4B";
-	}
-	.icon-happiness:before {
-		color: #3C9700;
-		content: "\EA42";
-	}
 	.feedback-box {
+		box-sizing: border-box;
 		background: #F2F3F4;
 		color: #767676;
 		font-size: 14px;
@@ -36,6 +25,26 @@
 		padding: 15px;
 		height: 100%;
 		width: 100%;
+		.icon {
+			display: flex;
+			align-items: center;
+			min-width: 32px;
+			min-height: 32px;
+			padding-right: 15px;
+			font-size: 32px;
+		}
+		.icon-sadness:before {
+			color: #ED1C24;
+			content: "\EA71";
+		}
+		.icon-info-rounded-circle-o:before {
+			color: #459FD0;
+			content: "\EA4B";
+		}
+		.icon-happiness:before {
+			color: #3C9700;
+			content: "\EA42";
+		}
 		&.info {
 			border-color: #459FD0;
 		}
@@ -45,14 +54,6 @@
 		&.success {
 			border-color: #3C9700;
 		}
-	}
-	.icon {
-		display: flex;
-    	align-items: center;
-		min-width: 32px;
-		min-height: 32px;
-		padding-right: 15px;
-		font-size: 32px;
 	}
 </style>
 

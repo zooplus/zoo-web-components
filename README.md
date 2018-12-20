@@ -12,7 +12,7 @@ To be able to download these packages you have to have `.npmrc` file inside your
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
 ## Icons
-add 
++ add 
 ```
 @font-face {
     font-family: "zooplus-icons";
@@ -26,6 +26,7 @@ add
     font-style: normal;
 }
 ```
+to your global .css file.
 + copy to your assets folder in final build `fonts` folder from this repo.
 
 # List of components
@@ -55,19 +56,20 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 + Navigation - `Not implemented`
 + Breadcrumb - `Not implemented`
 
-# Misc
+# Reading resources
 https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813      
 http://robdodson.me/shadow-dom-css-cheat-sheet/
 
-# Run
+# Dev area
+## Run
 Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/public` folder.
 
-# Test
+## Test
 * work in progress *
 Run `npm run test`.
 
-# Build
+## Build
 Run `npm run build`. That command will go to all modules defined in `rollup.config.js`, build them, and place a bundle for each module into `dist` folder inside the module.
 
-#Deploy
+## Deploy
 Run `npm publish`, which will publish the package to internal zoo+ npm repo. Given that you don't change anything in `.npmrc` file.

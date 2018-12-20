@@ -31,60 +31,29 @@ add
 # List of components
 As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 
-## Icons
-The host application should provide these. Documentation here: https://wiki.web.zooplus.de/display/Shop/Shop+Icon+Fonts+Library
-
-## Buttons
-`Not implemented`
-
-## Links
-`links-module` implemented.
-
-## Feedback
-`feedback-module` implemented;
-
-## Modal
-`Not implemented`
+## Standalone
++ Icons - The host application should provide these. Documentation here: https://wiki.web.zooplus.de/display/Shop/Shop+Icon+Fonts+Library
++ Buttons - `Not implemented`
++ Links - `links-module` implemented.
++ Feedback - `feedback-module` implemented;
++ Modal - `Not implemented`
++ Header - `header-module` implemented
++ Footer - `footer-module` implemented
 
 ## Forms
-### Input
-`input-module` implemented
++ Input - `input-module` implemented
++ Select - `select-module` implemented
++ Checkbox - `checkbox-module` implemented
++ Radio - `Not implemented`
++ Special Compositions - `Not implemented` - under consideration
++ Date picker - `Not implemented`
 
-### Select
-`select-module` implemented
-
-### Checkbox
-`checkbox-module` implemented
-
-### Radio
-`Not implemented`
-
-### Special Compositions
-`Not implemented` - under consideration
-
-## Tables
-`Not implemented`
-
-## Tooltips
-`Not implemented`
-
-## Lists 
-`Not Implemented`
-
-## Header
-`header-module` implemented
-
-## Navigation
-`Not implemented`
-
-## Breadcrumb
-`Not implemented`
-
-## Footer
-`footer-module` implemented
-
-## Date picker
-`Not implemented`
+### Other
++ Tables - `Not implemented`
++ Tooltips - `Not implemented`
++ Lists  - `Not Implemented`
++ Navigation - `Not implemented`
++ Breadcrumb - `Not implemented`
 
 # Misc
 https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813      

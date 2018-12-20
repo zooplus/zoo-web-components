@@ -2,26 +2,16 @@ Common web-components which can be used in any modern UI framework.
 
 The web-component set implements Z+ shop style guide, which is described here: https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893960.
 
-# Run
-Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/public` folder.
-
-# Test
-* work in progress *
-Run `npm run test`.
-
-# Build
-Run `npm run build`. That command will go to all modules defined in `rollup.config.js`, build them, and place a bundle for each module into `dist` folder inside the module.
-
-#Deploy
-Run `npm publish`, which will publish the package to internal zoo+ npm repo. Given that you don't change anything in `.npmrc` file.
-
 # Installation
-To use any exported module install it as a dependency in your application by running `npm i @zooplus-logistics/footer-module --save`;
+To use any exported module install it as a dependency in your application by running `npm i @zooplus-logistics/footer-module --save`;      
+To be able to download these packages you have to have `.npmrc` file inside your project root. You can copy paste the one which is inside this project.      
 
-# Import
-Import it into your application. For example in angular it is sufficient to add `import '../../node_modules/@zooplus-logistics/footer-module';` into `app.module.ts`, which is the entry point for the angular application;
+## Examples integrating with various frameworks
++ VueJS - https://github.com/GeorgeTailor/vue-wc-integration
++ Angular - https://github.com/GeorgeTailor/angular-wc-integration
++ React - https://github.com/GeorgeTailor/react-wc-integration
 
-# Icons
+## Icons
 add 
 ```
 @font-face {
@@ -97,5 +87,18 @@ The host application should provide these. Documentation here: https://wiki.web.
 `Not implemented`
 
 # Misc
-https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813
+https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813      
 http://robdodson.me/shadow-dom-css-cheat-sheet/
+
+# Run
+Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/public` folder.
+
+# Test
+* work in progress *
+Run `npm run test`.
+
+# Build
+Run `npm run build`. That command will go to all modules defined in `rollup.config.js`, build them, and place a bundle for each module into `dist` folder inside the module.
+
+#Deploy
+Run `npm publish`, which will publish the package to internal zoo+ npm repo. Given that you don't change anything in `.npmrc` file.

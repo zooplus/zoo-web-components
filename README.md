@@ -35,16 +35,16 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 ## Standalone
 + Icons - The host application should provide these. Documentation here: https://wiki.web.zooplus.de/display/Shop/Shop+Icon+Fonts+Library
 + Buttons - `Not implemented`
-+ Links - `links-module` implemented.
-+ Feedback - `feedback-module` implemented;
++ Links - [`links-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/link-module).
++ Feedback - [`feedback-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/feedback-module);
 + Modal - `Not implemented`
-+ Header - `header-module` implemented
-+ Footer - `footer-module` implemented
++ Header - [`header-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/header-module);
++ Footer - [`footer-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/footer-module)
 
 ## Forms
-+ Input - `input-module` implemented
-+ Select - `select-module` implemented
-+ Checkbox - `checkbox-module` implemented
++ Input - [`input-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/input-module);
++ Select - [`select-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/select-module);
++ Checkbox - [`checkbox-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/checkbox-module);
 + Radio - `Not implemented`
 + Special Compositions - `Not implemented` - under consideration
 + Date picker - `Not implemented`

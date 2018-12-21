@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/link-module",
-	"version": "1.0.8",
+	"version": "1.0.10",
 	"description": "Link elemet exported as web-component",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"main": "dist/link.js",

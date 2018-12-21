@@ -1,6 +1,13 @@
 {
-	"name": "link-module",
-	"version": "1.0.0",
+	"name": "@zooplus-logistics/link-module",
+	"version": "1.0.8",
+	"description": "Link elemet exported as web-component",
+	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"main": "dist/link.js",
-	"private": true
+	"files": [
+		"dist/link.js"
+	],
+	"scripts": {
+		"prepublish": "npm version patch"
+	}
 }

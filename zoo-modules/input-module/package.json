@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/input-module",
-	"version": "1.0.16",
+	"version": "1.0.17",
 	"main": "dist/input.js",
 	"description": "Input elemet exported as web-component",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",

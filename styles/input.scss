@@ -17,16 +17,32 @@
 				"label info info";
 		}
 	}
+
 	.input-label {
 		grid-area: label;
 		align-self: self-start;
 		padding-right: 10px;
 		padding-top: 15px;
+		.label {
+			font-size: 14px;
+			font-weight: 800;
+			line-height: 20px;
+			color: $matterhorn;
+		}
+		.error {
+			color: $error-text-color;
+		}
 	}
 	.input-link {
 		grid-area: link;
 		text-align: right;
 		align-self: flex-end;
+		a {
+			font-size: 14px;
+			line-height: 20px;
+			color: $placeholder-color;
+			text-decoration: none;
+		}
 	}
 	.input-slot {
 		grid-area: input;

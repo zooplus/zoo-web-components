@@ -2,12 +2,12 @@
 
 ## API
 The component accepts the following parameters:
-* `footerlinks` - an `array` of objects where each object has the following structure:
-* * `href` - direct link;
-* * `text` - text to be displayed as link;
-* * `target` - how the link should behave (default - `about:blank`) (optional);
-* * `type` - currently supports 2 values: `standard` and `green`, default - `standard`. Responsible for coloring of the links, standard is white. (optional).
-* * `disabled` - flag indicating whether the anchor link should be disabled.
++ `footerlinks` - an `array` of objects where each object has the following structure:
++ + `href` - direct link;
++ + `text` - text to be displayed as link;
++ + `target` - how the link should behave (default - `about:blank`) (optional);
++ + `type` - currently supports 2 values: `standard` and `green`, default - `standard`. Responsible for coloring of the links, standard is white. (optional).
++ + `disabled` - flag indicating whether the anchor link should be disabled.
 
 ## Example usage 
 To use it in your project add the following to your mark-up file:

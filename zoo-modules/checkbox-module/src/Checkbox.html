@@ -97,6 +97,10 @@
 	  border-color: $grey;
 	  background-color: $whisper;
 	}
+	::slotted(input[type="checkbox"].error)::before {
+	  border: 2px solid;
+	  border-color: $error-text-color;
+	}
 </style>
 
 <script>

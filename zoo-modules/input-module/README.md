@@ -10,6 +10,14 @@
 - `infotext` `optional` - text to be presented below the input;
 - `valid` - flag which indicates whether the input is valid or not;
 
+### Slots
+This component accept one `<slot name="inputelement"></slot>` which is replaced with provided `input` element so that you can catch events from this element.       
+Just add `slot` attribute to the `input` you provide for this component, like so: `<input slot="inputelement">`;
+
+### States
+- `disabled` - the component provides styling for disabled type of input. For the styles to be applied just set the `disabled` attribute on slotted `input` element;
+- `error` - In order for the `input` to have red border you have to manually set the `error` class for the `input`.
+
 ### Example usage 
 ```
 <zoo-log-input labeltext="Very long label which should test how it behaves Label" 

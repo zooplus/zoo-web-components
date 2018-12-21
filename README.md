@@ -50,7 +50,7 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 + Special Compositions - `Not implemented` - under consideration
 + Date picker - `Not implemented`
 
-### Other
+## Other
 + Tables - `Not implemented`
 + Tooltips - `Not implemented`
 + Lists  - `Not Implemented`

@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/select-module",
-	"version": "1.0.18",
+	"version": "1.0.19",
 	"main": "dist/select.js",
 	"description": "Input elemet exported as web-component",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",

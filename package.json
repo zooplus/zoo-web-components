@@ -1,7 +1,12 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "1.0.0",
-	"private": true,
+	"version": "1.0.4",
+	"main": "dist/release.js",
+	"files": [
+		"dist/release.js"
+	],
+	"description": "Set of custom elements implementing zoo+ style guide",
+	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
 		"@types/mocha": "^5.2.0",
 		"mocha": "^5.2.0",

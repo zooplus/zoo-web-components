@@ -1,75 +1,302 @@
 <div class="app">
-	<Header imgsrc="logo.png" headertext="{headertext}" version="{version}"/>
+	<!-- <zoo-log-top-bar></zoo-log-top-bar> -->
+	<zoo-log-header imgsrc="logo.png" headertext="{headertext}" version="{version}">
+		<zoo-log-input slot="search">
+			<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
+			<span class="icon-search-default" slot="inputicon"></span>
+		</zoo-log-input>
+		<zoo-log-button slot="additional">
+			<button slot="button" class="medium hot" type="button">
+				<span class="icon-cart-copy"></span>
+				<span class="slotted-span">Shopping Cart</span>
+			</button>
+		</zoo-log-button>
+	</zoo-log-header>
+	<zoo-log-navigation class="nav" ref:nav>
+		<div slot="content">
+			{#each navlinks as link}
+				<zoo-log-link href="{link.href}" target="{link.target}" type="{link.type}"
+					text="{link.text}">
+				</zoo-log-link>
+			{/each}
+		</div>
+	</zoo-log-navigation>
 	<form ref:form>
-		<zoo-log-input labeltext="Very long label which should test how it behaves Label" 
+		<zoo-log-input labeltext="Very long label which should test how it behaves" 
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
 			valid="{false}"
+			inputerrormsg="invalid"
 			infotext="Additional helpful information for our users" >
 			<input slot="inputelement" type="number" placeholder="input" class:error="true"/>
 		</zoo-log-input>
-
-		<zoo-log-select labeltext="Very long label which should test how it behaves Label" 
+		<zoo-log-input labeltext="Very long label which should test how it behaves" 
+			linktext="Forgotten your password?"
+			linkhref="https://google.com"
+			linktarget="about:blank"
+			infotext="Additional helpful information for our users" >
+			<input slot="inputelement" type="number" placeholder="input"/>
+		</zoo-log-input>
+		<!--https://github.com/jcgertig/date-input-polyfill-->
+		<zoo-log-input labeltext="This input has type date"
+			infotext="Click on input to show context menu with date selection" >
+			<input slot="inputelement" type="date" placeholder="Enter date"/>
+		</zoo-log-input>
+		<zoo-log-input labeltext="Textarea example">
+			<textarea slot="inputelement" placeholder="Textarea"></textarea>
+		</zoo-log-input>
+		<zoo-log-select labeltext="Very long label which should test how it behaves Label with some additional text" 
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
 			valid="{true}"
 			inputerrormsg="Value is required"
 			infotext="Additional helpful information for our users" >
-			<select slot="selectelement">
+			<select slot="selectelement" multiple>
 				<option class="placeholder" value="" disabled selected>Placeholder</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-
 		<zoo-log-checkbox highlighted
 			labeltext="Very long label which should test how it behaves LabelVery long label which should test how it behaves LabelVery long label which should test how it behaves Label">
 			<input slot="checkboxelement" type="checkbox"/>
 		</zoo-log-checkbox>
 	</form>
+	<div class="buttons">
+		<zoo-log-button>
+			<button slot="button" class="medium hot" type="button">
+				<span class="slotted-span">Hi there!</span>
+				<span class="icon-angle-down"></span>
+			</button>
+		</zoo-log-button>
+		<zoo-log-button>
+			<button slot="button" class="medium" type="button">
+				<span class="icon-angle-up"></span>
+				<span class="slotted-span">Here we have a very long text indeed!</span>
+				<span class="icon-angle-down"></span>
+			</button>
+		</zoo-log-button>
+		<zoo-log-button>
+			<button slot="button" class="medium" type="button" disabled>Disabled :(</button>
+		</zoo-log-button>
+		<zoo-log-button on:click="showModal(event)">
+			<button slot="button" class="medium hot" type="button">
+				<span class="slotted-span">Show modal</span>
+			</button>
+		</zoo-log-button>
+	</div>
 	<div class="content">
-		<Feedback type="info" text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
+		<zoo-log-feedback 
+			type="info" 
+			text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-log-feedback>
 		<br>
-		<Feedback type="error" text="This is an error message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
+		<zoo-log-feedback type="error" text="This is an error message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-log-feedback>
 		<br>
-		<Feedback type="success" text="This is a success message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."/>
+		<zoo-log-feedback type="success" text="This is a success message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-log-feedback>
 		<br>
-		<div class="top-tooltip"> 
-			test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip 
-			<Tooltip text="Tooltip text Tooltip textTooltip textTooltip textTooltip text" />
+		<div class="special-tooltip"> 
+			<span on:click="showSpecialTooltip(event)">
+				test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip 
+			</span>
+			<zoo-log-tooltip ref:specialTooltip text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+				<zoo-log-input slot="content">
+					<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
+					<span class="icon-search-default" slot="inputicon"></span>
+				</zoo-log-input>
+			</zoo-log-tooltip>
 		</div>
+		<br>
 		<div class="top-tooltip"> 
-			test tooltip 
-			<Tooltip text="Tooltip text Tooltip textTooltip textTooltip textTooltip text" />
+			test tooltip right
+			<zoo-log-tooltip position="right"
+				text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			</zoo-log-tooltip>
+		</div>
+		<br>
+		<div class="top-tooltip"> 
+			test tooltip left
+			<zoo-log-tooltip position="left"
+				text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			</zoo-log-tooltip>
+		</div>
+		<br>
+		<div class="top-tooltip"> 
+			test tooltip bottom
+			<zoo-log-tooltip position="bottom"
+				text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			</zoo-log-tooltip>
 		</div>
 	</div>
-	<Footer footerlinks="{footerlinks}"/>
+	<zoo-log-modal style="display: none" headertext="Your basket contains licensed items" ref:modal>
+		<div slot="content">
+			<zoo-log-feedback 
+			type="info" 
+			text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.">
+			</zoo-log-feedback>
+			<br>
+			<zoo-log-select labeltext="This product is for" 
+				valid="{true}">
+				<select slot="selectelement">
+					<option class="placeholder" value="" disabled selected>Doge</option>
+					<option>Doge</option>
+					<option>Catz</option>
+					<option>Snek</option>
+				</select>
+			</zoo-log-select>
+			<br>
+			<zoo-log-checkbox highlighted
+				labeltext="I understand and confirm that ALL of the above statements are true">
+				<input slot="checkboxelement" type="checkbox"/>
+			</zoo-log-checkbox>
+			<br>
+			<zoo-log-button>
+				<button slot="button" class="medium hot" type="button">
+					<span class="slotted-span">Add to cart</span>
+				</button>
+			</zoo-log-button>
+		</div>
+	</zoo-log-modal>
+	<zoo-log-footer footerlinks="{footerlinks}"></zoo-log-footer>
 </div>
 
 <style type='text/scss'>
+	.nav {
+		zoo-log-link {
+			padding: 0 15px;
+			&:hover, &:active {
+				background: rgba(255, 255, 255, 0.3);
+			}
+		}
+	}
+	input[type="checkbox"]::before {
+	  position: relative;
+	  display: inline-block;
+	  width: 16px;
+	  height: 16px;
+	  content: "";
+	  border-radius: 3px;
+	  border: 2px solid #3c9700;
+	  background: white;
+	}
+	input[type="checkbox"]:checked::before {
+	  background: #3c9700;
+	}
+	input[type="checkbox"]:checked::after {
+	  content: "";
+	  position: absolute;
+	  top: 3px;
+	  left: 7px;
+	  width: 4px;
+	  height: 8px;
+	  border-bottom: 2px solid;
+	  border-right: 2px solid;
+	  transform: rotate(40deg);
+	  color: white;
+	}
+	[class^="icon-"], [class*=" icon-"] {
+		font-family: "zooplus-icons" !important;
+		font-display: auto;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	.icon-cart-copy {
+		padding-right: 5px;
+	}
+	.icon-cart-copy:before {
+		content: "\EA12";
+		position: relative;
+		top: 30%;
+		color: white;
+		font-size: 27px;
+	}
+	.slotted-span {
+	  text-overflow: ellipsis;
+	  overflow: hidden;
+	  white-space: nowrap;
+	}
+	.icon-angle-up:before, .icon-angle-down:after {
+		position: relative;
+		top: 30%;
+		color: white;
+	}
+	.icon-angle-up:before {
+		content: "\EA05";
+	}
+	.icon-angle-down:after {
+		content: "\EA02";
+	}
+	.icon-search-default:before {
+		content: "\EA73";
+		position: absolute;
+		right: 2%;
+		top: 18%;
+		padding: 5px;
+		line-height: 20px;
+		color: forestgreen;
+		font-size: 25px;
+	}
+	#test:before {
+		content: "\EA37";
+		position: absolute;
+		right: 2%;
+		top: 18%;
+		padding: 5px;
+		line-height: 20px;
+		color: #ED1C24;
+		font-size: 25px;
+	}
 	.app {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 	}
 	form {
-		width: 500px;
+		max-width: 700px;
 		flex: 1 0 auto;
 		margin: 50px;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-gap: 20px;
+	}
+	.buttons {
+		margin: 50px;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
+		grid-gap: 20px;
 	}
 	.content {
 		flex: 1 0 auto;
 		width: 70%;
 		margin: 50px;
 	}
+	.special-tooltip {
+		width: 200px;
+		position: relative;
+		cursor: pointer;
+		zoo-log-tooltip {
+			display: none;
+		}
+	}
 	.top-tooltip {
 		width: 200px;
 		position: relative;
 		zoo-log-tooltip {
 			display: none;
+		}
+		&:hover {
+			zoo-log-tooltip {
+				display: block;
+			}
 		}
 	}
 	.test:hover {
@@ -87,15 +314,68 @@
 		tag: 'my-app',
 		data() {
 			return {
+				navlinks: [
+					{
+						href: 'https://google.com',
+						text: 'Doge',
+						type: 'standard',
+						active: true
+					},
+					{
+						href: 'https://google.com',
+						text: 'Catz',
+						type: 'standard',
+					},
+					{
+						href: 'https://google.com',
+						text: 'Snek',
+						type: 'standard',
+					}
+				],
 				footerlinks: [
 					{
 						href: 'https://google.com',
-						text: 'google',
+						text: 'About us',
 						type: 'standard'
 					},
 					{
 						href: 'https://google.com',
-						text: 'long link text for testing behaviour',
+						text: 'Careers',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'Investor Relations',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'Imprint',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'Terms & Conditions',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'Methods of Payment',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'WEEE',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'Privacy',
+						type: 'standard'
+					},
+					{
+						href: 'https://google.com',
+						text: 'Opt-out',
 						type: 'standard'
 					}
 				],
@@ -104,14 +384,15 @@
 				imgsrc: ''
 			}
 		},
-		components: {
-			Header: '../zoo-modules/header-module/src/Header.html',
-			Input: '../zoo-modules/input-module/src/Input.html',
-			Footer: '../zoo-modules/footer-module/src/Footer.html',
-			Checkbox: '../zoo-modules/checkbox-module/src/Checkbox.html',
-			Feedback: '../zoo-modules/feedback-module/src/Feedback.html',
-			Tooltip: '../zoo-modules/tooltip-module/src/Tooltip.html',
-			Select: '../zoo-modules/select-module/src/Select.html'
+		methods: {
+			showModal(event) {
+				this.refs.modal.style.display = 'block';
+			},
+			showSpecialTooltip(event) {
+				const elStyle = this.refs.specialTooltip.style;
+				const display = !elStyle.display || elStyle.display === 'none' ? 'block' : 'none';
+				elStyle.display = display;
+			}
 		}
 	};
 </script>

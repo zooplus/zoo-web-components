@@ -1,0 +1,37 @@
+<div class="nav-box">
+	<slot name="content">
+	</slot>
+</div>
+
+<style type='text/scss'>
+	@import "variables";
+	.nav-box {
+	  height: 56px;
+	  background-image: linear-gradient(left, $main-color, $main-color-light);
+	  background-image: -webkit-linear-gradient(
+	    left,
+	    $main-color,
+	    $main-color-light
+	  );
+	}
+	.nav-box {
+		::slotted(div) {
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+			overflow: scroll;
+			padding: 0 20px;
+		}
+	}
+</style>
+
+<script>
+	export default {
+	  tag: "zoo-log-navigation",
+	  data() {
+	    return {
+	      links: []
+	    };
+	  }
+	};
+</script>

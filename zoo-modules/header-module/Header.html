@@ -1,28 +1,42 @@
-<div class="box">
+<div class="header-box">
 	<img class="app-logo" src="{imgsrc}" alt="zooplus"/>
-	<span class="app-name">{headertext} {version}</span>
+	{#if headertext}<span class="app-name">{headertext}</span>{/if}
+	<slot name="search"></slot>
+	<slot name="additional"></slot>
 </div>
 
 <style type='text/scss'>
 	@import "variables";
-	.box {
+	.header-box {
 	  display: flex;
 	  align-items: center;
-	  background-image: -webkit-linear-gradient(left, $anti-flash-white, $white);
+	  background: $white;
+	  padding: 0 25px;
+	  height: 70px;
 
 	  .app-logo {
 		height: 46px;
 		display: inline-block;
-		padding: 5px 25px;
+		padding: 5px 25px 5px 0;
 	  }
 
 	  .app-name {
 		display: inline-block;
 	    color: $main-color;
 		font-size: 21px;
+		padding: 0 25px 0 0;
 		line-height: 16px;
 	    font-weight: 400;
 	  }
+	}
+	::slotted(zoo-log-input) {
+		max-width: 500px;
+		display: flex;
+		flex-grow: 1;
+		padding: 0 25px 0 0;
+	}
+	::slotted(*) {
+		margin-left: auto;
 	}
 </style>
 
@@ -32,7 +46,6 @@
 	  data() {
 	    return {
 	      headertext: '',
-		  version: '',
 		  imgsrc: ''
 	    };
 	  }

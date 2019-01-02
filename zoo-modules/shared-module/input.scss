@@ -1,5 +1,4 @@
-@import "variables";
-.box {
+.input-box, .select-box {
 	width: 100%;
 	display: grid;
 	grid-template-areas:
@@ -21,8 +20,6 @@
 	.input-label {
 		grid-area: label;
 		align-self: self-start;
-		padding-right: 10px;
-		padding-top: 15px;
 		.label {
 			font-size: 14px;
 			font-weight: 800;
@@ -35,14 +32,7 @@
 	}
 	.input-link {
 		grid-area: link;
-		text-align: right;
 		align-self: flex-end;
-		a {
-			font-size: 14px;
-			line-height: 20px;
-			color: $placeholder-color;
-			text-decoration: none;
-		}
 	}
 	.input-slot {
 		grid-area: input;

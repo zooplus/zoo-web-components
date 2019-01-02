@@ -1,4 +1,4 @@
-<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="!valid" class:disabled="disabled">
+<div class="checkbox-box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="!valid" class:disabled="disabled">
 	<label class="input-slot" on:click="handleClick(event)">
 		<slot name="checkboxelement" on:click="handleSlotClick(event)"></slot>
 		<span class="input-label">
@@ -11,7 +11,7 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.box {
+	.checkbox-box {
 	  width: 100%;
 	  display: flex;
 	  position: relative;
@@ -64,6 +64,8 @@
 	  outline: none;
 	  cursor: pointer;
 	}
+	//https://wiki.mozilla.org/Release_Management/Calendar
+	//::slotted::after will be supported in Firefox 65
 	::slotted(input[type="checkbox"])::before {
 	  position: relative;
 	  display: inline-block;

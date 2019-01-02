@@ -1,4 +1,4 @@
-<div class="box {labelposition}">
+<div class="select-box {labelposition}">
 	<span class="input-label">
 		{#if labeltext}
 		<div class="label" class:error="!valid">
@@ -7,70 +7,42 @@
 		{/if}
 	</span>
 	<span class="input-link">
-		{#if linktext && linkhref}
-			<a href="{linkhref}" target="{linktarget}">{linktext}</a>
-		{/if}
+		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right"></zoo-log-link>
 	</span>
 	<span class="input-slot">
-		<slot name="selectelement"></slot>
+		<slot ref:select name="selectelement"></slot>
+		{#if !_multiple}
 		<span class="icon-angle-up" class:error="!valid"></span>
 		<span class="icon-angle-down" class:error="!valid"></span>
+		{/if}
 	</span>
 	<span class="input-info">
-		{#if !valid && inputerrormsg}
-			<div class="error-holder">
-				<span class="icon-exclamation-circle"></span>
-				<div class="error-label">{inputerrormsg}</div>
-			</div>
-		{/if} 
-		{#if infotext}
-			<div class="info">
-				<span>{infotext}</span>
-			</div>
-		{/if}
+		<zoo-log-input-info valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}"></zoo-log-input-info>
 	</span>
 </div>
 
 <style type='text/scss'>
+	@import "variables";
 	@import "input";
-	.info {
-		padding-right: 2px;
-		font-size: 12px;
-		line-height: 20px;
-		color: $matterhorn;
-	}
-	.error-holder {
-		color: $error-text-color;
-		display: flex;
-		align-items: center;
-		.error-label {
-			font-size: 12px;
-		}
-		.icon-exclamation-circle {
-			padding-right: 2px;
-			&:before {
-				content: "\EA38";
-				font-size: 18px;
-			}
-		}
-	}
-	.icon-angle-up, .icon-angle-down {
-		color: $matterhorn;
-		&.error {
-			color: $error-text-color;
-		}
+	.icon-angle-up,
+	.icon-angle-down {
+	  color: $matterhorn;
+	  pointer-events: none;
+	  &.error {
+	    color: $error-text-color;
+	  }
 	}
 	.icon-angle-up:before {
-		content: "\EA05";
-		position: absolute;
-		right: 3%;
-		top: 28%;
+	  content: "\EA05";
+	  position: absolute;
+	  right: 3%;
+	  top: 28%;
 	}
 	.icon-angle-down:before {
-		content: "\EA02";
-		position: absolute;
-		right: 3%;
-		top: 42%;
+	  content: "\EA02";
+	  position: absolute;
+	  right: 3%;
+	  top: 42%;
 	}
 	::slotted(select) {
 	  -webkit-appearance: none;
@@ -109,16 +81,25 @@
 <script>
 	export default {
 	  tag: "zoo-log-select",
+	  oncreate() {
+	    this.refs.select.addEventListener("slotchange", e => {
+	      let nodes = this.refs.select.assignedNodes();
+	      if (nodes[0].multiple === true) {
+	        this._multiple = true;
+	      }
+	    });
+	  },
 	  data() {
 	    return {
-	      labelposition: 'top',
+	      labelposition: "top",
 	      labeltext: "",
 	      linktext: "",
 	      linkhref: "",
-		  linktarget: "about:blank",
-		  inputerrormsg: '',
+	      linktarget: "about:blank",
+	      inputerrormsg: "",
 	      infotext: "",
-	      valid: true
+	      valid: true,
+		  _multiple: false
 	    };
 	  }
 	};

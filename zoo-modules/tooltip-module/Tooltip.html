@@ -1,25 +1,23 @@
-<div class="box-shadow">
-	<div class="tooltip-box">
-		<div class="text">{text}</div>
+<div class="tooltip-box">
+	<div class="tooltip-content">
+		<slot name="content">
+			<div class="text">{text}</div>
+		</slot>
 	</div>
-	<div class="tip"></div>	
+	<div class="tip {position}"></div>	
 </div>
 
 <style type='text/scss'>
 	@import "variables";
 	:host {
 	  position: absolute;
-	  display: none;
+	  bottom: calc(100% + 10px);
 	}
-	:host-context(.top-tooltip:hover) {
-		top: calc(100% - 100px);
-		display: block;
-	}
-	.box-shadow {
+	.tooltip-box {
 		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
 		border-radius: 3px;
 	}
-	.tooltip-box {
+	.tooltip-content {
 	  padding: 10px;
 	  font-size: 16px;
 	  position: relative;
@@ -27,9 +25,9 @@
 	  background: white;
 	}
 	.tip {
-		position: relative;
-		margin: 0 auto;
+		position: absolute;
 		width: 20px;
+		right: 45%;
 		&:after {
 			content: "";
 			width: 16px;
@@ -41,6 +39,17 @@
 			z-index: 0;
     		background: white;
 		}
+		&.right {
+			bottom: 50%;
+    		left: -4%;
+		}
+		&.left {
+			bottom: 50%;
+    		right: -6%;
+		}
+		&.bottom {
+			top: 0;
+		}
 	}
 </style>
 
@@ -49,7 +58,8 @@
 		  tag: "zoo-log-tooltip",
 		  data() {
 		    return {
-		      text: ""
+			  text: "",
+			  position: 'top'
 		    };
 		  }
 		};

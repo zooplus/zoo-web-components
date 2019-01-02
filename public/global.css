@@ -12,7 +12,8 @@ body {
 }
 
 @font-face {
-    font-family: "zooplus-icons";
+	font-family: "zooplus-icons";
+	font-display: auto;
     src: url('./fonts/zooplus/zooplus-icons.eot');
     src: url('./fonts/zooplus/zooplus-icons.eot?#iefix') format('eot'),
          url('./fonts/zooplus/zooplus-icons.woff2') format('woff2'),

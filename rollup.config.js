@@ -19,7 +19,7 @@ const shared = {
 					return new Promise((fulfil, reject) => {
 						sass.render({
 							data: content,
-							includePaths: ['styles'],
+							includePaths: ['zoo-modules/shared-module'],
 							sourceMap: true,
 							outFile: 'x' // this is necessary, but is ignored
 						}, (err, result) => {
@@ -44,78 +44,6 @@ const shared = {
 
 export default [
 	Object.assign({}, shared, {
-		input: 'zoo-modules/checkbox-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/checkbox-module/dist/checkbox.js',
-			name: 'checkbox'
-		},
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/header-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/header-module/dist/header.js',
-			name: 'header'
-		},
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/feedback-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/feedback-module/dist/feedback.js',
-			name: 'feedback'
-		},
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/tooltip-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/tooltip-module/dist/tooltip.js',
-			name: 'tooltip'
-		},
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/footer-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/footer-module/dist/footer.js',
-			name: 'footer'
-		}
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/input-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/input-module/dist/input.js',
-			name: 'input'
-		}
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/select-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/select-module/dist/select.js',
-			name: 'select'
-		}
-	}),
-	Object.assign({}, shared, {
-		input: 'zoo-modules/link-module/src/main.js',
-		output: {
-			sourcemap: true,
-			format: 'iife',
-			file: 'zoo-modules/link-module/dist/link.js',
-			name: 'link'
-		}
-	}),
-	Object.assign({}, shared, {
 		input: 'src/main.js',
 		output: {
 			sourcemap: true,
@@ -123,16 +51,14 @@ export default [
 			file: 'public/bundle.js',
 			name: 'app'
 		}
+	}),
+	Object.assign({}, shared, {
+		input: 'src/release.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'dist/release.js',
+			name: 'zooWC'
+		}
 	})
 ];
-
-// another way of doing this
-// import clientConfig from './client/rollup.config.js';
-// import serverConfig from './server/rollup.config.js';
-// import serviceWorkerConfig from './service-worker/rollup.config.js';
-
-// export default [
-//   clientConfig,
-//   serverConfig,
-//   serviceWorkerConfig
-// ];

@@ -1,12 +1,14 @@
-<div class="box">
-	<a href="{href}" target="{target}" class="{type}" class:disabled="disabled">{text}</a>
-</div>
+{#if text && href}
+	<div class="link-box">
+		<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type}" class:disabled="disabled">{text}</a>
+	</div>
+{/if}
 
 <style type='text/scss'>
 	@import "variables";
-	.box {
+	.link-box {
 	  width: 100%;
-	  text-align: right;
+	  height: 100%;
 	  display: flex;
 	  flex-direction: column;
 	  justify-content: center;
@@ -65,7 +67,8 @@
 	      text: "",
 	      target: "about:blank",
 		  type: "standard",
-		  disabled: false
+		  disabled: false,
+		  textalign: 'center'
 	    };
 	  }
 	};

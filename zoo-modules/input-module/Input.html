@@ -1,4 +1,4 @@
-<div class="box {labelposition}">
+<div class="input-box {labelposition}">
 	<span class="input-label">
 		{#if labeltext}
 		<div class="label" class:error="!valid">
@@ -7,50 +7,28 @@
 		{/if}
 	</span>
 	<span class="input-link">
-		{#if linktext && linkhref}
-			<a href="{linkhref}" target="{linktarget}">{linktext}</a>
-		{/if}
+		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}"
+		textalign="right"></zoo-log-link>
 	</span>
 	<span class="input-slot">
 		<slot name="inputelement">
 			<input/>
 		</slot>
+		{#if valid}
+		<slot name="inputicon"></slot>
+		{/if}
 		{#if !valid}
-			<span class="icon-error-triangle"></span>
+		<span class="icon-error-triangle"></span>
 		{/if}
 	</span>
 	<span class="input-info">
-		{#if !valid && inputerrormsg}
-			<div class="error-label">{inputerrormsg}</div> {/if} 
-		{#if infotext}
-			<div class="info">
-				<span class="icon-info-rounded-circle"></span>
-				<span>{infotext}</span>
-			</div>
-		{/if}
+		<zoo-log-input-info valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}"></zoo-log-input-info>
 	</span>
 </div>
 
 <style type='text/scss'>
+	@import "variables";
 	@import "input";
-	.info {
-		font-size: 12px;
-		color: $matterhorn;
-		display: flex;
-		align-items: center;
-		.icon-info-rounded-circle {
-			padding-right: 2px;
-			font-size: 20px;
-			&:before {
-				content: "\EA4C";
-			}
-		}
-	}
-	.error-label {
-		font-size: 12px;
-		line-height: 20px;
-		color: $error-text-color;
-	}
 	.icon-error-triangle:before {
 		content: "\EA37";
 		position: absolute;
@@ -61,31 +39,39 @@
 		color: $error-text-color;
 		font-size: 25px;
 	}
-	::slotted(input) {
+	::slotted(input), ::slotted(textarea) {
 	  width: 100%;
 	  font-size: 14px;
 	  line-height: 20px;
-	  padding: 13px 15px;
+	  padding: 13px 35px 13px 15px;
 	  border: 1px solid;
 	  border-color: $border-color;
 	  border-radius: 3px;
 	  color: $matterhorn;
 	  outline: none;
 	  box-sizing: border-box;
+	  text-overflow: ellipsis;
+	  -moz-appearance: textfield;
 	}
-	::slotted(input::placeholder) {
+	::slotted(input)::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	::slotted(input)::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	::slotted(input::placeholder), ::slotted(textarea::placeholder) {
 	  color: $placeholder-color;
 	  opacity: 1;
 	}
-	::slotted(input:disabled) {
+	::slotted(input:disabled), ::slotted(textarea:disabled) {
 	  border-color: #e6e6e6;
 	  background-color: #f2f3f4;
 	  color: #97999c;
-	}
-	::slotted(input:disabled:hover) {
 	  cursor: not-allowed;
 	}
-	::slotted(input:focus) {
+	::slotted(input:focus), ::slotted(textarea:focus) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
@@ -101,12 +87,12 @@
 	  tag: "zoo-log-input",
 	  data() {
 	    return {
-	      labelposition: 'top',
+	      labelposition: "top",
 	      labeltext: "",
 	      linktext: "",
 	      linkhref: "",
-		  linktarget: "about:blank",
-		  inputerrormsg: '',
+	      linktarget: "about:blank",
+	      inputerrormsg: "",
 	      infotext: "",
 	      valid: true
 	    };

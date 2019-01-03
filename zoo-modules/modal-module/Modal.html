@@ -1,4 +1,4 @@
-<div class="modal-box">
+<div class="modal-box" on:click="stopPropagation(event)">
 	<div class="heading">
 		<h2>{headertext}</h2>
 		<span on:click="hideModal(event)" class="icon-close-new"></span>
@@ -11,62 +11,87 @@
 <style type='text/scss'>
 	@import "variables";
 	:host {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		background: rgba(0,0,0, 0.8);
-		z-index: 2;
-		display: none;
+	  position: fixed;
+	  width: 100%;
+	  height: 100%;
+	  background: rgba(0, 0, 0, 0.8);
+	  z-index: 2;
+	  display: none;
+	  left: 0;
+      top: 0;
 	}
 	.modal-box {
-		position: fixed;
-		background: white;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		padding: 30px 40px;
-		width: 80%;
-		box-sizing: border-box;
-		.heading {
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			.icon-close-new { 
-				cursor: pointer;
-				margin-left: auto; 
-			}
-			.icon-close-new::before {
-				content: "\EA29";
-				font-size: 40px;
-				padding-left: 15px;
-			}
-		}
-		@media only screen and (max-width: 544px) {
-		  padding: 25px;
-	  	}
-		@media only screen and (max-width: 375px) {
-		  width:100%;
-		  height: 100%;
-		  top: 0;
-			left: 0;
-			transform: none;
-	  	}
+	  position: fixed;
+	  background: white;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  padding: 30px 40px;
+	  width: 80%;
+	  box-sizing: border-box;
+	  .heading {
+	    display: flex;
+	    flex-direction: row;
+	    align-items: flex-start;
+	    .icon-close-new {
+	      cursor: pointer;
+	      margin-left: auto;
+	    }
+	    .icon-close-new::before {
+	      content: "\EA29";
+	      font-size: 40px;
+	      padding-left: 15px;
+	    }
+	  }
+	  @media only screen and (max-width: 544px) {
+	    padding: 25px;
+	  }
+	  @media only screen and (max-width: 375px) {
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    transform: none;
+	  }
 	}
 </style>
 
 <script>
 	export default {
 	  tag: "zoo-log-modal",
+	  oncreate() {
+	    const host = this.shadowRoot.getRootNode().host;
+	    host.addEventListener("click", event => {
+	      host.style.display = "none";
+	      const closedEvent = new Event("modalClosed");
+	      host.dispatchEvent(closedEvent);
+	    });
+	  },
 	  data() {
 	    return {
-			headertext: ''
+	      headertext: ""
 	    };
 	  },
 	  methods: {
-		  hideModal(event) {
-			  const host = this.shadowRoot.getRootNode().host;
-			  host.style.display = 'none';
-		  }
+	    hideModal(event) {
+	      const host = this.shadowRoot.getRootNode().host;
+	      host.style.display = "none";
+	      const closedEvent = new Event("modalClosed");
+	      host.dispatchEvent(closedEvent);
+	    },
+	    stopPropagation(event) {
+	      event.stopPropagation();
+	    },
+	    isVisible(elem) {
+	      return (
+	        !!elem &&
+	        !!(
+	          elem.offsetWidth ||
+	          elem.offsetHeight ||
+	          elem.getClientRects().length
+	        )
+	      );
+	    }
 	  }
 	};
 </script>

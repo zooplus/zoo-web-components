@@ -83,11 +83,29 @@
 	  tag: "zoo-log-select",
 	  oncreate() {
 	    this.refs.select.addEventListener("slotchange", e => {
-	      let nodes = this.refs.select.assignedNodes();
-	      if (nodes[0].multiple === true) {
+		  let select = this.refs.select.assignedNodes()[0];
+		  this._slottedSelect = select;
+	      if (select.multiple === true) {
 	        this._multiple = true;
-	      }
+		  }
+		  this.changeValidState(this.valid);
 	    });
+	  },
+	  onstate({ changed, current, previous }) {
+	    if (changed.valid !== undefined && previous && current.valid !== previous.valid) {
+	      this.changeValidState(current.valid);
+	    }
+	  },
+	  methods: {
+	    changeValidState(state) {
+	      if (this._slottedSelect) {
+	        if (state === false) {
+	          this._slottedSelect.classList.add("error");
+	        } else if (state === true) {
+	          this._slottedSelect.classList.remove("error");
+	        }
+	      }
+	    }
 	  },
 	  data() {
 	    return {
@@ -99,7 +117,8 @@
 	      inputerrormsg: "",
 	      infotext: "",
 	      valid: true,
-		  _multiple: false
+	      _multiple: false,
+	      _slottedSelect: undefined
 	    };
 	  }
 	};

@@ -16,7 +16,6 @@ Just add `slot` attribute to the `select` you provide for this component, like s
 
 ### States
 - `disabled` - the component provides styling for disabled type of `select`. For the styles to be applied just set the `disabled` attribute on slotted `select` element;
-- `error` - In order for the `select` to have red border you have to manually set the `error` class for the `select`.
 
 ### Example usage 
 ```

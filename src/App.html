@@ -30,10 +30,10 @@
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
-			valid="{false}"
+			valid="{inputState}"
 			inputerrormsg="invalid"
 			infotext="Additional helpful information for our users" >
-			<input slot="inputelement" type="number" placeholder="input" class:error="true"/>
+			<input slot="inputelement" type="number" placeholder="input"/>
 		</zoo-log-input>
 		<zoo-log-input labeltext="Very long label which should test how it behaves" 
 			linktext="Forgotten your password?"
@@ -54,7 +54,7 @@
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
-			valid="{true}"
+			valid="{inputState}"
 			inputerrormsg="Value is required"
 			infotext="Additional helpful information for our users" >
 			<select slot="selectelement" multiple>
@@ -65,13 +65,14 @@
 			</select>
 		</zoo-log-select>
 		<zoo-log-checkbox highlighted
+			valid="{inputState}"
 			labeltext="Very long label which should test how it behaves LabelVery long label which should test how it behaves LabelVery long label which should test how it behaves Label">
 			<input slot="checkboxelement" type="checkbox"/>
 		</zoo-log-checkbox>
 	</form>
 	<div class="buttons">
 		<zoo-log-button>
-			<button slot="button" class="medium hot" type="button">
+			<button slot="button" class="medium hot" type="button" on:click="changeState(event)">
 				<span class="slotted-span">Hi there!</span>
 				<span class="icon-angle-down"></span>
 			</button>
@@ -184,6 +185,9 @@
 	  border-radius: 3px;
 	  border: 2px solid #3c9700;
 	  background: white;
+	}
+	input[type="checkbox"].error::before {
+		border-color: #ED1C24;
 	}
 	input[type="checkbox"]:checked::before {
 	  background: #3c9700;
@@ -402,7 +406,8 @@
 					}
 				],
 				headertext: 'header text',
-				imgsrc: ''
+				imgsrc: '',
+				inputState: true
 			}
 		},
 		methods: {
@@ -416,6 +421,9 @@
 			},
 			handleModalClosed(event) {
 				console.log(event);
+			},
+			changeState(event) {
+				this.inputState = !this.inputState;
 			}
 		}
 	};

@@ -1,10 +1,8 @@
 <div class="checkbox-box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="!valid" class:disabled="disabled">
 	<label class="input-slot" on:click="handleClick(event)">
-		<slot name="checkboxelement" on:click="handleSlotClick(event)"></slot>
+		<slot name="checkboxelement" on:click="handleSlotClick(event)" ref:inputSlot></slot>
 		<span class="input-label">
-			{#if labeltext}
-				{labeltext}
-			{/if}
+			{#if labeltext} {labeltext} {/if}
 		</span>
 	</label>
 </div>
@@ -18,42 +16,42 @@
 	  box-sizing: border-box;
 	  cursor: pointer;
 	  &.highlighted {
-		border: 2px solid;
-		border-color: $whisper;
-		border-radius: 3px;
-		padding: 13px 15px;
+	    border: 2px solid;
+	    border-color: $whisper;
+	    border-radius: 3px;
+	    padding: 13px 15px;
 	  }
 	  &.clicked {
-		border-color: $main-color;
+	    border-color: $main-color;
 	  }
 	  &.error {
-		border-color: $error-text-color;
-		.input-slot {
-			.input-label {
-				color: $error-text-color;
-			}
-		}
+	    border-color: $error-text-color;
+	    .input-slot {
+	      .input-label {
+	        color: $error-text-color;
+	      }
+	    }
 	  }
 	  &.disabled {
-		  cursor: not-allowed;
-		  .input-slot {
-			cursor: not-allowed;
-			.input-label {
-				color: $grey-chateau;
-			}
-		}
+	    cursor: not-allowed;
+	    .input-slot {
+	      cursor: not-allowed;
+	      .input-label {
+	        color: $grey-chateau;
+	      }
+	    }
 	  }
 	  .input-slot {
 	    width: 100%;
 	    display: flex;
-		flex-direction: row;
-		cursor: pointer;
-		.input-label {
-			display: flex;
-    		align-items: center;
-			position: relative;
-    		left: 5px;
-		}
+	    flex-direction: row;
+	    cursor: pointer;
+	    .input-label {
+	      display: flex;
+	      align-items: center;
+	      position: relative;
+	      left: 5px;
+	    }
 	  }
 	}
 	::slotted(input[type="checkbox"]) {
@@ -100,7 +98,6 @@
 	  background-color: $whisper;
 	}
 	::slotted(input[type="checkbox"].error)::before {
-	  border: 2px solid;
 	  border-color: $error-text-color;
 	}
 </style>
@@ -112,31 +109,57 @@
 	    return {
 	      labeltext: "",
 	      valid: true,
-		  disabled: false,
-		  highlighted: false,
-		  _clicked: false
+	      disabled: false,
+	      highlighted: false,
+	      _clicked: false,
+	      _slottedInput: undefined
 	    };
 	  },
+	  oncreate() {
+	    this.refs.inputSlot.addEventListener("slotchange", e => {
+	      let input = this.refs.inputSlot.assignedNodes()[0];
+	      this._slottedInput = input;
+	      this.changeValidState(this.valid);
+	    });
+	  },
+	  onstate({ changed, current, previous }) {
+	    if (
+	      changed.valid !== undefined &&
+	      previous &&
+	      current.valid !== previous.valid
+	    ) {
+	      this.changeValidState(current.valid);
+	    }
+	  },
 	  methods: {
-		  handleClick(event) {
-			  if (this.disabled) {
-				  event.stopPropagation();
-				  event.preventDefault();
-				  return;
-			  }
-			  event.stopImmediatePropagation();
-			  const inputEl = this.shadowRoot.querySelector('slot').assignedNodes()[0];
-			  this._clicked = !this._clicked;
-			  inputEl.click();
-		  },
-		  handleSlotClick(event) {
-			  if (this.disabled) {
-				  event.stopPropagation();
-				  event.preventDefault();
-				  return;
-			  };
-			  event.stopImmediatePropagation();
-		  }
+	    handleClick(event) {
+	      if (this.disabled) {
+	        event.stopPropagation();
+	        event.preventDefault();
+	        return;
+	      }
+	      event.stopImmediatePropagation();
+	      const inputEl = this.shadowRoot.querySelector("slot").assignedNodes()[0];
+	      this._clicked = !this._clicked;
+	      inputEl.click();
+	    },
+	    handleSlotClick(event) {
+	      if (this.disabled) {
+	        event.stopPropagation();
+	        event.preventDefault();
+	        return;
+	      }
+	      event.stopImmediatePropagation();
+	    },
+	    changeValidState(state) {
+	      if (this._slottedInput) {
+	        if (state === false) {
+	          this._slottedInput.classList.add("error");
+	        } else if (state === true) {
+	          this._slottedInput.classList.remove("error");
+	        }
+	      }
+	    }
 	  }
 	};
 </script>

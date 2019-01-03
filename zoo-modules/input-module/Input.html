@@ -7,17 +7,15 @@
 		{/if}
 	</span>
 	<span class="input-link">
-		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}"
-		textalign="right"></zoo-log-link>
+		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right"></zoo-log-link>
 	</span>
 	<span class="input-slot">
-		<slot name="inputelement">
+		<slot ref:inputSlot name="inputelement">
 			<input/>
 		</slot>
 		{#if valid}
 		<slot name="inputicon"></slot>
-		{/if}
-		{#if !valid}
+		{/if} {#if !valid}
 		<span class="icon-error-triangle"></span>
 		{/if}
 	</span>
@@ -30,16 +28,17 @@
 	@import "variables";
 	@import "input";
 	.icon-error-triangle:before {
-		content: "\EA37";
-		position: absolute;
-		right: 2%;
-		top: 18%;
-		padding: 5px;
-    	line-height: 20px;
-		color: $error-text-color;
-		font-size: 25px;
+	  content: "\EA37";
+	  position: absolute;
+	  right: 2%;
+	  top: 18%;
+	  padding: 5px;
+	  line-height: 20px;
+	  color: $error-text-color;
+	  font-size: 25px;
 	}
-	::slotted(input), ::slotted(textarea) {
+	::slotted(input),
+	::slotted(textarea) {
 	  width: 100%;
 	  font-size: 14px;
 	  line-height: 20px;
@@ -54,24 +53,27 @@
 	  -moz-appearance: textfield;
 	}
 	::slotted(input)::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
+	  -webkit-appearance: none;
+	  margin: 0;
 	}
 	::slotted(input)::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
+	  -webkit-appearance: none;
+	  margin: 0;
 	}
-	::slotted(input::placeholder), ::slotted(textarea::placeholder) {
+	::slotted(input::placeholder),
+	::slotted(textarea::placeholder) {
 	  color: $placeholder-color;
 	  opacity: 1;
 	}
-	::slotted(input:disabled), ::slotted(textarea:disabled) {
+	::slotted(input:disabled),
+	::slotted(textarea:disabled) {
 	  border-color: #e6e6e6;
 	  background-color: #f2f3f4;
 	  color: #97999c;
 	  cursor: not-allowed;
 	}
-	::slotted(input:focus), ::slotted(textarea:focus) {
+	::slotted(input:focus),
+	::slotted(textarea:focus) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
@@ -85,6 +87,29 @@
 <script>
 	export default {
 	  tag: "zoo-log-input",
+	  oncreate() {
+		this.refs.inputSlot.addEventListener("slotchange", e => {
+	      let nodes = this.refs.inputSlot.assignedNodes();
+		  this._slottedInput = nodes[0];
+		  this.changeValidState(this.valid);
+	    });
+	  },
+	  onstate({ changed, current, previous }) {
+	    if (changed.valid !== undefined && previous && current.valid !== previous.valid) {
+			this.changeValidState(current.valid);
+		}
+	  },
+	  methods: {
+		  changeValidState(state) {
+			if (this._slottedInput) {
+				if (state === false) {
+					this._slottedInput.classList.add('error');
+				} else if (state === true) {
+					this._slottedInput.classList.remove('error');
+				}
+			}
+		  }
+	  },
 	  data() {
 	    return {
 	      labelposition: "top",
@@ -94,7 +119,8 @@
 	      linktarget: "about:blank",
 	      inputerrormsg: "",
 	      infotext: "",
-	      valid: true
+		  valid: true,
+		  _slottedInput: undefined
 	    };
 	  }
 	};

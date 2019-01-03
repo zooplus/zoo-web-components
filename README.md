@@ -3,12 +3,13 @@ Common web-components which can be used in any modern UI framework.
 The web-component set implements Z+ shop style guide, which is described here: https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893960.
 
 # Installation
-To use any exported module install it as a dependency in your application by running `npm i @zooplus-logistics/footer-module --save`;      
+To use exported modules install this library as a dependency in your application by running `npm i @zooplus-logistics/zoo-web-components --save`;      
 To be able to download these packages you have to have `.npmrc` file inside your project root. You can copy paste the one which is inside this project.      
 
 ## Examples integrating with various frameworks
 + VueJS - https://github.com/GeorgeTailor/vue-wc-integration
 + Angular - https://github.com/GeorgeTailor/angular-wc-integration
++ + Or just import it in your main app.module.ts import `../../node_modules/@zooplus-logistics/zoo-web-components` and add `CUSTOM_ELEMENTS_SCHEMA`;
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
 ## Icons

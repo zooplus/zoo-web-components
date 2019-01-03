@@ -35,10 +35,10 @@ After performing the above steps the icons should be imported automatically into
 As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 
 ## Standalone
-+ Buttons - `Not implemented`
-+ Links - [`links-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/link-module).
++ Buttons - [`button-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/button-module);
++ Links - [`links-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/link-module);
 + Feedback - [`feedback-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/feedback-module);
-+ Modal - `Not implemented`
++ Modal - [`modal-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/modal-module);
 + Header - [`header-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/header-module);
 + Footer - [`footer-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/footer-module)
 
@@ -48,13 +48,13 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 + Checkbox - [`checkbox-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/checkbox-module);
 + Radio - `Not implemented`
 + Special Compositions - `Not implemented` - under consideration
-+ Date picker - `Not implemented`
++ Date picker - `Not implemented` - I recommend to use native `<input type="date"/>` alogn with [`this`](https://github.com/jcgertig/date-input-polyfill) polyfill for browsers that didn't implement it yet;
 
 ## Other
 + Tables - `Not implemented`
-+ Tooltips - `Not implemented`
++ Tooltips - `Not implemented` - WIP
 + Lists  - `Not Implemented`
-+ Navigation - `Not implemented`
++ Navigation - [`navigation-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/navigation-module)
 + Breadcrumb - `Not implemented`
 
 

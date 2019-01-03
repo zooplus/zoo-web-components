@@ -2,7 +2,7 @@
 - `text` - text to be presented in the feedback box;
 - `type` - type of the feedback. Possible values are: `error`, `info`, `success`. Default is `info`;
 
-### Example usage 
+## Example usage 
 ```
 <zoo-log-feedback 
 	type="info" 
@@ -10,5 +10,5 @@
 </zoo-log-feedback>
 ```
 
-### Icons
+## Icons
 Requires the following icons: `icon-sadness` (`\EA71`), `icon-info-rounded-circle-o` (`\EA4B`), `icon-happiness` (`\EA42`). 

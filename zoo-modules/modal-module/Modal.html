@@ -81,16 +81,6 @@
 	    },
 	    stopPropagation(event) {
 	      event.stopPropagation();
-	    },
-	    isVisible(elem) {
-	      return (
-	        !!elem &&
-	        !!(
-	          elem.offsetWidth ||
-	          elem.offsetHeight ||
-	          elem.getClientRects().length
-	        )
-	      );
 	    }
 	  }
 	};

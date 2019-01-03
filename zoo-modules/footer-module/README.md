@@ -32,6 +32,3 @@ ngOnInit() {
 	];
 }
 ```
-
-### Icons
-*Does not* require any icons to function.

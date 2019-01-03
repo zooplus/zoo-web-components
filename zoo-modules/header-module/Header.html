@@ -18,6 +18,9 @@
 		height: 46px;
 		display: inline-block;
 		padding: 5px 25px 5px 0;
+		@media only screen and (max-width: 544px) {
+			height: 36px;
+		}
 	  }
 
 	  .app-name {
@@ -26,14 +29,11 @@
 		font-size: 21px;
 		padding: 0 25px 0 0;
 		line-height: 16px;
-	    font-weight: 400;
+		font-weight: 400;
+		@media only screen and (max-width: 544px) {
+			display: none;
+		}
 	  }
-	}
-	::slotted(zoo-log-input) {
-		max-width: 500px;
-		display: flex;
-		flex-grow: 1;
-		padding: 0 25px 0 0;
 	}
 	::slotted(*) {
 		margin-left: auto;

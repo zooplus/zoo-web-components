@@ -12,6 +12,10 @@ To be able to download these packages you have to have `.npmrc` file inside your
 + + Or just import it in your main app.module.ts import `../../node_modules/@zooplus-logistics/zoo-web-components` and add `CUSTOM_ELEMENTS_SCHEMA`;
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
+## Size of the library
+Uncompressed size of the library is: 37,709 Kbytes;
+Gzipped version is 8,274 Kbytes;
+
 ## Icons
 + Icons - The host application should provide these. Documentation here: https://wiki.web.zooplus.de/display/Shop/Shop+Icon+Fonts+Library
 + add 

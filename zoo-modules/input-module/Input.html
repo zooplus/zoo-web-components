@@ -77,7 +77,8 @@
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
-	::slotted(input.error) {
+	::slotted(input.error),
+	::slotted(textarea.error) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	  border-color: $error-text-color;
@@ -89,7 +90,7 @@
 	  tag: "zoo-log-input",
 	  oncreate() {
 		this.refs.inputSlot.addEventListener("slotchange", e => {
-	      let nodes = this.refs.inputSlot.assignedNodes();
+		  let nodes = this.refs.inputSlot.assignedNodes();
 		  this._slottedInput = nodes[0];
 		  this.changeValidState(this.valid);
 	    });

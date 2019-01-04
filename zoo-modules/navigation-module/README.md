@@ -19,3 +19,13 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 	</div>
 </zoo-log-navigation>
 ```
+OR
+```
+<zoo-log-navigation class="nav">
+	<div slot="content" class="navigation-content">
+		<div class="nav-link" *ngFor="let nav of navs" [routerLink]="nav.href" [routerLinkActive]="'active'">
+			<span>{{nav.text}}</span>
+		</div>
+	</div>
+</zoo-log-navigation>
+```

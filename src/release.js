@@ -8,7 +8,8 @@ import Feedback from '../zoo-modules/feedback-module/Feedback.html';
 import Tooltip from '../zoo-modules/tooltip-module/Tooltip.html';
 import Select from '../zoo-modules/select-module/Select.html';
 import Link from '../zoo-modules/link-module/Link.html';
-import InputInfo from '../zoo-modules/shared-module/InputInfo.html'
+import InputInfo from '../zoo-modules/shared-module/InputInfo.html';
+import Navigation from '../zoo-modules/navigation-module/Navigation.html';
 
 export default {
 	inputinfo: new InputInfo(),
@@ -21,5 +22,6 @@ export default {
 	feedback: new Feedback(),
 	tooltip: new Tooltip(),
 	button: new Button(),
-	modal: new Modal()
+	modal: new Modal(),
+	navigation: new Navigation()
 };

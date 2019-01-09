@@ -1,8 +1,7 @@
 <div class="header-box">
 	<img class="app-logo" src="{imgsrc}" alt="zooplus"/>
 	{#if headertext}<span class="app-name">{headertext}</span>{/if}
-	<slot name="search"></slot>
-	<slot name="additional"></slot>
+	<slot name="content"></slot>
 </div>
 
 <style type='text/scss'>
@@ -34,9 +33,6 @@
 			display: none;
 		}
 	  }
-	}
-	::slotted(*) {
-		margin-left: auto;
 	}
 </style>
 

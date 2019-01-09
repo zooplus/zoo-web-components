@@ -1,19 +1,21 @@
 <div class="app">
 	<!-- <zoo-log-top-bar></zoo-log-top-bar> -->
 	<zoo-log-header imgsrc="logo.png" headertext="{headertext}">
-		<div class="search-field-holder" slot="search">
-			<zoo-log-input slot="search">
-				<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
-				<span class="icon-search-default" slot="inputicon"></span>
-			</zoo-log-input>
-		</div>
-		<div class="header-button-holder" slot="additional">
-			<zoo-log-button>
-				<button slot="button" class="medium hot header-button" type="button">
-					<span class="icon-cart-copy"></span>
-					<span class="slotted-span">Shopping Cart</span>
-				</button>
-			</zoo-log-button>
+		<div class="search-field-holder" slot="content">
+			<div class="header-search">
+				<zoo-log-input>
+					<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
+					<span class="icon-search-default" slot="inputicon"></span>
+				</zoo-log-input>
+			</div>
+			<div class="header-button">
+				<zoo-log-button>
+					<button slot="button" class="medium hot" type="button">
+						<span class="icon-cart-copy"></span>
+						<span class="slotted-span">Shopping Cart</span>
+					</button>
+				</zoo-log-button>
+			</div>
 		</div>
 	</zoo-log-header>
 	<zoo-log-navigation class="nav" ref:nav>
@@ -322,11 +324,22 @@
 	}
 
 	.search-field-holder {
-		max-width: 500px;
+		display: flex;
+		flex-direction: row;
 		flex-grow: 1;
 		padding: 0 25px 0 0;
 	}
+	.header-search, .header-button {
+		margin-left: auto;
+	}
+	.header-search {
+		flex-grow: 0.5;
+	}
 	.header-button {
+		display: flex;
+		zoo-log-button {
+			align-self: center;
+		}
 		@media only screen and (max-width: 544px) {
 			.slotted-span {
 				display: none;

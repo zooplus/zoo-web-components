@@ -10,7 +10,7 @@
 			</div>
 			<div class="header-button">
 				<zoo-log-button>
-					<button slot="button" class="medium hot" type="button">
+					<button slot="button" class="medium hot" type="button" tooltip='simple tooltip here'>
 						<span class="icon-cart-copy"></span>
 						<span class="slotted-span">Shopping Cart</span>
 					</button>
@@ -87,7 +87,12 @@
 			</button>
 		</zoo-log-button>
 		<zoo-log-button>
-			<button slot="button" class="medium" type="button" disabled>Disabled :(</button>
+			<button slot="button" class="medium btn-tooltip" type="button" disabled>
+				Disabled :(
+				<zoo-log-tooltip position="bottom"
+					text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+				</zoo-log-tooltip>
+			</button>
 		</zoo-log-button>
 		<zoo-log-button on:click="showModal(event)">
 			<button slot="button" class="medium hot" type="button">
@@ -177,6 +182,10 @@
 				background: rgba(255, 255, 255, 0.3);
 			}
 		}
+	}
+	.btn-tooltip {
+		position: relative;
+		display: inline-block;
 	}
 	input[type="checkbox"]::before {
 	  position: relative;
@@ -303,14 +312,14 @@
 		}
 	}
 	.top-tooltip {
-		width: 200px;
 		position: relative;
+		display: inline-block;
 		zoo-log-tooltip {
 			display: none;
 		}
 		&:hover {
 			zoo-log-tooltip {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}

@@ -22,9 +22,10 @@
 	"scripts": {
 		"build": "rollup -c",
 		"start": "serve public & rollup -c -w",
-		"test": "mocha --recursive 'zoo-modules/**/src/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
+		"test": "mocha --recursive 'zoo-modules/**/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
 	},
 	"dependencies": {
-		"@shop/icon-fonts": "^1.0.4"
+		"@shop/icon-fonts": "^1.0.4",
+		"@webcomponents/webcomponentsjs": "^2.2.3"
 	}
 }

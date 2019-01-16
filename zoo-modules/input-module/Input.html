@@ -16,7 +16,7 @@
 		{#if valid}
 		<slot name="inputicon"></slot>
 		{/if} {#if !valid}
-		<span class="icon-error-triangle"></span>
+		<span class="zoo-log-input icon-error-triangle"></span>
 		{/if}
 	</span>
 	<span class="input-info">
@@ -27,7 +27,7 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
-	.icon-error-triangle:before {
+	.zoo-log-input.icon-error-triangle:before {
 	  content: "\EA37";
 	  position: absolute;
 	  right: 2%;
@@ -37,7 +37,23 @@
 	  color: $error-text-color;
 	  font-size: 25px;
 	}
-	::slotted(input),
+	//If a single selector is not supported by the browser, then the whole selector list gets ignored.
+	.input-slot.style-scope.zoo-log-input input,
+	.input-slot.style-scope.zoo-log-input textarea {
+	  width: 100%;
+	  font-size: 14px;
+	  line-height: 20px;
+	  padding: 13px 35px 13px 15px;
+	  border: 1px solid;
+	  border-color: $border-color;
+	  border-radius: 3px;
+	  color: $matterhorn;
+	  outline: none;
+	  box-sizing: border-box;
+	  text-overflow: ellipsis;
+	  -moz-appearance: textfield;
+	}
+	::slotted(input), 
 	::slotted(textarea) {
 	  width: 100%;
 	  font-size: 14px;
@@ -60,11 +76,13 @@
 	  -webkit-appearance: none;
 	  margin: 0;
 	}
+	.input-slot.style-scope.zoo-log-input > .style-scope.my-app::placeholder, 
 	::slotted(input::placeholder),
 	::slotted(textarea::placeholder) {
 	  color: $placeholder-color;
 	  opacity: 1;
 	}
+	.input-slot.style-scope.zoo-log-input > .style-scope.my-app:disabled, 
 	::slotted(input:disabled),
 	::slotted(textarea:disabled) {
 	  border-color: #e6e6e6;
@@ -72,11 +90,13 @@
 	  color: #97999c;
 	  cursor: not-allowed;
 	}
+	.input-slot.style-scope.zoo-log-input > .style-scope.my-app:focus, 
 	::slotted(input:focus),
 	::slotted(textarea:focus) {
 	  border: 2px solid;
 	  padding: 12px 34px 12px 14px;
 	}
+	.input-slot.style-scope.zoo-log-input > .style-scope.my-app.error, 
 	::slotted(input.error),
 	::slotted(textarea.error) {
 	  border: 2px solid;

@@ -12,8 +12,8 @@
 	<span class="input-slot">
 		<slot ref:select name="selectelement"></slot>
 		{#if !_multiple}
-		<span class="icon-angle-up" class:error="!valid"></span>
-		<span class="icon-angle-down" class:error="!valid"></span>
+		<span class="zoo-log-select icon-angle-up" class:error="!valid"></span>
+		<span class="zoo-log-select icon-angle-down" class:error="!valid"></span>
 		{/if}
 	</span>
 	<span class="input-info">
@@ -32,18 +32,19 @@
 	    color: $error-text-color;
 	  }
 	}
-	.icon-angle-up:before {
+	.zoo-log-select.icon-angle-up:before {
 	  content: "\EA05";
 	  position: absolute;
 	  right: 3%;
 	  top: 28%;
 	}
-	.icon-angle-down:before {
+	.zoo-log-select.icon-angle-down:before {
 	  content: "\EA02";
 	  position: absolute;
 	  right: 3%;
 	  top: 42%;
 	}
+	.input-slot.style-scope.zoo-log-select > .style-scope.my-app,
 	::slotted(select) {
 	  -webkit-appearance: none;
 	  -moz-appearance: none;
@@ -59,18 +60,22 @@
 	  outline: none;
 	  box-sizing: border-box;
 	}
+	.input-slot.style-scope.zoo-log-select > .style-scope.my-app:disabled,
 	::slotted(select:disabled) {
 	  border-color: #e6e6e6;
 	  background-color: #f2f3f4;
 	  color: #97999c;
 	}
+	.input-slot.style-scope.zoo-log-select > .style-scope.my-app:disabled:hover,
 	::slotted(select:disabled:hover) {
 	  cursor: not-allowed;
 	}
+	.input-slot.style-scope.zoo-log-select > .style-scope.my-app:focus,
 	::slotted(select:focus) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
+	.input-slot.style-scope.zoo-log-select > .style-scope.my-app.error,
 	::slotted(select.error) {
 	  border: 2px solid;
 	  padding: 12px 14px;

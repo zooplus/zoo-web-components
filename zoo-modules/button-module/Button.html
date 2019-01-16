@@ -9,27 +9,6 @@
 	:host {
 		width: 100%;
 	}
-	//If a single selector is not supported by the browser, then the whole selector list gets ignored.
-	.zoo-log-btn > div {
-		width: 100%;
-		height: 100%;
-		border: none;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-	}
-	.button-box ::slotted(div) {
-		width: 100%;
-		height: 100%;
-		border: none;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-	}
 	.button-box {
 	  position: relative;
 	  width: 100%;
@@ -99,6 +78,17 @@
 				font-size: 16px;
 				line-height: 56px !important;
 				padding: 0 16px;
+			}
+			// getting any first direct child
+			& > * {
+				width: 100%;
+				height: 100%;
+				border: none;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
 			}
 		}
 	}

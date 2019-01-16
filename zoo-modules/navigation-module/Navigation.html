@@ -1,4 +1,4 @@
-<div class="nav-box">
+<div class="nav-box zoo-log-navigation">
 	<slot name="content">
 	</slot>
 </div>
@@ -14,16 +14,7 @@
 	    $main-color-light
 	  );
 	}
-	//If a single selector is not supported by the browser, then the whole selector list gets ignored.
 	.zoo-log-navigation > div {
-		display: flex;
-		flex-direction: row;
-		height: 100%;
-		overflow: auto;
-		overflow-y: hidden;
-		padding: 0 20px;
-	}
-	::slotted(div) {
 		display: flex;
 		flex-direction: row;
 		height: 100%;

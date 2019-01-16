@@ -9,11 +9,11 @@
 				</zoo-log-input>
 			</div>
 			<div class="header-button">
-				<zoo-log-button>
-					<button slot="button" class="medium hot" type="button" tooltip='simple tooltip here'>
+				<zoo-log-button type="hot" size="medium">
+					<div slot="buttoncontent">
 						<span class="icon-cart-copy"></span>
 						<span class="slotted-span">Shopping Cart</span>
-					</button>
+					</div>
 				</zoo-log-button>
 			</div>
 		</div>
@@ -73,31 +73,31 @@
 		</zoo-log-checkbox>
 	</form>
 	<div class="buttons">
-		<zoo-log-button>
-			<button slot="button" class="medium hot" type="button" on:click="changeState(event)">
+		<zoo-log-button type="hot" size="medium" on:click="changeState(event)">
+			<div slot="buttoncontent">
 				<span class="slotted-span">Hi there!</span>
 				<span class="icon-angle-down"></span>
-			</button>
+			</div>
 		</zoo-log-button>
-		<zoo-log-button>
-			<button slot="button" class="medium" type="button">
+		<zoo-log-button size="medium">
+			<div slot="buttoncontent">
 				<span class="icon-angle-up"></span>
 				<span class="slotted-span">Here we have a very long text indeed!</span>
 				<span class="icon-angle-down"></span>
-			</button>
+			</div>
 		</zoo-log-button>
-		<zoo-log-button>
-			<button slot="button" class="medium btn-tooltip" type="button" disabled>
+		<zoo-log-button size="medium" disabled="{true}">
+			<div slot="buttoncontent">
 				Disabled :(
 				<zoo-log-tooltip position="bottom"
 					text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
 				</zoo-log-tooltip>
-			</button>
+			</div>
 		</zoo-log-button>
-		<zoo-log-button on:click="showModal(event)">
-			<button slot="button" class="medium hot" type="button">
+		<zoo-log-button type="hot" size="medium" on:click="showModal(event)">
+			<div slot="buttoncontent">
 				<span class="slotted-span">Show modal</span>
-			</button>
+			</div>
 		</zoo-log-button>
 	</div>
 	<div class="content">
@@ -164,10 +164,10 @@
 				<input slot="checkboxelement" type="checkbox"/>
 			</zoo-log-checkbox>
 			<br>
-			<zoo-log-button>
-				<button slot="button" class="medium hot" type="button">
-					<span class="slotted-span">Add to cart</span>
-				</button>
+			<zoo-log-button type="hot" size="medium">
+				<div slot="buttoncontent">
+					<span>Add to cart</span>
+				</div>
 			</zoo-log-button>
 		</div>
 	</zoo-log-modal>
@@ -175,6 +175,10 @@
 </div>
 
 <style type='text/scss'>
+// @import url("https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css");
+// @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+// @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
 	.nav {
 		zoo-log-link {
 			padding: 0 15px;

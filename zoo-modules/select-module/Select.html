@@ -9,7 +9,7 @@
 	<span class="input-link">
 		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right"></zoo-log-link>
 	</span>
-	<span class="input-slot">
+	<span class="input-slot zoo-log-select">
 		<slot ref:select name="selectelement"></slot>
 		{#if !_multiple}
 		<span class="zoo-log-select icon-angle-up" class:error="!valid"></span>
@@ -44,7 +44,7 @@
 	  right: 3%;
 	  top: 42%;
 	}
-	.input-slot.style-scope.zoo-log-select > .style-scope.my-app,
+	.input-slot.style-scope.zoo-log-select > *:first-child,
 	::slotted(select) {
 	  -webkit-appearance: none;
 	  -moz-appearance: none;
@@ -60,22 +60,22 @@
 	  outline: none;
 	  box-sizing: border-box;
 	}
-	.input-slot.style-scope.zoo-log-select > .style-scope.my-app:disabled,
+	.input-slot.style-scope.zoo-log-select > *:first-child:disabled,
 	::slotted(select:disabled) {
 	  border-color: #e6e6e6;
 	  background-color: #f2f3f4;
 	  color: #97999c;
 	}
-	.input-slot.style-scope.zoo-log-select > .style-scope.my-app:disabled:hover,
+	.input-slot.style-scope.zoo-log-select > *:first-child:disabled:hover,
 	::slotted(select:disabled:hover) {
 	  cursor: not-allowed;
 	}
-	.input-slot.style-scope.zoo-log-select > .style-scope.my-app:focus,
+	.input-slot.style-scope.zoo-log-select > *:first-child:focus,
 	::slotted(select:focus) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
-	.input-slot.style-scope.zoo-log-select > .style-scope.my-app.error,
+	.input-slot.style-scope.zoo-log-select > *:first-child.error,
 	::slotted(select.error) {
 	  border: 2px solid;
 	  padding: 12px 14px;

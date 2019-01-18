@@ -38,8 +38,7 @@
 	  font-size: 25px;
 	}
 	//If a single selector is not supported by the browser, then the whole selector list gets ignored.
-	.input-slot.style-scope.zoo-log-input input,
-	.input-slot.style-scope.zoo-log-input textarea {
+	.input-slot.style-scope.zoo-log-input > *:first-child {
 	  width: 100%;
 	  font-size: 14px;
 	  line-height: 20px;
@@ -76,13 +75,13 @@
 	  -webkit-appearance: none;
 	  margin: 0;
 	}
-	.input-slot.style-scope.zoo-log-input > .style-scope.my-app::placeholder, 
+	.input-slot.style-scope.zoo-log-input > *:first-child::placeholder, 
 	::slotted(input::placeholder),
 	::slotted(textarea::placeholder) {
 	  color: $placeholder-color;
 	  opacity: 1;
 	}
-	.input-slot.style-scope.zoo-log-input > .style-scope.my-app:disabled, 
+	.input-slot.style-scope.zoo-log-input > *:first-child:disabled, 
 	::slotted(input:disabled),
 	::slotted(textarea:disabled) {
 	  border-color: #e6e6e6;
@@ -90,13 +89,13 @@
 	  color: #97999c;
 	  cursor: not-allowed;
 	}
-	.input-slot.style-scope.zoo-log-input > .style-scope.my-app:focus, 
+	.input-slot.style-scope.zoo-log-input > *:first-child:focus, 
 	::slotted(input:focus),
 	::slotted(textarea:focus) {
 	  border: 2px solid;
 	  padding: 12px 34px 12px 14px;
 	}
-	.input-slot.style-scope.zoo-log-input > .style-scope.my-app.error, 
+	.input-slot.style-scope.zoo-log-input > *:first-child.error, 
 	::slotted(input.error),
 	::slotted(textarea.error) {
 	  border: 2px solid;

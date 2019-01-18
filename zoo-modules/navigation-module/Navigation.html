@@ -14,7 +14,14 @@
 	    $main-color-light
 	  );
 	}
-	.zoo-log-navigation > *:first-child,
+	.zoo-log-navigation > *:first-child {
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		overflow: auto;
+		overflow-y: hidden;
+		padding: 0 20px;
+	}
 	::slotted(*:first-child) {
 		display: flex;
 		flex-direction: row;

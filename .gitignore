@@ -1,6 +1,7 @@
 /node_modules
 /public/*.js
 /public/@webcomponents
+/public/webcomponentsjs
 /public/*.js.map
 dist/
 .DS_Store

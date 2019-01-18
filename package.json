@@ -9,6 +9,7 @@
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
 		"@types/mocha": "^5.2.0",
+		"buble": "^0.19.6",
 		"mocha": "^5.2.0",
 		"node-sass": "^4.7.2",
 		"rollup": "^0.67.4",
@@ -22,10 +23,11 @@
 	"scripts": {
 		"build": "rollup -c",
 		"start": "serve public & rollup -c -w",
-		"test": "mocha --recursive 'zoo-modules/**/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
+		"test": "mocha --recursive 'zoo-modules/**/spec/*.js' --opts mocha.opts && node cat ./pika.txt",
+		"buble": "buble public/bundle.js > public/bundlees2015.js"
 	},
 	"dependencies": {
 		"@shop/icon-fonts": "^1.0.4",
-		"@webcomponents/webcomponentsjs": "^2.2.3"
+		"@webcomponents/webcomponentsjs": "^2.2.4"
 	}
 }

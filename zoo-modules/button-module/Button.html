@@ -80,7 +80,16 @@
 				padding: 0 16px;
 			}
 			// getting any first direct child
-			& > *:first-child,
+			& > *:first-child {
+				width: 100%;
+				height: 100%;
+				border: none;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
 			::slotted(*:first-child) {
 				width: 100%;
 				height: 100%;

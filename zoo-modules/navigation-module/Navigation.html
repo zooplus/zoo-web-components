@@ -1,4 +1,4 @@
-<div class="nav-box">
+<div class="nav-box zoo-log-navigation">
 	<slot name="content">
 	</slot>
 </div>
@@ -14,14 +14,21 @@
 	    $main-color-light
 	  );
 	}
-	.nav-box {
-		::slotted(div) {
-			display: flex;
-			flex-direction: row;
-			height: 100%;
-			overflow: scroll;
-			padding: 0 20px;
-		}
+	.zoo-log-navigation > *:first-child {
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		overflow: auto;
+		overflow-y: hidden;
+		padding: 0 20px;
+	}
+	::slotted(*:first-child) {
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		overflow: auto;
+		overflow-y: hidden;
+		padding: 0 20px;
 	}
 </style>
 

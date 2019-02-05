@@ -1,21 +1,21 @@
 <div class="topbar-box">
-	<div class="language-select"></div>
-	<div class="text">
-		<zoo-log-link
-			href="{mainlink.href}" target="{mainlink.target}" type="{mainlink.type}" text="{mainlink.text}">
-		</zoo-log-link>
+	{#if languages}
+		<div class="language-select">
+			<zoo-log-select showicons="{false}">
+				<select slot="selectelement" class="slotted-select">
+					{#each languages as language}
+						<option class="placeholder" value="{language.text}">{language.text}</option>
+					{/each}
+				</select>
+			</zoo-log-select>
+		</div>
+	{/if}
+	<div class="middle-content">
+		<slot name="middlecontent"></slot>
 	</div>
-	<div class="help-contact">
-		<zoo-log-link
-			href="{helplink.href}" target="{helplink.target}" type="{helplink.type}" text="{helplink.text}">
-		</zoo-log-link>
+	<div class="right-content">
+		<slot name="rightcontent"></slot>
 	</div>
-	<div class="re-order">
-		<zoo-log-link
-			href="{reoderlink.href}" target="{reoderlink.target}" type="{reoderlink.type}" text="{reoderlink.text}">
-		</zoo-log-link>
-	</div>
-	<div class="my-acc">{myacctext}</div>
 </div>
 
 <style type='text/scss'>
@@ -26,6 +26,34 @@
 		background-image: -webkit-linear-gradient(left, $anti-flash-white, $white);
 		display: flex;
     	flex-direction: row;
+
+		.language-select {
+			border-right: 1px solid;
+			.slotted-select {
+				padding: 5px 15px;
+				border: none;
+				background: transparent;
+			}
+		}
+
+		.middle-content, .right-content {
+			margin-left: auto;
+		}
+
+		.middle-content > ::slotted(*) {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.right-content > ::slotted(*) {
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+			overflow: auto;
+			overflow-y: hidden;
+			padding: 0 20px;
+		}
 	}
 </style>
 
@@ -34,23 +62,7 @@
 	  tag: "zoo-log-top-bar",
 	  data() {
 	    return {
-			languages: [{text: 'DE', active: true}, {text: 'PL', active: false}],
-			mainlink: {
-				text: 'Free shipment from 30$',
-				href: 'https://google.com',
-				type: 'grey'
-			},
-			helplink: {
-				text: 'Help & Contact',
-				href: 'https://google.com',
-				type: 'green'
-			},
-			reoderlink: {
-				text: 'Reorder',
-				href: 'https://google.com',
-				type: 'grey'
-			},
-			myacctext: 'My Zooplus'
+			languages: []
 	    };
 	  }
 	};

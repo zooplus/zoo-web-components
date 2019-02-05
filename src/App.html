@@ -1,5 +1,4 @@
 <div class="app">
-	<!-- <zoo-log-top-bar></zoo-log-top-bar> -->
 	<zoo-log-header imgsrc="logo.png" headertext="{headertext}">
 		<div class="search-field-holder" slot="content">
 			<div class="header-search">
@@ -79,7 +78,7 @@
 	<div class="buttons">
 		<zoo-log-button type="hot" size="medium" on:click="changeState(event)">
 			<div slot="buttoncontent">
-				<span class="slotted-span">Hi there!</span>
+				<span class="slotted-span">Trigger invalid state!</span>
 				<span class="icon-angle-down"></span>
 			</div>
 		</zoo-log-button>
@@ -195,34 +194,6 @@
 		position: relative;
 		display: inline-block;
 	}
-	input[type="checkbox"]::before {
-	  position: relative;
-	  display: inline-block;
-	  width: 16px;
-	  height: 16px;
-	  content: "";
-	  border-radius: 3px;
-	  border: 2px solid #3c9700;
-	  background: white;
-	}
-	input[type="checkbox"].error::before {
-		border-color: #ED1C24;
-	}
-	input[type="checkbox"]:checked::before {
-	  background: #3c9700;
-	}
-	input[type="checkbox"]:checked::after {
-	  content: "";
-	  position: absolute;
-	  top: 3px;
-	  left: 7px;
-	  width: 4px;
-	  height: 8px;
-	  border-bottom: 2px solid;
-	  border-right: 2px solid;
-	  transform: rotate(40deg);
-	  color: white;
-	}
 	[class^="icon-"], [class*=" icon-"] {
 		font-family: "zooplus-icons" !important;
 		font-display: auto;
@@ -274,16 +245,6 @@
 		color: forestgreen;
 		font-size: 25px;
 	}
-	#test:before {
-		content: "\EA37";
-		position: absolute;
-		right: 2%;
-		top: 18%;
-		padding: 5px;
-		line-height: 20px;
-		color: #ED1C24;
-		font-size: 25px;
-	}
 	.app {
 		max-width: 1280px;
 		margin: 0 auto;
@@ -331,11 +292,6 @@
 			}
 		}
 	}
-	.test:hover {
-		zoo-log-tooltip {
-			display: block;
-		}
-	}
 	zoo-log-footer {
 		flex-shrink: 0;
 	}
@@ -370,6 +326,9 @@
 		tag: 'my-app',
 		data() {
 			return {
+				topBarLanguages: [
+					{text: 'DE', active: true}, {text: 'PL', active: false}
+				],
 				navlinks: [
 					{
 						href: 'https://google.com',
@@ -437,7 +396,17 @@
 				],
 				headertext: 'header text',
 				imgsrc: '',
-				inputState: true
+				inputState: true,
+				helplink: {
+					text: 'Help & Contact',
+					href: 'https://google.com',
+					type: 'green'
+				},
+				reoderlink: {
+					text: 'Reorder',
+					href: 'https://google.com',
+					type: 'grey'
+				}
 			}
 		},
 		methods: {

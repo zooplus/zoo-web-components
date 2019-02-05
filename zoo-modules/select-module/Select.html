@@ -9,11 +9,11 @@
 	<span class="input-link">
 		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right"></zoo-log-link>
 	</span>
-	<span class="input-slot">
+	<span class="input-slot zoo-log-select">
 		<slot ref:select name="selectelement"></slot>
-		{#if !_multiple}
-		<span class="icon-angle-up" class:error="!valid"></span>
-		<span class="icon-angle-down" class:error="!valid"></span>
+		{#if !_multiple && showicons}
+		<span class="zoo-log-select icon-angle-up" class:error="!valid"></span>
+		<span class="zoo-log-select icon-angle-down" class:error="!valid"></span>
 		{/if}
 	</span>
 	<span class="input-info">
@@ -24,6 +24,10 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
+	:host {
+		width: 100%;
+		height: 100%;
+	}
 	.icon-angle-up,
 	.icon-angle-down {
 	  color: $matterhorn;
@@ -32,17 +36,32 @@
 	    color: $error-text-color;
 	  }
 	}
-	.icon-angle-up:before {
+	.zoo-log-select.icon-angle-up:before {
 	  content: "\EA05";
 	  position: absolute;
 	  right: 3%;
 	  top: 28%;
 	}
-	.icon-angle-down:before {
+	.zoo-log-select.icon-angle-down:before {
 	  content: "\EA02";
 	  position: absolute;
 	  right: 3%;
 	  top: 42%;
+	}
+	.input-slot.style-scope.zoo-log-select > *:first-child {
+		-webkit-appearance: none;
+	  -moz-appearance: none;
+	  width: 100%;
+	  background: white;
+	  font-size: 14px;
+	  line-height: 20px;
+	  padding: 13px 15px;
+	  border: 1px solid;
+	  border-color: $border-color;
+	  border-radius: 3px;
+	  color: $matterhorn;
+	  outline: none;
+	  box-sizing: border-box;
 	}
 	::slotted(select) {
 	  -webkit-appearance: none;
@@ -59,18 +78,22 @@
 	  outline: none;
 	  box-sizing: border-box;
 	}
+	.input-slot.style-scope.zoo-log-select > *:first-child:disabled,
 	::slotted(select:disabled) {
 	  border-color: #e6e6e6;
 	  background-color: #f2f3f4;
 	  color: #97999c;
 	}
+	.input-slot.style-scope.zoo-log-select > *:first-child:disabled:hover,
 	::slotted(select:disabled:hover) {
 	  cursor: not-allowed;
 	}
+	.input-slot.style-scope.zoo-log-select > *:first-child:focus,
 	::slotted(select:focus) {
 	  border: 2px solid;
 	  padding: 12px 14px;
 	}
+	.input-slot.style-scope.zoo-log-select > *:first-child.error,
 	::slotted(select.error) {
 	  border: 2px solid;
 	  padding: 12px 14px;
@@ -116,7 +139,8 @@
 	      linktarget: "about:blank",
 	      inputerrormsg: "",
 	      infotext: "",
-	      valid: true,
+		  valid: true,
+		  showicons: true,
 	      _multiple: false,
 	      _slottedSelect: undefined
 	    };

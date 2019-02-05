@@ -11,7 +11,7 @@
 	</span>
 	<span class="input-slot zoo-log-select">
 		<slot ref:select name="selectelement"></slot>
-		{#if !_multiple}
+		{#if !_multiple && showicons}
 		<span class="zoo-log-select icon-angle-up" class:error="!valid"></span>
 		<span class="zoo-log-select icon-angle-down" class:error="!valid"></span>
 		{/if}
@@ -24,6 +24,10 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
+	:host {
+		width: 100%;
+		height: 100%;
+	}
 	.icon-angle-up,
 	.icon-angle-down {
 	  color: $matterhorn;
@@ -135,7 +139,8 @@
 	      linktarget: "about:blank",
 	      inputerrormsg: "",
 	      infotext: "",
-	      valid: true,
+		  valid: true,
+		  showicons: true,
 	      _multiple: false,
 	      _slottedSelect: undefined
 	    };

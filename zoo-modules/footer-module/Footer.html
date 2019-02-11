@@ -12,7 +12,7 @@
 	</div>
 </div>
 <div class="footer-copyright">
-	© zooplus AG 2018
+	© zooplus AG {currentYear}
 </div>
 
 <style type='text/scss'>
@@ -66,7 +66,8 @@
 		  tag: "zoo-log-footer",
 		  data() {
 		    return {
-		      footerlinks: []
+			  footerlinks: [],
+			  currentYear: new Date().getFullYear()
 		    };
 		  }
 		};

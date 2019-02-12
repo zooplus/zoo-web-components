@@ -1,15 +1,15 @@
-import Header from '../zoo-modules/header-module/Header.html';
-import Modal from '../zoo-modules/modal-module/Modal.html';
-import Footer from '../zoo-modules/footer-module/Footer.html';
-import Input from '../zoo-modules/input-module/Input.html';
-import Button from '../zoo-modules/button-module/Button.html';
-import Checkbox from '../zoo-modules/checkbox-module/Checkbox.html';
-import Feedback from '../zoo-modules/feedback-module/Feedback.html';
-import Tooltip from '../zoo-modules/tooltip-module/Tooltip.html';
-import Select from '../zoo-modules/select-module/Select.html';
-import Link from '../zoo-modules/link-module/Link.html';
-import InputInfo from '../zoo-modules/shared-module/InputInfo.html';
-import Navigation from '../zoo-modules/navigation-module/Navigation.html';
+import Header from '../zoo-modules/header-module/Header.svelte';
+import Modal from '../zoo-modules/modal-module/Modal.svelte';
+import Footer from '../zoo-modules/footer-module/Footer.svelte';
+import Input from '../zoo-modules/input-module/Input.svelte';
+import Button from '../zoo-modules/button-module/Button.svelte';
+import Checkbox from '../zoo-modules/checkbox-module/Checkbox.svelte';
+import Feedback from '../zoo-modules/feedback-module/Feedback.svelte';
+import Tooltip from '../zoo-modules/tooltip-module/Tooltip.svelte';
+import Select from '../zoo-modules/select-module/Select.svelte';
+import Link from '../zoo-modules/link-module/Link.svelte';
+import InputInfo from '../zoo-modules/shared-module/InputInfo.svelte';
+import Navigation from '../zoo-modules/navigation-module/Navigation.svelte';
 
 export default {
 	inputinfo: new InputInfo(),

@@ -135,11 +135,11 @@
 	    });
 	});
 
-	const changeValidState = (state) => {
+	const changeValidState = (valid) => {
 		if (_slottedInput) {
-			if (state === false) {
+			if (valid === false) {
 				_slottedInput.classList.add('error');
-			} else if (state) {
+			} else if (valid) {
 				_slottedInput.classList.remove('error');
 			}
 		}

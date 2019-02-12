@@ -1,3 +1,4 @@
+<svelte:options tag="zoo-log-button"></svelte:options>
 <div class="button-box">
 	<button disabled={disabled ? true : null} class="{type} {size} zoo-log-btn" type="button">
 		<slot name="buttoncontent"></slot>
@@ -105,14 +106,7 @@
 </style>
 
 <script>
-	export default {
-	  tag: "zoo-log-button",
-	  data() {
-	    return {
-	      type: "cold", //'hot'
-		  size: "small", //'medium', 'big',
-		  disabled: false
-	    };
-	  }
-	};
+	export let type = "cold"; //'hot'
+	export let size = "small"; //'medium', 'big',
+	export let disabled = false;
 </script>

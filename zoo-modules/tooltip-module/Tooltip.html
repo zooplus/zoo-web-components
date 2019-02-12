@@ -1,3 +1,4 @@
+<svelte:options tag="zoo-log-tooltip"></svelte:options>
 <div class="tooltip-box {position}">
 	<div class="tooltip-content">
 		<slot name="content">
@@ -92,13 +93,6 @@
 </style>
 
 <script>
-		export default {
-		  tag: "zoo-log-tooltip",
-		  data() {
-		    return {
-			  text: "",
-			  position: 'top'
-		    };
-		  }
-		};
+	export let text = "";
+	export let position = 'top';
 </script>

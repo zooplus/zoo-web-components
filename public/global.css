@@ -3,6 +3,7 @@ body {
 	margin: 0;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {

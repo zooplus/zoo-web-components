@@ -1,3 +1,4 @@
+<svelte:options tag="zoo-log-input-info"></svelte:options>
 {#if !valid && inputerrormsg}
 	<div class="error-holder">
 		<span class="icon-exclamation-circle"></span>
@@ -63,14 +64,7 @@
 </style>
 
 <script>
-	export default {
-	  tag: "zoo-log-input-info",
-	  data() {
-	    return {
-			valid: true,
-			inputerrormsg: '',
-			infotext: ''
-	    };
-	  }
-	};
+	export let valid = true;
+	export let inputerrormsg = '';
+	export let infotext = '';
 </script>

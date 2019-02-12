@@ -1,8 +1,9 @@
-<div class="checkbox-box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="!valid" class:disabled="disabled">
-	<label class="input-slot" on:click="handleClick(event)">
-		<slot name="checkboxelement" on:click="handleSlotClick(event)" ref:inputSlot></slot>
+<svelte:options tag="zoo-log-checkbox"></svelte:options>
+<div class="checkbox-box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="{!valid}" class:disabled="{disabled}">
+	<label class="input-slot" on:click="{e => handleClick(e)}">
+		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>
 		<span class="input-label">
-			{#if labeltext} {labeltext} {/if}
+			{labeltext}
 		</span>
 	</label>
 </div>
@@ -101,63 +102,59 @@
 </style>
 
 <script>
-	export default {
-	  tag: "zoo-log-checkbox",
-	  data() {
-	    return {
-	      labeltext: "",
-	      valid: true,
-	      disabled: false,
-	      highlighted: false,
-	      _clicked: false,
-	      _slottedInput: undefined
-	    };
-	  },
-	  oncreate() {
-	    this.refs.inputSlot.addEventListener("slotchange", e => {
-	      let input = this.refs.inputSlot.assignedNodes()[0];
-	      this._slottedInput = input;
-	      this.changeValidState(this.valid);
-	    });
-	  },
-	  onstate({ changed, current, previous }) {
-	    if (
-	      changed.valid !== undefined &&
-	      previous &&
-	      current.valid !== previous.valid
-	    ) {
-	      this.changeValidState(current.valid);
-	    }
-	  },
-	  methods: {
-	    handleClick(event) {
-	      if (this.disabled) {
-	        event.stopPropagation();
-	        event.preventDefault();
-	        return;
-	      }
-	      event.stopImmediatePropagation();
-	      const inputEl = this.shadowRoot.querySelector("slot").assignedNodes()[0];
-	      this._clicked = !this._clicked;
-	      inputEl.click();
-	    },
-	    handleSlotClick(event) {
-	      if (this.disabled) {
-	        event.stopPropagation();
-	        event.preventDefault();
-	        return;
-	      }
-	      event.stopImmediatePropagation();
-	    },
-	    changeValidState(state) {
-	      if (this._slottedInput) {
-	        if (state === false) {
-	          this._slottedInput.classList.add("error");
-	        } else if (state === true) {
-	          this._slottedInput.classList.remove("error");
-	        }
-	      }
-	    }
-	  }
+	import { beforeUpdate, onMount } from 'svelte';
+
+	export let labeltext = '';
+	export let valid = true;
+	export let disabled = false;
+	export let highlighted = false;
+	let _clicked = false;
+	let _slottedInput;
+	let _prevValid;
+	let _inputSlot;
+
+	const handleClick = (event) => {
+		if (disabled) {
+			event.stopPropagation();
+			event.preventDefault();
+			return;
+		}
+		event.stopImmediatePropagation();
+		_clicked = !_clicked;
+		_slottedInput.click();
 	};
+
+	const handleSlotClick = (event) => {
+		if (disabled) {
+			event.stopPropagation();
+			event.preventDefault();
+			return;
+		}
+		event.stopImmediatePropagation();
+	};
+
+	const changeValidState = (state) => {
+		if (_slottedInput) {
+			if (state === false) {
+				_slottedInput.classList.add("error");
+			} else if (state === true) {
+				_slottedInput.classList.remove("error");
+			}
+		}
+	}
+
+	beforeUpdate(() => {
+		if (valid != _prevValid) {
+			_prevValid = valid;
+			changeValidState(valid);
+		}
+	});
+	  
+	onMount(() => {
+		_inputSlot.addEventListener("slotchange", e => {
+			let nodes = _inputSlot.assignedNodes();
+			_slottedInput = nodes[0];
+			changeValidState(valid);
+	    });
+	});
 </script>

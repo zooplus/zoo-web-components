@@ -1,7 +1,8 @@
+<svelte:options tag="zoo-log-input"></svelte:options>
 <div class="input-box {labelposition}">
 	<span class="input-label">
 		{#if labeltext}
-		<div class="label" class:error="!valid">
+		<div class="label" class:error="{!valid}">
 			<span>{labeltext}</span>
 		</div>
 		{/if}
@@ -10,7 +11,7 @@
 		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right"></zoo-log-link>
 	</span>
 	<span class="input-slot">
-		<slot ref:inputSlot name="inputelement">
+		<slot bind:this={_inputSlot} name="inputelement">
 			<input/>
 		</slot>
 		{#if valid}
@@ -105,43 +106,42 @@
 </style>
 
 <script>
-	export default {
-	  tag: "zoo-log-input",
-	  oncreate() {
-		this.refs.inputSlot.addEventListener("slotchange", e => {
-		  let nodes = this.refs.inputSlot.assignedNodes();
-		  this._slottedInput = nodes[0];
-		  this.changeValidState(this.valid);
-	    });
-	  },
-	  onstate({ changed, current, previous }) {
-	    if (changed.valid !== undefined && previous && current.valid !== previous.valid) {
-			this.changeValidState(current.valid);
+	import { beforeUpdate, onMount } from 'svelte';
+
+	export let labelposition = "top";
+	export let labeltext = "";
+	export let linktext = "";
+	export let linkhref = "";
+	export let linktarget = "about:blank";
+	export let inputerrormsg = "";
+	export let infotext = "";
+	export let valid = true;
+	let _slottedInput;
+	let _prevValid;
+	let _inputSlot;
+
+	beforeUpdate(() => {
+		if (valid != _prevValid) {
+			_prevValid = valid;
+			changeValidState(valid);
 		}
-	  },
-	  methods: {
-		  changeValidState(state) {
-			if (this._slottedInput) {
-				if (state === false) {
-					this._slottedInput.classList.add('error');
-				} else if (state === true) {
-					this._slottedInput.classList.remove('error');
-				}
+	});
+	  
+	onMount(() => {
+		_inputSlot.addEventListener("slotchange", e => {
+			let nodes = _inputSlot.assignedNodes();
+			_slottedInput = nodes[0];
+			changeValidState(valid);
+	    });
+	});
+
+	const changeValidState = (state) => {
+		if (_slottedInput) {
+			if (state === false) {
+				_slottedInput.classList.add('error');
+			} else if (state) {
+				_slottedInput.classList.remove('error');
 			}
-		  }
-	  },
-	  data() {
-	    return {
-	      labelposition: "top",
-	      labeltext: "",
-	      linktext: "",
-	      linkhref: "",
-	      linktarget: "about:blank",
-	      inputerrormsg: "",
-	      infotext: "",
-		  valid: true,
-		  _slottedInput: undefined
-	    };
-	  }
-	};
+		}
+	}
 </script>

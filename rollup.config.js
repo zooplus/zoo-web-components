@@ -2,6 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
+import babel from 'rollup-plugin-babel';
 import sass from 'node-sass';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -38,6 +39,9 @@ const shared = {
 		}),
 		resolve(),
 		commonjs(),
+		// babel({
+        //     exclude: 'node_modules/**'
+		// }),
 		production && terser()
 	]
 }
@@ -51,7 +55,8 @@ export default [
 			file: 'public/bundle.js',
 			name: 'app'
 		}
-	}),
+	})
+	,
 	Object.assign({}, shared, {
 		input: 'src/release.js',
 		output: {

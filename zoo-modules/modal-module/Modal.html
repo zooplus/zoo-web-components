@@ -1,7 +1,8 @@
-<div class="modal-box" on:click="stopPropagation(event)">
+<svelte:options tag="zoo-log-modal"></svelte:options>
+<div class="modal-box" on:click="{e => e.stopPropagation()}" bind:this={_modalRoot}>
 	<div class="heading">
 		<h2>{headertext}</h2>
-		<span on:click="hideModal(event)" class="icon-close-new"></span>
+		<span on:click="{event => hideModal(event)}" class="icon-close-new"></span>
 	</div>
 	<div class="content">
 		<slot name="content"></slot>
@@ -57,31 +58,21 @@
 </style>
 
 <script>
-	export default {
-	  tag: "zoo-log-modal",
-	  oncreate() {
-	    const host = this.shadowRoot.getRootNode().host;
+	import { onMount } from 'svelte';
+
+	export let headertext = '';
+	let _modalRoot;
+
+	onMount(() => {
+		const host = _modalRoot.getRootNode().host;
 	    host.addEventListener("click", event => {
 	      host.style.display = "none";
-	      const closedEvent = new Event("modalClosed");
-	      host.dispatchEvent(closedEvent);
+	      host.dispatchEvent(new Event("modalClosed"));
 	    });
-	  },
-	  data() {
-	    return {
-	      headertext: ""
-	    };
-	  },
-	  methods: {
-	    hideModal(event) {
-	      const host = this.shadowRoot.getRootNode().host;
-	      host.style.display = "none";
-	      const closedEvent = new Event("modalClosed");
-	      host.dispatchEvent(closedEvent);
-	    },
-	    stopPropagation(event) {
-	      event.stopPropagation();
-	    }
-	  }
-	};
+	});
+	const hideModal = (event) => {
+		const host = _modalRoot.getRootNode().host;
+		host.style.display = "none";
+		host.dispatchEvent(new Event("modalClosed"));
+	}
 </script>

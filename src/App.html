@@ -1,3 +1,4 @@
+<svelte:options tag="my-app"></svelte:options>
 <div class="app">
 	<zoo-log-header imgsrc="logo.png" headertext="{headertext}">
 		<div class="search-field-holder" slot="content">
@@ -17,7 +18,7 @@
 			</div>
 		</div>
 	</zoo-log-header>
-	<zoo-log-navigation class="nav" ref:nav>
+	<zoo-log-navigation class="nav">
 		<div slot="content">
 			{#each navlinks as link}
 				<zoo-log-link href="{link.href}" target="{link.target}" type="{link.type}"
@@ -26,7 +27,7 @@
 			{/each}
 		</div>
 	</zoo-log-navigation>
-	<form ref:form>
+	<form>
 		<zoo-log-input labeltext="Very long label which should test how it behaves" 
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
@@ -69,6 +70,23 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
+		<zoo-log-select labeltext="Standard select" 
+			linktext="Forgotten your password?"
+			linkhref="https://google.com"
+			linktarget="about:blank"
+			valid="{inputState}"
+			inputerrormsg="Value is required"
+			infotext="Additional helpful information for our users" >
+			<select slot="selectelement">
+				<option class="placeholder" value="" disabled selected>Placeholder</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
+		</zoo-log-select>
+		<zoo-log-searchable-select
+			labeltext="Searchable select">
+		</zoo-log-searchable-select>
 		<zoo-log-checkbox highlighted
 			valid="{inputState}"
 			labeltext="Very long label which should test how it behaves LabelVery long label which should test how it behaves LabelVery long label which should test how it behaves Label">
@@ -76,7 +94,7 @@
 		</zoo-log-checkbox>
 	</form>
 	<div class="buttons">
-		<zoo-log-button type="hot" size="medium" on:click="changeState(event)">
+		<zoo-log-button type="hot" size="medium" on:click="{changeState}">
 			<div slot="buttoncontent">
 				<span class="slotted-span">Trigger invalid state!</span>
 				<span class="icon-angle-down"></span>
@@ -97,12 +115,12 @@
 				</zoo-log-tooltip>
 			</div>
 		</zoo-log-button>
-		<zoo-log-button type="hot" size="medium" on:click="showModal(event)">
+		<zoo-log-button type="hot" size="medium" on:click="{showModal}">
 			<div slot="buttoncontent">
 				<span class="slotted-span">Show modal</span>
 			</div>
 		</zoo-log-button>
-	</div>
+	</div> 
 	<div class="content">
 		<zoo-log-feedback 
 			type="info" 
@@ -113,10 +131,10 @@
 		<zoo-log-feedback type="success" text="This is a success message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-log-feedback>
 		<br>
 		<div class="special-tooltip"> 
-			<span on:click="showSpecialTooltip(event)">
+			<span on:click="{showSpecialTooltip}">
 				test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip 
 			</span>
-			<zoo-log-tooltip ref:specialTooltip text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			<zoo-log-tooltip bind:this={specialTooltip} text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
 				<zoo-log-input slot="content">
 					<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
 					<span class="icon-search-default" slot="inputicon"></span>
@@ -145,7 +163,7 @@
 			</zoo-log-tooltip>
 		</div>
 	</div>
-	<zoo-log-modal style="display: none" headertext="Your basket contains licensed items" ref:modal on:modalClosed="handleModalClosed(event)">
+	<zoo-log-modal style="display: none" headertext="Your basket contains licensed items" bind:this={modal} on:modalClosed="{handleModalClosed}">
 		<div slot="content">
 			<zoo-log-feedback 
 			type="info" 
@@ -174,14 +192,10 @@
 			</zoo-log-button>
 		</div>
 	</zoo-log-modal>
-	<zoo-log-footer footerlinks="{footerlinks}"></zoo-log-footer>
+	<zoo-log-footer footerlinks="{footerlinks}"></zoo-log-footer> 
 </div>
 
 <style type='text/scss'>
-// @import url("https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css");
-// @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
-
 	.nav {
 		zoo-log-link {
 			padding: 0 15px;
@@ -322,108 +336,103 @@
 </style>
 
 <script>
-	export default {
-		tag: 'my-app',
-		data() {
-			return {
-				topBarLanguages: [
-					{text: 'DE', active: true}, {text: 'PL', active: false}
-				],
-				navlinks: [
-					{
-						href: 'https://google.com',
-						text: 'Doge',
-						type: 'standard',
-						active: true
-					},
-					{
-						href: 'https://google.com',
-						text: 'Catz',
-						type: 'standard',
-					},
-					{
-						href: 'https://google.com',
-						text: 'Snek',
-						type: 'standard',
-					}
-				],
-				footerlinks: [
-					{
-						href: 'https://google.com',
-						text: 'About us',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Careers',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Investor Relations',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Imprint',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Terms & Conditions',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Methods of Payment',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'WEEE',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Privacy',
-						type: 'standard'
-					},
-					{
-						href: 'https://google.com',
-						text: 'Opt-out',
-						type: 'standard'
-					}
-				],
-				headertext: 'header text',
-				imgsrc: '',
-				inputState: true,
-				helplink: {
-					text: 'Help & Contact',
-					href: 'https://google.com',
-					type: 'green'
-				},
-				reoderlink: {
-					text: 'Reorder',
-					href: 'https://google.com',
-					type: 'grey'
-				}
-			}
+	let topBarLanguages = [
+		{text: 'DE', active: true}, {text: 'PL', active: false}
+	];
+	let navlinks = [
+		{
+			href: 'https://google.com',
+			text: 'Doge',
+			type: 'standard',
+			active: true
 		},
-		methods: {
-			showModal(event) {
-				this.refs.modal.style.display = 'block';
-			},
-			showSpecialTooltip(event) {
-				const elStyle = this.refs.specialTooltip.style;
-				const display = !elStyle.display || elStyle.display === 'none' ? 'block' : 'none';
-				elStyle.display = display;
-			},
-			handleModalClosed(event) {
-				console.log(event);
-			},
-			changeState(event) {
-				this.inputState = !this.inputState;
-			}
+		{
+			href: 'https://google.com',
+			text: 'Catz',
+			type: 'standard',
+		},
+		{
+			href: 'https://google.com',
+			text: 'Snek',
+			type: 'standard',
 		}
+	];
+	let footerlinks = [
+		{
+			href: 'https://google.com',
+			text: 'About us',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Careers',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Investor Relations',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Imprint',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Terms & Conditions',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Methods of Payment',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'WEEE',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Privacy',
+			type: 'standard'
+		},
+		{
+			href: 'https://google.com',
+			text: 'Opt-out',
+			type: 'standard'
+		}
+	];
+	let headertext = 'header text';
+	let imgsrc = '';
+	let inputState = true;
+	let helplink = {
+		text: 'Help & Contact',
+		href: 'https://google.com',
+		type: 'green'
 	};
+	let reoderlink = {
+		text: 'Reorder',
+		href: 'https://google.com',
+		type: 'grey'
+	};
+
+	let specialTooltip;
+	let modal;
+
+	const showModal = () => {
+		modal.style.display = 'block';
+	};
+	const showSpecialTooltip = () => {
+		const elStyle = specialTooltip.style;
+		const display = !elStyle.display || elStyle.display === 'none' ? 'block' : 'none';
+		elStyle.display = display;
+	};
+	const handleModalClosed = () => {
+		console.log('modal closed');
+	};
+	const changeState = () => {
+		inputState = !inputState;
+	}
 </script>

@@ -1,3 +1,4 @@
+<svelte:options tag="zoo-log-header"></svelte:options>
 <div class="header-box">
 	<img class="app-logo" src="{imgsrc}" alt="zooplus"/>
 	{#if headertext}<span class="app-name">{headertext}</span>{/if}
@@ -37,13 +38,6 @@
 </style>
 
 <script>
-	export default {
-	  tag: "zoo-log-header",
-	  data() {
-	    return {
-	      headertext: '',
-		  imgsrc: ''
-	    };
-	  }
-	};
+	export let headertext = '';
+	export let imgsrc = '';
 </script>

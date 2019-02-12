@@ -1,3 +1,4 @@
+<svelte:options tag="zoo-log-feedback"></svelte:options>
 <div class="feedback-box {type}">
 	{#if type === 'error'}
 		<div class="icon-sadness icon"></div>
@@ -61,13 +62,6 @@
 </style>
 
 <script>
-		export default {
-		  tag: "zoo-log-feedback",
-		  data() {
-		    return {
-				type: 'info',
-				text: ''
-		    };
-		  }
-		};
+	export let type = 'info';
+	export let text = '';
 </script>

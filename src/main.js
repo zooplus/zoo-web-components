@@ -1,18 +1,18 @@
-import App from './App.html';
-// import '../zoo-modules/top-bar-module/TopBar.html';
-import '../zoo-modules/header-module/Header.html';
-import '../zoo-modules/modal-module/Modal.html';
-import '../zoo-modules/navigation-module/Navigation.html';
-import '../zoo-modules/footer-module/Footer.html';
-import '../zoo-modules/button-module/Button.html';
-import '../zoo-modules/input-module/Input.html';
-import '../zoo-modules/checkbox-module/Checkbox.html';
-import '../zoo-modules/feedback-module/Feedback.html';
-import '../zoo-modules/link-module/Link.html';
-import '../zoo-modules/tooltip-module/Tooltip.html';
-import '../zoo-modules/select-module/Select.html';
-// import '../zoo-modules/select-module/SearchableSelect.html';
-import '../zoo-modules/shared-module/InputInfo.html';
+import App from './App.svelte';
+// import '../zoo-modules/top-bar-module/TopBar.svelte';
+import '../zoo-modules/header-module/Header.svelte';
+import '../zoo-modules/modal-module/Modal.svelte';
+import '../zoo-modules/navigation-module/Navigation.svelte';
+import '../zoo-modules/footer-module/Footer.svelte';
+import '../zoo-modules/button-module/Button.svelte';
+import '../zoo-modules/input-module/Input.svelte';
+import '../zoo-modules/checkbox-module/Checkbox.svelte';
+import '../zoo-modules/feedback-module/Feedback.svelte';
+import '../zoo-modules/link-module/Link.svelte';
+import '../zoo-modules/tooltip-module/Tooltip.svelte';
+import '../zoo-modules/select-module/Select.svelte';
+// import '../zoo-modules/select-module/SearchableSelect.svelte';
+import '../zoo-modules/shared-module/InputInfo.svelte';
 
 const app = new App({
 	target: document.body

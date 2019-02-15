@@ -11,7 +11,7 @@ import '../zoo-modules/feedback-module/Feedback.svelte';
 import '../zoo-modules/link-module/Link.svelte';
 import '../zoo-modules/tooltip-module/Tooltip.svelte';
 import '../zoo-modules/select-module/Select.svelte';
-// import '../zoo-modules/select-module/SearchableSelect.svelte';
+import '../zoo-modules/select-module/SearchableSelect.svelte';
 import '../zoo-modules/shared-module/InputInfo.svelte';
 
 const app = new App({

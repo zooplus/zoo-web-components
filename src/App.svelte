@@ -81,12 +81,12 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select
+		<zoo-log-searchable-select multiple='true'
 			labeltext="Searchable select">
 		</zoo-log-searchable-select>
 		<zoo-log-checkbox highlighted
 			valid="{inputState}"
-			labeltext="Very long label which should test how it behaves LabelVery long label which should test how it behaves LabelVery long label which should test how it behaves Label">
+			labeltext="An example checkbox with some additional event handling of clicks inside">
 			<input slot="checkboxelement" type="checkbox"/>
 		</zoo-log-checkbox>
 	</form>
@@ -108,7 +108,7 @@
 			<div slot="buttoncontent">
 				Disabled :(
 				<zoo-log-tooltip position="bottom"
-					text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+					text="Just set disabled attribute on `zoo-log-button`">
 				</zoo-log-tooltip>
 			</div>
 		</zoo-log-button>
@@ -129,34 +129,35 @@
 		<br>
 		<div class="special-tooltip"> 
 			<span on:click="{showSpecialTooltip}">
-				test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip test tooltip 
+				This element will show tooltip on top only when it is clicked.
 			</span>
-			<zoo-log-tooltip bind:this={specialTooltip} text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
-				<zoo-log-input slot="content">
-					<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
-					<span class="icon-search-default" slot="inputicon"></span>
-				</zoo-log-input>
+			<zoo-log-tooltip bind:this={specialTooltip} text="Hello from up above">
+				<div slot="content">
+					<zoo-log-input>
+						<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
+						<span class="icon-search-default" slot="inputicon"></span>
+					</zoo-log-input>
+					<zoo-log-tooltip position="right" text="Hello from right side.">
+					</zoo-log-tooltip>
+				</div>
 			</zoo-log-tooltip>
 		</div>
 		<br>
 		<div class="top-tooltip"> 
-			test tooltip right
-			<zoo-log-tooltip position="right"
-				text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			This element will show tooltip on the right side on hover.
+			<zoo-log-tooltip position="right" text="Hello from right side.">
 			</zoo-log-tooltip>
 		</div>
 		<br>
 		<div class="top-tooltip"> 
-			test tooltip left
-			<zoo-log-tooltip position="left"
-				text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			This element will show tooltip on the left side on hover.
+			<zoo-log-tooltip position="left" text="Hello from left side.">
 			</zoo-log-tooltip>
 		</div>
 		<br>
 		<div class="top-tooltip"> 
-			test tooltip bottom
-			<zoo-log-tooltip position="bottom"
-				text="Tooltip text Tooltip textTooltip textTooltip textTooltip text">
+			This element will show tooltip on the bottom side on hover.
+			<zoo-log-tooltip position="bottom" text="Hello from below">
 			</zoo-log-tooltip>
 		</div>
 	</div>

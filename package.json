@@ -9,26 +9,30 @@
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
 		"@types/mocha": "^5.2.0",
-		"buble": "^0.19.6",
+		"babel-core": "^6.26.0",
+		"babel-plugin-external-helpers": "^6.22.0",
+		"babel-preset-env": "^1.6.1",
+		"chai": "^4.2.0",
 		"mocha": "^5.2.0",
+		"niffy": "^0.2.0",
+		"nightmare": "^3.0.1",
 		"node-sass": "^4.11.0",
 		"rollup": "^1.1.2",
+		"rollup-plugin-babel": "^3.0.3",
 		"rollup-plugin-commonjs": "^9.1.8",
 		"rollup-plugin-node-resolve": "^4.0.0",
 		"rollup-plugin-svelte": "^5.0.1",
 		"rollup-plugin-terser": "^4.0.4",
-		"rollup-plugin-babel": "^3.0.3",
 		"serve": "^10.1.2",
-		"svelte": "^3.0.0-beta.3",
-		"babel-core": "^6.26.0",
-		"babel-plugin-external-helpers": "^6.22.0",
-		"babel-preset-env": "^1.6.1"
+		"should": "^13.2.3",
+		"svelte": "^3.0.0-beta.3"
 	},
 	"scripts": {
 		"build": "rollup -c",
 		"start": "serve public & rollup -c -w",
-		"test": "mocha --recursive 'zoo-modules/**/spec/*.js' --opts mocha.opts && node cat ./pika.txt",
-		"buble": "buble public/bundle.js > public/bundlees2015.js"
+		"start-test": "serve public & rollup src/test.js -c -w",
+		"test": "serve public & rollup src/test.js -c -w & mocha 'test/test.js' --opts.mocha.opts",
+		"test-mocha": "mocha --recursive 'zoo-modules/**/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
 	},
 	"dependencies": {
 		"@shop/icon-fonts": "^1.0.4",

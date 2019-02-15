@@ -1,8 +1,8 @@
 <div class="searchable-select-box">
 	<input class="searchable-input" 
 		placeholder="{searchableplaceholder}" 
-		type="text" on:keyup="handleSearchChange(event)" 
-		ref:searchableInput>
+		type="text" on:keyup="{event => handleSearchChange(event)}" 
+		bind:this={searchableInput}>
 	<zoo-log-select labeltext="{labeltext}" 
 		searchable="{true}"
 		labelposition="{labelposition}"

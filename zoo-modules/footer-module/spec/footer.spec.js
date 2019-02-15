@@ -10,3 +10,10 @@ describe('Array', function() {
   });
 });
 
+describe('Header', function() {
+	it('should should create', function() {
+		const app = document.getElementById('app');
+		app.appendChild("<zoo-log-header></zoo-log-header>");
+	});
+});
+

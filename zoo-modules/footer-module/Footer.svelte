@@ -58,6 +58,7 @@
 	  padding: 10px 0 10px 30px;
 	  @media only screen and (max-width: 544px) {
 		  text-align: center;
+		  padding: 10px 0;
 	  }
 	}
 </style>

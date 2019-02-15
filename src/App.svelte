@@ -28,16 +28,16 @@
 		</div>
 	</zoo-log-navigation>
 	<form>
-		<zoo-log-input labeltext="Very long label which should test how it behaves" 
+		<zoo-log-input labeltext="Input type text" 
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
 			valid="{inputState}"
 			inputerrormsg="invalid"
 			infotext="Additional helpful information for our users" >
-			<input slot="inputelement" type="number" placeholder="input"/>
+			<input slot="inputelement" type="text" placeholder="input"/>
 		</zoo-log-input>
-		<zoo-log-input labeltext="Very long label which should test how it behaves" 
+		<zoo-log-input labeltext="Input type number" 
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
@@ -46,6 +46,9 @@
 		</zoo-log-input>
 		<!--https://github.com/jcgertig/date-input-polyfill-->
 		<zoo-log-input labeltext="This input has type date"
+			linktext="Native date picker -> click me"
+			linkhref="https://github.com/jcgertig/date-input-polyfill"
+			linktarget="about:blank"
 			infotext="Click on input to show context menu with date selection" >
 			<input slot="inputelement" type="date" placeholder="Enter date"/>
 		</zoo-log-input>
@@ -56,10 +59,7 @@
 		<zoo-log-input labeltext="Textarea example" valid="{inputState}">
 			<textarea slot="inputelement" placeholder="Textarea"></textarea>
 		</zoo-log-input>
-		<zoo-log-select labeltext="Multiselect" 
-			linktext="Forgotten your password?"
-			linkhref="https://google.com"
-			linktarget="about:blank"
+		<zoo-log-select labeltext="Multiselect"
 			valid="{inputState}"
 			inputerrormsg="Value is required"
 			infotext="Additional helpful information for our users" >
@@ -70,10 +70,7 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-select labeltext="Standard select" 
-			linktext="Forgotten your password?"
-			linkhref="https://google.com"
-			linktarget="about:blank"
+		<zoo-log-select labeltext="Standard select"
 			valid="{inputState}"
 			inputerrormsg="Value is required"
 			infotext="Additional helpful information for our users" >

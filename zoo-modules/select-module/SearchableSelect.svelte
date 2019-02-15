@@ -1,30 +1,37 @@
 <svelte:options tag="zoo-log-searchable-select"></svelte:options>
 <div class="searchable-select-box">
 	<zoo-log-input infotext="Start typing to limit select options"
-		placeholder="{searchableplaceholder}"
-		type="text" on:keyup="{event => handleSearchChange(event)}">
-		<input slot="inputelement" type="text" placeholder="input" bind:this={searchableInput}/>
+		type="text" on:keyup="{event => handleSearchChange(event)}" labeltext="{labeltext}">
+		<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput}/>
 	</zoo-log-input>
-	<zoo-log-select labeltext="{labeltext}" 
-		searchable="{true}"
-		labelposition="{labelposition}"
-		linktext="{linktext}"
-		linkhref="{linkhref}"
-		linktarget="{linktarget}"
-		inputerrormsg="{inputerrormsg}"
-		infotext="{infotext}"
-		valid="{valid}">
-		<select slot="selectelement" bind:this={_selectSlot} multiple={multiple ? 'true' : null} class="seachable-select">
-			{#each options as option}
-				<option value="{option.value}">{option.text}</option>
-			{/each}
-		</select>
-	</zoo-log-select>
+	<select bind:this={_selectElement} multiple={multiple ? 'true' : null} class="seachable-select hidden">
+		{#each options as option}
+			<option value="{option.value}">{option.text}</option>
+		{/each}
+	</select>
 </div>
 
 <style type='text/scss'>
+	@import "variables";
 	.seachable-select {
-		padding-top: 50px;
+		border: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;	
+		text-indent: 1px;
+		text-overflow: '';
+		width: 100%;
+		padding: 13px 15px;
+		border: 1px solid;
+		border-color: $border-color;
+		border-radius: 3px;
+		border-top: none;
+		margin-top: -30px;
+		z-index: 2;
+		background: white;
+
+		&.hidden {
+			display: none;
+		}
 	}
 </style>
 
@@ -39,11 +46,10 @@
 	export let inputerrormsg = "";
 	export let infotext = "";
 	export let valid = true;
-	export let searchableplaceholder = '';
+	export let placeholder = '';
 	export let multiple = false;
 	let searchableInput;
-	let _selectSlot;
-	let _slottedSelect;
+	let _selectElement;
 	let _optionsBackup;
 	let _prevValid;
 	let options = [
@@ -60,35 +66,26 @@
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
 			_prevValid = valid;
-			changeValidState(valid);
+			// changeValidState(valid);
 		}
 	});
 
 	onMount(() => {
 		_optionsBackup = options.slice();
 
-		_selectSlot.addEventListener("slotchange", e => {
-			let select = _selectSlot.assignedNodes()[0];
-			_slottedSelect = select;
-			if (select.multiple === true) {
-				multiple = true;
-			}
-			changeValidState(valid);
-	    });
+		searchableInput.addEventListener('focus', event => {
+			console.log(event);
+			_selectElement.classList.remove('hidden');
+			// _selectElement.focus();
+		});
+		searchableInput.addEventListener('blur', event => {
+			console.log(event);
+			_selectElement.classList.add('hidden');
+		});
 	});
 
 	const handleSearchChange = event => {
 		const inputVal = searchableInput.value;
 		options = _optionsBackup.filter(option => option.text.indexOf(inputVal) != -1);
-	};
-
-	const changeValidState = (state) => {
-		if (_slottedSelect) {
-			if (state === false) {
-				_slottedSelect.classList.add('error');
-			} else if (state) {
-				_slottedSelect.classList.remove('error');
-			}
-		}
 	};
 </script>

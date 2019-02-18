@@ -7,6 +7,7 @@ import Checkbox from '../zoo-modules/checkbox-module/Checkbox.svelte';
 import Feedback from '../zoo-modules/feedback-module/Feedback.svelte';
 import Tooltip from '../zoo-modules/tooltip-module/Tooltip.svelte';
 import Select from '../zoo-modules/select-module/Select.svelte';
+import SearchableSelect from '../zoo-modules/select-module/SearchableSelect.svelte';
 import Link from '../zoo-modules/link-module/Link.svelte';
 import InputInfo from '../zoo-modules/shared-module/InputInfo.svelte';
 import Navigation from '../zoo-modules/navigation-module/Navigation.svelte';
@@ -25,5 +26,6 @@ export default {
 	button: new Button(),
 	modal: new Modal(),
 	navigation: new Navigation(),
-	inputLabel: new InputLabel()
+	inputLabel: new InputLabel(),
+	searchableSelect: new SearchableSelect()
 };

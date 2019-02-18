@@ -29,6 +29,10 @@
 		z-index: 2;
 	}
 
+	::slotted(select.error) {
+		border-color: $error-text-color;
+	}
+
 	::slotted(select.hidden) {
 		display: none;
 	}
@@ -56,7 +60,7 @@
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
 			_prevValid = valid;
-			// changeValidState(valid);
+			changeValidState(valid);
 		}
 	});
 
@@ -76,6 +80,7 @@
 				multiple = true;
 			}
 			_hideSelectOptions();
+			changeValidState(valid);
 	    });
 		searchableInput.addEventListener('focus', event => {
 			_selectElement.classList.remove('hidden');
@@ -120,6 +125,17 @@
 		_selectElement.classList.add('hidden');
 		if (!multiple) {
 			_selectElement.size = 1;
+		}
+	}
+
+	const changeValidState = (state) => {
+		if (_selectElement && state !== undefined) {
+			if (state === false) {
+				_selectElement.classList.add('error');
+			} else if (state) {
+				_selectElement.classList.remove('error');
+			}
+			valid = state;
 		}
 	}
 </script>

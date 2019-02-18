@@ -1,8 +1,9 @@
 <svelte:options tag="zoo-log-searchable-select"></svelte:options>
 <div class="searchable-select-box">
-	<zoo-log-input infotext="Start typing to limit select options" valid="{valid}" on:click="{event => handleInputClick(event)}"
-		type="text" on:keyup="{event => handleSearchChange(event)}" labeltext="{labeltext}">
-		<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput}/>
+	<zoo-log-input infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
+		type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
+		labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
+		<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{event => handleSearchChange(event)}"/>
 	</zoo-log-input>
 	<slot bind:this={_selectSlot} name="selectelement"></slot>
 </div>
@@ -24,7 +25,7 @@
 		border-bottom-left-radius: 3px;
 		border-bottom-right-radius: 3px;
 		border-top: none;
-		margin-top: -30px;
+		margin-top: -20px;
 		position: absolute;
 		z-index: 2;
 	}

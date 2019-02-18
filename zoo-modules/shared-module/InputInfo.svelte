@@ -8,7 +8,7 @@
 {#if infotext}
 	<div class="info">
 		<span class="icon-info-rounded-circle"></span>
-		<span>{infotext}</span>
+		<span class="info-text">{infotext}</span>
 	</div>
 {/if}
 

@@ -81,8 +81,14 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select multiple='{true}'
-			labeltext="Searchable select">
+		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder">
+			<select multiple slot="selectelement">
+				{#each options as option}
+					<option value="{option.value}" style="display: {option.display}">
+						{option.text}
+					</option>
+				{/each}
+			</select>
 		</zoo-log-searchable-select>
 		<zoo-log-checkbox highlighted
 			valid="{inputState}"
@@ -337,6 +343,28 @@
 </style>
 
 <script>
+	let options = [
+		{
+			text: 'text',
+			value: 'value'
+		},
+		{
+			text: 'random',
+			value: 'random'
+		},
+		{
+			text: 'random',
+			value: 'random'
+		},
+		{
+			text: 'random1',
+			value: 'random1'
+		},
+		{
+			text: 'random2',
+			value: 'random2'
+		}
+	];
 	let zooLogFooter;
 	let topBarLanguages = [
 		{text: 'DE', active: true}, {text: 'PL', active: false}

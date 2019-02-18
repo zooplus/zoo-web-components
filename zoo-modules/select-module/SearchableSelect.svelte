@@ -4,13 +4,7 @@
 		type="text" on:keyup="{event => handleSearchChange(event)}" labeltext="{labeltext}">
 		<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput}/>
 	</zoo-log-input>
-	<select bind:this={_selectElement} multiple={multiple ? 'true' : null} class="seachable-select hidden">
-		{#each options as option}
-			<option on:click="{event => handleOptionClick(event)}" value="{option.value}" style="display: {option.display}">
-				{option.text}
-			</option>
-		{/each}
-	</select>
+	<slot bind:this={_selectSlot} name="selectelement"></slot>
 </div>
 
 <style type='text/scss'>
@@ -18,7 +12,7 @@
 	.searchable-select-box {
 		position: relative;
 	}
-	.seachable-select {
+	::slotted(select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
 		text-indent: 1px;
@@ -33,10 +27,10 @@
 		margin-top: -30px;
 		position: absolute;
 		z-index: 2;
+	}
 
-		&.hidden {
-			display: none;
-		}
+	::slotted(select.hidden) {
+		display: none;
 	}
 </style>
 
@@ -52,24 +46,12 @@
 	export let infotext = "";
 	export let valid = true;
 	export let placeholder = '';
-	export let multiple = false;
+	let multiple = false;
 	let searchableInput;
+	let _selectSlot;
 	let _selectElement;
 	let _prevValid;
-	let options = [
-		{
-			text: 'text',
-			value: 'value'
-		},
-		{
-			text: 'random',
-			value: 'random'
-		},
-		{
-			text: 'random',
-			value: 'random'
-		}
-	];
+	let options;
 
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
@@ -78,7 +60,23 @@
 		}
 	});
 
+	// TODO add support for keyboard events
 	onMount(() => {
+		_selectSlot.addEventListener("slotchange", e => {
+			let select = _selectSlot.assignedNodes()[0];
+			_selectElement = select;
+			options = _selectElement.options;
+			for (const option of options) {
+				option.addEventListener('click', event => handleOptionClick(event));
+			}
+			_selectElement.addEventListener('blur', event => {
+				_hideSelectOptions();
+			});
+			if (_selectElement.multiple === true) {
+				multiple = true;
+			}
+			_hideSelectOptions();
+	    });
 		searchableInput.addEventListener('focus', event => {
 			_selectElement.classList.remove('hidden');
 		});
@@ -88,18 +86,14 @@
 				_hideSelectOptions();
 			}
 		});
-		_selectElement.addEventListener('blur', event => {
-			_hideSelectOptions();
-		});
 	});
 
 	const handleSearchChange = event => {
 		const inputVal = searchableInput.value;
-		options.forEach(option => {
-			if (option.text.startsWith(inputVal)) option.display = 'block';
-			else option.display = 'none';
-		});
-		options = options.slice();
+		for (const option of options) {
+			if (option.text.startsWith(inputVal)) option.style.display = 'block';
+			else option.style.display = 'none';
+		}
 	};
 
 	const handleInputClick = event => {

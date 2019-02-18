@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-log-navigation"></svelte:options>
 <div class="nav-box zoo-log-navigation">
-	<slot name="content">
+	<slot>
 	</slot>
 </div>
 

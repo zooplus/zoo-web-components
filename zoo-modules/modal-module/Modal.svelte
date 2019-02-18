@@ -5,7 +5,7 @@
 		<span on:click="{event => hideModal(event)}" class="icon-close-new"></span>
 	</div>
 	<div class="content">
-		<slot name="content"></slot>
+		<slot></slot>
 	</div>
 </div>
 

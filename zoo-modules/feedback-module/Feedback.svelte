@@ -62,6 +62,6 @@
 </style>
 
 <script>
-	export let type = 'info';
+	export let type = 'info'; // error, success
 	export let text = '';
 </script>

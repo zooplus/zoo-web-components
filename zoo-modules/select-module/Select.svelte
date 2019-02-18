@@ -1,15 +1,9 @@
 <svelte:options tag="zoo-log-select"></svelte:options>
-<div class="select-box {labelposition}">
-	<span class="input-label">
-		{#if labeltext}
-		<div class="label" class:error="{!valid}">
-			<span>{labeltext}</span>
-		</div>
-		{/if}
-	</span>
-	<span class="input-link">
-		<zoo-log-link href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right"></zoo-log-link>
-	</span>
+<div class="box {labelposition}">
+	<zoo-log-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
+	</zoo-log-input-label>
+	<zoo-log-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
+	</zoo-log-link>
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
@@ -17,9 +11,8 @@
 		<span class="icon-angle-down" class:error="{!valid}"></span>
 		{/if}
 	</span>
-	<span class="input-info">
-		<zoo-log-input-info valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}"></zoo-log-input-info>
-	</span>
+	<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
+	</zoo-log-input-info>
 </div>
 
 <style type='text/scss'>

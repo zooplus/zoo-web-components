@@ -10,6 +10,7 @@ import Select from '../zoo-modules/select-module/Select.svelte';
 import Link from '../zoo-modules/link-module/Link.svelte';
 import InputInfo from '../zoo-modules/shared-module/InputInfo.svelte';
 import Navigation from '../zoo-modules/navigation-module/Navigation.svelte';
+import InputLabel from '../zoo-modules/shared-module/InputLabel.svelte';
 
 export default {
 	inputinfo: new InputInfo(),
@@ -23,5 +24,6 @@ export default {
 	tooltip: new Tooltip(),
 	button: new Button(),
 	modal: new Modal(),
-	navigation: new Navigation()
+	navigation: new Navigation(),
+	inputLabel: new InputLabel()
 };

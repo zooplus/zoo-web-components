@@ -1,7 +1,7 @@
 <svelte:options tag="my-app"></svelte:options>
 <div class="app">
 	<zoo-log-header imgsrc="logo.png" headertext="{headertext}">
-		<div class="search-field-holder" slot="content">
+		<div class="search-field-holder">
 			<div class="header-search">
 				<zoo-log-input>
 					<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
@@ -19,7 +19,7 @@
 		</div>
 	</zoo-log-header>
 	<zoo-log-navigation class="nav">
-		<div slot="content">
+		<div>
 			{#each navlinks as link}
 				<zoo-log-link href="{link.href}" target="{link.target}" type="{link.type}"
 					text="{link.text}">
@@ -81,7 +81,7 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select multiple='true'
+		<zoo-log-searchable-select multiple='{true}'
 			labeltext="Searchable select">
 		</zoo-log-searchable-select>
 		<zoo-log-checkbox highlighted
@@ -132,7 +132,7 @@
 				This element will show tooltip on top only when it is clicked.
 			</span>
 			<zoo-log-tooltip bind:this={specialTooltip} text="Hello from up above">
-				<div slot="content">
+				<div>
 					<zoo-log-input>
 						<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
 						<span class="icon-search-default" slot="inputicon"></span>
@@ -162,7 +162,7 @@
 		</div>
 	</div>
 	<zoo-log-modal style="display: none" headertext="Your basket contains licensed items" bind:this={modal} on:modalClosed="{handleModalClosed}">
-		<div slot="content">
+		<div>
 			<zoo-log-feedback 
 			type="info" 
 			text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.">
@@ -190,7 +190,7 @@
 			</zoo-log-button>
 		</div>
 	</zoo-log-modal>
-	<zoo-log-footer footerlinks="{footerlinks}"></zoo-log-footer> 
+	<zoo-log-footer footerlinks="{footerlinks}" bind:this={zooLogFooter}></zoo-log-footer> 
 </div>
 
 <style type='text/scss'>
@@ -266,23 +266,26 @@
 		box-shadow: 15px 0px 40px 0px rgba(85,85,85, 0.3), -15px 0px 40px 0px rgba(85,85,85, 0.3);
 	}
 	form {
-		max-width: 930px;
+		max-width: 1280px;
+		width: 70%;
 		flex: 1 0 auto;
-		margin: 20px;
+		margin: 20px auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 		grid-gap: 20px;
 	}
 	.buttons {
-		margin: 20px;
+		max-width: 1280px;
+		margin: 20px auto;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(220px, 250px));
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 		grid-gap: 20px;
+		width: 90%;
 	}
 	.content {
 		flex: 1 0 auto;
 		width: 70%;
-		margin: 20px;
+		margin: 20px auto;
 	}
 	.special-tooltip {
 		width: 200px;
@@ -334,6 +337,7 @@
 </style>
 
 <script>
+	let zooLogFooter;
 	let topBarLanguages = [
 		{text: 'DE', active: true}, {text: 'PL', active: false}
 	];

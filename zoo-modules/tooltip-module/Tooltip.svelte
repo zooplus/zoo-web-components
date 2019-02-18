@@ -1,7 +1,7 @@
 <svelte:options tag="zoo-log-tooltip"></svelte:options>
 <div class="tooltip-box {position}">
 	<div class="tooltip-content">
-		<slot name="content">
+		<slot>
 			<div class="text">{text}</div>
 		</slot>
 	</div>
@@ -23,6 +23,7 @@
 	  font-weight: initial;
 	}
 	.tooltip-box {
+		pointer-events: initial;
 		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
 		border-radius: 3px;
 		position: absolute;
@@ -94,5 +95,5 @@
 
 <script>
 	export let text = "";
-	export let position = 'top';
+	export let position = 'top'; // left, right, bottom
 </script>

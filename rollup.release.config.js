@@ -44,12 +44,12 @@ const shared = {
 
 export default [
 	Object.assign({}, shared, {
-		input: 'src/test.js',
+		input: 'src/release.js',
 		output: {
 			sourcemap: true,
 			format: 'iife',
-			file: 'public/bundle.js',
-			name: 'app'
+			file: 'dist/release.js',
+			name: 'zooWC'
 		}
 	})
 ];

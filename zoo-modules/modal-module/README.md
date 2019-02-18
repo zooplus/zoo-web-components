@@ -5,12 +5,12 @@
 
 ## Slots
 This component accept one `<slot name="content"></slot>` which is replaced with provided `HTMLElement` element so that you can catch events from this element.       
-Just add `slot` attribute to the `HTMLElement` you provide for this component, like so: `<div slot="content">I am a div!</div>`;
+Just add `slot` attribute to the `HTMLElement` you provide for this component, like so: `<div>I am a div!</div>`;
 
 ## Example usage 
 ```
 <zoo-log-modal style="display: none" headertext="Your basket contains licensed items" ref:modal on:modalClosed="handleModalClosed(event)">
-	<div slot="content">
+	<div>
 		<zoo-log-feedback 
 		type="info" 
 		text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.">

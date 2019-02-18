@@ -8,7 +8,7 @@
 This component accepts `<slot name="content"></slot>` which is replaced with provided `HTMLElement` so that you can catch events from this element.       
 Just add `slot` attribute to the `HTMLElement` you provide for this component, like so: 
 ```
-<zoo-log-input slot="content">
+<zoo-log-input>
 	<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
 	<span class="icon-search-default" slot="inputicon"></span>
 </zoo-log-input>
@@ -18,7 +18,7 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 To use it in your project add the following to your mark-up file:
 ```
 <zoo-log-header imgsrc="logo.png" headertext="{headertext}">
-	<div class="search-field-holder" slot="content">
+	<div class="search-field-holder">
 		<div class="header-search">
 			<zoo-log-input>
 				<input slot="inputelement" placeholder="Search for more than 8.000 products"/>

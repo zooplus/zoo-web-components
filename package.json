@@ -14,7 +14,6 @@
 		"babel-preset-env": "^1.6.1",
 		"chai": "^4.2.0",
 		"mocha": "^5.2.0",
-		"niffy": "^0.2.0",
 		"nightmare": "^3.0.1",
 		"node-sass": "^4.11.0",
 		"rollup": "^1.1.2",
@@ -28,11 +27,9 @@
 		"svelte": "^3.0.0-beta.3"
 	},
 	"scripts": {
-		"build": "rollup -c",
+		"build": "rollup -c 'rollup.release.config.js'",
 		"start": "serve public & rollup -c -w",
-		"start-test": "serve public & rollup src/test.js -c -w",
-		"test": "serve public & rollup src/test.js -c -w & mocha 'test/test.js' --opts.mocha.opts",
-		"test-mocha": "mocha --recursive 'zoo-modules/**/spec/*.js' --opts mocha.opts && node cat ./pika.txt"
+		"test": "rollup src/test.js -c && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt"
 	},
 	"dependencies": {
 		"@shop/icon-fonts": "^1.0.4",

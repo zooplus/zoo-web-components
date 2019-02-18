@@ -1,5 +1,0 @@
-# mocha.opts
-
-  --require should
-  --reporter dot
-  --ui bdd

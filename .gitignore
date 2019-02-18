@@ -7,3 +7,5 @@ dist/
 .DS_Store
 /zoo-modules/*/dist/*.js
 /zoo-modules/*/dist/*.js.map
+/coverage
+/.nyc_output

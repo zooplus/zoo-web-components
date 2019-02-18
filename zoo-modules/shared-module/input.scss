@@ -1,4 +1,4 @@
-.input-box, .select-box {
+.box {
 	box-sizing: border-box;
 	width: 100%;
 	display: grid;
@@ -21,15 +21,6 @@
 	.input-label {
 		grid-area: label;
 		align-self: self-start;
-		.label {
-			font-size: 14px;
-			font-weight: 800;
-			line-height: 20px;
-			color: $matterhorn;
-		}
-		.error {
-			color: $error-text-color;
-		}
 	}
 	.input-link {
 		grid-area: link;

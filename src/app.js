@@ -13,6 +13,7 @@ import '../zoo-modules/tooltip-module/Tooltip.svelte';
 import '../zoo-modules/select-module/Select.svelte';
 import '../zoo-modules/select-module/SearchableSelect.svelte';
 import '../zoo-modules/shared-module/InputInfo.svelte';
+import '../zoo-modules/shared-module/InputLabel.svelte';
 
 const app = new App({
 	target: document.body

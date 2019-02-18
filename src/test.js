@@ -11,6 +11,7 @@ import '../zoo-modules/link-module/Link.svelte';
 import '../zoo-modules/tooltip-module/Tooltip.svelte';
 import '../zoo-modules/select-module/Select.svelte';
 import '../zoo-modules/shared-module/InputInfo.svelte';
+import '../zoo-modules/shared-module/InputLabel.svelte';
 
 const testApp = new Test({
 	target: document.body

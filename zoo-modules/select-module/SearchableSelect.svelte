@@ -39,6 +39,7 @@
 </style>
 
 <script>
+	// TODO on ios mobile browsers the select options are not shown for some reason
 	import { onMount, beforeUpdate } from 'svelte';
 
 	export let labelposition = "top";
@@ -64,11 +65,11 @@
 		}
 	});
 
-	// TODO add support for keyboard events
 	onMount(() => {
 		_selectSlot.addEventListener("slotchange", e => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
+			_selectElement.addEventListener('change', event => handleOptionClick(event));
 			options = _selectElement.options;
 			for (const option of options) {
 				option.addEventListener('click', event => handleOptionClick(event));
@@ -86,8 +87,7 @@
 			_selectElement.classList.remove('hidden');
 		});
 		searchableInput.addEventListener('blur', event => {
-			if (event.relatedTarget !== _selectElement || // safari
-				(event.explicitOriginalTarget && event.explicitOriginalTarget.parentNode !== _selectElement)) { //chrome, firefox
+			if (event.relatedTarget !== _selectElement) { //chrome, firefox
 				_hideSelectOptions();
 			}
 		});
@@ -110,8 +110,8 @@
 	const handleOptionClick = event => {
 		if (multiple) {
 			let inputValString = '';
-			for (const iterator of _selectElement.selectedOptions) {
-				inputValString += iterator.text + ', ';
+			for (const selectedOpts of _selectElement.selectedOptions) {
+				inputValString += selectedOpts.text + ', ';
 			}
 			inputValString = inputValString.substr(0, inputValString.length - 2);
 			searchableInput.value = inputValString;

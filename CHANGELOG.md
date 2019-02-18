@@ -1,3 +1,6 @@
+# 2.0.1
+Added `zoo-log-searchable-select` to component lists.
+
 # 2.0.0
 BREAKING CHANGE: `zoo-log-header`, `zoo-log-modal` and `zoo-log-navigation` now doesn't accept named slots. Just define slotted content as regular HTMLElement, for example:      
 ## Before:

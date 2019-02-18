@@ -113,6 +113,7 @@
 	let _prevValid;
 	let _inputSlot;
 
+	// TODO add handler for enter keypress
 	const handleClick = (event) => {
 		if (disabled) {
 			event.stopPropagation();

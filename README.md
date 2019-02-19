@@ -79,6 +79,10 @@ Run `npm run build`. That command will go to all modules defined in `rollup.conf
 ## Deploy
 Run `npm publish`, which will publish the package to internal zoo+ npm repo. Given that you don't change anything in `.npmrc` file.
 
+## Future TODO
++ Embed neccessary icons inside the package, so that user doesn't have to worry about using `@shop/icon-fonts`.
++ Do some research on how this can be run in IE11.
+
 ## Reading resources
 https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813      
 http://robdodson.me/shadow-dom-css-cheat-sheet/

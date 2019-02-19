@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-log-modal"></svelte:options>
-<div class="modal-box" on:click="{e => e.stopPropagation()}" bind:this={_modalRoot}>
+<div class="box" on:click="{e => e.stopPropagation()}" bind:this={_modalRoot}>
 	<div class="heading">
 		<h2>{headertext}</h2>
 		<span on:click="{event => hideModal(event)}" class="icon-close-new"></span>
@@ -21,7 +21,7 @@
 	  left: 0;
       top: 0;
 	}
-	.modal-box {
+	.box {
 	  position: fixed;
 	  background: white;
 	  top: 50%;

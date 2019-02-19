@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-log-checkbox"></svelte:options>
-<div class="checkbox-box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="{!valid}" class:disabled="{disabled}">
+<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="{!valid}" class:disabled="{disabled}">
 	<label class="input-slot" on:click="{e => handleClick(e)}">
 		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>
 		<span class="input-label">
@@ -10,7 +10,7 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.checkbox-box {
+	.box {
 	  width: 100%;
 	  display: flex;
 	  position: relative;

@@ -13,8 +13,8 @@ To be able to download these packages you have to have `.npmrc` file inside your
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
 ## Size of the library
-Uncompressed size of the library is: 37,709 Kbytes;
-Gzipped version is 8,274 Kbytes;
+Uncompressed size of the library is: 48,732 Kbytes;
+Gzipped version is 10,576 Kbytes;
 
 ## Icons
 + Icons - The host application should provide these. Documentation here: https://wiki.web.zooplus.de/display/Shop/Shop+Icon+Fonts+Library

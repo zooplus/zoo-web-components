@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "2.0.2",
+	"version": "2.0.5",
 	"main": "dist/release.js",
 	"files": [
 		"dist/release.js"
@@ -29,7 +29,8 @@
 	"scripts": {
 		"build": "npm test && rollup -c 'rollup.release.config.js'",
 		"start": "serve public & rollup -c -w",
-		"test": "rollup src/test.js -c && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt"
+		"test": "rollup src/test.js -c && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"@shop/icon-fonts": "^1.0.4",

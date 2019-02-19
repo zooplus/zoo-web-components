@@ -1,6 +1,10 @@
 <svelte:options tag="zoo-log-searchable-select"></svelte:options>
 <div class="searchable-select-box">
 	{#if !_isMobile}
+		{#if tooltipText}
+			<zoo-log-tooltip position="right" text="{tooltipText}">
+			</zoo-log-tooltip>
+		{/if}
 		<zoo-log-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
 			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
 			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
@@ -75,6 +79,7 @@
 	let _prevValid;
 	let options;
 	let _isMobile;
+	let tooltipText;
 
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
@@ -114,9 +119,9 @@
 	});
 
 	const handleSearchChange = event => {
-		const inputVal = searchableInput.value;
+		const inputVal = searchableInput.value.toLowerCase();
 		for (const option of options) {
-			if (option.text.startsWith(inputVal)) option.style.display = 'block';
+			if (option.text.toLowerCase().startsWith(inputVal)) option.style.display = 'block';
 			else option.style.display = 'none';
 		}
 	};
@@ -134,7 +139,7 @@
 				inputValString += selectedOpts.text + ', ';
 			}
 			inputValString = inputValString.substr(0, inputValString.length - 2);
-			searchableInput.value = inputValString;
+			tooltipText = inputValString;
 		} else {
 			searchableInput.value = _selectElement.options[_selectElement.selectedIndex].text;
 			_hideSelectOptions();
@@ -143,6 +148,7 @@
 
 	const _hideSelectOptions = () => {
 		_selectElement.classList.add('hidden');
+		searchableInput.value = null;
 		if (!multiple) {
 			_selectElement.size = 1;
 		}

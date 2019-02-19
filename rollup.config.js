@@ -9,8 +9,6 @@ const production = !process.env.ROLLUP_WATCH;
 const shared = {
 	plugins: [
 		svelte({
-			skipIntroByDefault: true,
-			nestedTransitions: true,
 			// enable run-time checks when not in production
 			dev: !production,
 			preprocess: {
@@ -34,7 +32,6 @@ const shared = {
 					});
 				}
 			},
-			cascade: false,
 			customElement: true
 		}),
 		resolve(),

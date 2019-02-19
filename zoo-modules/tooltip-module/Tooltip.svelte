@@ -2,7 +2,7 @@
 <div class="tooltip-box {position}">
 	<div class="tooltip-content">
 		<slot>
-			<div class="text">{text}</div>
+			{#if text}<div class="text">{text}</div>{/if}
 		</slot>
 	</div>
 	<div class="tip {position}"></div>	

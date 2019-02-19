@@ -37,7 +37,7 @@ describe('Zoo log modal', function() {
 
 					setTimeout(
 						() => {
-							const closeButton = modal.shadowRoot.querySelector('.icon-close-new');
+							const closeButton = modal.shadowRoot.querySelector('.close');
 							closeButton.click();
 							done(null, modal.shadowRoot.host.style.display);
 						},
@@ -63,6 +63,10 @@ describe('Zoo log modal', function() {
 					document.body.appendChild(modal);
 
 					const slottedContent = modal.shadowRoot.querySelector('slot').assignedNodes()[0];
+
+					for (const element of document.getElementsByTagName('zoo-log-modal')) {
+						element.remove();
+					}
 
 					return {
 						slottedText: slottedContent.innerHTML

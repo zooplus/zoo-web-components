@@ -34,6 +34,3 @@ Just add `slot` attribute to the `select` you provide for this component, like s
 	</select>
 </zoo-log-select>
 ```
-
-### Icons
-Requires the following icons: `icon-angle-up` (`\EA05`), `icon-angle-down` (`\EA02`), `icon-exclamation-circle` (`\EA38`). 

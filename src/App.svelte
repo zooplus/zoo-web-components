@@ -81,7 +81,7 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder">
+		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Start typing to limit options">
 			<select multiple slot="selectelement">
 				{#each options as option}
 					<option value="{option.value}" style="display: {option.display}">

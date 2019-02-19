@@ -1,3 +1,8 @@
+# 2.0.5
+`zoo-log-searchable-select` now has a fallback to standard `zoo-log-select` when user is on mobile browser.
+Covered all components with tests.
+Minor clean-ups here and there.
+
 # 2.0.1
 Added `zoo-log-searchable-select` to component lists.
 

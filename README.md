@@ -50,6 +50,7 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 ## Forms
 + Input - [`input-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/input-module);
 + Select - [`select-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/select-module);
++ Searchable Select - [`searchable-select-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/searchable-select-module);
 + Checkbox - [`checkbox-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/checkbox-module);
 + Radio - `Not implemented`
 + Special Compositions - `Not implemented` - under consideration

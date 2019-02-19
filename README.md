@@ -70,8 +70,8 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/public` folder.
 
 ## Test
-* work in progress *
-Run `npm run test`.
+This project uses `Mocha` and `Chai` for writing tests. The tests are run using `Nightmare`.
+Run `npm test` to run the tests. Tests are automatically run before triying to publish new version to npm.
 
 ## Build
 Run `npm run build`. That command will go to all modules defined in `rollup.config.js`, build them, and place a bundle for each module into `dist` folder inside the module.

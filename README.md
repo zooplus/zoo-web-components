@@ -16,26 +16,6 @@ To be able to download these packages you have to have `.npmrc` file inside your
 Uncompressed size of the library is: 48,732 Kbytes;
 Gzipped version is 10,576 Kbytes;
 
-## Icons
-+ Icons - The host application should provide these. Documentation here: https://wiki.web.zooplus.de/display/Shop/Shop+Icon+Fonts+Library
-+ add 
-```
-@font-face {
-    font-family: "zooplus-icons";
-    src: url('./assets/fonts/zooplus/zooplus-icons.eot');
-    src: url('./assets/fonts/zooplus/zooplus-icons.eot?#iefix') format('eot'),
-         url('./assets/fonts/zooplus/zooplus-icons.woff2') format('woff2'),
-         url('./assets/fonts/zooplus/zooplus-icons.woff') format('woff'),
-         url('./assets/fonts/zooplus/zooplus-icons.ttf') format('truetype'),
-         url('./assets/fonts/zooplus/zooplus-icons.svg#zooplus-icons') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-```
-to your global .css file.
-+ copy to your assets folder in final build `fonts` folder from this repo.
-After performing the above steps the icons should be imported automatically into the application.
-
 # List of components
 As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 
@@ -80,7 +60,6 @@ Run `npm run build`. That command will go to all modules defined in `rollup.conf
 Run `npm publish`, which will publish the package to internal zoo+ npm repo. Given that you don't change anything in `.npmrc` file.
 
 ## Future TODO
-+ Embed neccessary icons inside the package, so that user doesn't have to worry about using `@shop/icon-fonts`.
 + Do some research on how this can be run in IE11.
 
 ## Reading resources

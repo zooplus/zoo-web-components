@@ -7,8 +7,12 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<span class="icon-angle-up" class:error="{!valid}"></span>
-		<span class="icon-angle-down" class:error="{!valid}"></span>
+		<svg class="angle-up" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 1001" height="21" width="21">
+			<path transform="matrix(1 0 0 -1 0 1000)" d="M738.2375000000001 404.5708333333334L679.8458333333334 346.1791666666667L487.9875 538.0374999999999L296.1291666666667 346.1791666666667L237.7375 404.5708333333334L487.9875 654.8208333333332z"/>
+		</svg>
+		<svg class="angle-down" preserveAspectRatio="xMidYMid meet" viewBox="0 0 970 1001" height="21" width="21">
+			<path transform="matrix(1 0 0 -1 0 1000)" d="M738.2375000000001 404.5708333333334L679.8458333333334 346.1791666666667L487.9875 538.0374999999999L296.1291666666667 346.1791666666667L237.7375 404.5708333333334L487.9875 654.8208333333332z"/>
+		</svg>
 		{/if}
 	</span>
 	<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -18,25 +22,26 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
-	.icon-angle-up,
-	.icon-angle-down {
-	  color: $matterhorn;
-	  pointer-events: none;
-	  &.error {
-	    color: $error-text-color;
-	  }
+	.angle-up,
+	.angle-down {
+		position: absolute;
+		& > path {
+			fill: $matterhorn;
+		}
+		&.error {
+			& > path {
+				fill: $error-text-color;
+			}
+		}
 	}
-	.icon-angle-up:before {
-	  content: "\EA05";
-	  position: absolute;
-	  right: 3%;
-	  top: 28%;
+	.angle-up {
+	  right: 10px;
+	  top: 23%;
 	}
-	.icon-angle-down:before {
-	  content: "\EA02";
-	  position: absolute;
-	  right: 3%;
+	.angle-down {
+	  right: 10px;
 	  top: 42%;
+	  transform: rotate(180deg);
 	}
 	::slotted(select) {
 	  -webkit-appearance: none;

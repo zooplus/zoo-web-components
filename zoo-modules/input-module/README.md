@@ -28,6 +28,3 @@ Just add `slot` attribute to the `input` you provide for this component, like so
 	<input slot="inputelement" type="number" placeholder="input" class:error="true"/>
 </zoo-log-input>
 ```
-
-### Icons
-Requires the following icons: `icon-info-rounded-circle` (`\EA4C`), `icon-error-triangle` (`\EA37`). 

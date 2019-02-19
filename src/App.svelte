@@ -44,7 +44,6 @@
 			infotext="Additional helpful information for our users" >
 			<input slot="inputelement" type="number" placeholder="input"/>
 		</zoo-log-input>
-		<!--https://github.com/jcgertig/date-input-polyfill-->
 		<zoo-log-input labeltext="This input has type date"
 			linktext="Native date picker -> click me"
 			linkhref="https://github.com/jcgertig/date-input-polyfill"
@@ -349,11 +348,11 @@
 			value: 'value'
 		},
 		{
-			text: 'random',
+			text: 'Random',
 			value: 'random'
 		},
 		{
-			text: 'random',
+			text: 'raNdOm',
 			value: 'random'
 		},
 		{

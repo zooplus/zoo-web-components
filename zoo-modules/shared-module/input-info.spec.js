@@ -30,7 +30,7 @@ describe('Zoo log input info', function() {
 					inputInfo.valid = false;
 					inputInfo.inputerrormsg = 'error';
 					document.body.appendChild(inputInfo);
-					const errorIcon = inputInfo.shadowRoot.querySelector('.icon-exclamation-circle');
+					const errorIcon = inputInfo.shadowRoot.querySelector('.exclamation-circle');
 					const errorMsg = inputInfo.shadowRoot.querySelector('.error-label');
 					return {
 						errorIconPresent: errorIcon !== undefined,

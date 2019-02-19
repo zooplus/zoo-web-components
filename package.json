@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "2.0.5",
+	"version": "2.1.0",
 	"main": "dist/release.js",
 	"files": [
 		"dist/release.js"
@@ -20,11 +20,10 @@
 		"rollup-plugin-babel": "^3.0.3",
 		"rollup-plugin-commonjs": "^9.1.8",
 		"rollup-plugin-node-resolve": "^4.0.0",
-		"rollup-plugin-svelte": "^5.0.1",
+		"rollup-plugin-svelte": "^5.0.3",
 		"rollup-plugin-terser": "^4.0.4",
 		"serve": "^10.1.2",
-		"should": "^13.2.3",
-		"svelte": "^3.0.0-beta.3"
+		"svelte": "3.0.0-beta.5"
 	},
 	"scripts": {
 		"build": "npm test && rollup -c 'rollup.release.config.js'",
@@ -33,7 +32,6 @@
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
-		"@shop/icon-fonts": "^1.0.4",
 		"@webcomponents/webcomponentsjs": "^2.2.4"
 	}
 }

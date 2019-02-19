@@ -9,6 +9,3 @@
 	text="This is an info message.">
 </zoo-log-feedback>
 ```
-
-## Icons
-Requires the following icons: `icon-sadness` (`\EA71`), `icon-info-rounded-circle-o` (`\EA4B`), `icon-happiness` (`\EA42`). 

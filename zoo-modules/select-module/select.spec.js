@@ -80,7 +80,6 @@ describe('Zoo log select', function() {
 				});
 		});
 
-		//valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}"
 		it('should pass attributes to input info component', done => {
 			global.nightmare
 				.evaluate(() => {

@@ -8,3 +8,10 @@ before(() => {
 after(() => {
 	global.nightmare.halt();
 });
+
+beforeEach(() => {
+	// global.nightmare
+	// .evaluate(() => {
+	// 	document.body.innerHTML = "";
+	// });
+});

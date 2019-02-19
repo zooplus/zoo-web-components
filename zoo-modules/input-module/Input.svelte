@@ -5,9 +5,7 @@
 	<zoo-log-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
 	</zoo-log-link>
 	<span class="input-slot">
-		<slot bind:this={_inputSlot} name="inputelement">
-			<input/>
-		</slot>
+		<slot bind:this={_inputSlot} name="inputelement"></slot>
 		{#if valid}
 		<slot name="inputicon"></slot>
 		{/if} {#if !valid}

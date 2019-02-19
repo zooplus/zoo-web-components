@@ -1,6 +1,5 @@
 const chai = require('chai')
 const expect = chai.expect;
-const Nightmare = require('nightmare');
 
 describe('Zoo log searchable select', function() {
 	this.timeout('5s');

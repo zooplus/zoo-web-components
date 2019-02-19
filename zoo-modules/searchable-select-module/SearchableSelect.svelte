@@ -37,6 +37,15 @@
 	::slotted(select.hidden) {
 		display: none;
 	}
+
+	::slotted(select:disabled) {
+	  border-color: #e6e6e6;
+	  background-color: #f2f3f4;
+	  color: #97999c;
+	}
+	::slotted(select:disabled:hover) {
+	  cursor: not-allowed;
+	}
 </style>
 
 <script>

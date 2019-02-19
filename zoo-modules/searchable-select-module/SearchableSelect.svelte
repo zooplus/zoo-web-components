@@ -1,11 +1,18 @@
 <svelte:options tag="zoo-log-searchable-select"></svelte:options>
 <div class="searchable-select-box">
-	<zoo-log-input infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
-		type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
-		labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
-		<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{event => handleSearchChange(event)}"/>
-	</zoo-log-input>
-	<slot bind:this={_selectSlot} name="selectelement"></slot>
+	{#if !_isMobile}
+		<zoo-log-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
+			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
+			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
+			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{event => handleSearchChange(event)}"/>
+		</zoo-log-input>
+		<slot bind:this={_selectSlot} name="selectelement"></slot>
+	{:else}
+		<zoo-log-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"
+			labeltext="{labeltext}" inputerrormsg="{inputerrormsg}" infotext="{infotext}" valid="{valid}">
+			<slot bind:this={_selectSlot} name="selectelement" slot="selectelement"></slot>
+		</zoo-log-select>
+	{/if}
 </div>
 
 <style type='text/scss'>
@@ -13,7 +20,7 @@
 	.searchable-select-box {
 		position: relative;
 	}
-	::slotted(select) {
+	::slotted(select.searchable-zoo-log-select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
 		text-indent: 1px;
@@ -25,7 +32,7 @@
 		border-bottom-left-radius: 3px;
 		border-bottom-right-radius: 3px;
 		border-top: none;
-		margin-top: -20px;
+		margin-top: -30px;
 		position: absolute;
 		z-index: 2;
 	}
@@ -67,6 +74,7 @@
 	let _selectElement;
 	let _prevValid;
 	let options;
+	let _isMobile;
 
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
@@ -76,6 +84,7 @@
 	});
 
 	onMount(() => {
+		_isMobile = isMobile();
 		_selectSlot.addEventListener("slotchange", e => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
@@ -90,6 +99,7 @@
 			if (_selectElement.multiple === true) {
 				multiple = true;
 			}
+			_selectElement.classList.add('searchable-zoo-log-select');
 			_hideSelectOptions();
 			changeValidState(valid);
 	    });
@@ -147,5 +157,10 @@
 			}
 			valid = state;
 		}
+	}
+
+	const isMobile = () => {
+		const index = navigator.appVersion.indexOf("Mobile");
+		return (index > -1);
 	}
 </script>

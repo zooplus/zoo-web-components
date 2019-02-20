@@ -43,6 +43,8 @@
 		svg {
 			display: inline-block;
 			vertical-align: middle;
+			min-height: 35px;
+    		min-width: 35px;
 			& > path {
 				stroke-width: 0.1;
 				stroke-linejoin: round;

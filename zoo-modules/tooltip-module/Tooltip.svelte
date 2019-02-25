@@ -21,6 +21,7 @@
 	  line-height: initial;
 	  font-size: initial;
 	  font-weight: initial;
+	  contain: layout;
 	}
 	.tooltip-box {
 		pointer-events: initial;

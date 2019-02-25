@@ -9,6 +9,7 @@
 	@import "variables";
 	:host {
 		width: 100%;
+		contain: layout;
 	}
 	.button-box {
 	  position: relative;

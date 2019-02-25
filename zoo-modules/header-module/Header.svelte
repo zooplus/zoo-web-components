@@ -7,6 +7,9 @@
 
 <style type='text/scss'>
 	@import "variables";
+	:host {
+		contain: style;
+	}
 	.header-box {
 	  display: flex;
 	  align-items: center;

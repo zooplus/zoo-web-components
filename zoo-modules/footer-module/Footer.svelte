@@ -18,6 +18,9 @@
 
 <style type='text/scss'>
 	@import "variables";
+	:host {
+		contain: style;
+	}
 	.footer-links {
 	  display: flex;
 	  background-image: linear-gradient(left, $main-color, $main-color-light);

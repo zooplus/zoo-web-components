@@ -7,11 +7,11 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<svg class="angle-up" preserveAspectRatio="xMidYMid meet" viewBox="0 100 1000 1101" height="21" width="21">
-			<path transform="matrix(1 0 0 -1 0 1000)" d="M738.2375000000001 404.5708333333334L679.8458333333334 346.1791666666667L487.9875 538.0374999999999L296.1291666666667 346.1791666666667L237.7375 404.5708333333334L487.9875 654.8208333333332z"/>
+		<svg class="angle-up" width="21" height="21" viewBox="0 100 1000 1101">
+			<path transform="matrix(1 0 0 -1 0 1e3)" d="m738.24 404.57l-58.392-58.392-191.86 191.86-191.86-191.86-58.392 58.392 250.25 250.25z"/>
 		</svg>
-		<svg class="angle-down" preserveAspectRatio="xMidYMid meet" viewBox="0 -150 950 1101" height="21" width="21">
-			<path transform="matrix(1 0 0 -1 0 1000)" d="M738.2375000000001 404.5708333333334L679.8458333333334 346.1791666666667L487.9875 538.0374999999999L296.1291666666667 346.1791666666667L237.7375 404.5708333333334L487.9875 654.8208333333332z"/>
+		<svg class="angle-down" viewBox="0 -150 950 1101" height="21" width="21">
+			<path transform="matrix(1 0 0 -1 0 1e3)" d="m738.24 404.57l-58.392-58.392-191.86 191.86-191.86-191.86-58.392 58.392 250.25 250.25z"/>
 		</svg>
 		{/if}
 	</span>

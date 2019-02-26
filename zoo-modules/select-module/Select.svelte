@@ -57,6 +57,7 @@
 	  color: $matterhorn;
 	  outline: none;
 	  box-sizing: border-box;
+	  font-size: 13px;
 	}
 	::slotted(select:disabled) {
 	  border-color: #e6e6e6;

@@ -1,3 +1,6 @@
+# 2.3.1
+`zoo-log-searchable-select` placeholder now shows initial placeholder when no options are selected and selected options separated with `,` otherwise.
+
 # 2.3.0
 REMOVED `folding` option from `zoo-log-tooltip`.
 `zoo-log-searchable-select` now shows tooltip on hover on itself or on the tooltip.

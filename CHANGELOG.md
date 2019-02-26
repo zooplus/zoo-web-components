@@ -1,3 +1,6 @@
+# 2.3.3
+Optimized size of svg, causing the library to lose 10 Kbytes minified and about 2.5KB gzipped.
+
 # 2.3.2
 `zoo-log-select` - reduced the size of arrows and made them more aligned.
 

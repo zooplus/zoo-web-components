@@ -53,6 +53,7 @@
 		position: absolute;
 		z-index: 2;
 		top: 60px;
+		font-size: 13px;
 	}
 
 	::slotted(select.error) {
@@ -156,6 +157,7 @@
 			}
 			inputValString = inputValString.substr(0, inputValString.length - 3);
 			tooltipText = inputValString;
+			searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
 		} else {
 			searchableInput.value = _selectElement.options[_selectElement.selectedIndex].text;
 			_hideSelectOptions();

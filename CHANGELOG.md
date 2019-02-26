@@ -1,3 +1,7 @@
+# 2.2.0
+`zoo-log-tooltip` now accepts another option `folding`. When `folding` is true, tooltip will have length of 60px and overflow hidden. The content will show up on hover;
+Additional minor css fixes for `zoo-log-searchable-select`.
+
 # 2.0.5
 `zoo-log-searchable-select` now has a fallback to standard `zoo-log-select` when user is on mobile browser.
 Covered all components with tests.

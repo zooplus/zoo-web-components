@@ -9,18 +9,25 @@ describe('Zoo log tooltip', function() {
 			global.nightmare
 				.evaluate(() => {
 					let tooltip = document.createElement('zoo-log-tooltip');
+					tooltip.text = 'some-text';
 					document.body.appendChild(tooltip);
 					const tooltipBox = tooltip.shadowRoot.querySelector('.tooltip-box');
 					const tooltipTip = tooltip.shadowRoot.querySelector('.tip');
+					const tooltiptext = tooltip.shadowRoot.querySelector('.text');
+					const tooltipContent = tooltip.shadowRoot.querySelector('.tooltip-content');
 					const tooltipAttrs = {
 						tooltipBoxPositionTopClass: tooltipBox.classList.contains('top'),
-						tooltipTipPositionTopClass: tooltipTip.classList.contains('top')
+						tooltipTipPositionTopClass: tooltipTip.classList.contains('top'),
+						foldingClassPresent: tooltipContent.classList.contains('folding'),
+						tooltipText: tooltiptext.innerHTML
 					};
 					return tooltipAttrs;
 				})
 				.then(tooltipAttrs => {
 					expect(tooltipAttrs.tooltipBoxPositionTopClass).to.be.true;
 					expect(tooltipAttrs.tooltipTipPositionTopClass).to.be.true;
+					expect(tooltipAttrs.tooltipText).equal('some-text');
+					expect(tooltipAttrs.foldingClassPresent).to.be.false;
 					done();
 				})
 				.catch(error => {
@@ -33,11 +40,14 @@ describe('Zoo log tooltip', function() {
 				.evaluate(() => {
 					let tooltip = document.createElement('zoo-log-tooltip');
 					tooltip.position = 'left';
+					tooltip.folding = true;
 					document.body.appendChild(tooltip);
 					const tooltipBox = tooltip.shadowRoot.querySelector('.tooltip-box');
 					const tooltipTip = tooltip.shadowRoot.querySelector('.tip');
+					const tooltipContent = tooltip.shadowRoot.querySelector('.tooltip-content');
 					const tooltipAttrs = {
 						tooltipBoxPositionLeftClass: tooltipBox.classList.contains('left'),
+						foldingClassPresent: tooltipContent.classList.contains('folding'),
 						tooltipTipPositionLeftClass: tooltipTip.classList.contains('left')
 					};
 					return tooltipAttrs;
@@ -45,6 +55,7 @@ describe('Zoo log tooltip', function() {
 				.then(tooltipAttrs => {
 					expect(tooltipAttrs.tooltipBoxPositionLeftClass).to.be.true;
 					expect(tooltipAttrs.tooltipTipPositionLeftClass).to.be.true;
+					expect(tooltipAttrs.foldingClassPresent).to.be.true;
 					done();
 				})
 				.catch(error => {

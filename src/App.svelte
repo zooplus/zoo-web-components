@@ -80,7 +80,7 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Start typing to limit options">
+		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" >
 			<select multiple slot="selectelement">
 				{#each options as option}
 					<option value="{option.value}" style="display: {option.display}">
@@ -113,7 +113,11 @@
 			<div slot="buttoncontent">
 				Disabled :(
 				<zoo-log-tooltip position="bottom"
-					text="Just set disabled attribute on `zoo-log-button`">
+					text="Just set disabled attribute on `zoo-log-button`
+Just set disabled attribute on `zoo-log-button`
+Just set disabled attribute on `zoo-log-button`
+Just set disabled attribute on `zoo-log-button`
+Just set disabled attribute on `zoo-log-button`">
 				</zoo-log-tooltip>
 			</div>
 		</zoo-log-button>
@@ -348,7 +352,7 @@
 			value: 'value'
 		},
 		{
-			text: 'Random',
+			text: 'MATINA (BFB plus KFT.) (12009)',
 			value: 'random'
 		},
 		{

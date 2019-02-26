@@ -7,10 +7,10 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<svg class="angle-up" width="21" height="21" viewBox="0 100 1000 1101">
+		<svg class="angle-up" width="18" height="18" viewBox="0 -50 1000 1101">
 			<path transform="matrix(1 0 0 -1 0 1e3)" d="m738.24 404.57l-58.392-58.392-191.86 191.86-191.86-191.86-58.392 58.392 250.25 250.25z"/>
 		</svg>
-		<svg class="angle-down" viewBox="0 -150 950 1101" height="21" width="21">
+		<svg class="angle-down" viewBox="0 -150 950 1101" height="18" width="18">
 			<path transform="matrix(1 0 0 -1 0 1e3)" d="m738.24 404.57l-58.392-58.392-191.86 191.86-191.86-191.86-58.392 58.392 250.25 250.25z"/>
 		</svg>
 		{/if}

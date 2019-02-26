@@ -1,3 +1,6 @@
+# 2.3.2
+`zoo-log-select` - reduced the size of arrows and made them more aligned.
+
 # 2.3.1
 `zoo-log-searchable-select` placeholder now shows initial placeholder when no options are selected and selected options separated with `,` otherwise.
 

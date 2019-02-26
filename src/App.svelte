@@ -113,11 +113,7 @@
 			<div slot="buttoncontent">
 				Disabled :(
 				<zoo-log-tooltip position="bottom"
-					text="Just set disabled attribute on `zoo-log-button`
-Just set disabled attribute on `zoo-log-button`
-Just set disabled attribute on `zoo-log-button`
-Just set disabled attribute on `zoo-log-button`
-Just set disabled attribute on `zoo-log-button`">
+					text="Just set disabled attribute on `zoo-log-button`">
 				</zoo-log-tooltip>
 			</div>
 		</zoo-log-button>

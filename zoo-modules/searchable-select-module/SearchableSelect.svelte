@@ -2,7 +2,7 @@
 <div class="searchable-select-box">
 	{#if !_isMobile}
 		{#if tooltipText}
-			<zoo-log-tooltip position="right" text="{tooltipText}">
+			<zoo-log-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
 			</zoo-log-tooltip>
 		{/if}
 		<zoo-log-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
@@ -21,7 +21,7 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.searchable-select-box {
+	:host {
 		position: relative;
 	}
 	::slotted(select.searchable-zoo-log-select) {
@@ -36,9 +36,9 @@
 		border-bottom-left-radius: 3px;
 		border-bottom-right-radius: 3px;
 		border-top: none;
-		margin-top: -30px;
 		position: absolute;
 		z-index: 2;
+		top: 60px;
 	}
 
 	::slotted(select.error) {
@@ -60,7 +60,6 @@
 </style>
 
 <script>
-	// TODO on ios mobile browsers the select options are not shown for some reason
 	import { onMount, beforeUpdate } from 'svelte';
 
 	export let labelposition = "top";
@@ -98,6 +97,9 @@
 			for (const option of options) {
 				option.addEventListener('click', event => handleOptionClick(event));
 			}
+			if (!options || options.length < 1) {
+				tooltipText = null;
+			}
 			_selectElement.addEventListener('blur', event => {
 				_hideSelectOptions();
 			});
@@ -112,7 +114,7 @@
 			_selectElement.classList.remove('hidden');
 		});
 		searchableInput.addEventListener('blur', event => {
-			if (event.relatedTarget !== _selectElement) { //chrome, firefox
+			if (event.relatedTarget !== _selectElement) {
 				_hideSelectOptions();
 			}
 		});
@@ -136,9 +138,9 @@
 		if (multiple) {
 			let inputValString = '';
 			for (const selectedOpts of _selectElement.selectedOptions) {
-				inputValString += selectedOpts.text + ', ';
+				inputValString += selectedOpts.text + ', \n';
 			}
-			inputValString = inputValString.substr(0, inputValString.length - 2);
+			inputValString = inputValString.substr(0, inputValString.length - 3);
 			tooltipText = inputValString;
 		} else {
 			searchableInput.value = _selectElement.options[_selectElement.selectedIndex].text;

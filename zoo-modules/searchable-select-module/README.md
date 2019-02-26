@@ -18,6 +18,9 @@ Just add `slot` attribute to the `select` you provide for this component, like s
 ### States
 - `disabled` - the component provides styling for disabled type of `select`. For the styles to be applied just set the `disabled` attribute on slotted `select` element;
 
+### Misc
+This component relies on `change` event dispatched every time someone or something changes the value of the select. For example, in angular `form.reset()` removes values from select element, but it does not fire `change` event. So you have to trigger it manually. 
+
 ### Example usage 
 ```
 <zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder">

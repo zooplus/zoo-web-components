@@ -24,6 +24,20 @@
 	:host {
 		position: relative;
 	}
+	.searchable-select-box {
+		position: relative;
+		&:hover {
+			.selected-options {
+				display: block;
+			}
+		}
+	}
+	.selected-options {
+		display: none;
+		&:hover {
+			display: block;
+		}
+	}
 	::slotted(select.searchable-zoo-log-select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	

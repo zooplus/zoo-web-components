@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-log-tooltip"></svelte:options>
 <div class="tooltip-box {position}">
-	<div class="tooltip-content {folding ? 'folding' : ''}">
+	<div class="tooltip-content">
 		<slot>
 			{#if text}<span class="text">{text}</span>{/if}
 		</slot>
@@ -60,13 +60,6 @@
 	  .text {
 	  	white-space: pre;
 	  }
-	  &.folding {
-		width: 60px;
-		overflow: hidden;
-		&:hover {
-			width: 92%;
-		}
-	  }
 	}
 	.tip {
 		position: absolute;
@@ -108,5 +101,4 @@
 <script>
 	export let text = "";
 	export let position = 'top'; // left, right, bottom
-	export let folding = false;
 </script>

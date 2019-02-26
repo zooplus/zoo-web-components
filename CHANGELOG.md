@@ -1,3 +1,7 @@
+# 2.3.0
+REMOVED `folding` option from `zoo-log-tooltip`.
+`zoo-log-searchable-select` now shows tooltip on hover on itself or on the tooltip.
+
 # 2.2.0
 `zoo-log-tooltip` now accepts another option `folding`. When `folding` is true, tooltip will have length of 60px and overflow hidden. The content will show up on hover;
 Additional minor css fixes for `zoo-log-searchable-select`.

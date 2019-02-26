@@ -7,12 +7,8 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<svg class="angle-up" width="18" height="18" viewBox="0 -50 1000 1101">
-			<path transform="matrix(1 0 0 -1 0 1e3)" d="m738.24 404.57l-58.392-58.392-191.86 191.86-191.86-191.86-58.392 58.392 250.25 250.25z"/>
-		</svg>
-		<svg class="angle-down" viewBox="0 -150 950 1101" height="18" width="18">
-			<path transform="matrix(1 0 0 -1 0 1e3)" d="m738.24 404.57l-58.392-58.392-191.86 191.86-191.86-191.86-58.392 58.392 250.25 250.25z"/>
-		</svg>
+		<svg class="angle-up" viewBox="0 -150 1000 1101" width="18" height="18" ><path transform="matrix(1 0 0 -1 0 1e3)" d="m738 405l-58-58-192 192-192-192-58 58 250 250z"/></svg>
+		<svg class="angle-down" viewBox="25 -50 950 1101" width="18" height="18"><path transform="matrix(1 0 0 -1 0 1e3)" d="M738.2 596.4L488 346.2 237.7 596.4 296.1 654.8 488 463 679.8 654.8z"/></svg>
 		{/if}
 	</span>
 	<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -41,7 +37,6 @@
 	.angle-down {
 	  right: 10px;
 	  top: 42%;
-	  transform: rotate(180deg);
 	}
 	::slotted(select) {
 	  -webkit-appearance: none;

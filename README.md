@@ -13,8 +13,8 @@ To be able to download these packages you have to have `.npmrc` file inside your
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
 ## Size of the library
-Uncompressed size of the library is: 61 Kbytes;
-Gzipped version is 14,3 Kbytes;
+Uncompressed size of the library is: 50 Kbytes;
+Gzipped version is 12 Kbytes;
 
 # List of components
 As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958

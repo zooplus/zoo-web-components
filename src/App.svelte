@@ -80,7 +80,7 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" >
+		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text. Additional helpful information for our users which is a long text">
 			<select multiple slot="selectelement">
 				{#each options as option}
 					<option value="{option.value}" style="display: {option.display}">
@@ -138,11 +138,11 @@
 			</span>
 			<zoo-log-tooltip bind:this={specialTooltip} text="Hello from up above">
 				<div>
-					<zoo-log-input>
+					<zoo-log-input class="input-in-tooltip">
 						<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
 						<span class="icon-search-default" slot="inputicon"></span>
 					</zoo-log-input>
-					<zoo-log-tooltip position="right" text="Hello from right side.">
+					<zoo-log-tooltip class="nested-tooltip" position="right" text="Hello from nested tooltip.">
 					</zoo-log-tooltip>
 				</div>
 			</zoo-log-tooltip>
@@ -261,6 +261,9 @@
 		line-height: 20px;
 		color: forestgreen;
 		font-size: 25px;
+	}
+	.input-in-tooltip:hover~.nested-tooltip {
+		display: block;
 	}
 	.app {
 		max-width: 1280px;

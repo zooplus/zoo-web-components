@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "2.3.5",
+	"version": "2.4.1",
 	"main": "dist/release.js",
 	"files": [
 		"dist/release.js"
@@ -9,15 +9,11 @@
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
 		"@types/mocha": "^5.2.0",
-		"babel-core": "^6.26.0",
-		"babel-plugin-external-helpers": "^6.22.0",
-		"babel-preset-env": "^1.6.1",
 		"chai": "^4.2.0",
 		"mocha": "^5.2.0",
 		"nightmare": "^3.0.1",
 		"node-sass": "^4.11.0",
 		"rollup": "^1.1.2",
-		"rollup-plugin-babel": "^3.0.3",
 		"rollup-plugin-commonjs": "^9.1.8",
 		"rollup-plugin-node-resolve": "^4.0.0",
 		"rollup-plugin-svelte": "^5.0.3",
@@ -30,8 +26,5 @@
 		"start": "serve public & rollup -c -w",
 		"test": "rollup src/test.js -c && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
 		"prepublishOnly": "npm run build"
-	},
-	"dependencies": {
-		"@webcomponents/webcomponentsjs": "^2.2.4"
 	}
 }

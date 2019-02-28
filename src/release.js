@@ -4,6 +4,7 @@ import Footer from '../zoo-modules/footer-module/Footer.svelte';
 import Input from '../zoo-modules/input-module/Input.svelte';
 import Button from '../zoo-modules/button-module/Button.svelte';
 import Checkbox from '../zoo-modules/checkbox-module/Checkbox.svelte';
+import Radio from '../zoo-modules/radio-module/Radio.svelte';
 import Feedback from '../zoo-modules/feedback-module/Feedback.svelte';
 import Tooltip from '../zoo-modules/tooltip-module/Tooltip.svelte';
 import Select from '../zoo-modules/select-module/Select.svelte';
@@ -27,5 +28,6 @@ export default {
 	modal: new Modal(),
 	navigation: new Navigation(),
 	inputLabel: new InputLabel(),
-	searchableSelect: new SearchableSelect()
+	searchableSelect: new SearchableSelect(),
+	radio: new Radio()
 };

@@ -1,0 +1,116 @@
+<svelte:options tag="zoo-log-radio"></svelte:options>
+<span class="template-slot">
+	<slot bind:this={_templateSlot}></slot>
+</span>
+<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
+</zoo-log-input-info>
+
+<style type='text/scss'>
+	@import "variables";
+	:host {
+		display: flex;
+		flex-direction: column;
+	}
+	.template-slot {
+		display: flex;
+	}
+	::slotted(input[type="radio"]) {
+	  position: relative;
+	  margin: 0;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  outline: none;
+	  cursor: pointer;
+	}
+	::slotted(input[type="radio"])::before {
+	  position: relative;
+	  display: inline-block;
+	  width: 16px;
+	  height: 16px;
+	  content: "";
+	  border-radius: 50%;
+	  border: 2px solid #3c9700;
+	  background: white;
+	}
+	::slotted(input[type="radio"]:checked)::before {
+		background: white;
+	}
+	::slotted(input[type="radio"]:checked)::after {
+	  content: "";
+	  position: absolute;
+	  top: 5px;
+	  left: 5px;
+	  width: 6px;
+	  height: 6px;
+	  transform: rotate(40deg);
+	  color: $main-color;
+	  border: 2px solid;
+	  background: #3C9700;
+	  border-radius: 50%;
+	}
+
+	::slotted(label) {
+		cursor: pointer;
+		margin: 0 5px;
+	}
+
+	::slotted(input[type="radio"]:disabled) {
+	  cursor: not-allowed;
+	}
+	::slotted(input[type="radio"]:disabled) {
+	  cursor: not-allowed;
+	}
+	::slotted(input[type="radio"]:disabled)::before {
+	  border-color: $grey;
+	  background-color: $whisper;
+	}
+	::slotted(input[type="radio"].error)::before {
+	  border-color: $error-text-color;
+	}
+	::slotted(label.error) {
+	  color: $error-text-color;
+	}
+</style>
+
+<script>
+	import { beforeUpdate, onMount } from 'svelte';
+
+	export let valid = true;
+	export let errormsg = '';
+	export let infotext = '';
+	let _prevValid;
+	let _templateSlot;
+	let clone;
+
+	const changeValidState = (valid) => {
+		if (_templateSlot) {
+			_templateSlot.assignedNodes().forEach(el => {
+				if (el.classList) {
+					if (valid === false) {
+						el.classList.add('error');
+					} else if (valid) {
+						el.classList.remove('error');
+					}
+				}
+			});
+		}
+	}
+
+	beforeUpdate(() => {
+		if (valid !== _prevValid) {
+			_prevValid = valid;
+			changeValidState(valid);
+		}
+	});
+	  
+	onMount(() => {
+		_templateSlot.addEventListener("slotchange", e => {
+			if (!clone) {
+				const template = _templateSlot.assignedNodes()[0];
+				clone = template.content.cloneNode(true);
+				_templateSlot.getRootNode().querySelector('slot').assignedNodes()[0].remove();
+				_templateSlot.getRootNode().host.appendChild(clone);
+			}
+		});
+	});
+</script>

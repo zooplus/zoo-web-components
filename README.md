@@ -38,7 +38,7 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 
 ## Other
 + Tables - `Not implemented`
-+ Tooltips - `Not implemented` - WIP
++ Tooltips - [`tooltip-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/tooltip-module);
 + Lists  - `Not Implemented` - just use <details> tag
 + Navigation - [`navigation-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/navigation-module)
 + Breadcrumb - `Not implemented`

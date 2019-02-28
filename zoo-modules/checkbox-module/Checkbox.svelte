@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-log-checkbox"></svelte:options>
-<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="{!valid}" class:disabled="{disabled}">
+<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''} {_focused ? 'focused':''}" class:error="{!valid}" class:disabled="{disabled}">
 	<label class="input-slot" on:click="{e => handleClick(e)}">
 		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>
 		<span class="input-label">
@@ -21,9 +21,12 @@
 	    border-color: $whisper;
 	    border-radius: 3px;
 	    padding: 13px 15px;
+		&.focused {
+			border-color: $matterhorn;
+		}
 	  }
 	  &.clicked {
-	    border-color: $main-color;
+	    border-color: $main-color !important;
 	  }
 	  &.error {
 	    border-color: $error-text-color;
@@ -112,25 +115,23 @@
 	let _slottedInput;
 	let _prevValid;
 	let _inputSlot;
+	let _focused = false;
 
-	// TODO add handler for enter keypress
 	const handleClick = (event) => {
 		if (disabled) {
-			event.stopPropagation();
 			event.preventDefault();
 			return;
 		}
 		event.stopImmediatePropagation();
-		_clicked = !_clicked;
 		_slottedInput.click();
 	};
 
 	const handleSlotClick = (event) => {
 		if (disabled) {
-			event.stopPropagation();
 			event.preventDefault();
 			return;
 		}
+		_clicked = !_clicked;
 		event.stopImmediatePropagation();
 	};
 
@@ -153,9 +154,19 @@
 	  
 	onMount(() => {
 		_inputSlot.addEventListener("slotchange", e => {
-			let nodes = _inputSlot.assignedNodes();
-			_slottedInput = nodes[0];
+			_slottedInput = _inputSlot.assignedNodes()[0];
+			_slottedInput.addEventListener('focus', e => {
+				_focused = true;
+			});
+			_slottedInput.addEventListener('blur', e => {
+				_focused = false;
+			});
 			changeValidState(valid);
-	    });
+		});
+		_inputSlot.addEventListener('keypress', e => {
+			if (e.keyCode === 13) {
+				_slottedInput.click();
+			}
+		});
 	});
 </script>

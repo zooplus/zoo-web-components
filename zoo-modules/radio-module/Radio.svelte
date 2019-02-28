@@ -22,6 +22,9 @@
 	  outline: none;
 	  cursor: pointer;
 	}
+	::slotted(input[type="radio"]):focus::before {
+	  border-color: $matterhorn;
+	}
 	::slotted(input[type="radio"])::before {
 	  position: relative;
 	  display: inline-block;
@@ -35,7 +38,7 @@
 	::slotted(input[type="radio"]:checked)::before {
 		background: white;
 	}
-	::slotted(input[type="radio"]:checked)::after {
+	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"].focused)::after {
 	  content: "";
 	  position: absolute;
 	  top: 5px;
@@ -45,8 +48,20 @@
 	  transform: rotate(40deg);
 	  color: $main-color;
 	  border: 2px solid;
-	  background: #3C9700;
 	  border-radius: 50%;
+	}
+
+	::slotted(input[type="radio"]:checked)::after {
+		background: #3C9700;
+	}
+
+	::slotted(input[type="radio"].focused)::after {
+		background: $whisper;
+		color: $whisper;
+	}
+
+	::slotted(input.focused)::before {
+		border-color: $matterhorn;
 	}
 
 	::slotted(label) {
@@ -107,9 +122,19 @@
 		_templateSlot.addEventListener("slotchange", e => {
 			if (!clone) {
 				const template = _templateSlot.assignedNodes()[0];
-				clone = template.content.cloneNode(true);
-				_templateSlot.getRootNode().querySelector('slot').assignedNodes()[0].remove();
-				_templateSlot.getRootNode().host.appendChild(clone);
+				if (template.content) {
+					clone = template.content.cloneNode(true);
+					_templateSlot.getRootNode().querySelector('slot').assignedNodes()[0].remove();
+					_templateSlot.getRootNode().host.appendChild(clone);
+				}
+				_templateSlot.getRootNode().host.querySelectorAll('input').forEach(input => {
+					input.addEventListener('focus', e => {
+						e.target.classList.add('focused');
+					});
+					input.addEventListener('blur', e => {
+						e.target.classList.remove('focused');
+					});
+				})
 			}
 		});
 	});

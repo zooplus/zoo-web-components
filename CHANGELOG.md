@@ -1,3 +1,6 @@
+# 2.4.2
+`zoo-log-radio` extended to handle focus and blur events.
+
 # 2.4.1
 `zoo-log-radio` fix error state change when not using `template`.
 

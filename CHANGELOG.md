@@ -1,3 +1,9 @@
+# 2.3.5
+Extended `zoo-log-checkbox` to handle enter keypress and react to focus event.
+
+# 2.3.4
+Wrapped SVGs to preserve static width and height to avoid change of size depending on the size of sibling node text.
+
 # 2.3.3
 Optimized size of svg, causing the library to lose 10 Kbytes minified and about 2.5KB gzipped.
 

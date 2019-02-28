@@ -89,7 +89,7 @@
 				{/each}
 			</select>
 		</zoo-log-searchable-select>
-		<zoo-log-checkbox highlighted
+		<zoo-log-checkbox highlighted="{true}"
 			valid="{inputState}"
 			labeltext="An example checkbox with some additional event handling of clicks inside">
 			<input slot="checkboxelement" type="checkbox"/>

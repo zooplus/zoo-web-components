@@ -1,3 +1,9 @@
+# 2.4.1
+`zoo-log-radio` fix error state change when not using `template`.
+
+# 2.4.0
+Created `zoo-log-radio`.
+
 # 2.3.5
 Extended `zoo-log-checkbox` to handle enter keypress and react to focus event.
 

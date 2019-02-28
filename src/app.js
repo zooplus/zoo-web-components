@@ -7,6 +7,7 @@ import '../zoo-modules/footer-module/Footer.svelte';
 import '../zoo-modules/button-module/Button.svelte';
 import '../zoo-modules/input-module/Input.svelte';
 import '../zoo-modules/checkbox-module/Checkbox.svelte';
+import '../zoo-modules/radio-module/Radio.svelte';
 import '../zoo-modules/feedback-module/Feedback.svelte';
 import '../zoo-modules/link-module/Link.svelte';
 import '../zoo-modules/tooltip-module/Tooltip.svelte';

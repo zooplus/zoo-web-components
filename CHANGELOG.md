@@ -1,3 +1,6 @@
+# 2.4.4
+Various UX improvements.
+
 # 2.4.2
 `zoo-log-select` Using single svg for select arrows instead of 2.
 

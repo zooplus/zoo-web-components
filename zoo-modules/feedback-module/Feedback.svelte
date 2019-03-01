@@ -39,10 +39,6 @@
 			vertical-align: middle;
 			min-height: 35px;
     		min-width: 35px;
-			& > path {
-				stroke-width: 0.1;
-				stroke-linejoin: round;
-			}
 			.error {
 				fill: #ED1C24;
 			}

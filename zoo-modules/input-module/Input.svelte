@@ -20,6 +20,7 @@
 	@import "variables";
 	@import "input";
 	.error-triangle {
+		animation: hideshow 0.5s ease;
 	  position: absolute;
 	  right: 0;
 	  top: 0;
@@ -90,10 +91,15 @@
 	.input-slot.style-scope.zoo-log-input > *:first-child.error, 
 	::slotted(input.error),
 	::slotted(textarea.error) {
-	  border: 2px solid;
-	  padding: 12px 34px 12px 14px;
-	  border-color: $error-text-color;
+		transition: border-color 0.3s ease;
+		border: 2px solid;
+		padding: 12px 34px 12px 14px;
+		border-color: $error-text-color;
 	}
+	@keyframes hideshow {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	} 
 </style>
 
 <script>

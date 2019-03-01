@@ -101,6 +101,7 @@
 	}
 	::slotted(input[type="checkbox"].error)::before {
 	  border-color: $error-text-color;
+	  transition: border-color 0.3s ease;
 	}
 </style>
 

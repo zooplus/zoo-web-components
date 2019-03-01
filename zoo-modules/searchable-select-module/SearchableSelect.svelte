@@ -58,6 +58,7 @@
 
 	::slotted(select.error) {
 		border-color: $error-text-color;
+		transition: border-color 0.3s ease;
 	}
 
 	::slotted(select.hidden) {

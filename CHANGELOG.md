@@ -1,4 +1,7 @@
 # 2.4.2
+`zoo-log-select` Using single svg for select arrows instead of 2.
+
+# 2.4.2
 `zoo-log-radio` extended to handle focus and blur events.
 
 # 2.4.1

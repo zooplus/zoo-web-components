@@ -297,6 +297,7 @@
 		margin: 20px auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		grid-template-rows: 120px 150px 120px 70px;
 		grid-gap: 20px;
 	}
 	.buttons {

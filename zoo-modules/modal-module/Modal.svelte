@@ -24,6 +24,7 @@
       top: 0;
 	}
 	.box {
+		animation: hideshow 0.4s ease;
 	  position: fixed;
 	  background: white;
 	  top: 50%;
@@ -54,6 +55,10 @@
 	    transform: none;
 	  }
 	}
+	@keyframes hideshow {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	} 
 </style>
 
 <script>

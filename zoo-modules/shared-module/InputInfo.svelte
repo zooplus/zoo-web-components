@@ -14,37 +14,37 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.info {
+	.info, .error-holder {
 		padding-right: 2px;
 		font-size: 12px;
 		color: $matterhorn;
 		display: flex;
 	  	align-items: center;
-			.svg-wrapper {
-				width: 21px;
-				height: 21px;
-			}
-		 	.info-rounded-circle {
-				padding-right: 2px;
-				& > path {
-					fill: $matterhorn;
-				}
-			}
+		.svg-wrapper {
+			display: flex;
+			align-self: start;
+		}
+	}
+	.info-rounded-circle, .exclamation-circle {
+		padding-right: 2px;
+		& > path {
+			fill: $matterhorn;
+		}
+	}
+	.exclamation-circle > path {
+		fill: $error-text-color;
 	}
 	.error-holder {
+		animation: hideshow 0.5s ease;
 		color: $error-text-color;
-		display: flex;
-		align-items: center;
 		.error-label {
 			font-size: 12px;
 		}
-		.exclamation-circle {
-			padding-right: 2px;
-			& > path {
-				fill: $error-text-color;
-			}
-		}
 	}
+	@keyframes hideshow {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	} 
 </style>
 
 <script>

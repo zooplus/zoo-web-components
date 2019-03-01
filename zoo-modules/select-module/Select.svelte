@@ -7,7 +7,7 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 -150 1000 1101" width="25" height="25"><path transform="matrix(1 0 0 -1 0 1e3)" d="M417 667L456 628 328 501 456 373 417 334 250 501 417 667zM584 667L751 501 584 334 545 373 673 501 545 628 584 667z"/></svg>
+		<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 -150 1000 1101" width="25" height="25"><path d="M417 667L456 628 328 501 456 373 417 334 250 501 417 667zM584 667L751 501 584 334 545 373 673 501 545 628 584 667z"/></svg>
 		{/if}
 	</span>
 	<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -20,7 +20,7 @@
 	.arrows {
 		position: absolute;
 		right: 5px;
-		top: 12px;
+		top: 13px;
 		transform: rotate(90deg);
 		& > path {
 			fill: $matterhorn;
@@ -63,6 +63,7 @@
 	  border: 2px solid;
 	  padding: 12px 14px;
 	  border-color: $error-text-color;
+	  transition: border-color 0.3s ease;
 	}
 </style>
 

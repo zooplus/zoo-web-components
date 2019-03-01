@@ -7,8 +7,7 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<svg class="angle-up" viewBox="0 -150 1000 1101" width="18" height="18" ><path transform="matrix(1 0 0 -1 0 1e3)" d="m738 405l-58-58-192 192-192-192-58 58 250 250z"/></svg>
-		<svg class="angle-down" viewBox="25 -50 950 1101" width="18" height="18"><path transform="matrix(1 0 0 -1 0 1e3)" d="M738.2 596.4L488 346.2 237.7 596.4 296.1 654.8 488 463 679.8 654.8z"/></svg>
+		<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 -150 1000 1101" width="25" height="25"><path transform="matrix(1 0 0 -1 0 1e3)" d="M417 667L456 628 328 501 456 373 417 334 250 501 417 667zM584 667L751 501 584 334 545 373 673 501 545 628 584 667z"/></svg>
 		{/if}
 	</span>
 	<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -18,9 +17,11 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
-	.angle-up,
-	.angle-down {
+	.arrows {
 		position: absolute;
+		right: 5px;
+		top: 12px;
+		transform: rotate(90deg);
 		& > path {
 			fill: $matterhorn;
 		}
@@ -29,14 +30,6 @@
 				fill: $error-text-color;
 			}
 		}
-	}
-	.angle-up {
-	  right: 10px;
-	  top: 23%;
-	}
-	.angle-down {
-	  right: 10px;
-	  top: 42%;
 	}
 	::slotted(select) {
 	  -webkit-appearance: none;

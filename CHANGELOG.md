@@ -1,3 +1,6 @@
+# 2.5.0
+Added some interactivity to Button, Link, Modal and Tooltip elements.
+
 # 2.4.4
 Various UX improvements.
 

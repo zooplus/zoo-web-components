@@ -67,6 +67,7 @@
 	::slotted(label) {
 		cursor: pointer;
 		margin: 0 5px;
+		align-self: center;
 	}
 
 	::slotted(input[type="radio"]:disabled) {

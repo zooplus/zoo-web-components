@@ -50,7 +50,7 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/public` folder.
 
 ## Test
-This project uses `Mocha` and `Chai` for writing tests. The tests are run using `Nightmare`.
+This project uses `Mocha` and `Chai` for writing tests. The tests are run using `Puppeteer`.
 Run `npm test` to run the tests. Tests are automatically run before triying to publish new version to npm.
 
 ## Build

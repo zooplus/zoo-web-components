@@ -120,10 +120,6 @@
 	let documentObserver;
 	let tip;
 	let hidden = true;
-
-	export function asd () {
-		console.log('asd');
-	}
 	onMount(() => {
 		const options = {
 			root: _tooltipRoot.getRootNode().host,

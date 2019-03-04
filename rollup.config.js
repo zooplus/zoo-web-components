@@ -44,7 +44,7 @@ export default [
 		input: 'src/app.js',
 		output: {
 			sourcemap: true,
-			format: 'iife',
+			format: 'esm', // esm
 			file: 'public/bundle.js',
 			name: 'app'
 		}

@@ -126,7 +126,7 @@
 				<span class="icon-angle-down"></span>
 			</div>
 		</zoo-log-button>
-		<zoo-log-button size="medium" disabled="{true}">
+		<zoo-log-button size="medium" disabled="{true}" class="top-tooltip">
 			<div slot="buttoncontent">
 				Disabled :(
 				<zoo-log-tooltip position="bottom"
@@ -298,6 +298,9 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 		grid-template-rows: 120px 150px 120px 70px;
+		@media only screen and (max-width: 544px) {
+			grid-template-rows: auto;
+		}
 		grid-gap: 20px;
 	}
 	.buttons {

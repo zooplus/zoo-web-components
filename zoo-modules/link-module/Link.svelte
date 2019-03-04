@@ -1,7 +1,10 @@
 <svelte:options tag="zoo-log-link"></svelte:options>
 {#if text && href}
 	<div class="link-box">
-		<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type}" class:disabled="{disabled}">{text}</a>
+		<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type}" class:disabled="{disabled}">
+			<span>{text}</span>
+			<div class="bottom-line"></div>
+		</a>
 	</div>
 {/if}
 
@@ -13,6 +16,7 @@
 	  display: flex;
 	  flex-direction: column;
 	  justify-content: center;
+	  position: relative;
 	  a {
 	    text-decoration: none;
 	    font-size: 12px;
@@ -51,6 +55,19 @@
 	          cursor: not-allowed;
 	        }
 	      }
+		  .bottom-line {
+				position: absolute;
+				bottom: -3px;
+				left: 0;
+				overflow: hidden;
+				width: 0;
+				border-bottom: 1px solid #fff;
+				color: #fff;
+				transition: width 0.3s;
+			}
+			&:hover .bottom-line {
+				width: 100%;
+			}
 	    }
 	    &.grey {
 	      color: $placeholder-color;

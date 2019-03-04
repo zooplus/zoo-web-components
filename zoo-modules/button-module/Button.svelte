@@ -39,6 +39,7 @@
 			}
 			&:active {
 				background: $main-color-dark;
+				transform: translateY(1px);
 			}
 			&.hot {
 				background-image: linear-gradient(

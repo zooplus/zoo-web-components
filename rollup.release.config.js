@@ -44,7 +44,7 @@ export default [
 		input: 'src/release.js',
 		output: {
 			sourcemap: true,
-			format: 'iife',
+			format: 'iife', // esm
 			file: 'dist/release.js',
 			name: 'zooWC'
 		}

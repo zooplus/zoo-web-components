@@ -167,9 +167,10 @@
 
 	const _hideSelectOptions = () => {
 		_selectElement.classList.add('hidden');
-		searchableInput.value = null;
 		if (!multiple) {
 			_selectElement.size = 1;
+		} else {
+			searchableInput.value = null;
 		}
 	}
 

@@ -1,3 +1,6 @@
+# 2.5.1
+`zoo-log-searchable-select` fixed not setting input value on selecting options.
+
 # 2.5.0
 Added some interactivity to Button, Link, Modal and Tooltip elements.
 

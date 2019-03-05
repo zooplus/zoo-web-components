@@ -80,8 +80,17 @@
 				<option>3</option>
 			</select>
 		</zoo-log-select>
-		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text. Additional helpful information for our users which is a long text">
+		<zoo-log-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text. Additional helpful information for our users which is a long text">
 			<select multiple slot="selectelement">
+				{#each options as option}
+					<option value="{option.value}" style="display: {option.display}">
+						{option.text}
+					</option>
+				{/each}
+			</select>
+		</zoo-log-searchable-select>
+		<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Additional helpful information for our users.">
+			<select slot="selectelement">
 				{#each options as option}
 					<option value="{option.value}" style="display: {option.display}">
 						{option.text}
@@ -366,6 +375,7 @@
 </style>
 
 <script>
+	import { onMount, onDestroy } from 'svelte';
 	let options = [
 		{
 			text: 'text',
@@ -487,5 +497,8 @@
 	};
 	const changeState = () => {
 		inputState = !inputState;
+	}
+	export function asd() {
+		console.log('asd');
 	}
 </script>

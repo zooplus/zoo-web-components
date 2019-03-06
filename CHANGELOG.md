@@ -1,3 +1,6 @@
+# 2.5.2
+`zoo-log-searchable-select` aligned behaviour of multiple and single select elements.
+
 # 2.5.1
 `zoo-log-searchable-select` fixed not setting input value on selecting options.
 

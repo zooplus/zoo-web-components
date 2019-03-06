@@ -151,26 +151,23 @@
 	}
 
 	const handleOptionClick = event => {
-		if (multiple) {
-			let inputValString = '';
-			for (const selectedOpts of _selectElement.selectedOptions) {
-				inputValString += selectedOpts.text + ', \n';
-			}
-			inputValString = inputValString.substr(0, inputValString.length - 3);
-			tooltipText = inputValString;
-			searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
-		} else {
-			searchableInput.value = _selectElement.options[_selectElement.selectedIndex].text;
+		let inputValString = '';
+		for (const selectedOpts of _selectElement.selectedOptions) {
+			inputValString += selectedOpts.text + ', \n';
+		}
+		inputValString = inputValString.substr(0, inputValString.length - 3);
+		tooltipText = inputValString;
+		searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
+		if (!multiple) {
 			_hideSelectOptions();
 		}
 	}
 
 	const _hideSelectOptions = () => {
 		_selectElement.classList.add('hidden');
+		searchableInput.value = null;
 		if (!multiple) {
 			_selectElement.size = 1;
-		} else {
-			searchableInput.value = null;
 		}
 	}
 

@@ -1,3 +1,7 @@
+# 3.0.0
+Rename all components from `zoo-log...` to `zoo-...`.
+Project internals cleanup.
+
 # 2.5.2
 `zoo-log-searchable-select` aligned behaviour of multiple and single select elements.
 

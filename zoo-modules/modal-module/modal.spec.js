@@ -2,7 +2,7 @@ describe('Zoo log modal', function() {
 	describe('Modal', () => {
 		it('should create opened modal', async() => {
 			const modalAttrs = await page.evaluate(() => {
-				let modal = document.createElement('zoo-log-modal');
+				let modal = document.createElement('zoo-modal');
 				modal.headertext = 'header-text';
 				modal.style.display = 'block';
 				document.body.appendChild(modal);
@@ -17,7 +17,7 @@ describe('Zoo log modal', function() {
 
 		it('should create opened modal and close it', async () => {
 			const modalDisplay = await page.evaluate(async () => {
-				let modal = document.createElement('zoo-log-modal');
+				let modal = document.createElement('zoo-modal');
 				modal.headertext = 'header-text';
 				modal.style.display = 'block';
 				document.body.appendChild(modal);
@@ -32,7 +32,7 @@ describe('Zoo log modal', function() {
 
 		it('should accept 1 slot', async() => {
 			const ret = await page.evaluate(() => {
-				let modal = document.createElement('zoo-log-modal');
+				let modal = document.createElement('zoo-modal');
 				let element = document.createElement('span');
 				element.innerHTML = 'some test text';
 				modal.appendChild(element);
@@ -40,7 +40,7 @@ describe('Zoo log modal', function() {
 
 				const slottedContent = modal.shadowRoot.querySelector('slot').assignedNodes()[0];
 
-				for (const element of document.getElementsByTagName('zoo-log-modal')) {
+				for (const element of document.getElementsByTagName('zoo-modal')) {
 					element.remove();
 				}
 

@@ -15,8 +15,8 @@ Just add `slot` attribute to the `input` you provide for this component, like so
 
 ## Example usage 
 ```
-<zoo-log-checkbox highlighted
+<zoo-checkbox highlighted
 	labeltext="Example label for this particular checkbox">
 	<input slot="checkboxelement" type="checkbox"/>
-</zoo-log-checkbox>
+</zoo-checkbox>
 ```

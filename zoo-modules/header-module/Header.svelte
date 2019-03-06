@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-header"></svelte:options>
+<svelte:options tag="zoo-header"></svelte:options>
 <div class="header-box">
 	{#if imgsrc}<img class="app-logo" src="{imgsrc}" alt="zooplus"/>{/if}
 	{#if headertext}<span class="app-name">{headertext}</span>{/if}

@@ -1,21 +1,21 @@
-<svelte:options tag="zoo-log-searchable-select"></svelte:options>
+<svelte:options tag="zoo-searchable-select"></svelte:options>
 <div class="searchable-select-box">
 	{#if !_isMobile}
 		{#if tooltipText}
-			<zoo-log-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
-			</zoo-log-tooltip>
+			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
+			</zoo-tooltip>
 		{/if}
-		<zoo-log-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
+		<zoo-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
 			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
 			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
 			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{event => handleSearchChange(event)}"/>
-		</zoo-log-input>
+		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
-		<zoo-log-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"
+		<zoo-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"
 			labeltext="{labeltext}" inputerrormsg="{inputerrormsg}" infotext="{infotext}" valid="{valid}">
 			<slot bind:this={_selectSlot} name="selectelement" slot="selectelement"></slot>
-		</zoo-log-select>
+		</zoo-select>
 	{/if}
 </div>
 
@@ -38,7 +38,7 @@
 			display: block;
 		}
 	}
-	::slotted(select.searchable-zoo-log-select) {
+	::slotted(select.searchable-zoo-select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
 		text-indent: 1px;
@@ -122,7 +122,7 @@
 			if (_selectElement.multiple === true) {
 				multiple = true;
 			}
-			_selectElement.classList.add('searchable-zoo-log-select');
+			_selectElement.classList.add('searchable-zoo-select');
 			_hideSelectOptions();
 			changeValidState(valid);
 	    });

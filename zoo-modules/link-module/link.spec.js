@@ -2,7 +2,7 @@ describe('Zoo log link', function() {
 	describe('Link', () => {
 		it('should create default empty link', async() => {
 			const linkAttrs = await page.evaluate(() => {
-				let link = document.createElement('zoo-log-link');
+				let link = document.createElement('zoo-link');
 				document.body.appendChild(link);
 				const linkBox = link.shadowRoot.querySelector('.link-box');
 				const linkAttrs = {
@@ -15,7 +15,7 @@ describe('Zoo log link', function() {
 
 		it('should create default link', async() => {
 			const linkAttrs = await page.evaluate(() => {
-				let link = document.createElement('zoo-log-link');
+				let link = document.createElement('zoo-link');
 				link.text = 'test-text';
 				link.href = 'https://google.com';
 				document.body.appendChild(link);

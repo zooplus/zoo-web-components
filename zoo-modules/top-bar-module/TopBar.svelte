@@ -1,13 +1,13 @@
 <div class="topbar-box">
 	{#if languages}
 		<div class="language-select">
-			<zoo-log-select showicons="{false}">
+			<zoo-select showicons="{false}">
 				<select slot="selectelement" class="slotted-select">
 					{#each languages as language}
 						<option class="placeholder" value="{language.text}">{language.text}</option>
 					{/each}
 				</select>
-			</zoo-log-select>
+			</zoo-select>
 		</div>
 	{/if}
 	<div class="middle-content">
@@ -59,7 +59,7 @@
 
 <script>
 	export default {
-	  tag: "zoo-log-top-bar",
+	  tag: "zoo-top-bar",
 	  data() {
 	    return {
 			languages: []

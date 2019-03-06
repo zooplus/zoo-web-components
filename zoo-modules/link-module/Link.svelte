@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-link"></svelte:options>
+<svelte:options tag="zoo-link"></svelte:options>
 {#if text && href}
 	<div class="link-box">
 		<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type}" class:disabled="{disabled}">

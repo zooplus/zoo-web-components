@@ -1,9 +1,9 @@
-<svelte:options tag="zoo-log-radio"></svelte:options>
+<svelte:options tag="zoo-radio"></svelte:options>
 <span class="template-slot">
 	<slot bind:this={_templateSlot}></slot>
 </span>
-<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
-</zoo-log-input-info>
+<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
+</zoo-input-info>
 
 <style type='text/scss'>
 	@import "variables";

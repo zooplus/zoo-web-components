@@ -10,7 +10,7 @@ This component accept one `<slot></slot>`. This slot expects you to provide a `t
 
 ### Example usage 
 ```
-<zoo-log-radio valid="{inputState}" errormsg="errormsg">
+<zoo-radio valid="{inputState}" errormsg="errormsg">
 	<template>
 		<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
 		<label for="contactChoice1">Email</label>
@@ -19,14 +19,14 @@ This component accept one `<slot></slot>`. This slot expects you to provide a `t
 		<input type="radio" id="contactChoice3" name="contact" value="mail">
 		<label for="contactChoice3">Mail</label>
 	</template>
-</zoo-log-radio>
+</zoo-radio>
 ```
 
 ```
-<zoo-log-radio valid="{inputState}" errormsg="errormsg" infotext="infotext">
+<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext">
 	<input type="radio" id="contactChoice4" name="contact" value="email" disabled>
 	<label for="contactChoice4">Email</label>
 	<input type="radio" id="contactChoice5" name="contact" value="phone">
 	<label for="contactChoice5">Phone</label>
-</zoo-log-radio>
+</zoo-radio>
 ```

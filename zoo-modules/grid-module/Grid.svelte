@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-grid"></svelte:options>
+<svelte:options tag="zoo-grid"></svelte:options>
 
 <style type='text/scss'>
 </style>

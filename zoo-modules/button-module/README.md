@@ -13,10 +13,10 @@ This component accept one `<slot name="buttoncontent"></slot>` which is replaced
 
 ## Example usage 
 ```
-<zoo-log-button type="hot" size="medium">
+<zoo-button type="hot" size="medium">
 	<div slot="buttoncontent">
 		<span class="icon-cart-copy"></span>
 		<span class="slotted-span">Shopping Cart</span>
 	</div>
-</zoo-log-button>
+</zoo-button>
 ```

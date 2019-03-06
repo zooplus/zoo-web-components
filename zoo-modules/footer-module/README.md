@@ -12,7 +12,7 @@ The component accepts the following parameters:
 ## Example usage 
 To use it in your project add the following to your mark-up file:
 ```
-<zoo-log-footer #zooFooter></zoo-log-footer>
+<zoo-footer #zooFooter></zoo-footer>
 ```
 `#zooFooter` is a way in angular to get direct reference to html element on the page. It can vary from framework to framework. It is needed as the component's API accepts an array of object, which cannot be understood as string by the component.
 

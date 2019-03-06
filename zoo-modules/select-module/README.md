@@ -19,7 +19,7 @@ Just add `slot` attribute to the `select` you provide for this component, like s
 
 ### Example usage 
 ```
-<zoo-log-select labeltext="Very long label which should test how it behaves Label" 
+<zoo-select labeltext="Very long label which should test how it behaves Label" 
 	linktext="Forgotten your password?"
 	linkhref="https://google.com"
 	linktarget="about:blank"
@@ -32,5 +32,5 @@ Just add `slot` attribute to the `select` you provide for this component, like s
 		<option>2</option>
 		<option>3</option>
 	</select>
-</zoo-log-select>
+</zoo-select>
 ```

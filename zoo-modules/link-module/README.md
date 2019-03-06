@@ -10,8 +10,8 @@
 
 ## Example usage 
 ```
-<zoo-log-link 
+<zoo-link 
 	href="{footerlink.href}"
 	text="{footerlink.text}" >
-</zoo-log-link>
+</zoo-link>
 ```

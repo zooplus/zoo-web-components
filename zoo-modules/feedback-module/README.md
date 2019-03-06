@@ -4,8 +4,8 @@
 
 ## Example usage 
 ```
-<zoo-log-feedback 
+<zoo-feedback 
 	type="info" 
 	text="This is an info message.">
-</zoo-log-feedback>
+</zoo-feedback>
 ```

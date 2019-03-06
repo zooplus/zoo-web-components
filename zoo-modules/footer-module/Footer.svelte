@@ -1,12 +1,12 @@
-<svelte:options tag="zoo-log-footer"></svelte:options>
+<svelte:options tag="zoo-footer"></svelte:options>
 <div class="footer-links">
 	<div class="list-holder">
 		<ul>
 			{#each footerlinks as footerlink}
 			<li>
-				<zoo-log-link href="{footerlink.href}" target="{footerlink.target}" type="{footerlink.type}"
+				<zoo-link href="{footerlink.href}" target="{footerlink.target}" type="{footerlink.type}"
 				disabled="{footerlink.disabled}" text="{footerlink.text}">
-				</zoo-log-link>
+				</zoo-link>
 			</li>
 			{/each}
 		</ul>

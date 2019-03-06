@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "2.5.2",
+	"version": "3.0.0",
 	"main": "dist/release.js",
 	"files": [
 		"dist/release.js"

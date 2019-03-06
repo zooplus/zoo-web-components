@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-tooltip"></svelte:options>
+<svelte:options tag="zoo-tooltip"></svelte:options>
 <div bind:this={_tooltipRoot} class="box {position} {hidden ? 'hide' : 'show'}">
 	<div class="tooltip-content">
 		<slot>
@@ -114,7 +114,6 @@
 
 	export let text = '';
 	export let position = 'top'; // left, right, bottom
-	export let showtype = 'hover'; // click
 	let _tooltipRoot;
 	let observer;
 	let documentObserver;

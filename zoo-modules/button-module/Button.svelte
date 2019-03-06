@@ -1,6 +1,6 @@
-<svelte:options tag="zoo-log-button"></svelte:options>
+<svelte:options tag="zoo-button"></svelte:options>
 <div class="button-box">
-	<button disabled={disabled ? true : null} class="{type} {size} zoo-log-btn" type="button">
+	<button disabled={disabled ? true : null} class="{type} {size} zoo-btn" type="button">
 		<slot name="buttoncontent"></slot>
 	</button>
 </div>
@@ -15,7 +15,7 @@
 	  position: relative;
 	  width: 100%;
 	  height: 100%;
-		.zoo-log-btn {
+		.zoo-btn {
 			display: flex;
 			flex-direction: row;
 			align-items: center;

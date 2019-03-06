@@ -1,5 +1,5 @@
-<svelte:options tag="zoo-log-navigation"></svelte:options>
-<div class="nav-box zoo-log-navigation">
+<svelte:options tag="zoo-navigation"></svelte:options>
+<div class="nav-box zoo-navigation">
 	<slot>
 	</slot>
 </div>
@@ -15,7 +15,7 @@
 	    $main-color-light
 	  );
 	}
-	.zoo-log-navigation > *:first-child {
+	.zoo-navigation > *:first-child {
 		display: flex;
 		flex-direction: row;
 		height: 100%;

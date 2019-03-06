@@ -9,23 +9,23 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 
 ## Example usage 
 ```
-<zoo-log-navigation class="nav" ref:nav>
+<zoo-navigation class="nav" ref:nav>
 	<div>
 		{#each navlinks as link}
-			<zoo-log-link href="{link.href}" target="{link.target}" type="{link.type}"
+			<zoo-link href="{link.href}" target="{link.target}" type="{link.type}"
 				text="{link.text}">
-			</zoo-log-link>
+			</zoo-link>
 		{/each}
 	</div>
-</zoo-log-navigation>
+</zoo-navigation>
 ```
 OR
 ```
-<zoo-log-navigation class="nav">
+<zoo-navigation class="nav">
 	<div class="navigation-content">
 		<div class="nav-link" *ngFor="let nav of navs" [routerLink]="nav.href" [routerLinkActive]="'active'">
 			<span>{{nav.text}}</span>
 		</div>
 	</div>
-</zoo-log-navigation>
+</zoo-navigation>
 ```

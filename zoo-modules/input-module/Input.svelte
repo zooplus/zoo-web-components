@@ -134,7 +134,7 @@
 
 	const changeValidState = (valid) => {
 		if (_slottedInput) {
-			if (valid === false) {
+			if (!valid) {
 				_slottedInput.classList.add('error');
 			} else if (valid) {
 				_slottedInput.classList.remove('error');

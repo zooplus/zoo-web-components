@@ -23,7 +23,7 @@ This component relies on `change` event dispatched every time someone or somethi
 
 ### Example usage 
 ```
-<zoo-log-searchable-select labeltext="Searchable select" placeholder="Placeholder">
+<zoo-searchable-select labeltext="Searchable select" placeholder="Placeholder">
 	<select multiple slot="selectelement">
 		{#each options as option}
 			<option value="{option.value}" style="display: {option.display}">
@@ -31,5 +31,5 @@ This component relies on `change` event dispatched every time someone or somethi
 			</option>
 		{/each}
 	</select>
-</zoo-log-searchable-select>
+</zoo-searchable-select>
 ```

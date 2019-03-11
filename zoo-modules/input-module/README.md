@@ -19,12 +19,12 @@ Just add `slot` attribute to the `input` you provide for this component, like so
 
 ### Example usage 
 ```
-<zoo-log-input labeltext="Very long label which should test how it behaves Label" 
+<zoo-input labeltext="Very long label which should test how it behaves Label" 
 	linktext="Forgotten your password?"
 	linkhref="https://google.com"
 	linktarget="about:blank"
 	valid="{false}"
 	infotext="Additional helpful information for our users" >
 	<input slot="inputelement" type="number" placeholder="input" class:error="true"/>
-</zoo-log-input>
+</zoo-input>
 ```

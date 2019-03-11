@@ -1,19 +1,19 @@
-<svelte:options tag="zoo-log-input"></svelte:options>
+<svelte:options tag="zoo-input"></svelte:options>
 <div class="box {labelposition}">
-	<zoo-log-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
-	</zoo-log-input-label>
-	<zoo-log-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
-	</zoo-log-link>
-	<span class="input-slot">
+	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
+	</zoo-input-label>
+	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
+	</zoo-link>
+	<span class="input-slot {nopadding ? 'no-padding': ''}">
 		<slot bind:this={_inputSlot} name="inputelement"></slot>
 		{#if valid}
 		<slot name="inputicon"></slot>
 		{/if} {#if !valid}
-		<svg class="error-triangle" width="35" height="35" viewBox="50 -180 1050 1401"><path transform="matrix(1 0 0 -1 0 1e3)" d="m460 847l-368-650c-22-39-3-71 43-71h729c46 0 66 32 43 71l-368 650c-22 39-58 39-80 0zm-11-193h102l-10-264h-81l-10 264h0zm51-447c-35 0-63 27-63 61 0 34 28 61 63 61 35 0 63-27 63-61 0-34-28-61-63-61z"/></svg>
+		<svg class="error-triangle" width="24" height="24" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
 		{/if}
 	</span>
-	<zoo-log-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
-	</zoo-log-input-info>
+	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
+	</zoo-input-info>
 </div>
 
 <style type='text/scss'>
@@ -21,29 +21,14 @@
 	@import "input";
 	.error-triangle {
 		animation: hideshow 0.5s ease;
-	  position: absolute;
-	  right: 0;
-	  top: 0;
-	  padding: 6px;
-	  color: $error-text-color;
-	  & > path {
-		  fill: $error-text-color;
-	  }
-	}
-	//If a single selector is not supported by the browser, then the whole selector list gets ignored.
-	.input-slot.style-scope.zoo-log-input > *:first-child {
-	  width: 100%;
-	  font-size: 14px;
-	  line-height: 20px;
-	  padding: 13px 35px 13px 15px;
-	  border: 1px solid;
-	  border-color: $border-color;
-	  border-radius: 3px;
-	  color: $matterhorn;
-	  outline: none;
-	  box-sizing: border-box;
-	  text-overflow: ellipsis;
-	  -moz-appearance: textfield;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 11px;
+		color: $error-text-color;
+		& > path {
+			fill: $error-text-color;
+		}
 	}
 	::slotted(input), 
 	::slotted(textarea) {
@@ -68,13 +53,11 @@
 	  -webkit-appearance: none;
 	  margin: 0;
 	}
-	.input-slot.style-scope.zoo-log-input > *:first-child::placeholder, 
 	::slotted(input::placeholder),
 	::slotted(textarea::placeholder) {
 	  color: $placeholder-color;
 	  opacity: 1;
 	}
-	.input-slot.style-scope.zoo-log-input > *:first-child:disabled, 
 	::slotted(input:disabled),
 	::slotted(textarea:disabled) {
 	  border-color: #e6e6e6;
@@ -82,19 +65,20 @@
 	  color: #97999c;
 	  cursor: not-allowed;
 	}
-	.input-slot.style-scope.zoo-log-input > *:first-child:focus, 
 	::slotted(input:focus),
 	::slotted(textarea:focus) {
 	  border: 2px solid;
 	  padding: 12px 34px 12px 14px;
 	}
-	.input-slot.style-scope.zoo-log-input > *:first-child.error, 
 	::slotted(input.error),
 	::slotted(textarea.error) {
 		transition: border-color 0.3s ease;
 		border: 2px solid;
 		padding: 12px 34px 12px 14px;
 		border-color: $error-text-color;
+	}
+	.input-slot.no-padding ::slotted(input) {
+		padding: 0;
 	}
 	@keyframes hideshow {
 		0% { opacity: 0; }
@@ -113,6 +97,7 @@
 	export let inputerrormsg = "";
 	export let infotext = "";
 	export let valid = true;
+	export let nopadding = false;
 	let _slottedInput;
 	let _prevValid;
 	let _inputSlot;

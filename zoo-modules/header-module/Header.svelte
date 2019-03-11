@@ -1,5 +1,5 @@
-<svelte:options tag="zoo-log-header"></svelte:options>
-<div class="header-box">
+<svelte:options tag="zoo-header"></svelte:options>
+<div class="box">
 	{#if imgsrc}<img class="app-logo" src="{imgsrc}" alt="zooplus"/>{/if}
 	{#if headertext}<span class="app-name">{headertext}</span>{/if}
 	<slot></slot>
@@ -10,7 +10,7 @@
 	:host {
 		contain: style;
 	}
-	.header-box {
+	.box {
 	  display: flex;
 	  align-items: center;
 	  background: $white;

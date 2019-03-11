@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-checkbox"></svelte:options>
+<svelte:options tag="zoo-checkbox"></svelte:options>
 <div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''} {_focused ? 'focused':''}" class:error="{!valid}" class:disabled="{disabled}">
 	<label class="input-slot" on:click="{e => handleClick(e)}">
 		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>

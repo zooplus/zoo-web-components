@@ -1,12 +1,11 @@
-<svelte:options tag="zoo-log-navigation"></svelte:options>
-<div class="nav-box zoo-log-navigation">
-	<slot>
-	</slot>
+<svelte:options tag="zoo-navigation"></svelte:options>
+<div class="box">
+	<slot></slot>
 </div>
 
 <style type='text/scss'>
 	@import "variables";
-	.nav-box {
+	.box {
 	  height: 56px;
 	  background-image: linear-gradient(left, $main-color, $main-color-light);
 	  background-image: -webkit-linear-gradient(
@@ -14,14 +13,6 @@
 	    $main-color,
 	    $main-color-light
 	  );
-	}
-	.zoo-log-navigation > *:first-child {
-		display: flex;
-		flex-direction: row;
-		height: 100%;
-		overflow: auto;
-		overflow-y: hidden;
-		padding: 0 20px;
 	}
 	::slotted(*:first-child) {
 		display: flex;

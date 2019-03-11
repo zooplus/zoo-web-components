@@ -1,8 +1,8 @@
-describe('Zoo log header', function() {
+describe('Zoo header', function() {
 	describe('Header', () => {
 		it('should create header text', async() => {
 			const headerText = await page.evaluate(() => {
-				let header = document.createElement('zoo-log-header');
+				let header = document.createElement('zoo-header');
 				header.headertext = 'header-text';
 				document.body.appendChild(header);
 				const text = header.shadowRoot.querySelector('.app-name');
@@ -13,7 +13,7 @@ describe('Zoo log header', function() {
 
 		it('should create image', async() => {
 			const imageSrc = await page.evaluate(() => {
-				let header = document.createElement('zoo-log-header');
+				let header = document.createElement('zoo-header');
 				header.imgsrc = 'logo.png';
 				document.body.appendChild(header);
 				const image = header.shadowRoot.querySelector('img');
@@ -23,7 +23,7 @@ describe('Zoo log header', function() {
 		});
 		it('should accept 1 slot', async() => {
 			const slottedElement = await page.evaluate(() => {
-				let header = document.createElement('zoo-log-header');
+				let header = document.createElement('zoo-header');
 				let element = document.createElement('span');
 				element.innerHTML = 'slotted';
 				header.appendChild(element);

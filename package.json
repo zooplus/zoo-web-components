@@ -1,12 +1,13 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "2.5.3",
-	"main": "dist/release.js",
+	"version": "3.1.0",
+	"main": "dist/zoo-components-iife.js",
 	"files": [
-		"dist/release.js"
+		"dist/zoo-components-esm.js",
+		"dist/zoo-components-iife.js"
 	],
-	"module": "dist/release.js",
-	"description": "Set of custom elements implementing zoo+ style guide",
+	"module": "dist/zoo-components-esm.js",
+	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
 		"@types/mocha": "^5.2.0",
@@ -15,17 +16,17 @@
 		"node-sass": "^4.11.0",
 		"puppeteer": "^1.12.2",
 		"rollup": "^1.1.2",
-		"rollup-plugin-commonjs": "^9.1.8",
+		"rollup-plugin-commonjs": "^9.2.1",
 		"rollup-plugin-node-resolve": "^4.0.0",
 		"rollup-plugin-svelte": "^5.0.3",
 		"rollup-plugin-terser": "^4.0.4",
 		"serve": "^10.1.2",
-		"svelte": "3.0.0-beta.10"
+		"svelte": "3.0.0-beta.15"
 	},
 	"scripts": {
 		"build": "npm test && rollup -c 'rollup.release.config.js'",
 		"start": "serve public & rollup -c -w",
-		"test": "rollup src/test.js -c && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
+		"test": "rollup -c 'rollup.config.test.js' && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
 		"prepublishOnly": "npm run build"
 	}
 }

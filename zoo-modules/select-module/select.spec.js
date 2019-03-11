@@ -1,8 +1,8 @@
-describe('Zoo log select', function() {
+describe('Zoo select', function() {
 	describe('Select', () => {
 		it('should create select', async() => {
 			const selectAttrs = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-select');
+				let select = document.createElement('zoo-select');
 				document.body.appendChild(select);
 				const selectBox = select.shadowRoot.querySelector('.box');
 				return {
@@ -18,7 +18,7 @@ describe('Zoo log select', function() {
 
 		it('should pass attributes to input label component', async() => {
 			const labelAttrs = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-select');
+				let select = document.createElement('zoo-select');
 				select.labeltext = 'label';
 				select.valid = false;
 				document.body.appendChild(select);
@@ -35,7 +35,7 @@ describe('Zoo log select', function() {
 
 		it('should pass attributes to input link component', async() => {
 			const linkAttrs = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-select');
+				let select = document.createElement('zoo-select');
 				select.linkhref = 'https://google.com';
 				select.linktarget = '#';
 				select.linktext = 'link-text';
@@ -56,7 +56,7 @@ describe('Zoo log select', function() {
 
 		it('should pass attributes to input info component', async() => {
 			const infoAttrs = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-select');
+				let select = document.createElement('zoo-select');
 				select.infotext = 'info-text';
 				select.inputerrormsg = 'errormsg';
 				select.valid = false;
@@ -74,7 +74,7 @@ describe('Zoo log select', function() {
 
 		it('should accept 1 slot', async() => {
 			const slottedElement = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-select');
+				let select = document.createElement('zoo-select');
 				let element = document.createElement('select');
 
 				let option = document.createElement('option');

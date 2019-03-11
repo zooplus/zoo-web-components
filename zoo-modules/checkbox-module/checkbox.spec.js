@@ -1,8 +1,8 @@
-describe('Zoo log checkbox', function() {
+describe('Zoo checkbox', function() {
 	describe('Chechbox', () => {
 		it('should create checkbox', async() => {
 			const inputAttrs = await page.evaluate(() => {
-				let checkbox = document.createElement('zoo-log-checkbox');
+				let checkbox = document.createElement('zoo-checkbox');
 				checkbox.labeltext = 'label-text';
 				checkbox.valid = false;
 				checkbox.highlighted = true;
@@ -22,7 +22,7 @@ describe('Zoo log checkbox', function() {
 
 		it('should handle checkbox label click', async() => {
 			const checked = await page.evaluate(async() => {
-				let checkbox = document.createElement('zoo-log-checkbox');
+				let checkbox = document.createElement('zoo-checkbox');
 				let element = document.createElement('input');
 				element.slot = 'checkboxelement';
 				element.type = 'checkbox';
@@ -40,7 +40,7 @@ describe('Zoo log checkbox', function() {
 
 		it('should accept 1 slot', async() => {
 			const ret = await page.evaluate(() => {
-				let checkbox = document.createElement('zoo-log-checkbox');
+				let checkbox = document.createElement('zoo-checkbox');
 				let element = document.createElement('input');
 				element.slot = 'checkboxelement';
 				element.type = 'checkbox';

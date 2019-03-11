@@ -1,8 +1,8 @@
-describe('Zoo log searchable select', function() {
+describe('Zoo searchable select', function() {
 	describe('Searchable Select', () => {
 		it('should create searchable select', async() => {
 			const createdElements = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-searchable-select');
+				let select = document.createElement('zoo-searchable-select');
 				select.infotext = 'info-text';
 				select.valid = false;
 				select.labeltext = 'label-text';
@@ -13,7 +13,7 @@ describe('Zoo log searchable select', function() {
 				
 				document.body.appendChild(select);
 
-				const nestedInput = select.shadowRoot.querySelector('zoo-log-input').shadowRoot;
+				const nestedInput = select.shadowRoot.querySelector('zoo-input').shadowRoot;
 
 				const link = nestedInput.querySelector('.input-link').shadowRoot;
 				const linkAnchor = link.querySelector('a');
@@ -56,7 +56,7 @@ describe('Zoo log searchable select', function() {
 
 		it('should accept 1 slot', async() => {
 			const slottedElement = await page.evaluate(() => {
-				let select = document.createElement('zoo-log-searchable-select');
+				let select = document.createElement('zoo-searchable-select');
 				let element = document.createElement('select');
 
 				let option = document.createElement('option');
@@ -79,7 +79,7 @@ describe('Zoo log searchable select', function() {
 
 		it('should handle input typing', async() => {
 			const optionDisplayProp = await page.evaluate(async() => {
-				let select = document.createElement('zoo-log-searchable-select');
+				let select = document.createElement('zoo-searchable-select');
 				let element = document.createElement('select');
 				element.multiple = true;
 

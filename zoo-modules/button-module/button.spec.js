@@ -1,8 +1,8 @@
-describe('Zoo log button', function() {
+describe('Zoo button', function() {
 	describe('Button', () => {
 		it('should create cold button', async () => {
 			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				button.type = 'cold';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
@@ -12,7 +12,7 @@ describe('Zoo log button', function() {
 		});
 		it('should create hot button', async() => {
 			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				button.type = 'hot';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
@@ -22,7 +22,7 @@ describe('Zoo log button', function() {
 		});
 		it('should create small button', async() => {
 			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				button.size = 'small';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
@@ -32,7 +32,7 @@ describe('Zoo log button', function() {
 		});
 		it('should create medium button', async() => {
 			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				button.size = 'medium';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
@@ -42,7 +42,7 @@ describe('Zoo log button', function() {
 		});
 		it('should create big button', async() => {
 			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				button.size = 'big';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
@@ -53,7 +53,7 @@ describe('Zoo log button', function() {
 
 		it('should create disabled button', async() => {
 			const disabledAttr = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				button.disabled = true;
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
@@ -64,7 +64,7 @@ describe('Zoo log button', function() {
 
 		it('should create button with default attributes', async() => {
 			const defaultAttrs = await page.evaluate(() => {
-				let button = document.createElement('zoo-log-button');
+				let button = document.createElement('zoo-button');
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
 				const defaultAttrs = {};

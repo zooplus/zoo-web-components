@@ -9,14 +9,14 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 
 ## Example usage 
 ```
-<zoo-log-modal style="display: none" headertext="Your basket contains licensed items" ref:modal on:modalClosed="handleModalClosed(event)">
+<zoo-modal style="display: none" headertext="Your basket contains licensed items" ref:modal on:modalClosed="handleModalClosed(event)">
 	<div>
-		<zoo-log-feedback 
+		<zoo-feedback 
 		type="info" 
 		text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.">
-		</zoo-log-feedback>
+		</zoo-feedback>
 		<br>
-		<zoo-log-select labeltext="This product is for" 
+		<zoo-select labeltext="This product is for" 
 			valid="{true}">
 			<select slot="selectelement">
 				<option class="placeholder" value="" disabled selected>Doge</option>
@@ -24,18 +24,18 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 				<option>Catz</option>
 				<option>Snek</option>
 			</select>
-		</zoo-log-select>
+		</zoo-select>
 		<br>
-		<zoo-log-checkbox highlighted
+		<zoo-checkbox highlighted
 			labeltext="I understand and confirm that ALL of the above statements are true">
 			<input slot="checkboxelement" type="checkbox"/>
-		</zoo-log-checkbox>
+		</zoo-checkbox>
 		<br>
-		<zoo-log-button>
+		<zoo-button>
 			<button slot="button" class="medium hot" type="button">
 				<span class="slotted-span">Add to cart</span>
 			</button>
-		</zoo-log-button>
+		</zoo-button>
 	</div>
-</zoo-log-modal>
+</zoo-modal>
 ```

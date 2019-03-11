@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-input-label"></svelte:options>
+<svelte:options tag="zoo-input-label"></svelte:options>
 {#if labeltext}
 <div class="label" class:error="{!valid}">
 	<span>{labeltext}</span>

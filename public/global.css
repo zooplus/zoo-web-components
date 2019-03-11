@@ -6,16 +6,3 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
-	font-family: "zooplus-icons";
-	font-display: auto;
-    src: url('./fonts/zooplus/zooplus-icons.eot');
-    src: url('./fonts/zooplus/zooplus-icons.eot?#iefix') format('eot'),
-         url('./fonts/zooplus/zooplus-icons.woff2') format('woff2'),
-         url('./fonts/zooplus/zooplus-icons.woff') format('woff'),
-         url('./fonts/zooplus/zooplus-icons.ttf') format('truetype'),
-         url('./fonts/zooplus/zooplus-icons.svg#zooplus-icons') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-

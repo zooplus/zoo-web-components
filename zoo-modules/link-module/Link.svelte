@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-log-link"></svelte:options>
+<svelte:options tag="zoo-link"></svelte:options>
 {#if text && href}
 	<div class="link-box">
 		<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type}" class:disabled="{disabled}">
@@ -20,40 +20,30 @@
 	  a {
 	    text-decoration: none;
 	    font-size: 12px;
-	    line-height: 16px;
+		line-height: 16px;
+		&.disabled {
+	        color: $grey-chateau;
+	        &:hover {
+	          cursor: not-allowed;
+	        }
+		}
 	    &.green {
 	      color: $main-color;
-	      &:hover,
-	      &:focus,
-	      &:active {
+	      &:hover, &:focus, &:active {
 	        color: $main-color-dark;
 	      }
 	      &:visited {
 	        color: $main-color-light;
 	      }
-	      &.disabled {
-	        color: $grey-chateau;
-	        &:hover {
-	          cursor: not-allowed;
-	        }
-	      }
 	    }
 	    &.standard {
 	      color: white;
-	      &:hover,
-	      &:focus,
-	      &:active {
+	      &:hover, &:focus, &:active {
 	        color: $white;
 	        cursor: pointer;
 	      }
 	      &:visited {
 	        color: $white;
-	      }
-	      &.disabled {
-	        color: $grey-chateau;
-	        &:hover {
-	          cursor: not-allowed;
-	        }
 	      }
 		  .bottom-line {
 				position: absolute;

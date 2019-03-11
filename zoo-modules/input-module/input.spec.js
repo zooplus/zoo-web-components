@@ -1,8 +1,8 @@
-describe('Zoo log input', function() {
+describe('Zoo input', function() {
 	describe('Input', () => {
 		it('should create input', async() => {
 			const inputAttrs = await page.evaluate(() => {
-				let input = document.createElement('zoo-log-input');
+				let input = document.createElement('zoo-input');
 				document.body.appendChild(input);
 				const inputBox = input.shadowRoot.querySelector('.box');
 				return {
@@ -18,7 +18,7 @@ describe('Zoo log input', function() {
 
 		it('should pass attributes to input label component', async() => {
 			const labelAttrs = await page.evaluate(() => {
-				let input = document.createElement('zoo-log-input');
+				let input = document.createElement('zoo-input');
 				input.labeltext = 'label';
 				input.valid = false;
 				document.body.appendChild(input);
@@ -35,7 +35,7 @@ describe('Zoo log input', function() {
 
 		it('should pass attributes to input link component', async() => {
 			const linkAttrs = await page.evaluate(() => {
-				let input = document.createElement('zoo-log-input');
+				let input = document.createElement('zoo-input');
 				input.linkhref = 'https://google.com';
 				input.linktarget = '#';
 				input.linktext = 'link-text';
@@ -56,7 +56,7 @@ describe('Zoo log input', function() {
 
 		it('should pass attributes to input info component', async() => {
 			const infoAttrs = await page.evaluate(() => {
-				let input = document.createElement('zoo-log-input');
+				let input = document.createElement('zoo-input');
 				input.infotext = 'info-text';
 				input.inputerrormsg = 'errormsg';
 				input.valid = false;
@@ -74,7 +74,7 @@ describe('Zoo log input', function() {
 
 		it('should accept 1 slot', async() => {
 			const ret = await page.evaluate(() => {
-				let input = document.createElement('zoo-log-input');
+				let input = document.createElement('zoo-input');
 				let element = document.createElement('input');
 				element.slot = 'inputelement';
 				input.appendChild(element);

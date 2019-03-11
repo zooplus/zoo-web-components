@@ -1,8 +1,8 @@
-describe('Zoo log input info', function() {
+describe('Zoo input info', function() {
 	describe('InputInfo', () => {
 		it('should create info text', async() => {
 			const infoText = await page.evaluate(() => {
-				let inputInfo = document.createElement('zoo-log-input-info');
+				let inputInfo = document.createElement('zoo-input-info');
 				inputInfo.infotext = 'input-text';
 				document.body.appendChild(inputInfo);
 				const text = inputInfo.shadowRoot.querySelector('.info');
@@ -13,7 +13,7 @@ describe('Zoo log input info', function() {
 
 		it('should render error text', async() => {
 			const inputInfoErrorAttrs = await page.evaluate(() => {
-				let inputInfo = document.createElement('zoo-log-input-info');
+				let inputInfo = document.createElement('zoo-input-info');
 				inputInfo.valid = false;
 				inputInfo.inputerrormsg = 'error';
 				document.body.appendChild(inputInfo);

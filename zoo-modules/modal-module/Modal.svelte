@@ -1,10 +1,10 @@
-<svelte:options tag="zoo-log-modal"></svelte:options>
+<svelte:options tag="zoo-modal"></svelte:options>
 <div class="box {hidden ? 'hide' : 'show'}" bind:this={_modalRoot}>
 	<div class="dialog-content">
 		<div class="heading">
 			<h2>{headertext}</h2>
-			<div class="close" on:click="{event => hideModal(event)}">
-				<svg width="35" height="35" viewBox="50 0 1050 1001"><path d="m501 442l-137-137c-16-16-43-16-59 0s-16 43 0 59l137 137-137 137c-16 16-16 43 0 59 16 16 43 16 59 0l137-137 137 137c16 16 43 16 59 0 16-16 16-43 0-59l-137-137 137-137c16-16 16-43 0-59-16-16-43-16-59 0l-137 137z"/></svg>
+			<div class="close" on:click="{event => closeModal()}">
+				<svg width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
 			</div>
 		</div>
 		<div class="content">
@@ -102,6 +102,7 @@
 	let _modalRoot;
 	let host;
 	let hidden = false;
+	let timeoutVar;
 
 	onMount(() => {
 		host = _modalRoot.getRootNode().host;
@@ -111,15 +112,17 @@
 			}
 	    });
 	});
-	const hideModal = (event) => {
-		closeModal();
+	export const openModal = () => {
+		host.style.display = 'block';
 	}
-	const closeModal = () => {
+	export const closeModal = () => {
+		if (timeoutVar) return;
 		hidden = !hidden;
-		setTimeout(() => {
-			host.style.display = "none";
+		timeoutVar = setTimeout(() => {
+			host.style.display = 'none';
 			host.dispatchEvent(new Event("modalClosed"));
 			hidden = !hidden;
+			timeoutVar = undefined;
 		}, 300);
 	}
 </script>

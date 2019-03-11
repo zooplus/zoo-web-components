@@ -1,8 +1,8 @@
-describe('Zoo log tooltip', function() {
+describe('Zoo tooltip', function() {
 	describe('Tooltip', () => {
 		it('should create default tooltip', async() => {
 			const tooltipAttrs = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-log-tooltip');
+				let tooltip = document.createElement('zoo-tooltip');
 				tooltip.text = 'some-text';
 				document.body.appendChild(tooltip);
 				const tooltipBox = tooltip.shadowRoot.querySelector('.box');
@@ -22,7 +22,7 @@ describe('Zoo log tooltip', function() {
 
 		it('should create left tooltip', async() => {
 			const tooltipAttrs = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-log-tooltip');
+				let tooltip = document.createElement('zoo-tooltip');
 				tooltip.position = 'left';
 				document.body.appendChild(tooltip);
 				const tooltipBox = tooltip.shadowRoot.querySelector('.box');
@@ -39,7 +39,7 @@ describe('Zoo log tooltip', function() {
 
 		it('should create right tooltip', async() => {
 			const tooltipAttrs = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-log-tooltip');
+				let tooltip = document.createElement('zoo-tooltip');
 				tooltip.position = 'right';
 				document.body.appendChild(tooltip);
 				const tooltipBox = tooltip.shadowRoot.querySelector('.box');
@@ -56,7 +56,7 @@ describe('Zoo log tooltip', function() {
 
 		it('should create bottom tooltip', async() => {
 			const tooltipAttrs = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-log-tooltip');
+				let tooltip = document.createElement('zoo-tooltip');
 				tooltip.position = 'bottom';
 				document.body.appendChild(tooltip);
 				const tooltipBox = tooltip.shadowRoot.querySelector('.box');
@@ -73,7 +73,7 @@ describe('Zoo log tooltip', function() {
 
 		it('should create tooltip with slot', async() => {
 			const slottedElement = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-log-tooltip');
+				let tooltip = document.createElement('zoo-tooltip');
 				let element = document.createElement('span');
 				element.innerHTML = 'slotted';
 				tooltip.appendChild(element);

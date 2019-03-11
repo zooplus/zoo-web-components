@@ -38,22 +38,59 @@ const shared = {
 }
 
 export default [
-	Object.assign({}, shared, {
-		input: 'src/release.js',
-		output: {
-			sourcemap: true,
-			format: 'esm',
-			file: 'dist/zoo-components-iife.js',
-			name: 'zoo-web-components'
-		}
-	}),
-	Object.assign({}, shared, {
-		input: 'src/release.js',
+	{
+		input: 'src/test.js',
+		plugins: [
+			svelte({
+				dev: !production,
+				preprocess: {
+					style: ({ content, attributes }) => {
+						if (attributes.type !== 'text/scss') return;
+	
+						return new Promise((fulfil, reject) => {
+							sass.render({
+								data: content,
+								includePaths: ['zoo-modules/shared-module'],
+								sourceMap: true,
+								outFile: 'x' // this is necessary, but is ignored
+							}, (err, result) => {
+								if (err) return reject(err);
+	
+								fulfil({
+									code: result.css.toString(),
+									map: result.map.toString()
+								});
+							});
+						});
+					}
+				},
+			}),
+			resolve(),
+			production && terser()
+		],
 		output: {
 			sourcemap: true,
 			format: 'iife',
-			file: 'dist/zoo-components-esm.js',
-			name: 'zooWebComponents'
+			file: 'public/test.js',
+			name: 'test'
+		}
+	},
+	Object.assign({}, shared, {
+		input: 'src/components.js',
+		output: {
+			sourcemap: true,
+			format: 'esm',
+			file: 'public/bundle-esm.js',
+			name: 'esm'
+		}
+	}),
+	Object.assign({}, shared, {
+		input: 'src/components.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'public/bundle-iife.js',
+			name: 'iife'
 		}
 	})
 ];

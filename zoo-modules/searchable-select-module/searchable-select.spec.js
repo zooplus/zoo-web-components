@@ -1,4 +1,4 @@
-describe('Zoo log searchable select', function() {
+describe('Zoo searchable select', function() {
 	describe('Searchable Select', () => {
 		it('should create searchable select', async() => {
 			const createdElements = await page.evaluate(() => {

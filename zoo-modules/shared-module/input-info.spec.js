@@ -1,4 +1,4 @@
-describe('Zoo log input info', function() {
+describe('Zoo input info', function() {
 	describe('InputInfo', () => {
 		it('should create info text', async() => {
 			const infoText = await page.evaluate(() => {

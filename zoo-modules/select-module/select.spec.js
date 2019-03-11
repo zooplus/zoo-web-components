@@ -1,4 +1,4 @@
-describe('Zoo log select', function() {
+describe('Zoo select', function() {
 	describe('Select', () => {
 		it('should create select', async() => {
 			const selectAttrs = await page.evaluate(() => {

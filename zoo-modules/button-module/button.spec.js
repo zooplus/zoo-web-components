@@ -1,4 +1,4 @@
-describe('Zoo log button', function() {
+describe('Zoo button', function() {
 	describe('Button', () => {
 		it('should create cold button', async () => {
 			const result = await page.evaluate(() => {

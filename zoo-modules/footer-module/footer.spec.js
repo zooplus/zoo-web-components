@@ -1,4 +1,4 @@
-describe('Zoo log footer', function() {
+describe('Zoo footer', function() {
 	describe('Footer', () => {
 		it('should create two links given array of two', async() => {
 			const linksLength = await page.evaluate(() => {

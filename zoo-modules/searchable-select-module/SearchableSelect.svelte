@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-searchable-select"></svelte:options>
-<div class="searchable-select-box">
+<div class="box">
 	{#if !_isMobile}
 		{#if tooltipText}
 			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
@@ -24,7 +24,7 @@
 	:host {
 		position: relative;
 	}
-	.searchable-select-box {
+	.box {
 		position: relative;
 		&:hover {
 			.selected-options {

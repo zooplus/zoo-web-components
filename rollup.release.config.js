@@ -1,6 +1,5 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import sass from 'node-sass';
 
@@ -34,7 +33,6 @@ const shared = {
 			customElement: true
 		}),
 		resolve(),
-		commonjs(),
 		production && terser()
 	]
 }
@@ -44,9 +42,18 @@ export default [
 		input: 'src/release.js',
 		output: {
 			sourcemap: true,
-			format: 'iife', // esm
-			file: 'dist/release.js',
-			name: 'zooWC'
+			format: 'esm',
+			file: 'dist/zoo-components-iife.js',
+			name: 'zoo-web-components'
+		}
+	}),
+	Object.assign({}, shared, {
+		input: 'src/release.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'dist/zoo-components-esm.js',
+			name: 'zooWebComponents'
 		}
 	})
 ];

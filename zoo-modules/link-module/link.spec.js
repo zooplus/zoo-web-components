@@ -1,4 +1,4 @@
-describe('Zoo log link', function() {
+describe('Zoo link', function() {
 	describe('Link', () => {
 		it('should create default empty link', async() => {
 			const linkAttrs = await page.evaluate(() => {

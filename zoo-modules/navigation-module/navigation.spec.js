@@ -1,4 +1,4 @@
-describe('Zoo log navigation', function() {
+describe('Zoo navigation', function() {
 	describe('Navigation', () => {
 		it('should create nav element with slotted element', async() => {
 			const slottedElement = await page.evaluate(() => {

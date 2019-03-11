@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-button"></svelte:options>
-<div class="button-box">
+<div class="box">
 	<button disabled={disabled ? true : null} class="{type} {size} zoo-btn" type="button">
 		<slot name="buttoncontent"></slot>
 	</button>
@@ -11,7 +11,7 @@
 		width: 100%;
 		contain: layout;
 	}
-	.button-box {
+	.box {
 	  position: relative;
 	  width: 100%;
 	  height: 100%;
@@ -31,6 +31,7 @@
 			border-radius: 3px;
 			cursor: pointer;
 			width: 100%;
+			height: 100%;
 			font-size: 14px;
 			font-weight: bold;
 			text-align: center;
@@ -83,16 +84,6 @@
 				padding: 0 16px;
 			}
 			// getting any first direct child
-			& > *:first-child {
-				width: 100%;
-				height: 100%;
-				border: none;
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-			}
 			::slotted(*:first-child) {
 				width: 100%;
 				height: 100%;

@@ -1,4 +1,4 @@
-describe('Zoo log feedback', function() {
+describe('Zoo feedback', function() {
 	describe('Feedback', () => {
 		it('should create default feedback', async() => {
 			const feedbackAttrs = await page.evaluate(() => {

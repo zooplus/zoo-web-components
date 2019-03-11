@@ -1,4 +1,4 @@
-describe('Zoo log radio', function() {
+describe('Zoo radio', function() {
 	describe('Radio', () => {
 		it('should accept 1 slot', async() => {
 			const ret = await page.evaluate(() => {

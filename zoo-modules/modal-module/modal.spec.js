@@ -1,4 +1,4 @@
-describe('Zoo log modal', function() {
+describe('Zoo modal', function() {
 	describe('Modal', () => {
 		it('should create opened modal', async() => {
 			const modalAttrs = await page.evaluate(() => {

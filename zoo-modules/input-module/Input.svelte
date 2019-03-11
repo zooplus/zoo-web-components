@@ -4,12 +4,12 @@
 	</zoo-input-label>
 	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
 	</zoo-link>
-	<span class="input-slot">
+	<span class="input-slot {nopadding ? 'no-padding': ''}">
 		<slot bind:this={_inputSlot} name="inputelement"></slot>
 		{#if valid}
 		<slot name="inputicon"></slot>
 		{/if} {#if !valid}
-		<svg class="error-triangle" width="35" height="35" viewBox="50 -180 1050 1401"><path transform="matrix(1 0 0 -1 0 1e3)" d="m460 847l-368-650c-22-39-3-71 43-71h729c46 0 66 32 43 71l-368 650c-22 39-58 39-80 0zm-11-193h102l-10-264h-81l-10 264h0zm51-447c-35 0-63 27-63 61 0 34 28 61 63 61 35 0 63-27 63-61 0-34-28-61-63-61z"/></svg>
+		<svg class="error-triangle" width="24" height="24" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
 		{/if}
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -24,7 +24,7 @@
 		position: absolute;
 		right: 0;
 		top: 0;
-		padding: 6px;
+		padding: 11px;
 		color: $error-text-color;
 		& > path {
 			fill: $error-text-color;
@@ -77,6 +77,9 @@
 		padding: 12px 34px 12px 14px;
 		border-color: $error-text-color;
 	}
+	.input-slot.no-padding ::slotted(input) {
+		padding: 0;
+	}
 	@keyframes hideshow {
 		0% { opacity: 0; }
 		100% { opacity: 1; }
@@ -94,6 +97,7 @@
 	export let inputerrormsg = "";
 	export let infotext = "";
 	export let valid = true;
+	export let nopadding = false;
 	let _slottedInput;
 	let _prevValid;
 	let _inputSlot;

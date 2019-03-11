@@ -1,4 +1,4 @@
-describe('Zoo log checkbox', function() {
+describe('Zoo checkbox', function() {
 	describe('Chechbox', () => {
 		it('should create checkbox', async() => {
 			const inputAttrs = await page.evaluate(() => {

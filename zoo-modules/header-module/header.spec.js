@@ -1,4 +1,4 @@
-describe('Zoo log header', function() {
+describe('Zoo header', function() {
 	describe('Header', () => {
 		it('should create header text', async() => {
 			const headerText = await page.evaluate(() => {

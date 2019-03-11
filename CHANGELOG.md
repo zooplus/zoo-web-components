@@ -1,6 +1,10 @@
+# 3.0.1
+Added iife export back again. how both `iife` and `esm` versions will be published and the user will decide which one to use.
+
 # 3.0.0
-Rename all components from `zoo-log...` to `zoo-...`.
+Rename all components from `zoo-log-...` to `zoo-...`.
 Project internals cleanup.
+Changed export from `iife` to `esm`.
 
 # 2.5.2
 `zoo-log-searchable-select` aligned behaviour of multiple and single select elements.

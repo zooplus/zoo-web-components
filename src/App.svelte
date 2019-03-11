@@ -1,11 +1,12 @@
 <svelte:options tag="my-app"></svelte:options>
 <div class="app">
+	<zoo-toast text="Search for more than 8.000 products." bind:this={toast}>
+	</zoo-toast>
 	<zoo-header imgsrc="logo.png" headertext="{headertext}">
 		<div class="search-field-holder">
 			<div class="header-search">
 				<zoo-input>
 					<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
-					<span class="icon-search-default" slot="inputicon"></span>
 				</zoo-input>
 			</div>
 			<div class="header-button">
@@ -27,7 +28,7 @@
 		</div>
 	</zoo-navigation>
 	<form>
-		<zoo-input labeltext="Input type text" 
+		<zoo-input labeltext="Input type text"
 			linktext="Forgotten your password?"
 			linkhref="https://google.com"
 			linktarget="about:blank"
@@ -126,8 +127,8 @@
 				<span class="slotted-span">Trigger invalid state!</span>
 			</div>
 		</zoo-button>
-		<zoo-button size="medium">
-			<div slot="buttoncontent">
+		<zoo-button size="medium" on:click="{() => toast.show()}">
+			<div slot="buttoncontent" class="with-badge">
 				<span class="slotted-span">Here we have a very long text indeed!</span>
 			</div>
 		</zoo-button>
@@ -139,21 +140,24 @@
 				</zoo-tooltip>
 			</div>
 		</zoo-button>
-		<zoo-button type="hot" size="medium" on:click="{showModal}">
+		<zoo-button type="hot" size="medium" on:click="{() => modal.openModal()}">
 			<div slot="buttoncontent">
 				<span class="slotted-span">Show modal</span>
 			</div>
 		</zoo-button>
 	</div> 
 	<div class="content">
-		<zoo-feedback 
-			type="info" 
-			text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-feedback>
-		<br>
-		<zoo-feedback type="error" text="This is an error message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-feedback>
-		<br>
-		<zoo-feedback type="success" text="This is a success message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-feedback>
-		<br>
+		<div class="feedback-box">
+			<zoo-feedback 
+				type="info" 
+				text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-feedback>
+		</div>
+		<div class="feedback-box">
+			<zoo-feedback type="error" text="This is an error message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-feedback>
+		</div>
+		<div class="feedback-box">
+			<zoo-feedback type="success" text="This is a success message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."></zoo-feedback>
+		</div>
 		<div class="special-tooltip"> 
 			<span on:click="{showSpecialTooltip}">
 				This element will show tooltip on top only when it is clicked.
@@ -170,9 +174,9 @@
 			</zoo-tooltip>
 		</div>
 		<br>
-		<div class="top-tooltip"> 
+		<div class="top-tooltip" id="right-tooltip"> 
 			This element will show tooltip on the right side on hover.
-			<zoo-tooltip position="right" text="Hello from right side.">
+			<zoo-tooltip position="right" text="Hello from right side." target="right-tooltip">
 			</zoo-tooltip>
 		</div>
 		<br>
@@ -210,7 +214,7 @@
 				<input slot="checkboxelement" type="checkbox"/>
 			</zoo-checkbox>
 			<br>
-			<zoo-button type="hot" size="medium">
+			<zoo-button type="hot" size="medium" on:click="{() => modal.closeModal()}">
 				<div slot="buttoncontent">
 					<span>Add to cart</span>
 				</div>
@@ -221,9 +225,14 @@
 </div>
 
 <style type='text/scss'>
+	.with-badge {
+		position: relative;
+		overflow: visible;
+	}
 	.nav {
 		zoo-link {
 			padding: 0 15px;
+			cursor: pointer;
 			&:hover, &:active {
 				background: rgba(255, 255, 255, 0.3);
 			}
@@ -308,6 +317,10 @@
 		flex: 1 0 auto;
 		width: 70%;
 		margin: 20px auto;
+		.feedback-box {
+			height: 60px;
+			margin-bottom: 15px;
+		}
 	}
 	.special-tooltip {
 		width: 200px;
@@ -320,14 +333,6 @@
 	.top-tooltip {
 		position: relative;
 		display: inline-block;
-		zoo-tooltip {
-			display: none;
-		}
-		&:hover {
-			zoo-tooltip {
-				display: inline-block;
-			}
-		}
 	}
 	zoo-footer {
 		flex-shrink: 0;
@@ -360,6 +365,7 @@
 
 <script>
 	import { onMount, onDestroy } from 'svelte';
+	let toast;
 	let options = [
 		{
 			text: 'text',
@@ -383,9 +389,6 @@
 		}
 	];
 	let zooLogFooter;
-	let topBarLanguages = [
-		{text: 'DE', active: true}, {text: 'PL', active: false}
-	];
 	let navlinks = [
 		{
 			href: 'https://google.com',
@@ -481,8 +484,5 @@
 	};
 	const changeState = () => {
 		inputState = !inputState;
-	}
-	export function asd() {
-		console.log('asd');
 	}
 </script>

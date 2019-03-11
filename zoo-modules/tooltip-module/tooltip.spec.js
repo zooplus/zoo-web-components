@@ -1,4 +1,4 @@
-describe('Zoo log tooltip', function() {
+describe('Zoo tooltip', function() {
 	describe('Tooltip', () => {
 		it('should create default tooltip', async() => {
 			const tooltipAttrs = await page.evaluate(() => {

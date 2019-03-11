@@ -1,4 +1,4 @@
-describe('Zoo log input label', function() {
+describe('Zoo input label', function() {
 	describe('InputLabel', () => {
 		it('should create label text', async() => {
 			const infoText = await page.evaluate(() => {

@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus-logistics/zoo-web-components",
-	"version": "3.0.1",
+	"version": "3.1.0",
 	"main": "dist/zoo-components-iife.js",
 	"files": [
 		"dist/zoo-components-esm.js",
@@ -21,12 +21,12 @@
 		"rollup-plugin-svelte": "^5.0.3",
 		"rollup-plugin-terser": "^4.0.4",
 		"serve": "^10.1.2",
-		"svelte": "3.0.0-beta.14"
+		"svelte": "3.0.0-beta.15"
 	},
 	"scripts": {
 		"build": "npm test && rollup -c 'rollup.release.config.js'",
 		"start": "serve public & rollup -c -w",
-		"test": "rollup src/test.js -c && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
+		"test": "rollup -c 'rollup.config.test.js' && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
 		"prepublishOnly": "npm run build"
 	}
 }

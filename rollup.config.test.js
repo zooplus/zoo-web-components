@@ -39,7 +39,7 @@ const shared = {
 
 export default [
 	{
-		input: 'src/app.js',
+		input: 'src/test.js',
 		plugins: [
 			svelte({
 				dev: !production,
@@ -71,8 +71,8 @@ export default [
 		output: {
 			sourcemap: true,
 			format: 'iife',
-			file: 'public/app.js',
-			name: 'app'
+			file: 'public/test.js',
+			name: 'test'
 		}
 	},
 	Object.assign({}, shared, {

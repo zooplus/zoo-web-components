@@ -58,10 +58,7 @@
 		<zoo-input labeltext="Textarea example" valid="{inputState}">
 			<textarea slot="inputelement" placeholder="Textarea"></textarea>
 		</zoo-input>
-		<zoo-select labeltext="Multiselect"
-			valid="{inputState}"
-			inputerrormsg="Value is required"
-			infotext="Additional helpful information for our users" >
+		<zoo-select labeltext="Multiselect" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users" >
 			<select slot="selectelement" multiple>
 				<option class="placeholder" value="" disabled selected>Placeholder</option>
 				<option>1</option>

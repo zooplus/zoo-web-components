@@ -161,6 +161,9 @@
 		if (!multiple) {
 			_hideSelectOptions();
 		}
+		for (const option of options) {
+			option.style.display = 'block';
+		}
 	}
 
 	const _hideSelectOptions = () => {

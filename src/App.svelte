@@ -189,7 +189,7 @@
 			</zoo-tooltip>
 		</div>
 	</div>
-	<zoo-modal style="display: none" headertext="Your basket contains licensed items" bind:this={modal} on:modalClosed="{handleModalClosed}">
+	<zoo-modal style="display: none" headertext="Your basket contains licensed items" bind:this={modal}>
 		<div>
 			<zoo-feedback 
 			type="info" 
@@ -218,7 +218,7 @@
 			</zoo-button>
 		</div>
 	</zoo-modal>
-	<zoo-footer footerlinks="{footerlinks}" bind:this={zooLogFooter}></zoo-footer> 
+	<zoo-footer bind:this={footer}></zoo-footer> 
 </div>
 
 <style type='text/scss'>
@@ -361,7 +361,39 @@
 </style>
 
 <script>
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
+	let footer;
+	onMount(() => {
+		setTimeout(() => {
+			footer.footerlinks = [
+				{
+					href: 'https://google.com',
+					text: 'About us',
+					type: 'standard'
+				},
+				{
+					href: 'https://google.com',
+					text: 'Careers',
+					type: 'standard'
+				},
+				{
+					href: 'https://google.com',
+					text: 'Investor Relations',
+					type: 'standard'
+				},
+				{
+					href: 'https://google.com',
+					text: 'Imprint',
+					type: 'standard'
+				},
+				{
+					href: 'https://google.com',
+					text: 'Terms & Conditions',
+					type: 'standard'
+				}
+			];
+		}, 300);
+	});
 	let toast;
 	let options = [
 		{
@@ -385,7 +417,6 @@
 			value: 'random2'
 		}
 	];
-	let zooLogFooter;
 	let navlinks = [
 		{
 			href: 'https://google.com',
@@ -404,66 +435,9 @@
 			type: 'standard',
 		}
 	];
-	let footerlinks = [
-		{
-			href: 'https://google.com',
-			text: 'About us',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Careers',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Investor Relations',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Imprint',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Terms & Conditions',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Methods of Payment',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'WEEE',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Privacy',
-			type: 'standard'
-		},
-		{
-			href: 'https://google.com',
-			text: 'Opt-out',
-			type: 'standard'
-		}
-	];
 	let headertext = 'header text';
 	let imgsrc = '';
 	let inputState = true;
-	let helplink = {
-		text: 'Help & Contact',
-		href: 'https://google.com',
-		type: 'green'
-	};
-	let reoderlink = {
-		text: 'Reorder',
-		href: 'https://google.com',
-		type: 'grey'
-	};
 
 	let specialTooltip;
 	let modal;
@@ -475,9 +449,6 @@
 		const elStyle = specialTooltip.style;
 		const display = !elStyle.display || elStyle.display === 'none' ? 'block' : 'none';
 		elStyle.display = display;
-	};
-	const handleModalClosed = () => {
-		console.log('modal closed');
 	};
 	const changeState = () => {
 		inputState = !inputState;

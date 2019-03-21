@@ -21,7 +21,7 @@
 		"rollup-plugin-svelte": "^5.0.3",
 		"rollup-plugin-terser": "^4.0.4",
 		"serve": "^10.1.2",
-		"svelte": "3.0.0-beta.15"
+		"svelte": "3.0.0-beta.20"
 	},
 	"scripts": {
 		"build": "npm test && rollup -c 'rollup.release.config.js'",

@@ -323,13 +323,19 @@
 		width: 200px;
 		position: relative;
 		cursor: pointer;
-		zoo-tooltip {
-			display: none;
-		}
+		
+	}
+	zoo-tooltip {
+		display: none;
 	}
 	.top-tooltip {
 		position: relative;
 		display: inline-block;
+		&:hover {
+			zoo-tooltip {
+				display: block;
+			}
+		}
 	}
 	zoo-footer {
 		flex-shrink: 0;

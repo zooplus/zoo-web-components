@@ -3,8 +3,7 @@ Common web-components which can be used in any modern UI framework.
 The web-component set implements Z+ shop style guide, which is described here: https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893960.
 
 # Installation
-To use exported modules install this library as a dependency in your application by running `npm i @zooplus/zoo-web-components --save`;      
-To be able to download these packages you have to have `.npmrc` file inside your project root. You can copy paste the one which is inside this project.      
+To use exported modules install this library as a dependency in your application by running `npm i @zooplus/zoo-web-components --save`;
 
 ## Examples integrating with various frameworks
 + VueJS - https://github.com/GeorgeTailor/vue-wc-integration
@@ -13,7 +12,7 @@ To be able to download these packages you have to have `.npmrc` file inside your
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
 ## Size of the library
-Uncompressed size of the library is: 50 Kbytes;
+Uncompressed size of the library is around 50 Kbytes;
 Gzipped version is 12 Kbytes;
 
 # List of components

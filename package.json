@@ -1,5 +1,5 @@
 {
-	"name": "@zooplus-logistics/zoo-web-components",
+	"name": "@zooplus/zoo-web-components",
 	"version": "3.1.2",
 	"main": "dist/zoo-components-iife.js",
 	"files": [
@@ -28,5 +28,21 @@
 		"start": "serve public & rollup -c -w",
 		"test": "rollup -c 'rollup.config.test.js' && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
 		"prepublishOnly": "npm run build"
-	}
+	},
+	"dependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zooplus/zoo-web-components.git"
+	},
+	"keywords": [
+		"web-components",
+		"javascript",
+		"css"
+	],
+	"author": "Yuriy Kravets",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/zooplus/zoo-web-components/issues"
+	},
+	"homepage": "https://github.com/zooplus/zoo-web-components#readme"
 }

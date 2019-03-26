@@ -20,27 +20,27 @@ Gzipped version is 12 Kbytes;
 As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 
 ## Standalone
-+ Buttons - [`button-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/button-module);
-+ Links - [`links-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/link-module);
-+ Feedback - [`feedback-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/feedback-module);
-+ Modal - [`modal-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/modal-module);
-+ Header - [`header-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/header-module);
-+ Footer - [`footer-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/footer-module)
++ Buttons - [`button-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/button-module);
++ Links - [`links-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/link-module);
++ Feedback - [`feedback-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/feedback-module);
++ Modal - [`modal-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/modal-module);
++ Header - [`header-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/header-module);
++ Footer - [`footer-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/footer-module)
 
 ## Forms
-+ Input - [`input-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/input-module);
-+ Select - [`select-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/select-module);
-+ Searchable Select - [`searchable-select-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/searchable-select-module);
-+ Checkbox - [`checkbox-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/checkbox-module);
++ Input - [`input-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/input-module);
++ Select - [`select-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/select-module);
++ Searchable Select - [`searchable-select-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/searchable-select-module);
++ Checkbox - [`checkbox-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/checkbox-module);
 + Radio - `Not implemented`
 + Special Compositions - `Not implemented` - under consideration
 + Date picker - `Not implemented` - I recommend to use native `<input type="date"/>` alogn with [`this`](https://github.com/jcgertig/date-input-polyfill) polyfill for browsers that didn't implement it yet;
 
 ## Other
 + Tables - `Not implemented`
-+ Tooltips - [`tooltip-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/tooltip-module);
++ Tooltips - [`tooltip-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/tooltip-module);
 + Lists  - `Not Implemented` - just use <details> tag
-+ Navigation - [`navigation-module`](https://src.private.zooplus.net/projects/LCOM/repos/web-components/browse/zoo-modules/navigation-module)
++ Navigation - [`navigation-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-moduleszoo-modules/navigation-module)
 + Breadcrumb - `Not implemented`
 
 

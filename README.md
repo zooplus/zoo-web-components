@@ -32,9 +32,9 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 + Select - [`select-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/select-module);
 + Searchable Select - [`searchable-select-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/searchable-select-module);
 + Checkbox - [`checkbox-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/checkbox-module);
-+ Radio - `Not implemented`
++ Radio - [`radio-module`](https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/radio-module);
 + Special Compositions - `Not implemented` - under consideration
-+ Date picker - `Not implemented` - I recommend to use native `<input type="date"/>` alogn with [`this`](https://github.com/jcgertig/date-input-polyfill) polyfill for browsers that didn't implement it yet;
++ Date picker - `Not implemented` - I recommend to use native `<input type="date"/>` alogn with [`this`](https://github.com/jcgertig/date-input-polyfill) polyfill for browsers that haven't implement it yet;
 
 ## Other
 + Tables - `Not implemented`

@@ -1,7 +1,5 @@
-import App from './App.svelte';
-
-const app = new App({
-	target: document.body
-});
-
-export default app;
+import './App.svelte';
+import './Header.svelte';
+import './Form.svelte';
+import './Buttons.svelte';
+import './TooltipAndFeedback.svelte';

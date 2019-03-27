@@ -25,8 +25,8 @@
 	},
 	"scripts": {
 		"build": "npm test && rollup -c 'rollup.release.config.js'",
-		"start": "serve public & rollup -c -w",
-		"test": "rollup -c 'rollup.config.test.js' && (serve public & mocha --opts mocha.opts) && node cat ./pika.txt",
+		"start": "serve docs & rollup -c -w",
+		"test": "rollup -c 'rollup.config.test.js' && (serve docs & mocha --opts mocha.opts) && node cat ./pika.txt",
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {},

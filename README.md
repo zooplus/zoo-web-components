@@ -46,7 +46,7 @@ As per https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893958
 
 # Dev area
 ## Run
-Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/public` folder.
+Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/docs` folder.
 
 ## Test
 This project uses `Mocha` and `Chai` for writing tests. The tests are run using `Puppeteer`.

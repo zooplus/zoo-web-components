@@ -1,7 +1,7 @@
 {
 	"mocha.subdirectory": "/Users/yuriyk/projects/web-components",
 	"mocha.files.glob": "zoo-modules/**/*.js",
-	"mocha.options": "rollup src/test.js -c && serve public",
+	"mocha.options": "rollup src/test.js -c && serve docs",
 	"mocha.coverage": {
 		"enable": false
 	}

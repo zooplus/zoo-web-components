@@ -71,7 +71,7 @@ export default [
 		output: {
 			sourcemap: true,
 			format: 'iife',
-			file: 'public/app.js',
+			file: 'docs/app.js',
 			name: 'app'
 		}
 	},
@@ -80,7 +80,7 @@ export default [
 		output: {
 			sourcemap: true,
 			format: 'esm',
-			file: 'public/bundle-esm.js',
+			file: 'docs/bundle-esm.js',
 			name: 'esm'
 		}
 	}),
@@ -89,7 +89,7 @@ export default [
 		output: {
 			sourcemap: true,
 			format: 'iife',
-			file: 'public/bundle-iife.js',
+			file: 'docs/bundle-iife.js',
 			name: 'iife'
 		}
 	})

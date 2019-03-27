@@ -38,13 +38,27 @@ const shared = {
 }
 
 export default [
-	Object.assign({}, shared, {
+	{
+		plugins: [
+			svelte({dev: !production}),
+			resolve(),
+			production && terser()
+		],
 		input: 'src/app.js',
 		output: {
-			sourcemap: true,
+			sourcemap: false,
 			format: 'iife',
 			file: 'docs/app.js',
 			name: 'app'
+		}
+	},
+	Object.assign({}, shared, {
+		input: 'src/docs.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: 'docs/bundle-docs.js',
+			name: 'iife'
 		}
 	}),
 	Object.assign({}, shared, {

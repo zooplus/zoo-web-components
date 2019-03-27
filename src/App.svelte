@@ -1,18 +1,18 @@
-<svelte:options tag="my-app"></svelte:options>
 <div class="app">
 	<app-header></app-header>
 	<div class="content">
-		<app-form></app-form>
+		<app-form id="app-form"></app-form>
 		<hr>
-		<app-buttons></app-buttons>
+		<app-buttons id="app-buttons"></app-buttons>
 		<hr>
-		<app-tooltip-and-feedback></app-tooltip-and-feedback>
+		<app-tooltip-and-feedback id="app-tooltip-and-feedback"></app-tooltip-and-feedback>
+		<hr>
+		<!-- <docs-button></docs-button> -->
 	</div>
-	<zoo-footer bind:this={footer}></zoo-footer> 
+	<zoo-footer class="footer" bind:this={footer}></zoo-footer> 
 </div>
 
-<style type='text/scss'>
-	@import "variables";
+<style>
 	.app {
 		margin: 0 auto;
 		height: 100%;
@@ -25,13 +25,13 @@
 		width: 100%;
 		flex: 1 0 auto;
 		margin: 0 auto;
-		hr {
-			display: absolute;
-			color: $main-color;
-			margin: 45px 0;
-		}
 	}
-	zoo-footer {
+	hr {
+		display: absolute;
+		color: #3C9700;
+		margin: 45px 0;
+	}
+	.footer {
 		flex-shrink: 0;
 	}
 </style>

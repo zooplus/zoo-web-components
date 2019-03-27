@@ -88,7 +88,6 @@
 		height: 80px;
 		h2 {
 			color: $main-color;
-			text-align: center;
 		}
 	}
 	.form {

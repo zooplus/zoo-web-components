@@ -35,13 +35,11 @@
 		height: 80px;
 		h2 {
 			color: $main-color;
-			text-align: center;
 		}
 	}
 	.inner-content {
 		flex: 1 0 auto;
 		width: 70%;
-		margin: 20px auto;
 		.feedback-tooltip {
 			height: 60px;
 			margin-bottom: 15px;

@@ -74,21 +74,24 @@
 <script>
 	let navlinks = [
 		{
-			href: 'https://google.com',
-			text: 'Example navigation 1',
+			href: '#app-form',
+			text: 'Form section',
 			type: 'standard',
+			target: '',
 			active: false
 		},
 		{
-			href: 'https://google.com',
-			text: 'Example navigation 2',
+			href: '#app-buttons',
+			text: 'Buttons section',
 			type: 'standard',
+			target: '',
 			active: false
 		},
 		{
-			href: 'https://google.com',
-			text: 'Example navigation 3',
+			href: '#app-tooltip-and-feedback',
+			text: 'Tooltip and feedback section',
 			type: 'standard',
+			target: '',
 			active: false
 		},
 		{

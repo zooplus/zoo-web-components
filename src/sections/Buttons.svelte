@@ -1,9 +1,7 @@
 <svelte:options tag="app-buttons"></svelte:options>
 <zoo-toast text="Search for more than 8.000 products." bind:this={toast}>
 </zoo-toast>
-<div class="context">
-	<h2>Second section is a showcase of buttons and modals.</h2>
-</div>
+<app-context text="Second section is a showcase of buttons and modals"></app-context>
 <div class="buttons">
 	<zoo-button size="medium" on:click="{() => toast.show()}">
 		<span slot="buttoncontent" class="slotted-span">Here we have a very long text indeed!</span>
@@ -49,12 +47,7 @@
 </zoo-modal>
 <style type='text/scss'>
 	@import "variables";
-	.context {
-		height: 80px;
-		h2 {
-			color: $main-color;
-		}
-	}
+	
 	.buttons {
 		max-width: 1280px;
 		margin: 20px auto;

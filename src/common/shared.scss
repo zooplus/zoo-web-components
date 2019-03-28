@@ -1,0 +1,11 @@
+.doc-element {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.list, .example {
+	width: 45%;
+}
+.example {
+	overflow: scroll;
+}

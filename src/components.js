@@ -14,5 +14,5 @@ import '../zoo-modules/shared-module/InputInfo.svelte';
 import '../zoo-modules/navigation-module/Navigation.svelte';
 import '../zoo-modules/shared-module/InputLabel.svelte';
 import '../zoo-modules/toast-module/Toast.svelte';
-import '../zoo-modules/collapsible-list-module/CollapsibleList.svelte';
-import '../zoo-modules/collapsible-list-module/CollapsibleListItem.svelte';
+import '../zoo-modules/collapsable-list-module/CollapsableList.svelte';
+import '../zoo-modules/collapsable-list-module/CollapsableListItem.svelte';

@@ -16,7 +16,7 @@ const shared = {
 					return new Promise((fulfil, reject) => {
 						sass.render({
 							data: content,
-							includePaths: ['zoo-modules/shared-module'],
+							includePaths: ['zoo-modules/shared-module', 'src/common'],
 							sourceMap: true,
 							outFile: 'x' // this is necessary, but is ignored
 						}, (err, result) => {

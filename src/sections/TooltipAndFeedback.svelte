@@ -1,7 +1,5 @@
 <svelte:options tag="app-tooltip-and-feedback"></svelte:options>
-<div class="context">
-	<h2>Third section is a showcase of tooltips and feedback boxes.</h2>
-</div>
+<app-context text="Third section is a showcase of tooltips and feedback boxes."></app-context>
 <div class="inner-content">
 	<div class="feedback-tooltip">
 		<zoo-feedback type="info" text="This is an info message. This element will show tooltip on the right side on hover."></zoo-feedback>
@@ -31,12 +29,6 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.context {
-		height: 80px;
-		h2 {
-			color: $main-color;
-		}
-	}
 	.inner-content {
 		flex: 1 0 auto;
 		width: 70%;

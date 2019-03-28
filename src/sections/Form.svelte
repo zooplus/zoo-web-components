@@ -1,7 +1,5 @@
 <svelte:options tag="app-form"></svelte:options>
-<div class="context">
-	<h2>First section is a showcase of different form elements like `input`, `textarea`, `select`.</h2>
-</div>
+<app-context text="First section is a showcase of different form elements like `input`, `textarea`, `select`."></app-context>
 <form class="form">
 	<zoo-input labeltext="Input type text" linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
 	 valid="{inputState}" inputerrormsg="invalid" infotext="Additional helpful information for our users">
@@ -84,12 +82,6 @@
 
 <style type='text/scss'>
 	@import "variables";
-	.context {
-		height: 80px;
-		h2 {
-			color: $main-color;
-		}
-	}
 	.form {
 		flex: 1 0 auto;
 		margin: 20px auto;

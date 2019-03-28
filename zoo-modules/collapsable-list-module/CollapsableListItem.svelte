@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-collapsible-list-item"></svelte:options>
+<svelte:options tag="zoo-collapsable-list-item"></svelte:options>
 <ul>
 	<li>
 		<slot></slot>

@@ -2,11 +2,6 @@
 <header>
 	<zoo-header imgsrc="logo.png" headertext="Zooplus web components">
 		<div class="search-field-holder">
-			<div class="header-search">
-				<zoo-input>
-					<input slot="inputelement" placeholder="Example placeholder"/>
-				</zoo-input>
-			</div>
 			<div class="header-button">
 				<zoo-button type="hot" size="medium">
 					<span slot="buttoncontent" class="slotted-span">Just a button</span>
@@ -35,14 +30,8 @@
 		flex-grow: 1;
 		padding: 0 25px 0 0;
 	}
-
-	.header-search, .header-button {
-		margin-left: auto;
-	}
-	.header-search {
-		flex-grow: 0.5;
-	}
 	.header-button {
+		margin-left: auto;
 		display: flex;
 		zoo-button {
 			align-self: center;
@@ -74,36 +63,24 @@
 <script>
 	let navlinks = [
 		{
-			href: '#app-form',
-			text: 'Form section',
+			href: '#what',
+			text: 'What is this project?',
 			type: 'standard',
 			target: '',
 			active: false
 		},
 		{
-			href: '#app-buttons',
-			text: 'Buttons section',
+			href: '#when',
+			text: 'When can I use it?',
 			type: 'standard',
 			target: '',
 			active: false
 		},
 		{
-			href: '#app-tooltip-and-feedback',
-			text: 'Tooltip and feedback section',
+			href: '#how',
+			text: 'How can I use it?',
 			type: 'standard',
 			target: '',
-			active: false
-		},
-		{
-			href: 'https://google.com',
-			text: 'Example navigation 4',
-			type: 'standard',
-			active: false
-		},
-		{
-			href: 'https://google.com',
-			text: 'Example navigation 5',
-			type: 'standard',
 			active: false
 		}
 	];

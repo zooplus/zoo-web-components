@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-collapsible-list"></svelte:options>
+<svelte:options tag="zoo-collapsable-list"></svelte:options>
 <div class="box">
 	<ul>
 		{#each items as item, idx}
@@ -30,6 +30,7 @@
 		list-style-type: none;
 		padding: 0 10px;
 		overflow: scroll;
+		border: 0px solid black;
 		.header {
 			display: flex;
 			align-items: center;
@@ -49,8 +50,7 @@
 			}
 		}
 		&.active {
-			border: 1px solid;
-			border-color: rgba(0, 0, 0, 0.2);
+			border: 1px solid rgba(0, 0, 0, 0.2);
 			.header {
 				color: $main-color-dark;
 				svg {

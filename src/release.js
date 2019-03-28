@@ -14,3 +14,5 @@ export { default as InputInfo} from '../zoo-modules/shared-module/InputInfo.svel
 export { default as Navigation} from '../zoo-modules/navigation-module/Navigation.svelte';
 export { default as InputLabel} from '../zoo-modules/shared-module/InputLabel.svelte';
 export { default as Toast} from '../zoo-modules/toast-module/Toast.svelte';
+export { default as CollapsibleList } from '../zoo-modules/collapsible-list-module/CollapsibleList.svelte';
+export { default as CollapsibleListItem } from '../zoo-modules/collapsible-list-module/CollapsibleListItem.svelte';

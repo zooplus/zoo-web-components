@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="content">
-			<docs-button id="button-doc"></docs-button>
+			<docs-button  id="button-doc"></docs-button>
 			<hr>
 			<docs-checkbox id="checkbox-doc"></docs-checkbox>
 			<hr>
@@ -104,10 +104,10 @@
 	}
 	.link-wrapper {
 		height: auto;
-		padding: 5px 0 5px 20px;
+		padding: 12px;
 	}
 	.left-menu-separator {
-		margin: 10px 0;
+		margin: 0;
 	}
 	.overview {
 		grid-area: overview;

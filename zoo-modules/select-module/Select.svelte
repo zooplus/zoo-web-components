@@ -36,7 +36,6 @@
 	  -moz-appearance: none;
 	  width: 100%;
 	  background: white;
-	  font-size: 14px;
 	  line-height: 20px;
 	  padding: 13px 15px;
 	  border: 1px solid;
@@ -45,7 +44,8 @@
 	  color: $matterhorn;
 	  outline: none;
 	  box-sizing: border-box;
-	  font-size: 13px;
+		font-size: 13px;
+		overflow: auto;
 	}
 	::slotted(select:disabled) {
 	  border-color: #e6e6e6;

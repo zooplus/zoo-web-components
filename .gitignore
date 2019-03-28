@@ -5,3 +5,4 @@ dist/
 /zoo-modules/*/dist/*.js.map
 /coverage
 /.nyc_output
+docs/bundle-esm*

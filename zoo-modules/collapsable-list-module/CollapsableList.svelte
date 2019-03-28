@@ -29,7 +29,6 @@
 		color: $grey;
 		list-style-type: none;
 		padding: 0 10px;
-		overflow: scroll;
 		border: 0px solid black;
 		.header {
 			display: flex;

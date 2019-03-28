@@ -1,3 +1,8 @@
+# Intro
+ - Set of web-components which can be used in any modern UI framework (or without any).
+ - The web-component set implements Z+ shop style guide, which is described here: https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893960.
+ - Future releases will include theming, more components, ESM support.
+
 ## Installation
 To use exported modules install this library as a dependency in your application by running       
 `npm i @zooplus/zoo-web-components --save`;

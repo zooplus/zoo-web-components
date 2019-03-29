@@ -1,3 +1,6 @@
+# 4.0.1
+`zoo-footer` now accepts `copyright` attribute to show name of the company for example.
+
 # 4.0.0
 Included possibility for theming and new component `zoo-collapsable-list`.
 

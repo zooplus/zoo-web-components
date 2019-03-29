@@ -2624,7 +2624,7 @@
 	const file$9 = "src/docs/FooterDocs.svelte";
 
 	function create_fragment$9(ctx) {
-		var app_context, t0, div3, div0, zoo_collapsable_list, zoo_collapsable_list_item0, ul1, li5, b0, t2, b1, t4, ul0, li0, b2, t6, t7, li1, b3, t9, t10, li2, b4, t12, b5, t14, t15, li3, b6, t17, b7, t19, b8, t21, b9, t23, t24, li4, b10, t26, t27, zoo_collapsable_list_item1, t29, div2, code, pre, t30, t31, t32, div1, zoo_footer;
+		var app_context, t0, div3, div0, zoo_collapsable_list, zoo_collapsable_list_item0, ul1, li6, b0, t2, b1, t4, ul0, li0, b2, t6, t7, li1, b3, t9, t10, li2, b4, t12, b5, t14, t15, li3, b6, t17, b7, t19, b8, t21, b9, t23, t24, li4, b10, t26, t27, li5, b11, t29, t30, zoo_collapsable_list_item1, t32, div2, code, pre, t33, t34, t35, div1, zoo_footer;
 
 		return {
 			c: function create() {
@@ -2635,7 +2635,7 @@
 				zoo_collapsable_list = element("zoo-collapsable-list");
 				zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
 				ul1 = element("ul");
-				li5 = element("li");
+				li6 = element("li");
 				b0 = element("b");
 				b0.textContent = "footerlinks";
 				t2 = text(" - an ");
@@ -2680,15 +2680,20 @@
 				b10.textContent = "disabled";
 				t26 = text(" - flag indicating whether the anchor link should be disabled");
 				t27 = space();
+				li5 = element("li");
+				b11 = element("b");
+				b11.textContent = "copyright";
+				t29 = text(" - text to be presented as a copyright unde links (foe example, 'zooplus AG')");
+				t30 = space();
 				zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
 				zoo_collapsable_list_item1.textContent = "This component does not accept slots.";
-				t29 = space();
+				t32 = space();
 				div2 = element("div");
 				code = element("code");
 				pre = element("pre");
-				t30 = text(ctx.example);
-				t31 = text(ctx.scriptExample);
-				t32 = text("\n\t\twill produce the following:\n\t\t");
+				t33 = text(ctx.example);
+				t34 = text(ctx.scriptExample);
+				t35 = text("\n\t\twill produce the following:\n\t\t");
 				div1 = element("div");
 				zoo_footer = element("zoo-footer");
 				this.c = noop;
@@ -2710,23 +2715,25 @@
 				add_location(li3, file$9, 20, 7, 622);
 				add_location(b10, file$9, 24, 8, 829);
 				add_location(li4, file$9, 23, 7, 816);
+				add_location(b11, file$9, 27, 8, 939);
+				add_location(li5, file$9, 26, 7, 926);
 				add_location(ul0, file$9, 10, 6, 368);
-				add_location(li5, file$9, 8, 5, 256);
+				add_location(li6, file$9, 8, 5, 256);
 				add_location(ul1, file$9, 7, 4, 246);
 				set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
 				add_location(zoo_collapsable_list_item0, file$9, 6, 3, 201);
 				set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
-				add_location(zoo_collapsable_list_item1, file$9, 30, 3, 987);
+				add_location(zoo_collapsable_list_item1, file$9, 33, 3, 1114);
 				add_location(zoo_collapsable_list, file$9, 5, 2, 158);
 				div0.className = "list";
 				add_location(div0, file$9, 4, 1, 137);
-				add_location(pre, file$9, 36, 8, 1167);
-				add_location(code, file$9, 36, 2, 1161);
-				add_location(zoo_footer, file$9, 39, 3, 1273);
+				add_location(pre, file$9, 39, 8, 1294);
+				add_location(code, file$9, 39, 2, 1288);
+				add_location(zoo_footer, file$9, 42, 3, 1400);
 				set_style(div1, "width", "250px");
-				add_location(div1, file$9, 38, 2, 1242);
+				add_location(div1, file$9, 41, 2, 1369);
 				div2.className = "example";
-				add_location(div2, file$9, 35, 1, 1137);
+				add_location(div2, file$9, 38, 1, 1264);
 				div3.className = "doc-element";
 				add_location(div3, file$9, 3, 0, 110);
 			},
@@ -2743,12 +2750,12 @@
 				append(div0, zoo_collapsable_list);
 				append(zoo_collapsable_list, zoo_collapsable_list_item0);
 				append(zoo_collapsable_list_item0, ul1);
-				append(ul1, li5);
-				append(li5, b0);
-				append(li5, t2);
-				append(li5, b1);
-				append(li5, t4);
-				append(li5, ul0);
+				append(ul1, li6);
+				append(li6, b0);
+				append(li6, t2);
+				append(li6, b1);
+				append(li6, t4);
+				append(li6, ul0);
 				append(ul0, li0);
 				append(li0, b2);
 				append(li0, t6);
@@ -2776,16 +2783,20 @@
 				append(ul0, li4);
 				append(li4, b10);
 				append(li4, t26);
-				append(zoo_collapsable_list, t27);
+				append(ul0, t27);
+				append(ul0, li5);
+				append(li5, b11);
+				append(li5, t29);
+				append(zoo_collapsable_list, t30);
 				append(zoo_collapsable_list, zoo_collapsable_list_item1);
 				add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
-				append(div3, t29);
+				append(div3, t32);
 				append(div3, div2);
 				append(div2, code);
 				append(code, pre);
-				append(pre, t30);
-				append(pre, t31);
-				append(div2, t32);
+				append(pre, t33);
+				append(pre, t34);
+				append(div2, t35);
 				append(div2, div1);
 				append(div1, zoo_footer);
 				add_binding_callback(() => ctx.zoo_footer_binding(zoo_footer, null));
@@ -2871,7 +2882,7 @@
 			super();
 
 			this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row;justify-content:space-evenly}.list,.example{width:45%}.example{overflow:auto}
-		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRm9vdGVyRG9jcy5zdmVsdGUiLCJzb3VyY2VzIjpbIkZvb3RlckRvY3Muc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzdmVsdGU6b3B0aW9ucyB0YWc9XCJkb2NzLWZvb3RlclwiPjwvc3ZlbHRlOm9wdGlvbnM+XG5cbjxhcHAtY29udGV4dCB0ZXh0PVwiRm9vdGVyIGNvbXBvbmVudCBBUEkuXCI+PC9hcHAtY29udGV4dD5cbjxkaXYgY2xhc3M9XCJkb2MtZWxlbWVudFwiPlxuXHQ8ZGl2IGNsYXNzPVwibGlzdFwiPlxuXHRcdDx6b28tY29sbGFwc2FibGUtbGlzdCBiaW5kOnRoaXM9e2xpc3R9PlxuXHRcdFx0PHpvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0gc2xvdD1cIml0ZW0wXCI+XG5cdFx0XHRcdDx1bD5cblx0XHRcdFx0XHQ8bGk+XG5cdFx0XHRcdFx0XHQ8Yj5mb290ZXJsaW5rczwvYj4gLSBhbiA8Yj5hcnJheTwvYj4gb2Ygb2JqZWN0cyB3aGVyZSBlYWNoIG9iamVjdCBoYXMgdGhlIGZvbGxvd2luZyBzdHJ1Y3R1cmU6XG5cdFx0XHRcdFx0XHQ8dWw+XG5cdFx0XHRcdFx0XHRcdDxsaT5cblx0XHRcdFx0XHRcdFx0XHQ8Yj5ocmVmPC9iPiAtIGRpcmVjdCBsaW5rXG5cdFx0XHRcdFx0XHRcdDwvbGk+XG5cdFx0XHRcdFx0XHRcdDxsaT5cblx0XHRcdFx0XHRcdFx0XHQ8Yj50ZXh0PC9iPiAtIHRleHQgdG8gYmUgZGlzcGxheWVkIGFzIGxpbmtcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPnRhcmdldDwvYj4gLSBob3cgdGhlIGxpbmsgc2hvdWxkIGJlaGF2ZSAoZGVmYXVsdCAtIDxiPmFib3V0OmJsYW5rPC9iPilcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPnR5cGU8L2I+IC0gY3VycmVudGx5IHN1cHBvcnRzIDIgdmFsdWVzOiA8Yj5zdGFuZGFyZDwvYj4gYW5kIDxiPmdyZWVuPC9iPiwgZGVmYXVsdCAtIDxiPnN0YW5kYXJkPC9iPi4gUmVzcG9uc2libGUgZm9yIGNvbG9yaW5nIG9mIHRoZSBsaW5rcywgc3RhbmRhcmQgaXMgd2hpdGVcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPmRpc2FibGVkPC9iPiAtIGZsYWcgaW5kaWNhdGluZyB3aGV0aGVyIHRoZSBhbmNob3IgbGluayBzaG91bGQgYmUgZGlzYWJsZWRcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdDwvdWw+XG5cdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0PC91bD5cblx0XHRcdDwvem9vLWNvbGxhcHNhYmxlLWxpc3QtaXRlbT5cblx0XHRcdDx6b28tY29sbGFwc2FibGUtbGlzdC1pdGVtIHNsb3Q9XCJpdGVtMVwiPlxuXHRcdFx0XHRUaGlzIGNvbXBvbmVudCBkb2VzIG5vdCBhY2NlcHQgc2xvdHMuXG5cdFx0XHQ8L3pvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0+XG5cdFx0PC96b28tY29sbGFwc2FibGUtbGlzdD5cblx0PC9kaXY+XG5cdDxkaXYgY2xhc3M9XCJleGFtcGxlXCI+XG5cdFx0PGNvZGU+PHByZT57ZXhhbXBsZX17c2NyaXB0RXhhbXBsZX08L3ByZT48L2NvZGU+XG5cdFx0d2lsbCBwcm9kdWNlIHRoZSBmb2xsb3dpbmc6XG5cdFx0PGRpdiBzdHlsZT1cIndpZHRoOiAyNTBweDtcIj5cblx0XHRcdDx6b28tZm9vdGVyIGJpbmQ6dGhpcz17ZXhhbXBsZUZvb3Rlcn0+PC96b28tZm9vdGVyPlxuXHRcdDwvZGl2PlxuXHQ8L2Rpdj5cbjwvZGl2PlxuXG48c3R5bGUgdHlwZT1cInRleHQvc2Nzc1wiPi5kb2MtZWxlbWVudCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtZXZlbmx5OyB9XG5cbi5saXN0LCAuZXhhbXBsZSB7XG4gIHdpZHRoOiA0NSU7IH1cblxuLmV4YW1wbGUge1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG4vKiMgc291cmNlTWFwcGluZ1VSTD14Lm1hcCAqLzwvc3R5bGU+XG5cbjxzY3JpcHQ+XG5cdGltcG9ydCB7IG9uTW91bnQgfSBmcm9tICdzdmVsdGUnO1xuXHRsZXQgbGlzdDtcblx0bGV0IGV4YW1wbGVGb290ZXI7XG5cdGxldCBleGFtcGxlID0gYDxkaXYgc3R5bGU9XCJ3aWR0aDogMjUwcHg7XCI+XFxuICA8em9vLWZvb3RlciBpZD1cImZvb3RlclwiPjwvem9vLWZvb3Rlcj5cXG48L2Rpdj5gO1xuXHRsZXQgc2NyaXB0RXhhbXBsZSA9IGBcXG48c2NyaXB0PlxcbiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Zvb3RlcicpLmZvb3RlcmxpbmtzPVt7XFxuICAgIGhyZWY6ICdodHRwczovL2dpdGh1Yi5jb20vem9vcGx1cy96b28td2ViLWNvbXBvbmVudHMnLFxcbiAgICB0ZXh0OiAnR2l0aHViJyxcXG4gICAgdHlwZTogJ3N0YW5kYXJkJ1xcbiAgfSxcXG4gIHtcXG4gICAgaHJlZjogJ2h0dHBzOi8vd3d3Lm5wbWpzLmNvbS9wYWNrYWdlL0B6b29wbHVzL3pvby13ZWItY29tcG9uZW50cycsXFxuICAgIHRleHQ6ICdOUE0nLFxcbiAgICB0eXBlOiAnc3RhbmRhcmQnXFxuICB9XTtcXG48XFwvc2NyaXB0PmA7XG5cdG9uTW91bnQoKCkgPT4ge1xuXHRcdGxpc3QuaXRlbXMgPSBbXG5cdFx0XHR7XG5cdFx0XHRcdGhlYWRlcjogJ0FQSSdcblx0XHRcdH0sXG5cdFx0XHR7XG5cdFx0XHRcdGhlYWRlcjogJ1Nsb3RzJ1xuXHRcdFx0fVxuXHRcdF07XG5cdFx0ZXhhbXBsZUZvb3Rlci5mb290ZXJsaW5rcyA9IFtcblx0XHRcdHtcblx0XHRcdFx0aHJlZjogJ2h0dHBzOi8vZ2l0aHViLmNvbS96b29wbHVzL3pvby13ZWItY29tcG9uZW50cycsXG5cdFx0XHRcdHRleHQ6ICdHaXRodWInLFxuXHRcdFx0XHR0eXBlOiAnc3RhbmRhcmQnXG5cdFx0XHR9LFxuXHRcdFx0e1xuXHRcdFx0XHRocmVmOiAnaHR0cHM6Ly93d3cubnBtanMuY29tL3BhY2thZ2UvQHpvb3BsdXMvem9vLXdlYi1jb21wb25lbnRzJyxcblx0XHRcdFx0dGV4dDogJ05QTScsXG5cdFx0XHRcdHR5cGU6ICdzdGFuZGFyZCdcblx0XHRcdH1cblx0XHRdO1xuXHR9KTtcbjwvc2NyaXB0PiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUE0Q3dCLFlBQVksQUFBQyxDQUFDLEFBQ3BDLE9BQU8sQ0FBRSxJQUFJLENBQ2IsY0FBYyxDQUFFLEdBQUcsQ0FDbkIsZUFBZSxDQUFFLFlBQVksQUFBRSxDQUFDLEFBRWxDLEtBQUssQ0FBRSxRQUFRLEFBQUMsQ0FBQyxBQUNmLEtBQUssQ0FBRSxHQUFHLEFBQUUsQ0FBQyxBQUVmLFFBQVEsQUFBQyxDQUFDLEFBQ1IsUUFBUSxDQUFFLElBQUksQUFBRSxDQUFDIn0= */</style>`;
+		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRm9vdGVyRG9jcy5zdmVsdGUiLCJzb3VyY2VzIjpbIkZvb3RlckRvY3Muc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzdmVsdGU6b3B0aW9ucyB0YWc9XCJkb2NzLWZvb3RlclwiPjwvc3ZlbHRlOm9wdGlvbnM+XG5cbjxhcHAtY29udGV4dCB0ZXh0PVwiRm9vdGVyIGNvbXBvbmVudCBBUEkuXCI+PC9hcHAtY29udGV4dD5cbjxkaXYgY2xhc3M9XCJkb2MtZWxlbWVudFwiPlxuXHQ8ZGl2IGNsYXNzPVwibGlzdFwiPlxuXHRcdDx6b28tY29sbGFwc2FibGUtbGlzdCBiaW5kOnRoaXM9e2xpc3R9PlxuXHRcdFx0PHpvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0gc2xvdD1cIml0ZW0wXCI+XG5cdFx0XHRcdDx1bD5cblx0XHRcdFx0XHQ8bGk+XG5cdFx0XHRcdFx0XHQ8Yj5mb290ZXJsaW5rczwvYj4gLSBhbiA8Yj5hcnJheTwvYj4gb2Ygb2JqZWN0cyB3aGVyZSBlYWNoIG9iamVjdCBoYXMgdGhlIGZvbGxvd2luZyBzdHJ1Y3R1cmU6XG5cdFx0XHRcdFx0XHQ8dWw+XG5cdFx0XHRcdFx0XHRcdDxsaT5cblx0XHRcdFx0XHRcdFx0XHQ8Yj5ocmVmPC9iPiAtIGRpcmVjdCBsaW5rXG5cdFx0XHRcdFx0XHRcdDwvbGk+XG5cdFx0XHRcdFx0XHRcdDxsaT5cblx0XHRcdFx0XHRcdFx0XHQ8Yj50ZXh0PC9iPiAtIHRleHQgdG8gYmUgZGlzcGxheWVkIGFzIGxpbmtcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPnRhcmdldDwvYj4gLSBob3cgdGhlIGxpbmsgc2hvdWxkIGJlaGF2ZSAoZGVmYXVsdCAtIDxiPmFib3V0OmJsYW5rPC9iPilcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPnR5cGU8L2I+IC0gY3VycmVudGx5IHN1cHBvcnRzIDIgdmFsdWVzOiA8Yj5zdGFuZGFyZDwvYj4gYW5kIDxiPmdyZWVuPC9iPiwgZGVmYXVsdCAtIDxiPnN0YW5kYXJkPC9iPi4gUmVzcG9uc2libGUgZm9yIGNvbG9yaW5nIG9mIHRoZSBsaW5rcywgc3RhbmRhcmQgaXMgd2hpdGVcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPmRpc2FibGVkPC9iPiAtIGZsYWcgaW5kaWNhdGluZyB3aGV0aGVyIHRoZSBhbmNob3IgbGluayBzaG91bGQgYmUgZGlzYWJsZWRcblx0XHRcdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0XHRcdDxiPmNvcHlyaWdodDwvYj4gLSB0ZXh0IHRvIGJlIHByZXNlbnRlZCBhcyBhIGNvcHlyaWdodCB1bmRlIGxpbmtzIChmb2UgZXhhbXBsZSwgJ3pvb3BsdXMgQUcnKVxuXHRcdFx0XHRcdFx0XHQ8L2xpPlxuXHRcdFx0XHRcdFx0PC91bD5cblx0XHRcdFx0XHQ8L2xpPlxuXHRcdFx0XHQ8L3VsPlxuXHRcdFx0PC96b28tY29sbGFwc2FibGUtbGlzdC1pdGVtPlxuXHRcdFx0PHpvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0gc2xvdD1cIml0ZW0xXCI+XG5cdFx0XHRcdFRoaXMgY29tcG9uZW50IGRvZXMgbm90IGFjY2VwdCBzbG90cy5cblx0XHRcdDwvem9vLWNvbGxhcHNhYmxlLWxpc3QtaXRlbT5cblx0XHQ8L3pvby1jb2xsYXBzYWJsZS1saXN0PlxuXHQ8L2Rpdj5cblx0PGRpdiBjbGFzcz1cImV4YW1wbGVcIj5cblx0XHQ8Y29kZT48cHJlPntleGFtcGxlfXtzY3JpcHRFeGFtcGxlfTwvcHJlPjwvY29kZT5cblx0XHR3aWxsIHByb2R1Y2UgdGhlIGZvbGxvd2luZzpcblx0XHQ8ZGl2IHN0eWxlPVwid2lkdGg6IDI1MHB4O1wiPlxuXHRcdFx0PHpvby1mb290ZXIgYmluZDp0aGlzPXtleGFtcGxlRm9vdGVyfT48L3pvby1mb290ZXI+XG5cdFx0PC9kaXY+XG5cdDwvZGl2PlxuPC9kaXY+XG5cbjxzdHlsZSB0eXBlPVwidGV4dC9zY3NzXCI+LmRvYy1lbGVtZW50IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1ldmVubHk7IH1cblxuLmxpc3QsIC5leGFtcGxlIHtcbiAgd2lkdGg6IDQ1JTsgfVxuXG4uZXhhbXBsZSB7XG4gIG92ZXJmbG93OiBhdXRvOyB9XG5cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXgubWFwICovPC9zdHlsZT5cblxuPHNjcmlwdD5cblx0aW1wb3J0IHsgb25Nb3VudCB9IGZyb20gJ3N2ZWx0ZSc7XG5cdGxldCBsaXN0O1xuXHRsZXQgZXhhbXBsZUZvb3Rlcjtcblx0bGV0IGV4YW1wbGUgPSBgPGRpdiBzdHlsZT1cIndpZHRoOiAyNTBweDtcIj5cXG4gIDx6b28tZm9vdGVyIGlkPVwiZm9vdGVyXCI+PC96b28tZm9vdGVyPlxcbjwvZGl2PmA7XG5cdGxldCBzY3JpcHRFeGFtcGxlID0gYFxcbjxzY3JpcHQ+XFxuICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZm9vdGVyJykuZm9vdGVybGlua3M9W3tcXG4gICAgaHJlZjogJ2h0dHBzOi8vZ2l0aHViLmNvbS96b29wbHVzL3pvby13ZWItY29tcG9uZW50cycsXFxuICAgIHRleHQ6ICdHaXRodWInLFxcbiAgICB0eXBlOiAnc3RhbmRhcmQnXFxuICB9LFxcbiAge1xcbiAgICBocmVmOiAnaHR0cHM6Ly93d3cubnBtanMuY29tL3BhY2thZ2UvQHpvb3BsdXMvem9vLXdlYi1jb21wb25lbnRzJyxcXG4gICAgdGV4dDogJ05QTScsXFxuICAgIHR5cGU6ICdzdGFuZGFyZCdcXG4gIH1dO1xcbjxcXC9zY3JpcHQ+YDtcblx0b25Nb3VudCgoKSA9PiB7XG5cdFx0bGlzdC5pdGVtcyA9IFtcblx0XHRcdHtcblx0XHRcdFx0aGVhZGVyOiAnQVBJJ1xuXHRcdFx0fSxcblx0XHRcdHtcblx0XHRcdFx0aGVhZGVyOiAnU2xvdHMnXG5cdFx0XHR9XG5cdFx0XTtcblx0XHRleGFtcGxlRm9vdGVyLmZvb3RlcmxpbmtzID0gW1xuXHRcdFx0e1xuXHRcdFx0XHRocmVmOiAnaHR0cHM6Ly9naXRodWIuY29tL3pvb3BsdXMvem9vLXdlYi1jb21wb25lbnRzJyxcblx0XHRcdFx0dGV4dDogJ0dpdGh1YicsXG5cdFx0XHRcdHR5cGU6ICdzdGFuZGFyZCdcblx0XHRcdH0sXG5cdFx0XHR7XG5cdFx0XHRcdGhyZWY6ICdodHRwczovL3d3dy5ucG1qcy5jb20vcGFja2FnZS9Aem9vcGx1cy96b28td2ViLWNvbXBvbmVudHMnLFxuXHRcdFx0XHR0ZXh0OiAnTlBNJyxcblx0XHRcdFx0dHlwZTogJ3N0YW5kYXJkJ1xuXHRcdFx0fVxuXHRcdF07XG5cdH0pO1xuPC9zY3JpcHQ+Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQStDd0IsWUFBWSxBQUFDLENBQUMsQUFDcEMsT0FBTyxDQUFFLElBQUksQ0FDYixjQUFjLENBQUUsR0FBRyxDQUNuQixlQUFlLENBQUUsWUFBWSxBQUFFLENBQUMsQUFFbEMsS0FBSyxDQUFFLFFBQVEsQUFBQyxDQUFDLEFBQ2YsS0FBSyxDQUFFLEdBQUcsQUFBRSxDQUFDLEFBRWYsUUFBUSxBQUFDLENBQUMsQUFDUixRQUFRLENBQUUsSUFBSSxBQUFFLENBQUMifQ== */</style>`;
 
 			init(this, { target: this.shadowRoot }, instance$9, create_fragment$9, safe_not_equal, []);
 

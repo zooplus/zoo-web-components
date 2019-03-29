@@ -24,6 +24,9 @@
 							<li>
 								<b>disabled</b> - flag indicating whether the anchor link should be disabled
 							</li>
+							<li>
+								<b>copyright</b> - text to be presented as a copyright unde links (foe example, 'zooplus AG')
+							</li>
 						</ul>
 					</li>
 				</ul>

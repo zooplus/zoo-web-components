@@ -77,7 +77,7 @@
 			<hr>
 		</div>
 	</div>
-	<zoo-footer class="footer" bind:this={footer}></zoo-footer> 
+	<zoo-footer class="footer" bind:this={footer} copyright="zooplus AG"></zoo-footer> 
 </div>
 
 <style type="text/scss">

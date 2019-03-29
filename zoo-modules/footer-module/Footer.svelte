@@ -12,9 +12,11 @@
 		</ul>
 	</div>
 </div>
-<div class="footer-copyright">
-	© zooplus AG {currentYear} <!-- TODO let this be a prop-->
-</div>
+{#if copyright}
+	<div class="footer-copyright">
+		© {copyright} {currentYear}
+	</div>
+{/if}
 
 <style type='text/scss'>
 	@import "variables";
@@ -68,5 +70,6 @@
 
 <script>
 	export let footerlinks = [];
+	export let copyright = '';
 	let currentYear = new Date().getFullYear();
 </script>

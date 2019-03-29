@@ -31,6 +31,7 @@
 	.inner-content {
 		flex: 1 0 auto;
 		width: 70%;
+		margin: 0 auto;
 		.feedback-tooltip {
 			height: 60px;
 			margin-bottom: 15px;

@@ -73,7 +73,7 @@
 	  height: 16px;
 	  content: "";
 	  border-radius: 3px;
-	  border: 2px solid #3c9700;
+	  border: 2px solid var(--main-color);
 	  background: white;
 	}
 	::slotted(input[type="checkbox"]:checked)::before {

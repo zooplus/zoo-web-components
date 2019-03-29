@@ -36,7 +36,7 @@
 	}
 	.buttons-holder {
 		display: flex;
-		justify-content: end;
+		justify-content: flex-end;
 		flex-direction: row;
 		flex-grow: 1;
 		padding: 0 25px 0 0;

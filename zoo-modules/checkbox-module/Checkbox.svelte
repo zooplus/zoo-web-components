@@ -26,7 +26,7 @@
 		}
 	  }
 	  &.clicked {
-		border-color: var(--main-color) !important;
+		border-color: var(--main-color, #{$main-color}) !important;
 	  }
 	  &.error {
 	    border-color: $error-text-color;
@@ -73,11 +73,11 @@
 	  height: 16px;
 	  content: "";
 	  border-radius: 3px;
-	  border: 2px solid var(--main-color);
+	  border: 2px solid var(--main-color, #{$main-color});
 	  background: white;
 	}
 	::slotted(input[type="checkbox"]:checked)::before {
-	  background: var(--main-color);
+	  background: var(--main-color, #{$main-color});
 	}
 	::slotted(input[type="checkbox"]:checked)::after {
 	  content: "";

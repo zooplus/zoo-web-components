@@ -13,7 +13,7 @@
 	</div>
 </div>
 <div class="footer-copyright">
-	© zooplus AG {currentYear}
+	© zooplus AG {currentYear} <!-- TODO let this be a prop-->
 </div>
 
 <style type='text/scss'>
@@ -23,8 +23,8 @@
 	}
 	.footer-links {
 	  display: flex;
-	  background-image: linear-gradient(left, var(--main-color), var(--main-color-light));
-	  background-image: -webkit-linear-gradient(left, var(--main-color), var(--main-color-light));
+	  background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+	  background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
 	  justify-content: center;
 	  padding: 10px 30px;
 	  flex-wrap: wrap;

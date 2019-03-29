@@ -20,8 +20,8 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			background-image: linear-gradient(left, var(--main-color), var(--main-color-light));
-			background-image: -webkit-linear-gradient(left, var(--main-color), var(--main-color-light));
+			background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+			background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
 			color: $white;
 			border: 0;
 			border-radius: 3px;
@@ -32,20 +32,20 @@
 			font-weight: bold;
 			text-align: center;
 			&:hover, &:focus {
-				background: var(--main-color);
+				background: var(--main-color, #{$main-color});
 			}
 			&:active {
-				background: var(--main-color-dark);
+				background: var(--main-color-dark, #{$main-color-dark});
 				transform: translateY(1px);
 			}
 			&.hot {
-				background-image: linear-gradient(left, var(--secondary-color), var(--secondary-color-light));
-				background-image: -webkit-linear-gradient(left, var(--secondary-color), var(--secondary-color-light));
+				background-image: linear-gradient(left, var(--secondary-color, #{$secondary-color}), var(--secondary-color-light, #{$secondary-color-light}));
+				background-image: -webkit-linear-gradient(left, var(--secondary-color, #{$secondary-color}), var(--secondary-color-light, #{$secondary-color-light}));
 				&:hover, &:focus {
-					background: var(--secondary-color);
+					background: var(--secondary-color, #{$secondary-color});
 				}
 				&:active {
-					background: var(--secondary-color-dark);
+					background: var(--secondary-color-dark, #{$secondary-color-dark});
 				}
 			}
 			&:disabled {

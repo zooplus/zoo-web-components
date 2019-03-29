@@ -83,12 +83,12 @@
 <style type="text/scss">
 	@import "variables";
 	:root {
-		--main-color: #{$main-color};
-		--main-color-light: #{$main-color-light};
-		--main-color-dark: #{$main-color-dark};
-		--secondary-color: #{$secondary-color};
-		--secondary-color-light: #{$secondary-color-light};
-		--secondary-color-dark: #{$secondary-color-dark};
+		// --main-color: #{$main-color};
+		// --main-color-light: #{$main-color-light};
+		// --main-color-dark: #{$main-color-dark};
+		// --secondary-color: #{$secondary-color};
+		// --secondary-color-light: #{$secondary-color-light};
+		// --secondary-color-dark: #{$secondary-color-dark};
 	}
 	.app {
 		margin: 0 auto;
@@ -100,7 +100,7 @@
 	.page-content {
 		position: relative;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		grid-template-columns: 320px 1fr;
 		grid-gap: 30px;
 		grid-template-areas:
 			"overview overview"
@@ -108,7 +108,7 @@
 			"spec-docs content";
 	}
 	.what-list {
-		color: var(--main-color);
+		color: var(--main-color, #{$main-color});
 		font-size: 20px;
 	}
 	.link-wrapper {
@@ -144,7 +144,7 @@
 		grid-area: content;
 	}
 	hr {
-		color: var(--main-color);
+		color: var(--main-color, #{$main-color});
 		margin: 45px 0;
 	}
 	.footer {

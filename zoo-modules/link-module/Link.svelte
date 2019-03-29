@@ -28,12 +28,12 @@
 	        }
 		}
 	    &.green {
-	       color: var(--main-color);
+	       color: var(--main-color, #{$main-color});
 	      &:hover, &:focus, &:active {
-	        color: var(--main-color-dark);
+	        color: var(--main-color-dark, #{$main-color-dark});
 	      }
 	      &:visited {
-	        color: var(--main-color-light);
+	        color: var(--main-color-light, #{$main-color-light});
 	      }
 	    }
 	    &.standard {

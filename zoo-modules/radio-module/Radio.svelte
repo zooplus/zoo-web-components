@@ -32,7 +32,7 @@
 	  height: 16px;
 	  content: "";
 	  border-radius: 50%;
-	  border: 2px solid var(--main-color);
+	  border: 2px solid var(--main-color, #{$main-color});
 	  background: white;
 	}
 	::slotted(input[type="radio"]:checked)::before {
@@ -46,13 +46,13 @@
 	  width: 6px;
 	  height: 6px;
 	  transform: rotate(40deg);
-	  color: var(--main-color);
+	  color: var(--main-color, #{$main-color});
 	  border: 2px solid;
 	  border-radius: 50%;
 	}
 
 	::slotted(input[type="radio"]:checked)::after {
-		background: var(--main-color);
+		background: var(--main-color, #{$main-color});
 	}
 
 	::slotted(input[type="radio"].focused)::after {

@@ -26,7 +26,7 @@
 		}
 	  }
 	  &.clicked {
-	    border-color: $main-color !important;
+		border-color: var(--main-color) !important;
 	  }
 	  &.error {
 	    border-color: $error-text-color;
@@ -77,7 +77,7 @@
 	  background: white;
 	}
 	::slotted(input[type="checkbox"]:checked)::before {
-	  background: $main-color;
+	  background: var(--main-color);
 	}
 	::slotted(input[type="checkbox"]:checked)::after {
 	  content: "";

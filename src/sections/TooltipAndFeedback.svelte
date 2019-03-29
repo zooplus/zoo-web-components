@@ -28,7 +28,6 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
 	.inner-content {
 		flex: 1 0 auto;
 		width: 70%;

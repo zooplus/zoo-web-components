@@ -4,15 +4,10 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
 	.box {
 	  height: 56px;
-	  background-image: linear-gradient(left, $main-color, $main-color-light);
-	  background-image: -webkit-linear-gradient(
-	    left,
-	    $main-color,
-	    $main-color-light
-	  );
+	  background-image: linear-gradient(left, var(--main-color), var(--main-color-light));
+	  background-image: -webkit-linear-gradient(left, var(--main-color), var(--main-color-light));
 	}
 	::slotted(*:first-child) {
 		display: flex;

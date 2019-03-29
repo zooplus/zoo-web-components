@@ -46,8 +46,6 @@
 	</div>
 </zoo-modal>
 <style type='text/scss'>
-	@import "variables";
-	
 	.buttons {
 		max-width: 1280px;
 		margin: 20px auto;

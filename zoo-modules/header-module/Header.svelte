@@ -28,7 +28,7 @@
 
 	  .app-name {
 		display: inline-block;
-	    color: $main-color;
+	    color: var(--main-color);
 		font-size: 21px;
 		padding: 0 25px 0 0;
 		line-height: 16px;

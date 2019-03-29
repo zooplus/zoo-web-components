@@ -46,7 +46,7 @@
 	  width: 6px;
 	  height: 6px;
 	  transform: rotate(40deg);
-	  color: $main-color;
+	  color: var(--main-color);
 	  border: 2px solid;
 	  border-radius: 50%;
 	}

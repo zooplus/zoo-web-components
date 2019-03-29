@@ -20,12 +20,8 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			background-image: linear-gradient(left, $main-color, $main-color-light);
-			background-image: -webkit-linear-gradient(
-				left,
-				$main-color,
-				$main-color-light
-			);
+			background-image: linear-gradient(left, var(--main-color), var(--main-color-light));
+			background-image: -webkit-linear-gradient(left, var(--main-color), var(--main-color-light));
 			color: $white;
 			border: 0;
 			border-radius: 3px;
@@ -36,28 +32,20 @@
 			font-weight: bold;
 			text-align: center;
 			&:hover, &:focus {
-				background: $main-color;
+				background: var(--main-color);
 			}
 			&:active {
-				background: $main-color-dark;
+				background: var(--main-color-dark);
 				transform: translateY(1px);
 			}
 			&.hot {
-				background-image: linear-gradient(
-					left,
-					$secondary-color,
-					$secondary-color-light
-				);
-				background-image: -webkit-linear-gradient(
-					left,
-					$secondary-color,
-					$secondary-color-light
-				);
+				background-image: linear-gradient(left, var(--secondary-color), var(--secondary-color-light));
+				background-image: -webkit-linear-gradient(left, var(--secondary-color), var(--secondary-color-light));
 				&:hover, &:focus {
-				background: $secondary-color;
+					background: var(--secondary-color);
 				}
 				&:active {
-					background: $secondary-color-dark;
+					background: var(--secondary-color-dark);
 				}
 			}
 			&:disabled {

@@ -23,8 +23,8 @@
 	}
 	.footer-links {
 	  display: flex;
-	  background-image: linear-gradient(left, $main-color, $main-color-light);
-	  background-image: -webkit-linear-gradient(left, $main-color, $main-color-light);
+	  background-image: linear-gradient(left, var(--main-color), var(--main-color-light));
+	  background-image: -webkit-linear-gradient(left, var(--main-color), var(--main-color-light));
 	  justify-content: center;
 	  padding: 10px 30px;
 	  flex-wrap: wrap;

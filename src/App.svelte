@@ -3,13 +3,13 @@
 	<app-context id="what" text="What is this project?"></app-context>
 	<ul class="what-list">
 		<li>
-			Set of web-components which can be used in any modern UI framework.
+			Set of web-components which can be used in any modern UI framework (or without any).
 		</li>
 		<li>
 			The web-component set implements Z+ shop style guide, which is described here: https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893960.
 		</li>
 		<li>
-			Future releases will include theming, more components, ESM support.
+			Future releases will include more components, ESM support etc.
 		</li>
 	</ul>
 	<div class="page-content">
@@ -75,6 +75,8 @@
 			<hr>
 			<docs-tooltip id="tooltip-doc"></docs-tooltip>
 			<hr>
+			<docs-theming id="theming-doc"></docs-theming>
+			<hr>
 		</div>
 	</div>
 	<zoo-footer class="footer" bind:this={footer} copyright="zooplus AG"></zoo-footer> 
@@ -82,14 +84,6 @@
 
 <style type="text/scss">
 	@import "variables";
-	:root {
-		// --main-color: #{$main-color};
-		// --main-color-light: #{$main-color-light};
-		// --main-color-dark: #{$main-color-dark};
-		// --secondary-color: #{$secondary-color};
-		// --secondary-color-light: #{$secondary-color-light};
-		// --secondary-color-dark: #{$secondary-color-dark};
-	}
 	.app {
 		margin: 0 auto;
 		height: 100%;
@@ -245,6 +239,12 @@
 			target: '',
 			type: 'green',
 			text: 'Tooltip Doc'
+		},
+		{
+			href: '#theming-doc',
+			target: '',
+			type: 'green',
+			text: 'Theming Doc'
 		}
 	];
 	onMount(() => {

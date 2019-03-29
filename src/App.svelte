@@ -100,7 +100,7 @@
 	.page-content {
 		position: relative;
 		display: grid;
-		grid-template-columns: 400px 1fr;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 		grid-gap: 30px;
 		grid-template-areas:
 			"overview overview"
@@ -144,7 +144,6 @@
 		grid-area: content;
 	}
 	hr {
-		display: absolute;
 		color: var(--main-color);
 		margin: 45px 0;
 	}

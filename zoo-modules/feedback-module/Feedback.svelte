@@ -15,7 +15,6 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
 	.box {
 		box-sizing: border-box;
 		background: #F2F3F4;

@@ -9,7 +9,6 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
 	:host {
 		display: flex;
 		position: absolute;

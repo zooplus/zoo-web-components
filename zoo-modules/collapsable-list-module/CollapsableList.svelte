@@ -37,23 +37,23 @@
 			padding: 20px 0;
 			font-size: 14px;
 			line-height: 20px;
-			color: $main-color;
+			color: var(--main-color, #{$main-color});
 			font-weight: bold;
 			cursor: pointer;
 
 			svg {
 				display: flex;
 				margin-left: auto;
-				fill: $main-color;
+				fill: var(--main-color, #{$main-color});
 				transition: transform 0.3s;
 			}
 		}
 		&.active {
 			border: 1px solid rgba(0, 0, 0, 0.2);
 			.header {
-				color: $main-color-dark;
+				color: var(--main-color-dark, #{$main-color-dark});
 				svg {
-					fill: $main-color-dark;
+					fill: var(--main-color-dark, #{$main-color-dark});
 					transform: rotateX(180deg);
 				}
 			}

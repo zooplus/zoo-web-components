@@ -11,7 +11,7 @@
 		margin-left: 20px;
 	}
 	h2 {
-		color: #3C9700;
+		color: var(--main-color, #3C9700);
 	}
 </style>
 

@@ -6,7 +6,6 @@
 </ul>
 
 <style type="text/scss">
-	@import "variables";
 	ul {
 		padding: 0;
 		li {

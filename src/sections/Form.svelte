@@ -81,7 +81,6 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
 	.form {
 		flex: 1 0 auto;
 		margin: 20px auto;

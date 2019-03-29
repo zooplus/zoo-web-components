@@ -1,6 +1,6 @@
 <svelte:options tag="docs-tooltip"></svelte:options>
 
-<app-context text="Toast component API."></app-context>
+<app-context text="Tooltip component API."></app-context>
 <div class="doc-element">
 	<div class="list">
 		<zoo-collapsable-list bind:this={list}>
@@ -21,18 +21,35 @@
 	</div>
 	<div class="example">
 		<code><pre>{example}</pre></code>
+		will produce the following:
+		<div style="width: 250px;">
+			<zoo-button class="top-tooltip">
+				<div slot="buttoncontent">
+					Button
+					<zoo-tooltip text="Tooltip text"></zoo-tooltip>
+				</div>
+			</zoo-button>
+		</div>
 	</div>
 </div>
 
 <style type="text/scss">
 	@import "shared";
+	zoo-tooltip {
+		display: none;
+	}
+	.top-tooltip:hover {
+		zoo-tooltip {
+			display: block;
+		}
+	}
 </style>
 
 <script>
 	import { onMount } from 'svelte';
 	let list;
 	let inputSlotExample = `<slot name="inputelement"></slot>`;
-	let example = `<zoo-button>\n  <div slot="buttoncontent">\n    Disabled :(\n    <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n  </div>\n</zoo-button>`;
+	let example = `<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

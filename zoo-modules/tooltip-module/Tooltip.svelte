@@ -69,7 +69,8 @@
 	  background: white;
 	  border-radius: 3px;
 	  .text {
-	  	white-space: pre;
+		  white-space: pre;
+		  color: black;
 	  }
 	}
 	.tip {

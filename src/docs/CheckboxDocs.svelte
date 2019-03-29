@@ -25,7 +25,6 @@
 		</zoo-collapsable-list>
 	</div>
 	<div class="example">
-		<app-context text="Example usage:"></app-context>
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">

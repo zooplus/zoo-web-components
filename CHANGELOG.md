@@ -1,3 +1,6 @@
+# 4.0.0
+Included possibility for theming and new component `zoo-collapsable-list`.
+
 # 3.0.1
 Added iife export back again. how both `iife` and `esm` versions will be published and the user will decide which one to use.
 

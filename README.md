@@ -13,8 +13,8 @@ To use exported modules install this library as a dependency in your application
 + React - https://github.com/GeorgeTailor/react-wc-integration
 
 ## Size of the library
-Uncompressed size of the library is around 50 Kbytes;
-Gzipped version is 12 Kbytes;
+Uncompressed size of the library is around 62 Kbytes;
+Gzipped version is 15 Kbytes;
 
 ## Documentation
 Head over to https://zooplus.github.io/zoo-web-components/ for more info regarding this library.

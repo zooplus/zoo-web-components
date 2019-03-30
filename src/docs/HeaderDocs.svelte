@@ -10,6 +10,9 @@
 						<b>imgsrc</b> - path to logo of your app
 					</li>
 					<li>
+						<b>imgalt</b> - text to be displayed when logo cannot be found
+					</li>
+					<li>
 						<b>headertext</b> - text to be displayed next to the logo
 					</li>
 				</ul>
@@ -23,7 +26,7 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-header imgsrc="logo.png" headertext="App name">
+			<zoo-header imgsrc="logo.png" imgalt="zooplus" headertext="App name">
 		</div>
 	</div>
 </div>
@@ -35,7 +38,7 @@
 <script>
 	import { onMount } from 'svelte';
 	let list;
-	let example = `<div style="width: 250px;">\n  <zoo-header imgsrc="logo.png" headertext="App name"></zoo-header>\n</div>`;
+	let example = `<div style="width: 250px;">\n  <zoo-header imgsrc="logo.png" imgalt="imgalt" headertext="App name"></zoo-header>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

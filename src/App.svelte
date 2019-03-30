@@ -6,7 +6,7 @@
 			Set of web-components which can be used in any modern UI framework (or without any).
 		</li>
 		<li>
-			The web-component set implements Z+ shop style guide, which is described here: https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens/323893960.
+			The web-component set implements Z+ shop style guide.
 		</li>
 		<li>
 			Future releases will include more components, ESM support etc.
@@ -38,7 +38,7 @@
 			<div class="left-menu">
 				{#each doclinks as link}
 					<div class="link-wrapper">
-						<zoo-link href="{link.href}" target="{link.target}" type="{link.type}" text="{link.text}" textalign="left"></zoo-link>
+						<a href="{link.href}" target="{link.target}">{link.text}</a>
 					</div>
 					<hr class="left-menu-separator">
 				{/each}
@@ -107,7 +107,17 @@
 	}
 	.link-wrapper {
 		height: auto;
-		padding: 12px;
+		transition: color 0.3s, background-color 0.3s;
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+			color: white;
+		}
+		a {
+			color: var(--main-color, $main-color);
+			padding: 12px;
+			display: block;
+			text-decoration: none;
+		}
 	}
 	.left-menu-separator {
 		margin: 0;
@@ -138,8 +148,9 @@
 		grid-area: content;
 	}
 	hr {
-		color: var(--main-color, #{$main-color});
+		border-color: var(--main-color, #{$main-color});
 		margin: 45px 0;
+		opacity: 0.3;
 	}
 	.footer {
 		flex-shrink: 0;
@@ -153,98 +164,82 @@
 		{
 			href: '#button-doc',
 			target: '',
-			type: 'green',
-			text: 'Button Doc'
+			text: 'Button'
 		},
 		{
 			href: '#checkbox-doc',
 			target: '',
-			type: 'green',
-			text: 'Checkbox Doc'
+			text: 'Checkbox'
 		},
 		{
 			href: '#collapsable-list-doc',
 			target: '',
-			type: 'green',
-			text: 'Collapsable List Doc'
+			text: 'Collapsable List'
 		},
 		{
 			href: '#feedback-doc',
 			target: '',
-			type: 'green',
-			text: 'Feedback Doc'
+			text: 'Feedback'
 		},
 		{
 			href: '#footer-doc',
 			target: '',
-			type: 'green',
-			text: 'Footer Doc'
+			text: 'Footer'
 		},
 		{
 			href: '#header-doc',
 			target: '',
-			type: 'green',
-			text: 'Header Doc'
+			text: 'Header'
 		},
 		{
 			href: '#input-doc',
 			target: '',
-			type: 'green',
-			text: 'Input Doc'
+			text: 'Input'
 		},
 		{
 			href: '#link-doc',
 			target: '',
-			type: 'green',
-			text: 'Link Doc'
+			text: 'Link'
 		},
 		{
 			href: '#modal-doc',
 			target: '',
-			type: 'green',
-			text: 'Modal Doc'
+			text: 'Modal'
 		},
 		{
 			href: '#navigation-doc',
 			target: '',
-			type: 'green',
-			text: 'Navigation Doc'
+			text: 'Navigation'
 		},
 		{
 			href: '#radio-doc',
 			target: '',
-			type: 'green',
-			text: 'Radio Doc'
+			text: 'Radio'
 		},
 		{
 			href: '#searchable-select-doc',
 			target: '',
-			type: 'green',
-			text: 'Searchable select Doc'
+			text: 'Searchable select'
 		},
 		{
 			href: '#select-doc',
 			target: '',
-			type: 'green',
-			text: 'Select Doc'
+			text: 'Select'
 		},
 		{
 			href: '#toast-doc',
 			target: '',
-			type: 'green',
-			text: 'Toast Doc'
+			text: 'Toast'
 		},
 		{
 			href: '#tooltip-doc',
 			target: '',
-			type: 'green',
-			text: 'Tooltip Doc'
+			text: 'Tooltip'
 		},
 		{
 			href: '#theming-doc',
 			target: '',
-			type: 'green',
-			text: 'Theming Doc'
+			text: 'Theming'
 		}
 	];
 	onMount(() => {
@@ -257,11 +252,6 @@
 			{
 				href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
 				text: 'NPM',
-				type: 'standard'
-			},
-			{
-				href: 'https://zooplus.invisionapp.com/share/XWNXO049ZAD#/screens',
-				text: 'Style guide',
 				type: 'standard'
 			}
 		];

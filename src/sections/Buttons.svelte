@@ -1,6 +1,6 @@
 <svelte:options tag="app-buttons"></svelte:options>
-<zoo-toast text="Search for more than 8.000 products." bind:this={toast}>
-</zoo-toast>
+<zoo-toast text="Search for more than 8.000 products." bind:this={toast}></zoo-toast>
+<zoo-toast text="Added to cart!" bind:this={modalToast}></zoo-toast>
 <app-context text="Second section is a showcase of buttons and modals"></app-context>
 <div class="buttons">
 	<zoo-button size="medium" on:click="{() => toast.show()}">
@@ -40,7 +40,7 @@
 			<input slot="checkboxelement" type="checkbox"/>
 		</zoo-checkbox>
 		<br>
-		<zoo-button type="hot" size="medium" on:click="{() => modal.closeModal()}">
+		<zoo-button type="hot" size="medium" on:click="{() => closeModal()}">
 			<span slot="buttoncontent">Add to cart</span>
 		</zoo-button>
 	</div>
@@ -80,8 +80,13 @@
 <script>
 	let toast;
 	let modal;
+	let modalToast;
 
 	const showModal = () => {
 		modal.style.display = 'block';
 	};
+	const closeModal = () => {
+		modal.closeModal();
+		modalToast.show();
+	}
 </script>

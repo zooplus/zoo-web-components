@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-header"></svelte:options>
 <div class="box">
-	{#if imgsrc}<img class="app-logo" src="{imgsrc}" alt="zooplus"/>{/if}
+	{#if imgsrc}<img class="app-logo" src="{imgsrc}" alt="{imgalt}"/>{/if}
 	{#if headertext}<span class="app-name">{headertext}</span>{/if}
 	<slot></slot>
 </div>
@@ -16,14 +16,15 @@
 	  background: $white;
 	  padding: 0 25px;
 	  height: 70px;
+		}
 
 	  .app-logo {
-		height: 46px;
-		display: inline-block;
-		padding: 5px 25px 5px 0;
-		@media only screen and (max-width: 544px) {
-			height: 36px;
-		}
+			height: 46px;
+			display: inline-block;
+			padding: 5px 25px 5px 0;
+			@media only screen and (max-width: 544px) {
+				height: 36px;
+			}
 	  }
 
 	  .app-name {
@@ -43,4 +44,5 @@
 <script>
 	export let headertext = '';
 	export let imgsrc = '';
+	export let imgalt = '';
 </script>

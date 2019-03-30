@@ -22,7 +22,7 @@
 	<div class="example">
 		<code><pre>{example}</pre></code>
 		will produce the following:
-		<div style="width: 250px;">
+		<div style="width: 250px; margin-bottom: 2px;">
 			<zoo-button class="top-tooltip">
 				<div slot="buttoncontent">
 					Button

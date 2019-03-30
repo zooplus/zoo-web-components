@@ -1,10 +1,10 @@
 .doc-element {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
 }
-.list, .example {
-	width: 45%;
+.list {
+	width: 35%;
+	margin: 0 20px;
 }
 .example {
 	overflow: auto;

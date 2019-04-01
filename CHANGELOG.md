@@ -1,3 +1,6 @@
+# 4.0.5
+Fixed iife prod build not to export classes.
+
 # 4.0.1
 `zoo-footer` now accepts `copyright` attribute to show name of the company for example.
 

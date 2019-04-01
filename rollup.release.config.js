@@ -39,7 +39,7 @@ const shared = {
 
 export default [
 	Object.assign({}, shared, {
-		input: 'src/release.js',
+		input: 'src/components.js',
 		output: {
 			sourcemap: true,
 			format: 'esm',

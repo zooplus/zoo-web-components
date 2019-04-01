@@ -8,13 +8,8 @@
 				</zoo-button>
 			</div>
 			<div class="header-button">
-				<zoo-button type="{theme === 'blue' ? 'hot' : 'cold'}" size="medium" on:click={() => changeTheme('blue')}>
-					<span slot="buttoncontent" class="slotted-span">Blue theme</span>
-				</zoo-button>
-			</div>
-			<div class="header-button">
-				<zoo-button type="{theme === 'red' ? 'hot' : 'cold'}" size="medium" on:click={() => changeTheme('red')}>
-					<span slot="buttoncontent" class="slotted-span">Red theme</span>
+				<zoo-button type="{theme === 'grey' ? 'hot' : 'cold'}" size="medium" on:click={() => changeTheme('grey')}>
+					<span slot="buttoncontent" class="slotted-span">Grey theme</span>
 				</zoo-button>
 			</div>
 		</div>
@@ -109,22 +104,13 @@
 				document.documentElement.style.setProperty('--secondary-color-light', '#FF8800');
 				document.documentElement.style.setProperty('--secondary-color-dark', '#CC4E00');
 				break;
-			case 'blue':
-				document.documentElement.style.setProperty('--main-color', '#040C40');
-				document.documentElement.style.setProperty('--main-color-light', '#040C40');
-				document.documentElement.style.setProperty('--main-color-dark', '#020729');
-				document.documentElement.style.setProperty('--secondary-color', '#5D4200');
-				document.documentElement.style.setProperty('--secondary-color-light', '#745300');
-				document.documentElement.style.setProperty('--secondary-color-dark', '#3B2B00');
-				break;
-			case 'red':
-				document.documentElement.style.setProperty('--main-color', '#440016');
-				document.documentElement.style.setProperty('--main-color-light', '#56001B');
-				document.documentElement.style.setProperty('--main-color-dark', '#310010');
-				document.documentElement.style.setProperty('--secondary-color', '#204400');
-				document.documentElement.style.setProperty('--secondary-color-light', '#295700');
-				document.documentElement.style.setProperty('--secondary-color-dark', '#173100');
-				break;
+			case 'grey':
+				document.documentElement.style.setProperty('--main-color', '#676778');
+				document.documentElement.style.setProperty('--main-color-light', '#838399');
+				document.documentElement.style.setProperty('--main-color-dark', '#565664');
+				document.documentElement.style.setProperty('--secondary-color', '#ff3e00');
+				document.documentElement.style.setProperty('--secondary-color-light', '#ff794d');
+				document.documentElement.style.setProperty('--secondary-color-dark', '#c53100');
 			default:
 				break;
 		}

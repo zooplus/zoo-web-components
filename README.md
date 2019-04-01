@@ -20,10 +20,6 @@ Or add the following line to your `index.html`:
 + [Angular](https://github.com/GeorgeTailor/angular-wc-integration)
 + [React](https://github.com/GeorgeTailor/react-wc-integration)
 
-## Size of the library
-Uncompressed size of the library is around 62 Kbytes;
-Gzipped version is 15 Kbytes;
-
 ## Documentation
 Head over to [online documentation](https://zooplus.github.io/zoo-web-components/) for more info regarding this library.
 

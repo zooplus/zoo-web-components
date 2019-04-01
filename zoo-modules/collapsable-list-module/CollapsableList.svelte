@@ -15,21 +15,26 @@
 
 <style type="text/scss">
 	@import "variables";
+
 	.item ::slotted(*) {
 		display: none;
 	}
+
 	.item.active ::slotted(*) {
 		display: initial;
 	}
+
 	ul {
 		padding: 0;
 	}
+
 	.item {
 		position: relative;
 		color: $grey;
 		list-style-type: none;
 		padding: 0 10px;
 		border: 0px solid black;
+
 		.header {
 			display: flex;
 			align-items: center;
@@ -48,10 +53,13 @@
 				transition: transform 0.3s;
 			}
 		}
+
 		&.active {
 			border: 1px solid rgba(0, 0, 0, 0.2);
+
 			.header {
 				color: var(--main-color-dark, #{$main-color-dark});
+
 				svg {
 					fill: var(--main-color-dark, #{$main-color-dark});
 					transform: rotateX(180deg);

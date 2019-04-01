@@ -14,6 +14,7 @@
 		display: none;
 		position: relative;
 	}
+
 	.toast {
 		width: 240px;
 		min-height: 80px;
@@ -23,21 +24,28 @@
 		display: flex;
 		align-items: center;
 		border-radius: 3px;
+
 		&.info {
 			border-color: #459FD0;
 			color: #459FD0;
+
 			svg {fill: #459FD0;}
 		}
+
 		&.error {
 			border-color: #ED1C24;
 			color: #ED1C24;
+
 			svg {fill: #ED1C24;}
 		}
+
 		&.success {
 			border-color: #3C9700;
 			color: #3C9700;
+
 			svg {fill: #3C9700;}
 		}
+
 		.close {
 			cursor: pointer;
 			margin-left: auto;
@@ -55,10 +63,12 @@
 			padding-right: 5px;
 		}
 	}
+
 	.toast.hide {
 		opacity: 0;
 		transform: translate3d(100%,0,0);
 	}
+
 	.toast.show {
 		opacity: 1;
 		transform: translate3d(0,0,0);

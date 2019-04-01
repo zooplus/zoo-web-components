@@ -8,6 +8,7 @@
 <style type="text/scss">
 	ul {
 		padding: 0;
+
 		li {
 			list-style-type: none;
 		}

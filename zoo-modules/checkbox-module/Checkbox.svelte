@@ -10,98 +10,115 @@
 
 <style type='text/scss'>
 	@import "variables";
+
 	.box {
-	  width: 100%;
-	  display: flex;
-	  position: relative;
-	  box-sizing: border-box;
-	  cursor: pointer;
-	  &.highlighted {
-	    border: 2px solid;
-	    border-color: $whisper;
-	    border-radius: 3px;
-	    padding: 13px 15px;
-		&.focused {
-			border-color: $matterhorn;
+		width: 100%;
+		display: flex;
+		position: relative;
+		box-sizing: border-box;
+		cursor: pointer;
+
+		&.highlighted {
+			border: 2px solid;
+			border-color: $whisper;
+			border-radius: 3px;
+			padding: 13px 15px;
+
+			&.focused {
+				border-color: $matterhorn;
+			}
 		}
-	  }
-	  &.clicked {
-		border-color: var(--main-color, #{$main-color}) !important;
-	  }
-	  &.error {
-	    border-color: $error-text-color;
-	    .input-slot {
-	      .input-label {
-	        color: $error-text-color;
-	      }
-	    }
-	  }
-	  &.disabled {
-	    cursor: not-allowed;
-	    .input-slot {
-	      cursor: not-allowed;
-	      .input-label {
-	        color: $grey-chateau;
-	      }
-	    }
-	  }
-	  .input-slot {
-	    width: 100%;
-	    display: flex;
-	    flex-direction: row;
-	    cursor: pointer;
-	    .input-label {
-	      display: flex;
-	      align-items: center;
-	      position: relative;
-	      left: 5px;
-	    }
-	  }
+
+		&.clicked {
+			border-color: var(--main-color, #{$main-color}) !important;
+		}
+
+		&.error {
+			border-color: $error-text-color;
+
+			.input-slot {
+				.input-label {
+					color: $error-text-color;
+				}
+			}
+		}
+
+		&.disabled {
+			cursor: not-allowed;
+
+			.input-slot {
+				cursor: not-allowed;
+
+				.input-label {
+					color: $grey-chateau;
+				}
+			}
+		}
+
+		.input-slot {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			cursor: pointer;
+
+			.input-label {
+				display: flex;
+				align-items: center;
+				position: relative;
+				left: 5px;
+			}
+		}
 	}
+
 	::slotted(input[type="checkbox"]) {
-	  position: relative;
-	  margin: 0;
-	  -webkit-appearance: none;
-	  -moz-appearance: none;
-	  outline: none;
-	  cursor: pointer;
+		position: relative;
+		margin: 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		outline: none;
+		cursor: pointer;
 	}
+
 	::slotted(input[type="checkbox"])::before {
-	  position: relative;
-	  display: inline-block;
-	  width: 16px;
-	  height: 16px;
-	  content: "";
-	  border-radius: 3px;
-	  border: 2px solid var(--main-color, #{$main-color});
-	  background: white;
+		position: relative;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		content: "";
+		border-radius: 3px;
+		border: 2px solid var(--main-color, #{$main-color});
+		background: white;
 	}
+
 	::slotted(input[type="checkbox"]:checked)::before {
-	  background: var(--main-color, #{$main-color});
+		background: var(--main-color, #{$main-color});
 	}
+
 	::slotted(input[type="checkbox"]:checked)::after {
-	  content: "";
-	  position: absolute;
-	  top: 3px;
-	  left: 7px;
-	  width: 4px;
-	  height: 8px;
-	  border-bottom: 2px solid;
-	  border-right: 2px solid;
-	  transform: rotate(40deg);
-	  color: white;
+		content: "";
+		position: absolute;
+		top: 3px;
+		left: 7px;
+		width: 4px;
+		height: 8px;
+		border-bottom: 2px solid;
+		border-right: 2px solid;
+		transform: rotate(40deg);
+		color: white;
 	}
 
 	::slotted(input[type="checkbox"]:disabled) {
-	  cursor: not-allowed;
+		cursor: not-allowed;
 	}
+
 	::slotted(input[type="checkbox"]:disabled)::before {
-	  border-color: $grey;
-	  background-color: $whisper;
+		border-color: $grey;
+		background-color: $whisper;
 	}
+
 	::slotted(input[type="checkbox"].error)::before {
-	  border-color: $error-text-color;
-	  transition: border-color 0.3s ease;
+		border-color: $error-text-color;
+		transition: border-color 0.3s ease;
 	}
 </style>
 
@@ -154,12 +171,12 @@
 	});
 	  
 	onMount(() => {
-		_inputSlot.addEventListener("slotchange", e => {
+		_inputSlot.addEventListener("slotchange", () => {
 			_slottedInput = _inputSlot.assignedNodes()[0];
-			_slottedInput.addEventListener('focus', e => {
+			_slottedInput.addEventListener('focus', () => {
 				_focused = true;
 			});
-			_slottedInput.addEventListener('blur', e => {
+			_slottedInput.addEventListener('blur', () => {
 				_focused = false;
 			});
 			changeValidState(valid);

@@ -7,12 +7,14 @@
 
 <style type='text/scss'>
 	@import "variables";
+
 	.label {
 		font-size: 14px;
 		font-weight: 800;
 		line-height: 20px;
 		color: $matterhorn;
 	}
+
 	.error {
 		color: $error-text-color;
 	}

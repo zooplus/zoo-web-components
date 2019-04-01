@@ -19,6 +19,7 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
+
 	.error-triangle {
 		animation: hideshow 0.5s ease;
 		position: absolute;
@@ -26,50 +27,58 @@
 		top: 0;
 		padding: 11px;
 		color: $error-text-color;
+
 		& > path {
 			fill: $error-text-color;
 		}
 	}
+
 	::slotted(input), 
 	::slotted(textarea) {
-	  width: 100%;
-	  font-size: 14px;
-	  line-height: 20px;
-	  padding: 13px 35px 13px 15px;
-	  border: 1px solid;
-	  border-color: $border-color;
-	  border-radius: 3px;
-	  color: $matterhorn;
-	  outline: none;
-	  box-sizing: border-box;
-	  text-overflow: ellipsis;
-	  -moz-appearance: textfield;
+		width: 100%;
+		font-size: 14px;
+		line-height: 20px;
+		padding: 13px 35px 13px 15px;
+		border: 1px solid;
+		border-color: $border-color;
+		border-radius: 3px;
+		color: $matterhorn;
+		outline: none;
+		box-sizing: border-box;
+		text-overflow: ellipsis;
+		-moz-appearance: textfield;
 	}
+
 	::slotted(input)::-webkit-inner-spin-button {
-	  -webkit-appearance: none;
-	  margin: 0;
+		-webkit-appearance: none;
+		margin: 0;
 	}
+
 	::slotted(input)::-webkit-outer-spin-button {
-	  -webkit-appearance: none;
-	  margin: 0;
+		-webkit-appearance: none;
+		margin: 0;
 	}
+
 	::slotted(input::placeholder),
 	::slotted(textarea::placeholder) {
-	  color: $placeholder-color;
-	  opacity: 1;
+		color: $placeholder-color;
+		opacity: 1;
 	}
+
 	::slotted(input:disabled),
 	::slotted(textarea:disabled) {
-	  border-color: #e6e6e6;
-	  background-color: #f2f3f4;
-	  color: #97999c;
-	  cursor: not-allowed;
+		border-color: #e6e6e6;
+		background-color: #f2f3f4;
+		color: #97999c;
+		cursor: not-allowed;
 	}
+
 	::slotted(input:focus),
 	::slotted(textarea:focus) {
-	  border: 2px solid;
-	  padding: 12px 34px 12px 14px;
+		border: 2px solid;
+		padding: 12px 34px 12px 14px;
 	}
+
 	::slotted(input.error),
 	::slotted(textarea.error) {
 		transition: border-color 0.3s ease;
@@ -77,11 +86,13 @@
 		padding: 12px 34px 12px 14px;
 		border-color: $error-text-color;
 	}
+
 	.input-slot.no-padding ::slotted(input) {
 		padding: 0;
 	}
 	@keyframes hideshow {
 		0% { opacity: 0; }
+
 		100% { opacity: 1; }
 	} 
 </style>
@@ -110,7 +121,7 @@
 	});
 	  
 	onMount(() => {
-		_inputSlot.addEventListener("slotchange", e => {
+		_inputSlot.addEventListener("slotchange", () => {
 			let nodes = _inputSlot.assignedNodes();
 			_slottedInput = nodes[0];
 			changeValidState(valid);

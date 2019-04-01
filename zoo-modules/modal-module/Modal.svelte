@@ -15,9 +15,11 @@
 
 <style type='text/scss'>
 	@import "variables";
+
 	:host {
 		display: none;
 	}
+
 	.box {
 		position: fixed;
 		width: 100%;
@@ -31,14 +33,17 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
 		.dialog-content {
 			padding: 30px 40px;
 			box-sizing: border-box;
 			background: white;
+
 			.heading {
 				display: flex;
 				flex-direction: row;
 				align-items: flex-start;
+
 				.close {
 					cursor: pointer;
 					margin-left: auto;
@@ -58,19 +63,24 @@
 			}
 		}
 	}
+
 	.box.show {
 		opacity: 1;
 	}
+
 	.box.hide {
 		opacity: 0;
 	}
+
 	.box .dialog-content {
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;
 	}
+
 	.box.show .dialog-content {
 		animation-name: anim-show;
 	}
+
 	.box.hide .dialog-content {
 		animation-name: anim-hide;
 	}
@@ -79,6 +89,7 @@
 			opacity: 0;
 			transform: scale3d(0.9, 0.9, 1);
 		}
+
 		100% {
 			opacity: 1; 
 			transform: scale3d(1, 1, 1);
@@ -88,6 +99,7 @@
 		0% {
 			opacity: 1;
 		}
+
 		100% {
 			opacity: 0;
 			transform: scale3d(0.9, 0.9, 1);

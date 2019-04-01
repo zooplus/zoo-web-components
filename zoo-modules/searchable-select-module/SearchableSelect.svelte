@@ -5,10 +5,10 @@
 			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
 			</zoo-tooltip>
 		{/if}
-		<zoo-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{event => handleInputClick(event)}"
+		<zoo-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{() => handleInputClick()}"
 			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
 			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
-			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{event => handleSearchChange(event)}"/>
+			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
@@ -21,23 +21,29 @@
 
 <style type='text/scss'>
 	@import "variables";
+
 	:host {
 		position: relative;
 	}
+
 	.box {
 		position: relative;
+
 		&:hover {
 			.selected-options {
 				display: block;
 			}
 		}
 	}
+
 	.selected-options {
 		display: none;
+
 		&:hover {
 			display: block;
 		}
 	}
+
 	::slotted(select.searchable-zoo-select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
@@ -66,12 +72,13 @@
 	}
 
 	::slotted(select:disabled) {
-	  border-color: #e6e6e6;
-	  background-color: #f2f3f4;
-	  color: #97999c;
+		border-color: #e6e6e6;
+		background-color: #f2f3f4;
+		color: #97999c;
 	}
+
 	::slotted(select:disabled:hover) {
-	  cursor: not-allowed;
+		cursor: not-allowed;
 	}
 </style>
 
@@ -105,18 +112,18 @@
 
 	onMount(() => {
 		_isMobile = isMobile();
-		_selectSlot.addEventListener("slotchange", e => {
+		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
-			_selectElement.addEventListener('change', event => handleOptionClick(event));
+			_selectElement.addEventListener('change', () => handleOptionClick());
 			options = _selectElement.options;
 			for (const option of options) {
-				option.addEventListener('click', event => handleOptionClick(event));
+				option.addEventListener('click', () => handleOptionClick());
 			}
 			if (!options || options.length < 1) {
 				tooltipText = null;
 			}
-			_selectElement.addEventListener('blur', event => {
+			_selectElement.addEventListener('blur', () => {
 				_hideSelectOptions();
 			});
 			if (_selectElement.multiple === true) {
@@ -126,7 +133,7 @@
 			_hideSelectOptions();
 			changeValidState(valid);
 	    });
-		searchableInput.addEventListener('focus', event => {
+		searchableInput.addEventListener('focus', () => {
 			_selectElement.classList.remove('hidden');
 		});
 		searchableInput.addEventListener('blur', event => {
@@ -136,7 +143,7 @@
 		});
 	});
 
-	const handleSearchChange = event => {
+	const handleSearchChange = () => {
 		const inputVal = searchableInput.value.toLowerCase();
 		for (const option of options) {
 			if (option.text.toLowerCase().startsWith(inputVal)) option.style.display = 'block';
@@ -144,13 +151,13 @@
 		}
 	};
 
-	const handleInputClick = event => {
+	const handleInputClick = () => {
 		if (!multiple) {
 			_selectElement.size = 4;
 		}
 	}
 
-	const handleOptionClick = event => {
+	const handleOptionClick = () => {
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';

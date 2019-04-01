@@ -17,53 +17,61 @@
 <style type='text/scss'>
 	@import "variables";
 	@import "input";
+
 	.arrows {
 		position: absolute;
 		right: 5px;
 		top: 13px;
 		transform: rotate(90deg);
+
 		& > path {
 			fill: $matterhorn;
 		}
+
 		&.error {
 			& > path {
 				fill: $error-text-color;
 			}
 		}
 	}
+
 	::slotted(select) {
-	  -webkit-appearance: none;
-	  -moz-appearance: none;
-	  width: 100%;
-	  background: white;
-	  line-height: 20px;
-	  padding: 13px 15px;
-	  border: 1px solid;
-	  border-color: $border-color;
-	  border-radius: 3px;
-	  color: $matterhorn;
-	  outline: none;
-	  box-sizing: border-box;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		width: 100%;
+		background: white;
+		line-height: 20px;
+		padding: 13px 15px;
+		border: 1px solid;
+		border-color: $border-color;
+		border-radius: 3px;
+		color: $matterhorn;
+		outline: none;
+		box-sizing: border-box;
 		font-size: 13px;
 		overflow: auto;
 	}
+
 	::slotted(select:disabled) {
-	  border-color: #e6e6e6;
-	  background-color: #f2f3f4;
-	  color: #97999c;
+		border-color: #e6e6e6;
+		background-color: #f2f3f4;
+		color: #97999c;
 	}
+
 	::slotted(select:disabled:hover) {
-	  cursor: not-allowed;
+		cursor: not-allowed;
 	}
+
 	::slotted(select:focus) {
-	  border: 2px solid;
-	  padding: 12px 14px;
+		border: 2px solid;
+		padding: 12px 14px;
 	}
+
 	::slotted(select.error) {
-	  border: 2px solid;
-	  padding: 12px 14px;
-	  border-color: $error-text-color;
-	  transition: border-color 0.3s ease;
+		border: 2px solid;
+		padding: 12px 14px;
+		border-color: $error-text-color;
+		transition: border-color 0.3s ease;
 	}
 </style>
 
@@ -92,7 +100,7 @@
 	});
 	  
 	onMount(() => {
-		_selectSlot.addEventListener("slotchange", e => {
+		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_slottedSelect = select;
 			if (select.multiple === true) {

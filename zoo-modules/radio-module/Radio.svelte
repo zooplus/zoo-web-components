@@ -7,48 +7,55 @@
 
 <style type='text/scss'>
 	@import "variables";
+
 	:host {
 		display: flex;
 		flex-direction: column;
 	}
+
 	.template-slot {
 		display: flex;
 	}
+
 	::slotted(input[type="radio"]) {
-	  position: relative;
-	  margin: 0;
-	  -webkit-appearance: none;
-	  -moz-appearance: none;
-	  outline: none;
-	  cursor: pointer;
+		position: relative;
+		margin: 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		outline: none;
+		cursor: pointer;
 	}
+
 	::slotted(input[type="radio"]):focus::before {
-	  border-color: $matterhorn;
+		border-color: $matterhorn;
 	}
+
 	::slotted(input[type="radio"])::before {
-	  position: relative;
-	  display: inline-block;
-	  width: 16px;
-	  height: 16px;
-	  content: "";
-	  border-radius: 50%;
-	  border: 2px solid var(--main-color, #{$main-color});
-	  background: white;
+		position: relative;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		content: "";
+		border-radius: 50%;
+		border: 2px solid var(--main-color, #{$main-color});
+		background: white;
 	}
+
 	::slotted(input[type="radio"]:checked)::before {
 		background: white;
 	}
+
 	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"].focused)::after {
-	  content: "";
-	  position: absolute;
-	  top: 5px;
-	  left: 5px;
-	  width: 6px;
-	  height: 6px;
-	  transform: rotate(40deg);
-	  color: var(--main-color, #{$main-color});
-	  border: 2px solid;
-	  border-radius: 50%;
+		content: "";
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		width: 6px;
+		height: 6px;
+		transform: rotate(40deg);
+		color: var(--main-color, #{$main-color});
+		border: 2px solid;
+		border-radius: 50%;
 	}
 
 	::slotted(input[type="radio"]:checked)::after {
@@ -71,20 +78,24 @@
 	}
 
 	::slotted(input[type="radio"]:disabled) {
-	  cursor: not-allowed;
+		cursor: not-allowed;
 	}
+
 	::slotted(input[type="radio"]:disabled) {
-	  cursor: not-allowed;
+		cursor: not-allowed;
 	}
+
 	::slotted(input[type="radio"]:disabled)::before {
-	  border-color: $grey;
-	  background-color: $whisper;
+		border-color: $grey;
+		background-color: $whisper;
 	}
+
 	::slotted(input[type="radio"].error)::before {
-	  border-color: $error-text-color;
+		border-color: $error-text-color;
 	}
+
 	::slotted(label.error) {
-	  color: $error-text-color;
+		color: $error-text-color;
 	}
 </style>
 
@@ -120,7 +131,7 @@
 	});
 	  
 	onMount(() => {
-		_templateSlot.addEventListener("slotchange", e => {
+		_templateSlot.addEventListener("slotchange", () => {
 			if (!clone) {
 				const template = _templateSlot.assignedNodes()[0];
 				if (template.content) {

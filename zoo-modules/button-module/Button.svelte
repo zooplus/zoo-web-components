@@ -7,14 +7,17 @@
 
 <style type='text/scss'>
 	@import "variables";
+
 	:host {
 		width: 100%;
 		contain: layout;
 	}
+
 	.box {
-	  position: relative;
-	  width: 100%;
-	  height: 100%;
+		position: relative;
+		width: 100%;
+		height: 100%;
+
 		.zoo-btn {
 			display: flex;
 			flex-direction: row;
@@ -31,41 +34,51 @@
 			font-size: 14px;
 			font-weight: bold;
 			text-align: center;
+
 			&:hover, &:focus {
 				background: var(--main-color, #{$main-color});
 			}
+
 			&:active {
 				background: var(--main-color-dark, #{$main-color-dark});
 				transform: translateY(1px);
 			}
+
 			&.hot {
 				background-image: linear-gradient(left, var(--secondary-color, #{$secondary-color}), var(--secondary-color-light, #{$secondary-color-light}));
 				background-image: -webkit-linear-gradient(left, var(--secondary-color, #{$secondary-color}), var(--secondary-color-light, #{$secondary-color-light}));
+
 				&:hover, &:focus {
 					background: var(--secondary-color, #{$secondary-color});
 				}
+
 				&:active {
 					background: var(--secondary-color-dark, #{$secondary-color-dark});
 				}
 			}
+
 			&:disabled {
-					background-image: linear-gradient(left, $whisper, $anti-flash-white);
-					background-image: -webkit-linear-gradient(left, $whisper, $anti-flash-white);
-					color: #7a7a7a;
-					&:hover {
-						cursor: not-allowed;
-					}
+				background-image: linear-gradient(left, $whisper, $anti-flash-white);
+				background-image: -webkit-linear-gradient(left, $whisper, $anti-flash-white);
+				color: #7a7a7a;
+
+				&:hover {
+					cursor: not-allowed;
+				}
 			}
+
 			&.small {
 				font-size: 14px;
 				line-height: 36px !important;
 				padding: 0 8px;
 			}
+
 			&.medium {
 				font-size: 14px;
 				line-height: 46px !important;
 				padding: 0 12px;
 			}
+
 			&.big {
 				font-size: 16px;
 				line-height: 56px !important;

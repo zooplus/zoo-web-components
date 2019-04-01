@@ -28,25 +28,33 @@
 		padding: 15px;
 		width: 100%;
 		height: 100%;
+
 		&.info {
 			border-color: #459FD0;
+
 			svg {fill: #459FD0;}
 		}
+
 		&.error {
 			border-color: #ED1C24;
+
 			svg {fill: #ED1C24;}
 		}
+
 		&.success {
 			border-color: #3C9700;
+
 			svg {fill: #3C9700;}
 		}
+
 		svg {
 			min-height: 35px;
-    		min-width: 35px;
+			min-width: 35px;
 		}
+
 		.text {
 			display: flex;
-    		align-items: center;
+			align-items: center;
 		}
 	}
 </style>

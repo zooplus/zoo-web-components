@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"main": "dist/zoo-components-iife.js",
 	"files": [
 		"dist/zoo-components-esm.js",
@@ -13,6 +13,8 @@
 		"@types/mocha": "^5.2.0",
 		"chai": "^4.2.0",
 		"concurrently": "^4.1.0",
+		"eslint": "^5.15.3",
+		"eslint-plugin-svelte3": "^0.4.5",
 		"mocha": "^5.2.0",
 		"node-sass": "^4.11.0",
 		"puppeteer": "^1.12.2",
@@ -22,13 +24,16 @@
 		"rollup-plugin-svelte": "^5.0.3",
 		"rollup-plugin-terser": "^4.0.4",
 		"serve": "^10.1.2",
+		"stylelint": "^9.10.1",
 		"svelte": "3.0.0-beta.20"
 	},
 	"scripts": {
-		"build": "npm test && rollup -c 'rollup.release.config.js'",
+		"build": "npm run stylelint && npm test && rollup -c 'rollup.release.config.js'",
 		"start": "concurrently --kill-others \"serve docs\"  \"rollup -c -w\"",
 		"test": "rollup -c 'rollup.config.test.js' && (serve docs & mocha --opts mocha.opts) && node cat ./pika.txt",
-		"prepublishOnly": "npm run build"
+		"prepublishOnly": "npm run build",
+		"lint": "eslint --ext '.svelte' zoo-modules",
+		"stylelint": "stylelint 'zoo-modules/**/*.svelte'"
 	},
 	"dependencies": {},
 	"repository": {

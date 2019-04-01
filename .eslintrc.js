@@ -18,6 +18,9 @@ module.exports = {
 		"svelte3"
 	],
 	"settings": {
-		"svelte3/ignore-styles": true
+		"svelte3/ignore-styles": true,
+		"svelte3/compiler-options": {
+			customElement: true
+		}
 	}
 };

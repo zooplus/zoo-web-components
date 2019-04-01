@@ -155,7 +155,7 @@
 		documentObserver.observe(_tooltipRoot);
 	});
 	// good enough for v1 I guess....
-	const documentCallback = (entries, observer) => {
+	const documentCallback = (entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				const ir = entry.intersectionRect;
@@ -177,7 +177,7 @@
 			}
 		});
 	}
-	const callback = (entries, observer) => {
+	const callback = (entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				hidden = false;

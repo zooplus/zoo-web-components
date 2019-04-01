@@ -13,6 +13,7 @@
 		font-weight: 800;
 		line-height: 20px;
 		color: $matterhorn;
+		text-align: left;
 	}
 
 	.error {

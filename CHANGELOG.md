@@ -1,3 +1,6 @@
+# 4.0.6
+Fixed label alignment for `InputLabel`.
+
 # 4.0.5
 Fixed iife prod build not to export classes.
 

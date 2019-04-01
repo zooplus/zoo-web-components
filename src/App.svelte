@@ -121,7 +121,7 @@
 		"caniuse caniuse"
 		"spec-docs content";
 
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: 850px) {
 			grid-template-areas: "overview"
 			"caniuse"
 			"spec-docs" 
@@ -136,14 +136,14 @@
 
 	#when {
 		.desktop {
-			@media only screen and (max-width: 768px) {
+			@media only screen and (max-width: 850px) {
 				display: none;
 			}
 		}
 
 		.mobile {
 			display: none;
-			@media only screen and (max-width: 768px) {
+			@media only screen and (max-width: 850px) {
 				display: block;
 			}
 		}

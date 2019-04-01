@@ -40,7 +40,7 @@
 
 	.header-button {
 		display: flex;
-		width: 250px;
+		max-width: 250px;
 		margin-left: 15px;
 
 		zoo-button {

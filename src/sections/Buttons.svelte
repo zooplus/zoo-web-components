@@ -53,7 +53,7 @@
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		grid-gap: 15px;
 		width: 90%;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: 850px) {
 			grid-template-columns: auto;
 		}
 	}

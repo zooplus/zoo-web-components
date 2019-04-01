@@ -51,25 +51,31 @@
 		margin: 20px auto;
 		display: flex;
 		width: 90%;
+
 		zoo-button {
 			margin-left: 15px;
+
 			&:first-of-type {
 				margin-left: 0;
 			}
 		}
 	}
+
 	.slotted-span {
 		display: block;
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
 	}
+
 	zoo-tooltip {
 		display: none;
 	}
+
 	.top-tooltip {
 		position: relative;
 		display: inline-block;
+
 		&:hover {
 			zoo-tooltip {
 				display: block;

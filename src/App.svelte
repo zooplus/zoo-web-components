@@ -84,6 +84,7 @@
 
 <style type="text/scss">
 	@import "variables";
+
 	.app {
 		margin: 0 auto;
 		height: 100%;
@@ -91,27 +92,31 @@
 		flex-direction: column;
 		box-shadow: 15px 0px 40px 0px rgba(85,85,85, 0.3), -15px 0px 40px 0px rgba(85,85,85, 0.3);
 	}
+
 	.page-content {
 		position: relative;
 		display: grid;
 		grid-template-columns: 320px 1fr;
 		grid-gap: 30px;
-		grid-template-areas:
-			"overview overview"
-			"caniuse caniuse"
-			"spec-docs content";
+		grid-template-areas: "overview overview"
+		"caniuse caniuse"
+		"spec-docs content";
 	}
+
 	.what-list {
 		color: var(--main-color, #{$main-color});
 		font-size: 20px;
 	}
+
 	.link-wrapper {
 		height: auto;
 		transition: color 0.3s, background-color 0.3s;
+
 		&:hover {
 			background-color: rgba(0, 0, 0, 0.1);
 			color: white;
 		}
+
 		a {
 			color: var(--main-color, $main-color);
 			padding: 12px;
@@ -119,9 +124,11 @@
 			text-decoration: none;
 		}
 	}
+
 	.left-menu-separator {
 		margin: 0;
 	}
+
 	.overview {
 		grid-area: overview;
 		max-width: 1280px;
@@ -129,29 +136,35 @@
 		flex: 1 0 auto;
 		margin: 0 auto;
 	}
+
 	.caniuse {
 		grid-area: caniuse;
 		width: 100%;
 		flex: 1 0 auto;
 	}
+
 	.caniuse p {
 		max-width: 1280px;
 		margin: 0 auto;
 	}
+
 	.spec-docs {
 		grid-area: spec-docs;
 		position: sticky;
 		top: 0;
 		height: 500px;
 	}
+
 	.content {
 		grid-area: content;
 	}
+
 	hr {
 		border-color: var(--main-color, #{$main-color});
 		margin: 45px 0;
 		opacity: 0.3;
 	}
+
 	.footer {
 		flex-shrink: 0;
 	}

@@ -10,6 +10,7 @@
 		align-items: center;
 		margin-left: 20px;
 	}
+
 	h2 {
 		color: var(--main-color, #3C9700);
 	}

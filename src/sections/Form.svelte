@@ -92,6 +92,7 @@
 		}
 		grid-gap: 20px;
 	}
+
 	.submit {
 		width: 250px;
 		height: 50px;

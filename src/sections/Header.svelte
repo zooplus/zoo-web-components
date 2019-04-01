@@ -29,6 +29,7 @@
 	header {
 		position: relative;
 	}
+
 	.buttons-holder {
 		display: flex;
 		justify-content: flex-end;
@@ -36,10 +37,12 @@
 		flex-grow: 1;
 		padding: 0 25px 0 0;
 	}
+
 	.header-button {
 		display: flex;
 		width: 250px;
 		margin-left: 15px;
+
 		zoo-button {
 			align-self: center;
 		}
@@ -49,6 +52,7 @@
 			}
 		}
 	}
+
 	.nav {
 		position: sticky;
 		top: 0;
@@ -57,9 +61,11 @@
 		font-weight: bold;
 		line-height: 16px;
 		cursor: pointer;
+
 		zoo-link {
 			padding: 0 15px;
 			cursor: pointer;
+
 			&:hover, &:active {
 				background: rgba(255, 255, 255, 0.3);
 			}

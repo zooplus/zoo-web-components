@@ -32,10 +32,12 @@
 		flex: 1 0 auto;
 		width: 70%;
 		margin: 0 auto;
+
 		.feedback-tooltip {
 			height: 60px;
 			margin-bottom: 15px;
 			position: relative;
+
 			&:hover {
 				zoo-tooltip {
 					display: block;
@@ -43,27 +45,33 @@
 			}
 		}
 	}
+
 	.special-tooltip {
 		width: 250px;
 		position: relative;
 		margin: 0 auto;
 		cursor: pointer;
+
 		.slotted-span {
 			line-height: 25px;
 		}
 	}
+
 	.top-tooltip {
 		position: relative;
 		display: inline-block;
+
 		&:hover {
 			zoo-tooltip {
 				display: block;
 			}
 		}
 	}
+
 	zoo-tooltip {
 		display: none;
 	}
+
 	.input-in-tooltip:hover~.nested-tooltip {
 		display: block;
 	}

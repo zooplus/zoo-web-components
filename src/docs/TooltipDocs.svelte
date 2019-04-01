@@ -35,9 +35,11 @@
 
 <style type="text/scss">
 	@import "shared";
+
 	zoo-tooltip {
 		display: none;
 	}
+
 	.top-tooltip:hover {
 		zoo-tooltip {
 			display: block;

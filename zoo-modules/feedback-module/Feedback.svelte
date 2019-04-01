@@ -57,7 +57,7 @@
 			flex-direction: row;
 			align-items: center;
 			height: 100%;
-			overflow: scroll;
+			overflow: auto;
 			box-sizing: border-box;
 			padding: 5px 5px 5px 0;
 		}

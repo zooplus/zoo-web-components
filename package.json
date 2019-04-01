@@ -41,8 +41,11 @@
 	},
 	"keywords": [
 		"web-components",
+		"shadow-dom",
+		"custom-elements",
 		"javascript",
-		"css"
+		"css",
+		"html"
 	],
 	"author": "Yuriy Kravets",
 	"license": "MIT",

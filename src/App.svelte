@@ -126,6 +126,8 @@
 			"caniuse"
 			"spec-docs" 
 			"content";
+			grid-template-columns: 320px;
+			justify-content: center;
 		}
 	}
 

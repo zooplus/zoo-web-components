@@ -11,7 +11,7 @@
 		<path transform="matrix(1 0 0 -1 0 1e3)" d="m501 146c196 0 355 159 355 355 0 196-159 355-355 355-196 0-355-159-355-355 0-196 159-355 355-355zm0 772c230 0 417-187 417-417 0-230-187-417-417-417-230 0-417 187-417 417 0 230 187 417 417 417zm-132-336c28 0 51 23 51 51 0 28-23 51-51 51-28 0-51-23-51-51 0-28 23-51 51-51zm264 0c28 0 51 23 51 51 0 28-23 51-51 51s-51-23-51-51c0-28 23-51 51-51zm-300-141c0-73 83-145 168-145 85 0 168 72 168 145h28 28c0-112-116-203-224-203-108 0-224 91-224 203h28 28z"/>
 		</svg>
 	{/if}
-	<div class="text">{text}</div>
+	<span class="text">{text}</span>
 </div>
 
 <style type='text/scss'>
@@ -25,7 +25,6 @@
 		align-items: center;
 		border-bottom-right-radius: 3px;
 		border-top-right-radius: 3px;
-		padding: 15px;
 		width: 100%;
 		height: 100%;
 
@@ -50,11 +49,17 @@
 		svg {
 			min-height: 35px;
 			min-width: 35px;
+			padding: 0 15px;
 		}
 
 		.text {
 			display: flex;
+			flex-direction: row;
 			align-items: center;
+			height: 100%;
+			overflow: scroll;
+			box-sizing: border-box;
+			padding: 5px 5px 5px 0;
 		}
 	}
 </style>

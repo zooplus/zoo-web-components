@@ -22,19 +22,38 @@
 			<hr>
 		</div>
 		<div id="when" class="caniuse">
-			<app-context text="Where can I use it?"></app-context>
-			<p class="ciu_embed" data-feature="shadowdomv1" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
-				<a href="http://caniuse.com/#feat=shadowdomv1">Can I Use shadowdomv1?</a> Data on support for the shadowdomv1 feature across the major browsers from caniuse.com.
-			</p>
-			<p class="ciu_embed" data-feature="custom-elementsv1" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
-				<a href="http://caniuse.com/#feat=custom-elementsv1">Can I Use custom-elementsv1?</a> Data on support for the custom-elementsv1 feature across the major browsers from caniuse.com.
-			</p>
-			<p class="ciu_embed" data-feature="template" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
-				<a href="http://caniuse.com/#feat=template">Can I Use template?</a> Data on support for the template feature across the major browsers from caniuse.com.
-			</p>
+			<app-context text="When can I use it?" backbtn="{true}"></app-context>
+			<div class="desktop">
+				<p class="ciu_embed" data-feature="shadowdomv1" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
+					<a href="http://caniuse.com/#feat=shadowdomv1">Can I Use shadowdomv1?</a> Data on support for the shadowdomv1 feature across the major browsers from caniuse.com.
+				</p>
+				<p class="ciu_embed" data-feature="custom-elementsv1" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
+					<a href="http://caniuse.com/#feat=custom-elementsv1">Can I Use custom-elementsv1?</a> Data on support for the custom-elementsv1 feature across the major browsers from caniuse.com.
+				</p>
+				<p class="ciu_embed" data-feature="template" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
+					<a href="http://caniuse.com/#feat=template">Can I Use template?</a> Data on support for the template feature across the major browsers from caniuse.com.
+				</p>
+			</div>
+			<div class="mobile">
+				<div class="back-btn">
+					<zoo-button>
+						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=shadowdomv1" target="about:blank">Can I Use shadowdomv1?</a></span>
+					</zoo-button>
+				</div>
+				<div class="back-btn">
+					<zoo-button>
+						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=custom-elementsv1" target="about:blank">Can I Use custom-elementsv1?</a></span>
+					</zoo-button>
+				</div>
+				<div class="back-btn">
+					<zoo-button>
+						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=template" target="about:blank">Can I Use template?</a> </span>
+					</zoo-button>
+				</div>
+			</div>
 		</div>
 		<div id="how" class="spec-docs">
-			<app-context text="How can I use it?"></app-context>
+			<app-context text="How can I use it?" backbtn="{true}"></app-context>
 			<div class="left-menu">
 				{#each doclinks as link}
 					<div class="link-wrapper">
@@ -101,11 +120,43 @@
 		grid-template-areas: "overview overview"
 		"caniuse caniuse"
 		"spec-docs content";
+
+		@media only screen and (max-width: 768px) {
+			grid-template-areas: "overview"
+			"caniuse"
+			"spec-docs" 
+			"content";
+		}
 	}
 
 	.what-list {
 		color: var(--main-color, #{$main-color});
 		font-size: 20px;
+	}
+
+	#when {
+		.desktop {
+			@media only screen and (max-width: 768px) {
+				display: none;
+			}
+		}
+
+		.mobile {
+			display: none;
+			@media only screen and (max-width: 768px) {
+				display: block;
+			}
+		}
+
+		.back-btn {
+			width: 280px;
+			margin: 10px auto;
+
+			a {
+				text-decoration: none;
+				color: white;
+			}
+		}
 	}
 
 	.link-wrapper {

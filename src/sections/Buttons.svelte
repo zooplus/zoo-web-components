@@ -3,10 +3,10 @@
 <zoo-toast text="Added to cart!" bind:this={modalToast}></zoo-toast>
 <app-context text="Second section is a showcase of buttons and modals"></app-context>
 <div class="buttons">
-	<zoo-button size="medium" on:click="{() => toast.show()}">
+	<zoo-button size="small" on:click="{() => toast.show()}">
 		<span slot="buttoncontent" class="slotted-span">Here we have a very long text indeed!</span>
 	</zoo-button>
-	<zoo-button size="medium" disabled="{true}" class="top-tooltip">
+	<zoo-button size="small" disabled="{true}" class="top-tooltip">
 		<div slot="buttoncontent">
 			Disabled :(
 			<zoo-tooltip position="bottom"
@@ -14,7 +14,7 @@
 			</zoo-tooltip>
 		</div>
 	</zoo-button>
-	<zoo-button type="hot" size="medium" on:click="{() => modal.openModal()}">
+	<zoo-button type="hot" size="small" on:click="{() => modal.openModal()}">
 		<span slot="buttoncontent" class="slotted-span">Show modal</span>
 	</zoo-button>
 </div> 
@@ -49,15 +49,12 @@
 	.buttons {
 		max-width: 1280px;
 		margin: 20px auto;
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		grid-gap: 15px;
 		width: 90%;
-
-		zoo-button {
-			margin-left: 15px;
-
-			&:first-of-type {
-				margin-left: 0;
-			}
+		@media only screen and (max-width: 768px) {
+			grid-template-columns: auto;
 		}
 	}
 

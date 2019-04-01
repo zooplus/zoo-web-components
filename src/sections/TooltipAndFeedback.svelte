@@ -47,7 +47,7 @@
 	}
 
 	.special-tooltip {
-		width: 250px;
+		max-width: 250px;
 		position: relative;
 		margin: 0 auto;
 		cursor: pointer;

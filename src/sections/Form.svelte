@@ -91,6 +91,10 @@
 			width: 300px;
 			grid-template-columns: auto;
 		}
+		@media only screen and (max-width: 812px) {
+			grid-template-rows: 120px 150px 120px 120px;
+		}
+		
 		grid-gap: 20px;
 	}
 

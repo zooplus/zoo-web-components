@@ -126,7 +126,7 @@
 			"caniuse"
 			"spec-docs" 
 			"content";
-			grid-template-columns: 320px;
+			grid-template-columns: minmax(320px, 90%);
 			justify-content: center;
 		}
 	}
@@ -178,8 +178,13 @@
 		}
 	}
 
-	.left-menu-separator {
-		margin: 0;
+	.left-menu {	
+		.left-menu-separator {
+			margin: 0;
+		}
+		@media only screen and (max-width: 850px) {
+			display: none;
+		}
 	}
 
 	.overview {
@@ -205,7 +210,7 @@
 		grid-area: spec-docs;
 		position: sticky;
 		top: 0;
-		height: 500px;
+		height: 200px;
 	}
 
 	.content {

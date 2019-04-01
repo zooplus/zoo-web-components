@@ -16,6 +16,7 @@
 		display: flex;
 		align-items: center;
 		margin-left: 20px;
+		background: white;
 	}
 
 	.back-btn {

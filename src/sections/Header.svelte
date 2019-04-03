@@ -17,9 +17,9 @@
 	<zoo-navigation class="nav">
 		<div>
 			{#each navlinks as link}
-				<zoo-link href="{link.href}" target="{link.target}" type="{link.type}"
-					text="{link.text}">
-				</zoo-link>
+				<div class="nav-link">
+					<a href="{link.href}">{link.text}</a>
+				</div>
 			{/each}
 		</div>
 	</zoo-navigation>
@@ -63,12 +63,17 @@
 		line-height: 16px;
 		cursor: pointer;
 
-		zoo-link {
-			padding: 0 15px;
+		.nav-link {
 			cursor: pointer;
-
-			&:hover, &:active {
+			display: flex;
+   			align-items: center;
+			&:hover {
 				background: rgba(255, 255, 255, 0.3);
+			}
+			a {
+				color: white;
+				text-decoration: none;
+				padding: 0 15px;
 			}
 		}
 	}
@@ -79,24 +84,15 @@
 	let navlinks = [
 		{
 			href: '#what',
-			text: 'What is this project?',
-			type: 'standard',
-			target: '',
-			active: false
+			text: 'What is this project?'
 		},
 		{
 			href: '#when',
-			text: 'When can I use it?',
-			type: 'standard',
-			target: '',
-			active: false
+			text: 'When can I use it?'
 		},
 		{
 			href: '#how',
-			text: 'How can I use it?',
-			type: 'standard',
-			target: '',
-			active: false
+			text: 'How can I use it?'
 		}
 	];
 

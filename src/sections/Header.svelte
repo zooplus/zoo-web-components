@@ -12,6 +12,11 @@
 					<span slot="buttoncontent" class="slotted-span">Grey theme</span>
 				</zoo-button>
 			</div>
+			<div class="header-button">
+				<zoo-button type="{theme === 'random' ? 'hot' : 'cold'}" size="medium" on:click={() => generateRandomTheme()}>
+					<span slot="buttoncontent" class="slotted-span">Random theme</span>
+				</zoo-button>
+			</div>
 		</div>
 	</zoo-header>
 	<zoo-navigation class="nav">
@@ -100,22 +105,95 @@
 		theme = pallete;
 		switch (pallete) {
 			case 'zoo':
-				document.documentElement.style.setProperty('--main-color', '#3C9700');
-				document.documentElement.style.setProperty('--main-color-light', '#66B100');
-				document.documentElement.style.setProperty('--main-color-dark', '#286400');
-				document.documentElement.style.setProperty('--secondary-color', '#FF6200');
-				document.documentElement.style.setProperty('--secondary-color-light', '#FF8800');
-				document.documentElement.style.setProperty('--secondary-color-dark', '#CC4E00');
+				setColorVar('--main-color', '#3C9700');
+				setColorVar('--main-color-light', '#66B100');
+				setColorVar('--main-color-dark', '#286400');
+				setColorVar('--secondary-color', '#FF6200');
+				setColorVar('--secondary-color-light', '#FF8800');
+				setColorVar('--secondary-color-dark', '#CC4E00');
 				break;
 			case 'grey':
-				document.documentElement.style.setProperty('--main-color', '#676778');
-				document.documentElement.style.setProperty('--main-color-light', '#838399');
-				document.documentElement.style.setProperty('--main-color-dark', '#565664');
-				document.documentElement.style.setProperty('--secondary-color', '#ff3e00');
-				document.documentElement.style.setProperty('--secondary-color-light', '#ff794d');
-				document.documentElement.style.setProperty('--secondary-color-dark', '#c53100');
+				setColorVar('--main-color', '#676778');
+				setColorVar('--main-color-light', '#838399');
+				setColorVar('--main-color-dark', '#565664');
+				setColorVar('--secondary-color', '#ff3e00');
+				setColorVar('--secondary-color-light', '#ff794d');
+				setColorVar('--secondary-color-dark', '#c53100');
+				break;
+			case 'black':
+				setColorVar('--main-color', '#20232a');
+				setColorVar('--main-color-light', '#3b414e');
+				setColorVar('--main-color-dark', '#0e1013');
+				setColorVar('--secondary-color', '#1cb11c');
+				setColorVar('--secondary-color-light', '#39d639');
+				setColorVar('--secondary-color-dark', '#157915');
+				break;
 			default:
 				break;
 		}
+	}
+
+	const setColorVar = (name, value) => {
+		document.documentElement.style.setProperty(name, value);
+	}
+
+	const generateRandomTheme = () => {
+		theme = 'random';
+		const main = randomRgbaString();
+		const mainHex = rgbToHex(main.r, main.g, main.b);
+		setColorVar('--main-color', mainHex);
+		setColorVar('--main-color-light', lightenDarkenColor(mainHex, 30));
+		setColorVar('--main-color-dark', lightenDarkenColor(mainHex, -30));
+		const second = randomRgbaString();
+		const secondHex = rgbToHex(second.r, second.g, second.b);
+		setColorVar('--secondary-color', rgbToHex(second.r, second.g, second.b));
+		setColorVar('--secondary-color-light', lightenDarkenColor(secondHex, 30));
+		setColorVar('--secondary-color-dark', lightenDarkenColor(secondHex, -30));
+	}
+
+	const randomRgbaString = () => {
+		let r = Math.floor(Math.random() * 255);
+		let g = Math.floor(Math.random() * 255);
+		let b = Math.floor(Math.random() * 255);
+		return {r: r, g: g, b: b};
+	}
+
+	const rgbToHex = (r, g, b) => {
+    	return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+	}
+
+	const componentToHex = (c) => {
+		let hex = c.toString(16);
+		return hex.length == 1 ? "0" + hex : hex;
+	}
+
+	const lightenDarkenColor = (col, amt) => {
+	
+		var usePound = false;
+	
+		if (col[0] == "#") {
+			col = col.slice(1);
+			usePound = true;
+		}
+	
+		var num = parseInt(col,16);
+	
+		var r = (num >> 16) + amt;
+	
+		if (r > 255) r = 255;
+		else if  (r < 0) r = 0;
+	
+		var b = ((num >> 8) & 0x00FF) + amt;
+	
+		if (b > 255) b = 255;
+		else if  (b < 0) b = 0;
+	
+		var g = (num & 0x0000FF) + amt;
+	
+		if (g > 255) g = 255;
+		else if (g < 0) g = 0;
+	
+		return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+	
 	}
 </script>

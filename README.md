@@ -1,6 +1,6 @@
 |                               **Dependencies**                            |               **Size**              | **Downloads**  |
 | :-----------------------------------------------------------------------: |:-----------------------------------:|:--:|
-| ![David](https://img.shields.io/david/dev/zooplus/zoo-web-components.svg) | ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@zooplus/zoo-web-components.svg)   | ![npm](https://img.shields.io/npm/dw/@zooplus/zoo-web-components.svg)
+| ![David](https://img.shields.io/david/dev/zooplus/zoo-web-components.svg) | ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@zooplus/zoo-web-components.svg)   | ![npm](https://img.shields.io/npm/dt/@zooplus/zoo-web-components.svg)
 | ![David](https://img.shields.io/david/zooplus/zoo-web-components.svg)     | ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@zooplus/zoo-web-components.svg)| [![](https://data.jsdelivr.com/v1/package/npm/@zooplus/zoo-web-components/badge)](https://www.jsdelivr.com/package/npm/@zooplus/zoo-web-components)
 
 # Intro

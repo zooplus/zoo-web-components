@@ -19,6 +19,7 @@ Or add the following line to your `index.html`:
 + [VueJS](https://github.com/GeorgeTailor/vue-wc-integration)
 + [Angular](https://github.com/GeorgeTailor/angular-wc-integration)
 + [React](https://github.com/GeorgeTailor/react-wc-integration)
++ [ExtJS](https://github.com/GeorgeTailor/extjs-wc-integration)
 
 ## Documentation
 Head over to [online documentation](https://zooplus.github.io/zoo-web-components/) for more info regarding this library.

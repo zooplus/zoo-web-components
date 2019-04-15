@@ -88,15 +88,6 @@ export default [
 		input: 'src/components.js',
 		output: {
 			sourcemap: true,
-			format: 'esm',
-			file: 'docs/bundle-esm.js',
-			name: 'esm'
-		}
-	}),
-	Object.assign({}, shared, {
-		input: 'src/components.js',
-		output: {
-			sourcemap: true,
 			format: 'iife',
 			file: 'docs/bundle-iife.js',
 			name: 'iife'

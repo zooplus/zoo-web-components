@@ -42,16 +42,16 @@ export default [
 		input: 'src/components.js',
 		output: {
 			sourcemap: true,
-			format: 'esm',
+			format: 'iife',
 			file: 'dist/zoo-components-iife.js',
-			name: 'zoo-web-components'
+			name: 'zooWebComponents'
 		}
 	}),
 	Object.assign({}, shared, {
-		input: 'src/release.js',
+		input: 'src/components.js',
 		output: {
 			sourcemap: true,
-			format: 'iife',
+			format: 'esm',
 			file: 'dist/zoo-components-esm.js',
 			name: 'zooWebComponents'
 		}

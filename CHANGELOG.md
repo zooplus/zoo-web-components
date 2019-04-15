@@ -1,3 +1,6 @@
+# 4.0.7
+`zoo-seachable-select` now performs full text scan instead of checking whether something starts with input value.
+
 # 4.0.6
 Fixed label alignment for `InputLabel`.
 

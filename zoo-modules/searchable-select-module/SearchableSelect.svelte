@@ -146,7 +146,7 @@
 	const handleSearchChange = () => {
 		const inputVal = searchableInput.value.toLowerCase();
 		for (const option of options) {
-			if (option.text.toLowerCase().startsWith(inputVal)) option.style.display = 'block';
+			if (option.text.toLowerCase().indexOf(inputVal) > -1) option.style.display = 'block';
 			else option.style.display = 'none';
 		}
 	};

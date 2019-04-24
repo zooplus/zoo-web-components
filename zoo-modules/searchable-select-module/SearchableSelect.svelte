@@ -115,10 +115,10 @@
 		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
-			_selectElement.addEventListener('change', () => handleOptionClick());
+			_selectElement.addEventListener('change', e => handleOptionClick(e));
 			options = _selectElement.options;
 			for (const option of options) {
-				option.addEventListener('click', () => handleOptionClick());
+				option.addEventListener('click', e => handleOptionClick(e));
 			}
 			if (!options || options.length < 1) {
 				tooltipText = null;
@@ -157,7 +157,7 @@
 		}
 	}
 
-	const handleOptionClick = () => {
+	const handleOptionClick = e => {
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';

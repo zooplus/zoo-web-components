@@ -87,6 +87,10 @@
 		border-color: $error-text-color;
 	}
 
+	::slotted(input[type='date']), ::slotted(input[type='time']) {
+		-webkit-appearance: none;
+	}
+
 	.input-slot.no-padding ::slotted(input) {
 		padding: 0;
 	}

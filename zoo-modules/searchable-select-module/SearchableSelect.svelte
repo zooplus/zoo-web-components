@@ -126,10 +126,10 @@
 				multiple = true;
 			}
 			if (multiple) {
-				_selectElement.addEventListener('click', e => handleMultipleOptionClick(e));
+				_selectElement.addEventListener('click', () => handleMultipleOptionClick());
 				_selectElement.addEventListener('keydown', e => handleMultipleOptionKeydown(e));
 			} else {
-				_selectElement.addEventListener('click', e => handleOptionClick(e));
+				_selectElement.addEventListener('click', () => handleOptionClick());
 				_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
 			}
 
@@ -163,11 +163,11 @@
 
 	const handleMultipleOptionKeydown = e => {
 		if (e.keyCode && e.keyCode === 13) {
-			handleMultipleOptionClick(e);
+			handleMultipleOptionClick();
 		}
 	}
 
-	const handleMultipleOptionClick = e => {
+	const handleMultipleOptionClick = () => {
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';
@@ -182,11 +182,11 @@
 
 	const handleOptionKeydown = e => {
 		if (e.keyCode && e.keyCode === 13) {
-			handleOptionClick(e);
+			handleOptionClick();
 		}
 	}
 
-	const handleOptionClick = e => {
+	const handleOptionClick = () => {
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';

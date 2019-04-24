@@ -5,7 +5,7 @@
 			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
 			</zoo-tooltip>
 		{/if}
-		<zoo-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{() => handleInputClick()}"
+		<zoo-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{() => openSearchableSelect()}"
 			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
 			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
 			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
@@ -139,6 +139,7 @@
 	    });
 		searchableInput.addEventListener('focus', () => {
 			_selectElement.classList.remove('hidden');
+			openSearchableSelect();
 		});
 		searchableInput.addEventListener('blur', event => {
 			if (event.relatedTarget !== _selectElement) {
@@ -155,7 +156,7 @@
 		}
 	};
 
-	const handleInputClick = () => {
+	const openSearchableSelect = () => {
 		if (!multiple) {
 			_selectElement.size = 4;
 		}

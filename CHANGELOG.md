@@ -1,3 +1,6 @@
+# 4.0.9
+`zoo-seachable-select` improved keyboard user experience while using this element.
+
 # 4.0.8
 `zoo-seachable-select` improved keyboard user experience while using this element.
 `zoo-input` - type `date` and `time` now doesn't fall back to native inputs but is more styled like other inputs.

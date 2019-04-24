@@ -115,11 +115,7 @@
 		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
-			_selectElement.addEventListener('change', e => handleOptionClick(e));
 			options = _selectElement.options;
-			for (const option of options) {
-				option.addEventListener('click', e => handleOptionClick(e));
-			}
 			if (!options || options.length < 1) {
 				tooltipText = null;
 			}
@@ -129,6 +125,14 @@
 			if (_selectElement.multiple === true) {
 				multiple = true;
 			}
+			if (multiple) {
+				_selectElement.addEventListener('click', e => handleMultipleOptionClick(e));
+				_selectElement.addEventListener('keydown', e => handleMultipleOptionKeydown(e));
+			} else {
+				_selectElement.addEventListener('click', e => handleOptionClick(e));
+				_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
+			}
+
 			_selectElement.classList.add('searchable-zoo-select');
 			_hideSelectOptions();
 			changeValidState(valid);
@@ -157,6 +161,31 @@
 		}
 	}
 
+	const handleMultipleOptionKeydown = e => {
+		if (e.keyCode && e.keyCode === 13) {
+			handleMultipleOptionClick(e);
+		}
+	}
+
+	const handleMultipleOptionClick = e => {
+		let inputValString = '';
+		for (const selectedOpts of _selectElement.selectedOptions) {
+			inputValString += selectedOpts.text + ', \n';
+		}
+		inputValString = inputValString.substr(0, inputValString.length - 3);
+		tooltipText = inputValString;
+		searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
+		for (const option of options) {
+			option.style.display = 'block';
+		}
+	}
+
+	const handleOptionKeydown = e => {
+		if (e.keyCode && e.keyCode === 13) {
+			handleOptionClick(e);
+		}
+	}
+
 	const handleOptionClick = e => {
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
@@ -165,9 +194,7 @@
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		tooltipText = inputValString;
 		searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
-		if (!multiple) {
-			_hideSelectOptions();
-		}
+		_hideSelectOptions();
 		for (const option of options) {
 			option.style.display = 'block';
 		}
@@ -176,9 +203,6 @@
 	const _hideSelectOptions = () => {
 		_selectElement.classList.add('hidden');
 		searchableInput.value = null;
-		if (!multiple) {
-			_selectElement.size = 1;
-		}
 	}
 
 	const changeValidState = (state) => {

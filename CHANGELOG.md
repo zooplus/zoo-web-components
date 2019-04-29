@@ -1,3 +1,6 @@
+# 4.0.11
+`zoo-toast` fixed svg icon to be independent of text length.
+
 # 4.0.9
 `zoo-seachable-select` improved keyboard user experience while using this element.
 

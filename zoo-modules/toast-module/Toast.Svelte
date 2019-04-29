@@ -50,6 +50,10 @@
 			cursor: pointer;
 			margin-left: auto;
 			align-self: flex-start;
+
+			svg {
+				min-width: auto;
+			}
 		}
 
 		padding: 15px;
@@ -61,6 +65,7 @@
 
 		svg {
 			padding-right: 5px;
+			min-width: 48px;
 		}
 	}
 

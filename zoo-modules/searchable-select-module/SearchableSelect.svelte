@@ -10,6 +10,9 @@
 			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
 			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 		</zoo-input>
+		{#if loading}
+			<zoo-preloader></zoo-preloader>
+		{/if}
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
 		<zoo-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"
@@ -94,6 +97,7 @@
 	export let infotext = "";
 	export let valid = true;
 	export let placeholder = '';
+	export let loading = false;
 	let multiple = false;
 	let searchableInput;
 	let _selectSlot;

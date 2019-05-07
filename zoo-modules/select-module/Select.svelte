@@ -7,7 +7,10 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-		<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 -150 1000 1101" width="25" height="25"><path d="M417 667L456 628 328 501 456 373 417 334 250 501 417 667zM584 667L751 501 584 334 545 373 673 501 545 628 584 667z"/></svg>
+			<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 -150 1000 1101" width="25" height="25"><path d="M417 667L456 628 328 501 456 373 417 334 250 501 417 667zM584 667L751 501 584 334 545 373 673 501 545 628 584 667z"/></svg>
+			{#if loading}
+				<zoo-preloader></zoo-preloader>
+			{/if}
 		{/if}
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -87,6 +90,7 @@
 	export let infotext = "";
 	export let valid = true;
 	export let showicons = true;
+	export let loading = false;
 	let _prevValid;
 	let _multiple = false;
 	let _slottedSelect;

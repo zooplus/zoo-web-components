@@ -1,3 +1,6 @@
+# 4.1.0
+Added new component `zoo-preloader`;
+
 # 4.0.11
 `zoo-toast` fixed svg icon to be independent of text length.
 

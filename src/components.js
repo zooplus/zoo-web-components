@@ -16,3 +16,4 @@ import '../zoo-modules/shared-module/InputLabel.svelte';
 import '../zoo-modules/toast-module/Toast.svelte';
 import '../zoo-modules/collapsable-list-module/CollapsableList.svelte';
 import '../zoo-modules/collapsable-list-module/CollapsableListItem.svelte';
+import '../zoo-modules/shared-module/Preloader.svelte';

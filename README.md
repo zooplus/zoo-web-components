@@ -6,7 +6,6 @@
 # Intro
  - Set of web-components which can be used in any modern UI framework (or without any).
  - The web-component set implements Z+ shop style guide.
- - Future releases will include theming, more components, ESM support.
  - Built with [SvelteJS](https://github.com/sveltejs)
 
 ## Installation

@@ -22,8 +22,8 @@
 	}
 	
 	.bounce>div {
-		width: 12px;
-		height: 12px;
+		width: 10px;
+		height: 10px;
 		background-color: #333;
 		border-radius: 100%;
 		display: inline-block;

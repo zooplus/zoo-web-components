@@ -1,3 +1,7 @@
+# 4.2.0
+`zoo-preloader` - reduced preloader size by 2 px;
+`zoo-select`, `zoo-searchable-select` - added cross to clear the value of the select. Cross will not appear for `zoo-select` with multiple option set as it can be easily cleared by cmd+click or ctrl+click;
+
 # 4.1.0
 Added new component `zoo-preloader`;
 

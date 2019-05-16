@@ -143,13 +143,8 @@
 			if (_selectElement.multiple === true) {
 				multiple = true;
 			}
-			if (multiple) {
-				_selectElement.addEventListener('click', () => handleMultipleOptionClick());
-				_selectElement.addEventListener('keydown', e => handleMultipleOptionKeydown(e));
-			} else {
-				_selectElement.addEventListener('click', () => handleOptionClick());
-				_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
-			}
+			_selectElement.addEventListener('change', () => handleOptionChange());
+			_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
 
 			_selectElement.classList.add('searchable-zoo-select');
 			_selectElement.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
@@ -181,32 +176,13 @@
 		}
 	}
 
-	const handleMultipleOptionKeydown = e => {
-		if (e.keyCode && e.keyCode === 13) {
-			handleMultipleOptionClick();
-		}
-	}
-
-	const handleMultipleOptionClick = () => {
-		let inputValString = '';
-		for (const selectedOpts of _selectElement.selectedOptions) {
-			inputValString += selectedOpts.text + ', \n';
-		}
-		inputValString = inputValString.substr(0, inputValString.length - 3);
-		tooltipText = inputValString;
-		searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
-		for (const option of options) {
-			option.style.display = 'block';
-		}
-	}
-
 	const handleOptionKeydown = e => {
 		if (e.keyCode && e.keyCode === 13) {
-			handleOptionClick();
+			handleOptionChange();
 		}
 	}
 
-	const handleOptionClick = () => {
+	export const handleOptionChange = () => {
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';
@@ -214,10 +190,10 @@
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		tooltipText = inputValString;
 		searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
-		_hideSelectOptions();
 		for (const option of options) {
 			option.style.display = 'block';
 		}
+		if (!multiple) _hideSelectOptions();
 	}
 
 	const _hideSelectOptions = () => {
@@ -244,6 +220,5 @@
 	const handleCrossClick = () => {
 		_selectElement.value = null;
 		_selectElement.dispatchEvent(new Event("change"));
-		handleOptionClick();
 	}
 </script>

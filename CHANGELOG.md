@@ -1,3 +1,12 @@
+# 4.2.4
+`zoo-select` - increased padding and added text-overflow for very long option text.
+
+# 4.2.3
+`zoo-searchable-select` - small refactoring (removing duplicate logic in functions). `handleOptionChange` function is now exported and can be used outside component. `handleOptionChange` is a function which constructs new `placeholder` based on selected options.
+
+# 4.2.2
+`zoo-searchable-select` - aligned option click behaviour with `zoo-select`. Now placeholder changes after `change` event and not after `click` event.
+
 # 4.2.0
 `zoo-preloader` - reduced preloader size by 2 px;
 `zoo-select`, `zoo-searchable-select` - added cross to clear the value of the select. Cross will not appear for `zoo-select` with multiple option set as it can be easily cleared by cmd+click or ctrl+click;

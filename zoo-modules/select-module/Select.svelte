@@ -57,7 +57,7 @@
 		width: 100%;
 		background: white;
 		line-height: 20px;
-		padding: 13px 15px;
+		padding: 13px 40px 13px 15px;
 		border: 1px solid;
 		border-color: $border-color;
 		border-radius: 3px;
@@ -65,7 +65,9 @@
 		outline: none;
 		box-sizing: border-box;
 		font-size: 13px;
-		overflow: auto;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	::slotted(select:disabled) {
@@ -80,7 +82,7 @@
 
 	::slotted(select:focus) {
 		border: 2px solid;
-		padding: 12px 14px;
+		padding: 12px 40px 12px 14px;
 	}
 
 	::slotted(select.error) {

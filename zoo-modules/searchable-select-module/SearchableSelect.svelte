@@ -146,6 +146,10 @@
 			_selectElement.addEventListener('change', () => handleOptionChange());
 			_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
 
+			if (_selectElement.disabled) {
+				searchableInput.setAttribute('disabled', true);
+			}
+
 			_selectElement.classList.add('searchable-zoo-select');
 			_selectElement.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
 			_hideSelectOptions();

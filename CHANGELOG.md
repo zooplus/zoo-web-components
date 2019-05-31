@@ -1,3 +1,6 @@
+# 4.2.5
+`zoo-searchable-select` - setting `disabled` attribute on input when select has `disabled` attribute.
+
 # 4.2.4
 `zoo-select` - increased padding and added text-overflow for very long option text.
 

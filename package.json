@@ -1,56 +1,66 @@
 {
-	"name": "@zooplus/zoo-web-components",
-	"version": "4.2.4",
-	"main": "dist/zoo-components-iife.js",
-	"files": [
-		"dist/zoo-components-esm.js",
-		"dist/zoo-components-iife.js"
-	],
-	"module": "dist/zoo-components-esm.js",
-	"description": "Set of web-components implementing zoo+ style guide",
-	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
-	"devDependencies": {
-		"@types/mocha": "^5.2.6",
-		"chai": "^4.2.0",
-		"concurrently": "^4.1.0",
-		"eslint": "^5.16.0",
-		"eslint-plugin-svelte3": "1.0.0",
-		"mocha": "^6.1.4",
-		"node-sass": "^4.11.0",
-		"puppeteer": "^1.14.0",
-		"rollup": "^1.10.1",
-		"rollup-plugin-node-resolve": "^4.2.3",
-		"rollup-plugin-svelte": "^5.0.3",
-		"rollup-plugin-terser": "^4.0.4",
-		"serve": "^11.0.0",
-		"stylelint": "^10.0.1",
-		"svelte": "3.0.0"
-	},
-	"scripts": {
-		"build": "npm run lint && npm run stylelint && npm test && rollup -c 'rollup.release.config.js'",
-		"start": "concurrently --kill-others \"serve docs\"  \"rollup -c -w\"",
-		"test": "rollup -c 'rollup.config.test.js' && (serve docs & mocha --opts mocha.opts) && node cat ./pika.txt",
-		"prepublishOnly": "npm run build",
-		"lint": "eslint --ext '.svelte' zoo-modules",
-		"stylelint": "stylelint 'zoo-modules/**/*.svelte'"
-	},
-	"dependencies": {},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/zooplus/zoo-web-components.git"
-	},
-	"keywords": [
-		"web-components",
-		"shadow-dom",
-		"custom-elements",
-		"javascript",
-		"css",
-		"html"
-	],
-	"author": "Yuriy Kravets",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/zooplus/zoo-web-components/issues"
-	},
-	"homepage": "https://github.com/zooplus/zoo-web-components#readme"
+  "name": "@zooplus/zoo-web-components",
+  "version": "4.2.6",
+  "main": "dist/zoo-components-iife.js",
+  "files": [
+    "dist/zoo-components-esm.js",
+    "dist/zoo-components-iife.js"
+  ],
+  "module": "dist/zoo-components-esm.js",
+  "description": "Set of web-components implementing zoo+ style guide",
+  "person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "concurrently": "^4.1.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-svelte3": "1.2.3",
+    "mocha": "^6.1.4",
+    "node-sass": "^4.12.0",
+    "puppeteer": "^1.17.0",
+    "rollup": "^1.13.0",
+    "rollup-plugin-node-resolve": "^5.0.1",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.0.0",
+    "serve": "^11.0.1",
+    "stylelint": "^10.0.1",
+    "svelte": "3.4.4",
+    "vinyl-file": "^3.0.0"
+  },
+  "scripts": {
+    "build": "npm run lint && npm run stylelint && npm test && rollup -c 'rollup.release.config.js'",
+    "start": "concurrently --kill-others \"serve docs\"  \"rollup -c -w\"",
+    "test": "rollup -c 'rollup.config.test.js' && (serve docs & mocha --opts mocha.opts) && node cat ./pika.txt",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint --ext '.svelte' zoo-modules",
+    "stylelint": "stylelint 'zoo-modules/**/*.svelte'"
+  },
+  "dependencies": {
+    "@bit/georgetailor.svelte.svelte-compiler": "file:./components/svelte-compiler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zooplus/zoo-web-components.git"
+  },
+  "keywords": [
+    "web-components",
+    "shadow-dom",
+    "custom-elements",
+    "javascript",
+    "css",
+    "html"
+  ],
+  "author": "Yuriy Kravets",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zooplus/zoo-web-components/issues"
+  },
+  "homepage": "https://github.com/zooplus/zoo-web-components#readme",
+  "bit": {
+    "env": {
+      "compiler": "georgetailor.svelte/svelte-compiler@0.0.4"
+    },
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
+  }
 }

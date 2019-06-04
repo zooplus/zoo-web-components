@@ -1,6 +1,6 @@
 {
   "name": "@zooplus/zoo-web-components",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "main": "dist/zoo-components-iife.js",
   "files": [
     "dist/zoo-components-esm.js",
@@ -35,9 +35,6 @@
     "lint": "eslint --ext '.svelte' zoo-modules",
     "stylelint": "stylelint 'zoo-modules/**/*.svelte'"
   },
-  "dependencies": {
-    "@bit/georgetailor.svelte.svelte-compiler": "file:./components/svelte-compiler"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zooplus/zoo-web-components.git"
@@ -55,12 +52,5 @@
   "bugs": {
     "url": "https://github.com/zooplus/zoo-web-components/issues"
   },
-  "homepage": "https://github.com/zooplus/zoo-web-components#readme",
-  "bit": {
-    "env": {
-      "compiler": "georgetailor.svelte/svelte-compiler@0.0.4"
-    },
-    "componentsDefaultDirectory": "components/{name}",
-    "packageManager": "npm"
-  }
+  "homepage": "https://github.com/zooplus/zoo-web-components#readme"
 }

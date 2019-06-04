@@ -7,13 +7,13 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-			<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 -150 1000 1101" width="25" height="25"><path d="M417 667L456 628 328 501 456 373 417 334 250 501 417 667zM584 667L751 501 584 334 545 373 673 501 545 628 584 667z"/></svg>
+			<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 0 24 24" width="16" height="16"><path d="M12 1.75L6.545 7.516a.75.75 0 1 1-1.09-1.03l5.47-5.78A1.499 1.499 0 0 1 13.06.69l5.485 5.793a.75.75 0 0 1-1.09 1.031L12 1.751zM6.545 16.486L12 22.249l5.455-5.764a.75.75 0 0 1 1.09 1.03l-5.47 5.78a1.499 1.499 0 0 1-2.135.014l-5.485-5.793a.75.75 0 0 1 1.09-1.031z"/></svg>
 			{#if loading}
 				<zoo-preloader></zoo-preloader>
 			{/if}
 			{#if _valueSelected}
 				<div class="close" on:click="{e => handleCrossClick()}">
-					<svg width="18" height="18" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+					<svg width="14" height="14" viewBox="0 0 24 24"><path d="M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z"/></svg>
 				</div>
 			{/if}
 		{/if}
@@ -26,20 +26,19 @@
 	@import "variables";
 	@import "input";
 
+	.close, .arrows {
+		position: absolute;
+		right: 9px;
+		top: 17px;
+	}
+
 	.close {
 		display: inline-block;
-		position: absolute;
-		top: 33%;
-		right: 7%;
 		cursor: pointer;
+		right: 28px;
 	}
 
 	.arrows {
-		position: absolute;
-		right: 5px;
-		top: 13px;
-		transform: rotate(90deg);
-
 		& > path {
 			fill: $matterhorn;
 		}

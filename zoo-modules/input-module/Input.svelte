@@ -9,7 +9,7 @@
 		{#if valid}
 		<slot name="inputicon"></slot>
 		{/if} {#if !valid}
-		<svg class="error-triangle" width="24" height="24" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+		<svg class="error-triangle" width="22" height="22" viewBox="0 0 24 24"><path d="M12 18a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 18H12zm.75-2.25a.75.75 0 1 1-1.5 0v-7.5a.75.75 0 1 1 1.5 0v7.5zm1.544-14.32l9.473 19.297A2.271 2.271 0 0 1 21.728 24H2.272a2.271 2.271 0 0 1-2.04-3.272L9.707 1.429a2.556 2.556 0 0 1 4.588 0zm-2.76.178c-.21.103-.379.273-.482.482L1.58 21.39a.771.771 0 0 0 .693 1.111h19.456a.771.771 0 0 0 .693-1.112L12.948 2.091a1.056 1.056 0 0 0-1.414-.483z"/></svg>
 		{/if}
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">

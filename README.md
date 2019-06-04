@@ -12,7 +12,7 @@
 To use exported modules install this library as a dependency in your application by running       
 `npm i @zooplus/zoo-web-components --save`;      
 Or add the following line to your `index.html`:      
-`<script src="https://cdn.jsdelivr.net/npm/@zooplus/zoo-web-components@4.0.8/dist/zoo-components-iife.min.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/@zooplus/zoo-web-components@4.3.0/dist/zoo-components-iife.min.js"></script>`
 
 ## Examples integrating with various frameworks
 + [VueJS](https://github.com/GeorgeTailor/vue-wc-integration)

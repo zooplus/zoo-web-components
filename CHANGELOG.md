@@ -1,3 +1,6 @@
+# 4.3.0
+New set of icons. Getting rid of unnecessary matrix transforms and strange viewports at a cost small size increase.
+
 # 4.2.5
 `zoo-searchable-select` - setting `disabled` attribute on input when select has `disabled` attribute.
 

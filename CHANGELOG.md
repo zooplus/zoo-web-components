@@ -1,3 +1,6 @@
+# 4.3.4
+`zoo-searchable-select` - fix cross icon to position itself within the input field.
+
 # 4.3.3
 `zoo-input` - allow click through error triangle.
 

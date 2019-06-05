@@ -9,16 +9,16 @@
 			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
 			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
 			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
+			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
+				{#if _valueSelected}
+					<svg width="14" height="14" viewBox="0 0 24 24"><path d="M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z"/></svg>
+				{/if}
+			</div>
 		</zoo-input>
 		{#if loading}
 			<zoo-preloader></zoo-preloader>
 		{/if}
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
-		{#if _valueSelected}
-			<div class="close" on:click="{e => handleCrossClick()}">
-				<svg width="14" height="14" viewBox="0 0 24 24"><path d="M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z"/></svg>
-			</div>
-		{/if}
 	{:else}
 		<zoo-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"
 			labeltext="{labeltext}" inputerrormsg="{inputerrormsg}" infotext="{infotext}" valid="{valid}">
@@ -33,7 +33,7 @@
 	.close {
 		display: inline-block;
 		position: absolute;
-		top: 39%;
+		top: 34%;
 		right: 4%;
 		cursor: pointer;
 	}

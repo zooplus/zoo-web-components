@@ -1,3 +1,6 @@
+# 4.3.2
+Unify cross sign for `zoo-select` and `zoo-searchable-select`.
+
 # 4.3.1
 Remove unused dependency.
 

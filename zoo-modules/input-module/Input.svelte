@@ -27,6 +27,7 @@
 		top: 0;
 		padding: 11px;
 		color: $error-text-color;
+		pointer-events: none;
 
 		& > path {
 			fill: $error-text-color;

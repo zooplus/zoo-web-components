@@ -1,3 +1,6 @@
+# 4.3.3
+`zoo-input` - allow click through error triangle.
+
 # 4.3.2
 Unify cross sign for `zoo-select` and `zoo-searchable-select`.
 

@@ -48,6 +48,7 @@
 		&:hover {
 			.selected-options {
 				display: block;
+				animation: fadeIn 0.2s;
 			}
 		}
 	}

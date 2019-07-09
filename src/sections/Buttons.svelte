@@ -74,6 +74,7 @@
 		&:hover {
 			zoo-tooltip {
 				display: block;
+				animation: fadeIn 0.2s;
 			}
 		}
 	}

@@ -91,19 +91,16 @@
     }
 
     const dirty_components = [];
-    const resolved_promise = Promise.resolve();
-    let update_scheduled = false;
     const binding_callbacks = [];
     const render_callbacks = [];
     const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
     function schedule_update() {
         if (!update_scheduled) {
             update_scheduled = true;
             resolved_promise.then(flush);
         }
-    }
-    function add_binding_callback(fn) {
-        binding_callbacks.push(fn);
     }
     function add_render_callback(fn) {
         render_callbacks.push(fn);
@@ -119,18 +116,19 @@
                 update(component.$$);
             }
             while (binding_callbacks.length)
-                binding_callbacks.shift()();
+                binding_callbacks.pop()();
             // then, once components are updated, call
             // afterUpdate functions. This may cause
             // subsequent updates...
-            while (render_callbacks.length) {
-                const callback = render_callbacks.pop();
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
                 if (!seen_callbacks.has(callback)) {
                     callback();
                     // ...so guard against infinite loops
                     seen_callbacks.add(callback);
                 }
             }
+            render_callbacks.length = 0;
         } while (dirty_components.length);
         while (flush_callbacks.length) {
             flush_callbacks.pop()();
@@ -140,18 +138,23 @@
     function update($$) {
         if ($$.fragment) {
             $$.update($$.dirty);
-            run_all($$.before_render);
+            run_all($$.before_update);
             $$.fragment.p($$.dirty, $$.ctx);
             $$.dirty = null;
-            $$.after_render.forEach(add_render_callback);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
         }
     }
     function mount_component(component, target, anchor) {
-        const { fragment, on_mount, on_destroy, after_render } = component.$$;
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
         fragment.m(target, anchor);
-        // onMount happens after the initial afterUpdate. Because
-        // afterUpdate callbacks happen in reverse order (inner first)
-        // we schedule onMount callbacks before afterUpdate callbacks
+        // onMount happens before the initial afterUpdate
         add_render_callback(() => {
             const new_on_destroy = on_mount.map(run).filter(is_function);
             if (on_destroy) {
@@ -164,10 +167,10 @@
             }
             component.$$.on_mount = [];
         });
-        after_render.forEach(add_render_callback);
+        after_update.forEach(add_render_callback);
     }
-    function destroy(component, detaching) {
-        if (component.$$) {
+    function destroy_component(component, detaching) {
+        if (component.$$.fragment) {
             run_all(component.$$.on_destroy);
             component.$$.fragment.d(detaching);
             // TODO null out other refs, including component.$$ (but need to
@@ -184,7 +187,7 @@
         }
         component.$$.dirty[key] = true;
     }
-    function init(component, options, instance, create_fragment, not_equal$$1, prop_names) {
+    function init(component, options, instance, create_fragment, not_equal, prop_names) {
         const parent_component = current_component;
         set_current_component(component);
         const props = options.props || {};
@@ -194,13 +197,13 @@
             // state
             props: prop_names,
             update: noop,
-            not_equal: not_equal$$1,
+            not_equal,
             bound: blank_object(),
             // lifecycle
             on_mount: [],
             on_destroy: [],
-            before_render: [],
-            after_render: [],
+            before_update: [],
+            after_update: [],
             context: new Map(parent_component ? parent_component.$$.context : []),
             // everything else
             callbacks: blank_object(),
@@ -209,7 +212,7 @@
         let ready = false;
         $$.ctx = instance
             ? instance(component, props, (key, value) => {
-                if ($$.ctx && not_equal$$1($$.ctx[key], $$.ctx[key] = value)) {
+                if ($$.ctx && not_equal($$.ctx[key], $$.ctx[key] = value)) {
                     if ($$.bound[key])
                         $$.bound[key](value);
                     if (ready)
@@ -219,17 +222,19 @@
             : props;
         $$.update();
         ready = true;
-        run_all($$.before_render);
+        run_all($$.before_update);
         $$.fragment = create_fragment($$.ctx);
         if (options.target) {
             if (options.hydrate) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 $$.fragment.l(children(options.target));
             }
             else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 $$.fragment.c();
             }
-            if (options.intro && component.$$.fragment.i)
-                component.$$.fragment.i();
+            if (options.intro)
+                transition_in(component.$$.fragment);
             mount_component(component, options.target, options.anchor);
             flush();
         }
@@ -249,11 +254,11 @@
                     this.appendChild(this.$$.slotted[key]);
                 }
             }
-            attributeChangedCallback(attr$$1, oldValue, newValue) {
-                this[attr$$1] = newValue;
+            attributeChangedCallback(attr, _oldValue, newValue) {
+                this[attr] = newValue;
             }
             $destroy() {
-                destroy(this, true);
+                destroy_component(this, 1);
                 this.$destroy = noop;
             }
             $on(type, callback) {
@@ -272,7 +277,7 @@
         };
     }
 
-    /* src/common/Context.svelte generated by Svelte v3.4.4 */
+    /* src/common/Context.svelte generated by Svelte v3.6.5 */
 
     const file = "src/common/Context.svelte";
 
@@ -287,12 +292,12 @@
     			span = element("span");
     			a = element("a");
     			a.textContent = "Go to top";
-    			a.href = "#";
+    			attr(a, "href", "#");
     			add_location(a, file, 6, 31, 178);
     			attr(span, "slot", "buttoncontent");
     			add_location(span, file, 6, 4, 151);
     			add_location(zoo_button, file, 5, 3, 134);
-    			div.className = "back-btn";
+    			attr(div, "class", "back-btn");
     			add_location(div, file, 4, 2, 108);
     		},
 
@@ -314,7 +319,7 @@
     function create_fragment(ctx) {
     	var div, h2, t0, t1;
 
-    	var if_block = (ctx.backbtn) && create_if_block(ctx);
+    	var if_block = (ctx.backbtn) && create_if_block();
 
     	return {
     		c: function create() {
@@ -325,7 +330,7 @@
     			if (if_block) if_block.c();
     			this.c = noop;
     			add_location(h2, file, 2, 1, 75);
-    			div.className = "context";
+    			attr(div, "class", "context");
     			add_location(div, file, 1, 0, 52);
     		},
 
@@ -348,7 +353,7 @@
 
     			if (ctx.backbtn) {
     				if (!if_block) {
-    					if_block = create_if_block(ctx);
+    					if_block = create_if_block();
     					if_block.c();
     					if_block.m(div, null);
     				}
@@ -433,7 +438,7 @@
 
     customElements.define("app-context", Context);
 
-    /* src/sections/Header.svelte generated by Svelte v3.4.4 */
+    /* src/sections/Header.svelte generated by Svelte v3.6.5 */
 
     const file$1 = "src/sections/Header.svelte";
 
@@ -453,9 +458,9 @@
     			a = element("a");
     			t0 = text(t0_value);
     			t1 = space();
-    			a.href = a_href_value = ctx.link.href;
+    			attr(a, "href", a_href_value = ctx.link.href);
     			add_location(a, file$1, 25, 5, 1008);
-    			div.className = "nav-link";
+    			attr(div, "class", "nav-link");
     			add_location(div, file$1, 24, 4, 980);
     		},
 
@@ -516,36 +521,36 @@
 
     			this.c = noop;
     			attr(span0, "slot", "buttoncontent");
-    			span0.className = "slotted-span";
+    			attr(span0, "class", "slotted-span");
     			add_location(span0, file$1, 6, 5, 304);
     			set_custom_element_data(zoo_button0, "type", zoo_button0_type_value = ctx.theme === 'zoo' ? 'hot' : 'cold');
     			set_custom_element_data(zoo_button0, "size", "medium");
     			add_location(zoo_button0, file$1, 5, 4, 194);
-    			div0.className = "header-button";
+    			attr(div0, "class", "header-button");
     			add_location(div0, file$1, 4, 3, 162);
     			attr(span1, "slot", "buttoncontent");
-    			span1.className = "slotted-span";
+    			attr(span1, "class", "slotted-span");
     			add_location(span1, file$1, 11, 5, 545);
     			set_custom_element_data(zoo_button1, "type", zoo_button1_type_value = ctx.theme === 'grey' ? 'hot' : 'cold');
     			set_custom_element_data(zoo_button1, "size", "medium");
     			add_location(zoo_button1, file$1, 10, 4, 433);
-    			div1.className = "header-button";
+    			attr(div1, "class", "header-button");
     			add_location(div1, file$1, 9, 3, 401);
     			attr(span2, "slot", "buttoncontent");
-    			span2.className = "slotted-span";
+    			attr(span2, "class", "slotted-span");
     			add_location(span2, file$1, 16, 5, 790);
     			set_custom_element_data(zoo_button2, "type", zoo_button2_type_value = ctx.theme === 'random' ? 'hot' : 'cold');
     			set_custom_element_data(zoo_button2, "size", "medium");
     			add_location(zoo_button2, file$1, 15, 4, 674);
-    			div2.className = "header-button";
+    			attr(div2, "class", "header-button");
     			add_location(div2, file$1, 14, 3, 642);
-    			div3.className = "buttons-holder";
+    			attr(div3, "class", "buttons-holder");
     			add_location(div3, file$1, 3, 2, 130);
     			set_custom_element_data(zoo_header, "imgsrc", "logo.png");
     			set_custom_element_data(zoo_header, "headertext", "Zooplus web components");
     			add_location(zoo_header, file$1, 2, 1, 61);
     			add_location(div4, file$1, 22, 2, 942);
-    			zoo_navigation.className = "nav";
+    			set_custom_element_data(zoo_navigation, "class", "nav");
     			add_location(zoo_navigation, file$1, 21, 1, 911);
     			add_location(header, file$1, 1, 0, 51);
 
@@ -789,7 +794,7 @@
 
     customElements.define("app-header", Header);
 
-    /* src/sections/Form.svelte generated by Svelte v3.4.4 */
+    /* src/sections/Form.svelte generated by Svelte v3.6.5 */
 
     const file$2 = "src/sections/Form.svelte";
 
@@ -807,12 +812,13 @@
 
     // (40:3) {#each options as option}
     function create_each_block_1(ctx) {
-    	var option, t_value = ctx.option.text, t, option_value_value;
+    	var option, t0_value = ctx.option.text, t0, t1, option_value_value;
 
     	return {
     		c: function create() {
     			option = element("option");
-    			t = text(t_value);
+    			t0 = text(t0_value);
+    			t1 = space();
     			option.__value = option_value_value = ctx.option.value;
     			option.value = option.__value;
     			add_location(option, file$2, 40, 3, 2368);
@@ -820,7 +826,8 @@
 
     		m: function mount(target, anchor) {
     			insert(target, option, anchor);
-    			append(option, t);
+    			append(option, t0);
+    			append(option, t1);
     		},
 
     		p: function update(changed, ctx) {
@@ -837,12 +844,13 @@
 
     // (49:3) {#each options as option}
     function create_each_block$1(ctx) {
-    	var option, t_value = ctx.option.text, t, option_value_value;
+    	var option, t0_value = ctx.option.text, t0, t1, option_value_value;
 
     	return {
     		c: function create() {
     			option = element("option");
-    			t = text(t_value);
+    			t0 = text(t0_value);
+    			t1 = space();
     			option.__value = option_value_value = ctx.option.value;
     			option.value = option.__value;
     			add_location(option, file$2, 49, 3, 2682);
@@ -850,7 +858,8 @@
 
     		m: function mount(target, anchor) {
     			insert(target, option, anchor);
-    			append(option, t);
+    			append(option, t0);
+    			append(option, t1);
     		},
 
     		p: function update(changed, ctx) {
@@ -982,7 +991,7 @@
     			add_location(app_context, file$2, 1, 0, 49);
     			attr(input0, "slot", "inputelement");
     			attr(input0, "type", "text");
-    			input0.placeholder = "input";
+    			attr(input0, "placeholder", "input");
     			add_location(input0, file$2, 5, 2, 432);
     			set_custom_element_data(zoo_input0, "labeltext", "Input type text");
     			set_custom_element_data(zoo_input0, "linktext", "Forgotten your password?");
@@ -994,7 +1003,7 @@
     			add_location(zoo_input0, file$2, 3, 1, 196);
     			attr(input1, "slot", "inputelement");
     			attr(input1, "type", "number");
-    			input1.placeholder = "input";
+    			attr(input1, "placeholder", "input");
     			add_location(input1, file$2, 9, 2, 702);
     			set_custom_element_data(zoo_input1, "labeltext", "Input type number");
     			set_custom_element_data(zoo_input1, "linktext", "Forgotten your password?");
@@ -1004,7 +1013,7 @@
     			add_location(zoo_input1, file$2, 7, 1, 509);
     			attr(input2, "slot", "inputelement");
     			attr(input2, "type", "date");
-    			input2.placeholder = "Enter date";
+    			attr(input2, "placeholder", "Enter date");
     			add_location(input2, file$2, 13, 2, 1027);
     			set_custom_element_data(zoo_input2, "labeltext", "This input has type date");
     			set_custom_element_data(zoo_input2, "linktext", "Native date picker -> click me");
@@ -1014,18 +1023,18 @@
     			add_location(zoo_input2, file$2, 11, 1, 781);
     			attr(input3, "slot", "inputelement");
     			attr(input3, "type", "time");
-    			input3.placeholder = "Enter time";
+    			attr(input3, "placeholder", "Enter time");
     			add_location(input3, file$2, 16, 2, 1183);
     			set_custom_element_data(zoo_input3, "labeltext", "This input has type time");
     			set_custom_element_data(zoo_input3, "infotext", "Select time");
     			add_location(zoo_input3, file$2, 15, 1, 1109);
     			attr(textarea, "slot", "inputelement");
-    			textarea.placeholder = "Textarea";
+    			attr(textarea, "placeholder", "Textarea");
     			add_location(textarea, file$2, 19, 2, 1329);
     			set_custom_element_data(zoo_input4, "labeltext", "Textarea example");
     			set_custom_element_data(zoo_input4, "valid", ctx.inputState);
     			add_location(zoo_input4, file$2, 18, 1, 1265);
-    			option0.className = "placeholder";
+    			attr(option0, "class", "placeholder");
     			option0.__value = "";
     			option0.value = option0.__value;
     			option0.disabled = true;
@@ -1048,7 +1057,7 @@
     			set_custom_element_data(zoo_select0, "inputerrormsg", "Value is required");
     			set_custom_element_data(zoo_select0, "infotext", "Additional helpful information for our users");
     			add_location(zoo_select0, file$2, 21, 1, 1409);
-    			option4.className = "placeholder";
+    			attr(option4, "class", "placeholder");
     			option4.__value = "";
     			option4.value = option4.__value;
     			option4.disabled = true;
@@ -1091,26 +1100,26 @@
     			set_custom_element_data(zoo_checkbox, "labeltext", "An example checkbox with some additional event handling of clicks inside");
     			add_location(zoo_checkbox, file$2, 55, 1, 2795);
     			attr(input5, "type", "radio");
-    			input5.id = "contactChoice1";
-    			input5.name = "contact";
+    			attr(input5, "id", "contactChoice1");
+    			attr(input5, "name", "contact");
     			input5.value = "email";
     			input5.disabled = true;
     			add_location(input5, file$2, 60, 3, 3095);
-    			label0.htmlFor = "contactChoice1";
+    			attr(label0, "for", "contactChoice1");
     			add_location(label0, file$2, 61, 3, 3177);
     			attr(input6, "type", "radio");
-    			input6.id = "contactChoice2";
-    			input6.name = "contact";
+    			attr(input6, "id", "contactChoice2");
+    			attr(input6, "name", "contact");
     			input6.value = "phone";
     			add_location(input6, file$2, 62, 3, 3222);
-    			label1.htmlFor = "contactChoice2";
+    			attr(label1, "for", "contactChoice2");
     			add_location(label1, file$2, 63, 3, 3295);
     			attr(input7, "type", "radio");
-    			input7.id = "contactChoice3";
-    			input7.name = "contact";
+    			attr(input7, "id", "contactChoice3");
+    			attr(input7, "name", "contact");
     			input7.value = "mail";
     			add_location(input7, file$2, 64, 3, 3340);
-    			label2.htmlFor = "contactChoice3";
+    			attr(label2, "for", "contactChoice3");
     			add_location(label2, file$2, 65, 3, 3412);
     			add_location(template, file$2, 59, 2, 3081);
     			set_custom_element_data(zoo_radio0, "valid", ctx.inputState);
@@ -1118,33 +1127,33 @@
     			set_custom_element_data(zoo_radio0, "infotext", "infotext");
     			add_location(zoo_radio0, file$2, 58, 1, 3006);
     			attr(input8, "type", "radio");
-    			input8.id = "contactChoice4";
-    			input8.name = "contact";
+    			attr(input8, "id", "contactChoice4");
+    			attr(input8, "name", "contact");
     			input8.value = "email";
     			input8.disabled = true;
     			add_location(input8, file$2, 70, 2, 3558);
-    			label3.htmlFor = "contactChoice4";
+    			attr(label3, "for", "contactChoice4");
     			add_location(label3, file$2, 71, 2, 3639);
     			attr(input9, "type", "radio");
-    			input9.id = "contactChoice5";
-    			input9.name = "contact";
+    			attr(input9, "id", "contactChoice5");
+    			attr(input9, "name", "contact");
     			input9.value = "phone";
     			add_location(input9, file$2, 72, 2, 3683);
-    			label4.htmlFor = "contactChoice5";
+    			attr(label4, "for", "contactChoice5");
     			add_location(label4, file$2, 73, 2, 3755);
     			set_custom_element_data(zoo_radio1, "valid", ctx.inputState);
     			set_custom_element_data(zoo_radio1, "errormsg", "errormsg");
     			set_custom_element_data(zoo_radio1, "infotext", "infotext");
     			add_location(zoo_radio1, file$2, 69, 1, 3483);
-    			form.className = "form";
+    			attr(form, "class", "form");
     			add_location(form, file$2, 2, 0, 175);
     			attr(span, "slot", "buttoncontent");
-    			span.className = "slotted-span";
+    			attr(span, "class", "slotted-span");
     			add_location(span, file$2, 78, 2, 3906);
     			set_custom_element_data(zoo_button, "type", "hot");
     			set_custom_element_data(zoo_button, "size", "medium");
     			add_location(zoo_button, file$2, 77, 1, 3841);
-    			div.className = "submit";
+    			attr(div, "class", "submit");
     			add_location(div, file$2, 76, 0, 3819);
     			dispose = listen(zoo_button, "click", ctx.changeState);
     		},
@@ -1360,7 +1369,7 @@
 
     customElements.define("app-form", Form);
 
-    /* src/sections/Buttons.svelte generated by Svelte v3.4.4 */
+    /* src/sections/Buttons.svelte generated by Svelte v3.6.5 */
 
     const file$3 = "src/sections/Buttons.svelte";
 
@@ -1424,7 +1433,7 @@
     			set_custom_element_data(app_context, "text", "Second section is a showcase of buttons and modals");
     			add_location(app_context, file$3, 3, 0, 207);
     			attr(span0, "slot", "buttoncontent");
-    			span0.className = "slotted-span";
+    			attr(span0, "class", "slotted-span");
     			add_location(span0, file$3, 6, 2, 376);
     			set_custom_element_data(zoo_button0, "size", "small");
     			add_location(zoo_button0, file$3, 5, 1, 316);
@@ -1435,57 +1444,57 @@
     			add_location(div0, file$3, 9, 2, 551);
     			set_custom_element_data(zoo_button1, "size", "small");
     			set_custom_element_data(zoo_button1, "disabled", true);
-    			zoo_button1.className = "top-tooltip";
+    			set_custom_element_data(zoo_button1, "class", "top-tooltip");
     			add_location(zoo_button1, file$3, 8, 1, 485);
     			attr(span1, "slot", "buttoncontent");
-    			span1.className = "slotted-span";
-    			add_location(span1, file$3, 17, 2, 802);
+    			attr(span1, "class", "slotted-span");
+    			add_location(span1, file$3, 15, 2, 794);
     			set_custom_element_data(zoo_button2, "type", "hot");
     			set_custom_element_data(zoo_button2, "size", "small");
-    			add_location(zoo_button2, file$3, 16, 1, 726);
-    			div1.className = "buttons";
+    			add_location(zoo_button2, file$3, 14, 1, 718);
+    			attr(div1, "class", "buttons");
     			add_location(div1, file$3, 4, 0, 293);
     			set_custom_element_data(zoo_feedback, "type", "info");
     			set_custom_element_data(zoo_feedback, "text", "This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.");
-    			add_location(zoo_feedback, file$3, 22, 2, 1001);
-    			add_location(br0, file$3, 26, 2, 1183);
-    			option0.className = "placeholder";
+    			add_location(zoo_feedback, file$3, 20, 2, 993);
+    			add_location(br0, file$3, 24, 2, 1175);
+    			attr(option0, "class", "placeholder");
     			option0.__value = "";
     			option0.value = option0.__value;
     			option0.disabled = true;
     			option0.selected = true;
-    			add_location(option0, file$3, 30, 4, 1291);
+    			add_location(option0, file$3, 28, 4, 1283);
     			option1.__value = "Doge";
     			option1.value = option1.__value;
-    			add_location(option1, file$3, 31, 4, 1364);
+    			add_location(option1, file$3, 29, 4, 1356);
     			option2.__value = "Catz";
     			option2.value = option2.__value;
-    			add_location(option2, file$3, 32, 4, 1390);
+    			add_location(option2, file$3, 30, 4, 1382);
     			option3.__value = "Snek";
     			option3.value = option3.__value;
-    			add_location(option3, file$3, 33, 4, 1416);
+    			add_location(option3, file$3, 31, 4, 1408);
     			attr(select, "slot", "selectelement");
-    			add_location(select, file$3, 29, 3, 1257);
+    			add_location(select, file$3, 27, 3, 1249);
     			set_custom_element_data(zoo_select, "labeltext", "This product is for");
     			set_custom_element_data(zoo_select, "valid", true);
-    			add_location(zoo_select, file$3, 27, 2, 1190);
-    			add_location(br1, file$3, 36, 2, 1469);
+    			add_location(zoo_select, file$3, 25, 2, 1182);
+    			add_location(br1, file$3, 34, 2, 1461);
     			attr(input, "slot", "checkboxelement");
     			attr(input, "type", "checkbox");
-    			add_location(input, file$3, 39, 3, 1588);
+    			add_location(input, file$3, 37, 3, 1580);
     			set_custom_element_data(zoo_checkbox, "highlighted", "");
     			set_custom_element_data(zoo_checkbox, "labeltext", "I understand and confirm that ALL of the above statements are true");
-    			add_location(zoo_checkbox, file$3, 37, 2, 1476);
-    			add_location(br2, file$3, 41, 2, 1656);
+    			add_location(zoo_checkbox, file$3, 35, 2, 1468);
+    			add_location(br2, file$3, 39, 2, 1648);
     			attr(span2, "slot", "buttoncontent");
-    			add_location(span2, file$3, 43, 3, 1736);
+    			add_location(span2, file$3, 41, 3, 1728);
     			set_custom_element_data(zoo_button3, "type", "hot");
     			set_custom_element_data(zoo_button3, "size", "medium");
-    			add_location(zoo_button3, file$3, 42, 2, 1663);
-    			add_location(div2, file$3, 21, 1, 993);
+    			add_location(zoo_button3, file$3, 40, 2, 1655);
+    			add_location(div2, file$3, 19, 1, 985);
     			set_style(zoo_modal, "display", "none");
     			set_custom_element_data(zoo_modal, "headertext", "Your basket contains licensed items");
-    			add_location(zoo_modal, file$3, 20, 0, 891);
+    			add_location(zoo_modal, file$3, 18, 0, 883);
 
     			dispose = [
     				listen(zoo_button0, "click", ctx.click_handler),
@@ -1500,10 +1509,10 @@
 
     		m: function mount(target, anchor) {
     			insert(target, zoo_toast0, anchor);
-    			add_binding_callback(() => ctx.zoo_toast0_binding(zoo_toast0, null));
+    			ctx.zoo_toast0_binding(zoo_toast0);
     			insert(target, t0, anchor);
     			insert(target, zoo_toast1, anchor);
-    			add_binding_callback(() => ctx.zoo_toast1_binding(zoo_toast1, null));
+    			ctx.zoo_toast1_binding(zoo_toast1);
     			insert(target, t1, anchor);
     			insert(target, app_context, anchor);
     			insert(target, t2, anchor);
@@ -1541,24 +1550,10 @@
     			append(div2, t18);
     			append(div2, zoo_button3);
     			append(zoo_button3, span2);
-    			add_binding_callback(() => ctx.zoo_modal_binding(zoo_modal, null));
+    			ctx.zoo_modal_binding(zoo_modal);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_toast0_binding(null, zoo_toast0);
-    				ctx.zoo_toast0_binding(zoo_toast0, null);
-    			}
-    			if (changed.items) {
-    				ctx.zoo_toast1_binding(null, zoo_toast1);
-    				ctx.zoo_toast1_binding(zoo_toast1, null);
-    			}
-    			if (changed.items) {
-    				ctx.zoo_modal_binding(null, zoo_modal);
-    				ctx.zoo_modal_binding(zoo_modal, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -1567,14 +1562,14 @@
     				detach(zoo_toast0);
     			}
 
-    			ctx.zoo_toast0_binding(null, zoo_toast0);
+    			ctx.zoo_toast0_binding(null);
 
     			if (detaching) {
     				detach(t0);
     				detach(zoo_toast1);
     			}
 
-    			ctx.zoo_toast1_binding(null, zoo_toast1);
+    			ctx.zoo_toast1_binding(null);
 
     			if (detaching) {
     				detach(t1);
@@ -1585,7 +1580,7 @@
     				detach(zoo_modal);
     			}
 
-    			ctx.zoo_modal_binding(null, zoo_modal);
+    			ctx.zoo_modal_binding(null);
     			run_all(dispose);
     		}
     	};
@@ -1600,14 +1595,16 @@
     		modalToast.show();
     	};
 
-    	function zoo_toast0_binding($$node, check) {
-    		toast = $$node;
-    		$$invalidate('toast', toast);
+    	function zoo_toast0_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('toast', toast = $$value);
+    		});
     	}
 
-    	function zoo_toast1_binding($$node, check) {
-    		modalToast = $$node;
-    		$$invalidate('modalToast', modalToast);
+    	function zoo_toast1_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('modalToast', modalToast = $$value);
+    		});
     	}
 
     	function click_handler() {
@@ -1622,9 +1619,10 @@
     		return closeModal();
     	}
 
-    	function zoo_modal_binding($$node, check) {
-    		modal = $$node;
-    		$$invalidate('modal', modal);
+    	function zoo_modal_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('modal', modal = $$value);
+    		});
     	}
 
     	return {
@@ -1645,8 +1643,8 @@
     	constructor(options) {
     		super();
 
-    		this.shadowRoot.innerHTML = `<style>.buttons{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-gap:15px;width:90%}@media only screen and (max-width: 850px){.buttons{grid-template-columns:auto}}.slotted-span{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}zoo-tooltip{display:none}.top-tooltip{position:relative;display:inline-block}.top-tooltip:hover zoo-tooltip{display:block}
-		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQnV0dG9ucy5zdmVsdGUiLCJzb3VyY2VzIjpbIkJ1dHRvbnMuc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzdmVsdGU6b3B0aW9ucyB0YWc9XCJhcHAtYnV0dG9uc1wiPjwvc3ZlbHRlOm9wdGlvbnM+XG48em9vLXRvYXN0IHRleHQ9XCJTZWFyY2ggZm9yIG1vcmUgdGhhbiA4LjAwMCBwcm9kdWN0cy5cIiBiaW5kOnRoaXM9e3RvYXN0fT48L3pvby10b2FzdD5cbjx6b28tdG9hc3QgdGV4dD1cIkFkZGVkIHRvIGNhcnQhXCIgYmluZDp0aGlzPXttb2RhbFRvYXN0fT48L3pvby10b2FzdD5cbjxhcHAtY29udGV4dCB0ZXh0PVwiU2Vjb25kIHNlY3Rpb24gaXMgYSBzaG93Y2FzZSBvZiBidXR0b25zIGFuZCBtb2RhbHNcIj48L2FwcC1jb250ZXh0PlxuPGRpdiBjbGFzcz1cImJ1dHRvbnNcIj5cblx0PHpvby1idXR0b24gc2l6ZT1cInNtYWxsXCIgb246Y2xpY2s9XCJ7KCkgPT4gdG9hc3Quc2hvdygpfVwiPlxuXHRcdDxzcGFuIHNsb3Q9XCJidXR0b25jb250ZW50XCIgY2xhc3M9XCJzbG90dGVkLXNwYW5cIj5IZXJlIHdlIGhhdmUgYSB2ZXJ5IGxvbmcgdGV4dCBpbmRlZWQhPC9zcGFuPlxuXHQ8L3pvby1idXR0b24+XG5cdDx6b28tYnV0dG9uIHNpemU9XCJzbWFsbFwiIGRpc2FibGVkPVwie3RydWV9XCIgY2xhc3M9XCJ0b3AtdG9vbHRpcFwiPlxuXHRcdDxkaXYgc2xvdD1cImJ1dHRvbmNvbnRlbnRcIj5cblx0XHRcdERpc2FibGVkIDooXG5cdFx0XHQ8em9vLXRvb2x0aXAgcG9zaXRpb249XCJib3R0b21cIlxuXHRcdFx0XHR0ZXh0PVwiSnVzdCBzZXQgZGlzYWJsZWQgYXR0cmlidXRlIG9uIGB6b28tYnV0dG9uYFwiPlxuXHRcdFx0PC96b28tdG9vbHRpcD5cblx0XHQ8L2Rpdj5cblx0PC96b28tYnV0dG9uPlxuXHQ8em9vLWJ1dHRvbiB0eXBlPVwiaG90XCIgc2l6ZT1cInNtYWxsXCIgb246Y2xpY2s9XCJ7KCkgPT4gbW9kYWwub3Blbk1vZGFsKCl9XCI+XG5cdFx0PHNwYW4gc2xvdD1cImJ1dHRvbmNvbnRlbnRcIiBjbGFzcz1cInNsb3R0ZWQtc3BhblwiPlNob3cgbW9kYWw8L3NwYW4+XG5cdDwvem9vLWJ1dHRvbj5cbjwvZGl2PiBcbjx6b28tbW9kYWwgc3R5bGU9XCJkaXNwbGF5OiBub25lXCIgaGVhZGVydGV4dD1cIllvdXIgYmFza2V0IGNvbnRhaW5zIGxpY2Vuc2VkIGl0ZW1zXCIgYmluZDp0aGlzPXttb2RhbH0+XG5cdDxkaXY+XG5cdFx0PHpvby1mZWVkYmFjayBcblx0XHR0eXBlPVwiaW5mb1wiIFxuXHRcdHRleHQ9XCJUaGlzIGlzIGFuIGluZm8gbWVzc2FnZS4gT25seSBvbmUgY291cG9uIGNhbiBiZSBhY2NlcHRlZCB3aXRoIGVhY2ggb3JkZXIuIFBsZWFzZSBjaG9vc2Ugb25lIGNvdXBvbiB0aGF0IHlvdSBqdXN0IGVudGVyZWQuXCI+XG5cdFx0PC96b28tZmVlZGJhY2s+XG5cdFx0PGJyPlxuXHRcdDx6b28tc2VsZWN0IGxhYmVsdGV4dD1cIlRoaXMgcHJvZHVjdCBpcyBmb3JcIiBcblx0XHRcdHZhbGlkPVwie3RydWV9XCI+XG5cdFx0XHQ8c2VsZWN0IHNsb3Q9XCJzZWxlY3RlbGVtZW50XCI+XG5cdFx0XHRcdDxvcHRpb24gY2xhc3M9XCJwbGFjZWhvbGRlclwiIHZhbHVlPVwiXCIgZGlzYWJsZWQgc2VsZWN0ZWQ+RG9nZTwvb3B0aW9uPlxuXHRcdFx0XHQ8b3B0aW9uPkRvZ2U8L29wdGlvbj5cblx0XHRcdFx0PG9wdGlvbj5DYXR6PC9vcHRpb24+XG5cdFx0XHRcdDxvcHRpb24+U25lazwvb3B0aW9uPlxuXHRcdFx0PC9zZWxlY3Q+XG5cdFx0PC96b28tc2VsZWN0PlxuXHRcdDxicj5cblx0XHQ8em9vLWNoZWNrYm94IGhpZ2hsaWdodGVkXG5cdFx0XHRsYWJlbHRleHQ9XCJJIHVuZGVyc3RhbmQgYW5kIGNvbmZpcm0gdGhhdCBBTEwgb2YgdGhlIGFib3ZlIHN0YXRlbWVudHMgYXJlIHRydWVcIj5cblx0XHRcdDxpbnB1dCBzbG90PVwiY2hlY2tib3hlbGVtZW50XCIgdHlwZT1cImNoZWNrYm94XCIvPlxuXHRcdDwvem9vLWNoZWNrYm94PlxuXHRcdDxicj5cblx0XHQ8em9vLWJ1dHRvbiB0eXBlPVwiaG90XCIgc2l6ZT1cIm1lZGl1bVwiIG9uOmNsaWNrPVwieygpID0+IGNsb3NlTW9kYWwoKX1cIj5cblx0XHRcdDxzcGFuIHNsb3Q9XCJidXR0b25jb250ZW50XCI+QWRkIHRvIGNhcnQ8L3NwYW4+XG5cdFx0PC96b28tYnV0dG9uPlxuXHQ8L2Rpdj5cbjwvem9vLW1vZGFsPlxuPHN0eWxlIHR5cGU9J3RleHQvc2Nzcyc+LmJ1dHRvbnMge1xuICBtYXgtd2lkdGg6IDEyODBweDtcbiAgbWFyZ2luOiAyMHB4IGF1dG87XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KGF1dG8tZmlsbCwgbWlubWF4KDMyMHB4LCAxZnIpKTtcbiAgZ3JpZC1nYXA6IDE1cHg7XG4gIHdpZHRoOiA5MCU7IH1cbiAgQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA4NTBweCkge1xuICAgIC5idXR0b25zIHtcbiAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogYXV0bzsgfSB9XG5cbi5zbG90dGVkLXNwYW4ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7IH1cblxuem9vLXRvb2x0aXAge1xuICBkaXNwbGF5OiBub25lOyB9XG5cbi50b3AtdG9vbHRpcCB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrOyB9XG4gIC50b3AtdG9vbHRpcDpob3ZlciB6b28tdG9vbHRpcCB7XG4gICAgZGlzcGxheTogYmxvY2s7IH1cblxuLyojIHNvdXJjZU1hcHBpbmdVUkw9eC5tYXAgKi88L3N0eWxlPlxuPHNjcmlwdD5cblx0bGV0IHRvYXN0O1xuXHRsZXQgbW9kYWw7XG5cdGxldCBtb2RhbFRvYXN0O1xuXG5cdGNvbnN0IHNob3dNb2RhbCA9ICgpID0+IHtcblx0XHRtb2RhbC5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJztcblx0fTtcblx0Y29uc3QgY2xvc2VNb2RhbCA9ICgpID0+IHtcblx0XHRtb2RhbC5jbG9zZU1vZGFsKCk7XG5cdFx0bW9kYWxUb2FzdC5zaG93KCk7XG5cdH1cbjwvc2NyaXB0PiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUErQ3dCLFFBQVEsQUFBQyxDQUFDLEFBQ2hDLFNBQVMsQ0FBRSxNQUFNLENBQ2pCLE1BQU0sQ0FBRSxJQUFJLENBQUMsSUFBSSxDQUNqQixPQUFPLENBQUUsSUFBSSxDQUNiLHFCQUFxQixDQUFFLE9BQU8sU0FBUyxDQUFDLENBQUMsT0FBTyxLQUFLLENBQUMsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUM1RCxRQUFRLENBQUUsSUFBSSxDQUNkLEtBQUssQ0FBRSxHQUFHLEFBQUUsQ0FBQyxBQUNiLE9BQU8sSUFBSSxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsWUFBWSxLQUFLLENBQUMsQUFBQyxDQUFDLEFBQ3pDLFFBQVEsQUFBQyxDQUFDLEFBQ1IscUJBQXFCLENBQUUsSUFBSSxBQUFFLENBQUMsQUFBQyxDQUFDLEFBRXRDLGFBQWEsQUFBQyxDQUFDLEFBQ2IsT0FBTyxDQUFFLEtBQUssQ0FDZCxhQUFhLENBQUUsUUFBUSxDQUN2QixRQUFRLENBQUUsTUFBTSxDQUNoQixXQUFXLENBQUUsTUFBTSxBQUFFLENBQUMsQUFFeEIsV0FBVyxBQUFDLENBQUMsQUFDWCxPQUFPLENBQUUsSUFBSSxBQUFFLENBQUMsQUFFbEIsWUFBWSxBQUFDLENBQUMsQUFDWixRQUFRLENBQUUsUUFBUSxDQUNsQixPQUFPLENBQUUsWUFBWSxBQUFFLENBQUMsQUFDeEIsWUFBWSxNQUFNLENBQUMsV0FBVyxBQUFDLENBQUMsQUFDOUIsT0FBTyxDQUFFLEtBQUssQUFBRSxDQUFDIn0= */</style>`;
+    		this.shadowRoot.innerHTML = `<style>.buttons{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-gap:15px;width:90%}@media only screen and (max-width: 850px){.buttons{grid-template-columns:auto}}.slotted-span{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}zoo-tooltip{display:none}.top-tooltip{position:relative;display:inline-block}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}
+		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQnV0dG9ucy5zdmVsdGUiLCJzb3VyY2VzIjpbIkJ1dHRvbnMuc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzdmVsdGU6b3B0aW9ucyB0YWc9XCJhcHAtYnV0dG9uc1wiPjwvc3ZlbHRlOm9wdGlvbnM+XG48em9vLXRvYXN0IHRleHQ9XCJTZWFyY2ggZm9yIG1vcmUgdGhhbiA4LjAwMCBwcm9kdWN0cy5cIiBiaW5kOnRoaXM9e3RvYXN0fT48L3pvby10b2FzdD5cbjx6b28tdG9hc3QgdGV4dD1cIkFkZGVkIHRvIGNhcnQhXCIgYmluZDp0aGlzPXttb2RhbFRvYXN0fT48L3pvby10b2FzdD5cbjxhcHAtY29udGV4dCB0ZXh0PVwiU2Vjb25kIHNlY3Rpb24gaXMgYSBzaG93Y2FzZSBvZiBidXR0b25zIGFuZCBtb2RhbHNcIj48L2FwcC1jb250ZXh0PlxuPGRpdiBjbGFzcz1cImJ1dHRvbnNcIj5cblx0PHpvby1idXR0b24gc2l6ZT1cInNtYWxsXCIgb246Y2xpY2s9XCJ7KCkgPT4gdG9hc3Quc2hvdygpfVwiPlxuXHRcdDxzcGFuIHNsb3Q9XCJidXR0b25jb250ZW50XCIgY2xhc3M9XCJzbG90dGVkLXNwYW5cIj5IZXJlIHdlIGhhdmUgYSB2ZXJ5IGxvbmcgdGV4dCBpbmRlZWQhPC9zcGFuPlxuXHQ8L3pvby1idXR0b24+XG5cdDx6b28tYnV0dG9uIHNpemU9XCJzbWFsbFwiIGRpc2FibGVkPVwie3RydWV9XCIgY2xhc3M9XCJ0b3AtdG9vbHRpcFwiPlxuXHRcdDxkaXYgc2xvdD1cImJ1dHRvbmNvbnRlbnRcIj5cblx0XHRcdERpc2FibGVkIDooXG5cdFx0XHQ8em9vLXRvb2x0aXAgcG9zaXRpb249XCJib3R0b21cIiB0ZXh0PVwiSnVzdCBzZXQgZGlzYWJsZWQgYXR0cmlidXRlIG9uIGB6b28tYnV0dG9uYFwiPjwvem9vLXRvb2x0aXA+XG5cdFx0PC9kaXY+XG5cdDwvem9vLWJ1dHRvbj5cblx0PHpvby1idXR0b24gdHlwZT1cImhvdFwiIHNpemU9XCJzbWFsbFwiIG9uOmNsaWNrPVwieygpID0+IG1vZGFsLm9wZW5Nb2RhbCgpfVwiPlxuXHRcdDxzcGFuIHNsb3Q9XCJidXR0b25jb250ZW50XCIgY2xhc3M9XCJzbG90dGVkLXNwYW5cIj5TaG93IG1vZGFsPC9zcGFuPlxuXHQ8L3pvby1idXR0b24+XG48L2Rpdj4gXG48em9vLW1vZGFsIHN0eWxlPVwiZGlzcGxheTogbm9uZVwiIGhlYWRlcnRleHQ9XCJZb3VyIGJhc2tldCBjb250YWlucyBsaWNlbnNlZCBpdGVtc1wiIGJpbmQ6dGhpcz17bW9kYWx9PlxuXHQ8ZGl2PlxuXHRcdDx6b28tZmVlZGJhY2sgXG5cdFx0dHlwZT1cImluZm9cIiBcblx0XHR0ZXh0PVwiVGhpcyBpcyBhbiBpbmZvIG1lc3NhZ2UuIE9ubHkgb25lIGNvdXBvbiBjYW4gYmUgYWNjZXB0ZWQgd2l0aCBlYWNoIG9yZGVyLiBQbGVhc2UgY2hvb3NlIG9uZSBjb3Vwb24gdGhhdCB5b3UganVzdCBlbnRlcmVkLlwiPlxuXHRcdDwvem9vLWZlZWRiYWNrPlxuXHRcdDxicj5cblx0XHQ8em9vLXNlbGVjdCBsYWJlbHRleHQ9XCJUaGlzIHByb2R1Y3QgaXMgZm9yXCIgXG5cdFx0XHR2YWxpZD1cInt0cnVlfVwiPlxuXHRcdFx0PHNlbGVjdCBzbG90PVwic2VsZWN0ZWxlbWVudFwiPlxuXHRcdFx0XHQ8b3B0aW9uIGNsYXNzPVwicGxhY2Vob2xkZXJcIiB2YWx1ZT1cIlwiIGRpc2FibGVkIHNlbGVjdGVkPkRvZ2U8L29wdGlvbj5cblx0XHRcdFx0PG9wdGlvbj5Eb2dlPC9vcHRpb24+XG5cdFx0XHRcdDxvcHRpb24+Q2F0ejwvb3B0aW9uPlxuXHRcdFx0XHQ8b3B0aW9uPlNuZWs8L29wdGlvbj5cblx0XHRcdDwvc2VsZWN0PlxuXHRcdDwvem9vLXNlbGVjdD5cblx0XHQ8YnI+XG5cdFx0PHpvby1jaGVja2JveCBoaWdobGlnaHRlZFxuXHRcdFx0bGFiZWx0ZXh0PVwiSSB1bmRlcnN0YW5kIGFuZCBjb25maXJtIHRoYXQgQUxMIG9mIHRoZSBhYm92ZSBzdGF0ZW1lbnRzIGFyZSB0cnVlXCI+XG5cdFx0XHQ8aW5wdXQgc2xvdD1cImNoZWNrYm94ZWxlbWVudFwiIHR5cGU9XCJjaGVja2JveFwiLz5cblx0XHQ8L3pvby1jaGVja2JveD5cblx0XHQ8YnI+XG5cdFx0PHpvby1idXR0b24gdHlwZT1cImhvdFwiIHNpemU9XCJtZWRpdW1cIiBvbjpjbGljaz1cInsoKSA9PiBjbG9zZU1vZGFsKCl9XCI+XG5cdFx0XHQ8c3BhbiBzbG90PVwiYnV0dG9uY29udGVudFwiPkFkZCB0byBjYXJ0PC9zcGFuPlxuXHRcdDwvem9vLWJ1dHRvbj5cblx0PC9kaXY+XG48L3pvby1tb2RhbD5cbjxzdHlsZSB0eXBlPSd0ZXh0L3Njc3MnPi5idXR0b25zIHtcbiAgbWF4LXdpZHRoOiAxMjgwcHg7XG4gIG1hcmdpbjogMjBweCBhdXRvO1xuICBkaXNwbGF5OiBncmlkO1xuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdChhdXRvLWZpbGwsIG1pbm1heCgzMjBweCwgMWZyKSk7XG4gIGdyaWQtZ2FwOiAxNXB4O1xuICB3aWR0aDogOTAlOyB9XG4gIEBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1heC13aWR0aDogODUwcHgpIHtcbiAgICAuYnV0dG9ucyB7XG4gICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IGF1dG87IH0gfVxuXG4uc2xvdHRlZC1zcGFuIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICB3aGl0ZS1zcGFjZTogbm93cmFwOyB9XG5cbnpvby10b29sdGlwIHtcbiAgZGlzcGxheTogbm9uZTsgfVxuXG4udG9wLXRvb2x0aXAge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jazsgfVxuICAudG9wLXRvb2x0aXA6aG92ZXIgem9vLXRvb2x0aXAge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIGFuaW1hdGlvbjogZmFkZVRvb2x0aXBJbiAwLjJzOyB9XG5cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXgubWFwICovPC9zdHlsZT5cbjxzY3JpcHQ+XG5cdGxldCB0b2FzdDtcblx0bGV0IG1vZGFsO1xuXHRsZXQgbW9kYWxUb2FzdDtcblxuXHRjb25zdCBzaG93TW9kYWwgPSAoKSA9PiB7XG5cdFx0bW9kYWwuc3R5bGUuZGlzcGxheSA9ICdibG9jayc7XG5cdH07XG5cdGNvbnN0IGNsb3NlTW9kYWwgPSAoKSA9PiB7XG5cdFx0bW9kYWwuY2xvc2VNb2RhbCgpO1xuXHRcdG1vZGFsVG9hc3Quc2hvdygpO1xuXHR9XG48L3NjcmlwdD4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBNkN3QixRQUFRLEFBQUMsQ0FBQyxBQUNoQyxTQUFTLENBQUUsTUFBTSxDQUNqQixNQUFNLENBQUUsSUFBSSxDQUFDLElBQUksQ0FDakIsT0FBTyxDQUFFLElBQUksQ0FDYixxQkFBcUIsQ0FBRSxPQUFPLFNBQVMsQ0FBQyxDQUFDLE9BQU8sS0FBSyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FDNUQsUUFBUSxDQUFFLElBQUksQ0FDZCxLQUFLLENBQUUsR0FBRyxBQUFFLENBQUMsQUFDYixPQUFPLElBQUksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLFlBQVksS0FBSyxDQUFDLEFBQUMsQ0FBQyxBQUN6QyxRQUFRLEFBQUMsQ0FBQyxBQUNSLHFCQUFxQixDQUFFLElBQUksQUFBRSxDQUFDLEFBQUMsQ0FBQyxBQUV0QyxhQUFhLEFBQUMsQ0FBQyxBQUNiLE9BQU8sQ0FBRSxLQUFLLENBQ2QsYUFBYSxDQUFFLFFBQVEsQ0FDdkIsUUFBUSxDQUFFLE1BQU0sQ0FDaEIsV0FBVyxDQUFFLE1BQU0sQUFBRSxDQUFDLEFBRXhCLFdBQVcsQUFBQyxDQUFDLEFBQ1gsT0FBTyxDQUFFLElBQUksQUFBRSxDQUFDLEFBRWxCLFlBQVksQUFBQyxDQUFDLEFBQ1osUUFBUSxDQUFFLFFBQVEsQ0FDbEIsT0FBTyxDQUFFLFlBQVksQUFBRSxDQUFDLEFBQ3hCLFlBQVksTUFBTSxDQUFDLFdBQVcsQUFBQyxDQUFDLEFBQzlCLE9BQU8sQ0FBRSxLQUFLLENBQ2QsU0FBUyxDQUFFLGFBQWEsQ0FBQyxJQUFJLEFBQUUsQ0FBQyJ9 */</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$3, create_fragment$3, safe_not_equal, []);
 
@@ -1660,7 +1658,7 @@
 
     customElements.define("app-buttons", Buttons);
 
-    /* src/sections/TooltipAndFeedback.svelte generated by Svelte v3.4.4 */
+    /* src/sections/TooltipAndFeedback.svelte generated by Svelte v3.6.5 */
 
     const file$4 = "src/sections/TooltipAndFeedback.svelte";
 
@@ -1706,7 +1704,7 @@
     			set_custom_element_data(zoo_tooltip0, "position", "right");
     			set_custom_element_data(zoo_tooltip0, "text", "Hello from right side.");
     			add_location(zoo_tooltip0, file$4, 5, 2, 357);
-    			div0.className = "feedback-tooltip";
+    			attr(div0, "class", "feedback-tooltip");
     			add_location(div0, file$4, 3, 1, 189);
     			set_custom_element_data(zoo_feedback1, "type", "error");
     			set_custom_element_data(zoo_feedback1, "text", "This is an error message. This element will show tooltip on the left side on hover.");
@@ -1714,7 +1712,7 @@
     			set_custom_element_data(zoo_tooltip1, "position", "left");
     			set_custom_element_data(zoo_tooltip1, "text", "Hello from left side.");
     			add_location(zoo_tooltip1, file$4, 9, 2, 610);
-    			div1.className = "feedback-tooltip";
+    			attr(div1, "class", "feedback-tooltip");
     			add_location(div1, file$4, 7, 1, 441);
     			set_custom_element_data(zoo_feedback2, "type", "success");
     			set_custom_element_data(zoo_feedback2, "text", "This is a success message. This element will show tooltip on the bottom side on hover.");
@@ -1722,26 +1720,26 @@
     			set_custom_element_data(zoo_tooltip2, "position", "bottom");
     			set_custom_element_data(zoo_tooltip2, "text", "Hello from below");
     			add_location(zoo_tooltip2, file$4, 13, 2, 866);
-    			div2.className = "feedback-tooltip";
+    			attr(div2, "class", "feedback-tooltip");
     			add_location(div2, file$4, 11, 1, 692);
-    			span.className = "slotted-span";
+    			attr(span, "class", "slotted-span");
     			attr(span, "slot", "buttoncontent");
     			add_location(span, file$4, 17, 3, 1026);
     			add_location(zoo_button, file$4, 16, 2, 978);
     			attr(input, "slot", "inputelement");
-    			input.placeholder = "Search for more than 8.000 products";
+    			attr(input, "placeholder", "Search for more than 8.000 products");
     			add_location(input, file$4, 21, 4, 1274);
-    			zoo_input.className = "input-in-tooltip";
+    			set_custom_element_data(zoo_input, "class", "input-in-tooltip");
     			add_location(zoo_input, file$4, 20, 3, 1233);
-    			zoo_tooltip3.className = "nested-tooltip";
+    			set_custom_element_data(zoo_tooltip3, "class", "nested-tooltip");
     			set_custom_element_data(zoo_tooltip3, "position", "right");
     			set_custom_element_data(zoo_tooltip3, "text", "Hello from nested tooltip.");
     			add_location(zoo_tooltip3, file$4, 23, 3, 1372);
     			set_custom_element_data(zoo_tooltip4, "text", "Hello from up above");
     			add_location(zoo_tooltip4, file$4, 19, 2, 1162);
-    			div3.className = "special-tooltip";
+    			attr(div3, "class", "special-tooltip");
     			add_location(div3, file$4, 15, 1, 945);
-    			div4.className = "inner-content";
+    			attr(div4, "class", "inner-content");
     			add_location(div4, file$4, 2, 0, 160);
     			dispose = listen(zoo_button, "click", ctx.showSpecialTooltip);
     		},
@@ -1778,16 +1776,10 @@
     			append(zoo_input, input);
     			append(zoo_tooltip4, t9);
     			append(zoo_tooltip4, zoo_tooltip3);
-    			add_binding_callback(() => ctx.zoo_tooltip4_binding(zoo_tooltip4, null));
+    			ctx.zoo_tooltip4_binding(zoo_tooltip4);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_tooltip4_binding(null, zoo_tooltip4);
-    				ctx.zoo_tooltip4_binding(zoo_tooltip4, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -1798,7 +1790,7 @@
     				detach(div4);
     			}
 
-    			ctx.zoo_tooltip4_binding(null, zoo_tooltip4);
+    			ctx.zoo_tooltip4_binding(null);
     			dispose();
     		}
     	};
@@ -1812,9 +1804,10 @@
     		elStyle.display = display;
     	};
 
-    	function zoo_tooltip4_binding($$node, check) {
-    		specialTooltip = $$node;
-    		$$invalidate('specialTooltip', specialTooltip);
+    	function zoo_tooltip4_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('specialTooltip', specialTooltip = $$value);
+    		});
     	}
 
     	return {
@@ -1828,8 +1821,8 @@
     	constructor(options) {
     		super();
 
-    		this.shadowRoot.innerHTML = `<style>.inner-content{flex:1 0 auto;width:70%;margin:0 auto}.inner-content .feedback-tooltip{height:60px;margin-bottom:15px;position:relative}.inner-content .feedback-tooltip:hover zoo-tooltip{display:block}.special-tooltip{max-width:250px;position:relative;margin:0 auto;cursor:pointer}.special-tooltip .slotted-span{line-height:25px}zoo-tooltip{display:none}.input-in-tooltip:hover~.nested-tooltip{display:block}
-		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVG9vbHRpcEFuZEZlZWRiYWNrLnN2ZWx0ZSIsInNvdXJjZXMiOlsiVG9vbHRpcEFuZEZlZWRiYWNrLnN2ZWx0ZSJdLCJzb3VyY2VzQ29udGVudCI6WyI8c3ZlbHRlOm9wdGlvbnMgdGFnPVwiYXBwLXRvb2x0aXAtYW5kLWZlZWRiYWNrXCI+PC9zdmVsdGU6b3B0aW9ucz5cbjxhcHAtY29udGV4dCB0ZXh0PVwiVGhpcmQgc2VjdGlvbiBpcyBhIHNob3djYXNlIG9mIHRvb2x0aXBzIGFuZCBmZWVkYmFjayBib3hlcy5cIj48L2FwcC1jb250ZXh0PlxuPGRpdiBjbGFzcz1cImlubmVyLWNvbnRlbnRcIj5cblx0PGRpdiBjbGFzcz1cImZlZWRiYWNrLXRvb2x0aXBcIj5cblx0XHQ8em9vLWZlZWRiYWNrIHR5cGU9XCJpbmZvXCIgdGV4dD1cIlRoaXMgaXMgYW4gaW5mbyBtZXNzYWdlLiBUaGlzIGVsZW1lbnQgd2lsbCBzaG93IHRvb2x0aXAgb24gdGhlIHJpZ2h0IHNpZGUgb24gaG92ZXIuXCI+PC96b28tZmVlZGJhY2s+XG5cdFx0PHpvby10b29sdGlwIHBvc2l0aW9uPVwicmlnaHRcIiB0ZXh0PVwiSGVsbG8gZnJvbSByaWdodCBzaWRlLlwiPjwvem9vLXRvb2x0aXA+XG5cdDwvZGl2PlxuXHQ8ZGl2IGNsYXNzPVwiZmVlZGJhY2stdG9vbHRpcFwiPlxuXHRcdDx6b28tZmVlZGJhY2sgdHlwZT1cImVycm9yXCIgdGV4dD1cIlRoaXMgaXMgYW4gZXJyb3IgbWVzc2FnZS4gVGhpcyBlbGVtZW50IHdpbGwgc2hvdyB0b29sdGlwIG9uIHRoZSBsZWZ0IHNpZGUgb24gaG92ZXIuXCI+PC96b28tZmVlZGJhY2s+XG5cdFx0PHpvby10b29sdGlwIHBvc2l0aW9uPVwibGVmdFwiIHRleHQ9XCJIZWxsbyBmcm9tIGxlZnQgc2lkZS5cIj48L3pvby10b29sdGlwPlxuXHQ8L2Rpdj5cblx0PGRpdiBjbGFzcz1cImZlZWRiYWNrLXRvb2x0aXBcIj5cblx0XHQ8em9vLWZlZWRiYWNrIHR5cGU9XCJzdWNjZXNzXCIgdGV4dD1cIlRoaXMgaXMgYSBzdWNjZXNzIG1lc3NhZ2UuIFRoaXMgZWxlbWVudCB3aWxsIHNob3cgdG9vbHRpcCBvbiB0aGUgYm90dG9tIHNpZGUgb24gaG92ZXIuXCI+PC96b28tZmVlZGJhY2s+XG5cdFx0PHpvby10b29sdGlwIHBvc2l0aW9uPVwiYm90dG9tXCIgdGV4dD1cIkhlbGxvIGZyb20gYmVsb3dcIj48L3pvby10b29sdGlwPlxuXHQ8L2Rpdj5cblx0PGRpdiBjbGFzcz1cInNwZWNpYWwtdG9vbHRpcFwiPiBcblx0XHQ8em9vLWJ1dHRvbiBvbjpjbGljaz1cIntzaG93U3BlY2lhbFRvb2x0aXB9XCI+XG5cdFx0XHQ8c3BhbiBjbGFzcz1cInNsb3R0ZWQtc3BhblwiIHNsb3Q9XCJidXR0b25jb250ZW50XCI+VGhpcyBlbGVtZW50IHdpbGwgc2hvdyB0b29sdGlwIG9uIHRvcCBvbmx5IHdoZW4gaXQgaXMgY2xpY2tlZC48L3NwYW4+XG5cdFx0PC96b28tYnV0dG9uPlxuXHRcdDx6b28tdG9vbHRpcCBiaW5kOnRoaXM9e3NwZWNpYWxUb29sdGlwfSB0ZXh0PVwiSGVsbG8gZnJvbSB1cCBhYm92ZVwiPlxuXHRcdFx0PHpvby1pbnB1dCBjbGFzcz1cImlucHV0LWluLXRvb2x0aXBcIj5cblx0XHRcdFx0PGlucHV0IHNsb3Q9XCJpbnB1dGVsZW1lbnRcIiBwbGFjZWhvbGRlcj1cIlNlYXJjaCBmb3IgbW9yZSB0aGFuIDguMDAwIHByb2R1Y3RzXCIvPlxuXHRcdFx0PC96b28taW5wdXQ+XG5cdFx0XHQ8em9vLXRvb2x0aXAgY2xhc3M9XCJuZXN0ZWQtdG9vbHRpcFwiIHBvc2l0aW9uPVwicmlnaHRcIiB0ZXh0PVwiSGVsbG8gZnJvbSBuZXN0ZWQgdG9vbHRpcC5cIj5cblx0XHRcdDwvem9vLXRvb2x0aXA+XG5cdFx0PC96b28tdG9vbHRpcD5cblx0PC9kaXY+XG48L2Rpdj5cblxuPHN0eWxlIHR5cGU9J3RleHQvc2Nzcyc+LmlubmVyLWNvbnRlbnQge1xuICBmbGV4OiAxIDAgYXV0bztcbiAgd2lkdGg6IDcwJTtcbiAgbWFyZ2luOiAwIGF1dG87IH1cbiAgLmlubmVyLWNvbnRlbnQgLmZlZWRiYWNrLXRvb2x0aXAge1xuICAgIGhlaWdodDogNjBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAxNXB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsgfVxuICAgIC5pbm5lci1jb250ZW50IC5mZWVkYmFjay10b29sdGlwOmhvdmVyIHpvby10b29sdGlwIHtcbiAgICAgIGRpc3BsYXk6IGJsb2NrOyB9XG5cbi5zcGVjaWFsLXRvb2x0aXAge1xuICBtYXgtd2lkdGg6IDI1MHB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBjdXJzb3I6IHBvaW50ZXI7IH1cbiAgLnNwZWNpYWwtdG9vbHRpcCAuc2xvdHRlZC1zcGFuIHtcbiAgICBsaW5lLWhlaWdodDogMjVweDsgfVxuXG4udG9wLXRvb2x0aXAge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jazsgfVxuICAudG9wLXRvb2x0aXA6aG92ZXIgem9vLXRvb2x0aXAge1xuICAgIGRpc3BsYXk6IGJsb2NrOyB9XG5cbnpvby10b29sdGlwIHtcbiAgZGlzcGxheTogbm9uZTsgfVxuXG4uaW5wdXQtaW4tdG9vbHRpcDpob3ZlciB+IC5uZXN0ZWQtdG9vbHRpcCB7XG4gIGRpc3BsYXk6IGJsb2NrOyB9XG5cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXgubWFwICovPC9zdHlsZT5cblxuPHNjcmlwdD5cblx0bGV0IHNwZWNpYWxUb29sdGlwO1xuXHRjb25zdCBzaG93U3BlY2lhbFRvb2x0aXAgPSAoKSA9PiB7XG5cdFx0Y29uc3QgZWxTdHlsZSA9IHNwZWNpYWxUb29sdGlwLnN0eWxlO1xuXHRcdGNvbnN0IGRpc3BsYXkgPSAhZWxTdHlsZS5kaXNwbGF5IHx8IGVsU3R5bGUuZGlzcGxheSA9PT0gJ25vbmUnID8gJ2Jsb2NrJyA6ICdub25lJztcblx0XHRlbFN0eWxlLmRpc3BsYXkgPSBkaXNwbGF5O1xuXHR9O1xuPC9zY3JpcHQ+Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTZCd0IsY0FBYyxBQUFDLENBQUMsQUFDdEMsSUFBSSxDQUFFLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUNkLEtBQUssQ0FBRSxHQUFHLENBQ1YsTUFBTSxDQUFFLENBQUMsQ0FBQyxJQUFJLEFBQUUsQ0FBQyxBQUNqQixjQUFjLENBQUMsaUJBQWlCLEFBQUMsQ0FBQyxBQUNoQyxNQUFNLENBQUUsSUFBSSxDQUNaLGFBQWEsQ0FBRSxJQUFJLENBQ25CLFFBQVEsQ0FBRSxRQUFRLEFBQUUsQ0FBQyxBQUNyQixjQUFjLENBQUMsaUJBQWlCLE1BQU0sQ0FBQyxXQUFXLEFBQUMsQ0FBQyxBQUNsRCxPQUFPLENBQUUsS0FBSyxBQUFFLENBQUMsQUFFdkIsZ0JBQWdCLEFBQUMsQ0FBQyxBQUNoQixTQUFTLENBQUUsS0FBSyxDQUNoQixRQUFRLENBQUUsUUFBUSxDQUNsQixNQUFNLENBQUUsQ0FBQyxDQUFDLElBQUksQ0FDZCxNQUFNLENBQUUsT0FBTyxBQUFFLENBQUMsQUFDbEIsZ0JBQWdCLENBQUMsYUFBYSxBQUFDLENBQUMsQUFDOUIsV0FBVyxDQUFFLElBQUksQUFBRSxDQUFDLEFBUXhCLFdBQVcsQUFBQyxDQUFDLEFBQ1gsT0FBTyxDQUFFLElBQUksQUFBRSxDQUFDLEFBRWxCLGlCQUFpQixNQUFNLENBQUcsZUFBZSxBQUFDLENBQUMsQUFDekMsT0FBTyxDQUFFLEtBQUssQUFBRSxDQUFDIn0= */</style>`;
+    		this.shadowRoot.innerHTML = `<style>.inner-content{flex:1 0 auto;width:70%;margin:0 auto}.inner-content .feedback-tooltip{height:60px;margin-bottom:15px;position:relative}.inner-content .feedback-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}.special-tooltip{max-width:250px;position:relative;margin:0 auto;cursor:pointer}.special-tooltip .slotted-span{line-height:25px}zoo-tooltip{display:none}.input-in-tooltip:hover~.nested-tooltip{display:block;animation:fadeTooltipIn 0.2s}
+		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVG9vbHRpcEFuZEZlZWRiYWNrLnN2ZWx0ZSIsInNvdXJjZXMiOlsiVG9vbHRpcEFuZEZlZWRiYWNrLnN2ZWx0ZSJdLCJzb3VyY2VzQ29udGVudCI6WyI8c3ZlbHRlOm9wdGlvbnMgdGFnPVwiYXBwLXRvb2x0aXAtYW5kLWZlZWRiYWNrXCI+PC9zdmVsdGU6b3B0aW9ucz5cbjxhcHAtY29udGV4dCB0ZXh0PVwiVGhpcmQgc2VjdGlvbiBpcyBhIHNob3djYXNlIG9mIHRvb2x0aXBzIGFuZCBmZWVkYmFjayBib3hlcy5cIj48L2FwcC1jb250ZXh0PlxuPGRpdiBjbGFzcz1cImlubmVyLWNvbnRlbnRcIj5cblx0PGRpdiBjbGFzcz1cImZlZWRiYWNrLXRvb2x0aXBcIj5cblx0XHQ8em9vLWZlZWRiYWNrIHR5cGU9XCJpbmZvXCIgdGV4dD1cIlRoaXMgaXMgYW4gaW5mbyBtZXNzYWdlLiBUaGlzIGVsZW1lbnQgd2lsbCBzaG93IHRvb2x0aXAgb24gdGhlIHJpZ2h0IHNpZGUgb24gaG92ZXIuXCI+PC96b28tZmVlZGJhY2s+XG5cdFx0PHpvby10b29sdGlwIHBvc2l0aW9uPVwicmlnaHRcIiB0ZXh0PVwiSGVsbG8gZnJvbSByaWdodCBzaWRlLlwiPjwvem9vLXRvb2x0aXA+XG5cdDwvZGl2PlxuXHQ8ZGl2IGNsYXNzPVwiZmVlZGJhY2stdG9vbHRpcFwiPlxuXHRcdDx6b28tZmVlZGJhY2sgdHlwZT1cImVycm9yXCIgdGV4dD1cIlRoaXMgaXMgYW4gZXJyb3IgbWVzc2FnZS4gVGhpcyBlbGVtZW50IHdpbGwgc2hvdyB0b29sdGlwIG9uIHRoZSBsZWZ0IHNpZGUgb24gaG92ZXIuXCI+PC96b28tZmVlZGJhY2s+XG5cdFx0PHpvby10b29sdGlwIHBvc2l0aW9uPVwibGVmdFwiIHRleHQ9XCJIZWxsbyBmcm9tIGxlZnQgc2lkZS5cIj48L3pvby10b29sdGlwPlxuXHQ8L2Rpdj5cblx0PGRpdiBjbGFzcz1cImZlZWRiYWNrLXRvb2x0aXBcIj5cblx0XHQ8em9vLWZlZWRiYWNrIHR5cGU9XCJzdWNjZXNzXCIgdGV4dD1cIlRoaXMgaXMgYSBzdWNjZXNzIG1lc3NhZ2UuIFRoaXMgZWxlbWVudCB3aWxsIHNob3cgdG9vbHRpcCBvbiB0aGUgYm90dG9tIHNpZGUgb24gaG92ZXIuXCI+PC96b28tZmVlZGJhY2s+XG5cdFx0PHpvby10b29sdGlwIHBvc2l0aW9uPVwiYm90dG9tXCIgdGV4dD1cIkhlbGxvIGZyb20gYmVsb3dcIj48L3pvby10b29sdGlwPlxuXHQ8L2Rpdj5cblx0PGRpdiBjbGFzcz1cInNwZWNpYWwtdG9vbHRpcFwiPiBcblx0XHQ8em9vLWJ1dHRvbiBvbjpjbGljaz1cIntzaG93U3BlY2lhbFRvb2x0aXB9XCI+XG5cdFx0XHQ8c3BhbiBjbGFzcz1cInNsb3R0ZWQtc3BhblwiIHNsb3Q9XCJidXR0b25jb250ZW50XCI+VGhpcyBlbGVtZW50IHdpbGwgc2hvdyB0b29sdGlwIG9uIHRvcCBvbmx5IHdoZW4gaXQgaXMgY2xpY2tlZC48L3NwYW4+XG5cdFx0PC96b28tYnV0dG9uPlxuXHRcdDx6b28tdG9vbHRpcCBiaW5kOnRoaXM9e3NwZWNpYWxUb29sdGlwfSB0ZXh0PVwiSGVsbG8gZnJvbSB1cCBhYm92ZVwiPlxuXHRcdFx0PHpvby1pbnB1dCBjbGFzcz1cImlucHV0LWluLXRvb2x0aXBcIj5cblx0XHRcdFx0PGlucHV0IHNsb3Q9XCJpbnB1dGVsZW1lbnRcIiBwbGFjZWhvbGRlcj1cIlNlYXJjaCBmb3IgbW9yZSB0aGFuIDguMDAwIHByb2R1Y3RzXCIvPlxuXHRcdFx0PC96b28taW5wdXQ+XG5cdFx0XHQ8em9vLXRvb2x0aXAgY2xhc3M9XCJuZXN0ZWQtdG9vbHRpcFwiIHBvc2l0aW9uPVwicmlnaHRcIiB0ZXh0PVwiSGVsbG8gZnJvbSBuZXN0ZWQgdG9vbHRpcC5cIj5cblx0XHRcdDwvem9vLXRvb2x0aXA+XG5cdFx0PC96b28tdG9vbHRpcD5cblx0PC9kaXY+XG48L2Rpdj5cblxuPHN0eWxlIHR5cGU9J3RleHQvc2Nzcyc+LmlubmVyLWNvbnRlbnQge1xuICBmbGV4OiAxIDAgYXV0bztcbiAgd2lkdGg6IDcwJTtcbiAgbWFyZ2luOiAwIGF1dG87IH1cbiAgLmlubmVyLWNvbnRlbnQgLmZlZWRiYWNrLXRvb2x0aXAge1xuICAgIGhlaWdodDogNjBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAxNXB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsgfVxuICAgIC5pbm5lci1jb250ZW50IC5mZWVkYmFjay10b29sdGlwOmhvdmVyIHpvby10b29sdGlwIHtcbiAgICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgICAgYW5pbWF0aW9uOiBmYWRlVG9vbHRpcEluIDAuMnM7IH1cblxuLnNwZWNpYWwtdG9vbHRpcCB7XG4gIG1heC13aWR0aDogMjUwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luOiAwIGF1dG87XG4gIGN1cnNvcjogcG9pbnRlcjsgfVxuICAuc3BlY2lhbC10b29sdGlwIC5zbG90dGVkLXNwYW4ge1xuICAgIGxpbmUtaGVpZ2h0OiAyNXB4OyB9XG5cbi50b3AtdG9vbHRpcCB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrOyB9XG4gIC50b3AtdG9vbHRpcDpob3ZlciB6b28tdG9vbHRpcCB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgYW5pbWF0aW9uOiBmYWRlVG9vbHRpcEluIDAuMnM7IH1cblxuem9vLXRvb2x0aXAge1xuICBkaXNwbGF5OiBub25lOyB9XG5cbi5pbnB1dC1pbi10b29sdGlwOmhvdmVyIH4gLm5lc3RlZC10b29sdGlwIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIGFuaW1hdGlvbjogZmFkZVRvb2x0aXBJbiAwLjJzOyB9XG5cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXgubWFwICovPC9zdHlsZT5cblxuPHNjcmlwdD5cblx0bGV0IHNwZWNpYWxUb29sdGlwO1xuXHRjb25zdCBzaG93U3BlY2lhbFRvb2x0aXAgPSAoKSA9PiB7XG5cdFx0Y29uc3QgZWxTdHlsZSA9IHNwZWNpYWxUb29sdGlwLnN0eWxlO1xuXHRcdGNvbnN0IGRpc3BsYXkgPSAhZWxTdHlsZS5kaXNwbGF5IHx8IGVsU3R5bGUuZGlzcGxheSA9PT0gJ25vbmUnID8gJ2Jsb2NrJyA6ICdub25lJztcblx0XHRlbFN0eWxlLmRpc3BsYXkgPSBkaXNwbGF5O1xuXHR9O1xuPC9zY3JpcHQ+Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTZCd0IsY0FBYyxBQUFDLENBQUMsQUFDdEMsSUFBSSxDQUFFLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUNkLEtBQUssQ0FBRSxHQUFHLENBQ1YsTUFBTSxDQUFFLENBQUMsQ0FBQyxJQUFJLEFBQUUsQ0FBQyxBQUNqQixjQUFjLENBQUMsaUJBQWlCLEFBQUMsQ0FBQyxBQUNoQyxNQUFNLENBQUUsSUFBSSxDQUNaLGFBQWEsQ0FBRSxJQUFJLENBQ25CLFFBQVEsQ0FBRSxRQUFRLEFBQUUsQ0FBQyxBQUNyQixjQUFjLENBQUMsaUJBQWlCLE1BQU0sQ0FBQyxXQUFXLEFBQUMsQ0FBQyxBQUNsRCxPQUFPLENBQUUsS0FBSyxDQUNkLFNBQVMsQ0FBRSxhQUFhLENBQUMsSUFBSSxBQUFFLENBQUMsQUFFdEMsZ0JBQWdCLEFBQUMsQ0FBQyxBQUNoQixTQUFTLENBQUUsS0FBSyxDQUNoQixRQUFRLENBQUUsUUFBUSxDQUNsQixNQUFNLENBQUUsQ0FBQyxDQUFDLElBQUksQ0FDZCxNQUFNLENBQUUsT0FBTyxBQUFFLENBQUMsQUFDbEIsZ0JBQWdCLENBQUMsYUFBYSxBQUFDLENBQUMsQUFDOUIsV0FBVyxDQUFFLElBQUksQUFBRSxDQUFDLEFBU3hCLFdBQVcsQUFBQyxDQUFDLEFBQ1gsT0FBTyxDQUFFLElBQUksQUFBRSxDQUFDLEFBRWxCLGlCQUFpQixNQUFNLENBQUcsZUFBZSxBQUFDLENBQUMsQUFDekMsT0FBTyxDQUFFLEtBQUssQ0FDZCxTQUFTLENBQUUsYUFBYSxDQUFDLElBQUksQUFBRSxDQUFDIn0= */</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, []);
 
@@ -1843,7 +1836,7 @@
 
     customElements.define("app-tooltip-and-feedback", TooltipAndFeedback);
 
-    /* src/docs/ButtonDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/ButtonDocs.svelte generated by Svelte v3.6.5 */
 
     const file$5 = "src/docs/ButtonDocs.svelte";
 
@@ -1937,7 +1930,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$5, 19, 3, 634);
     			add_location(zoo_collapsable_list, file$5, 5, 2, 158);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$5, 4, 1, 137);
     			add_location(pre, file$5, 25, 8, 983);
     			add_location(code, file$5, 25, 2, 977);
@@ -1948,9 +1941,9 @@
     			add_location(zoo_button, file$5, 28, 3, 1074);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$5, 27, 2, 1043);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$5, 24, 1, 953);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$5, 3, 0, 110);
     		},
 
@@ -1999,7 +1992,7 @@
     			append(zoo_collapsable_list_item1, t26);
     			append(zoo_collapsable_list_item1, b11);
     			append(zoo_collapsable_list_item1, t28);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t29);
     			append(div3, div2);
     			append(div2, code);
@@ -2011,13 +2004,7 @@
     			append(zoo_button, span);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -2028,7 +2015,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -2048,9 +2035,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -2080,7 +2068,7 @@
 
     customElements.define("docs-button", ButtonDocs);
 
-    /* src/docs/CheckboxDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/CheckboxDocs.svelte generated by Svelte v3.6.5 */
 
     const file$6 = "src/docs/CheckboxDocs.svelte";
 
@@ -2152,7 +2140,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$6, 21, 3, 720);
     			add_location(zoo_collapsable_list, file$6, 4, 2, 161);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$6, 3, 1, 140);
     			add_location(pre, file$6, 27, 8, 1068);
     			add_location(code, file$6, 27, 2, 1062);
@@ -2164,9 +2152,9 @@
     			add_location(zoo_checkbox, file$6, 30, 3, 1159);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$6, 29, 2, 1128);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$6, 26, 1, 1038);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$6, 2, 0, 113);
     		},
 
@@ -2205,7 +2193,7 @@
     			append(zoo_collapsable_list_item1, t15);
     			append(zoo_collapsable_list_item1, b5);
     			append(zoo_collapsable_list_item1, t17);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t18);
     			append(div3, div2);
     			append(div2, code);
@@ -2217,13 +2205,7 @@
     			append(zoo_checkbox, input);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -2234,7 +2216,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -2254,9 +2236,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -2286,7 +2269,7 @@
 
     customElements.define("docs-checkbox", CheckboxDocs);
 
-    /* src/docs/CollapsableListDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/CollapsableListDocs.svelte generated by Svelte v3.6.5 */
 
     const file$7 = "src/docs/CollapsableListDocs.svelte";
 
@@ -2354,7 +2337,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$7, 15, 3, 548);
     			add_location(zoo_collapsable_list0, file$7, 4, 2, 177);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$7, 3, 1, 156);
     			add_location(pre, file$7, 21, 8, 794);
     			add_location(code1, file$7, 21, 2, 788);
@@ -2367,9 +2350,9 @@
     			add_location(zoo_collapsable_list1, file$7, 24, 3, 900);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$7, 23, 2, 869);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$7, 20, 1, 764);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$7, 2, 0, 129);
     		},
 
@@ -2401,7 +2384,7 @@
     			append(zoo_collapsable_list_item1, t10);
     			append(zoo_collapsable_list_item1, b3);
     			append(zoo_collapsable_list_item1, t12);
-    			add_binding_callback(() => ctx.zoo_collapsable_list0_binding(zoo_collapsable_list0, null));
+    			ctx.zoo_collapsable_list0_binding(zoo_collapsable_list0);
     			append(div3, t13);
     			append(div3, div2);
     			append(div2, code1);
@@ -2416,20 +2399,10 @@
     			append(zoo_collapsable_list1, t18);
     			append(zoo_collapsable_list1, zoo_collapsable_list_item3);
     			append(zoo_collapsable_list_item3, span1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list1_binding(zoo_collapsable_list1, null));
+    			ctx.zoo_collapsable_list1_binding(zoo_collapsable_list1);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list0_binding(null, zoo_collapsable_list0);
-    				ctx.zoo_collapsable_list0_binding(zoo_collapsable_list0, null);
-    			}
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list1_binding(null, zoo_collapsable_list1);
-    				ctx.zoo_collapsable_list1_binding(zoo_collapsable_list1, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -2440,8 +2413,8 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list0_binding(null, zoo_collapsable_list0);
-    			ctx.zoo_collapsable_list1_binding(null, zoo_collapsable_list1);
+    			ctx.zoo_collapsable_list0_binding(null);
+    			ctx.zoo_collapsable_list1_binding(null);
     		}
     	};
     }
@@ -2471,14 +2444,16 @@
     		]; $$invalidate('exampleList', exampleList);
     	});
 
-    	function zoo_collapsable_list0_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list0_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
-    	function zoo_collapsable_list1_binding($$node, check) {
-    		exampleList = $$node;
-    		$$invalidate('exampleList', exampleList);
+    	function zoo_collapsable_list1_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('exampleList', exampleList = $$value);
+    		});
     	}
 
     	return {
@@ -2511,7 +2486,7 @@
 
     customElements.define("docs-collapsable-list", CollapsableListDocs);
 
-    /* src/docs/FeedbackDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/FeedbackDocs.svelte generated by Svelte v3.6.5 */
 
     const file$8 = "src/docs/FeedbackDocs.svelte";
 
@@ -2576,7 +2551,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$8, 15, 3, 532);
     			add_location(zoo_collapsable_list, file$8, 4, 2, 161);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$8, 3, 1, 140);
     			add_location(pre, file$8, 21, 8, 716);
     			add_location(code, file$8, 21, 2, 710);
@@ -2584,9 +2559,9 @@
     			add_location(zoo_feedback, file$8, 24, 3, 807);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$8, 23, 2, 776);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$8, 20, 1, 686);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$8, 2, 0, 113);
     		},
 
@@ -2619,7 +2594,7 @@
     			append(li1, t13);
     			append(zoo_collapsable_list, t14);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t16);
     			append(div3, div2);
     			append(div2, code);
@@ -2630,13 +2605,7 @@
     			append(div1, zoo_feedback);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -2647,7 +2616,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -2666,9 +2635,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -2697,7 +2667,7 @@
 
     customElements.define("docs-feedback", FeedbackDocs);
 
-    /* src/docs/FooterDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/FooterDocs.svelte generated by Svelte v3.6.5 */
 
     const file$9 = "src/docs/FooterDocs.svelte";
 
@@ -2803,16 +2773,16 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$9, 33, 3, 1114);
     			add_location(zoo_collapsable_list, file$9, 5, 2, 158);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$9, 4, 1, 137);
     			add_location(pre, file$9, 39, 8, 1294);
     			add_location(code, file$9, 39, 2, 1288);
     			add_location(zoo_footer, file$9, 42, 3, 1400);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$9, 41, 2, 1369);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$9, 38, 1, 1264);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$9, 3, 0, 110);
     		},
 
@@ -2867,7 +2837,7 @@
     			append(li5, t29);
     			append(zoo_collapsable_list, t30);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t32);
     			append(div3, div2);
     			append(div2, code);
@@ -2877,20 +2847,10 @@
     			append(div2, t35);
     			append(div2, div1);
     			append(div1, zoo_footer);
-    			add_binding_callback(() => ctx.zoo_footer_binding(zoo_footer, null));
+    			ctx.zoo_footer_binding(zoo_footer);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    			if (changed.items) {
-    				ctx.zoo_footer_binding(null, zoo_footer);
-    				ctx.zoo_footer_binding(zoo_footer, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -2901,8 +2861,8 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    			ctx.zoo_footer_binding(null, zoo_footer);
+    			ctx.zoo_collapsable_list_binding(null);
+    			ctx.zoo_footer_binding(null);
     		}
     	};
     }
@@ -2935,14 +2895,16 @@
     		]; $$invalidate('exampleFooter', exampleFooter);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
-    	function zoo_footer_binding($$node, check) {
-    		exampleFooter = $$node;
-    		$$invalidate('exampleFooter', exampleFooter);
+    	function zoo_footer_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('exampleFooter', exampleFooter = $$value);
+    		});
     	}
 
     	return {
@@ -2974,7 +2936,7 @@
 
     customElements.define("docs-footer", FooterDocs);
 
-    /* src/docs/HeaderDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/HeaderDocs.svelte generated by Svelte v3.6.5 */
 
     const file$a = "src/docs/HeaderDocs.svelte";
 
@@ -3030,7 +2992,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$a, 19, 3, 539);
     			add_location(zoo_collapsable_list, file$a, 5, 2, 158);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$a, 4, 1, 137);
     			add_location(pre, file$a, 25, 8, 775);
     			add_location(code, file$a, 25, 2, 769);
@@ -3040,9 +3002,9 @@
     			add_location(zoo_header, file$a, 28, 3, 866);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$a, 27, 2, 835);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$a, 24, 1, 745);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$a, 3, 0, 110);
     		},
 
@@ -3071,7 +3033,7 @@
     			append(li2, t8);
     			append(zoo_collapsable_list, t9);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t11);
     			append(div3, div2);
     			append(div2, code);
@@ -3082,13 +3044,7 @@
     			append(div1, zoo_header);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -3099,7 +3055,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -3118,9 +3074,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -3149,7 +3106,7 @@
 
     customElements.define("docs-header", HeaderDocs);
 
-    /* src/docs/InputDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/InputDocs.svelte generated by Svelte v3.6.5 */
 
     const file$b = "src/docs/InputDocs.svelte";
 
@@ -3257,12 +3214,12 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$b, 34, 3, 1057);
     			add_location(zoo_collapsable_list, file$b, 5, 2, 156);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$b, 4, 1, 135);
     			add_location(pre, file$b, 40, 8, 1251);
     			add_location(code, file$b, 40, 2, 1245);
     			attr(input, "slot", "inputelement");
-    			input.placeholder = "input";
+    			attr(input, "placeholder", "input");
     			add_location(input, file$b, 49, 4, 1566);
     			set_custom_element_data(zoo_input, "labeltext", "Input label");
     			set_custom_element_data(zoo_input, "linktext", "Forgotten your password?");
@@ -3273,9 +3230,9 @@
     			add_location(zoo_input, file$b, 43, 3, 1342);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$b, 42, 2, 1311);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$b, 39, 1, 1221);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$b, 3, 0, 108);
     		},
 
@@ -3333,7 +3290,7 @@
     			append(zoo_collapsable_list_item1, t31);
     			append(zoo_collapsable_list_item1, t32);
     			append(zoo_collapsable_list_item1, t33);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t34);
     			append(div3, div2);
     			append(div2, code);
@@ -3345,13 +3302,7 @@
     			append(zoo_input, input);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -3362,7 +3313,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -3382,9 +3333,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -3414,7 +3366,7 @@
 
     customElements.define("docs-input", InputDocs);
 
-    /* src/docs/LinkDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/LinkDocs.svelte generated by Svelte v3.6.5 */
 
     const file$c = "src/docs/LinkDocs.svelte";
 
@@ -3512,7 +3464,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$c, 30, 3, 948);
     			add_location(zoo_collapsable_list, file$c, 5, 2, 154);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$c, 4, 1, 133);
     			add_location(pre, file$c, 36, 8, 1128);
     			add_location(code, file$c, 36, 2, 1122);
@@ -3522,9 +3474,9 @@
     			add_location(zoo_link, file$c, 39, 3, 1219);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$c, 38, 2, 1188);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$c, 35, 1, 1098);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$c, 3, 0, 106);
     		},
 
@@ -3575,7 +3527,7 @@
     			append(li5, b10);
     			append(zoo_collapsable_list, t27);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t29);
     			append(div3, div2);
     			append(div2, code);
@@ -3586,13 +3538,7 @@
     			append(div1, zoo_link);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -3603,7 +3549,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -3622,9 +3568,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -3653,7 +3600,7 @@
 
     customElements.define("docs-link", LinkDocs);
 
-    /* src/docs/ModalDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/ModalDocs.svelte generated by Svelte v3.6.5 */
 
     const file$d = "src/docs/ModalDocs.svelte";
 
@@ -3706,13 +3653,13 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$d, 19, 3, 612);
     			add_location(zoo_collapsable_list, file$d, 5, 2, 156);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$d, 4, 1, 135);
     			add_location(pre, file$d, 25, 8, 801);
     			add_location(code, file$d, 25, 2, 795);
-    			div1.className = "example";
+    			attr(div1, "class", "example");
     			add_location(div1, file$d, 24, 1, 771);
-    			div2.className = "doc-element";
+    			attr(div2, "class", "doc-element");
     			add_location(div2, file$d, 3, 0, 108);
     		},
 
@@ -3741,7 +3688,7 @@
     			append(li2, t8);
     			append(zoo_collapsable_list, t9);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div2, t11);
     			append(div2, div1);
     			append(div1, code);
@@ -3749,13 +3696,7 @@
     			append(pre, t12);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -3766,7 +3707,7 @@
     				detach(div2);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -3785,9 +3726,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -3816,7 +3758,7 @@
 
     customElements.define("docs-modal", ModalDocs);
 
-    /* src/docs/NavigationDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/NavigationDocs.svelte generated by Svelte v3.6.5 */
 
     const file$e = "src/docs/NavigationDocs.svelte";
 
@@ -3893,18 +3835,18 @@
     			set_custom_element_data(zoo_collapsable_list_item, "slot", "item0");
     			add_location(zoo_collapsable_list_item, file$e, 6, 3, 209);
     			add_location(zoo_collapsable_list, file$e, 5, 2, 166);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$e, 4, 1, 145);
     			add_location(pre, file$e, 12, 8, 398);
     			add_location(code, file$e, 12, 2, 392);
     			add_location(div1, file$e, 15, 4, 491);
-    			zoo_navigation.className = "nav";
+    			set_custom_element_data(zoo_navigation, "class", "nav");
     			add_location(zoo_navigation, file$e, 14, 3, 458);
     			set_style(div2, "width", "250px");
     			add_location(div2, file$e, 13, 2, 428);
-    			div3.className = "example";
+    			attr(div3, "class", "example");
     			add_location(div3, file$e, 11, 1, 368);
-    			div4.className = "doc-element";
+    			attr(div4, "class", "doc-element");
     			add_location(div4, file$e, 3, 0, 118);
     		},
 
@@ -3919,7 +3861,7 @@
     			append(div4, div0);
     			append(div0, zoo_collapsable_list);
     			append(zoo_collapsable_list, zoo_collapsable_list_item);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div4, t2);
     			append(div4, div3);
     			append(div3, code);
@@ -3936,11 +3878,6 @@
     		},
 
     		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-
     			if (changed.navlinks) {
     				each_value = ctx.navlinks;
 
@@ -3973,7 +3910,7 @@
     				detach(div4);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
 
     			destroy_each(each_blocks, detaching);
     		}
@@ -4001,9 +3938,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -4033,7 +3971,7 @@
 
     customElements.define("docs-navigation", NavigationDocs);
 
-    /* src/docs/RadioDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/RadioDocs.svelte generated by Svelte v3.6.5 */
 
     const file$f = "src/docs/RadioDocs.svelte";
 
@@ -4098,32 +4036,32 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$f, 19, 3, 579);
     			add_location(zoo_collapsable_list, file$f, 5, 2, 156);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$f, 4, 1, 135);
     			add_location(pre, file$f, 25, 8, 768);
     			add_location(code, file$f, 25, 2, 762);
     			attr(input0, "type", "radio");
-    			input0.id = "contactChoice4";
-    			input0.name = "contact";
+    			attr(input0, "id", "contactChoice4");
+    			attr(input0, "name", "contact");
     			input0.value = "email";
     			input0.disabled = true;
     			add_location(input0, file$f, 29, 4, 895);
-    			label0.htmlFor = "contactChoice4";
+    			attr(label0, "for", "contactChoice4");
     			add_location(label0, file$f, 30, 4, 978);
     			attr(input1, "type", "radio");
-    			input1.id = "contactChoice5";
-    			input1.name = "contact";
+    			attr(input1, "id", "contactChoice5");
+    			attr(input1, "name", "contact");
     			input1.value = "phone";
     			add_location(input1, file$f, 31, 4, 1024);
-    			label1.htmlFor = "contactChoice5";
+    			attr(label1, "for", "contactChoice5");
     			add_location(label1, file$f, 32, 4, 1098);
     			set_custom_element_data(zoo_radio, "infotext", "infotext");
     			add_location(zoo_radio, file$f, 28, 3, 859);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$f, 27, 2, 828);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$f, 24, 1, 738);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$f, 3, 0, 108);
     		},
 
@@ -4152,7 +4090,7 @@
     			append(li2, t8);
     			append(zoo_collapsable_list, t9);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t11);
     			append(div3, div2);
     			append(div2, code);
@@ -4170,13 +4108,7 @@
     			append(zoo_radio, label1);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -4187,7 +4119,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -4206,9 +4138,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -4237,7 +4170,7 @@
 
     customElements.define("docs-radio", RadioDocs);
 
-    /* src/docs/SearchableSelectDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/SearchableSelectDocs.svelte generated by Svelte v3.6.5 */
 
     const file$g = "src/docs/SearchableSelectDocs.svelte";
 
@@ -4356,7 +4289,7 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$g, 37, 3, 1192);
     			add_location(zoo_collapsable_list, file$g, 5, 2, 180);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$g, 4, 1, 159);
     			add_location(pre, file$g, 43, 8, 1386);
     			add_location(code, file$g, 43, 2, 1380);
@@ -4374,9 +4307,9 @@
     			add_location(zoo_searchable_select, file$g, 46, 3, 1477);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$g, 45, 2, 1446);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$g, 42, 1, 1356);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$g, 3, 0, 132);
     		},
 
@@ -4438,7 +4371,7 @@
     			append(zoo_collapsable_list_item1, t34);
     			append(zoo_collapsable_list_item1, t35);
     			append(zoo_collapsable_list_item1, t36);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t37);
     			append(div3, div2);
     			append(div2, code);
@@ -4452,13 +4385,7 @@
     			append(select, option1);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -4469,7 +4396,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -4489,9 +4416,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -4521,7 +4449,7 @@
 
     customElements.define("docs-searchable-select", SearchableSelectDocs);
 
-    /* src/docs/SelectDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/SelectDocs.svelte generated by Svelte v3.6.5 */
 
     const file$h = "src/docs/SelectDocs.svelte";
 
@@ -4637,11 +4565,11 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$h, 34, 3, 1059);
     			add_location(zoo_collapsable_list, file$h, 5, 2, 158);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$h, 4, 1, 137);
     			add_location(pre, file$h, 40, 8, 1253);
     			add_location(code, file$h, 40, 2, 1247);
-    			option0.className = "placeholder";
+    			attr(option0, "class", "placeholder");
     			option0.__value = "";
     			option0.value = option0.__value;
     			option0.disabled = true;
@@ -4663,9 +4591,9 @@
     			add_location(zoo_select, file$h, 43, 3, 1344);
     			set_style(div1, "width", "250px");
     			add_location(div1, file$h, 42, 2, 1313);
-    			div2.className = "example";
+    			attr(div2, "class", "example");
     			add_location(div2, file$h, 39, 1, 1223);
-    			div3.className = "doc-element";
+    			attr(div3, "class", "doc-element");
     			add_location(div3, file$h, 3, 0, 110);
     		},
 
@@ -4723,7 +4651,7 @@
     			append(zoo_collapsable_list_item1, t31);
     			append(zoo_collapsable_list_item1, t32);
     			append(zoo_collapsable_list_item1, t33);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div3, t34);
     			append(div3, div2);
     			append(div2, code);
@@ -4739,13 +4667,7 @@
     			append(select, option3);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -4756,7 +4678,7 @@
     				detach(div3);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -4776,9 +4698,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -4808,7 +4731,7 @@
 
     customElements.define("docs-select", SelectDocs);
 
-    /* src/docs/ToastDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/ToastDocs.svelte generated by Svelte v3.6.5 */
 
     const file$i = "src/docs/ToastDocs.svelte";
 
@@ -4898,13 +4821,13 @@
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
     			add_location(zoo_collapsable_list_item1, file$i, 25, 3, 923);
     			add_location(zoo_collapsable_list, file$i, 5, 2, 156);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$i, 4, 1, 135);
     			add_location(pre, file$i, 31, 8, 1103);
     			add_location(code, file$i, 31, 2, 1097);
-    			div1.className = "example";
+    			attr(div1, "class", "example");
     			add_location(div1, file$i, 30, 1, 1073);
-    			div2.className = "doc-element";
+    			attr(div2, "class", "doc-element");
     			add_location(div2, file$i, 3, 0, 108);
     		},
 
@@ -4952,7 +4875,7 @@
     			append(li4, t25);
     			append(zoo_collapsable_list, t26);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div2, t28);
     			append(div2, div1);
     			append(div1, code);
@@ -4960,13 +4883,7 @@
     			append(pre, t29);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -4977,7 +4894,7 @@
     				detach(div2);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -4996,9 +4913,10 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
@@ -5027,12 +4945,12 @@
 
     customElements.define("docs-toast", ToastDocs);
 
-    /* src/docs/TooltipDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/TooltipDocs.svelte generated by Svelte v3.6.5 */
 
     const file$j = "src/docs/TooltipDocs.svelte";
 
     function create_fragment$j(ctx) {
-    	var app_context, t0, div4, div0, zoo_collapsable_list, zoo_collapsable_list_item0, ul, li0, b0, t2, t3, li1, b1, t5, b2, t7, b3, t9, b4, t11, b5, t13, b6, t15, zoo_collapsable_list_item1, t17, div3, code, pre, t18, t19, div2, zoo_button, div1, t20, zoo_tooltip;
+    	var app_context, t0, div4, div0, zoo_collapsable_list, zoo_collapsable_list_item0, ul, li0, b0, t2, t3, li1, b1, t5, b2, t7, b3, t9, b4, t11, b5, t13, b6, t15, li2, b7, t17, code0, pre0, t18, t19, li3, b8, t21, code1, pre1, t22, t23, zoo_collapsable_list_item1, t25, div3, code2, pre2, t26, t27, div2, zoo_button, div1, t28, zoo_tooltip;
 
     	return {
     		c: function create() {
@@ -5067,18 +4985,34 @@
     			b6 = element("b");
     			b6.textContent = "top";
     			t15 = space();
+    			li2 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "Showing the tooltip";
+    			t17 = text(" - to show the tooltip use the following snippet: ");
+    			code0 = element("code");
+    			pre0 = element("pre");
+    			t18 = text(ctx.snippet);
+    			t19 = space();
+    			li3 = element("li");
+    			b8 = element("b");
+    			b8.textContent = "CSS keyframes";
+    			t21 = text(" - to enable animation use the following snippet: ");
+    			code1 = element("code");
+    			pre1 = element("pre");
+    			t22 = text(ctx.keyframesSnippet);
+    			t23 = space();
     			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
     			zoo_collapsable_list_item1.textContent = "This component either renders a unnamed slot or presents text supplied as an attribute.";
-    			t17 = space();
+    			t25 = space();
     			div3 = element("div");
-    			code = element("code");
-    			pre = element("pre");
-    			t18 = text(ctx.example);
-    			t19 = text("\n\t\twill produce the following:\n\t\t");
+    			code2 = element("code");
+    			pre2 = element("pre");
+    			t26 = text(ctx.example);
+    			t27 = text("\n\t\twill produce the following:\n\t\t");
     			div2 = element("div");
     			zoo_button = element("zoo-button");
     			div1 = element("div");
-    			t20 = text("Button\n\t\t\t\t\t");
+    			t28 = text("Button\n\t\t\t\t\t");
     			zoo_tooltip = element("zoo-tooltip");
     			this.c = noop;
     			set_custom_element_data(app_context, "text", "Tooltip component API.");
@@ -5092,28 +5026,36 @@
     			add_location(b5, file$j, 12, 88, 430);
     			add_location(b6, file$j, 12, 112, 454);
     			add_location(li1, file$j, 11, 5, 337);
+    			add_location(b7, file$j, 15, 6, 492);
+    			add_location(pre0, file$j, 15, 88, 574);
+    			add_location(code0, file$j, 15, 82, 568);
+    			add_location(li2, file$j, 14, 5, 481);
+    			add_location(b8, file$j, 18, 6, 629);
+    			add_location(pre1, file$j, 18, 82, 705);
+    			add_location(code1, file$j, 18, 76, 699);
+    			add_location(li3, file$j, 17, 5, 618);
     			add_location(ul, file$j, 7, 4, 248);
     			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
     			add_location(zoo_collapsable_list_item0, file$j, 6, 3, 203);
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
-    			add_location(zoo_collapsable_list_item1, file$j, 16, 3, 521);
+    			add_location(zoo_collapsable_list_item1, file$j, 22, 3, 798);
     			add_location(zoo_collapsable_list, file$j, 5, 2, 160);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$j, 4, 1, 139);
-    			add_location(pre, file$j, 22, 8, 751);
-    			add_location(code, file$j, 22, 2, 745);
+    			add_location(pre2, file$j, 28, 8, 1028);
+    			add_location(code2, file$j, 28, 2, 1022);
     			set_custom_element_data(zoo_tooltip, "text", "Tooltip text");
-    			add_location(zoo_tooltip, file$j, 28, 5, 943);
+    			add_location(zoo_tooltip, file$j, 34, 5, 1220);
     			attr(div1, "slot", "buttoncontent");
-    			add_location(div1, file$j, 26, 4, 899);
-    			zoo_button.className = "top-tooltip";
-    			add_location(zoo_button, file$j, 25, 3, 862);
+    			add_location(div1, file$j, 32, 4, 1176);
+    			set_custom_element_data(zoo_button, "class", "top-tooltip");
+    			add_location(zoo_button, file$j, 31, 3, 1139);
     			set_style(div2, "width", "250px");
     			set_style(div2, "margin-bottom", "2px");
-    			add_location(div2, file$j, 24, 2, 811);
-    			div3.className = "example";
-    			add_location(div3, file$j, 21, 1, 721);
-    			div4.className = "doc-element";
+    			add_location(div2, file$j, 30, 2, 1088);
+    			attr(div3, "class", "example");
+    			add_location(div3, file$j, 27, 1, 998);
+    			attr(div4, "class", "doc-element");
     			add_location(div4, file$j, 3, 0, 112);
     		},
 
@@ -5145,29 +5087,37 @@
     			append(li1, b5);
     			append(li1, t13);
     			append(li1, b6);
-    			append(zoo_collapsable_list, t15);
+    			append(ul, t15);
+    			append(ul, li2);
+    			append(li2, b7);
+    			append(li2, t17);
+    			append(li2, code0);
+    			append(code0, pre0);
+    			append(pre0, t18);
+    			append(ul, t19);
+    			append(ul, li3);
+    			append(li3, b8);
+    			append(li3, t21);
+    			append(li3, code1);
+    			append(code1, pre1);
+    			append(pre1, t22);
+    			append(zoo_collapsable_list, t23);
     			append(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
-    			append(div4, t17);
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
+    			append(div4, t25);
     			append(div4, div3);
-    			append(div3, code);
-    			append(code, pre);
-    			append(pre, t18);
-    			append(div3, t19);
+    			append(div3, code2);
+    			append(code2, pre2);
+    			append(pre2, t26);
+    			append(div3, t27);
     			append(div3, div2);
     			append(div2, zoo_button);
     			append(zoo_button, div1);
-    			append(div1, t20);
+    			append(div1, t28);
     			append(div1, zoo_tooltip);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -5178,7 +5128,7 @@
     				detach(div4);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -5186,6 +5136,8 @@
     function instance$j($$self, $$props, $$invalidate) {
     	let list;
     	let example = `<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>`;
+    	let keyframesSnippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n    animation: fadeTooltipIn 0.2s;\n  }\n}`;
+    	let snippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n  }\n}`;
     	onMount(() => {
     		list.items = [
     			{
@@ -5197,14 +5149,17 @@
     		]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {
     		list,
     		example,
+    		keyframesSnippet,
+    		snippet,
     		zoo_collapsable_list_binding
     	};
     }
@@ -5213,8 +5168,8 @@
     	constructor(options) {
     		super();
 
-    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}zoo-tooltip{display:none}.top-tooltip:hover zoo-tooltip{display:block}
-		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVG9vbHRpcERvY3Muc3ZlbHRlIiwic291cmNlcyI6WyJUb29sdGlwRG9jcy5zdmVsdGUiXSwic291cmNlc0NvbnRlbnQiOlsiPHN2ZWx0ZTpvcHRpb25zIHRhZz1cImRvY3MtdG9vbHRpcFwiPjwvc3ZlbHRlOm9wdGlvbnM+XG5cbjxhcHAtY29udGV4dCB0ZXh0PVwiVG9vbHRpcCBjb21wb25lbnQgQVBJLlwiPjwvYXBwLWNvbnRleHQ+XG48ZGl2IGNsYXNzPVwiZG9jLWVsZW1lbnRcIj5cblx0PGRpdiBjbGFzcz1cImxpc3RcIj5cblx0XHQ8em9vLWNvbGxhcHNhYmxlLWxpc3QgYmluZDp0aGlzPXtsaXN0fT5cblx0XHRcdDx6b28tY29sbGFwc2FibGUtbGlzdC1pdGVtIHNsb3Q9XCJpdGVtMFwiPlxuXHRcdFx0XHQ8dWw+XG5cdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0PGI+dGV4dDwvYj4gLSB0ZXh0IHRvIGJlIHByZXNlbnRlZCBpbiB0aGUgdG9hc3QgYm94XG5cdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHQ8bGk+XG5cdFx0XHRcdFx0XHQ8Yj5wb3NpdGlvbjwvYj4gLSBQb3NzaWJsZSB2YWx1ZXMgYXJlOiA8Yj50b3A8L2I+LCA8Yj5yaWdodDwvYj4sIDxiPmJvdHRvbTwvYj4gb3IgPGI+bGVmdDwvYj4uIERlZmF1bHQgaXMgPGI+dG9wPC9iPlxuXHRcdFx0XHRcdDwvbGk+XG5cdFx0XHRcdDwvdWw+XG5cdFx0XHQ8L3pvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0+XG5cdFx0XHQ8em9vLWNvbGxhcHNhYmxlLWxpc3QtaXRlbSBzbG90PVwiaXRlbTFcIj5cblx0XHRcdFx0VGhpcyBjb21wb25lbnQgZWl0aGVyIHJlbmRlcnMgYSB1bm5hbWVkIHNsb3Qgb3IgcHJlc2VudHMgdGV4dCBzdXBwbGllZCBhcyBhbiBhdHRyaWJ1dGUuXG5cdFx0XHQ8L3pvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0+XG5cdFx0PC96b28tY29sbGFwc2FibGUtbGlzdD5cblx0PC9kaXY+XG5cdDxkaXYgY2xhc3M9XCJleGFtcGxlXCI+XG5cdFx0PGNvZGU+PHByZT57ZXhhbXBsZX08L3ByZT48L2NvZGU+XG5cdFx0d2lsbCBwcm9kdWNlIHRoZSBmb2xsb3dpbmc6XG5cdFx0PGRpdiBzdHlsZT1cIndpZHRoOiAyNTBweDsgbWFyZ2luLWJvdHRvbTogMnB4O1wiPlxuXHRcdFx0PHpvby1idXR0b24gY2xhc3M9XCJ0b3AtdG9vbHRpcFwiPlxuXHRcdFx0XHQ8ZGl2IHNsb3Q9XCJidXR0b25jb250ZW50XCI+XG5cdFx0XHRcdFx0QnV0dG9uXG5cdFx0XHRcdFx0PHpvby10b29sdGlwIHRleHQ9XCJUb29sdGlwIHRleHRcIj48L3pvby10b29sdGlwPlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdDwvem9vLWJ1dHRvbj5cblx0XHQ8L2Rpdj5cblx0PC9kaXY+XG48L2Rpdj5cblxuPHN0eWxlIHR5cGU9XCJ0ZXh0L3Njc3NcIj4uZG9jLWVsZW1lbnQge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93OyB9XG5cbi5saXN0IHtcbiAgd2lkdGg6IDM1JTtcbiAgbWFyZ2luOiAwIDIwcHg7IH1cblxuLmV4YW1wbGUge1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG56b28tdG9vbHRpcCB7XG4gIGRpc3BsYXk6IG5vbmU7IH1cblxuLnRvcC10b29sdGlwOmhvdmVyIHpvby10b29sdGlwIHtcbiAgZGlzcGxheTogYmxvY2s7IH1cblxuLyojIHNvdXJjZU1hcHBpbmdVUkw9eC5tYXAgKi88L3N0eWxlPlxuXG48c2NyaXB0PlxuXHRpbXBvcnQgeyBvbk1vdW50IH0gZnJvbSAnc3ZlbHRlJztcblx0bGV0IGxpc3Q7XG5cdGxldCBpbnB1dFNsb3RFeGFtcGxlID0gYDxzbG90IG5hbWU9XCJpbnB1dGVsZW1lbnRcIj48L3Nsb3Q+YDtcblx0bGV0IGV4YW1wbGUgPSBgPGRpdiBzdHlsZT1cIndpZHRoOiAyNTBweDtcIj5cXG4gIDx6b28tYnV0dG9uPlxcbiAgICA8ZGl2IHNsb3Q9XCJidXR0b25jb250ZW50XCI+XFxuICAgICAgQnV0dG9uXFxuICAgICAgPHpvby10b29sdGlwIHRleHQ9XCJUb29sdGlwIHRleHRcIj48L3pvby10b29sdGlwPlxcbiAgICA8L2Rpdj5cXG4gIDwvem9vLWJ1dHRvbj5cXG48L2Rpdj5gO1xuXHRvbk1vdW50KCgpID0+IHtcblx0XHRsaXN0Lml0ZW1zID0gW1xuXHRcdFx0e1xuXHRcdFx0XHRoZWFkZXI6ICdBUEknXG5cdFx0XHR9LFxuXHRcdFx0e1xuXHRcdFx0XHRoZWFkZXI6ICdTbG90cydcblx0XHRcdH1cblx0XHRdO1xuXHR9KTtcbjwvc2NyaXB0PiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFtQ3dCLFlBQVksQUFBQyxDQUFDLEFBQ3BDLE9BQU8sQ0FBRSxJQUFJLENBQ2IsY0FBYyxDQUFFLEdBQUcsQUFBRSxDQUFDLEFBRXhCLEtBQUssQUFBQyxDQUFDLEFBQ0wsS0FBSyxDQUFFLEdBQUcsQ0FDVixNQUFNLENBQUUsQ0FBQyxDQUFDLElBQUksQUFBRSxDQUFDLEFBRW5CLFFBQVEsQUFBQyxDQUFDLEFBQ1IsUUFBUSxDQUFFLElBQUksQUFBRSxDQUFDLEFBRW5CLFdBQVcsQUFBQyxDQUFDLEFBQ1gsT0FBTyxDQUFFLElBQUksQUFBRSxDQUFDLEFBRWxCLFlBQVksTUFBTSxDQUFDLFdBQVcsQUFBQyxDQUFDLEFBQzlCLE9BQU8sQ0FBRSxLQUFLLEFBQUUsQ0FBQyJ9 */</style>`;
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}zoo-tooltip{display:none}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}
+		/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVG9vbHRpcERvY3Muc3ZlbHRlIiwic291cmNlcyI6WyJUb29sdGlwRG9jcy5zdmVsdGUiXSwic291cmNlc0NvbnRlbnQiOlsiPHN2ZWx0ZTpvcHRpb25zIHRhZz1cImRvY3MtdG9vbHRpcFwiPjwvc3ZlbHRlOm9wdGlvbnM+XG5cbjxhcHAtY29udGV4dCB0ZXh0PVwiVG9vbHRpcCBjb21wb25lbnQgQVBJLlwiPjwvYXBwLWNvbnRleHQ+XG48ZGl2IGNsYXNzPVwiZG9jLWVsZW1lbnRcIj5cblx0PGRpdiBjbGFzcz1cImxpc3RcIj5cblx0XHQ8em9vLWNvbGxhcHNhYmxlLWxpc3QgYmluZDp0aGlzPXtsaXN0fT5cblx0XHRcdDx6b28tY29sbGFwc2FibGUtbGlzdC1pdGVtIHNsb3Q9XCJpdGVtMFwiPlxuXHRcdFx0XHQ8dWw+XG5cdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0PGI+dGV4dDwvYj4gLSB0ZXh0IHRvIGJlIHByZXNlbnRlZCBpbiB0aGUgdG9hc3QgYm94XG5cdFx0XHRcdFx0PC9saT5cblx0XHRcdFx0XHQ8bGk+XG5cdFx0XHRcdFx0XHQ8Yj5wb3NpdGlvbjwvYj4gLSBQb3NzaWJsZSB2YWx1ZXMgYXJlOiA8Yj50b3A8L2I+LCA8Yj5yaWdodDwvYj4sIDxiPmJvdHRvbTwvYj4gb3IgPGI+bGVmdDwvYj4uIERlZmF1bHQgaXMgPGI+dG9wPC9iPlxuXHRcdFx0XHRcdDwvbGk+XG5cdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0PGI+U2hvd2luZyB0aGUgdG9vbHRpcDwvYj4gLSB0byBzaG93IHRoZSB0b29sdGlwIHVzZSB0aGUgZm9sbG93aW5nIHNuaXBwZXQ6IDxjb2RlPjxwcmU+e3NuaXBwZXR9PC9wcmU+PC9jb2RlPlxuXHRcdFx0XHRcdDwvbGk+XG5cdFx0XHRcdFx0PGxpPlxuXHRcdFx0XHRcdFx0PGI+Q1NTIGtleWZyYW1lczwvYj4gLSB0byBlbmFibGUgYW5pbWF0aW9uIHVzZSB0aGUgZm9sbG93aW5nIHNuaXBwZXQ6IDxjb2RlPjxwcmU+e2tleWZyYW1lc1NuaXBwZXR9PC9wcmU+PC9jb2RlPlxuXHRcdFx0XHRcdDwvbGk+XG5cdFx0XHRcdDwvdWw+XG5cdFx0XHQ8L3pvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0+XG5cdFx0XHQ8em9vLWNvbGxhcHNhYmxlLWxpc3QtaXRlbSBzbG90PVwiaXRlbTFcIj5cblx0XHRcdFx0VGhpcyBjb21wb25lbnQgZWl0aGVyIHJlbmRlcnMgYSB1bm5hbWVkIHNsb3Qgb3IgcHJlc2VudHMgdGV4dCBzdXBwbGllZCBhcyBhbiBhdHRyaWJ1dGUuXG5cdFx0XHQ8L3pvby1jb2xsYXBzYWJsZS1saXN0LWl0ZW0+XG5cdFx0PC96b28tY29sbGFwc2FibGUtbGlzdD5cblx0PC9kaXY+XG5cdDxkaXYgY2xhc3M9XCJleGFtcGxlXCI+XG5cdFx0PGNvZGU+PHByZT57ZXhhbXBsZX08L3ByZT48L2NvZGU+XG5cdFx0d2lsbCBwcm9kdWNlIHRoZSBmb2xsb3dpbmc6XG5cdFx0PGRpdiBzdHlsZT1cIndpZHRoOiAyNTBweDsgbWFyZ2luLWJvdHRvbTogMnB4O1wiPlxuXHRcdFx0PHpvby1idXR0b24gY2xhc3M9XCJ0b3AtdG9vbHRpcFwiPlxuXHRcdFx0XHQ8ZGl2IHNsb3Q9XCJidXR0b25jb250ZW50XCI+XG5cdFx0XHRcdFx0QnV0dG9uXG5cdFx0XHRcdFx0PHpvby10b29sdGlwIHRleHQ9XCJUb29sdGlwIHRleHRcIj48L3pvby10b29sdGlwPlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdDwvem9vLWJ1dHRvbj5cblx0XHQ8L2Rpdj5cblx0PC9kaXY+XG48L2Rpdj5cblxuPHN0eWxlIHR5cGU9XCJ0ZXh0L3Njc3NcIj4uZG9jLWVsZW1lbnQge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93OyB9XG5cbi5saXN0IHtcbiAgd2lkdGg6IDM1JTtcbiAgbWFyZ2luOiAwIDIwcHg7IH1cblxuLmV4YW1wbGUge1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG56b28tdG9vbHRpcCB7XG4gIGRpc3BsYXk6IG5vbmU7IH1cblxuLnRvcC10b29sdGlwOmhvdmVyIHpvby10b29sdGlwIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIGFuaW1hdGlvbjogZmFkZVRvb2x0aXBJbiAwLjJzOyB9XG5cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXgubWFwICovPC9zdHlsZT5cblxuPHNjcmlwdD5cblx0aW1wb3J0IHsgb25Nb3VudCB9IGZyb20gJ3N2ZWx0ZSc7XG5cdGxldCBsaXN0O1xuXHRsZXQgaW5wdXRTbG90RXhhbXBsZSA9IGA8c2xvdCBuYW1lPVwiaW5wdXRlbGVtZW50XCI+PC9zbG90PmA7XG5cdGxldCBleGFtcGxlID0gYDxkaXYgc3R5bGU9XCJ3aWR0aDogMjUwcHg7XCI+XFxuICA8em9vLWJ1dHRvbj5cXG4gICAgPGRpdiBzbG90PVwiYnV0dG9uY29udGVudFwiPlxcbiAgICAgIEJ1dHRvblxcbiAgICAgIDx6b28tdG9vbHRpcCB0ZXh0PVwiVG9vbHRpcCB0ZXh0XCI+PC96b28tdG9vbHRpcD5cXG4gICAgPC9kaXY+XFxuICA8L3pvby1idXR0b24+XFxuPC9kaXY+YDtcblx0bGV0IGtleWZyYW1lc1NuaXBwZXQgPSBgLmNsYXNzLW5hbWU6aG92ZXIge1xcbiAgem9vLXRvb2x0aXAge1xcbiAgICBkaXNwbGF5OiBibG9jaztcXG4gICAgYW5pbWF0aW9uOiBmYWRlVG9vbHRpcEluIDAuMnM7XFxuICB9XFxufWA7XG5cdGxldCBzbmlwcGV0ID0gYC5jbGFzcy1uYW1lOmhvdmVyIHtcXG4gIHpvby10b29sdGlwIHtcXG4gICAgZGlzcGxheTogYmxvY2s7XFxuICB9XFxufWA7XG5cdG9uTW91bnQoKCkgPT4ge1xuXHRcdGxpc3QuaXRlbXMgPSBbXG5cdFx0XHR7XG5cdFx0XHRcdGhlYWRlcjogJ0FQSSdcblx0XHRcdH0sXG5cdFx0XHR7XG5cdFx0XHRcdGhlYWRlcjogJ1Nsb3RzJ1xuXHRcdFx0fVxuXHRcdF07XG5cdH0pO1xuPC9zY3JpcHQ+Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlDd0IsWUFBWSxBQUFDLENBQUMsQUFDcEMsT0FBTyxDQUFFLElBQUksQ0FDYixjQUFjLENBQUUsR0FBRyxBQUFFLENBQUMsQUFFeEIsS0FBSyxBQUFDLENBQUMsQUFDTCxLQUFLLENBQUUsR0FBRyxDQUNWLE1BQU0sQ0FBRSxDQUFDLENBQUMsSUFBSSxBQUFFLENBQUMsQUFFbkIsUUFBUSxBQUFDLENBQUMsQUFDUixRQUFRLENBQUUsSUFBSSxBQUFFLENBQUMsQUFFbkIsV0FBVyxBQUFDLENBQUMsQUFDWCxPQUFPLENBQUUsSUFBSSxBQUFFLENBQUMsQUFFbEIsWUFBWSxNQUFNLENBQUMsV0FBVyxBQUFDLENBQUMsQUFDOUIsT0FBTyxDQUFFLEtBQUssQ0FDZCxTQUFTLENBQUUsYUFBYSxDQUFDLElBQUksQUFBRSxDQUFDIn0= */</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$j, create_fragment$j, safe_not_equal, []);
 
@@ -5228,7 +5183,7 @@
 
     customElements.define("docs-tooltip", TooltipDocs);
 
-    /* src/docs/ThemingDocs.svelte generated by Svelte v3.4.4 */
+    /* src/docs/ThemingDocs.svelte generated by Svelte v3.6.5 */
 
     const file$k = "src/docs/ThemingDocs.svelte";
 
@@ -5290,8 +5245,8 @@
     			this.c = noop;
     			set_custom_element_data(app_context, "text", "Theming API.");
     			add_location(app_context, file$k, 2, 0, 54);
-    			a.href = "https://developer.mozilla.org/en-US/docs/Web/CSS/--*";
-    			a.target = "about:blank";
+    			attr(a, "href", "https://developer.mozilla.org/en-US/docs/Web/CSS/--*");
+    			attr(a, "target", "about:blank");
     			add_location(a, file$k, 5, 57, 205);
     			add_location(b0, file$k, 11, 6, 482);
     			add_location(li0, file$k, 10, 5, 471);
@@ -5309,15 +5264,15 @@
     			set_custom_element_data(zoo_collapsable_list_item, "slot", "item0");
     			add_location(zoo_collapsable_list_item, file$k, 8, 3, 416);
     			add_location(zoo_collapsable_list, file$k, 7, 2, 373);
-    			div0.className = "list";
+    			attr(div0, "class", "list");
     			add_location(div0, file$k, 4, 1, 129);
     			add_location(pre0, file$k, 34, 8, 941);
     			add_location(code0, file$k, 34, 2, 935);
     			add_location(pre1, file$k, 36, 8, 1006);
     			add_location(code1, file$k, 36, 2, 1000);
-    			div1.className = "example";
+    			attr(div1, "class", "example");
     			add_location(div1, file$k, 32, 1, 880);
-    			div2.className = "doc-element";
+    			attr(div2, "class", "doc-element");
     			add_location(div2, file$k, 3, 0, 102);
     		},
 
@@ -5359,7 +5314,7 @@
     			append(ul, li5);
     			append(li5, b5);
     			append(li5, t20);
-    			add_binding_callback(() => ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null));
+    			ctx.zoo_collapsable_list_binding(zoo_collapsable_list);
     			append(div2, t21);
     			append(div2, div1);
     			append(div1, t22);
@@ -5372,13 +5327,7 @@
     			append(pre1, t25);
     		},
 
-    		p: function update(changed, ctx) {
-    			if (changed.items) {
-    				ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
-    				ctx.zoo_collapsable_list_binding(zoo_collapsable_list, null);
-    			}
-    		},
-
+    		p: noop,
     		i: noop,
     		o: noop,
 
@@ -5389,7 +5338,7 @@
     				detach(div2);
     			}
 
-    			ctx.zoo_collapsable_list_binding(null, zoo_collapsable_list);
+    			ctx.zoo_collapsable_list_binding(null);
     		}
     	};
     }
@@ -5402,9 +5351,10 @@
     		list.items = [{header: 'API'}]; $$invalidate('list', list);
     	});
 
-    	function zoo_collapsable_list_binding($$node, check) {
-    		list = $$node;
-    		$$invalidate('list', list);
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('list', list = $$value);
+    		});
     	}
 
     	return {

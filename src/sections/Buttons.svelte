@@ -9,9 +9,7 @@
 	<zoo-button size="small" disabled="{true}" class="top-tooltip">
 		<div slot="buttoncontent">
 			Disabled :(
-			<zoo-tooltip position="bottom"
-				text="Just set disabled attribute on `zoo-button`">
-			</zoo-tooltip>
+			<zoo-tooltip position="bottom" text="Just set disabled attribute on `zoo-button`"></zoo-tooltip>
 		</div>
 	</zoo-button>
 	<zoo-button type="hot" size="small" on:click="{() => modal.openModal()}">
@@ -76,6 +74,7 @@
 		&:hover {
 			zoo-tooltip {
 				display: block;
+				animation: fadeTooltipIn 0.2s;
 			}
 		}
 	}

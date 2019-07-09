@@ -1,23 +1,22 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
+    parserOptions: {
+		ecmaVersion: 2019,
+		sourceType: 'module'
 	},
-	"plugins": [
-		"svelte3"
+	env: {
+		es6: true,
+		browser: true
+	},
+	plugins: [
+		'svelte3'
 	],
-	"settings": {
+	overrides: [
+		{
+		  files: ['*.svelte'],
+		  processor: 'svelte3/svelte3'
+		}
+	],
+	settings: {
 		"svelte3/ignore-styles": true,
 		"svelte3/compiler-options": {
 			customElement: true

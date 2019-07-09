@@ -41,6 +41,7 @@
 			&:hover {
 				zoo-tooltip {
 					display: block;
+					animation: fadeTooltipIn 0.2s;
 				}
 			}
 		}
@@ -64,6 +65,7 @@
 		&:hover {
 			zoo-tooltip {
 				display: block;
+				animation: fadeTooltipIn 0.2s;
 			}
 		}
 	}
@@ -74,6 +76,7 @@
 
 	.input-in-tooltip:hover~.nested-tooltip {
 		display: block;
+		animation: fadeTooltipIn 0.2s;
 	}
 </style>
 

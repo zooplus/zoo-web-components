@@ -79,19 +79,16 @@ var app = (function () {
     }
 
     const dirty_components = [];
-    const resolved_promise = Promise.resolve();
-    let update_scheduled = false;
     const binding_callbacks = [];
     const render_callbacks = [];
     const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
     function schedule_update() {
         if (!update_scheduled) {
             update_scheduled = true;
             resolved_promise.then(flush);
         }
-    }
-    function add_binding_callback(fn) {
-        binding_callbacks.push(fn);
     }
     function add_render_callback(fn) {
         render_callbacks.push(fn);
@@ -107,18 +104,19 @@ var app = (function () {
                 update(component.$$);
             }
             while (binding_callbacks.length)
-                binding_callbacks.shift()();
+                binding_callbacks.pop()();
             // then, once components are updated, call
             // afterUpdate functions. This may cause
             // subsequent updates...
-            while (render_callbacks.length) {
-                const callback = render_callbacks.pop();
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
                 if (!seen_callbacks.has(callback)) {
                     callback();
                     // ...so guard against infinite loops
                     seen_callbacks.add(callback);
                 }
             }
+            render_callbacks.length = 0;
         } while (dirty_components.length);
         while (flush_callbacks.length) {
             flush_callbacks.pop()();
@@ -128,18 +126,23 @@ var app = (function () {
     function update($$) {
         if ($$.fragment) {
             $$.update($$.dirty);
-            run_all($$.before_render);
+            run_all($$.before_update);
             $$.fragment.p($$.dirty, $$.ctx);
             $$.dirty = null;
-            $$.after_render.forEach(add_render_callback);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
         }
     }
     function mount_component(component, target, anchor) {
-        const { fragment, on_mount, on_destroy, after_render } = component.$$;
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
         fragment.m(target, anchor);
-        // onMount happens after the initial afterUpdate. Because
-        // afterUpdate callbacks happen in reverse order (inner first)
-        // we schedule onMount callbacks before afterUpdate callbacks
+        // onMount happens before the initial afterUpdate
         add_render_callback(() => {
             const new_on_destroy = on_mount.map(run).filter(is_function);
             if (on_destroy) {
@@ -152,10 +155,10 @@ var app = (function () {
             }
             component.$$.on_mount = [];
         });
-        after_render.forEach(add_render_callback);
+        after_update.forEach(add_render_callback);
     }
-    function destroy(component, detaching) {
-        if (component.$$) {
+    function destroy_component(component, detaching) {
+        if (component.$$.fragment) {
             run_all(component.$$.on_destroy);
             component.$$.fragment.d(detaching);
             // TODO null out other refs, including component.$$ (but need to
@@ -172,7 +175,7 @@ var app = (function () {
         }
         component.$$.dirty[key] = true;
     }
-    function init(component, options, instance, create_fragment, not_equal$$1, prop_names) {
+    function init(component, options, instance, create_fragment, not_equal, prop_names) {
         const parent_component = current_component;
         set_current_component(component);
         const props = options.props || {};
@@ -182,13 +185,13 @@ var app = (function () {
             // state
             props: prop_names,
             update: noop,
-            not_equal: not_equal$$1,
+            not_equal,
             bound: blank_object(),
             // lifecycle
             on_mount: [],
             on_destroy: [],
-            before_render: [],
-            after_render: [],
+            before_update: [],
+            after_update: [],
             context: new Map(parent_component ? parent_component.$$.context : []),
             // everything else
             callbacks: blank_object(),
@@ -197,7 +200,7 @@ var app = (function () {
         let ready = false;
         $$.ctx = instance
             ? instance(component, props, (key, value) => {
-                if ($$.ctx && not_equal$$1($$.ctx[key], $$.ctx[key] = value)) {
+                if ($$.ctx && not_equal($$.ctx[key], $$.ctx[key] = value)) {
                     if ($$.bound[key])
                         $$.bound[key](value);
                     if (ready)
@@ -207,17 +210,19 @@ var app = (function () {
             : props;
         $$.update();
         ready = true;
-        run_all($$.before_render);
+        run_all($$.before_update);
         $$.fragment = create_fragment($$.ctx);
         if (options.target) {
             if (options.hydrate) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 $$.fragment.l(children(options.target));
             }
             else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 $$.fragment.c();
             }
-            if (options.intro && component.$$.fragment.i)
-                component.$$.fragment.i();
+            if (options.intro)
+                transition_in(component.$$.fragment);
             mount_component(component, options.target, options.anchor);
             flush();
         }
@@ -225,7 +230,7 @@ var app = (function () {
     }
     class SvelteComponent {
         $destroy() {
-            destroy(this, true);
+            destroy_component(this, 1);
             this.$destroy = noop;
         }
         $on(type, callback) {
@@ -256,7 +261,7 @@ var app = (function () {
         }
     }
 
-    /* src/App.svelte generated by Svelte v3.4.4 */
+    /* src/App.svelte generated by Svelte v3.6.5 */
 
     const file = "src/App.svelte";
 
@@ -284,13 +289,13 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			hr = element("hr");
-    			a.href = a_href_value = ctx.link.href;
-    			a.target = a_target_value = ctx.link.target;
-    			a.className = "svelte-1iv82ik";
+    			attr(a, "href", a_href_value = ctx.link.href);
+    			attr(a, "target", a_target_value = ctx.link.target);
+    			attr(a, "class", "svelte-1iv82ik");
     			add_location(a, file, 59, 6, 2618);
-    			div.className = "link-wrapper svelte-1iv82ik";
+    			attr(div, "class", "link-wrapper svelte-1iv82ik");
     			add_location(div, file, 58, 5, 2585);
-    			hr.className = "left-menu-separator svelte-1iv82ik";
+    			attr(hr, "class", "left-menu-separator svelte-1iv82ik");
     			add_location(hr, file, 61, 5, 2696);
     		},
 
@@ -471,166 +476,166 @@ var app = (function () {
     			t63 = space();
     			zoo_footer = element("zoo-footer");
     			add_location(app_header, file, 1, 1, 19);
-    			app_context0.id = "what";
+    			set_custom_element_data(app_context0, "id", "what");
     			set_custom_element_data(app_context0, "text", "What is this project?");
     			add_location(app_context0, file, 2, 1, 46);
     			add_location(li0, file, 4, 2, 139);
     			add_location(li1, file, 7, 2, 242);
     			add_location(li2, file, 10, 2, 314);
-    			ul.className = "what-list svelte-1iv82ik";
+    			attr(ul, "class", "what-list svelte-1iv82ik");
     			add_location(ul, file, 3, 1, 114);
-    			app_form.id = "app-form";
+    			set_custom_element_data(app_form, "id", "app-form");
     			add_location(app_form, file, 16, 3, 456);
-    			hr0.className = "svelte-1iv82ik";
+    			attr(hr0, "class", "svelte-1iv82ik");
     			add_location(hr0, file, 17, 3, 495);
-    			app_buttons.id = "app-buttons";
+    			set_custom_element_data(app_buttons, "id", "app-buttons");
     			add_location(app_buttons, file, 18, 3, 503);
-    			hr1.className = "svelte-1iv82ik";
+    			attr(hr1, "class", "svelte-1iv82ik");
     			add_location(hr1, file, 19, 3, 551);
-    			app_tooltip_and_feedback.id = "app-tooltip-and-feedback";
+    			set_custom_element_data(app_tooltip_and_feedback, "id", "app-tooltip-and-feedback");
     			add_location(app_tooltip_and_feedback, file, 20, 3, 559);
-    			hr2.className = "svelte-1iv82ik";
+    			attr(hr2, "class", "svelte-1iv82ik");
     			add_location(hr2, file, 21, 3, 646);
-    			div0.className = "overview svelte-1iv82ik";
+    			attr(div0, "class", "overview svelte-1iv82ik");
     			add_location(div0, file, 15, 2, 430);
     			set_custom_element_data(app_context1, "text", "When can I use it?");
     			set_custom_element_data(app_context1, "backbtn", true);
     			add_location(app_context1, file, 24, 3, 697);
-    			a0.href = "http://caniuse.com/#feat=shadowdomv1";
+    			attr(a0, "href", "http://caniuse.com/#feat=shadowdomv1");
     			add_location(a0, file, 27, 5, 929);
-    			p0.className = "ciu_embed svelte-1iv82ik";
+    			attr(p0, "class", "ciu_embed svelte-1iv82ik");
     			p0.dataset.feature = "shadowdomv1";
     			p0.dataset.periods = "future_1,current,past_1,past_2";
     			p0.dataset.accessibleColours = "false";
     			add_location(p0, file, 26, 4, 797);
-    			a1.href = "http://caniuse.com/#feat=custom-elementsv1";
+    			attr(a1, "href", "http://caniuse.com/#feat=custom-elementsv1");
     			add_location(a1, file, 30, 5, 1242);
-    			p1.className = "ciu_embed svelte-1iv82ik";
+    			attr(p1, "class", "ciu_embed svelte-1iv82ik");
     			p1.dataset.feature = "custom-elementsv1";
     			p1.dataset.periods = "future_1,current,past_1,past_2";
     			p1.dataset.accessibleColours = "false";
     			add_location(p1, file, 29, 4, 1104);
-    			a2.href = "http://caniuse.com/#feat=template";
+    			attr(a2, "href", "http://caniuse.com/#feat=template");
     			add_location(a2, file, 33, 5, 1564);
-    			p2.className = "ciu_embed svelte-1iv82ik";
+    			attr(p2, "class", "ciu_embed svelte-1iv82ik");
     			p2.dataset.feature = "template";
     			p2.dataset.periods = "future_1,current,past_1,past_2";
     			p2.dataset.accessibleColours = "false";
     			add_location(p2, file, 32, 4, 1435);
-    			div1.className = "desktop svelte-1iv82ik";
+    			attr(div1, "class", "desktop svelte-1iv82ik");
     			add_location(div1, file, 25, 3, 771);
-    			a3.href = "http://caniuse.com/#feat=shadowdomv1";
-    			a3.target = "about:blank";
-    			a3.className = "svelte-1iv82ik";
+    			attr(a3, "href", "http://caniuse.com/#feat=shadowdomv1");
+    			attr(a3, "target", "about:blank");
+    			attr(a3, "class", "svelte-1iv82ik");
     			add_location(a3, file, 39, 33, 1838);
     			attr(span0, "slot", "buttoncontent");
     			add_location(span0, file, 39, 6, 1811);
     			add_location(zoo_button0, file, 38, 5, 1792);
-    			div2.className = "back-btn svelte-1iv82ik";
+    			attr(div2, "class", "back-btn svelte-1iv82ik");
     			add_location(div2, file, 37, 4, 1764);
-    			a4.href = "http://caniuse.com/#feat=custom-elementsv1";
-    			a4.target = "about:blank";
-    			a4.className = "svelte-1iv82ik";
+    			attr(a4, "href", "http://caniuse.com/#feat=custom-elementsv1");
+    			attr(a4, "target", "about:blank");
+    			attr(a4, "class", "svelte-1iv82ik");
     			add_location(a4, file, 44, 33, 2048);
     			attr(span1, "slot", "buttoncontent");
     			add_location(span1, file, 44, 6, 2021);
     			add_location(zoo_button1, file, 43, 5, 2002);
-    			div3.className = "back-btn svelte-1iv82ik";
+    			attr(div3, "class", "back-btn svelte-1iv82ik");
     			add_location(div3, file, 42, 4, 1974);
-    			a5.href = "http://caniuse.com/#feat=template";
-    			a5.target = "about:blank";
-    			a5.className = "svelte-1iv82ik";
+    			attr(a5, "href", "http://caniuse.com/#feat=template");
+    			attr(a5, "target", "about:blank");
+    			attr(a5, "class", "svelte-1iv82ik");
     			add_location(a5, file, 49, 33, 2270);
     			attr(span2, "slot", "buttoncontent");
     			add_location(span2, file, 49, 6, 2243);
     			add_location(zoo_button2, file, 48, 5, 2224);
-    			div4.className = "back-btn svelte-1iv82ik";
+    			attr(div4, "class", "back-btn svelte-1iv82ik");
     			add_location(div4, file, 47, 4, 2196);
-    			div5.className = "mobile svelte-1iv82ik";
+    			attr(div5, "class", "mobile svelte-1iv82ik");
     			add_location(div5, file, 36, 3, 1739);
-    			div6.id = "when";
-    			div6.className = "caniuse svelte-1iv82ik";
+    			attr(div6, "id", "when");
+    			attr(div6, "class", "caniuse svelte-1iv82ik");
     			add_location(div6, file, 23, 2, 662);
     			set_custom_element_data(app_context2, "text", "How can I use it?");
     			set_custom_element_data(app_context2, "backbtn", true);
     			add_location(app_context2, file, 55, 3, 2454);
-    			div7.className = "left-menu svelte-1iv82ik";
+    			attr(div7, "class", "left-menu svelte-1iv82ik");
     			add_location(div7, file, 56, 3, 2527);
-    			div8.id = "how";
-    			div8.className = "spec-docs svelte-1iv82ik";
+    			attr(div8, "id", "how");
+    			attr(div8, "class", "spec-docs svelte-1iv82ik");
     			add_location(div8, file, 54, 2, 2418);
-    			docs_button.id = "button-doc";
+    			set_custom_element_data(docs_button, "id", "button-doc");
     			add_location(docs_button, file, 66, 3, 2787);
-    			hr3.className = "svelte-1iv82ik";
+    			attr(hr3, "class", "svelte-1iv82ik");
     			add_location(hr3, file, 67, 3, 2835);
-    			docs_checkbox.id = "checkbox-doc";
+    			set_custom_element_data(docs_checkbox, "id", "checkbox-doc");
     			add_location(docs_checkbox, file, 68, 3, 2843);
-    			hr4.className = "svelte-1iv82ik";
+    			attr(hr4, "class", "svelte-1iv82ik");
     			add_location(hr4, file, 69, 3, 2896);
-    			docs_collapsable_list.id = "collapsable-list-doc";
+    			set_custom_element_data(docs_collapsable_list, "id", "collapsable-list-doc");
     			add_location(docs_collapsable_list, file, 70, 3, 2904);
-    			hr5.className = "svelte-1iv82ik";
+    			attr(hr5, "class", "svelte-1iv82ik");
     			add_location(hr5, file, 71, 3, 2981);
-    			docs_feedback.id = "feedback-doc";
+    			set_custom_element_data(docs_feedback, "id", "feedback-doc");
     			add_location(docs_feedback, file, 72, 3, 2989);
-    			hr6.className = "svelte-1iv82ik";
+    			attr(hr6, "class", "svelte-1iv82ik");
     			add_location(hr6, file, 73, 3, 3042);
-    			docs_footer.id = "footer-doc";
+    			set_custom_element_data(docs_footer, "id", "footer-doc");
     			add_location(docs_footer, file, 74, 3, 3050);
-    			hr7.className = "svelte-1iv82ik";
+    			attr(hr7, "class", "svelte-1iv82ik");
     			add_location(hr7, file, 75, 3, 3097);
-    			docs_header.id = "header-doc";
+    			set_custom_element_data(docs_header, "id", "header-doc");
     			add_location(docs_header, file, 76, 3, 3105);
-    			hr8.className = "svelte-1iv82ik";
+    			attr(hr8, "class", "svelte-1iv82ik");
     			add_location(hr8, file, 77, 3, 3152);
-    			docs_input.id = "input-doc";
+    			set_custom_element_data(docs_input, "id", "input-doc");
     			add_location(docs_input, file, 78, 3, 3160);
-    			hr9.className = "svelte-1iv82ik";
+    			attr(hr9, "class", "svelte-1iv82ik");
     			add_location(hr9, file, 79, 3, 3204);
-    			docs_link.id = "link-doc";
+    			set_custom_element_data(docs_link, "id", "link-doc");
     			add_location(docs_link, file, 80, 3, 3212);
-    			hr10.className = "svelte-1iv82ik";
+    			attr(hr10, "class", "svelte-1iv82ik");
     			add_location(hr10, file, 81, 3, 3253);
-    			docs_modal.id = "modal-doc";
+    			set_custom_element_data(docs_modal, "id", "modal-doc");
     			add_location(docs_modal, file, 82, 3, 3261);
-    			hr11.className = "svelte-1iv82ik";
+    			attr(hr11, "class", "svelte-1iv82ik");
     			add_location(hr11, file, 83, 3, 3305);
-    			docs_navigation.id = "navigation-doc";
+    			set_custom_element_data(docs_navigation, "id", "navigation-doc");
     			add_location(docs_navigation, file, 84, 3, 3313);
-    			hr12.className = "svelte-1iv82ik";
+    			attr(hr12, "class", "svelte-1iv82ik");
     			add_location(hr12, file, 85, 3, 3372);
-    			docs_radio.id = "radio-doc";
+    			set_custom_element_data(docs_radio, "id", "radio-doc");
     			add_location(docs_radio, file, 86, 3, 3380);
-    			hr13.className = "svelte-1iv82ik";
+    			attr(hr13, "class", "svelte-1iv82ik");
     			add_location(hr13, file, 87, 3, 3424);
-    			docs_searchable_select.id = "searchable-select-doc";
+    			set_custom_element_data(docs_searchable_select, "id", "searchable-select-doc");
     			add_location(docs_searchable_select, file, 88, 3, 3432);
-    			hr14.className = "svelte-1iv82ik";
+    			attr(hr14, "class", "svelte-1iv82ik");
     			add_location(hr14, file, 89, 3, 3512);
-    			docs_select.id = "select-doc";
+    			set_custom_element_data(docs_select, "id", "select-doc");
     			add_location(docs_select, file, 90, 3, 3520);
-    			hr15.className = "svelte-1iv82ik";
+    			attr(hr15, "class", "svelte-1iv82ik");
     			add_location(hr15, file, 91, 3, 3567);
-    			docs_toast.id = "toast-doc";
+    			set_custom_element_data(docs_toast, "id", "toast-doc");
     			add_location(docs_toast, file, 92, 3, 3575);
-    			hr16.className = "svelte-1iv82ik";
+    			attr(hr16, "class", "svelte-1iv82ik");
     			add_location(hr16, file, 93, 3, 3619);
-    			docs_tooltip.id = "tooltip-doc";
+    			set_custom_element_data(docs_tooltip, "id", "tooltip-doc");
     			add_location(docs_tooltip, file, 94, 3, 3627);
-    			hr17.className = "svelte-1iv82ik";
+    			attr(hr17, "class", "svelte-1iv82ik");
     			add_location(hr17, file, 95, 3, 3677);
-    			docs_theming.id = "theming-doc";
+    			set_custom_element_data(docs_theming, "id", "theming-doc");
     			add_location(docs_theming, file, 96, 3, 3685);
-    			hr18.className = "svelte-1iv82ik";
+    			attr(hr18, "class", "svelte-1iv82ik");
     			add_location(hr18, file, 97, 3, 3735);
-    			div9.className = "content svelte-1iv82ik";
+    			attr(div9, "class", "content svelte-1iv82ik");
     			add_location(div9, file, 65, 2, 2762);
-    			div10.className = "page-content svelte-1iv82ik";
+    			attr(div10, "class", "page-content svelte-1iv82ik");
     			add_location(div10, file, 14, 1, 401);
-    			zoo_footer.className = "footer svelte-1iv82ik";
+    			set_custom_element_data(zoo_footer, "class", "footer svelte-1iv82ik");
     			set_custom_element_data(zoo_footer, "copyright", "zooplus AG");
     			add_location(zoo_footer, file, 100, 1, 3758);
-    			div11.className = "app svelte-1iv82ik";
+    			attr(div11, "class", "app svelte-1iv82ik");
     			add_location(div11, file, 0, 0, 0);
     		},
 
@@ -773,7 +778,7 @@ var app = (function () {
     			append(div9, hr18);
     			append(div11, t63);
     			append(div11, zoo_footer);
-    			add_binding_callback(() => ctx.zoo_footer_binding(zoo_footer, null));
+    			ctx.zoo_footer_binding(zoo_footer);
     		},
 
     		p: function update(changed, ctx) {
@@ -797,11 +802,6 @@ var app = (function () {
     				}
     				each_blocks.length = each_value.length;
     			}
-
-    			if (changed.items) {
-    				ctx.zoo_footer_binding(null, zoo_footer);
-    				ctx.zoo_footer_binding(zoo_footer, null);
-    			}
     		},
 
     		i: noop,
@@ -814,7 +814,7 @@ var app = (function () {
 
     			destroy_each(each_blocks, detaching);
 
-    			ctx.zoo_footer_binding(null, zoo_footer);
+    			ctx.zoo_footer_binding(null);
     		}
     	};
     }
@@ -918,9 +918,10 @@ var app = (function () {
     		]; $$invalidate('footer', footer);
     	});
 
-    	function zoo_footer_binding($$node, check) {
-    		footer = $$node;
-    		$$invalidate('footer', footer);
+    	function zoo_footer_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			$$invalidate('footer', footer = $$value);
+    		});
     	}
 
     	return { footer, doclinks, zoo_footer_binding };

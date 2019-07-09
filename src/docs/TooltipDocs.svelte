@@ -12,6 +12,12 @@
 					<li>
 						<b>position</b> - Possible values are: <b>top</b>, <b>right</b>, <b>bottom</b> or <b>left</b>. Default is <b>top</b>
 					</li>
+					<li>
+						<b>Showing the tooltip</b> - to show the tooltip use the following snippet: <code><pre>{snippet}</pre></code>
+					</li>
+					<li>
+						<b>CSS keyframes</b> - to enable animation use the following snippet: <code><pre>{keyframesSnippet}</pre></code>
+					</li>
 				</ul>
 			</zoo-collapsable-list-item>
 			<zoo-collapsable-list-item slot="item1">
@@ -43,7 +49,7 @@
 	.top-tooltip:hover {
 		zoo-tooltip {
 			display: block;
-			animation: fadeIn 0.2s;
+			animation: fadeTooltipIn 0.2s;
 		}
 	}
 </style>
@@ -53,6 +59,8 @@
 	let list;
 	let inputSlotExample = `<slot name="inputelement"></slot>`;
 	let example = `<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>`;
+	let keyframesSnippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n    animation: fadeTooltipIn 0.2s;\n  }\n}`;
+	let snippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n  }\n}`;
 	onMount(() => {
 		list.items = [
 			{

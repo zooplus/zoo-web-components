@@ -1,3 +1,14 @@
+# 4.4.0
+`zoo-tooltip` - removed half of the code responsible for positioning and animation. Tooltip now has defined keyframes for fade in. To use is you can do the following:
+```
+.your-class:hover {
+	zoo-tooltip {
+		display: block;
+		animation: fadeTooltipIn 0.2s;
+	}
+}
+```
+
 # 4.3.4
 `zoo-searchable-select` - fix cross icon to position itself within the input field.
 

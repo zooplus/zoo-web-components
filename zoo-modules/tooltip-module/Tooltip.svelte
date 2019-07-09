@@ -34,7 +34,9 @@
 		transform: translate(0%, -50%);
 
 		&.top {
-			bottom: 50%;
+			bottom: calc(100% + 11px);
+			right: 50%;
+			transform: translate3d(50%, 0, 0);
 		}
 
 		&.right {
@@ -101,7 +103,7 @@
 			}
 		}
 	}
-	@keyframes fadeIn {
+	@keyframes fadeTooltipIn {
 		from { opacity: 0; }
 		
 		to { opacity: 1; }

@@ -1,6 +1,6 @@
 {
   "name": "@zooplus/zoo-web-components",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "main": "dist/zoo-components-iife.js",
   "files": [
     "dist/zoo-components-esm.js",
@@ -18,13 +18,13 @@
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
     "puppeteer": "^1.18.1",
-    "rollup": "^1.16.7",
+    "rollup": "^1.17.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.1.0",
     "rollup-plugin-terser": "^5.1.1",
-    "serve": "^11.0.2",
+    "serve": "^11.1.0",
     "stylelint": "^10.1.0",
-    "svelte": "3.6.5",
+    "svelte": "3.6.7",
     "vinyl-file": "^3.0.0"
   },
   "scripts": {

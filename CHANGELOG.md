@@ -1,3 +1,6 @@
+# 4.4.1
+Update dependencies with security issues.
+
 # 4.4.0
 `zoo-tooltip` - removed half of the code responsible for positioning and animation. Tooltip now has defined keyframes for fade in. To use is you can do the following:
 ```

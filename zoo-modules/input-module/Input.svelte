@@ -40,6 +40,7 @@
 		font-size: 14px;
 		line-height: 20px;
 		padding: 13px 35px 13px 15px;
+		margin: 0;
 		border: 1px solid;
 		border-color: $border-color;
 		border-radius: 3px;

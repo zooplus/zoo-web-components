@@ -12,7 +12,9 @@
 <style type='text/scss'>
 	:host {
 		display: none;
-		position: relative;
+		top: 20px;
+		right: 20px;
+		position: fixed;
 	}
 
 	.toast {
@@ -57,9 +59,6 @@
 		}
 
 		padding: 15px;
-		top: 20px;
-		right: 20px;
-		position: fixed;
 		transition: transform 0.3s, opacity 0.4s;
 		z-index: 9999;
 

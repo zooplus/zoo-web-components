@@ -1,9 +1,13 @@
 <svelte:options tag="zoo-radio"></svelte:options>
-<span class="template-slot">
-	<slot bind:this={_templateSlot}></slot>
-</span>
-<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
-</zoo-input-info>
+<div class="box">
+	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
+	</zoo-input-label>
+	<span class="template-slot">
+		<slot bind:this={_templateSlot}></slot>
+	</span>
+	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
+	</zoo-input-info>
+</div>
 
 <style type='text/scss'>
 	@import "variables";
@@ -105,6 +109,7 @@
 	export let valid = true;
 	export let errormsg = '';
 	export let infotext = '';
+	export let labeltext = '';
 	let _prevValid;
 	let _templateSlot;
 	let clone;

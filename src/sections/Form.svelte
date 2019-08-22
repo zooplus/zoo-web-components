@@ -56,7 +56,7 @@
 	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox with some additional event handling of clicks inside">
 		<input slot="checkboxelement" type="checkbox" />
 	</zoo-checkbox>
-	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext">
+	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
 		<template>
 			<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
 			<label for="contactChoice1">Email</label>

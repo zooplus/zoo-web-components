@@ -1,3 +1,12 @@
+# 4.4.4
+`zoo-radio` - added possibility to add label text for radio inputs group via `labeltext` property.
+
+# 4.4.3
+`zoo-toast` - internal change of css rules to allow consumer application to define position of the toast on the screen.
+
+# 4.4.2
+`zoo-input` - set margin to 0 for slotted input and textarea.
+
 # 4.4.1
 Update dependencies with security issues.
 

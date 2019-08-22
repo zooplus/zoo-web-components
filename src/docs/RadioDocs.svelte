@@ -26,7 +26,7 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-radio infotext="infotext">
+			<zoo-radio infotext="infotext" labeltext="Label text">
 				<input type="radio" id="contactChoice4" name="contact" value="email" disabled>
 				<label for="contactChoice4">Email</label>
 				<input type="radio" id="contactChoice5" name="contact" value="phone">

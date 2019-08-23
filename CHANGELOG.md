@@ -1,3 +1,6 @@
+# 4.4.5
+`zoo-seachable-select` - fixed preloader to show exactly in the middle of the input element.
+
 # 4.4.4
 `zoo-radio` - added possibility to add label text for radio inputs group via `labeltext` property.
 

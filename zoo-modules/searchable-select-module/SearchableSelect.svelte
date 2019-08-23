@@ -14,10 +14,12 @@
 					<svg width="14" height="14" viewBox="0 0 24 24"><path d="M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z"/></svg>
 				{/if}
 			</div>
+			<span slot="inputelement">
+				{#if loading}
+					<zoo-preloader></zoo-preloader>
+				{/if}
+			</span>
 		</zoo-input>
-		{#if loading}
-			<zoo-preloader></zoo-preloader>
-		{/if}
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
 		<zoo-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"

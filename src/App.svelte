@@ -8,9 +8,6 @@
 		<li>
 			The web-component set implements Z+ shop style guide.
 		</li>
-		<li>
-			Future releases will include more components, ESM support etc.
-		</li>
 	</ul>
 	<div class="page-content">
 		<div class="overview">

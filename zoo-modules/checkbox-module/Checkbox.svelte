@@ -10,6 +10,10 @@
 
 <style type='text/scss'>
 	@import "variables";
+	
+	:host {
+		margin-top: 21px;
+	}
 
 	.box {
 		width: 100%;
@@ -114,6 +118,10 @@
 	::slotted(input[type="checkbox"]:disabled)::before {
 		border-color: $grey;
 		background-color: $whisper;
+	}
+
+	::slotted(input[type="checkbox"]:disabled)::after {
+		color: $grey;
 	}
 
 	::slotted(input[type="checkbox"].error)::before {

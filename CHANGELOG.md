@@ -1,3 +1,6 @@
+# 4.4.6
+`zoo-checkbox` - added default `margin-top: 21px` to align it with other form inputs with label, margin can be overriden by host styles. Changed color for disabled checkbox to grey instead of white for better visual presentation.
+
 # 4.4.5
 `zoo-seachable-select` - fixed preloader to show exactly in the middle of the input element.
 

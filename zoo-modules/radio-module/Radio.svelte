@@ -85,10 +85,6 @@
 		cursor: not-allowed;
 	}
 
-	::slotted(input[type="radio"]:disabled) {
-		cursor: not-allowed;
-	}
-
 	::slotted(input[type="radio"]:disabled)::before {
 		border-color: $grey;
 		background-color: $whisper;

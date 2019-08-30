@@ -38,7 +38,7 @@
 	::slotted(textarea) {
 		width: 100%;
 		font-size: 14px;
-		line-height: 20px;
+		line-height: 22px;
 		padding: 13px 35px 13px 15px;
 		margin: 0;
 		border: 1px solid;

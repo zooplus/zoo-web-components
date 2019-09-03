@@ -26,7 +26,7 @@
 			border: 2px solid;
 			border-color: $whisper;
 			border-radius: 3px;
-			padding: 13px 15px;
+			padding: 12px 15px;
 
 			&.focused {
 				border-color: $matterhorn;

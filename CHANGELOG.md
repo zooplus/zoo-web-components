@@ -1,3 +1,7 @@
+# 4.4.8
+`zoo-input` - decrease line-height to 20px to align input height with other form elements.
+`zoo-checkbox` - decrease padding to align input height with other form elements.
+
 # 4.4.7
 `zoo-input` - increasing line-height to 22px to align input height with other form elements.
 

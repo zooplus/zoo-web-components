@@ -1,3 +1,6 @@
+# 4.4.10
+`zoo-checkbox` - changing highlighted border color when checkbox is checked from very start.
+
 # 4.4.9
 `zoo-checkbox` - making whole checkbox box react to click event which changes checkbox state.
 

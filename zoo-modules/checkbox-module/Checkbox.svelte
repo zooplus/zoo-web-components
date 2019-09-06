@@ -187,6 +187,9 @@
 			_slottedInput.addEventListener('blur', () => {
 				_focused = false;
 			});
+			if (_slottedInput.checked) {
+				_clicked = true;
+			}
 			changeValidState(valid);
 		});
 		_inputSlot.addEventListener('keypress', e => {

@@ -1,3 +1,6 @@
+# 4.4.9
+`zoo-checkbox` - making whole checkbox box react to click event which changes checkbox state.
+
 # 4.4.8
 `zoo-input` - decrease line-height to 20px to align input height with other form elements.
 `zoo-checkbox` - decrease padding to align input height with other form elements.

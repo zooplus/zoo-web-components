@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-input"></svelte:options>
-<div class="box {labelposition}">
+<div class="box {labelposition} {linkAbsentClass}">
 	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
 	</zoo-input-label>
 	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
@@ -7,9 +7,12 @@
 	<span class="input-slot {nopadding ? 'no-padding': ''}">
 		<slot bind:this={_inputSlot} name="inputelement"></slot>
 		{#if valid}
-		<slot name="inputicon"></slot>
-		{/if} {#if !valid}
-		<svg class="error-triangle" width="22" height="22" viewBox="0 0 24 24"><path d="M12 18a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 18H12zm.75-2.25a.75.75 0 1 1-1.5 0v-7.5a.75.75 0 1 1 1.5 0v7.5zm1.544-14.32l9.473 19.297A2.271 2.271 0 0 1 21.728 24H2.272a2.271 2.271 0 0 1-2.04-3.272L9.707 1.429a2.556 2.556 0 0 1 4.588 0zm-2.76.178c-.21.103-.379.273-.482.482L1.58 21.39a.771.771 0 0 0 .693 1.111h19.456a.771.771 0 0 0 .693-1.112L12.948 2.091a1.056 1.056 0 0 0-1.414-.483z"/></svg>
+			<slot name="inputicon"></slot>
+		{/if}
+		{#if !valid}
+			<svg class="error-triangle" width="22" height="22" viewBox="0 0 24 24">
+				<path d="M12 18a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 18H12zm.75-2.25a.75.75 0 1 1-1.5 0v-7.5a.75.75 0 1 1 1.5 0v7.5zm1.544-14.32l9.473 19.297A2.271 2.271 0 0 1 21.728 24H2.272a2.271 2.271 0 0 1-2.04-3.272L9.707 1.429a2.556 2.556 0 0 1 4.588 0zm-2.76.178c-.21.103-.379.273-.482.482L1.58 21.39a.771.771 0 0 0 .693 1.111h19.456a.771.771 0 0 0 .693-1.112L12.948 2.091a1.056 1.056 0 0 0-1.414-.483z"/>
+			</svg>
 		{/if}
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -34,7 +37,7 @@
 		}
 	}
 
-	::slotted(input), 
+	::slotted(input),
 	::slotted(textarea) {
 		width: 100%;
 		font-size: 14px;
@@ -100,7 +103,7 @@
 		0% { opacity: 0; }
 
 		100% { opacity: 1; }
-	} 
+	}
 </style>
 
 <script>
@@ -118,6 +121,7 @@
 	let _slottedInput;
 	let _prevValid;
 	let _inputSlot;
+	let linkAbsentClass = "";
 
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
@@ -125,13 +129,16 @@
 			changeValidState(valid);
 		}
 	});
-	  
+
 	onMount(() => {
 		_inputSlot.addEventListener("slotchange", () => {
 			let nodes = _inputSlot.assignedNodes();
 			_slottedInput = nodes[0];
 			changeValidState(valid);
-	    });
+			if (!linktext) {
+				linkAbsentClass = "link-absent";
+			}
+		});
 	});
 
 	const changeValidState = (valid) => {

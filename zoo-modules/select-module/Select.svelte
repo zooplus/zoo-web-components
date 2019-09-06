@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-select"></svelte:options>
-<div class="box {labelposition}">
+<div class="box {labelposition} {linkAbsentClass}">
 	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
 	</zoo-input-label>
 	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
@@ -110,6 +110,7 @@
 	let _slottedSelect;
 	let _selectSlot;
 	let _valueSelected;
+	let linkAbsentClass = "";
 
 	beforeUpdate(() => {
 		if (valid != _prevValid) {
@@ -117,7 +118,7 @@
 			changeValidState(valid);
 		}
 	});
-	  
+
 	onMount(() => {
 		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
@@ -127,7 +128,10 @@
 			}
 			_slottedSelect.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
 			changeValidState(valid);
-	    });
+			if (!linktext) {
+				linkAbsentClass = "link-absent";
+			}
+		});
 	});
 
 	const changeValidState = (valid) => {
@@ -138,7 +142,7 @@
 				_slottedSelect.classList.remove('error');
 			}
 		}
-	}
+	};
 
 	const handleCrossClick = () => {
 		_slottedSelect.value = null;

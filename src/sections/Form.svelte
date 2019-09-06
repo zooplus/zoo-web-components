@@ -1,16 +1,16 @@
 <svelte:options tag="app-form"></svelte:options>
 <app-context text="First section is a showcase of different form elements like `input`, `textarea`, `select`."></app-context>
 <form class="form">
-	<zoo-input labeltext="Input type text" linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
-	 valid="{inputState}" inputerrormsg="invalid" infotext="Additional helpful information for our users">
+	<zoo-input labeltext="Input type text that will be wrapped when linktext is present" linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
+			   valid="{inputState}" inputerrormsg="invalid" infotext="Additional helpful information for our users">
 		<input slot="inputelement" type="text" placeholder="input" />
 	</zoo-input>
-	<zoo-input labeltext="Input type number" linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
-	 infotext="Additional helpful information for our users">
+	<zoo-input labeltext="Input type number, not wrapped as linktext is empty" linkhref="https://google.com" linktarget="about:blank"
+			   infotext="Additional helpful information for our users">
 		<input slot="inputelement" type="number" placeholder="input" />
 	</zoo-input>
 	<zoo-input labeltext="This input has type date" linktext="Native date picker -> click me" linkhref="https://github.com/jcgertig/date-input-polyfill"
-	 linktarget="about:blank" infotext="Click on input to show context menu with date selection">
+			   linktarget="about:blank" infotext="Click on input to show context menu with date selection">
 		<input slot="inputelement" type="date" placeholder="Enter date" />
 	</zoo-input>
 	<zoo-input labeltext="This input has type time" infotext="Select time">
@@ -19,7 +19,7 @@
 	<zoo-input labeltext="Textarea example" valid="{inputState}">
 		<textarea slot="inputelement" placeholder="Textarea"></textarea>
 	</zoo-input>
-	<zoo-select labeltext="Multiselect" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
+	<zoo-select labeltext="Multiselect with long label that will be wrapped" linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
 		<select slot="selectelement" multiple>
 			<option class="placeholder" value="" disabled selected>Placeholder</option>
 			<option>1</option>
@@ -27,7 +27,7 @@
 			<option>3</option>
 		</select>
 	</zoo-select>
-	<zoo-select labeltext="Standard select" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
+	<zoo-select labeltext="Standard select, not wrapped as linktext is empty" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
 		<select slot="selectelement">
 			<option class="placeholder" value="" disabled selected>Placeholder</option>
 			<option>1</option>
@@ -38,18 +38,18 @@
 	<zoo-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
 		<select multiple slot="selectelement">
 			{#each options as option}
-			<option value="{option.value}">
-				{option.text}
-			</option>
+				<option value="{option.value}">
+					{option.text}
+				</option>
 			{/each}
 		</select>
 	</zoo-searchable-select>
 	<zoo-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Additional helpful information for our users.">
 		<select slot="selectelement">
 			{#each options as option}
-			<option value="{option.value}">
-				{option.text}
-			</option>
+				<option value="{option.value}">
+					{option.text}
+				</option>
 			{/each}
 		</select>
 	</zoo-searchable-select>
@@ -94,7 +94,7 @@
 		@media only screen and (max-width: 812px) {
 			grid-template-rows: 120px 150px 120px 120px;
 		}
-		
+
 		grid-gap: 20px;
 	}
 

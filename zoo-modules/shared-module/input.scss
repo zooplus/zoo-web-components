@@ -9,6 +9,12 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 3px;
 	position: relative;
+	&.link-absent {
+		grid-template-areas:
+				"label label label"
+				"input input input"
+				"info info info";
+	}
 	@media only screen and (min-width: 500px) {
 		&.left {
 			grid-template-areas:
@@ -17,13 +23,6 @@
 					"label info info";
 		}
 	}
-	&.link-absent {
-		grid-template-areas:
-				"label label label"
-				"input input input"
-				"info info info";
-	}
-
 	.input-label {
 		grid-area: label;
 		align-self: self-start;

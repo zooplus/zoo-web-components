@@ -1,3 +1,6 @@
+# 4.4.11
+`zoo-input`, `zoo-select` - longer label is not wrapped unnecessarily if there is space in same line (because of absent link)  
+ 
 # 4.4.10
 `zoo-checkbox` - changing highlighted border color when checkbox is checked from very start.
 

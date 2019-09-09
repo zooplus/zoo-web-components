@@ -1,3 +1,6 @@
+# 4.4.12
+`zoo-input`, `zoo-select` - fixed grid-gap, which caused inputs and selects to be shorter than checkboxes.  
+
 # 4.4.11
 `zoo-input`, `zoo-select` - longer label is not wrapped unnecessarily if there is space in same line (because of absent link)  
  

@@ -6,6 +6,7 @@
 			{labeltext}
 		</span>
 	</label>
+	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}"></zoo-input-info>
 </div>
 
 <style type='text/scss'>
@@ -18,6 +19,7 @@
 	.box {
 		width: 100%;
 		display: flex;
+		flex-direction: column;
 		position: relative;
 		box-sizing: border-box;
 		cursor: pointer;
@@ -34,7 +36,7 @@
 		}
 
 		&.clicked {
-			border-color: var(--main-color, #{$main-color}) !important;
+			border-color: var(--main-color, #{$main-color});
 		}
 
 		&.error {
@@ -137,6 +139,8 @@
 	export let valid = true;
 	export let disabled = false;
 	export let highlighted = false;
+	export let inputerrormsg = '';
+	export let infotext = '';
 	let _clicked = false;
 	let _slottedInput;
 	let _prevValid;

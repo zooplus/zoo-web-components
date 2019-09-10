@@ -1,3 +1,6 @@
+# 4.4.13
+`zoo-checkbox` - API now reacts to `inputerrormsg` and `infotext` properties just like inputs and selects do.  
+
 # 4.4.12
 `zoo-input`, `zoo-select` - fixed grid-gap, which caused inputs and selects to be shorter than checkboxes.  
 

@@ -202,6 +202,9 @@
 	}
 
 	export const handleOptionChange = () => {
+		if (!_selectElement) {
+			return;
+		}
 		let inputValString = '';
 		for (const selectedOpts of _selectElement.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';

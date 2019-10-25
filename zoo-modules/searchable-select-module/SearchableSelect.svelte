@@ -149,9 +149,7 @@
 			_selectElement.addEventListener('change', () => handleOptionChange());
 			_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
 
-			if (_selectElement.disabled) {
-				searchableInput.setAttribute('disabled', true);
-			}
+			observeDisabledAttributeChange();
 
 			_selectElement.classList.add('searchable-zoo-select');
 			_selectElement.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
@@ -168,6 +166,20 @@
 			}
 		});
 	});
+
+	const observeDisabledAttributeChange = () => {
+		const observer = new MutationObserver(mutations => {
+			mutations.forEach(mutation => {
+				if (mutation.type == 'attributes' && mutation.attributeName == 'disabled') {
+					searchableInput.disabled = _selectElement.disabled;
+				}
+			});
+		});
+
+		observer.observe(_selectElement, {
+			attributes: true
+		});
+	}
 
 	const handleSearchChange = () => {
 		const inputVal = searchableInput.value.toLowerCase();

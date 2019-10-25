@@ -1,3 +1,6 @@
+# 4.4.16
+`zoo-searchable-select` - fixing input not reaacting to change of select `disabled` attribute change.  
+
 # 4.4.13
 `zoo-checkbox` - API now reacts to `inputerrormsg` and `infotext` properties just like inputs and selects do.  
 

@@ -1,3 +1,6 @@
+# 4.4.18
+`zoo-header` - `logoClicked` event is emitted whenever the user clicks image in header.  
+
 # 4.4.16
 `zoo-searchable-select` - fixing input not reaacting to change of select `disabled` attribute change.  
 

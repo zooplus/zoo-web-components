@@ -1,3 +1,6 @@
+# 4.4.19
+`zoo-header` - fix prev version.
+
 # 4.4.18
 `zoo-header` - `logoClicked` event is emitted whenever the user clicks image in header.  
 

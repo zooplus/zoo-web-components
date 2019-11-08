@@ -1,7 +1,7 @@
 <svelte:options tag="zoo-header"></svelte:options>
-<div class="box">
-	{#if imgsrc}<img class="app-logo" src="{imgsrc}" alt="{imgalt}" bind:this={_img}/>{/if}
-	{#if headertext}<span class="app-name">{headertext}</span>{/if}
+<div class="box" bind:this={_headerRoot}>
+	<img class="app-logo" src="{imgsrc}" alt="{imgalt}" bind:this={_img}/>
+	<span class="app-name">{headertext}</span>
 	<slot></slot>
 </div>
 
@@ -48,13 +48,13 @@
 	export let headertext = '';
 	export let imgsrc = '';
 	export let imgalt = '';
+	let _headerRoot;
 	let _img;
+	let host;
 
 	onMount(() => {
-		if (_img) {
-			host = _img.getRootNode().host;
-	    	_img.addEventListener("click", () => host.dispatchEvent(new Event("logoClicked")));
-		}
+		host = _headerRoot.getRootNode().host;
+		_img.addEventListener("click", () => host.dispatchEvent(new Event("logoClicked")));
 	});
 
 </script>

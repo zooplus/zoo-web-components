@@ -38,6 +38,8 @@
 			padding: 30px 40px;
 			box-sizing: border-box;
 			background: white;
+			overflow-y: scroll;
+			max-height: 95%;
 
 			.heading {
 				display: flex;

@@ -1,3 +1,6 @@
+# 4.4.20
+`zoo-modal` - added scroll for modal element when content is too large.
+
 # 4.4.19
 `zoo-header` - fix prev version.
 

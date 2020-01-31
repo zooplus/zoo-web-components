@@ -1,3 +1,6 @@
+# 4.4.22
+`zoo-modal`, `zoo-toast`, `zoo-tooltip` - change of z-index property so that `zoo-toast` is above `zoo-modal`.
+
 # 4.4.20
 `zoo-modal` - added scroll for modal element when content is too large.
 

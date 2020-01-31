@@ -9,6 +9,4 @@ docs/bundle-esm*
 
 docs/bundle-docs\.js\.map
 components/
-.bitmap
-bit-export.js
 .idea

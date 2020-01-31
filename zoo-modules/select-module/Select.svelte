@@ -103,7 +103,6 @@
 	export let inputerrormsg = "";
 	export let infotext = "";
 	export let valid = true;
-	export let showicons = true;
 	export let loading = false;
 	let _prevValid;
 	let _multiple = false;

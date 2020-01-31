@@ -72,8 +72,8 @@
 <script>
 	import { beforeUpdate } from 'svelte';
 	export let items = [];
-	export let highlighted = true;
 	let _items;
+
 	beforeUpdate(() => {
 		if (_items != items) {
 			_items = items;

@@ -15,6 +15,7 @@
 		top: 20px;
 		right: 20px;
 		position: fixed;
+		z-index: 10001;
 	}
 
 	.toast {
@@ -60,7 +61,6 @@
 
 		padding: 15px;
 		transition: transform 0.3s, opacity 0.4s;
-		z-index: 9999;
 
 		svg {
 			padding-right: 5px;

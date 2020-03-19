@@ -1,4 +1,0 @@
-# mocha.opts
-  --recursive ./zoo-modules/**/*.spec.js
-  --reporter dot
-  --ui bdd

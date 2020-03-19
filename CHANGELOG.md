@@ -1,3 +1,6 @@
+# 4.4.23
+Maintenance release for updating dependencies.
+
 # 4.4.22
 `zoo-modal`, `zoo-toast`, `zoo-tooltip` - change of z-index property so that `zoo-toast` is above `zoo-modal`.
 

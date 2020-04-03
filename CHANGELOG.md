@@ -1,3 +1,6 @@
+# 4.4.24
+Maintenance release for updating dependencies.
+
 # 4.4.23
 Maintenance release for updating dependencies.
 

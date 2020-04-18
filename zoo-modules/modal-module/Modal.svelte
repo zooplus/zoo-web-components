@@ -38,7 +38,7 @@
 			padding: 30px 40px;
 			box-sizing: border-box;
 			background: white;
-			overflow-y: scroll;
+			overflow-y: auto;
 			max-height: 95%;
 
 			.heading {
@@ -53,6 +53,11 @@
 					padding-left: 15px;
 				}
 			}
+
+			.content {
+				padding-bottom: 30px;
+			}
+
 			@media only screen and (max-width: 544px) {
 				padding: 25px;
 			}

@@ -27,6 +27,7 @@
 		display: flex;
 		align-items: center;
 		border-radius: 3px;
+		word-break: break-word;
 
 		&.info {
 			border-color: #459FD0;

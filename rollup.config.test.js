@@ -1,5 +1,5 @@
 import svelte from 'rollup-plugin-svelte';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import sass from 'node-sass';
 
@@ -41,7 +41,7 @@ export default [
 	Object.assign({}, shared, {
 		input: 'src/components.js',
 		output: {
-			sourcemap: true,
+			sourcemap: false,
 			format: 'iife',
 			file: 'docs/bundle-iife.js',
 			name: 'iife'

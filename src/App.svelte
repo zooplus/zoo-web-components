@@ -27,9 +27,6 @@
 				<p class="ciu_embed" data-feature="custom-elementsv1" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
 					<a href="http://caniuse.com/#feat=custom-elementsv1">Can I Use custom-elementsv1?</a> Data on support for the custom-elementsv1 feature across the major browsers from caniuse.com.
 				</p>
-				<p class="ciu_embed" data-feature="template" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
-					<a href="http://caniuse.com/#feat=template">Can I Use template?</a> Data on support for the template feature across the major browsers from caniuse.com.
-				</p>
 			</div>
 			<div class="mobile">
 				<div class="back-btn">

@@ -1,3 +1,10 @@
+# 4.4.25
+`zoo-feedback` - added padding for better presentation of one-line feedback text.      
+`zoo-modal` - prevent showing scrollbar when it is not needed on windows. Added small padding from bottom for large modal content.      
+`zoo-toast` - added breaking words for very long words.      
+Update dependencies.     
+Update package.json to get rid of unix specific commands so that it can be run on windows.
+
 # 4.4.24
 Maintenance release for updating dependencies.
 

@@ -27,6 +27,7 @@
 		border-top-right-radius: 3px;
 		width: 100%;
 		height: 100%;
+		padding: 5px 0;
 
 		&.info {
 			border-color: #459FD0;

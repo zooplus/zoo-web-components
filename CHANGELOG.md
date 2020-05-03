@@ -1,3 +1,6 @@
+# 4.4.26
+`zoo-tooltip` - remove max-width limitation.
+
 # 4.4.25
 `zoo-feedback` - added padding for better presentation of one-line feedback text.      
 `zoo-modal` - prevent showing scrollbar when it is not needed on windows. Added small padding from bottom for large modal content.      

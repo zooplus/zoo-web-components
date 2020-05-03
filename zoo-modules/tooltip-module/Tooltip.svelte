@@ -30,7 +30,6 @@
 		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
 		border-radius: 3px;
 		position: absolute;
-		max-width: 150%;
 		transform: translate(0%, -50%);
 
 		&.top {

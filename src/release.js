@@ -17,3 +17,4 @@ export { default as Toast} from '../zoo-modules/toast-module/Toast.svelte';
 export { default as CollapsableList } from '../zoo-modules/collapsable-list-module/CollapsableList.svelte';
 export { default as CollapsableListItem } from '../zoo-modules/collapsable-list-module/CollapsableListItem.svelte';
 export { default as Preloader } from  '../zoo-modules/shared-module/Preloader.svelte';
+export { default as Spinner } from  '../zoo-modules/spinner-module/Spinner.svelte';

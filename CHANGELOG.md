@@ -1,3 +1,6 @@
+# 4.5.0
+`zoo-spinner` - added new component, is a spinner for notifying user that something is loading.
+
 # 4.4.26
 `zoo-tooltip` - remove max-width limitation.
 

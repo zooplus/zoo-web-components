@@ -15,10 +15,12 @@
 </div>
 
 <style type='text/scss'>
+	@import "variables";
+
 	.box {
 		box-sizing: border-box;
-		background: #F2F3F4;
-		color: #767676;
+		background: $anti-flash-white;
+		color: $matterhorn;
 		font-size: 14px;
 		border-left: 3px solid;
 		display: flex;
@@ -30,24 +32,26 @@
 		padding: 5px 0;
 
 		&.info {
-			border-color: #459FD0;
+			border-color: $info-color;
 
-			svg {fill: #459FD0;}
+			svg {fill: $info-color;}
 		}
 
 		&.error {
-			border-color: #ED1C24;
+			border-color: $error-text-color;
 
-			svg {fill: #ED1C24;}
+			svg {fill: $error-text-color;}
 		}
 
 		&.success {
-			border-color: #3C9700;
+			border-color: $main-color;
 
-			svg {fill: #3C9700;}
+			svg {fill: $main-color;}
 		}
 
 		svg {
+			min-width: 30px;
+			min-height: 30px;
 			padding: 0 15px;
 		}
 

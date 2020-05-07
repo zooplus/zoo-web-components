@@ -13,7 +13,7 @@
 						<b>size</b> - accepts following values: <b>smal</b>, <b>medium</b>, <b>big</b>. Default is <b>small</b>;
 					</li>
 					<li>
-						<b>disable</b> - whether the button should be disabled or not.
+						<b>disabled</b> - whether the button should be disabled or not.
 					</li>
 				</ul>
 			</zoo-collapsable-list-item>

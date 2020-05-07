@@ -1,3 +1,7 @@
+# 4.5.1
+Fixed a typo in documentation.
+`zoo-feedback` - fixed size of icon to have min-width and min-height;
+
 # 4.5.0
 `zoo-spinner` - added new component, is a spinner for notifying user that something is loading.
 

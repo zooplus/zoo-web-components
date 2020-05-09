@@ -1,23 +1,13 @@
 <svelte:options tag="zoo-grid-paginator"></svelte:options>
 <div class="box" bind:this={gridPaginatorRoot}>
 	<slot name="pagesizeselector"></slot>
-	<div class="btn wall-holder first" class:disabled="{disablePrev}" on:click="{() => goToPage(1)}"></div>
-	<div class="btn arrow prev" class:disabled="{disablePrev}" on:click="{() => goToPage(currentpage - 1)}"></div>
+	<div class="btn prev" class:hidden="{!currentpage || currentpage == 1}" on:click="{() => goToPrevPage()}"></div>
 	{#if currentpage && maxpages}
 		{currentpage} {maxpages}
 	{/if}
-	<div class="btn arrow next" class:disabled="{disableNext}" on:click="{() => goToPage(currentpage + 1)}"></div>
-	<div class="btn wall-holder last" class:disabled="{disableNext}" on:click="{() => goToPage(maxpages)}"></div>
-	<template id="arrow-limit">
-		<svg width="28" height="28" viewBox="0 0 24 24">
-			<path d="M18.4 16.6L13.8 12l4.6-4.6L17 6l-6 6 6 6zM6 6h2v12H6z"/>
-			<path d="M24 24H0V0h24v24z" fill="none"/>
-		</svg>
-	</template>
+	<div class="btn next" class:hidden="{!currentpage || !maxpages || currentpage == maxpages}" on:click="{() => goToNextPage()}"></div>
 	<template id="arrow">
-		<svg width="28" height="28" viewBox="0 0 24 24">
-			<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-		</svg>
+		<svg class="nav-arrow" width="28" height="28" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
 	</template>
 </div>
 
@@ -41,9 +31,8 @@
 				opacity: 0.5;
 			}
 
-			&.disabled {
-				cursor: not-allowed;
-				opacity: 0.5;
+			&.hidden {
+				opacity: 0;
 			}
 		}
 
@@ -55,12 +44,12 @@
 			transform: rotate(90deg);
 		}
 
-		.last svg {
-			transform: rotate(180deg);
-		}
-
 		svg {
 			fill: $matterhorn;
+		}
+
+		.nav-arrow {
+			path { fill: var(--main-color, #{$main-color}); }
 		}
 	}
 </style>
@@ -76,10 +65,7 @@
 
 	onMount(() => {
 		host = gridPaginatorRoot.getRootNode().host;
-		const wallTemplateContent = gridPaginatorRoot.querySelector('#arrow-limit').content;
 		const arrowTemplateContent = gridPaginatorRoot.querySelector('#arrow').content;
-		gridPaginatorRoot.querySelector('.btn.first').appendChild(wallTemplateContent.cloneNode(true));
-		gridPaginatorRoot.querySelector('.btn.last').appendChild(wallTemplateContent.cloneNode(true));
 		gridPaginatorRoot.querySelector('.btn.prev').appendChild(arrowTemplateContent.cloneNode(true));
 		gridPaginatorRoot.querySelector('.btn.next').appendChild(arrowTemplateContent.cloneNode(true));
 	});
@@ -98,10 +84,19 @@
 			disableNext = false;
 		}
 	});
-	const goToPage = (pageNumber) => {
-		if (disableNext && disablePrev || disableNext && pageNumber >= currentpage || disablePrev && pageNumber <= 1) {
+	const goToPrevPage = () => {
+		if (disablePrev || currentpage <= 1) {
 			return;
 		}
+		goToPage(+currentpage-1);
+	}
+	const goToNextPage = () => {
+		if (disableNext || currentpage == maxpages) {
+			return;
+		}
+		goToPage(+currentpage+1);
+	}
+	const goToPage = (pageNumber) => {
 		currentpage = pageNumber;
 		host.dispatchEvent(new Event('pageChange', {pageNumber: pageNumber}));
 	}

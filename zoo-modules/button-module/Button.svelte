@@ -36,7 +36,7 @@
 			&.hollow {
 				border: 2px solid var(--main-color, #{$main-color});
 				color: var(--main-color, #{$main-color});
-				background: white;
+				background: transparent;
 			}
 
 			&.hot {
@@ -65,19 +65,24 @@
 
 				&:active {
 					background: var(--main-color-dark, #{$main-color-dark});
-					transform: translateY(1px);
 					color: white;
 				}
 			}
 
 			&:disabled {
-				background-image: linear-gradient(left, $whisper, $anti-flash-white);
-				background-image: -webkit-linear-gradient(left, $whisper, $anti-flash-white);
+				background: $anti-flash-white;
 				color: #7a7a7a;
+				border: 1px solid $whisper;
 
-				&:hover {
+				&:hover, &:focus, &:active {
 					cursor: not-allowed;
+					background: $anti-flash-white;
+					color: #7a7a7a;
 				}
+			}
+
+			&:active {
+				transform: translateY(1px);
 			}
 
 			&.small {

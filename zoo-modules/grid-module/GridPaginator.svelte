@@ -1,14 +1,21 @@
 <svelte:options tag="zoo-grid-paginator"></svelte:options>
 <div class="box" bind:this={gridPaginatorRoot}>
 	<slot name="pagesizeselector"></slot>
-	<div class="btn prev" class:hidden="{!currentpage || currentpage == 1}" on:click="{() => goToPrevPage()}"></div>
-	{#if currentpage && maxpages}
-		{currentpage} {maxpages}
-	{/if}
-	<div class="btn next" class:hidden="{!currentpage || !maxpages || currentpage == maxpages}" on:click="{() => goToNextPage()}"></div>
-	<template id="arrow">
-		<svg class="nav-arrow" width="28" height="28" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-	</template>
+	<div class="paging" class:hidden="{!currentpage || !maxpages}">
+		<div class="btn prev" class:hidden="{!currentpage || currentpage == 1}" on:click="{() => goToPrevPage()}"></div>
+		{#each pages as page, i}
+			<!-- first, previous, current, next or last page -->
+			{#if page == 1 || page == currentpage || i == currentpage - 2 || i == currentpage || page == maxpages}
+				<div class="page-element" on:click="{() => goToPage(page)}" class:active="{page == currentpage}">{page}</div>
+			{:else}
+				<div class="page-element-dots">...</div>
+			{/if}
+		{/each}
+		<div class="btn next" class:hidden="{!currentpage || !maxpages || currentpage == maxpages}" on:click="{() => goToNextPage()}"></div>
+		<template id="arrow">
+			<svg class="nav-arrow" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+		</template>
+	</div>
 </div>
 
 <style type='text/scss'>
@@ -17,8 +24,20 @@
 	.box {
 		display: flex;
 		justify-content: end;
-		align-items: center;
 		padding: 10px 15px 10px 0;
+		font-size: 14px;
+
+		.paging {
+			display: flex;
+			align-items: center;
+			border: 1px solid $border-color;
+			border-radius: 5px;
+			margin: 3px 0 3px 20px;
+
+			&.hidden {
+				opacity: 0;
+			}
+		}
 
 		.btn {
 			display: flex;
@@ -34,14 +53,22 @@
 			&.hidden {
 				opacity: 0;
 			}
-		}
 
-		.next svg {
-			transform: rotate(-90deg);
-		}
+			&.next {
+				margin-left: 5px;
 
-		.prev svg {
-			transform: rotate(90deg);
+				svg {
+					transform: rotate(-90deg);
+				}
+			}
+
+			&.prev {
+				margin-right: 10px;
+
+				svg {
+					transform: rotate(90deg);
+				}
+			}
 		}
 
 		svg {
@@ -51,17 +78,50 @@
 		.nav-arrow {
 			path { fill: var(--main-color, #{$main-color}); }
 		}
+
+		.page-element {
+			cursor: pointer;
+
+			&:hover {
+				background: $anti-flash-white;
+			}
+
+			&.active {
+				background: $main-color-ultra-light;
+				color: var(--main-color, #{$main-color});
+			}
+		}
+
+		.page-element, .page-element-dots {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 3px;
+			width: 24px;
+			height: 24px;
+			margin-right: 5px;
+		}
+
+		.page-element-dots {
+			display: none;
+		}
+
+		.page-element + .page-element-dots {
+			display: flex;
+		}
+
 	}
 </style>
 
 <script>
-	import { afterUpdate, onMount } from 'svelte';
+	import { afterUpdate, beforeUpdate, onMount } from 'svelte';
 	export let maxpages;
 	export let currentpage;
 	let gridPaginatorRoot;
 	let disablePrev = true;
 	let disableNext = true;
 	let host;
+	let pages = [];
 
 	onMount(() => {
 		host = gridPaginatorRoot.getRootNode().host;
@@ -82,6 +142,17 @@
 		} else {
 			disablePrev = false;
 			disableNext = false;
+		}
+		
+	});
+	beforeUpdate(() => {
+		if (pages.length != maxpages) {
+			let temp = 1;
+			while(temp <= +maxpages) {
+				pages.push(temp);
+				temp++;
+			}
+			pages = pages.slice();
 		}
 	});
 	const goToPrevPage = () => {

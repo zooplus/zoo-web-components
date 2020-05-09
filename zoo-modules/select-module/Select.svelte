@@ -4,7 +4,7 @@
 	</zoo-input-label>
 	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right">
 	</zoo-link>
-	<span class="input-slot">
+	<div class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
 			<svg class="arrows {_disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
@@ -17,7 +17,7 @@
 				</div>
 			{/if}
 		{/if}
-	</span>
+	</div>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
 	</zoo-input-info>
 </div>
@@ -61,7 +61,7 @@
 		color: $matterhorn;
 		outline: none;
 		box-sizing: border-box;
-		font-size: 13px;
+		font-size: 14px;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;

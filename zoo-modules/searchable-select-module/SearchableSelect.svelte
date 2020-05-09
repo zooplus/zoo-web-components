@@ -78,7 +78,7 @@
 		position: absolute;
 		z-index: 2;
 		top: 60px;
-		font-size: 13px;
+		font-size: 14px;
 	}
 
 	::slotted(select.error) {

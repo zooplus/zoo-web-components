@@ -7,7 +7,7 @@
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-			<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 0 24 24" width="16" height="16"><path d="M12 1.75L6.545 7.516a.75.75 0 1 1-1.09-1.03l5.47-5.78A1.499 1.499 0 0 1 13.06.69l5.485 5.793a.75.75 0 0 1-1.09 1.031L12 1.751zM6.545 16.486L12 22.249l5.455-5.764a.75.75 0 0 1 1.09 1.03l-5.47 5.78a1.499 1.499 0 0 1-2.135.014l-5.485-5.793a.75.75 0 0 1 1.09-1.031z"/></svg>
+			<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 0 24 24" width="16" height="16"><path d="M12 1.75L6.54 7.52a.75.75 0 11-1.09-1.03L10.93.7a1.5 1.5 0 012.14-.02l5.49 5.8a.75.75 0 01-1.1 1.02L12 1.75zM6.54 16.49L12 22.25l5.46-5.77a.75.75 0 011.08 1.03l-5.47 5.78a1.5 1.5 0 01-2.13.02l-5.49-5.8a.75.75 0 011.1-1.02z"/></svg>
 			{#if loading}
 				<zoo-preloader></zoo-preloader>
 			{/if}

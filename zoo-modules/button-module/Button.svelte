@@ -60,12 +60,12 @@
 			&.cold, &.hollow {
 				&:hover, &:focus {
 					background: var(--main-color, #{$main-color});
-					color: white;
+					color: $white;
 				}
 
 				&:active {
 					background: var(--main-color-dark, #{$main-color-dark});
-					color: white;
+					color: $white;
 				}
 			}
 

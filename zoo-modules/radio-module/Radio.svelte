@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-radio"></svelte:options>
 <div class="box">
-	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
+	<zoo-input-label class="input-label" {labeltext}>
 	</zoo-input-label>
 	<span class="template-slot">
 		<slot bind:this={_templateSlot}></slot>

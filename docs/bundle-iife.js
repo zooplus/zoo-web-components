@@ -1131,7 +1131,7 @@
     		c: function create() {
     			slot = element("slot");
     			attr_dev(slot, "name", "inputicon");
-    			add_location(slot, file$3, 9, 3, 473);
+    			add_location(slot, file$3, 9, 3, 445);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, slot, anchor);
@@ -1162,12 +1162,12 @@
     			svg = svg_element("svg");
     			path = svg_element("path");
     			attr_dev(path, "d", "M12 15.75a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 15.75H12zm.75-2.25a.75.75 0 1 1-1.5 0V5.25a.75.75 0 1 1 1.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z");
-    			add_location(path, file$3, 12, 72, 599);
+    			add_location(path, file$3, 12, 72, 571);
     			attr_dev(svg, "class", "error-circle");
     			attr_dev(svg, "width", "22");
     			attr_dev(svg, "height", "22");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$3, 12, 3, 530);
+    			add_location(svg, file$3, 12, 3, 502);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -1223,7 +1223,6 @@
     			zoo_input_info = element("zoo-input-info");
     			this.c = noop;
     			set_custom_element_data(zoo_input_label, "class", "input-label");
-    			set_custom_element_data(zoo_input_label, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_label, "labeltext", /*labeltext*/ ctx[1]);
     			add_location(zoo_input_label, file$3, 2, 1, 103);
     			set_custom_element_data(zoo_link, "class", "input-link");
@@ -1232,16 +1231,16 @@
     			set_custom_element_data(zoo_link, "type", /*linktype*/ ctx[9]);
     			set_custom_element_data(zoo_link, "text", /*linktext*/ ctx[2]);
     			set_custom_element_data(zoo_link, "textalign", "right");
-    			add_location(zoo_link, file$3, 4, 1, 202);
+    			add_location(zoo_link, file$3, 4, 1, 174);
     			attr_dev(slot, "name", "inputelement");
-    			add_location(slot, file$3, 7, 2, 399);
+    			add_location(slot, file$3, 7, 2, 371);
     			attr_dev(span, "class", span_class_value = "input-slot " + (/*nopadding*/ ctx[8] ? "no-padding" : ""));
-    			add_location(span, file$3, 6, 1, 340);
+    			add_location(span, file$3, 6, 1, 312);
     			set_custom_element_data(zoo_input_info, "class", "input-info");
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[5]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
-    			add_location(zoo_input_info, file$3, 15, 1, 1026);
+    			add_location(zoo_input_info, file$3, 15, 1, 998);
     			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[11]);
     			add_location(div, file$3, 1, 0, 50);
     		},
@@ -1265,10 +1264,6 @@
     			append_dev(div, zoo_input_info);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*valid*/ 128) {
-    				set_custom_element_data(zoo_input_label, "valid", /*valid*/ ctx[7]);
-    			}
-
     			if (dirty & /*labeltext*/ 2) {
     				set_custom_element_data(zoo_input_label, "labeltext", /*labeltext*/ ctx[1]);
     			}
@@ -2055,7 +2050,7 @@
     class Checkbox extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{margin-top:21px}.box{width:100%;display:flex;flex-direction:column;position:relative;box-sizing:border-box;cursor:pointer}.box.highlighted{border:2px solid;border-color:#E6E6E6;border-radius:3px;padding:12px 15px}.box.highlighted.focused{border-color:#555555}.box.clicked{border-color:var(--main-color, #3C9700)}.box.error{border-color:#ED1C24}.box.error .input-slot .input-label{color:#ED1C24}.box.disabled{cursor:not-allowed}.box.disabled .input-slot{cursor:not-allowed}.box.disabled .input-slot .input-label{color:#97999C}.box .input-slot{width:100%;display:flex;flex-direction:row;cursor:pointer}.box .input-slot .input-label{display:flex;align-items:center;position:relative;left:5px}::slotted(input[type="checkbox"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="checkbox"])::before{position:relative;display:inline-block;width:20px;height:20px;content:"";border-radius:3px;border:2px solid var(--main-color, #3C9700);background:white}::slotted(input[type="checkbox"]:checked)::before{background:white}::slotted(input[type="checkbox"]:checked)::after{content:"";position:absolute;top:4px;left:9px;width:5px;height:11px;border-bottom:2px solid;border-right:2px solid;transform:rotate(40deg);color:var(--main-color, #3C9700)}::slotted(input[type="checkbox"]:disabled){cursor:not-allowed}::slotted(input[type="checkbox"]:disabled)::before{border-color:#767676;background-color:#E6E6E6}::slotted(input[type="checkbox"]:disabled)::after{color:#767676}::slotted(input[type="checkbox"].error)::before{border-color:#ED1C24;transition:border-color 0.3s ease}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{margin-top:21px}.box{width:100%;display:flex;flex-direction:column;position:relative;box-sizing:border-box;cursor:pointer}.box.highlighted{border:2px solid;border-color:#E6E6E6;border-radius:3px;padding:12px 15px}.box.highlighted.focused{border-color:#555555}.box.clicked{border-color:var(--main-color, #3C9700)}.box.error{border-color:#ED1C24}.box.error .input-slot .input-label{color:#ED1C24}.box.disabled{cursor:not-allowed}.box.disabled .input-slot{cursor:not-allowed}.box.disabled .input-slot .input-label{color:#97999C}.box .input-slot{width:100%;display:flex;flex-direction:row;cursor:pointer}.box .input-slot .input-label{display:flex;align-items:center;position:relative;left:5px}::slotted(input[type="checkbox"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="checkbox"])::before{position:relative;display:inline-block;width:20px;height:20px;content:"";border-radius:3px;border:2px solid var(--main-color, #3C9700);background:white}::slotted(input[type="checkbox"]:checked)::before{background:white}::slotted(input[type="checkbox"]:checked)::after{content:"";position:absolute;top:4px;left:9px;width:5px;height:11px;border-bottom:2px solid;border-right:2px solid;transform:rotate(40deg);color:var(--main-color, #3C9700)}::slotted(input[type="checkbox"]:checked.error)::after{color:#ED1C24}::slotted(input[type="checkbox"]:disabled){cursor:not-allowed}::slotted(input[type="checkbox"]:disabled)::before{border-color:#767676;background-color:#E6E6E6}::slotted(input[type="checkbox"]:disabled)::after{color:#767676}::slotted(input[type="checkbox"].error)::before{border-color:#ED1C24;transition:border-color 0.3s ease}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$5, create_fragment$5, safe_not_equal, {
     			labeltext: 0,
@@ -2162,17 +2157,16 @@
     			zoo_input_info = element("zoo-input-info");
     			this.c = noop;
     			set_custom_element_data(zoo_input_label, "class", "input-label");
-    			set_custom_element_data(zoo_input_label, "valid", /*valid*/ ctx[0]);
     			set_custom_element_data(zoo_input_label, "labeltext", /*labeltext*/ ctx[3]);
     			add_location(zoo_input_label, file$6, 2, 1, 69);
-    			add_location(slot, file$6, 5, 2, 199);
+    			add_location(slot, file$6, 5, 2, 171);
     			attr_dev(span, "class", "template-slot");
-    			add_location(span, file$6, 4, 1, 168);
+    			add_location(span, file$6, 4, 1, 140);
     			set_custom_element_data(zoo_input_info, "class", "input-info");
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[0]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*errormsg*/ ctx[1]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[2]);
-    			add_location(zoo_input_info, file$6, 7, 1, 249);
+    			add_location(zoo_input_info, file$6, 7, 1, 221);
     			attr_dev(div, "class", "box");
     			add_location(div, file$6, 1, 0, 50);
     		},
@@ -2190,10 +2184,6 @@
     			append_dev(div, zoo_input_info);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*valid*/ 1) {
-    				set_custom_element_data(zoo_input_label, "valid", /*valid*/ ctx[0]);
-    			}
-
     			if (dirty & /*labeltext*/ 8) {
     				set_custom_element_data(zoo_input_label, "labeltext", /*labeltext*/ ctx[3]);
     			}
@@ -2777,12 +2767,12 @@
     			if (if_block1) if_block1.c();
     			if_block1_anchor = empty();
     			attr_dev(path, "d", "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
-    			add_location(path, file$9, 9, 96, 543);
+    			add_location(path, file$9, 9, 96, 515);
     			attr_dev(svg, "class", svg_class_value = "arrows " + (/*_disabled*/ ctx[13] ? "disabled" : ""));
     			attr_dev(svg, "width", "24");
     			attr_dev(svg, "height", "24");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$9, 9, 3, 450);
+    			add_location(svg, file$9, 9, 3, 422);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -2850,7 +2840,7 @@
     	const block = {
     		c: function create() {
     			zoo_preloader = element("zoo-preloader");
-    			add_location(zoo_preloader, file$9, 11, 4, 638);
+    			add_location(zoo_preloader, file$9, 11, 4, 610);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_preloader, anchor);
@@ -2884,13 +2874,13 @@
     			svg = svg_element("svg");
     			path = svg_element("path");
     			attr_dev(path, "d", "M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z");
-    			add_location(path, file$9, 15, 53, 817);
+    			add_location(path, file$9, 15, 53, 789);
     			attr_dev(svg, "width", "14");
     			attr_dev(svg, "height", "14");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$9, 15, 5, 769);
+    			add_location(svg, file$9, 15, 5, 741);
     			attr_dev(div, "class", "close");
-    			add_location(div, file$9, 14, 4, 707);
+    			add_location(div, file$9, 14, 4, 679);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div, anchor);
@@ -2946,7 +2936,6 @@
     			zoo_input_info = element("zoo-input-info");
     			this.c = noop;
     			set_custom_element_data(zoo_input_label, "class", "input-label");
-    			set_custom_element_data(zoo_input_label, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_label, "labeltext", /*labeltext*/ ctx[1]);
     			add_location(zoo_input_label, file$9, 2, 1, 104);
     			set_custom_element_data(zoo_link, "class", "input-link");
@@ -2955,16 +2944,16 @@
     			set_custom_element_data(zoo_link, "type", /*linktype*/ ctx[9]);
     			set_custom_element_data(zoo_link, "text", /*linktext*/ ctx[2]);
     			set_custom_element_data(zoo_link, "textalign", "right");
-    			add_location(zoo_link, file$9, 4, 1, 203);
+    			add_location(zoo_link, file$9, 4, 1, 175);
     			attr_dev(slot, "name", "selectelement");
-    			add_location(slot, file$9, 7, 2, 369);
+    			add_location(slot, file$9, 7, 2, 341);
     			attr_dev(span, "class", "input-slot");
-    			add_location(span, file$9, 6, 1, 341);
+    			add_location(span, file$9, 6, 1, 313);
     			set_custom_element_data(zoo_input_info, "class", "input-info");
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[5]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
-    			add_location(zoo_input_info, file$9, 20, 1, 1051);
+    			add_location(zoo_input_info, file$9, 20, 1, 1023);
     			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[14]);
     			add_location(div, file$9, 1, 0, 51);
     		},
@@ -2986,10 +2975,6 @@
     			append_dev(div, zoo_input_info);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*valid*/ 128) {
-    				set_custom_element_data(zoo_input_label, "valid", /*valid*/ ctx[7]);
-    			}
-
     			if (dirty & /*labeltext*/ 2) {
     				set_custom_element_data(zoo_input_label, "labeltext", /*labeltext*/ ctx[1]);
     			}
@@ -4825,10 +4810,9 @@
     		c: function create() {
     			div = element("div");
     			span = element("span");
-    			t = text(/*labeltext*/ ctx[1]);
-    			add_location(span, file$e, 3, 1, 116);
+    			t = text(/*labeltext*/ ctx[0]);
+    			add_location(span, file$e, 3, 1, 93);
     			attr_dev(div, "class", "label");
-    			toggle_class(div, "error", !/*valid*/ ctx[0]);
     			add_location(div, file$e, 2, 0, 72);
     		},
     		m: function mount(target, anchor) {
@@ -4837,11 +4821,7 @@
     			append_dev(span, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*labeltext*/ 2) set_data_dev(t, /*labeltext*/ ctx[1]);
-
-    			if (dirty & /*valid*/ 1) {
-    				toggle_class(div, "error", !/*valid*/ ctx[0]);
-    			}
+    			if (dirty & /*labeltext*/ 1) set_data_dev(t, /*labeltext*/ ctx[0]);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -4861,7 +4841,7 @@
 
     function create_fragment$e(ctx) {
     	let if_block_anchor;
-    	let if_block = /*labeltext*/ ctx[1] && create_if_block$6(ctx);
+    	let if_block = /*labeltext*/ ctx[0] && create_if_block$6(ctx);
 
     	const block = {
     		c: function create() {
@@ -4877,7 +4857,7 @@
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*labeltext*/ ctx[1]) {
+    			if (/*labeltext*/ ctx[0]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -4910,9 +4890,8 @@
     }
 
     function instance$e($$self, $$props, $$invalidate) {
-    	let { valid = true } = $$props;
     	let { labeltext = "" } = $$props;
-    	const writable_props = ["valid", "labeltext"];
+    	const writable_props = ["labeltext"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<zoo-input-label> was created with unknown prop '${key}'`);
@@ -4922,29 +4901,27 @@
     	validate_slots("zoo-input-label", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("valid" in $$props) $$invalidate(0, valid = $$props.valid);
-    		if ("labeltext" in $$props) $$invalidate(1, labeltext = $$props.labeltext);
+    		if ("labeltext" in $$props) $$invalidate(0, labeltext = $$props.labeltext);
     	};
 
-    	$$self.$capture_state = () => ({ valid, labeltext });
+    	$$self.$capture_state = () => ({ labeltext });
 
     	$$self.$inject_state = $$props => {
-    		if ("valid" in $$props) $$invalidate(0, valid = $$props.valid);
-    		if ("labeltext" in $$props) $$invalidate(1, labeltext = $$props.labeltext);
+    		if ("labeltext" in $$props) $$invalidate(0, labeltext = $$props.labeltext);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [valid, labeltext];
+    	return [labeltext];
     }
 
     class InputLabel extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.label{font-size:14px;font-weight:800;line-height:20px;color:#555555;text-align:left}.error{color:#ED1C24}</style>`;
-    		init(this, { target: this.shadowRoot }, instance$e, create_fragment$e, safe_not_equal, { valid: 0, labeltext: 1 });
+    		this.shadowRoot.innerHTML = `<style>.label{font-size:14px;font-weight:800;line-height:20px;color:#555555;text-align:left}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$e, create_fragment$e, safe_not_equal, { labeltext: 0 });
 
     		if (options) {
     			if (options.target) {
@@ -4959,20 +4936,11 @@
     	}
 
     	static get observedAttributes() {
-    		return ["valid", "labeltext"];
-    	}
-
-    	get valid() {
-    		return this.$$.ctx[0];
-    	}
-
-    	set valid(valid) {
-    		this.$set({ valid });
-    		flush();
+    		return ["labeltext"];
     	}
 
     	get labeltext() {
-    		return this.$$.ctx[1];
+    		return this.$$.ctx[0];
     	}
 
     	set labeltext(labeltext) {

@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-select"></svelte:options>
 <div class="box {labelposition} {linkAbsentClass}">
-	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
+	<zoo-input-label class="input-label" {labeltext}>
 	</zoo-input-label>
 	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right">
 	</zoo-link>

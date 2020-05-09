@@ -113,6 +113,10 @@
 		color: var(--main-color, #{$main-color});
 	}
 
+	::slotted(input[type="checkbox"]:checked.error)::after {
+		color: $error-text-color;
+	}
+
 	::slotted(input[type="checkbox"]:disabled) {
 		cursor: not-allowed;
 	}

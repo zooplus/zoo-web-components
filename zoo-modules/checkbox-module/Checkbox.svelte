@@ -88,8 +88,8 @@
 	::slotted(input[type="checkbox"])::before {
 		position: relative;
 		display: inline-block;
-		width: 16px;
-		height: 16px;
+		width: 20px;
+		height: 20px;
 		content: "";
 		border-radius: 3px;
 		border: 2px solid var(--main-color, #{$main-color});
@@ -97,20 +97,20 @@
 	}
 
 	::slotted(input[type="checkbox"]:checked)::before {
-		background: var(--main-color, #{$main-color});
+		background: white;
 	}
 
 	::slotted(input[type="checkbox"]:checked)::after {
 		content: "";
 		position: absolute;
-		top: 3px;
-		left: 7px;
-		width: 4px;
-		height: 8px;
+		top: 4px;
+		left: 9px;
+		width: 5px;
+		height: 11px;
 		border-bottom: 2px solid;
 		border-right: 2px solid;
 		transform: rotate(40deg);
-		color: white;
+		color: var(--main-color, #{$main-color});
 	}
 
 	::slotted(input[type="checkbox"]:disabled) {

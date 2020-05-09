@@ -16,6 +16,9 @@
 	<zoo-input labeltext="This input has type time" infotext="Select time">
 		<input slot="inputelement" type="time" placeholder="Enter time" />
 	</zoo-input>
+	<zoo-input labeltext="This input is disabled">
+		<input disabled slot="inputelement" type="text"/>
+	</zoo-input>
 	<zoo-input labeltext="Textarea example" valid="{inputState}">
 		<textarea slot="inputelement" placeholder="Textarea"></textarea>
 	</zoo-input>
@@ -53,7 +56,7 @@
 			{/each}
 		</select>
 	</zoo-searchable-select>
-	<zoo-select labeltext="Disabled select" valid="{inputState}" inputerrormsg="Value is required">
+	<zoo-select labeltext="Disabled select">
 		<select disabled slot="selectelement">
 			<option class="placeholder" value="" disabled selected>Placeholder</option>
 			<option>1</option>

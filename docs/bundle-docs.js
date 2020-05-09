@@ -949,7 +949,7 @@
     	return child_ctx;
     }
 
-    // (40:3) {#each options as option}
+    // (43:3) {#each options as option}
     function create_each_block_1(ctx) {
     	let option;
     	let t0_value = /*option*/ ctx[3].text + "";
@@ -964,7 +964,7 @@
     			t1 = space();
     			option.__value = option_value_value = /*option*/ ctx[3].value;
     			option.value = option.__value;
-    			add_location(option, file$2, 40, 4, 2430);
+    			add_location(option, file$2, 43, 4, 2544);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -981,14 +981,14 @@
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(40:3) {#each options as option}",
+    		source: "(43:3) {#each options as option}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:3) {#each options as option}
+    // (52:3) {#each options as option}
     function create_each_block$1(ctx) {
     	let option;
     	let t0_value = /*option*/ ctx[3].text + "";
@@ -1003,7 +1003,7 @@
     			t1 = space();
     			option.__value = option_value_value = /*option*/ ctx[3].value;
     			option.value = option.__value;
-    			add_location(option, file$2, 49, 4, 2747);
+    			add_location(option, file$2, 52, 4, 2861);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -1020,7 +1020,7 @@
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(49:3) {#each options as option}",
+    		source: "(52:3) {#each options as option}",
     		ctx
     	});
 
@@ -1044,62 +1044,65 @@
     	let input3;
     	let t4;
     	let zoo_input4;
-    	let textarea;
+    	let input4;
     	let t5;
+    	let zoo_input5;
+    	let textarea;
+    	let t6;
     	let zoo_select0;
     	let select0;
     	let option0;
     	let option1;
     	let option2;
     	let option3;
-    	let t10;
+    	let t11;
     	let zoo_select1;
     	let select1;
     	let option4;
     	let option5;
     	let option6;
     	let option7;
-    	let t15;
+    	let t16;
     	let zoo_searchable_select0;
     	let select2;
-    	let t16;
+    	let t17;
     	let zoo_searchable_select1;
     	let select3;
-    	let t17;
+    	let t18;
     	let zoo_select2;
     	let select4;
     	let option8;
     	let option9;
     	let option10;
     	let option11;
-    	let t22;
-    	let zoo_checkbox;
-    	let input4;
-    	let zoo_checkbox_highlighted_value;
     	let t23;
+    	let zoo_checkbox;
+    	let input5;
+    	let zoo_checkbox_highlighted_value;
+    	let t24;
     	let zoo_radio0;
     	let template;
-    	let input5;
-    	let t24;
-    	let label0;
-    	let t26;
     	let input6;
+    	let t25;
+    	let label0;
     	let t27;
-    	let label1;
-    	let t29;
     	let input7;
+    	let t28;
+    	let label1;
     	let t30;
-    	let label2;
-    	let t32;
-    	let zoo_radio1;
     	let input8;
+    	let t31;
+    	let label2;
     	let t33;
-    	let label3;
-    	let t35;
+    	let zoo_radio1;
     	let input9;
+    	let t34;
+    	let label3;
     	let t36;
+    	let input10;
+    	let t37;
     	let label4;
-    	let t38;
+    	let t39;
     	let div;
     	let zoo_button;
     	let span;
@@ -1138,8 +1141,11 @@
     			input3 = element("input");
     			t4 = space();
     			zoo_input4 = element("zoo-input");
-    			textarea = element("textarea");
+    			input4 = element("input");
     			t5 = space();
+    			zoo_input5 = element("zoo-input");
+    			textarea = element("textarea");
+    			t6 = space();
     			zoo_select0 = element("zoo-select");
     			select0 = element("select");
     			option0 = element("option");
@@ -1150,7 +1156,7 @@
     			option2.textContent = "2";
     			option3 = element("option");
     			option3.textContent = "3";
-    			t10 = space();
+    			t11 = space();
     			zoo_select1 = element("zoo-select");
     			select1 = element("select");
     			option4 = element("option");
@@ -1161,7 +1167,7 @@
     			option6.textContent = "2";
     			option7 = element("option");
     			option7.textContent = "3";
-    			t15 = space();
+    			t16 = space();
     			zoo_searchable_select0 = element("zoo-searchable-select");
     			select2 = element("select");
 
@@ -1169,7 +1175,7 @@
     				each_blocks_1[i].c();
     			}
 
-    			t16 = space();
+    			t17 = space();
     			zoo_searchable_select1 = element("zoo-searchable-select");
     			select3 = element("select");
 
@@ -1177,7 +1183,7 @@
     				each_blocks[i].c();
     			}
 
-    			t17 = space();
+    			t18 = space();
     			zoo_select2 = element("zoo-select");
     			select4 = element("select");
     			option8 = element("option");
@@ -1188,38 +1194,38 @@
     			option10.textContent = "2";
     			option11 = element("option");
     			option11.textContent = "3";
-    			t22 = space();
-    			zoo_checkbox = element("zoo-checkbox");
-    			input4 = element("input");
     			t23 = space();
-    			zoo_radio0 = element("zoo-radio");
-    			template = element("template");
+    			zoo_checkbox = element("zoo-checkbox");
     			input5 = element("input");
     			t24 = space();
+    			zoo_radio0 = element("zoo-radio");
+    			template = element("template");
+    			input6 = element("input");
+    			t25 = space();
     			label0 = element("label");
     			label0.textContent = "Email";
-    			t26 = space();
-    			input6 = element("input");
     			t27 = space();
+    			input7 = element("input");
+    			t28 = space();
     			label1 = element("label");
     			label1.textContent = "Phone";
-    			t29 = space();
-    			input7 = element("input");
     			t30 = space();
+    			input8 = element("input");
+    			t31 = space();
     			label2 = element("label");
     			label2.textContent = "Mail";
-    			t32 = space();
-    			zoo_radio1 = element("zoo-radio");
-    			input8 = element("input");
     			t33 = space();
+    			zoo_radio1 = element("zoo-radio");
+    			input9 = element("input");
+    			t34 = space();
     			label3 = element("label");
     			label3.textContent = "Email";
-    			t35 = space();
-    			input9 = element("input");
     			t36 = space();
+    			input10 = element("input");
+    			t37 = space();
     			label4 = element("label");
     			label4.textContent = "Phone";
-    			t38 = space();
+    			t39 = space();
     			div = element("div");
     			zoo_button = element("zoo-button");
     			span = element("span");
@@ -1265,30 +1271,36 @@
     			set_custom_element_data(zoo_input3, "labeltext", "This input has type time");
     			set_custom_element_data(zoo_input3, "infotext", "Select time");
     			add_location(zoo_input3, file$2, 15, 1, 1085);
+    			input4.disabled = true;
+    			attr_dev(input4, "slot", "inputelement");
+    			attr_dev(input4, "type", "text");
+    			add_location(input4, file$2, 19, 2, 1290);
+    			set_custom_element_data(zoo_input4, "labeltext", "This input is disabled");
+    			add_location(zoo_input4, file$2, 18, 1, 1241);
     			attr_dev(textarea, "slot", "inputelement");
     			attr_dev(textarea, "placeholder", "Textarea");
-    			add_location(textarea, file$2, 19, 2, 1305);
-    			set_custom_element_data(zoo_input4, "labeltext", "Textarea example");
-    			set_custom_element_data(zoo_input4, "valid", /*inputState*/ ctx[0]);
-    			add_location(zoo_input4, file$2, 18, 1, 1241);
+    			add_location(textarea, file$2, 22, 2, 1419);
+    			set_custom_element_data(zoo_input5, "labeltext", "Textarea example");
+    			set_custom_element_data(zoo_input5, "valid", /*inputState*/ ctx[0]);
+    			add_location(zoo_input5, file$2, 21, 1, 1355);
     			attr_dev(option0, "class", "placeholder");
     			option0.__value = "";
     			option0.value = option0.__value;
     			option0.disabled = true;
     			option0.selected = true;
-    			add_location(option0, file$2, 23, 3, 1662);
+    			add_location(option0, file$2, 26, 3, 1776);
     			option1.__value = "1";
     			option1.value = option1.__value;
-    			add_location(option1, file$2, 24, 3, 1741);
+    			add_location(option1, file$2, 27, 3, 1855);
     			option2.__value = "2";
     			option2.value = option2.__value;
-    			add_location(option2, file$2, 25, 3, 1763);
+    			add_location(option2, file$2, 28, 3, 1877);
     			option3.__value = "3";
     			option3.value = option3.__value;
-    			add_location(option3, file$2, 26, 3, 1785);
+    			add_location(option3, file$2, 29, 3, 1899);
     			attr_dev(select0, "slot", "selectelement");
     			select0.multiple = true;
-    			add_location(select0, file$2, 22, 2, 1620);
+    			add_location(select0, file$2, 25, 2, 1734);
     			set_custom_element_data(zoo_select0, "labeltext", "Multiselect");
     			set_custom_element_data(zoo_select0, "linktext", "Documentation link");
     			set_custom_element_data(zoo_select0, "linkhref", "https://google.com");
@@ -1296,128 +1308,126 @@
     			set_custom_element_data(zoo_select0, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_select0, "inputerrormsg", "Value is required");
     			set_custom_element_data(zoo_select0, "infotext", "Additional helpful information for our users");
-    			add_location(zoo_select0, file$2, 21, 1, 1385);
+    			add_location(zoo_select0, file$2, 24, 1, 1499);
     			attr_dev(option4, "class", "placeholder");
     			option4.__value = "";
     			option4.value = option4.__value;
     			option4.disabled = true;
     			option4.selected = true;
-    			add_location(option4, file$2, 31, 3, 2019);
+    			add_location(option4, file$2, 34, 3, 2133);
     			option5.__value = "1";
     			option5.value = option5.__value;
-    			add_location(option5, file$2, 32, 3, 2098);
+    			add_location(option5, file$2, 35, 3, 2212);
     			option6.__value = "2";
     			option6.value = option6.__value;
-    			add_location(option6, file$2, 33, 3, 2120);
+    			add_location(option6, file$2, 36, 3, 2234);
     			option7.__value = "3";
     			option7.value = option7.__value;
-    			add_location(option7, file$2, 34, 3, 2142);
+    			add_location(option7, file$2, 37, 3, 2256);
     			attr_dev(select1, "slot", "selectelement");
-    			add_location(select1, file$2, 30, 2, 1986);
+    			add_location(select1, file$2, 33, 2, 2100);
     			set_custom_element_data(zoo_select1, "labeltext", "Standard select");
     			set_custom_element_data(zoo_select1, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_select1, "inputerrormsg", "Value is required");
     			set_custom_element_data(zoo_select1, "infotext", "Additional helpful information for our users");
-    			add_location(zoo_select1, file$2, 29, 1, 1832);
+    			add_location(zoo_select1, file$2, 32, 1, 1946);
     			select2.multiple = true;
     			attr_dev(select2, "slot", "selectelement");
-    			add_location(select2, file$2, 38, 2, 2358);
+    			add_location(select2, file$2, 41, 2, 2472);
     			set_custom_element_data(zoo_searchable_select0, "labeltext", "Searchable multiple select");
     			set_custom_element_data(zoo_searchable_select0, "placeholder", "Placeholder");
     			set_custom_element_data(zoo_searchable_select0, "infotext", "Additional helpful information for our users which is a long text.");
-    			add_location(zoo_searchable_select0, file$2, 37, 1, 2189);
+    			add_location(zoo_searchable_select0, file$2, 40, 1, 2303);
     			attr_dev(select3, "slot", "selectelement");
-    			add_location(select3, file$2, 47, 2, 2684);
+    			add_location(select3, file$2, 50, 2, 2798);
     			set_custom_element_data(zoo_searchable_select1, "labeltext", "Searchable select");
     			set_custom_element_data(zoo_searchable_select1, "placeholder", "Placeholder");
     			set_custom_element_data(zoo_searchable_select1, "infotext", "Additional helpful information for our users.");
-    			add_location(zoo_searchable_select1, file$2, 46, 1, 2545);
+    			add_location(zoo_searchable_select1, file$2, 49, 1, 2659);
     			attr_dev(option8, "class", "placeholder");
     			option8.__value = "";
     			option8.value = option8.__value;
     			option8.disabled = true;
     			option8.selected = true;
-    			add_location(option8, file$2, 57, 3, 3002);
+    			add_location(option8, file$2, 60, 3, 3061);
     			option9.__value = "1";
     			option9.value = option9.__value;
-    			add_location(option9, file$2, 58, 3, 3081);
+    			add_location(option9, file$2, 61, 3, 3140);
     			option10.__value = "2";
     			option10.value = option10.__value;
-    			add_location(option10, file$2, 59, 3, 3103);
+    			add_location(option10, file$2, 62, 3, 3162);
     			option11.__value = "3";
     			option11.value = option11.__value;
-    			add_location(option11, file$2, 60, 3, 3125);
+    			add_location(option11, file$2, 63, 3, 3184);
     			select4.disabled = true;
     			attr_dev(select4, "slot", "selectelement");
-    			add_location(select4, file$2, 56, 2, 2960);
+    			add_location(select4, file$2, 59, 2, 3019);
     			set_custom_element_data(zoo_select2, "labeltext", "Disabled select");
-    			set_custom_element_data(zoo_select2, "valid", /*inputState*/ ctx[0]);
-    			set_custom_element_data(zoo_select2, "inputerrormsg", "Value is required");
-    			add_location(zoo_select2, file$2, 55, 1, 2862);
-    			attr_dev(input4, "slot", "checkboxelement");
-    			attr_dev(input4, "type", "checkbox");
-    			add_location(input4, file$2, 64, 2, 3316);
+    			add_location(zoo_select2, file$2, 58, 1, 2976);
+    			attr_dev(input5, "slot", "checkboxelement");
+    			attr_dev(input5, "type", "checkbox");
+    			add_location(input5, file$2, 67, 2, 3375);
     			set_custom_element_data(zoo_checkbox, "highlighted", zoo_checkbox_highlighted_value = true);
     			set_custom_element_data(zoo_checkbox, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_checkbox, "labeltext", "An example checkbox with some additional event handling of clicks inside");
-    			add_location(zoo_checkbox, file$2, 63, 1, 3172);
-    			attr_dev(input5, "type", "radio");
-    			attr_dev(input5, "id", "contactChoice1");
-    			attr_dev(input5, "name", "contact");
-    			input5.value = "email";
-    			input5.disabled = true;
-    			add_location(input5, file$2, 68, 3, 3494);
-    			attr_dev(label0, "for", "contactChoice1");
-    			add_location(label0, file$2, 69, 3, 3576);
+    			add_location(zoo_checkbox, file$2, 66, 1, 3231);
     			attr_dev(input6, "type", "radio");
-    			attr_dev(input6, "id", "contactChoice2");
+    			attr_dev(input6, "id", "contactChoice1");
     			attr_dev(input6, "name", "contact");
-    			input6.value = "phone";
-    			add_location(input6, file$2, 70, 3, 3621);
-    			attr_dev(label1, "for", "contactChoice2");
-    			add_location(label1, file$2, 71, 3, 3694);
+    			input6.value = "email";
+    			input6.disabled = true;
+    			add_location(input6, file$2, 71, 3, 3553);
+    			attr_dev(label0, "for", "contactChoice1");
+    			add_location(label0, file$2, 72, 3, 3635);
     			attr_dev(input7, "type", "radio");
-    			attr_dev(input7, "id", "contactChoice3");
+    			attr_dev(input7, "id", "contactChoice2");
     			attr_dev(input7, "name", "contact");
-    			input7.value = "mail";
-    			add_location(input7, file$2, 72, 3, 3739);
+    			input7.value = "phone";
+    			add_location(input7, file$2, 73, 3, 3680);
+    			attr_dev(label1, "for", "contactChoice2");
+    			add_location(label1, file$2, 74, 3, 3753);
+    			attr_dev(input8, "type", "radio");
+    			attr_dev(input8, "id", "contactChoice3");
+    			attr_dev(input8, "name", "contact");
+    			input8.value = "mail";
+    			add_location(input8, file$2, 75, 3, 3798);
     			attr_dev(label2, "for", "contactChoice3");
-    			add_location(label2, file$2, 73, 3, 3811);
-    			add_location(template, file$2, 67, 2, 3480);
+    			add_location(label2, file$2, 76, 3, 3870);
+    			add_location(template, file$2, 70, 2, 3539);
     			set_custom_element_data(zoo_radio0, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_radio0, "errormsg", "errormsg");
     			set_custom_element_data(zoo_radio0, "infotext", "infotext");
     			set_custom_element_data(zoo_radio0, "labeltext", "Label text");
-    			add_location(zoo_radio0, file$2, 66, 1, 3382);
-    			attr_dev(input8, "type", "radio");
-    			attr_dev(input8, "id", "contactChoice4");
-    			attr_dev(input8, "name", "contact");
-    			input8.value = "email";
-    			input8.disabled = true;
-    			add_location(input8, file$2, 78, 2, 3957);
-    			attr_dev(label3, "for", "contactChoice4");
-    			add_location(label3, file$2, 79, 2, 4038);
+    			add_location(zoo_radio0, file$2, 69, 1, 3441);
     			attr_dev(input9, "type", "radio");
-    			attr_dev(input9, "id", "contactChoice5");
+    			attr_dev(input9, "id", "contactChoice4");
     			attr_dev(input9, "name", "contact");
-    			input9.value = "phone";
-    			add_location(input9, file$2, 80, 2, 4082);
+    			input9.value = "email";
+    			input9.disabled = true;
+    			add_location(input9, file$2, 81, 2, 4016);
+    			attr_dev(label3, "for", "contactChoice4");
+    			add_location(label3, file$2, 82, 2, 4097);
+    			attr_dev(input10, "type", "radio");
+    			attr_dev(input10, "id", "contactChoice5");
+    			attr_dev(input10, "name", "contact");
+    			input10.value = "phone";
+    			add_location(input10, file$2, 83, 2, 4141);
     			attr_dev(label4, "for", "contactChoice5");
-    			add_location(label4, file$2, 81, 2, 4154);
+    			add_location(label4, file$2, 84, 2, 4213);
     			set_custom_element_data(zoo_radio1, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_radio1, "errormsg", "errormsg");
     			set_custom_element_data(zoo_radio1, "infotext", "infotext");
-    			add_location(zoo_radio1, file$2, 77, 1, 3882);
+    			add_location(zoo_radio1, file$2, 80, 1, 3941);
     			attr_dev(form, "class", "form");
     			add_location(form, file$2, 2, 0, 175);
     			attr_dev(span, "slot", "buttoncontent");
     			attr_dev(span, "class", "slotted-span");
-    			add_location(span, file$2, 86, 2, 4305);
+    			add_location(span, file$2, 89, 2, 4364);
     			set_custom_element_data(zoo_button, "type", "hot");
     			set_custom_element_data(zoo_button, "size", "medium");
-    			add_location(zoo_button, file$2, 85, 1, 4240);
+    			add_location(zoo_button, file$2, 88, 1, 4299);
     			attr_dev(div, "class", "submit");
-    			add_location(div, file$2, 84, 0, 4218);
+    			add_location(div, file$2, 87, 0, 4277);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1439,22 +1449,25 @@
     			append_dev(zoo_input3, input3);
     			append_dev(form, t4);
     			append_dev(form, zoo_input4);
-    			append_dev(zoo_input4, textarea);
+    			append_dev(zoo_input4, input4);
     			append_dev(form, t5);
+    			append_dev(form, zoo_input5);
+    			append_dev(zoo_input5, textarea);
+    			append_dev(form, t6);
     			append_dev(form, zoo_select0);
     			append_dev(zoo_select0, select0);
     			append_dev(select0, option0);
     			append_dev(select0, option1);
     			append_dev(select0, option2);
     			append_dev(select0, option3);
-    			append_dev(form, t10);
+    			append_dev(form, t11);
     			append_dev(form, zoo_select1);
     			append_dev(zoo_select1, select1);
     			append_dev(select1, option4);
     			append_dev(select1, option5);
     			append_dev(select1, option6);
     			append_dev(select1, option7);
-    			append_dev(form, t15);
+    			append_dev(form, t16);
     			append_dev(form, zoo_searchable_select0);
     			append_dev(zoo_searchable_select0, select2);
 
@@ -1462,7 +1475,7 @@
     				each_blocks_1[i].m(select2, null);
     			}
 
-    			append_dev(form, t16);
+    			append_dev(form, t17);
     			append_dev(form, zoo_searchable_select1);
     			append_dev(zoo_searchable_select1, select3);
 
@@ -1470,40 +1483,40 @@
     				each_blocks[i].m(select3, null);
     			}
 
-    			append_dev(form, t17);
+    			append_dev(form, t18);
     			append_dev(form, zoo_select2);
     			append_dev(zoo_select2, select4);
     			append_dev(select4, option8);
     			append_dev(select4, option9);
     			append_dev(select4, option10);
     			append_dev(select4, option11);
-    			append_dev(form, t22);
-    			append_dev(form, zoo_checkbox);
-    			append_dev(zoo_checkbox, input4);
     			append_dev(form, t23);
+    			append_dev(form, zoo_checkbox);
+    			append_dev(zoo_checkbox, input5);
+    			append_dev(form, t24);
     			append_dev(form, zoo_radio0);
     			append_dev(zoo_radio0, template);
-    			append_dev(template.content, input5);
-    			append_dev(template.content, t24);
-    			append_dev(template.content, label0);
-    			append_dev(template.content, t26);
     			append_dev(template.content, input6);
+    			append_dev(template.content, t25);
+    			append_dev(template.content, label0);
     			append_dev(template.content, t27);
-    			append_dev(template.content, label1);
-    			append_dev(template.content, t29);
     			append_dev(template.content, input7);
+    			append_dev(template.content, t28);
+    			append_dev(template.content, label1);
     			append_dev(template.content, t30);
+    			append_dev(template.content, input8);
+    			append_dev(template.content, t31);
     			append_dev(template.content, label2);
-    			append_dev(form, t32);
+    			append_dev(form, t33);
     			append_dev(form, zoo_radio1);
-    			append_dev(zoo_radio1, input8);
-    			append_dev(zoo_radio1, t33);
-    			append_dev(zoo_radio1, label3);
-    			append_dev(zoo_radio1, t35);
     			append_dev(zoo_radio1, input9);
+    			append_dev(zoo_radio1, t34);
+    			append_dev(zoo_radio1, label3);
     			append_dev(zoo_radio1, t36);
+    			append_dev(zoo_radio1, input10);
+    			append_dev(zoo_radio1, t37);
     			append_dev(zoo_radio1, label4);
-    			insert_dev(target, t38, anchor);
+    			insert_dev(target, t39, anchor);
     			insert_dev(target, div, anchor);
     			append_dev(div, zoo_button);
     			append_dev(zoo_button, span);
@@ -1516,7 +1529,7 @@
     			}
 
     			if (dirty & /*inputState*/ 1) {
-    				set_custom_element_data(zoo_input4, "valid", /*inputState*/ ctx[0]);
+    				set_custom_element_data(zoo_input5, "valid", /*inputState*/ ctx[0]);
     			}
 
     			if (dirty & /*inputState*/ 1) {
@@ -1576,10 +1589,6 @@
     			}
 
     			if (dirty & /*inputState*/ 1) {
-    				set_custom_element_data(zoo_select2, "valid", /*inputState*/ ctx[0]);
-    			}
-
-    			if (dirty & /*inputState*/ 1) {
     				set_custom_element_data(zoo_checkbox, "valid", /*inputState*/ ctx[0]);
     			}
 
@@ -1599,7 +1608,7 @@
     			if (detaching) detach_dev(form);
     			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t38);
+    			if (detaching) detach_dev(t39);
     			if (detaching) detach_dev(div);
     			dispose();
     		}

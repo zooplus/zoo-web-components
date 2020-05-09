@@ -1,6 +1,6 @@
 <div class="app">
 	<app-header></app-header>
-	<zoo-grid bind:this={zooGrid} style="padding: 10px; max-height: 300px;" stickyheader paginator>
+	<zoo-grid bind:this={zooGrid} style="padding: 10px; max-height: 300px;" stickyheader paginator currentpage="5" maxpages="20">
 		<div slot="headercell" sortable>Actions</div>
 		<div slot="headercell">Created Date</div>
 		<div slot="headercell">Status</div>
@@ -76,6 +76,20 @@
 				{/each}
 			</select>
 		</zoo-select>
+	</zoo-grid>
+
+	<zoo-grid bind:this={zooGrid} style="padding: 10px; max-height: 300px;" stickyheader paginator>
+		<div slot="headercell" sortable>Actions</div>
+		<div slot="headercell">Created Date</div>
+		<div slot="headercell">Status</div>
+		<div slot="headercell">From Date</div>
+		<div slot="headercell">Creator Name</div>
+		<div slot="headercell">Supplier</div>
+		<div slot="headercell">Fulfillment Center</div>
+		<div slot="headercell">Article Importance Lower Bound %</div>
+		<div slot="norecords">
+			No records to show!
+		</div>
 	</zoo-grid>
 	<app-context id="what" text="What is this project?"></app-context>
 	<ul class="what-list">

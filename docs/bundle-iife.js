@@ -101,6 +101,9 @@
     function onMount(fn) {
         get_current_component().$$.on_mount.push(fn);
     }
+    function afterUpdate(fn) {
+        get_current_component().$$.after_update.push(fn);
+    }
 
     const dirty_components = [];
     const binding_callbacks = [];
@@ -1673,7 +1676,7 @@
     }
 
     function instance$4($$self, $$props, $$invalidate) {
-    	let { type = "cold" } = $$props; //'hot'
+    	let { type = "cold" } = $$props; //'hot', 'hollow'
     	let { size = "small" } = $$props; //'medium', 'big',
     	let { disabled = false } = $$props;
     	const writable_props = ["type", "size", "disabled"];
@@ -1709,7 +1712,7 @@
     class Button extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{width:100%;contain:layout}.box{position:relative;width:100%;height:100%}.box .zoo-btn{display:flex;flex-direction:row;align-items:center;justify-content:center;background-image:linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));background-image:-webkit-linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));color:#FFFFFF;border:0;border-radius:3px;cursor:pointer;width:100%;height:100%;font-size:14px;font-weight:bold;text-align:center}.box .zoo-btn:hover,.box .zoo-btn:focus{background:var(--main-color, #3C9700)}.box .zoo-btn:active{background:var(--main-color-dark, #286400);transform:translateY(1px)}.box .zoo-btn.hot{background-image:linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800));background-image:-webkit-linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800))}.box .zoo-btn.hot:hover,.box .zoo-btn.hot:focus{background:var(--secondary-color, #FF6200)}.box .zoo-btn.hot:active{background:var(--secondary-color-dark, #CC4E00)}.box .zoo-btn:disabled{background-image:linear-gradient(left, #E6E6E6, #F2F3F4);background-image:-webkit-linear-gradient(left, #E6E6E6, #F2F3F4);color:#7a7a7a}.box .zoo-btn:disabled:hover{cursor:not-allowed}.box .zoo-btn.small{font-size:14px;line-height:36px !important;padding:0 8px}.box .zoo-btn.medium{font-size:14px;line-height:46px !important;padding:0 12px}.box .zoo-btn.big{font-size:16px;line-height:56px !important;padding:0 16px}.box .zoo-btn ::slotted(*:first-child){width:100%;height:100%;border:none;display:flex;flex-direction:row;align-items:center;justify-content:center;overflow:hidden}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{width:100%;contain:layout}.box{position:relative;width:100%;height:100%}.box .zoo-btn{display:flex;flex-direction:row;align-items:center;justify-content:center;color:#FFFFFF;border:0;border-radius:5px;cursor:pointer;width:100%;height:100%;font-size:14px;font-weight:bold;text-align:center}.box .zoo-btn.hollow{border:2px solid var(--main-color, #3C9700);color:var(--main-color, #3C9700);background:white}.box .zoo-btn.hot{background-image:linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800));background-image:-webkit-linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800))}.box .zoo-btn.hot:hover,.box .zoo-btn.hot:focus{background:var(--secondary-color, #FF6200)}.box .zoo-btn.hot:active{background:var(--secondary-color-dark, #CC4E00)}.box .zoo-btn.cold{background-image:linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));background-image:-webkit-linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100))}.box .zoo-btn.cold:hover,.box .zoo-btn.cold:focus,.box .zoo-btn.hollow:hover,.box .zoo-btn.hollow:focus{background:var(--main-color, #3C9700);color:white}.box .zoo-btn.cold:active,.box .zoo-btn.hollow:active{background:var(--main-color-dark, #286400);transform:translateY(1px);color:white}.box .zoo-btn:disabled{background-image:linear-gradient(left, #E6E6E6, #F2F3F4);background-image:-webkit-linear-gradient(left, #E6E6E6, #F2F3F4);color:#7a7a7a}.box .zoo-btn:disabled:hover{cursor:not-allowed}.box .zoo-btn.small{font-size:14px;line-height:36px !important;padding:0 8px}.box .zoo-btn.medium{font-size:14px;line-height:46px !important;padding:0 12px}.box .zoo-btn.big{font-size:16px;line-height:56px !important;padding:0 16px}.box .zoo-btn ::slotted(*:first-child){width:100%;height:100%;border:none;display:flex;flex-direction:row;align-items:center;justify-content:center;overflow:hidden}</style>`;
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, { type: 0, size: 1, disabled: 2 });
 
     		if (options) {
@@ -2392,160 +2395,34 @@
 
     const file$7 = "zoo-modules/feedback-module/Feedback.svelte";
 
-    // (3:1) {#if type === 'error'}
-    function create_if_block_2(ctx) {
-    	let svg;
-    	let path0;
-    	let circle0;
-    	let circle1;
-    	let path1;
-
-    	const block = {
-    		c: function create() {
-    			svg = svg_element("svg");
-    			path0 = svg_element("path");
-    			circle0 = svg_element("circle");
-    			circle1 = svg_element("circle");
-    			path1 = svg_element("path");
-    			attr_dev(path0, "d", "M0 0h24v24H0V0z");
-    			attr_dev(path0, "fill", "none");
-    			add_location(path0, file$7, 3, 50, 152);
-    			attr_dev(circle0, "cx", "15.5");
-    			attr_dev(circle0, "cy", "9.5");
-    			attr_dev(circle0, "r", "1.5");
-    			add_location(circle0, file$7, 3, 89, 191);
-    			attr_dev(circle1, "cx", "8.5");
-    			attr_dev(circle1, "cy", "9.5");
-    			attr_dev(circle1, "r", "1.5");
-    			add_location(circle1, file$7, 3, 125, 227);
-    			attr_dev(path1, "d", "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-6c-2.33 0-4.32 1.45-5.12 3.5h1.67c.69-1.19 1.97-2 3.45-2s2.75.81 3.45 2h1.67c-.8-2.05-2.79-3.5-5.12-3.5z");
-    			add_location(path1, file$7, 3, 160, 262);
-    			attr_dev(svg, "width", "30");
-    			attr_dev(svg, "height", "30");
-    			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$7, 3, 2, 104);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, svg, anchor);
-    			append_dev(svg, path0);
-    			append_dev(svg, circle0);
-    			append_dev(svg, circle1);
-    			append_dev(svg, path1);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(svg);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_2.name,
-    		type: "if",
-    		source: "(3:1) {#if type === 'error'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (6:1) {#if type === 'info'}
-    function create_if_block_1$1(ctx) {
-    	let svg;
-    	let path;
-
-    	const block = {
-    		c: function create() {
-    			svg = svg_element("svg");
-    			path = svg_element("path");
-    			attr_dev(path, "d", "M14.25 15.75a.75.75 0 1 1 0 1.5h-.75A2.25 2.25 0 0 1 11.25 15v-3.75h-.75a.75.75 0 0 1 0-1.5h.75a1.5 1.5 0 0 1 1.5 1.5V15c0 .414.336.75.75.75h.75zM11.625 6a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm8.86-2.485c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0zm-1.06 1.06c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85z");
-    			add_location(path, file$7, 6, 50, 611);
-    			attr_dev(svg, "width", "30");
-    			attr_dev(svg, "height", "30");
-    			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$7, 6, 2, 563);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, svg, anchor);
-    			append_dev(svg, path);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(svg);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_1$1.name,
-    		type: "if",
-    		source: "(6:1) {#if type === 'info'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (9:1) {#if type === 'success'}
-    function create_if_block$2(ctx) {
-    	let svg;
-    	let path;
-
-    	const block = {
-    		c: function create() {
-    			svg = svg_element("svg");
-    			path = svg_element("path");
-    			attr_dev(path, "d", "M20.485 3.515c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0zm-1.06 1.06c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85zM9.375 9a1.125 1.125 0 1 1-2.25 0 1.125 1.125 0 0 1 2.25 0zm7.5 0a1.125 1.125 0 1 1-2.25 0 1.125 1.125 0 0 1 2.25 0zm.501 5.667a.75.75 0 1 1 1.344.666 7.502 7.502 0 0 1-13.444 0 .75.75 0 0 1 1.344-.666 6.002 6.002 0 0 0 10.756 0z");
-    			add_location(path, file$7, 10, 2, 1159);
-    			attr_dev(svg, "width", "30");
-    			attr_dev(svg, "height", "30");
-    			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$7, 9, 2, 1108);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, svg, anchor);
-    			append_dev(svg, path);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(svg);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block$2.name,
-    		type: "if",
-    		source: "(9:1) {#if type === 'success'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
     function create_fragment$7(ctx) {
     	let div;
+    	let svg;
+    	let path;
     	let t0;
-    	let t1;
-    	let t2;
     	let span;
-    	let t3;
+    	let t1;
     	let div_class_value;
-    	let if_block0 = /*type*/ ctx[0] === "error" && create_if_block_2(ctx);
-    	let if_block1 = /*type*/ ctx[0] === "info" && create_if_block_1$1(ctx);
-    	let if_block2 = /*type*/ ctx[0] === "success" && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			if (if_block0) if_block0.c();
+    			svg = svg_element("svg");
+    			path = svg_element("path");
     			t0 = space();
-    			if (if_block1) if_block1.c();
-    			t1 = space();
-    			if (if_block2) if_block2.c();
-    			t2 = space();
     			span = element("span");
-    			t3 = text(/*text*/ ctx[1]);
+    			t1 = text(/*text*/ ctx[1]);
     			this.c = noop;
+    			attr_dev(path, "d", "M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z");
+    			attr_dev(path, "fill-rule", "evenodd");
+    			add_location(path, file$7, 2, 64, 142);
+    			attr_dev(svg, "class", /*type*/ ctx[0]);
+    			attr_dev(svg, "width", "30");
+    			attr_dev(svg, "height", "30");
+    			attr_dev(svg, "viewBox", "0 0 24 24");
+    			add_location(svg, file$7, 2, 1, 79);
     			attr_dev(span, "class", "text");
-    			add_location(span, file$7, 13, 1, 1658);
+    			add_location(span, file$7, 3, 1, 557);
     			attr_dev(div, "class", div_class_value = "box " + /*type*/ ctx[0]);
     			add_location(div, file$7, 1, 0, 53);
     		},
@@ -2554,50 +2431,18 @@
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			if (if_block0) if_block0.m(div, null);
+    			append_dev(div, svg);
+    			append_dev(svg, path);
     			append_dev(div, t0);
-    			if (if_block1) if_block1.m(div, null);
-    			append_dev(div, t1);
-    			if (if_block2) if_block2.m(div, null);
-    			append_dev(div, t2);
     			append_dev(div, span);
-    			append_dev(span, t3);
+    			append_dev(span, t1);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*type*/ ctx[0] === "error") {
-    				if (if_block0) ; else {
-    					if_block0 = create_if_block_2(ctx);
-    					if_block0.c();
-    					if_block0.m(div, t0);
-    				}
-    			} else if (if_block0) {
-    				if_block0.d(1);
-    				if_block0 = null;
+    			if (dirty & /*type*/ 1) {
+    				attr_dev(svg, "class", /*type*/ ctx[0]);
     			}
 
-    			if (/*type*/ ctx[0] === "info") {
-    				if (if_block1) ; else {
-    					if_block1 = create_if_block_1$1(ctx);
-    					if_block1.c();
-    					if_block1.m(div, t1);
-    				}
-    			} else if (if_block1) {
-    				if_block1.d(1);
-    				if_block1 = null;
-    			}
-
-    			if (/*type*/ ctx[0] === "success") {
-    				if (if_block2) ; else {
-    					if_block2 = create_if_block$2(ctx);
-    					if_block2.c();
-    					if_block2.m(div, t2);
-    				}
-    			} else if (if_block2) {
-    				if_block2.d(1);
-    				if_block2 = null;
-    			}
-
-    			if (dirty & /*text*/ 2) set_data_dev(t3, /*text*/ ctx[1]);
+    			if (dirty & /*text*/ 2) set_data_dev(t1, /*text*/ ctx[1]);
 
     			if (dirty & /*type*/ 1 && div_class_value !== (div_class_value = "box " + /*type*/ ctx[0])) {
     				attr_dev(div, "class", div_class_value);
@@ -2607,9 +2452,6 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			if (if_block0) if_block0.d();
-    			if (if_block1) if_block1.d();
-    			if (if_block2) if_block2.d();
     		}
     	};
 
@@ -2703,7 +2545,7 @@
     const file$8 = "zoo-modules/tooltip-module/Tooltip.svelte";
 
     // (5:3) {#if text}
-    function create_if_block$3(ctx) {
+    function create_if_block$2(ctx) {
     	let span;
     	let t;
 
@@ -2728,7 +2570,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(5:3) {#if text}",
     		ctx
@@ -2745,7 +2587,7 @@
     	let div1;
     	let div1_class_value;
     	let div2_class_value;
-    	let if_block = /*text*/ ctx[0] && create_if_block$3(ctx);
+    	let if_block = /*text*/ ctx[0] && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -2780,7 +2622,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$3(ctx);
+    					if_block = create_if_block$2(ctx);
     					if_block.c();
     					if_block.m(slot, null);
     				}
@@ -2894,15 +2736,15 @@
     const file$9 = "zoo-modules/select-module/Select.svelte";
 
     // (9:2) {#if !_multiple}
-    function create_if_block$4(ctx) {
+    function create_if_block$3(ctx) {
     	let svg;
     	let path;
     	let svg_class_value;
     	let t0;
     	let t1;
     	let if_block1_anchor;
-    	let if_block0 = /*loading*/ ctx[8] && create_if_block_2$1(ctx);
-    	let if_block1 = /*_valueSelected*/ ctx[11] && create_if_block_1$2(ctx);
+    	let if_block0 = /*loading*/ ctx[8] && create_if_block_2(ctx);
+    	let if_block1 = /*_valueSelected*/ ctx[11] && create_if_block_1$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -2937,7 +2779,7 @@
 
     			if (/*loading*/ ctx[8]) {
     				if (if_block0) ; else {
-    					if_block0 = create_if_block_2$1(ctx);
+    					if_block0 = create_if_block_2(ctx);
     					if_block0.c();
     					if_block0.m(t1.parentNode, t1);
     				}
@@ -2950,7 +2792,7 @@
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
-    					if_block1 = create_if_block_1$2(ctx);
+    					if_block1 = create_if_block_1$1(ctx);
     					if_block1.c();
     					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
     				}
@@ -2971,7 +2813,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$4.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(9:2) {#if !_multiple}",
     		ctx
@@ -2981,7 +2823,7 @@
     }
 
     // (11:3) {#if loading}
-    function create_if_block_2$1(ctx) {
+    function create_if_block_2(ctx) {
     	let zoo_preloader;
 
     	const block = {
@@ -2999,7 +2841,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2$1.name,
+    		id: create_if_block_2.name,
     		type: "if",
     		source: "(11:3) {#if loading}",
     		ctx
@@ -3009,7 +2851,7 @@
     }
 
     // (14:3) {#if _valueSelected}
-    function create_if_block_1$2(ctx) {
+    function create_if_block_1$1(ctx) {
     	let div;
     	let svg;
     	let path;
@@ -3045,7 +2887,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$2.name,
+    		id: create_if_block_1$1.name,
     		type: "if",
     		source: "(14:3) {#if _valueSelected}",
     		ctx
@@ -3066,7 +2908,7 @@
     	let t3;
     	let zoo_input_info;
     	let div_class_value;
-    	let if_block = !/*_multiple*/ ctx[9] && create_if_block$4(ctx);
+    	let if_block = !/*_multiple*/ ctx[9] && create_if_block$3(ctx);
 
     	const block = {
     		c: function create() {
@@ -3147,7 +2989,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$4(ctx);
+    					if_block = create_if_block$3(ctx);
     					if_block.c();
     					if_block.m(span, null);
     				}
@@ -3563,7 +3405,7 @@
     }
 
     // (3:1) {#if !_isMobile}
-    function create_if_block$5(ctx) {
+    function create_if_block$4(ctx) {
     	let t0;
     	let zoo_input;
     	let input;
@@ -3575,8 +3417,8 @@
     	let slot;
     	let dispose;
     	let if_block0 = /*tooltipText*/ ctx[14] && create_if_block_3(ctx);
-    	let if_block1 = /*_valueSelected*/ ctx[13] && create_if_block_2$2(ctx);
-    	let if_block2 = /*loading*/ ctx[9] && create_if_block_1$3(ctx);
+    	let if_block1 = /*_valueSelected*/ ctx[13] && create_if_block_2$1(ctx);
+    	let if_block2 = /*loading*/ ctx[9] && create_if_block_1$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -3658,7 +3500,7 @@
 
     			if (/*_valueSelected*/ ctx[13]) {
     				if (if_block1) ; else {
-    					if_block1 = create_if_block_2$2(ctx);
+    					if_block1 = create_if_block_2$1(ctx);
     					if_block1.c();
     					if_block1.m(div, null);
     				}
@@ -3669,7 +3511,7 @@
 
     			if (/*loading*/ ctx[9]) {
     				if (if_block2) ; else {
-    					if_block2 = create_if_block_1$3(ctx);
+    					if_block2 = create_if_block_1$2(ctx);
     					if_block2.c();
     					if_block2.m(span, null);
     				}
@@ -3730,7 +3572,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$5.name,
+    		id: create_if_block$4.name,
     		type: "if",
     		source: "(3:1) {#if !_isMobile}",
     		ctx
@@ -3778,7 +3620,7 @@
     }
 
     // (13:4) {#if _valueSelected}
-    function create_if_block_2$2(ctx) {
+    function create_if_block_2$1(ctx) {
     	let svg;
     	let path;
 
@@ -3804,7 +3646,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2$2.name,
+    		id: create_if_block_2$1.name,
     		type: "if",
     		source: "(13:4) {#if _valueSelected}",
     		ctx
@@ -3814,7 +3656,7 @@
     }
 
     // (18:4) {#if loading}
-    function create_if_block_1$3(ctx) {
+    function create_if_block_1$2(ctx) {
     	let zoo_preloader;
 
     	const block = {
@@ -3832,7 +3674,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$3.name,
+    		id: create_if_block_1$2.name,
     		type: "if",
     		source: "(18:4) {#if loading}",
     		ctx
@@ -3845,7 +3687,7 @@
     	let div;
 
     	function select_block_type(ctx, dirty) {
-    		if (!/*_isMobile*/ ctx[12]) return create_if_block$5;
+    		if (!/*_isMobile*/ ctx[12]) return create_if_block$4;
     		return create_else_block;
     	}
 
@@ -4369,7 +4211,7 @@
     const file$b = "zoo-modules/link-module/Link.svelte";
 
     // (2:0) {#if text && href}
-    function create_if_block$6(ctx) {
+    function create_if_block$5(ctx) {
     	let div1;
     	let a;
     	let span;
@@ -4435,7 +4277,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$6.name,
+    		id: create_if_block$5.name,
     		type: "if",
     		source: "(2:0) {#if text && href}",
     		ctx
@@ -4446,7 +4288,7 @@
 
     function create_fragment$b(ctx) {
     	let if_block_anchor;
-    	let if_block = /*text*/ ctx[1] && /*href*/ ctx[0] && create_if_block$6(ctx);
+    	let if_block = /*text*/ ctx[1] && /*href*/ ctx[0] && create_if_block$5(ctx);
 
     	const block = {
     		c: function create() {
@@ -4466,7 +4308,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$6(ctx);
+    					if_block = create_if_block$5(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -4636,7 +4478,7 @@
     const file$c = "zoo-modules/shared-module/InputInfo.svelte";
 
     // (2:0) {#if !valid && inputerrormsg}
-    function create_if_block_1$4(ctx) {
+    function create_if_block_1$3(ctx) {
     	let div2;
     	let div0;
     	let svg;
@@ -4687,7 +4529,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$4.name,
+    		id: create_if_block_1$3.name,
     		type: "if",
     		source: "(2:0) {#if !valid && inputerrormsg}",
     		ctx
@@ -4697,7 +4539,7 @@
     }
 
     // (8:0) {#if infotext}
-    function create_if_block$7(ctx) {
+    function create_if_block$6(ctx) {
     	let div1;
     	let div0;
     	let svg;
@@ -4748,7 +4590,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$7.name,
+    		id: create_if_block$6.name,
     		type: "if",
     		source: "(8:0) {#if infotext}",
     		ctx
@@ -4760,8 +4602,8 @@
     function create_fragment$c(ctx) {
     	let t;
     	let if_block1_anchor;
-    	let if_block0 = !/*valid*/ ctx[0] && /*inputerrormsg*/ ctx[1] && create_if_block_1$4(ctx);
-    	let if_block1 = /*infotext*/ ctx[2] && create_if_block$7(ctx);
+    	let if_block0 = !/*valid*/ ctx[0] && /*inputerrormsg*/ ctx[1] && create_if_block_1$3(ctx);
+    	let if_block1 = /*infotext*/ ctx[2] && create_if_block$6(ctx);
 
     	const block = {
     		c: function create() {
@@ -4785,7 +4627,7 @@
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_1$4(ctx);
+    					if_block0 = create_if_block_1$3(ctx);
     					if_block0.c();
     					if_block0.m(t.parentNode, t);
     				}
@@ -4798,7 +4640,7 @@
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
-    					if_block1 = create_if_block$7(ctx);
+    					if_block1 = create_if_block$6(ctx);
     					if_block1.c();
     					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
     				}
@@ -4990,7 +4832,7 @@
     const file$e = "zoo-modules/shared-module/InputLabel.svelte";
 
     // (2:0) {#if labeltext}
-    function create_if_block$8(ctx) {
+    function create_if_block$7(ctx) {
     	let div;
     	let span;
     	let t;
@@ -5024,7 +4866,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$8.name,
+    		id: create_if_block$7.name,
     		type: "if",
     		source: "(2:0) {#if labeltext}",
     		ctx
@@ -5035,7 +4877,7 @@
 
     function create_fragment$e(ctx) {
     	let if_block_anchor;
-    	let if_block = /*labeltext*/ ctx[1] && create_if_block$8(ctx);
+    	let if_block = /*labeltext*/ ctx[1] && create_if_block$7(ctx);
 
     	const block = {
     		c: function create() {
@@ -5055,7 +4897,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$8(ctx);
+    					if_block = create_if_block$7(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -5190,22 +5032,23 @@
     			svg1 = svg_element("svg");
     			path1 = svg_element("path");
     			this.c = noop;
-    			attr_dev(path0, "d", "M14.25 15.75a.75.75 0 1 1 0 1.5h-.75A2.25 2.25 0 0 1 11.25 15v-3.75h-.75a.75.75 0 0 1 0-1.5h.75a1.5 1.5 0 0 1 1.5 1.5V15c0 .414.336.75.75.75h.75zM11.625 6a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm8.86-2.485c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0zm-1.06 1.06c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85z");
+    			attr_dev(path0, "d", "M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z");
+    			attr_dev(path0, "fill-rule", "evenodd");
     			add_location(path0, file$f, 3, 50, 184);
     			attr_dev(svg0, "width", "36");
     			attr_dev(svg0, "height", "36");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			add_location(svg0, file$f, 3, 2, 136);
-    			add_location(span0, file$f, 4, 2, 648);
+    			add_location(span0, file$f, 4, 2, 600);
     			attr_dev(path1, "d", "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z");
-    			add_location(path1, file$f, 6, 66, 791);
+    			add_location(path1, file$f, 6, 66, 743);
     			attr_dev(svg1, "class", /*type*/ ctx[0]);
     			attr_dev(svg1, "width", "24");
     			attr_dev(svg1, "height", "24");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
-    			add_location(svg1, file$f, 6, 3, 728);
+    			add_location(svg1, file$f, 6, 3, 680);
     			attr_dev(div0, "class", "close");
-    			add_location(div0, file$f, 5, 2, 670);
+    			add_location(div0, file$f, 5, 2, 622);
     			attr_dev(span1, "class", span1_class_value = "toast " + (/*hidden*/ ctx[3] ? "hide" : "show") + " " + /*type*/ ctx[0]);
     			add_location(span1, file$f, 2, 1, 79);
     			add_location(div1, file$f, 1, 0, 50);
@@ -5963,8 +5806,8 @@
     /* zoo-modules/grid-module/Grid.svelte generated by Svelte v3.22.2 */
     const file$k = "zoo-modules/grid-module/Grid.svelte";
 
-    // (7:1) {#if paginator}
-    function create_if_block$9(ctx) {
+    // (8:1) {#if paginator}
+    function create_if_block$8(ctx) {
     	let slot1;
     	let zoo_grid_paginator;
     	let slot0;
@@ -5976,16 +5819,27 @@
     			slot0 = element("slot");
     			attr_dev(slot0, "name", "pagesizeselector");
     			attr_dev(slot0, "slot", "pagesizeselector");
-    			add_location(slot0, file$k, 9, 4, 328);
+    			add_location(slot0, file$k, 10, 4, 385);
     			set_custom_element_data(zoo_grid_paginator, "class", "paginator");
-    			add_location(zoo_grid_paginator, file$k, 8, 3, 285);
+    			set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
+    			set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
+    			add_location(zoo_grid_paginator, file$k, 9, 3, 317);
     			attr_dev(slot1, "name", "paginator");
-    			add_location(slot1, file$k, 7, 2, 258);
+    			add_location(slot1, file$k, 8, 2, 290);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, slot1, anchor);
     			append_dev(slot1, zoo_grid_paginator);
     			append_dev(zoo_grid_paginator, slot0);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*currentpage*/ 1) {
+    				set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
+    			}
+
+    			if (dirty & /*maxpages*/ 2) {
+    				set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(slot1);
@@ -5994,9 +5848,9 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$9.name,
+    		id: create_if_block$8.name,
     		type: "if",
-    		source: "(7:1) {#if paginator}",
+    		source: "(8:1) {#if paginator}",
     		ctx
     	});
 
@@ -6010,7 +5864,9 @@
     	let t0;
     	let slot1;
     	let t1;
-    	let if_block = /*paginator*/ ctx[3] && create_if_block$9(ctx);
+    	let slot2;
+    	let t2;
+    	let if_block = /*paginator*/ ctx[5] && create_if_block$8(ctx);
 
     	const block = {
     		c: function create() {
@@ -6020,15 +5876,19 @@
     			t0 = space();
     			slot1 = element("slot");
     			t1 = space();
+    			slot2 = element("slot");
+    			t2 = space();
     			if (if_block) if_block.c();
     			this.c = noop;
     			attr_dev(slot0, "name", "headercell");
     			add_location(slot0, file$k, 3, 2, 146);
     			attr_dev(div0, "class", "header-row");
-    			toggle_class(div0, "sticky", /*stickyheader*/ ctx[0]);
+    			toggle_class(div0, "sticky", /*stickyheader*/ ctx[2]);
     			add_location(div0, file$k, 2, 1, 89);
     			attr_dev(slot1, "name", "row");
     			add_location(slot1, file$k, 5, 1, 214);
+    			attr_dev(slot2, "name", "norecords");
+    			add_location(slot2, file$k, 6, 1, 240);
     			attr_dev(div1, "class", "box");
     			add_location(div1, file$k, 1, 0, 49);
     		},
@@ -6039,21 +5899,25 @@
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
     			append_dev(div0, slot0);
-    			/*slot0_binding*/ ctx[4](slot0);
+    			/*slot0_binding*/ ctx[6](slot0);
     			append_dev(div1, t0);
     			append_dev(div1, slot1);
     			append_dev(div1, t1);
+    			append_dev(div1, slot2);
+    			append_dev(div1, t2);
     			if (if_block) if_block.m(div1, null);
-    			/*div1_binding*/ ctx[5](div1);
+    			/*div1_binding*/ ctx[7](div1);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*stickyheader*/ 1) {
-    				toggle_class(div0, "sticky", /*stickyheader*/ ctx[0]);
+    			if (dirty & /*stickyheader*/ 4) {
+    				toggle_class(div0, "sticky", /*stickyheader*/ ctx[2]);
     			}
 
-    			if (/*paginator*/ ctx[3]) {
-    				if (if_block) ; else {
-    					if_block = create_if_block$9(ctx);
+    			if (/*paginator*/ ctx[5]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$8(ctx);
     					if_block.c();
     					if_block.m(div1, null);
     				}
@@ -6066,9 +5930,9 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
-    			/*slot0_binding*/ ctx[4](null);
+    			/*slot0_binding*/ ctx[6](null);
     			if (if_block) if_block.d();
-    			/*div1_binding*/ ctx[5](null);
+    			/*div1_binding*/ ctx[7](null);
     		}
     	};
 
@@ -6084,6 +5948,8 @@
     }
 
     function instance$k($$self, $$props, $$invalidate) {
+    	let { currentpage } = $$props;
+    	let { maxpages } = $$props;
     	let stickyheader = false;
     	let gridRoot;
     	let headerCellSlot;
@@ -6104,16 +5970,16 @@
     			}
 
     			if (host.hasAttribute("paginator")) {
-    				$$invalidate(3, paginator = true);
+    				$$invalidate(5, paginator = true);
     			}
 
     			if (host.hasAttribute("stickyheader")) {
-    				$$invalidate(0, stickyheader = true);
+    				$$invalidate(2, stickyheader = true);
     			}
     		});
     	});
 
-    	const writable_props = [];
+    	const writable_props = ["currentpage", "maxpages"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<zoo-grid> was created with unknown prop '${key}'`);
@@ -6124,18 +5990,25 @@
 
     	function slot0_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(2, headerCellSlot = $$value);
+    			$$invalidate(4, headerCellSlot = $$value);
     		});
     	}
 
     	function div1_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(1, gridRoot = $$value);
+    			$$invalidate(3, gridRoot = $$value);
     		});
     	}
 
+    	$$self.$set = $$props => {
+    		if ("currentpage" in $$props) $$invalidate(0, currentpage = $$props.currentpage);
+    		if ("maxpages" in $$props) $$invalidate(1, maxpages = $$props.maxpages);
+    	};
+
     	$$self.$capture_state = () => ({
     		onMount,
+    		currentpage,
+    		maxpages,
     		stickyheader,
     		gridRoot,
     		headerCellSlot,
@@ -6143,30 +6016,78 @@
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("stickyheader" in $$props) $$invalidate(0, stickyheader = $$props.stickyheader);
-    		if ("gridRoot" in $$props) $$invalidate(1, gridRoot = $$props.gridRoot);
-    		if ("headerCellSlot" in $$props) $$invalidate(2, headerCellSlot = $$props.headerCellSlot);
-    		if ("paginator" in $$props) $$invalidate(3, paginator = $$props.paginator);
+    		if ("currentpage" in $$props) $$invalidate(0, currentpage = $$props.currentpage);
+    		if ("maxpages" in $$props) $$invalidate(1, maxpages = $$props.maxpages);
+    		if ("stickyheader" in $$props) $$invalidate(2, stickyheader = $$props.stickyheader);
+    		if ("gridRoot" in $$props) $$invalidate(3, gridRoot = $$props.gridRoot);
+    		if ("headerCellSlot" in $$props) $$invalidate(4, headerCellSlot = $$props.headerCellSlot);
+    		if ("paginator" in $$props) $$invalidate(5, paginator = $$props.paginator);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [stickyheader, gridRoot, headerCellSlot, paginator, slot0_binding, div1_binding];
+    	return [
+    		currentpage,
+    		maxpages,
+    		stickyheader,
+    		gridRoot,
+    		headerCellSlot,
+    		paginator,
+    		slot0_binding,
+    		div1_binding
+    	];
     }
 
     class Grid extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{max-height:inherit;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2)}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box .paginator{grid-column:span var(--grid-columns-num)}</style>`;
-    		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, {});
+    		this.shadowRoot.innerHTML = `<style>.box{max-height:inherit;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2)}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:#ED1C24;grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{grid-column:span var(--grid-columns-num)}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1 });
+    		const { ctx } = this.$$;
+    		const props = this.attributes;
+
+    		if (/*currentpage*/ ctx[0] === undefined && !("currentpage" in props)) {
+    			console.warn("<zoo-grid> was created without expected prop 'currentpage'");
+    		}
+
+    		if (/*maxpages*/ ctx[1] === undefined && !("maxpages" in props)) {
+    			console.warn("<zoo-grid> was created without expected prop 'maxpages'");
+    		}
 
     		if (options) {
     			if (options.target) {
     				insert_dev(options.target, this, options.anchor);
     			}
+
+    			if (options.props) {
+    				this.$set(options.props);
+    				flush();
+    			}
     		}
+    	}
+
+    	static get observedAttributes() {
+    		return ["currentpage", "maxpages"];
+    	}
+
+    	get currentpage() {
+    		return this.$$.ctx[0];
+    	}
+
+    	set currentpage(currentpage) {
+    		this.$set({ currentpage });
+    		flush();
+    	}
+
+    	get maxpages() {
+    		return this.$$.ctx[1];
+    	}
+
+    	set maxpages(maxpages) {
+    		this.$set({ maxpages });
+    		flush();
     	}
     }
 
@@ -6259,7 +6180,7 @@
     			$$invalidate(0, sortState = "none");
     		}
 
-    		host.dispatchEvent(new Event(sortState));
+    		host.dispatchEvent(new Event("sortChange", { sortState }));
     	};
 
     	const writable_props = [];
@@ -6318,6 +6239,45 @@
     /* zoo-modules/grid-module/GridPaginator.svelte generated by Svelte v3.22.2 */
     const file$m = "zoo-modules/grid-module/GridPaginator.svelte";
 
+    // (6:1) {#if currentpage && maxpages}
+    function create_if_block$9(ctx) {
+    	let t0;
+    	let t1;
+    	let t2;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text(/*currentpage*/ ctx[0]);
+    			t1 = space();
+    			t2 = text(/*maxpages*/ ctx[1]);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t2, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*currentpage*/ 1) set_data_dev(t0, /*currentpage*/ ctx[0]);
+    			if (dirty & /*maxpages*/ 2) set_data_dev(t2, /*maxpages*/ ctx[1]);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$9.name,
+    		type: "if",
+    		source: "(6:1) {#if currentpage && maxpages}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$m(ctx) {
     	let div4;
     	let slot;
@@ -6326,18 +6286,21 @@
     	let t1;
     	let div1;
     	let t2;
-    	let div2;
     	let t3;
-    	let div3;
+    	let div2;
     	let t4;
+    	let div3;
+    	let t5;
     	let template0;
     	let svg0;
     	let path0;
     	let path1;
-    	let t5;
+    	let t6;
     	let template1;
     	let svg1;
     	let path2;
+    	let dispose;
+    	let if_block = /*currentpage*/ ctx[0] && /*maxpages*/ ctx[1] && create_if_block$9(ctx);
 
     	const block = {
     		c: function create() {
@@ -6348,15 +6311,17 @@
     			t1 = space();
     			div1 = element("div");
     			t2 = space();
-    			div2 = element("div");
+    			if (if_block) if_block.c();
     			t3 = space();
-    			div3 = element("div");
+    			div2 = element("div");
     			t4 = space();
+    			div3 = element("div");
+    			t5 = space();
     			template0 = element("template");
     			svg0 = svg_element("svg");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			t5 = space();
+    			t6 = space();
     			template1 = element("template");
     			svg1 = svg_element("svg");
     			path2 = svg_element("path");
@@ -6364,39 +6329,43 @@
     			attr_dev(slot, "name", "pagesizeselector");
     			add_location(slot, file$m, 2, 1, 108);
     			attr_dev(div0, "class", "btn wall-holder first");
+    			toggle_class(div0, "disabled", /*disablePrev*/ ctx[3]);
     			add_location(div0, file$m, 3, 1, 147);
     			attr_dev(div1, "class", "btn arrow prev");
-    			add_location(div1, file$m, 4, 1, 190);
+    			toggle_class(div1, "disabled", /*disablePrev*/ ctx[3]);
+    			add_location(div1, file$m, 4, 1, 252);
     			attr_dev(div2, "class", "btn arrow next");
-    			add_location(div2, file$m, 5, 1, 226);
+    			toggle_class(div2, "disabled", /*disableNext*/ ctx[4]);
+    			add_location(div2, file$m, 8, 1, 429);
     			attr_dev(div3, "class", "btn wall-holder last");
-    			add_location(div3, file$m, 6, 1, 262);
+    			toggle_class(div3, "disabled", /*disableNext*/ ctx[4]);
+    			add_location(div3, file$m, 9, 1, 541);
     			attr_dev(path0, "d", "M18.4 16.6L13.8 12l4.6-4.6L17 6l-6 6 6 6zM6 6h2v12H6z");
-    			add_location(path0, file$m, 9, 3, 386);
+    			add_location(path0, file$m, 12, 3, 734);
     			attr_dev(path1, "d", "M24 24H0V0h24v24z");
     			attr_dev(path1, "fill", "none");
-    			add_location(path1, file$m, 10, 3, 455);
+    			add_location(path1, file$m, 13, 3, 803);
     			attr_dev(svg0, "width", "28");
     			attr_dev(svg0, "height", "28");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
-    			add_location(svg0, file$m, 8, 2, 334);
+    			add_location(svg0, file$m, 11, 2, 682);
     			attr_dev(template0, "id", "arrow-limit");
-    			add_location(template0, file$m, 7, 1, 304);
+    			add_location(template0, file$m, 10, 1, 652);
     			attr_dev(path2, "d", "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
-    			add_location(path2, file$m, 15, 3, 596);
+    			add_location(path2, file$m, 18, 3, 944);
     			attr_dev(svg1, "width", "28");
     			attr_dev(svg1, "height", "28");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
-    			add_location(svg1, file$m, 14, 2, 544);
+    			add_location(svg1, file$m, 17, 2, 892);
     			attr_dev(template1, "id", "arrow");
-    			add_location(template1, file$m, 13, 1, 520);
+    			add_location(template1, file$m, 16, 1, 868);
     			attr_dev(div4, "class", "box");
     			add_location(div4, file$m, 1, 0, 59);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor) {
+    		m: function mount(target, anchor, remount) {
     			insert_dev(target, div4, anchor);
     			append_dev(div4, slot);
     			append_dev(div4, t0);
@@ -6404,26 +6373,67 @@
     			append_dev(div4, t1);
     			append_dev(div4, div1);
     			append_dev(div4, t2);
-    			append_dev(div4, div2);
+    			if (if_block) if_block.m(div4, null);
     			append_dev(div4, t3);
-    			append_dev(div4, div3);
+    			append_dev(div4, div2);
     			append_dev(div4, t4);
+    			append_dev(div4, div3);
+    			append_dev(div4, t5);
     			append_dev(div4, template0);
     			append_dev(template0.content, svg0);
     			append_dev(svg0, path0);
     			append_dev(svg0, path1);
-    			append_dev(div4, t5);
+    			append_dev(div4, t6);
     			append_dev(div4, template1);
     			append_dev(template1.content, svg1);
     			append_dev(svg1, path2);
-    			/*div4_binding*/ ctx[1](div4);
+    			/*div4_binding*/ ctx[11](div4);
+    			if (remount) run_all(dispose);
+
+    			dispose = [
+    				listen_dev(div0, "click", /*click_handler*/ ctx[7], false, false, false),
+    				listen_dev(div1, "click", /*click_handler_1*/ ctx[8], false, false, false),
+    				listen_dev(div2, "click", /*click_handler_2*/ ctx[9], false, false, false),
+    				listen_dev(div3, "click", /*click_handler_3*/ ctx[10], false, false, false)
+    			];
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*disablePrev*/ 8) {
+    				toggle_class(div0, "disabled", /*disablePrev*/ ctx[3]);
+    			}
+
+    			if (dirty & /*disablePrev*/ 8) {
+    				toggle_class(div1, "disabled", /*disablePrev*/ ctx[3]);
+    			}
+
+    			if (/*currentpage*/ ctx[0] && /*maxpages*/ ctx[1]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$9(ctx);
+    					if_block.c();
+    					if_block.m(div4, t3);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*disableNext*/ 16) {
+    				toggle_class(div2, "disabled", /*disableNext*/ ctx[4]);
+    			}
+
+    			if (dirty & /*disableNext*/ 16) {
+    				toggle_class(div3, "disabled", /*disableNext*/ ctx[4]);
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div4);
-    			/*div4_binding*/ ctx[1](null);
+    			if (if_block) if_block.d();
+    			/*div4_binding*/ ctx[11](null);
+    			run_all(dispose);
     		}
     	};
 
@@ -6439,18 +6449,49 @@
     }
 
     function instance$m($$self, $$props, $$invalidate) {
+    	let { maxpages } = $$props;
+    	let { currentpage } = $$props;
     	let gridPaginatorRoot;
+    	let disablePrev = true;
+    	let disableNext = true;
+    	let host;
 
     	onMount(() => {
-    		const wallTemplate = gridPaginatorRoot.querySelector("#arrow-limit");
-    		const arrowTemplate = gridPaginatorRoot.querySelector("#arrow");
-    		gridPaginatorRoot.querySelector(".btn.first").appendChild(wallTemplate.content.cloneNode(true));
-    		gridPaginatorRoot.querySelector(".btn.last").appendChild(wallTemplate.content.cloneNode(true));
-    		gridPaginatorRoot.querySelector(".btn.prev").appendChild(arrowTemplate.content.cloneNode(true));
-    		gridPaginatorRoot.querySelector(".btn.next").appendChild(arrowTemplate.content.cloneNode(true));
+    		host = gridPaginatorRoot.getRootNode().host;
+    		const wallTemplateContent = gridPaginatorRoot.querySelector("#arrow-limit").content;
+    		const arrowTemplateContent = gridPaginatorRoot.querySelector("#arrow").content;
+    		gridPaginatorRoot.querySelector(".btn.first").appendChild(wallTemplateContent.cloneNode(true));
+    		gridPaginatorRoot.querySelector(".btn.last").appendChild(wallTemplateContent.cloneNode(true));
+    		gridPaginatorRoot.querySelector(".btn.prev").appendChild(arrowTemplateContent.cloneNode(true));
+    		gridPaginatorRoot.querySelector(".btn.next").appendChild(arrowTemplateContent.cloneNode(true));
     	});
 
-    	const writable_props = [];
+    	afterUpdate(() => {
+    		if (!currentpage || !maxpages) {
+    			$$invalidate(3, disablePrev = true);
+    			$$invalidate(4, disableNext = true);
+    		} else if (currentpage == 1) {
+    			$$invalidate(3, disablePrev = true);
+    			$$invalidate(4, disableNext = false);
+    		} else if (currentpage == maxpages) {
+    			$$invalidate(4, disableNext = true);
+    			$$invalidate(3, disablePrev = false);
+    		} else {
+    			$$invalidate(3, disablePrev = false);
+    			$$invalidate(4, disableNext = false);
+    		}
+    	});
+
+    	const goToPage = pageNumber => {
+    		if (disableNext && disablePrev || disableNext && pageNumber >= currentpage || disablePrev && pageNumber <= 1) {
+    			return;
+    		}
+
+    		$$invalidate(0, currentpage = pageNumber);
+    		host.dispatchEvent(new Event("pageChange", { pageNumber }));
+    	};
+
+    	const writable_props = ["maxpages", "currentpage"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<zoo-grid-paginator> was created with unknown prop '${key}'`);
@@ -6458,37 +6499,111 @@
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("zoo-grid-paginator", $$slots, []);
+    	const click_handler = () => goToPage(1);
+    	const click_handler_1 = () => goToPage(currentpage - 1);
+    	const click_handler_2 = () => goToPage(currentpage + 1);
+    	const click_handler_3 = () => goToPage(maxpages);
 
     	function div4_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(0, gridPaginatorRoot = $$value);
+    			$$invalidate(2, gridPaginatorRoot = $$value);
     		});
     	}
 
-    	$$self.$capture_state = () => ({ onMount, gridPaginatorRoot });
+    	$$self.$set = $$props => {
+    		if ("maxpages" in $$props) $$invalidate(1, maxpages = $$props.maxpages);
+    		if ("currentpage" in $$props) $$invalidate(0, currentpage = $$props.currentpage);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		onMount,
+    		maxpages,
+    		currentpage,
+    		gridPaginatorRoot,
+    		disablePrev,
+    		disableNext,
+    		host,
+    		goToPage
+    	});
 
     	$$self.$inject_state = $$props => {
-    		if ("gridPaginatorRoot" in $$props) $$invalidate(0, gridPaginatorRoot = $$props.gridPaginatorRoot);
+    		if ("maxpages" in $$props) $$invalidate(1, maxpages = $$props.maxpages);
+    		if ("currentpage" in $$props) $$invalidate(0, currentpage = $$props.currentpage);
+    		if ("gridPaginatorRoot" in $$props) $$invalidate(2, gridPaginatorRoot = $$props.gridPaginatorRoot);
+    		if ("disablePrev" in $$props) $$invalidate(3, disablePrev = $$props.disablePrev);
+    		if ("disableNext" in $$props) $$invalidate(4, disableNext = $$props.disableNext);
+    		if ("host" in $$props) host = $$props.host;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [gridPaginatorRoot, div4_binding];
+    	return [
+    		currentpage,
+    		maxpages,
+    		gridPaginatorRoot,
+    		disablePrev,
+    		disableNext,
+    		goToPage,
+    		host,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2,
+    		click_handler_3,
+    		div4_binding
+    	];
     }
 
     class GridPaginator extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{display:flex;justify-content:end;align-items:center;padding:10px 15px 10px 0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s;margin-left:10px}.box .btn:active{opacity:0.5}.box .next svg{transform:rotate(-90deg)}.box .prev svg{transform:rotate(90deg)}.box .last svg{transform:rotate(180deg)}.box svg{fill:#555555}</style>`;
-    		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, {});
+    		this.shadowRoot.innerHTML = `<style>.box{display:flex;justify-content:end;align-items:center;padding:10px 15px 10px 0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s;margin-left:10px}.box .btn:active{opacity:0.5}.box .btn.disabled{cursor:not-allowed;opacity:0.5}.box .next svg{transform:rotate(-90deg)}.box .prev svg{transform:rotate(90deg)}.box .last svg{transform:rotate(180deg)}.box svg{fill:#555555}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, { maxpages: 1, currentpage: 0 });
+    		const { ctx } = this.$$;
+    		const props = this.attributes;
+
+    		if (/*maxpages*/ ctx[1] === undefined && !("maxpages" in props)) {
+    			console.warn("<zoo-grid-paginator> was created without expected prop 'maxpages'");
+    		}
+
+    		if (/*currentpage*/ ctx[0] === undefined && !("currentpage" in props)) {
+    			console.warn("<zoo-grid-paginator> was created without expected prop 'currentpage'");
+    		}
 
     		if (options) {
     			if (options.target) {
     				insert_dev(options.target, this, options.anchor);
     			}
+
+    			if (options.props) {
+    				this.$set(options.props);
+    				flush();
+    			}
     		}
+    	}
+
+    	static get observedAttributes() {
+    		return ["maxpages", "currentpage"];
+    	}
+
+    	get maxpages() {
+    		return this.$$.ctx[1];
+    	}
+
+    	set maxpages(maxpages) {
+    		this.$set({ maxpages });
+    		flush();
+    	}
+
+    	get currentpage() {
+    		return this.$$.ctx[0];
+    	}
+
+    	set currentpage(currentpage) {
+    		this.$set({ currentpage });
+    		flush();
     	}
     }
 

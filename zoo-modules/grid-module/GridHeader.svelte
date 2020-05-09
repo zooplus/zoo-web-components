@@ -63,7 +63,7 @@
 		} else if (sortState = 'asc') {
 			sortState = 'none';
 		}
-		host.dispatchEvent(new Event(sortState));
+		host.dispatchEvent(new Event('sortChange', {sortState: sortState}));
 	}
 
 </script>

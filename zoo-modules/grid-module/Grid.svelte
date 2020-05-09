@@ -4,9 +4,10 @@
 		<slot name="headercell" bind:this={headerCellSlot}></slot>
 	</div>
 	<slot name="row"></slot>
+	<slot name="norecords"></slot>
 	{#if paginator}
 		<slot name="paginator">
-			<zoo-grid-paginator class="paginator">
+			<zoo-grid-paginator class="paginator" {currentpage} {maxpages}>
 				<slot name="pagesizeselector" slot="pagesizeselector"></slot>
 			</zoo-grid-paginator>
 		</slot>
@@ -56,6 +57,13 @@
 			background: $whisper;
 		}
 
+		::slotted(*[slot="norecords"]) {
+			color: $error-text-color;
+			grid-column: span var(--grid-columns-num);
+			text-align: center;
+			padding: 10px 0;
+		}
+
 		.paginator {
 			grid-column: span var(--grid-columns-num);
 		}
@@ -64,6 +72,8 @@
 
 <script>
 	import { onMount } from 'svelte';
+	export let currentpage;
+	export let maxpages;
 	let stickyheader = false;
 	let gridRoot;
 	let headerCellSlot;

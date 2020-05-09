@@ -2,12 +2,12 @@
 <div class="box {labelposition} {linkAbsentClass}">
 	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
 	</zoo-input-label>
-	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
+	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right">
 	</zoo-link>
 	<span class="input-slot">
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 		{#if !_multiple}
-			<svg class="arrows {!valid ? 'error' : ''}" viewBox="0 0 24 24" width="16" height="16"><path d="M12 1.75L6.54 7.52a.75.75 0 11-1.09-1.03L10.93.7a1.5 1.5 0 012.14-.02l5.49 5.8a.75.75 0 01-1.1 1.02L12 1.75zM6.54 16.49L12 22.25l5.46-5.77a.75.75 0 011.08 1.03l-5.47 5.78a1.5 1.5 0 01-2.13.02l-5.49-5.8a.75.75 0 011.1-1.02z"/></svg>
+			<svg class="arrows {_disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
 			{#if loading}
 				<zoo-preloader></zoo-preloader>
 			{/if}
@@ -29,7 +29,7 @@
 	.close, .arrows {
 		position: absolute;
 		right: 9px;
-		top: 17px;
+		top: 12px;
 	}
 
 	.close {
@@ -39,14 +39,12 @@
 	}
 
 	.arrows {
-		& > path {
-			fill: $matterhorn;
+		path {
+			fill: var(--main-color, #{$main-color});
 		}
 
-		&.error {
-			& > path {
-				fill: $error-text-color;
-			}
+		&.disabled path {
+			fill: $whisper;
 		}
 	}
 
@@ -104,11 +102,13 @@
 	export let infotext = "";
 	export let valid = true;
 	export let loading = false;
+	export let linktype = "green";
 	let _prevValid;
 	let _multiple = false;
 	let _slottedSelect;
 	let _selectSlot;
 	let _valueSelected;
+	let _disabled;
 	let linkAbsentClass = "";
 
 	beforeUpdate(() => {
@@ -124,6 +124,9 @@
 			_slottedSelect = select;
 			if (select.multiple === true) {
 				_multiple = true;
+			}
+			if (select.disabled === true) {
+				_disabled = true;
 			}
 			_slottedSelect.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
 			changeValidState(valid);

@@ -9,6 +9,7 @@
 - `inputerrormsg` `optional` - error message to be presented when input is in invalid state,
 - `infotext` `optional` - text to be presented below the input;
 - `valid` - flag which indicates whether the input is valid or not;
+- `linktype` - type of zoo-link (green or standard).
 
 ### Slots
 This component accept one `<slot name="selectelement"></slot>` which is replaced with provided `select` element so that you can catch events from this element.       

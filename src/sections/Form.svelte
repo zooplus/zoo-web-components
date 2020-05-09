@@ -53,6 +53,14 @@
 			{/each}
 		</select>
 	</zoo-searchable-select>
+	<zoo-select labeltext="Disabled select" valid="{inputState}" inputerrormsg="Value is required">
+		<select disabled slot="selectelement">
+			<option class="placeholder" value="" disabled selected>Placeholder</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+	</zoo-select>
 	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox with some additional event handling of clicks inside">
 		<input slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>

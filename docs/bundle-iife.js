@@ -1131,7 +1131,7 @@
     		c: function create() {
     			slot = element("slot");
     			attr_dev(slot, "name", "inputicon");
-    			add_location(slot, file$3, 9, 3, 467);
+    			add_location(slot, file$3, 9, 3, 473);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, slot, anchor);
@@ -1161,13 +1161,13 @@
     		c: function create() {
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			attr_dev(path, "d", "M12 18a1.13 1.13 0 110 2.25A1.13 1.13 0 0112 18zm.75-2.25a.75.75 0 11-1.5 0v-7.5a.75.75 0 111.5 0v7.5zm1.54-14.32l9.48 19.3A2.27 2.27 0 0121.73 24H2.27a2.27 2.27 0 01-2.04-3.27l9.48-19.3a2.56 2.56 0 014.58 0zm-2.76.18c-.2.1-.37.27-.48.48l-9.47 19.3a.77.77 0 00.7 1.11h19.45a.77.77 0 00.7-1.11l-9.48-19.3a1.06 1.06 0 00-1.42-.48z");
-    			add_location(path, file$3, 13, 4, 600);
-    			attr_dev(svg, "class", "error-triangle");
+    			attr_dev(path, "d", "M12 15.75a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 15.75H12zm.75-2.25a.75.75 0 1 1-1.5 0V5.25a.75.75 0 1 1 1.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z");
+    			add_location(path, file$3, 12, 72, 599);
+    			attr_dev(svg, "class", "error-circle");
     			attr_dev(svg, "width", "22");
     			attr_dev(svg, "height", "22");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$3, 12, 3, 524);
+    			add_location(svg, file$3, 12, 3, 530);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -1229,20 +1229,20 @@
     			set_custom_element_data(zoo_link, "class", "input-link");
     			set_custom_element_data(zoo_link, "href", /*linkhref*/ ctx[3]);
     			set_custom_element_data(zoo_link, "target", /*linktarget*/ ctx[4]);
-    			set_custom_element_data(zoo_link, "type", "grey");
+    			set_custom_element_data(zoo_link, "type", /*linktype*/ ctx[9]);
     			set_custom_element_data(zoo_link, "text", /*linktext*/ ctx[2]);
     			set_custom_element_data(zoo_link, "textalign", "right");
     			add_location(zoo_link, file$3, 4, 1, 202);
     			attr_dev(slot, "name", "inputelement");
-    			add_location(slot, file$3, 7, 2, 393);
+    			add_location(slot, file$3, 7, 2, 399);
     			attr_dev(span, "class", span_class_value = "input-slot " + (/*nopadding*/ ctx[8] ? "no-padding" : ""));
-    			add_location(span, file$3, 6, 1, 334);
+    			add_location(span, file$3, 6, 1, 340);
     			set_custom_element_data(zoo_input_info, "class", "input-info");
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[5]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
-    			add_location(zoo_input_info, file$3, 17, 1, 969);
-    			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[10]);
+    			add_location(zoo_input_info, file$3, 15, 1, 1026);
+    			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[11]);
     			add_location(div, file$3, 1, 0, 50);
     		},
     		l: function claim(nodes) {
@@ -1256,7 +1256,7 @@
     			append_dev(div, t1);
     			append_dev(div, span);
     			append_dev(span, slot);
-    			/*slot_binding*/ ctx[14](slot);
+    			/*slot_binding*/ ctx[15](slot);
     			append_dev(span, t2);
     			if (if_block0) if_block0.m(span, null);
     			append_dev(span, t3);
@@ -1279,6 +1279,10 @@
 
     			if (dirty & /*linktarget*/ 16) {
     				set_custom_element_data(zoo_link, "target", /*linktarget*/ ctx[4]);
+    			}
+
+    			if (dirty & /*linktype*/ 512) {
+    				set_custom_element_data(zoo_link, "type", /*linktype*/ ctx[9]);
     			}
 
     			if (dirty & /*linktext*/ 4) {
@@ -1323,7 +1327,7 @@
     				set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
     			}
 
-    			if (dirty & /*labelposition, linkAbsentClass*/ 1025 && div_class_value !== (div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[10])) {
+    			if (dirty & /*labelposition, linkAbsentClass*/ 2049 && div_class_value !== (div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[11])) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -1331,7 +1335,7 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*slot_binding*/ ctx[14](null);
+    			/*slot_binding*/ ctx[15](null);
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
     		}
@@ -1358,6 +1362,7 @@
     	let { infotext = "" } = $$props;
     	let { valid = true } = $$props;
     	let { nopadding = false } = $$props;
+    	let { linktype = "green" } = $$props;
     	let _slottedInput;
     	let _prevValid;
     	let _inputSlot;
@@ -1377,7 +1382,7 @@
     			changeValidState(valid);
 
     			if (!linktext) {
-    				$$invalidate(10, linkAbsentClass = "link-absent");
+    				$$invalidate(11, linkAbsentClass = "link-absent");
     			}
     		});
     	});
@@ -1401,7 +1406,8 @@
     		"inputerrormsg",
     		"infotext",
     		"valid",
-    		"nopadding"
+    		"nopadding",
+    		"linktype"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -1413,7 +1419,7 @@
 
     	function slot_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(9, _inputSlot = $$value);
+    			$$invalidate(10, _inputSlot = $$value);
     		});
     	}
 
@@ -1427,6 +1433,7 @@
     		if ("infotext" in $$props) $$invalidate(6, infotext = $$props.infotext);
     		if ("valid" in $$props) $$invalidate(7, valid = $$props.valid);
     		if ("nopadding" in $$props) $$invalidate(8, nopadding = $$props.nopadding);
+    		if ("linktype" in $$props) $$invalidate(9, linktype = $$props.linktype);
     	};
 
     	$$self.$capture_state = () => ({
@@ -1441,6 +1448,7 @@
     		infotext,
     		valid,
     		nopadding,
+    		linktype,
     		_slottedInput,
     		_prevValid,
     		_inputSlot,
@@ -1458,10 +1466,11 @@
     		if ("infotext" in $$props) $$invalidate(6, infotext = $$props.infotext);
     		if ("valid" in $$props) $$invalidate(7, valid = $$props.valid);
     		if ("nopadding" in $$props) $$invalidate(8, nopadding = $$props.nopadding);
+    		if ("linktype" in $$props) $$invalidate(9, linktype = $$props.linktype);
     		if ("_slottedInput" in $$props) _slottedInput = $$props._slottedInput;
     		if ("_prevValid" in $$props) _prevValid = $$props._prevValid;
-    		if ("_inputSlot" in $$props) $$invalidate(9, _inputSlot = $$props._inputSlot);
-    		if ("linkAbsentClass" in $$props) $$invalidate(10, linkAbsentClass = $$props.linkAbsentClass);
+    		if ("_inputSlot" in $$props) $$invalidate(10, _inputSlot = $$props._inputSlot);
+    		if ("linkAbsentClass" in $$props) $$invalidate(11, linkAbsentClass = $$props.linkAbsentClass);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -1478,6 +1487,7 @@
     		infotext,
     		valid,
     		nopadding,
+    		linktype,
     		_inputSlot,
     		linkAbsentClass,
     		_slottedInput,
@@ -1490,7 +1500,7 @@
     class Input extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.error-triangle{animation:hideshow 0.5s ease;position:absolute;right:0;top:0;padding:11px;color:#ED1C24;pointer-events:none}.error-triangle>path{fill:#ED1C24}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 35px 13px 15px;margin:0;border:1px solid;border-color:#97999C;border-radius:3px;color:#555555;outline:none;box-sizing:border-box;text-overflow:ellipsis;-moz-appearance:textfield}::slotted(input)::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}::slotted(input)::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676;opacity:1}::slotted(input:disabled),::slotted(textarea:disabled){border-color:#e6e6e6;background-color:#f2f3f4;color:#97999c;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid;padding:12px 34px 12px 14px}::slotted(input.error),::slotted(textarea.error){transition:border-color 0.3s ease;border:2px solid;padding:12px 34px 12px 14px;border-color:#ED1C24}::slotted(input[type='date']),::slotted(input[type='time']){-webkit-appearance:none}.input-slot.no-padding ::slotted(input){padding:0}@keyframes hideshow{0%{opacity:0}100%{opacity:1}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.error-circle{animation:hideshow 0.5s ease;position:absolute;right:0;top:0;padding:11px;color:#ED1C24;pointer-events:none}.error-circle>path{fill:#ED1C24}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 35px 13px 15px;margin:0;border:1px solid;border-color:#97999C;border-radius:3px;color:#555555;outline:none;box-sizing:border-box;text-overflow:ellipsis;-moz-appearance:textfield}::slotted(input)::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}::slotted(input)::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676;opacity:1}::slotted(input:disabled),::slotted(textarea:disabled){border-color:#e6e6e6;background-color:#f2f3f4;color:#97999c;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid;padding:12px 34px 12px 14px}::slotted(input.error),::slotted(textarea.error){transition:border-color 0.3s ease;border:2px solid;padding:12px 34px 12px 14px;border-color:#ED1C24}::slotted(input[type='date']),::slotted(input[type='time']){-webkit-appearance:none}.input-slot.no-padding ::slotted(input){padding:0}@keyframes hideshow{0%{opacity:0}100%{opacity:1}}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$3, create_fragment$3, safe_not_equal, {
     			labelposition: 0,
@@ -1501,7 +1511,8 @@
     			inputerrormsg: 5,
     			infotext: 6,
     			valid: 7,
-    			nopadding: 8
+    			nopadding: 8,
+    			linktype: 9
     		});
 
     		if (options) {
@@ -1526,7 +1537,8 @@
     			"inputerrormsg",
     			"infotext",
     			"valid",
-    			"nopadding"
+    			"nopadding",
+    			"linktype"
     		];
     	}
 
@@ -1608,6 +1620,15 @@
 
     	set nopadding(nopadding) {
     		this.$set({ nopadding });
+    		flush();
+    	}
+
+    	get linktype() {
+    		return this.$$.ctx[9];
+    	}
+
+    	set linktype(linktype) {
+    		this.$set({ linktype });
     		flush();
     	}
     }
@@ -2744,7 +2765,7 @@
     	let t1;
     	let if_block1_anchor;
     	let if_block0 = /*loading*/ ctx[8] && create_if_block_2(ctx);
-    	let if_block1 = /*_valueSelected*/ ctx[11] && create_if_block_1$1(ctx);
+    	let if_block1 = /*_valueSelected*/ ctx[12] && create_if_block_1$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -2755,13 +2776,13 @@
     			t1 = space();
     			if (if_block1) if_block1.c();
     			if_block1_anchor = empty();
-    			attr_dev(path, "d", "M12 1.75L6.54 7.52a.75.75 0 11-1.09-1.03L10.93.7a1.5 1.5 0 012.14-.02l5.49 5.8a.75.75 0 01-1.1 1.02L12 1.75zM6.54 16.49L12 22.25l5.46-5.77a.75.75 0 011.08 1.03l-5.47 5.78a1.5 1.5 0 01-2.13.02l-5.49-5.8a.75.75 0 011.1-1.02z");
-    			add_location(path, file$9, 9, 90, 531);
-    			attr_dev(svg, "class", svg_class_value = "arrows " + (!/*valid*/ ctx[7] ? "error" : ""));
+    			attr_dev(path, "d", "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
+    			add_location(path, file$9, 9, 96, 543);
+    			attr_dev(svg, "class", svg_class_value = "arrows " + (/*_disabled*/ ctx[13] ? "disabled" : ""));
+    			attr_dev(svg, "width", "24");
+    			attr_dev(svg, "height", "24");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			attr_dev(svg, "width", "16");
-    			attr_dev(svg, "height", "16");
-    			add_location(svg, file$9, 9, 3, 444);
+    			add_location(svg, file$9, 9, 3, 450);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -2773,7 +2794,7 @@
     			insert_dev(target, if_block1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*valid*/ 128 && svg_class_value !== (svg_class_value = "arrows " + (!/*valid*/ ctx[7] ? "error" : ""))) {
+    			if (dirty & /*_disabled*/ 8192 && svg_class_value !== (svg_class_value = "arrows " + (/*_disabled*/ ctx[13] ? "disabled" : ""))) {
     				attr_dev(svg, "class", svg_class_value);
     			}
 
@@ -2788,7 +2809,7 @@
     				if_block0 = null;
     			}
 
-    			if (/*_valueSelected*/ ctx[11]) {
+    			if (/*_valueSelected*/ ctx[12]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -2829,7 +2850,7 @@
     	const block = {
     		c: function create() {
     			zoo_preloader = element("zoo-preloader");
-    			add_location(zoo_preloader, file$9, 11, 4, 793);
+    			add_location(zoo_preloader, file$9, 11, 4, 638);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_preloader, anchor);
@@ -2863,20 +2884,20 @@
     			svg = svg_element("svg");
     			path = svg_element("path");
     			attr_dev(path, "d", "M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z");
-    			add_location(path, file$9, 15, 53, 972);
+    			add_location(path, file$9, 15, 53, 817);
     			attr_dev(svg, "width", "14");
     			attr_dev(svg, "height", "14");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$9, 15, 5, 924);
+    			add_location(svg, file$9, 15, 5, 769);
     			attr_dev(div, "class", "close");
-    			add_location(div, file$9, 14, 4, 862);
+    			add_location(div, file$9, 14, 4, 707);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div, anchor);
     			append_dev(div, svg);
     			append_dev(svg, path);
     			if (remount) dispose();
-    			dispose = listen_dev(div, "click", /*click_handler*/ ctx[18], false, false, false);
+    			dispose = listen_dev(div, "click", /*click_handler*/ ctx[20], false, false, false);
     		},
     		p: noop,
     		d: function destroy(detaching) {
@@ -2908,7 +2929,7 @@
     	let t3;
     	let zoo_input_info;
     	let div_class_value;
-    	let if_block = !/*_multiple*/ ctx[9] && create_if_block$3(ctx);
+    	let if_block = !/*_multiple*/ ctx[10] && create_if_block$3(ctx);
 
     	const block = {
     		c: function create() {
@@ -2931,20 +2952,20 @@
     			set_custom_element_data(zoo_link, "class", "input-link");
     			set_custom_element_data(zoo_link, "href", /*linkhref*/ ctx[3]);
     			set_custom_element_data(zoo_link, "target", /*linktarget*/ ctx[4]);
-    			set_custom_element_data(zoo_link, "type", "grey");
+    			set_custom_element_data(zoo_link, "type", /*linktype*/ ctx[9]);
     			set_custom_element_data(zoo_link, "text", /*linktext*/ ctx[2]);
     			set_custom_element_data(zoo_link, "textalign", "right");
     			add_location(zoo_link, file$9, 4, 1, 203);
     			attr_dev(slot, "name", "selectelement");
-    			add_location(slot, file$9, 7, 2, 363);
+    			add_location(slot, file$9, 7, 2, 369);
     			attr_dev(span, "class", "input-slot");
-    			add_location(span, file$9, 6, 1, 335);
+    			add_location(span, file$9, 6, 1, 341);
     			set_custom_element_data(zoo_input_info, "class", "input-info");
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[5]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
-    			add_location(zoo_input_info, file$9, 20, 1, 1206);
-    			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[12]);
+    			add_location(zoo_input_info, file$9, 20, 1, 1051);
+    			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[14]);
     			add_location(div, file$9, 1, 0, 51);
     		},
     		l: function claim(nodes) {
@@ -2958,7 +2979,7 @@
     			append_dev(div, t1);
     			append_dev(div, span);
     			append_dev(span, slot);
-    			/*slot_binding*/ ctx[17](slot);
+    			/*slot_binding*/ ctx[19](slot);
     			append_dev(span, t2);
     			if (if_block) if_block.m(span, null);
     			append_dev(div, t3);
@@ -2981,11 +3002,15 @@
     				set_custom_element_data(zoo_link, "target", /*linktarget*/ ctx[4]);
     			}
 
+    			if (dirty & /*linktype*/ 512) {
+    				set_custom_element_data(zoo_link, "type", /*linktype*/ ctx[9]);
+    			}
+
     			if (dirty & /*linktext*/ 4) {
     				set_custom_element_data(zoo_link, "text", /*linktext*/ ctx[2]);
     			}
 
-    			if (!/*_multiple*/ ctx[9]) {
+    			if (!/*_multiple*/ ctx[10]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -3010,7 +3035,7 @@
     				set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
     			}
 
-    			if (dirty & /*labelposition, linkAbsentClass*/ 4097 && div_class_value !== (div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[12])) {
+    			if (dirty & /*labelposition, linkAbsentClass*/ 16385 && div_class_value !== (div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[14])) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -3018,7 +3043,7 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*slot_binding*/ ctx[17](null);
+    			/*slot_binding*/ ctx[19](null);
     			if (if_block) if_block.d();
     		}
     	};
@@ -3044,11 +3069,13 @@
     	let { infotext = "" } = $$props;
     	let { valid = true } = $$props;
     	let { loading = false } = $$props;
+    	let { linktype = "green" } = $$props;
     	let _prevValid;
     	let _multiple = false;
     	let _slottedSelect;
     	let _selectSlot;
     	let _valueSelected;
+    	let _disabled;
     	let linkAbsentClass = "";
 
     	beforeUpdate(() => {
@@ -3064,14 +3091,18 @@
     			_slottedSelect = select;
 
     			if (select.multiple === true) {
-    				$$invalidate(9, _multiple = true);
+    				$$invalidate(10, _multiple = true);
     			}
 
-    			_slottedSelect.addEventListener("change", e => $$invalidate(11, _valueSelected = e.target.value ? true : false));
+    			if (select.disabled === true) {
+    				$$invalidate(13, _disabled = true);
+    			}
+
+    			_slottedSelect.addEventListener("change", e => $$invalidate(12, _valueSelected = e.target.value ? true : false));
     			changeValidState(valid);
 
     			if (!linktext) {
-    				$$invalidate(12, linkAbsentClass = "link-absent");
+    				$$invalidate(14, linkAbsentClass = "link-absent");
     			}
     		});
     	});
@@ -3100,7 +3131,8 @@
     		"inputerrormsg",
     		"infotext",
     		"valid",
-    		"loading"
+    		"loading",
+    		"linktype"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -3112,7 +3144,7 @@
 
     	function slot_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(10, _selectSlot = $$value);
+    			$$invalidate(11, _selectSlot = $$value);
     		});
     	}
 
@@ -3128,6 +3160,7 @@
     		if ("infotext" in $$props) $$invalidate(6, infotext = $$props.infotext);
     		if ("valid" in $$props) $$invalidate(7, valid = $$props.valid);
     		if ("loading" in $$props) $$invalidate(8, loading = $$props.loading);
+    		if ("linktype" in $$props) $$invalidate(9, linktype = $$props.linktype);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3142,11 +3175,13 @@
     		infotext,
     		valid,
     		loading,
+    		linktype,
     		_prevValid,
     		_multiple,
     		_slottedSelect,
     		_selectSlot,
     		_valueSelected,
+    		_disabled,
     		linkAbsentClass,
     		changeValidState,
     		handleCrossClick
@@ -3162,12 +3197,14 @@
     		if ("infotext" in $$props) $$invalidate(6, infotext = $$props.infotext);
     		if ("valid" in $$props) $$invalidate(7, valid = $$props.valid);
     		if ("loading" in $$props) $$invalidate(8, loading = $$props.loading);
+    		if ("linktype" in $$props) $$invalidate(9, linktype = $$props.linktype);
     		if ("_prevValid" in $$props) _prevValid = $$props._prevValid;
-    		if ("_multiple" in $$props) $$invalidate(9, _multiple = $$props._multiple);
+    		if ("_multiple" in $$props) $$invalidate(10, _multiple = $$props._multiple);
     		if ("_slottedSelect" in $$props) _slottedSelect = $$props._slottedSelect;
-    		if ("_selectSlot" in $$props) $$invalidate(10, _selectSlot = $$props._selectSlot);
-    		if ("_valueSelected" in $$props) $$invalidate(11, _valueSelected = $$props._valueSelected);
-    		if ("linkAbsentClass" in $$props) $$invalidate(12, linkAbsentClass = $$props.linkAbsentClass);
+    		if ("_selectSlot" in $$props) $$invalidate(11, _selectSlot = $$props._selectSlot);
+    		if ("_valueSelected" in $$props) $$invalidate(12, _valueSelected = $$props._valueSelected);
+    		if ("_disabled" in $$props) $$invalidate(13, _disabled = $$props._disabled);
+    		if ("linkAbsentClass" in $$props) $$invalidate(14, linkAbsentClass = $$props.linkAbsentClass);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3184,9 +3221,11 @@
     		infotext,
     		valid,
     		loading,
+    		linktype,
     		_multiple,
     		_selectSlot,
     		_valueSelected,
+    		_disabled,
     		linkAbsentClass,
     		handleCrossClick,
     		_prevValid,
@@ -3200,7 +3239,7 @@
     class Select extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:17px}.close{display:inline-block;cursor:pointer;right:28px}.arrows>path{fill:#555555}.arrows.error>path{fill:#ED1C24}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;line-height:20px;padding:13px 40px 13px 15px;border:1px solid;border-color:#97999C;border-radius:3px;color:#555555;outline:none;box-sizing:border-box;font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border-color:#e6e6e6;background-color:#f2f3f4;color:#97999c}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid;padding:12px 40px 12px 14px}::slotted(select.error){border:2px solid;padding:12px 14px;border-color:#ED1C24;transition:border-color 0.3s ease}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:12px}.close{display:inline-block;cursor:pointer;right:28px}.arrows path{fill:var(--main-color, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;line-height:20px;padding:13px 40px 13px 15px;border:1px solid;border-color:#97999C;border-radius:3px;color:#555555;outline:none;box-sizing:border-box;font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border-color:#e6e6e6;background-color:#f2f3f4;color:#97999c}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid;padding:12px 40px 12px 14px}::slotted(select.error){border:2px solid;padding:12px 14px;border-color:#ED1C24;transition:border-color 0.3s ease}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$9, create_fragment$9, safe_not_equal, {
     			labelposition: 0,
@@ -3211,7 +3250,8 @@
     			inputerrormsg: 5,
     			infotext: 6,
     			valid: 7,
-    			loading: 8
+    			loading: 8,
+    			linktype: 9
     		});
 
     		if (options) {
@@ -3236,7 +3276,8 @@
     			"inputerrormsg",
     			"infotext",
     			"valid",
-    			"loading"
+    			"loading",
+    			"linktype"
     		];
     	}
 
@@ -3318,6 +3359,15 @@
 
     	set loading(loading) {
     		this.$set({ loading });
+    		flush();
+    	}
+
+    	get linktype() {
+    		return this.$$.ctx[9];
+    	}
+
+    	set linktype(linktype) {
+    		this.$set({ linktype });
     		flush();
     	}
     }

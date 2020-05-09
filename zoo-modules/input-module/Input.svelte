@@ -2,7 +2,7 @@
 <div class="box {labelposition} {linkAbsentClass}">
 	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
 	</zoo-input-label>
-	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="grey" text="{linktext}" textalign="right">
+	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right">
 	</zoo-link>
 	<span class="input-slot {nopadding ? 'no-padding': ''}">
 		<slot bind:this={_inputSlot} name="inputelement"></slot>
@@ -10,9 +10,7 @@
 			<slot name="inputicon"></slot>
 		{/if}
 		{#if !valid}
-			<svg class="error-triangle" width="22" height="22" viewBox="0 0 24 24">
-				<path d="M12 18a1.13 1.13 0 110 2.25A1.13 1.13 0 0112 18zm.75-2.25a.75.75 0 11-1.5 0v-7.5a.75.75 0 111.5 0v7.5zm1.54-14.32l9.48 19.3A2.27 2.27 0 0121.73 24H2.27a2.27 2.27 0 01-2.04-3.27l9.48-19.3a2.56 2.56 0 014.58 0zm-2.76.18c-.2.1-.37.27-.48.48l-9.47 19.3a.77.77 0 00.7 1.11h19.45a.77.77 0 00.7-1.11l-9.48-19.3a1.06 1.06 0 00-1.42-.48z"/>
-			</svg>
+			<svg class="error-circle" width="22" height="22" viewBox="0 0 24 24"><path d="M12 15.75a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 15.75H12zm.75-2.25a.75.75 0 1 1-1.5 0V5.25a.75.75 0 1 1 1.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z"/></svg>
 		{/if}
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}">
@@ -23,7 +21,7 @@
 	@import "variables";
 	@import "input";
 
-	.error-triangle {
+	.error-circle {
 		animation: hideshow 0.5s ease;
 		position: absolute;
 		right: 0;
@@ -118,6 +116,7 @@
 	export let infotext = "";
 	export let valid = true;
 	export let nopadding = false;
+	export let linktype = "green";
 	let _slottedInput;
 	let _prevValid;
 	let _inputSlot;

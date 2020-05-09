@@ -1,5 +1,82 @@
 <div class="app">
 	<app-header></app-header>
+	<zoo-grid bind:this={zooGrid} style="padding: 10px; max-height: 300px;" stickyheader paginator>
+		<div slot="headercell" sortable>Actions</div>
+		<div slot="headercell">Created Date</div>
+		<div slot="headercell">Status</div>
+		<div slot="headercell">From Date</div>
+		<div slot="headercell">Creator Name</div>
+		<div slot="headercell">Supplier</div>
+		<div slot="headercell">Fulfillment Center</div>
+		<div slot="headercell">Article Importance Lower Bound %</div>
+
+		<div slot="row">
+			<zoo-feedback type="info" text="This is an info message.">
+			</zoo-feedback>
+			<div>cell2</div>
+			<div>cell3</div>
+			<div>cell4</div>
+			<div>cell5</div>
+			<zoo-select labeltext="This product is for">
+				<select slot="selectelement">
+					<option class="placeholder" value="" disabled selected>Doge</option>
+					<option>Doge</option>
+					<option>Catz</option>
+					<option>Snek</option>
+				</select>
+			</zoo-select>
+			<div>cell7</div>
+			<div>cell8</div>
+		</div>
+		<div slot="row">
+			<div>cell9</div>
+			<div>cell10</div>
+			<div>cell11</div>
+			<div>cell12</div>
+			<div>cell13</div>
+			<div>cell14</div>
+			<div>cell15</div>
+			<div>cell16</div>
+		</div>
+		<div slot="row">
+			<div>cell9</div>
+			<div>cell10</div>
+			<div>cell11</div>
+			<div>cell12</div>
+			<div>cell13</div>
+			<div>cell14</div>
+			<div>cell15</div>
+			<div>cell16</div>
+		</div>
+		<div slot="row">
+			<div>cell9</div>
+			<div>cell10</div>
+			<div>cell11</div>
+			<div>cell12</div>
+			<div>cell13</div>
+			<div>cell14</div>
+			<div>cell15</div>
+			<div>cell16</div>
+		</div>
+		<div slot="row">
+			<div>cell9</div>
+			<div>cell10</div>
+			<div>cell11</div>
+			<div>cell12</div>
+			<div>cell13</div>
+			<div>cell14</div>
+			<div>cell15</div>
+			<div>cell16</div>
+		</div>
+
+		<zoo-select labeltext="Items per page" labelposition="left" slot="pagesizeselector">
+			<select slot="selectelement">
+				{#each possibleNumberOfItems as number, idx}
+					<option selected="{idx == 0}">{number}</option>
+				{/each}
+			</select>
+		</zoo-select>
+	</zoo-grid>
 	<app-context id="what" text="What is this project?"></app-context>
 	<ul class="what-list">
 		<li>
@@ -224,6 +301,8 @@
 
 <script>
 	import { onMount } from 'svelte';
+	let possibleNumberOfItems = [5, 10, 25, 100];
+	let zooGrid;
 	let footer;
 	let doclinks = [
 		{

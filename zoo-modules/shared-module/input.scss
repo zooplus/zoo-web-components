@@ -17,6 +17,13 @@
 		}
 	}
 
+	&.left {
+		.input-label {
+			align-self: center;
+			padding-right: 5px;
+		}	
+	}
+
 	.input-label {
 		grid-area: label;
 		align-self: self-start;

@@ -4,7 +4,7 @@
 <app-context text="Second section is a showcase of buttons and modals"></app-context>
 <div class="buttons">
 	<zoo-button size="small" on:click="{() => toast.show()}">
-		<span slot="buttoncontent" class="slotted-span">Here we have a very long text indeed!</span>
+		<span slot="buttoncontent" class="slotted-span">Summon toast!</span>
 	</zoo-button>
 	<zoo-button size="small" disabled="{true}" class="top-tooltip">
 		<div slot="buttoncontent">
@@ -16,7 +16,7 @@
 		<span slot="buttoncontent" class="slotted-span">Show modal</span>
 	</zoo-button>
 	<zoo-button type="hollow" size="small">
-		<span slot="buttoncontent" class="slotted-span">Does nothing</span>
+		<span slot="buttoncontent" class="slotted-span">Dummy button that does nothing</span>
 	</zoo-button>
 </div> 
 <zoo-modal style="display: none" headertext="Your basket contains licensed items" bind:this={modal}>
@@ -41,7 +41,7 @@
 			<input slot="checkboxelement" type="checkbox"/>
 		</zoo-checkbox>
 		<br>
-		<zoo-button type="hot" size="medium" on:click="{() => closeModal()}">
+		<zoo-button style="margin: 0 auto" type="hot" size="medium" on:click="{() => closeModal()}">
 			<span slot="buttoncontent">Add to cart</span>
 		</zoo-button>
 	</div>
@@ -57,13 +57,6 @@
 		@media only screen and (max-width: 850px) {
 			grid-template-columns: auto;
 		}
-	}
-
-	.slotted-span {
-		display: block;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
 	}
 
 	zoo-tooltip {

@@ -38,8 +38,8 @@
 	::slotted(input),
 	::slotted(textarea) {
 		width: 100%;
-		font-size: 14px;
-		line-height: 20px;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
 		padding: 13px 35px 13px 15px;
 		margin: 0;
 		border: 1px solid;

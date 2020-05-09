@@ -9,9 +9,9 @@
 	@import "variables";
 
 	.label {
-		font-size: 14px;
+		font-size: $p2-size;
+		line-height: $p2-line-height;
 		font-weight: 800;
-		line-height: 20px;
 		color: $matterhorn;
 		text-align: left;
 	}

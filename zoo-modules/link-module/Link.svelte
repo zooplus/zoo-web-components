@@ -21,8 +21,8 @@
 
 		a {
 			text-decoration: none;
-			font-size: 12px;
-			line-height: 16px;
+			font-size: $p2-size;
+			line-height: $p2-line-height;
 
 			&.disabled {
 				color: $grey-chateau;

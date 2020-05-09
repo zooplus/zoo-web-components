@@ -31,6 +31,7 @@
 </header>
 
 <style type='text/scss'>
+	@import "variables";
 	header {
 		position: relative;
 	}
@@ -63,9 +64,9 @@
 		position: sticky;
 		top: 0;
 		color: white;
-		font-size: 14px;
+		font-size: $p1-size;
 		font-weight: bold;
-		line-height: 16px;
+		line-height: $p1-line-height;
 		cursor: pointer;
 
 		.nav-link {

@@ -600,7 +600,7 @@
     			slot = element("slot");
     			this.c = noop;
     			add_location(h2, file$1, 4, 3, 175);
-    			attr_dev(path, "d", "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z");
+    			attr_dev(path, "d", "M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z");
     			add_location(path, file$1, 6, 52, 307);
     			attr_dev(svg, "width", "24");
     			attr_dev(svg, "height", "24");
@@ -610,9 +610,9 @@
     			add_location(div0, file$1, 5, 3, 200);
     			attr_dev(div1, "class", "heading");
     			add_location(div1, file$1, 3, 2, 150);
-    			add_location(slot, file$1, 10, 3, 473);
+    			add_location(slot, file$1, 10, 3, 423);
     			attr_dev(div2, "class", "content");
-    			add_location(div2, file$1, 9, 2, 448);
+    			add_location(div2, file$1, 9, 2, 398);
     			attr_dev(div3, "class", "dialog-content");
     			add_location(div3, file$1, 2, 1, 119);
     			attr_dev(div4, "class", div4_class_value = "box " + (/*hidden*/ ctx[3] ? "hide" : "show"));
@@ -1080,7 +1080,7 @@
     class Footer extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{contain:style}.footer-links{display:flex;background-image:linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));background-image:-webkit-linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));justify-content:center;padding:10px 30px;flex-wrap:wrap}.footer-links .list-holder{position:relative;overflow:hidden}.footer-links .list-holder ul{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;list-style:none;margin-left:-1px;padding-left:0;margin-top:0;margin-bottom:0}.footer-links .list-holder ul li{flex-grow:1;flex-basis:auto;margin:5px 0;padding:0 5px;text-align:center;border-left:1px solid #e6e6e6}.footer-copyright{font-size:12px;line-height:16px;text-align:left;background:#FFFFFF;color:#555555;padding:10px 0 10px 30px}@media only screen and (max-width: 544px){.footer-copyright{text-align:center;padding:10px 0}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:style}.footer-links{display:flex;background-image:linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));background-image:-webkit-linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));justify-content:center;padding:10px 30px;flex-wrap:wrap}.footer-links .list-holder{position:relative;overflow:hidden}.footer-links .list-holder ul{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;list-style:none;margin-left:-1px;padding-left:0;margin-top:0;margin-bottom:0}.footer-links .list-holder ul li{flex-grow:1;flex-basis:auto;margin:5px 0;padding:0 5px;text-align:center;border-left:1px solid #e6e6e6}.footer-copyright{font-size:12px;line-height:14px;text-align:left;background:#FFFFFF;color:#555555;padding:10px 0 10px 30px}@media only screen and (max-width: 544px){.footer-copyright{text-align:center;padding:10px 0}}</style>`;
     		init(this, { target: this.shadowRoot }, instance$2, create_fragment$2, safe_not_equal, { footerlinks: 0, copyright: 1 });
 
     		if (options) {
@@ -1693,7 +1693,7 @@
 
     function instance$4($$self, $$props, $$invalidate) {
     	let { type = "cold" } = $$props; //'hot', 'hollow'
-    	let { size = "small" } = $$props; //'medium', 'big',
+    	let { size = "small" } = $$props; //'medium'
     	let { disabled = false } = $$props;
     	const writable_props = ["type", "size", "disabled"];
 
@@ -1728,7 +1728,7 @@
     class Button extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{width:100%;contain:layout}.box{position:relative;width:100%;height:100%}.box .zoo-btn{display:flex;flex-direction:row;align-items:center;justify-content:center;color:#FFFFFF;border:0;border-radius:5px;cursor:pointer;width:100%;height:100%;font-size:14px;font-weight:bold;text-align:center}.box .zoo-btn.hollow{border:2px solid var(--main-color, #3C9700);color:var(--main-color, #3C9700);background:transparent}.box .zoo-btn.hot{background-image:linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800));background-image:-webkit-linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800))}.box .zoo-btn.hot:hover,.box .zoo-btn.hot:focus{background:var(--secondary-color, #FF6200)}.box .zoo-btn.hot:active{background:var(--secondary-color-dark, #CC4E00)}.box .zoo-btn.cold{background-image:linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));background-image:-webkit-linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100))}.box .zoo-btn.cold:hover,.box .zoo-btn.cold:focus,.box .zoo-btn.hollow:hover,.box .zoo-btn.hollow:focus{background:var(--main-color, #3C9700);color:#FFFFFF}.box .zoo-btn.cold:active,.box .zoo-btn.hollow:active{background:var(--main-color-dark, #286400);color:#FFFFFF}.box .zoo-btn:disabled{background:#F2F3F4;color:#7a7a7a;border:1px solid #E6E6E6}.box .zoo-btn:disabled:hover,.box .zoo-btn:disabled:focus,.box .zoo-btn:disabled:active{cursor:not-allowed;background:#F2F3F4;color:#7a7a7a}.box .zoo-btn:active{transform:translateY(1px)}.box .zoo-btn.small{font-size:14px;line-height:36px !important;padding:0 8px}.box .zoo-btn.medium{font-size:14px;line-height:46px !important;padding:0 12px}.box .zoo-btn.big{font-size:16px;line-height:56px !important;padding:0 16px}.box .zoo-btn ::slotted(*:first-child){width:100%;height:100%;border:none;display:flex;flex-direction:row;align-items:center;justify-content:center;overflow:hidden}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:block;max-width:330px;contain:layout}.box{position:relative;width:100%;height:100%}.box .zoo-btn{display:flex;flex-direction:row;align-items:center;justify-content:center;color:#FFFFFF;border:0;border-radius:5px;cursor:pointer;width:100%;height:100%;font-size:14px;font-weight:bold;text-align:center;padding:0 20px;line-height:20px}.box .zoo-btn.hollow{border:2px solid var(--main-color, #3C9700);color:var(--main-color, #3C9700);background:transparent}.box .zoo-btn.hot{background-image:linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800));background-image:-webkit-linear-gradient(left, var(--secondary-color, #FF6200), var(--secondary-color-light, #FF8800))}.box .zoo-btn.hot:hover,.box .zoo-btn.hot:focus{background:var(--secondary-color, #FF6200)}.box .zoo-btn.hot:active{background:var(--secondary-color-dark, #CC4E00)}.box .zoo-btn.cold{background-image:linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100));background-image:-webkit-linear-gradient(left, var(--main-color, #3C9700), var(--main-color-light, #66B100))}.box .zoo-btn.cold:hover,.box .zoo-btn.cold:focus,.box .zoo-btn.hollow:hover,.box .zoo-btn.hollow:focus{background:var(--main-color, #3C9700);color:#FFFFFF}.box .zoo-btn.cold:active,.box .zoo-btn.hollow:active{background:var(--main-color-dark, #286400);color:#FFFFFF}.box .zoo-btn:disabled{background:#F2F3F4;color:#7a7a7a;border:1px solid #E6E6E6}.box .zoo-btn:disabled:hover,.box .zoo-btn:disabled:focus,.box .zoo-btn:disabled:active{cursor:not-allowed;background:#F2F3F4;color:#7a7a7a}.box .zoo-btn:active{transform:translateY(1px)}.box .zoo-btn.small{min-height:36px}.box .zoo-btn.medium{min-height:46px}.box .zoo-btn ::slotted(*:first-child){width:100%;height:100%;border:none;display:flex;flex-direction:row;align-items:center;justify-content:center;overflow:hidden}</style>`;
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, { type: 0, size: 1, disabled: 2 });
 
     		if (options) {
@@ -2511,7 +2511,7 @@
     class Feedback extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;background:#F2F3F4;color:#555555;font-size:14px;border-left:3px solid;display:flex;align-items:center;border-bottom-right-radius:3px;border-top-right-radius:3px;width:100%;height:100%;padding:5px 0}.box.info{border-color:#459FD0}.box.info svg{fill:#459FD0}.box.error{border-color:#ED1C24}.box.error svg{fill:#ED1C24}.box.success{border-color:#3C9700}.box.success svg{fill:#3C9700}.box svg{min-width:30px;min-height:30px;padding:0 15px}.box .text{display:flex;flex-direction:row;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid;display:flex;align-items:center;border-bottom-right-radius:3px;border-top-right-radius:3px;width:100%;height:100%;padding:5px 0}.box.info{background:#ECF5FA;border-color:#459FD0}.box.info svg{fill:#459FD0}.box.error{background:#FDE8E9;border-color:#ED1C24}.box.error svg{fill:#ED1C24}.box.success{background:#EBF4E5;border-color:#3C9700}.box.success svg{fill:#3C9700}.box svg{min-width:24px;min-height:24px;padding:0 10px 0 15px}.box .text{display:flex;flex-direction:row;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style>`;
     		init(this, { target: this.shadowRoot }, instance$7, create_fragment$7, safe_not_equal, { type: 0, text: 1 });
 
     		if (options) {
@@ -2703,7 +2703,7 @@
     class Tooltip extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:flex;position:absolute;width:100%;height:100%;z-index:10000;left:0;bottom:0;pointer-events:none;line-height:initial;font-size:initial;font-weight:initial;contain:layout;justify-content:center}.box{pointer-events:initial;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);border-radius:3px;position:absolute;transform:translate(0%, -50%)}.box.top{bottom:calc(100% + 11px);right:50%;transform:translate3d(50%, 0, 0)}.box.right{left:calc(100% + 10px);top:50%}.box.bottom{top:100%;right:50%;transform:translate3d(50%, 20%, 0)}.box.left{right:calc(100% + 11px);top:50%}.box .tooltip-content{padding:10px;font-size:15px;position:relative;z-index:1;background:white;border-radius:3px}.box .tooltip-content .text{white-space:pre;color:black}.box .tip{position:absolute}.box .tip:after{content:"";width:16px;height:16px;position:absolute;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);top:-8px;transform:rotate(45deg);z-index:0;background:white}.box .tip.top,.box .tip.bottom{right:calc(50% + 8px)}.box .tip.right{bottom:50%;left:-8px}.box .tip.bottom{top:0}.box .tip.left{bottom:50%;right:8px}@keyframes fadeTooltipIn{from{opacity:0}to{opacity:1}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:flex;position:absolute;width:100%;height:100%;z-index:10000;left:0;bottom:0;pointer-events:none;line-height:initial;font-size:initial;font-weight:initial;contain:layout;justify-content:center}.box{pointer-events:initial;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);border-radius:3px;position:absolute;transform:translate(0%, -50%)}.box.top{bottom:calc(100% + 11px);right:50%;transform:translate3d(50%, 0, 0)}.box.right{left:calc(100% + 10px);top:50%}.box.bottom{top:100%;right:50%;transform:translate3d(50%, 20%, 0)}.box.left{right:calc(100% + 11px);top:50%}.box .tooltip-content{padding:10px;font-size:14px;position:relative;z-index:1;background:white;border-radius:3px}.box .tooltip-content .text{white-space:pre;color:black}.box .tip{position:absolute}.box .tip:after{content:"";width:16px;height:16px;position:absolute;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);top:-8px;transform:rotate(45deg);z-index:0;background:white}.box .tip.top,.box .tip.bottom{right:calc(50% + 8px)}.box .tip.right{bottom:50%;left:-8px}.box .tip.bottom{top:0}.box .tip.left{bottom:50%;right:8px}@keyframes fadeTooltipIn{from{opacity:0}to{opacity:1}}</style>`;
     		init(this, { target: this.shadowRoot }, instance$8, create_fragment$8, safe_not_equal, { text: 0, position: 1 });
 
     		if (options) {
@@ -2873,10 +2873,10 @@
     			div = element("div");
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			attr_dev(path, "d", "M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z");
-    			add_location(path, file$9, 15, 53, 788);
-    			attr_dev(svg, "width", "14");
-    			attr_dev(svg, "height", "14");
+    			attr_dev(path, "d", "M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z");
+    			add_location(path, file$9, 16, 6, 795);
+    			attr_dev(svg, "width", "20");
+    			attr_dev(svg, "height", "20");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			add_location(svg, file$9, 15, 5, 740);
     			attr_dev(div, "class", "close");
@@ -2953,7 +2953,7 @@
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[5]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
-    			add_location(zoo_input_info, file$9, 20, 1, 1021);
+    			add_location(zoo_input_info, file$9, 22, 1, 908);
     			attr_dev(div1, "class", div1_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[14]);
     			add_location(div1, file$9, 1, 0, 51);
     		},
@@ -3224,7 +3224,7 @@
     class Select extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:12px}.close{display:inline-block;cursor:pointer;right:28px}.arrows path{fill:var(--main-color, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;line-height:20px;padding:13px 40px 13px 15px;border:1px solid;border-color:#97999C;border-radius:3px;color:#555555;outline:none;box-sizing:border-box;font-size:14px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border-color:#e6e6e6;background-color:#f2f3f4;color:#97999c}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid;padding:12px 40px 12px 14px}::slotted(select.error){border:2px solid;padding:12px 14px;border-color:#ED1C24;transition:border-color 0.3s ease}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:12px}.close{display:inline-block;cursor:pointer;right:28px;top:14px}.arrows path{fill:var(--main-color, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;font-size:14px;line-height:20px;padding:13px 40px 13px 15px;border:1px solid;border-color:#97999C;border-radius:3px;color:#555555;outline:none;box-sizing:border-box;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border-color:#e6e6e6;background-color:#f2f3f4;color:#97999c}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid;padding:12px 40px 12px 14px}::slotted(select.error){border:2px solid;padding:12px 14px;border-color:#ED1C24;transition:border-color 0.3s ease}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$9, create_fragment$9, safe_not_equal, {
     			labelposition: 0,
@@ -3373,7 +3373,7 @@
     			slot = element("slot");
     			attr_dev(slot, "name", "selectelement");
     			attr_dev(slot, "slot", "selectelement");
-    			add_location(slot, file$a, 26, 3, 1384);
+    			add_location(slot, file$a, 26, 3, 1334);
     			set_custom_element_data(zoo_select, "labelposition", /*labelposition*/ ctx[1]);
     			set_custom_element_data(zoo_select, "linktext", /*linktext*/ ctx[3]);
     			set_custom_element_data(zoo_select, "linkhref", /*linkhref*/ ctx[4]);
@@ -3382,7 +3382,7 @@
     			set_custom_element_data(zoo_select, "inputerrormsg", /*inputerrormsg*/ ctx[6]);
     			set_custom_element_data(zoo_select, "infotext", /*infotext*/ ctx[7]);
     			set_custom_element_data(zoo_select, "valid", /*valid*/ ctx[0]);
-    			add_location(zoo_select, file$a, 24, 2, 1169);
+    			add_location(zoo_select, file$a, 24, 2, 1119);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_select, anchor);
@@ -3477,7 +3477,7 @@
     			attr_dev(div, "class", "close");
     			add_location(div, file$a, 11, 3, 681);
     			attr_dev(span, "slot", "inputelement");
-    			add_location(span, file$a, 16, 3, 979);
+    			add_location(span, file$a, 16, 3, 929);
     			set_custom_element_data(zoo_input, "infotext", /*infotext*/ ctx[7]);
     			set_custom_element_data(zoo_input, "valid", /*valid*/ ctx[0]);
     			set_custom_element_data(zoo_input, "type", "text");
@@ -3490,7 +3490,7 @@
     			toggle_class(zoo_input, "mobile", /*_isMobile*/ ctx[12]);
     			add_location(zoo_input, file$a, 7, 2, 243);
     			attr_dev(slot, "name", "selectelement");
-    			add_location(slot, file$a, 22, 2, 1099);
+    			add_location(slot, file$a, 22, 2, 1049);
     		},
     		m: function mount(target, anchor, remount) {
     			if (if_block0) if_block0.m(target, anchor);
@@ -3663,10 +3663,10 @@
     		c: function create() {
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			attr_dev(path, "d", "M11 12L0 1a1 1 0 011-1l11 11L23 0a1 1 0 011 1L13 12l11 11a1 1 0 01-1 1L12 13 1 24a1 1 0 01-1-1l11-11z");
+    			attr_dev(path, "d", "M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z");
     			add_location(path, file$a, 13, 53, 836);
-    			attr_dev(svg, "width", "14");
-    			attr_dev(svg, "height", "14");
+    			attr_dev(svg, "width", "20");
+    			attr_dev(svg, "height", "20");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			add_location(svg, file$a, 13, 5, 788);
     		},
@@ -3697,7 +3697,7 @@
     	const block = {
     		c: function create() {
     			zoo_preloader = element("zoo-preloader");
-    			add_location(zoo_preloader, file$a, 18, 5, 1029);
+    			add_location(zoo_preloader, file$a, 18, 5, 979);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_preloader, anchor);
@@ -4424,7 +4424,7 @@
     class Link extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.link-box{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}.link-box a{text-decoration:none;font-size:12px;line-height:16px}.link-box a.disabled{color:#97999C}.link-box a.disabled:hover{cursor:not-allowed}.link-box a.green{color:var(--main-color, #3C9700)}.link-box a.green:hover,.link-box a.green:focus,.link-box a.green:active{color:var(--main-color-dark, #286400)}.link-box a.green:visited{color:var(--main-color-light, #66B100)}.link-box a.standard{color:white}.link-box a.standard:hover,.link-box a.standard:focus,.link-box a.standard:active{color:#FFFFFF;cursor:pointer}.link-box a.standard:visited{color:#FFFFFF}.link-box a.standard .bottom-line{position:absolute;bottom:-3px;left:0;overflow:hidden;width:0;border-bottom:1px solid #fff;color:#fff;transition:width 0.3s}.link-box a.standard:hover .bottom-line{width:100%}.link-box a.grey{color:#767676}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.link-box{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}.link-box a{text-decoration:none;font-size:12px;line-height:14px}.link-box a.disabled{color:#97999C}.link-box a.disabled:hover{cursor:not-allowed}.link-box a.green{color:var(--main-color, #3C9700)}.link-box a.green:hover,.link-box a.green:focus,.link-box a.green:active{color:var(--main-color-dark, #286400)}.link-box a.green:visited{color:var(--main-color-light, #66B100)}.link-box a.standard{color:white}.link-box a.standard:hover,.link-box a.standard:focus,.link-box a.standard:active{color:#FFFFFF;cursor:pointer}.link-box a.standard:visited{color:#FFFFFF}.link-box a.standard .bottom-line{position:absolute;bottom:-3px;left:0;overflow:hidden;width:0;border-bottom:1px solid #fff;color:#fff;transition:width 0.3s}.link-box a.standard:hover .bottom-line{width:100%}.link-box a.grey{color:#767676}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$b, create_fragment$b, safe_not_equal, {
     			href: 0,
@@ -4920,7 +4920,7 @@
     class InputLabel extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.label{font-size:14px;font-weight:800;line-height:20px;color:#555555;text-align:left}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.label{font-size:12px;line-height:14px;font-weight:800;color:#555555;text-align:left}</style>`;
     		init(this, { target: this.shadowRoot }, instance$e, create_fragment$e, safe_not_equal, { labeltext: 0 });
 
     		if (options) {
@@ -4957,52 +4957,48 @@
 
     function create_fragment$f(ctx) {
     	let div1;
-    	let span1;
+    	let div0;
     	let svg0;
     	let path0;
     	let t0;
-    	let span0;
+    	let span;
     	let t1;
     	let t2;
-    	let div0;
     	let svg1;
     	let path1;
-    	let span1_class_value;
+    	let div0_class_value;
     	let dispose;
 
     	const block = {
     		c: function create() {
     			div1 = element("div");
-    			span1 = element("span");
+    			div0 = element("div");
     			svg0 = svg_element("svg");
     			path0 = svg_element("path");
     			t0 = space();
-    			span0 = element("span");
+    			span = element("span");
     			t1 = text(/*text*/ ctx[1]);
     			t2 = space();
-    			div0 = element("div");
     			svg1 = svg_element("svg");
     			path1 = svg_element("path");
     			this.c = noop;
     			attr_dev(path0, "d", "M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z");
     			attr_dev(path0, "fill-rule", "evenodd");
-    			add_location(path0, file$f, 3, 50, 184);
-    			attr_dev(svg0, "width", "36");
-    			attr_dev(svg0, "height", "36");
+    			add_location(path0, file$f, 4, 3, 187);
+    			attr_dev(svg0, "width", "30");
+    			attr_dev(svg0, "height", "30");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
-    			add_location(svg0, file$f, 3, 2, 136);
-    			add_location(span0, file$f, 4, 2, 600);
-    			attr_dev(path1, "d", "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z");
-    			add_location(path1, file$f, 6, 66, 743);
-    			attr_dev(svg1, "class", /*type*/ ctx[0]);
+    			add_location(svg0, file$f, 3, 2, 135);
+    			add_location(span, file$f, 6, 2, 606);
+    			attr_dev(path1, "d", "M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z");
+    			add_location(path1, file$f, 8, 3, 729);
+    			attr_dev(svg1, "class", "close");
     			attr_dev(svg1, "width", "24");
     			attr_dev(svg1, "height", "24");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
-    			add_location(svg1, file$f, 6, 3, 680);
-    			attr_dev(div0, "class", "close");
-    			add_location(div0, file$f, 5, 2, 622);
-    			attr_dev(span1, "class", span1_class_value = "toast " + (/*hidden*/ ctx[3] ? "hide" : "show") + " " + /*type*/ ctx[0]);
-    			add_location(span1, file$f, 2, 1, 79);
+    			add_location(svg1, file$f, 7, 2, 628);
+    			attr_dev(div0, "class", div0_class_value = "toast " + (/*hidden*/ ctx[3] ? "hide" : "show") + " " + /*type*/ ctx[0]);
+    			add_location(div0, file$f, 2, 1, 79);
     			add_location(div1, file$f, 1, 0, 50);
     		},
     		l: function claim(nodes) {
@@ -5010,29 +5006,24 @@
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div1, anchor);
-    			append_dev(div1, span1);
-    			append_dev(span1, svg0);
+    			append_dev(div1, div0);
+    			append_dev(div0, svg0);
     			append_dev(svg0, path0);
-    			append_dev(span1, t0);
-    			append_dev(span1, span0);
-    			append_dev(span0, t1);
-    			append_dev(span1, t2);
-    			append_dev(span1, div0);
+    			append_dev(div0, t0);
+    			append_dev(div0, span);
+    			append_dev(span, t1);
+    			append_dev(div0, t2);
     			append_dev(div0, svg1);
     			append_dev(svg1, path1);
     			/*div1_binding*/ ctx[9](div1);
     			if (remount) dispose();
-    			dispose = listen_dev(div0, "click", /*click_handler*/ ctx[8], false, false, false);
+    			dispose = listen_dev(svg1, "click", /*click_handler*/ ctx[8], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*text*/ 2) set_data_dev(t1, /*text*/ ctx[1]);
 
-    			if (dirty & /*type*/ 1) {
-    				attr_dev(svg1, "class", /*type*/ ctx[0]);
-    			}
-
-    			if (dirty & /*hidden, type*/ 9 && span1_class_value !== (span1_class_value = "toast " + (/*hidden*/ ctx[3] ? "hide" : "show") + " " + /*type*/ ctx[0])) {
-    				attr_dev(span1, "class", span1_class_value);
+    			if (dirty & /*hidden, type*/ 9 && div0_class_value !== (div0_class_value = "toast " + (/*hidden*/ ctx[3] ? "hide" : "show") + " " + /*type*/ ctx[0])) {
+    				attr_dev(div0, "class", div0_class_value);
     			}
     		},
     		i: noop,
@@ -5177,7 +5168,7 @@
     class Toast extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:none;top:20px;right:20px;position:fixed;z-index:10001}.toast{width:240px;min-height:80px;background:white;box-shadow:15px 0px 40px 0px rgba(85, 85, 85, 0.3), -15px 0px 40px 0px rgba(85, 85, 85, 0.3);border:3px solid;display:flex;align-items:center;border-radius:3px;word-break:break-word;padding:15px;transition:transform 0.3s, opacity 0.4s}.toast.info{border-color:#459FD0;color:#459FD0}.toast.info svg{fill:#459FD0}.toast.error{border-color:#ED1C24;color:#ED1C24}.toast.error svg{fill:#ED1C24}.toast.success{border-color:#3C9700;color:#3C9700}.toast.success svg{fill:#3C9700}.toast .close{cursor:pointer;margin-left:auto;align-self:flex-start}.toast .close svg{min-width:auto}.toast svg{padding-right:5px;min-width:48px}.toast.hide{opacity:0;transform:translate3d(100%, 0, 0)}.toast.show{opacity:1;transform:translate3d(0, 0, 0)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:none;top:20px;right:20px;position:fixed;z-index:10001}.toast{max-width:330px;box-shadow:15px 0px 40px 0px rgba(85, 85, 85, 0.3), -15px 0px 40px 0px rgba(85, 85, 85, 0.3);border-left:3px solid;display:flex;align-items:center;word-break:break-word;font-size:14px;line-height:20px;padding:15px;transition:transform 0.3s, opacity 0.4s}.toast.info{background:#ECF5FA;border-color:#459FD0}.toast.info svg{fill:#459FD0}.toast.error{background:#FDE8E9;border-color:#ED1C24}.toast.error svg{fill:#ED1C24}.toast.success{background:#EBF4E5;border-color:#3C9700}.toast.success svg{fill:#3C9700}.toast .close{cursor:pointer}.toast svg{padding-right:10px;min-width:48px}.toast.hide{opacity:0;transform:translate3d(100%, 0, 0)}.toast.show{opacity:1;transform:translate3d(0, 0, 0)}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$f, create_fragment$f, safe_not_equal, {
     			type: 0,
@@ -6065,7 +6056,7 @@
     			path = svg_element("path");
     			this.c = noop;
     			add_location(slot, file$l, 2, 1, 102);
-    			attr_dev(path, "d", "M11.8 4.2C12.1 4.5 12.1 5 11.8 5.3L5.6 11.5 20.4 11.5C20.7 11.5 21 11.8 21 12.3 21 12.7 20.7 13 20.4 13L5.6 13 11.8 19.2C12.1 19.5 12.1 20 11.8 20.3 11.5 20.6 11 20.6 10.7 20.3L3.4 13C3.2 12.9 3 12.6 3 12.3 3 12.3 3 12.3 3 12.3 3 12.3 3 12.3 3 12.3L3 12.2C3 12.2 3 12.2 3 12.2L3 12.3C3 11.9 3.2 11.6 3.4 11.5L10.7 4.2C11 3.9 11.5 3.9 11.8 4.2Z");
+    			attr_dev(path, "d", "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
     			add_location(path, file$l, 3, 127, 243);
     			attr_dev(svg, "class", "sort-arrow");
     			attr_dev(svg, "sortstate", /*sortState*/ ctx[0]);
@@ -6175,7 +6166,7 @@
     class GridHeader extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{display:flex;align-items:center}.box .sort-arrow{width:20px;opacity:0;transform:rotate(-90deg);transition:opacity 0.1s;cursor:pointer}.box .sort-arrow:hover{opacity:1}.box .sort-arrow:active{opacity:0.5}.box .sort-arrow[sortstate='asc']{transform:rotate(90deg);opacity:1}.box .sort-arrow[sortstate='asc']:active{opacity:0.5}.box .sort-arrow[sortstate='desc']{opacity:1}.box .sort-arrow[sortstate='desc']:active{opacity:0.5}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{display:flex;align-items:center}.box .sort-arrow{width:20px;opacity:0;transform:rotate(0deg);transition:opacity 0.1s;cursor:pointer}.box .sort-arrow:hover{opacity:1}.box .sort-arrow:active{opacity:0.5}.box .sort-arrow[sortstate='asc']{transform:rotate(180deg);opacity:1}.box .sort-arrow[sortstate='asc']:active{opacity:0.5}.box .sort-arrow[sortstate='desc']{opacity:1}.box .sort-arrow[sortstate='desc']:active{opacity:0.5}</style>`;
     		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, {});
 
     		if (options) {

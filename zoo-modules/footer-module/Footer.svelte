@@ -61,8 +61,8 @@
 	}
 
 	.footer-copyright {
-		font-size: 12px;
-		line-height: 16px;
+		font-size: $p2-size;
+		line-height: $p2-line-height;
 		text-align: left;
 		background: $white;
 		color: $matterhorn;

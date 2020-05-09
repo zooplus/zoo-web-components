@@ -11,7 +11,7 @@
 			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
 				{#if _valueSelected}
-					<svg width="14" height="14" viewBox="0 0 24 24"><path d="M11 12L0 1a1 1 0 011-1l11 11L23 0a1 1 0 011 1L13 12l11 11a1 1 0 01-1 1L12 13 1 24a1 1 0 01-1-1l11-11z"/></svg>
+					<svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>
 				{/if}
 			</div>
 			<span slot="inputelement">
@@ -78,7 +78,7 @@
 		position: absolute;
 		z-index: 2;
 		top: 60px;
-		font-size: 14px;
+		font-size: $p1-size;
 	}
 
 	::slotted(select.error) {

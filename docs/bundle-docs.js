@@ -494,7 +494,7 @@
     class Context extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.context{min-height:80px;display:flex;align-items:center;margin-left:20px;background:white}.back-btn{margin-left:5px}.back-btn a{text-decoration:none;color:white}h2{color:var(--main-color, #3C9700)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.context{min-height:80px;display:flex;align-items:center;margin-left:20px;background:white}.back-btn{margin-left:5px}.back-btn a{text-decoration:none;color:white}h2{color:var(--main-color, #3C9700);font-size:23px}</style>`;
     		init(this, { target: this.shadowRoot }, instance, create_fragment, safe_not_equal, { text: 0, backbtn: 1 });
 
     		if (options) {
@@ -920,7 +920,7 @@
     class Header extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>header{position:relative}.buttons-holder{display:flex;justify-content:flex-end;flex-direction:row;flex-grow:1;padding:0 25px 0 0}.header-button{display:flex;max-width:250px;min-width:140px;margin-left:15px}.header-button zoo-button{align-self:center}@media only screen and (max-width: 544px){.header-button .slotted-span{display:none}}.nav{position:sticky;top:0;color:white;font-size:14px;font-weight:bold;line-height:16px;cursor:pointer}.nav .nav-link{cursor:pointer;display:flex;align-items:center}.nav .nav-link:hover{background:rgba(255, 255, 255, 0.3)}.nav .nav-link a{color:white;text-decoration:none;padding:0 15px}</style>`;
+    		this.shadowRoot.innerHTML = `<style>header{position:relative}.buttons-holder{display:flex;justify-content:flex-end;flex-direction:row;flex-grow:1;padding:0 25px 0 0}.header-button{display:flex;max-width:250px;min-width:140px;margin-left:15px}.header-button zoo-button{align-self:center}@media only screen and (max-width: 544px){.header-button .slotted-span{display:none}}.nav{position:sticky;top:0;color:white;font-size:14px;font-weight:bold;line-height:20px;cursor:pointer}.nav .nav-link{cursor:pointer;display:flex;align-items:center}.nav .nav-link:hover{background:rgba(255, 255, 255, 0.3)}.nav .nav-link a{color:white;text-decoration:none;padding:0 15px}</style>`;
     		init(this, { target: this.shadowRoot }, instance$1, create_fragment$1, safe_not_equal, {});
 
     		if (options) {
@@ -1664,7 +1664,7 @@
     class Form extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.form{flex:1 0 auto;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-template-rows:120px 150px 150px 100px 80px;grid-gap:20px}@media only screen and (max-width: 544px){.form{width:300px;grid-template-columns:auto}}@media only screen and (max-width: 812px){.form{grid-template-rows:120px 150px 120px 120px}}.submit{width:250px;height:50px;margin:0 auto}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.form{flex:1 0 auto;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-template-rows:120px 150px 150px 100px 80px;grid-gap:20px}@media only screen and (max-width: 544px){.form{width:300px;grid-template-columns:auto}}@media only screen and (max-width: 812px){.form{grid-template-rows:120px 150px 120px 120px}}.submit{display:flex;justify-content:center}</style>`;
     		init(this, { target: this.shadowRoot }, instance$2, create_fragment$2, safe_not_equal, {});
 
     		if (options) {
@@ -1740,7 +1740,7 @@
     			div1 = element("div");
     			zoo_button0 = element("zoo-button");
     			span0 = element("span");
-    			span0.textContent = "Here we have a very long text indeed!";
+    			span0.textContent = "Summon toast!";
     			t4 = space();
     			zoo_button1 = element("zoo-button");
     			div0 = element("div");
@@ -1753,7 +1753,7 @@
     			t8 = space();
     			zoo_button3 = element("zoo-button");
     			span2 = element("span");
-    			span2.textContent = "Does nothing";
+    			span2.textContent = "Dummy button that does nothing";
     			t10 = space();
     			zoo_modal = element("zoo-modal");
     			div2 = element("div");
@@ -1796,68 +1796,69 @@
     			add_location(zoo_button0, file$3, 5, 1, 316);
     			set_custom_element_data(zoo_tooltip, "position", "bottom");
     			set_custom_element_data(zoo_tooltip, "text", "Just set disabled attribute on `zoo-button`");
-    			add_location(zoo_tooltip, file$3, 11, 3, 596);
+    			add_location(zoo_tooltip, file$3, 11, 3, 572);
     			attr_dev(div0, "slot", "buttoncontent");
-    			add_location(div0, file$3, 9, 2, 551);
+    			add_location(div0, file$3, 9, 2, 527);
     			set_custom_element_data(zoo_button1, "size", "small");
     			set_custom_element_data(zoo_button1, "disabled", zoo_button1_disabled_value = true);
     			set_custom_element_data(zoo_button1, "class", "top-tooltip");
-    			add_location(zoo_button1, file$3, 8, 1, 485);
+    			add_location(zoo_button1, file$3, 8, 1, 461);
     			attr_dev(span1, "slot", "buttoncontent");
     			attr_dev(span1, "class", "slotted-span");
-    			add_location(span1, file$3, 15, 2, 794);
+    			add_location(span1, file$3, 15, 2, 770);
     			set_custom_element_data(zoo_button2, "type", "hot");
     			set_custom_element_data(zoo_button2, "size", "small");
-    			add_location(zoo_button2, file$3, 14, 1, 718);
+    			add_location(zoo_button2, file$3, 14, 1, 694);
     			attr_dev(span2, "slot", "buttoncontent");
     			attr_dev(span2, "class", "slotted-span");
-    			add_location(span2, file$3, 18, 2, 918);
+    			add_location(span2, file$3, 18, 2, 894);
     			set_custom_element_data(zoo_button3, "type", "hollow");
     			set_custom_element_data(zoo_button3, "size", "small");
-    			add_location(zoo_button3, file$3, 17, 1, 876);
+    			add_location(zoo_button3, file$3, 17, 1, 852);
     			attr_dev(div1, "class", "buttons");
     			add_location(div1, file$3, 4, 0, 293);
     			set_custom_element_data(zoo_feedback, "type", "info");
     			set_custom_element_data(zoo_feedback, "text", "This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.");
-    			add_location(zoo_feedback, file$3, 23, 2, 1119);
-    			add_location(br0, file$3, 27, 2, 1301);
+    			add_location(zoo_feedback, file$3, 23, 2, 1113);
+    			add_location(br0, file$3, 27, 2, 1295);
     			attr_dev(option0, "class", "placeholder");
     			option0.__value = "";
     			option0.value = option0.__value;
     			option0.disabled = true;
     			option0.selected = true;
-    			add_location(option0, file$3, 31, 4, 1409);
+    			add_location(option0, file$3, 31, 4, 1403);
     			option1.__value = "Doge";
     			option1.value = option1.__value;
-    			add_location(option1, file$3, 32, 4, 1482);
+    			add_location(option1, file$3, 32, 4, 1476);
     			option2.__value = "Catz";
     			option2.value = option2.__value;
-    			add_location(option2, file$3, 33, 4, 1508);
+    			add_location(option2, file$3, 33, 4, 1502);
     			option3.__value = "Snek";
     			option3.value = option3.__value;
-    			add_location(option3, file$3, 34, 4, 1534);
+    			add_location(option3, file$3, 34, 4, 1528);
     			attr_dev(select, "slot", "selectelement");
-    			add_location(select, file$3, 30, 3, 1375);
+    			add_location(select, file$3, 30, 3, 1369);
     			set_custom_element_data(zoo_select, "labeltext", "This product is for");
     			set_custom_element_data(zoo_select, "valid", zoo_select_valid_value = true);
-    			add_location(zoo_select, file$3, 28, 2, 1308);
-    			add_location(br1, file$3, 37, 2, 1587);
+    			add_location(zoo_select, file$3, 28, 2, 1302);
+    			add_location(br1, file$3, 37, 2, 1581);
     			attr_dev(input, "slot", "checkboxelement");
     			attr_dev(input, "type", "checkbox");
-    			add_location(input, file$3, 40, 3, 1706);
+    			add_location(input, file$3, 40, 3, 1700);
     			set_custom_element_data(zoo_checkbox, "highlighted", "");
     			set_custom_element_data(zoo_checkbox, "labeltext", "I understand and confirm that ALL of the above statements are true");
-    			add_location(zoo_checkbox, file$3, 38, 2, 1594);
-    			add_location(br2, file$3, 42, 2, 1774);
+    			add_location(zoo_checkbox, file$3, 38, 2, 1588);
+    			add_location(br2, file$3, 42, 2, 1768);
     			attr_dev(span3, "slot", "buttoncontent");
-    			add_location(span3, file$3, 44, 3, 1854);
+    			add_location(span3, file$3, 44, 3, 1871);
+    			set_style(zoo_button4, "margin", "0 auto");
     			set_custom_element_data(zoo_button4, "type", "hot");
     			set_custom_element_data(zoo_button4, "size", "medium");
-    			add_location(zoo_button4, file$3, 43, 2, 1781);
-    			add_location(div2, file$3, 22, 1, 1111);
+    			add_location(zoo_button4, file$3, 43, 2, 1775);
+    			add_location(div2, file$3, 22, 1, 1105);
     			set_style(zoo_modal, "display", "none");
     			set_custom_element_data(zoo_modal, "headertext", "Your basket contains licensed items");
-    			add_location(zoo_modal, file$3, 21, 0, 1009);
+    			add_location(zoo_modal, file$3, 21, 0, 1003);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2029,7 +2030,7 @@
     class Buttons extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.buttons{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-gap:15px;width:90%}@media only screen and (max-width: 850px){.buttons{grid-template-columns:auto}}.slotted-span{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}zoo-tooltip{display:none}.top-tooltip{position:relative;display:inline-block}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.buttons{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-gap:15px;width:90%}@media only screen and (max-width: 850px){.buttons{grid-template-columns:auto}}zoo-tooltip{display:none}.top-tooltip{position:relative;display:inline-block}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}</style>`;
     		init(this, { target: this.shadowRoot }, instance$3, create_fragment$3, safe_not_equal, {});
 
     		if (options) {

@@ -25,7 +25,7 @@
 		display: flex;
 		justify-content: end;
 		padding: 10px 15px 10px 0;
-		font-size: 14px;
+		font-size: $p1-size;
 
 		.paging {
 			display: flex;
@@ -87,7 +87,7 @@
 			}
 
 			&.active {
-				background: $main-color-ultra-light;
+				background: $main-color-ultralight;
 				color: var(--main-color, #{$main-color});
 			}
 		}

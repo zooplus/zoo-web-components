@@ -13,7 +13,9 @@
 			{/if}
 			{#if _valueSelected}
 				<div class="close" on:click="{e => handleCrossClick()}">
-					<svg width="14" height="14" viewBox="0 0 24 24"><path d="M10.94 12L.22 1.28A.75.75 0 0 1 1.28.22L12 10.94 22.72.22a.75.75 0 0 1 1.06 1.06L13.06 12l10.72 10.72a.75.75 0 0 1-1.06 1.06L12 13.06 1.28 23.78a.75.75 0 0 1-1.06-1.06L10.94 12z"/></svg>
+					<svg width="20" height="20" viewBox="0 0 24 24">
+						<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
+					</svg>
 				</div>
 			{/if}
 		{/if}
@@ -36,6 +38,7 @@
 		display: inline-block;
 		cursor: pointer;
 		right: 28px;
+		top: 14px;
 	}
 
 	.arrows {
@@ -53,7 +56,8 @@
 		-moz-appearance: none;
 		width: 100%;
 		background: white;
-		line-height: 20px;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
 		padding: 13px 40px 13px 15px;
 		border: 1px solid;
 		border-color: $border-color;
@@ -61,7 +65,6 @@
 		color: $matterhorn;
 		outline: none;
 		box-sizing: border-box;
-		font-size: 14px;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;

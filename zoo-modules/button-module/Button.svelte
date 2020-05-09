@@ -9,7 +9,8 @@
 	@import "variables";
 
 	:host {
-		width: 100%;
+		display: block;
+		max-width: 330px;
 		contain: layout;
 	}
 
@@ -29,9 +30,11 @@
 			cursor: pointer;
 			width: 100%;
 			height: 100%;
-			font-size: 14px;
+			font-size: $p1-size;
 			font-weight: bold;
 			text-align: center;
+			padding: 0 20px;
+			line-height: $p1-line-height;
 
 			&.hollow {
 				border: 2px solid var(--main-color, #{$main-color});
@@ -86,22 +89,13 @@
 			}
 
 			&.small {
-				font-size: 14px;
-				line-height: 36px !important;
-				padding: 0 8px;
+				min-height: 36px;
 			}
 
 			&.medium {
-				font-size: 14px;
-				line-height: 46px !important;
-				padding: 0 12px;
+				min-height: 46px;
 			}
 
-			&.big {
-				font-size: 16px;
-				line-height: 56px !important;
-				padding: 0 16px;
-			}
 			// getting any first direct child
 			::slotted(*:first-child) {
 				width: 100%;
@@ -119,6 +113,6 @@
 
 <script>
 	export let type = "cold"; //'hot', 'hollow'
-	export let size = "small"; //'medium', 'big',
+	export let size = "small"; //'medium'
 	export let disabled = false;
 </script>

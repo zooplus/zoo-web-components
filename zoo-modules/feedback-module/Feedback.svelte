@@ -9,9 +9,8 @@
 
 	.box {
 		box-sizing: border-box;
-		background: $anti-flash-white;
-		color: $matterhorn;
-		font-size: 14px;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
 		border-left: 3px solid;
 		display: flex;
 		align-items: center;
@@ -22,27 +21,30 @@
 		padding: 5px 0;
 
 		&.info {
+			background: $info-color-ultralight;
 			border-color: $info-color;
 
 			svg {fill: $info-color;}
 		}
 
 		&.error {
+			background: $warning-color-ultralight;
 			border-color: $error-text-color;
 
 			svg {fill: $error-text-color;}
 		}
 
 		&.success {
+			background: $main-color-ultralight;
 			border-color: $main-color;
 
 			svg {fill: $main-color;}
 		}
 
 		svg {
-			min-width: 30px;
-			min-height: 30px;
-			padding: 0 15px;
+			min-width: 24px;
+			min-height: 24px;
+			padding: 0 10px 0 15px;
 		}
 
 		.text {

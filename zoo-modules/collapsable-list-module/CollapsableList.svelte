@@ -40,8 +40,8 @@
 			align-items: center;
 			height: 8px;
 			padding: 20px 0;
-			font-size: 14px;
-			line-height: 20px;
+			font-size: $p1-size;
+			line-height: $p1-line-height;
 			color: var(--main-color, #{$main-color});
 			font-weight: bold;
 			cursor: pointer;

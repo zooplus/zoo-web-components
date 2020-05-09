@@ -9,6 +9,7 @@
 </div>
 
 <style type='text/scss'>
+	@import "variables";
 	:host {
 		display: flex;
 		position: absolute;
@@ -56,7 +57,7 @@
 
 		.tooltip-content {
 			padding: 10px;
-			font-size: 15px;
+			font-size: $p1-size;
 			position: relative;
 			z-index: 1;
 			background: white;

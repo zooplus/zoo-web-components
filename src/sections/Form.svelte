@@ -110,9 +110,8 @@
 	}
 
 	.submit {
-		width: 250px;
-		height: 50px;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
 	}
 </style>
 

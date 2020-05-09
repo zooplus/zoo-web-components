@@ -17,7 +17,7 @@
 
 	.info, .error {
 		padding: 0 2px 2px 0;
-		font-size: 12px;
+		font-size: $p2-size;
 		color: $matterhorn;
 		display: flex;
 		align-items: center;

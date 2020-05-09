@@ -15,6 +15,9 @@
 	<zoo-button type="hot" size="small" on:click="{() => modal.openModal()}">
 		<span slot="buttoncontent" class="slotted-span">Show modal</span>
 	</zoo-button>
+	<zoo-button type="hollow" size="small">
+		<span slot="buttoncontent" class="slotted-span">Does nothing</span>
+	</zoo-button>
 </div> 
 <zoo-modal style="display: none" headertext="Your basket contains licensed items" bind:this={modal}>
 	<div>

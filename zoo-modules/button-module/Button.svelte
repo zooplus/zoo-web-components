@@ -23,11 +23,9 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
-			background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
 			color: $white;
 			border: 0;
-			border-radius: 3px;
+			border-radius: 5px;
 			cursor: pointer;
 			width: 100%;
 			height: 100%;
@@ -35,13 +33,10 @@
 			font-weight: bold;
 			text-align: center;
 
-			&:hover, &:focus {
-				background: var(--main-color, #{$main-color});
-			}
-
-			&:active {
-				background: var(--main-color-dark, #{$main-color-dark});
-				transform: translateY(1px);
+			&.hollow {
+				border: 2px solid var(--main-color, #{$main-color});
+				color: var(--main-color, #{$main-color});
+				background: white;
 			}
 
 			&.hot {
@@ -54,6 +49,24 @@
 
 				&:active {
 					background: var(--secondary-color-dark, #{$secondary-color-dark});
+				}
+			}
+
+			&.cold {
+				background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+				background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+			}
+
+			&.cold, &.hollow {
+				&:hover, &:focus {
+					background: var(--main-color, #{$main-color});
+					color: white;
+				}
+
+				&:active {
+					background: var(--main-color-dark, #{$main-color-dark});
+					transform: translateY(1px);
+					color: white;
 				}
 			}
 
@@ -100,7 +113,7 @@
 </style>
 
 <script>
-	export let type = "cold"; //'hot'
+	export let type = "cold"; //'hot', 'hollow'
 	export let size = "small"; //'medium', 'big',
 	export let disabled = false;
 </script>

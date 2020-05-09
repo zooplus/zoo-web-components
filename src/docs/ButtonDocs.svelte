@@ -7,10 +7,10 @@
 			<zoo-collapsable-list-item slot="item0">
 				<ul>
 					<li>
-						<b>type</b> - accepts following values: <b>cold</b>, <b>hot</b>. Default is <b>cold</b>;
+						<b>type</b> - accepts following values: <b>cold</b>, <b>hot</b>, <b>hollow</b>. Default is <b>cold</b>;
 					</li>
 					<li>
-						<b>size</b> - accepts following values: <b>smal</b>, <b>medium</b>, <b>big</b>. Default is <b>small</b>;
+						<b>size</b> - accepts following values: <b>small</b>, <b>medium</b>, <b>big</b>. Default is <b>small</b>;
 					</li>
 					<li>
 						<b>disabled</b> - whether the button should be disabled or not.

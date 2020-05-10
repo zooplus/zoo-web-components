@@ -29,7 +29,7 @@
 
 	.box {
 		pointer-events: initial;
-		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
+		box-shadow: $box-shadow;
 		border-radius: $input-border-radius;
 		position: absolute;
 		transform: translate(0%, -50%);
@@ -79,7 +79,7 @@
 				width: 16px;
 				height: 16px;
 				position: absolute;
-				box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: $box-shadow;
 				top: -8px;
 				transform: rotate(45deg);
 				z-index: 0;

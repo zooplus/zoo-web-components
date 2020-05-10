@@ -194,7 +194,7 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		box-shadow: 15px 0px 40px 0px rgba(85,85,85, 0.3), -15px 0px 40px 0px rgba(85,85,85, 0.3);
+		box-shadow: $box-shadow;
 	}
 
 	.page-content {

@@ -24,7 +24,7 @@
 
 	.toast {
 		max-width: 330px;
-		box-shadow: 15px 0px 40px 0px rgba(85,85,85, 0.3), -15px 0px 40px 0px rgba(85,85,85, 0.3);
+		box-shadow: $box-shadow-strong;
 		border-left: 3px solid;
 		display: flex;
 		align-items: center;

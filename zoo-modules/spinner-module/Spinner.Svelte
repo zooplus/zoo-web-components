@@ -12,11 +12,12 @@
 		top: 0;
 		right: 0;
 		bottom: 0;
-		height: 150px;
-		width: 150px;
+		height: 140px;
+		width: 140px;
 		margin: auto;
 		transform-origin: center center;
 		animation: rotate 2s linear infinite;
+		z-index: 100000;
 
 		.path {
 			animation: dash 1.5s ease-in-out infinite;

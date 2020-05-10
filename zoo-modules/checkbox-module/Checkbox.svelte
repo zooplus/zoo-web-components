@@ -28,14 +28,14 @@
 			border: $stroked-box-grey-light;
 			border-radius: $input-border-radius;
 			padding: 12px 15px;
-		}
 
-		&.clicked {
-			border: $stroked-box-success-bold;
-		}
+			&.clicked {
+				border: $stroked-box-success-bold;
+			}
 
-		&.error {
-			border: $stroked-box-warning-bold;
+			&.error {
+				border: $stroked-box-warning-bold;
+			}
 		}
 
 		&.disabled {

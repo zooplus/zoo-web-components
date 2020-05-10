@@ -2416,6 +2416,7 @@
     	let svg;
     	let path;
     	let t0;
+    	let slot;
     	let span;
     	let t1;
     	let div_class_value;
@@ -2426,11 +2427,11 @@
     			svg = svg_element("svg");
     			path = svg_element("path");
     			t0 = space();
+    			slot = element("slot");
     			span = element("span");
     			t1 = text(/*text*/ ctx[1]);
     			this.c = noop;
-    			attr_dev(path, "d", "M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z");
-    			attr_dev(path, "fill-rule", "evenodd");
+    			attr_dev(path, "d", "M12 15.75a1.125 1.125 0 11.001 2.25A1.125 1.125 0 0112 15.75zm.75-2.25a.75.75 0 11-1.5 0V5.25a.75.75 0 111.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z");
     			add_location(path, file$7, 3, 2, 145);
     			attr_dev(svg, "class", /*type*/ ctx[0]);
     			attr_dev(svg, "width", "30");
@@ -2438,7 +2439,8 @@
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			add_location(svg, file$7, 2, 1, 79);
     			attr_dev(span, "class", "text");
-    			add_location(span, file$7, 5, 1, 562);
+    			add_location(span, file$7, 6, 2, 556);
+    			add_location(slot, file$7, 5, 1, 547);
     			attr_dev(div, "class", div_class_value = "box " + /*type*/ ctx[0]);
     			add_location(div, file$7, 1, 0, 53);
     		},
@@ -2450,7 +2452,8 @@
     			append_dev(div, svg);
     			append_dev(svg, path);
     			append_dev(div, t0);
-    			append_dev(div, span);
+    			append_dev(div, slot);
+    			append_dev(slot, span);
     			append_dev(span, t1);
     		},
     		p: function update(ctx, [dirty]) {
@@ -2516,7 +2519,7 @@
     class Feedback extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid;display:flex;align-items:center;border-bottom-right-radius:3px;border-top-right-radius:3px;width:100%;height:100%;padding:5px 0}.box.info{background:var(--info-ultralight, #ECF5FA);border-color:var(--info-mid, #459FD0)}.box.info svg{fill:var(--info-mid, #459FD0)}.box.error{background:var(--warning-ultralight, #FDE8E9);border-color:var(--warning-mid, #ED1C24)}.box.error svg{fill:var(--warning-mid, #ED1C24)}.box.success{background:var(--primary-ultralight, #EBF4E5);border-color:var(--primary-mid, #3C9700)}.box.success svg{fill:var(--primary-mid, #3C9700)}.box svg{min-width:24px;min-height:24px;padding:0 10px 0 15px}.box .text{display:flex;flex-direction:row;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid;display:flex;align-items:center;width:100%;height:100%;padding:5px 0}.box.info{background:var(--info-ultralight, #ECF5FA);border-color:var(--info-mid, #459FD0)}.box.info svg{fill:var(--info-mid, #459FD0)}.box.error{background:var(--warning-ultralight, #FDE8E9);border-color:var(--warning-mid, #ED1C24)}.box.error svg{fill:var(--warning-mid, #ED1C24)}.box.success{background:var(--primary-ultralight, #EBF4E5);border-color:var(--primary-mid, #3C9700)}.box.success svg{fill:var(--primary-mid, #3C9700)}.box svg{min-width:24px;min-height:24px;padding:0 10px 0 15px}.box .text{display:flex;flex-direction:row;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style>`;
     		init(this, { target: this.shadowRoot }, instance$7, create_fragment$7, safe_not_equal, { type: 0, text: 1 });
 
     		if (options) {
@@ -2666,7 +2669,7 @@
     class Tooltip extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:flex;position:absolute;width:100%;height:100%;z-index:10000;left:0;bottom:0;pointer-events:none;line-height:initial;font-size:initial;font-weight:initial;contain:layout;justify-content:center}.box{pointer-events:initial;box-shadow:0 4px 15px 0 rgba(0, 0, 0, 0.1);border-radius:5px;position:absolute;transform:translate(0%, -50%)}.box.top{bottom:calc(100% + 11px);right:50%;transform:translate3d(50%, 0, 0)}.box.right{left:calc(100% + 10px);top:50%}.box.bottom{top:100%;right:50%;transform:translate3d(50%, 20%, 0)}.box.left{right:calc(100% + 11px);top:50%}.box .tooltip-content{padding:10px;font-size:12px;line-height:14px;position:relative;z-index:1;background:white;border-radius:5px}.box .tooltip-content .text{white-space:pre;color:black}.box .tip{position:absolute}.box .tip:after{content:"";width:16px;height:16px;position:absolute;box-shadow:0 4px 15px 0 rgba(0, 0, 0, 0.1);top:-8px;transform:rotate(45deg);z-index:0;background:white}.box .tip.top,.box .tip.bottom{right:calc(50% + 8px)}.box .tip.right{bottom:50%;left:-8px}.box .tip.bottom{top:0}.box .tip.left{bottom:50%;right:8px}@keyframes fadeTooltipIn{from{opacity:0}to{opacity:1}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:flex;position:absolute;width:100%;height:100%;z-index:10000;left:0;bottom:0;pointer-events:none;line-height:initial;font-size:initial;font-weight:initial;contain:layout;justify-content:center}.box{pointer-events:initial;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);border-radius:5px;position:absolute;transform:translate(0%, -50%)}.box.top{bottom:calc(100% + 11px);right:50%;transform:translate3d(50%, 0, 0)}.box.right{left:calc(100% + 10px);top:50%}.box.bottom{top:100%;right:50%;transform:translate3d(50%, 20%, 0)}.box.left{right:calc(100% + 11px);top:50%}.box .tooltip-content{padding:10px;font-size:12px;line-height:14px;position:relative;z-index:1;background:white;border-radius:5px}.box .tooltip-content .text{white-space:pre;color:black}.box .tip{position:absolute}.box .tip:after{content:"";width:16px;height:16px;position:absolute;box-shadow:0 4px 15px 0 rgba(0, 0, 0, 0.1);top:-8px;transform:rotate(45deg);z-index:0;background:white}.box .tip.top,.box .tip.bottom{right:calc(50% + 8px)}.box .tip.right{bottom:50%;left:-8px}.box .tip.bottom{top:0}.box .tip.left{bottom:50%;right:8px}@keyframes fadeTooltipIn{from{opacity:0}to{opacity:1}}</style>`;
     		init(this, { target: this.shadowRoot }, instance$8, create_fragment$8, safe_not_equal, { text: 0, position: 1 });
 
     		if (options) {
@@ -5725,13 +5728,13 @@
     			slot0 = element("slot");
     			attr_dev(slot0, "name", "pagesizeselector");
     			attr_dev(slot0, "slot", "pagesizeselector");
-    			add_location(slot0, file$k, 10, 4, 385);
+    			add_location(slot0, file$k, 10, 4, 407);
     			set_custom_element_data(zoo_grid_paginator, "class", "paginator");
     			set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
     			set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
-    			add_location(zoo_grid_paginator, file$k, 9, 3, 317);
+    			add_location(zoo_grid_paginator, file$k, 9, 3, 339);
     			attr_dev(slot1, "name", "paginator");
-    			add_location(slot1, file$k, 8, 2, 290);
+    			add_location(slot1, file$k, 8, 2, 312);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, slot1, anchor);
@@ -5787,14 +5790,14 @@
     			if (if_block) if_block.c();
     			this.c = noop;
     			attr_dev(slot0, "name", "headercell");
-    			add_location(slot0, file$k, 3, 2, 146);
+    			add_location(slot0, file$k, 3, 2, 168);
     			attr_dev(div0, "class", "header-row");
     			toggle_class(div0, "sticky", /*stickyheader*/ ctx[2]);
     			add_location(div0, file$k, 2, 1, 89);
     			attr_dev(slot1, "name", "row");
-    			add_location(slot1, file$k, 5, 1, 214);
+    			add_location(slot1, file$k, 5, 1, 236);
     			attr_dev(slot2, "name", "norecords");
-    			add_location(slot2, file$k, 6, 1, 240);
+    			add_location(slot2, file$k, 6, 1, 262);
     			attr_dev(div1, "class", "box");
     			add_location(div1, file$k, 1, 0, 49);
     		},
@@ -5805,14 +5808,15 @@
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
     			append_dev(div0, slot0);
-    			/*slot0_binding*/ ctx[6](slot0);
+    			/*slot0_binding*/ ctx[9](slot0);
+    			/*div0_binding*/ ctx[10](div0);
     			append_dev(div1, t0);
     			append_dev(div1, slot1);
     			append_dev(div1, t1);
     			append_dev(div1, slot2);
     			append_dev(div1, t2);
     			if (if_block) if_block.m(div1, null);
-    			/*div1_binding*/ ctx[7](div1);
+    			/*div1_binding*/ ctx[11](div1);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*stickyheader*/ 4) {
@@ -5836,9 +5840,10 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
-    			/*slot0_binding*/ ctx[6](null);
+    			/*slot0_binding*/ ctx[9](null);
+    			/*div0_binding*/ ctx[10](null);
     			if (if_block) if_block.d();
-    			/*div1_binding*/ ctx[7](null);
+    			/*div1_binding*/ ctx[11](null);
     		}
     	};
 
@@ -5854,26 +5859,21 @@
     }
 
     function instance$k($$self, $$props, $$invalidate) {
-    	let { currentpage } = $$props;
-    	let { maxpages } = $$props;
+    	let { currentpage = "" } = $$props;
+    	let { maxpages = "" } = $$props;
     	let stickyheader = false;
     	let gridRoot;
     	let headerCellSlot;
     	let paginator = false;
+    	let sortableHeaders = [];
+    	let headerRow;
 
     	onMount(() => {
     		headerCellSlot.addEventListener("slotchange", () => {
     			const host = gridRoot.getRootNode().host;
     			const headers = headerCellSlot.assignedNodes();
     			gridRoot.style.setProperty("--grid-columns-num", headers.length);
-
-    			for (const header of headers) {
-    				header.classList.add("header-cell");
-
-    				if (header.hasAttribute("sortable")) {
-    					header.innerHTML = "<zoo-grid-header>" + header.innerHTML + "</zoo-grid-header>";
-    				}
-    			}
+    			handleHeaders(headers, host);
 
     			if (host.hasAttribute("paginator")) {
     				$$invalidate(5, paginator = true);
@@ -5884,6 +5884,34 @@
     			}
     		});
     	});
+
+    	const handleHeaders = (headers, host) => {
+    		for (let header of headers) {
+    			header.classList.add("header-cell");
+
+    			if (header.hasAttribute("sortable")) {
+    				header.innerHTML = "<zoo-grid-header>" + header.innerHTML + "</zoo-grid-header>";
+
+    				header.addEventListener("sortChange", e => {
+    					e.stopPropagation();
+    					const sortState = e.detail.sortState;
+    					sortableHeaders.forEach(h => h.discardSort());
+    					header.children[0].setSort(sortState);
+
+    					host.dispatchEvent(new CustomEvent("sortChange",
+    					{
+    							detail: {
+    								property: header.getAttribute("sortableproperty"),
+    								sortState
+    							},
+    							bubbles: true
+    						}));
+    				});
+
+    				sortableHeaders.push(header.children[0]);
+    			}
+    		}
+    	};
 
     	const writable_props = ["currentpage", "maxpages"];
 
@@ -5897,6 +5925,12 @@
     	function slot0_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
     			$$invalidate(4, headerCellSlot = $$value);
+    		});
+    	}
+
+    	function div0_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(6, headerRow = $$value);
     		});
     	}
 
@@ -5918,7 +5952,10 @@
     		stickyheader,
     		gridRoot,
     		headerCellSlot,
-    		paginator
+    		paginator,
+    		sortableHeaders,
+    		headerRow,
+    		handleHeaders
     	});
 
     	$$self.$inject_state = $$props => {
@@ -5928,6 +5965,8 @@
     		if ("gridRoot" in $$props) $$invalidate(3, gridRoot = $$props.gridRoot);
     		if ("headerCellSlot" in $$props) $$invalidate(4, headerCellSlot = $$props.headerCellSlot);
     		if ("paginator" in $$props) $$invalidate(5, paginator = $$props.paginator);
+    		if ("sortableHeaders" in $$props) sortableHeaders = $$props.sortableHeaders;
+    		if ("headerRow" in $$props) $$invalidate(6, headerRow = $$props.headerRow);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -5941,7 +5980,11 @@
     		gridRoot,
     		headerCellSlot,
     		paginator,
+    		headerRow,
+    		sortableHeaders,
+    		handleHeaders,
     		slot0_binding,
+    		div0_binding,
     		div1_binding
     	];
     }
@@ -5949,18 +5992,8 @@
     class Grid extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{max-height:inherit;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{grid-column:span var(--grid-columns-num)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{max-height:inherit;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{display:block;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}</style>`;
     		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1 });
-    		const { ctx } = this.$$;
-    		const props = this.attributes;
-
-    		if (/*currentpage*/ ctx[0] === undefined && !("currentpage" in props)) {
-    			console.warn("<zoo-grid> was created without expected prop 'currentpage'");
-    		}
-
-    		if (/*maxpages*/ ctx[1] === undefined && !("maxpages" in props)) {
-    			console.warn("<zoo-grid> was created without expected prop 'maxpages'");
-    		}
 
     		if (options) {
     			if (options.target) {
@@ -6039,9 +6072,9 @@
     			append_dev(div, t);
     			append_dev(div, svg);
     			append_dev(svg, path);
-    			/*div_binding*/ ctx[5](div);
+    			/*div_binding*/ ctx[7](div);
     			if (remount) dispose();
-    			dispose = listen_dev(svg, "click", /*click_handler*/ ctx[4], false, false, false);
+    			dispose = listen_dev(svg, "click", /*click_handler*/ ctx[6], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*sortState*/ 1) {
@@ -6052,7 +6085,7 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*div_binding*/ ctx[5](null);
+    			/*div_binding*/ ctx[7](null);
     			dispose();
     		}
     	};
@@ -6069,7 +6102,7 @@
     }
 
     function instance$l($$self, $$props, $$invalidate) {
-    	let sortState = "none";
+    	let sortState;
     	let gridHeaderRoot;
     	let host;
 
@@ -6078,15 +6111,23 @@
     	});
 
     	const handleSortClick = () => {
-    		if (sortState == "none") {
+    		if (!sortState) {
     			$$invalidate(0, sortState = "desc");
     		} else if (sortState == "desc") {
     			$$invalidate(0, sortState = "asc");
     		} else if ($$invalidate(0, sortState = "asc")) {
-    			$$invalidate(0, sortState = "none");
+    			$$invalidate(0, sortState = undefined);
     		}
 
-    		host.dispatchEvent(new Event("sortChange", { sortState }));
+    		host.dispatchEvent(new CustomEvent("sortChange", { detail: { sortState }, bubbles: true }));
+    	};
+
+    	const discardSort = () => {
+    		$$invalidate(0, sortState = undefined);
+    	};
+
+    	const setSort = newSortState => {
+    		$$invalidate(0, sortState = newSortState);
     	};
 
     	const writable_props = [];
@@ -6110,7 +6151,9 @@
     		sortState,
     		gridHeaderRoot,
     		host,
-    		handleSortClick
+    		handleSortClick,
+    		discardSort,
+    		setSort
     	});
 
     	$$self.$inject_state = $$props => {
@@ -6123,20 +6166,54 @@
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [sortState, gridHeaderRoot, handleSortClick, host, click_handler, div_binding];
+    	return [
+    		sortState,
+    		gridHeaderRoot,
+    		handleSortClick,
+    		discardSort,
+    		setSort,
+    		host,
+    		click_handler,
+    		div_binding
+    	];
     }
 
     class GridHeader extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{display:flex;align-items:center}.box .sort-arrow{width:20px;opacity:0;transform:rotate(0deg);transition:opacity 0.1s;cursor:pointer}.box .sort-arrow:hover{opacity:1}.box .sort-arrow:active{opacity:0.5}.box .sort-arrow[sortstate='asc']{transform:rotate(180deg);opacity:1}.box .sort-arrow[sortstate='asc']:active{opacity:0.5}.box .sort-arrow[sortstate='desc']{opacity:1}.box .sort-arrow[sortstate='desc']:active{opacity:0.5}</style>`;
-    		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, {});
+    		this.shadowRoot.innerHTML = `<style>.box{display:flex;align-items:center}.box .sort-arrow{width:20px;opacity:0;transform:rotate(0deg);transition:opacity 0.1s;cursor:pointer;margin-left:5px;border-radius:5px}.box .sort-arrow:hover{opacity:1;background:#F2F3F4}.box .sort-arrow[sortstate='asc']{transform:rotate(180deg)}.box .sort-arrow[sortstate='desc'],.box .sort-arrow[sortstate='asc']{opacity:1;background:#F2F3F4}.box .sort-arrow:active,.box .sort-arrow[sortstate='desc']:active,.box .sort-arrow[sortstate='asc']:active{opacity:0.5}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, { discardSort: 3, setSort: 4 });
 
     		if (options) {
     			if (options.target) {
     				insert_dev(options.target, this, options.anchor);
     			}
+
+    			if (options.props) {
+    				this.$set(options.props);
+    				flush();
+    			}
     		}
+    	}
+
+    	static get observedAttributes() {
+    		return ["discardSort", "setSort"];
+    	}
+
+    	get discardSort() {
+    		return this.$$.ctx[3];
+    	}
+
+    	set discardSort(value) {
+    		throw new Error("<zoo-grid-header>: Cannot set read-only property 'discardSort'");
+    	}
+
+    	get setSort() {
+    		return this.$$.ctx[4];
+    	}
+
+    	set setSort(value) {
+    		throw new Error("<zoo-grid-header>: Cannot set read-only property 'setSort'");
     	}
     }
 
@@ -6437,8 +6514,8 @@
     }
 
     function instance$m($$self, $$props, $$invalidate) {
-    	let { maxpages } = $$props;
-    	let { currentpage } = $$props;
+    	let { maxpages = "" } = $$props;
+    	let { currentpage = "" } = $$props;
     	let gridPaginatorRoot;
     	let disablePrev = true;
     	let disableNext = true;
@@ -6578,16 +6655,6 @@
     		super();
     		this.shadowRoot.innerHTML = `<style>.box{display:flex;justify-content:end;padding:10px 15px 10px 0;font-size:14px}.box .paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.box .paging.hidden{opacity:0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.box .btn:active{opacity:0.5}.box .btn.hidden{display:none}.box .btn.next{margin-left:5px}.box .btn.next svg{transform:rotate(-90deg)}.box .btn.prev{margin-right:10px}.box .btn.prev svg{transform:rotate(90deg)}.box svg{fill:#555555}.box .nav-arrow path{fill:var(--primary-mid, #3C9700)}.box .page-element{cursor:pointer}.box .page-element:hover{background:#F2F3F4}.box .page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.box .page-element,.box .page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.box .page-element-dots{display:none}.box .page-element+.page-element-dots{display:flex}</style>`;
     		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, { maxpages: 1, currentpage: 0 });
-    		const { ctx } = this.$$;
-    		const props = this.attributes;
-
-    		if (/*maxpages*/ ctx[1] === undefined && !("maxpages" in props)) {
-    			console.warn("<zoo-grid-paginator> was created without expected prop 'maxpages'");
-    		}
-
-    		if (/*currentpage*/ ctx[0] === undefined && !("currentpage" in props)) {
-    			console.warn("<zoo-grid-paginator> was created without expected prop 'currentpage'");
-    		}
 
     		if (options) {
     			if (options.target) {

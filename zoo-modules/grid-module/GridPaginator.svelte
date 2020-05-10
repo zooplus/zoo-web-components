@@ -115,8 +115,8 @@
 
 <script>
 	import { afterUpdate, beforeUpdate, onMount } from 'svelte';
-	export let maxpages;
-	export let currentpage;
+	export let maxpages = '';
+	export let currentpage = '';
 	let gridPaginatorRoot;
 	let disablePrev = true;
 	let disableNext = true;

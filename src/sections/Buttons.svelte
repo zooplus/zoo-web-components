@@ -41,7 +41,7 @@
 			<input slot="checkboxelement" type="checkbox"/>
 		</zoo-checkbox>
 		<br>
-		<zoo-button style="margin: 0 auto" type="hot" size="medium" on:click="{() => closeModal()}">
+		<zoo-button style="margin: 0 auto" type="hollow" size="medium" on:click="{() => closeModal()}">
 			<span slot="buttoncontent">Add to cart</span>
 		</zoo-button>
 	</div>

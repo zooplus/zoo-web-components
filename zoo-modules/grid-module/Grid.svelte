@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-grid"></svelte:options>
 <div class="box" bind:this={gridRoot}>
-	<div class="header-row" class:sticky="{stickyheader}">
+	<div class="header-row" class:sticky="{stickyheader}" bind:this={headerRow}>
 		<slot name="headercell" bind:this={headerCellSlot}></slot>
 	</div>
 	<slot name="row"></slot>
@@ -66,30 +66,32 @@
 		}
 
 		.paginator {
+			display: block;
+			position: sticky;
 			grid-column: span var(--grid-columns-num);
+			bottom: 0;
+			background: $white;
 		}
 	}
 </style>
 
 <script>
 	import { onMount } from 'svelte';
-	export let currentpage;
-	export let maxpages;
+	export let currentpage = '';
+	export let maxpages = '';
 	let stickyheader = false;
 	let gridRoot;
 	let headerCellSlot;
 	let paginator = false;
+	let sortableHeaders = [];
+	let headerRow;
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
 			const host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			gridRoot.style.setProperty('--grid-columns-num', headers.length);
-			for (const header of headers) {
-				header.classList.add('header-cell');
-				if (header.hasAttribute('sortable')) {
-					header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
-				}
-			}
+			handleHeaders(headers, host);
+			
 			if (host.hasAttribute('paginator')) {
 				paginator = true;
 			}
@@ -98,5 +100,24 @@
 			}
 		});
 	});
+
+	const handleHeaders = (headers, host) => {
+		for (let header of headers) {
+			header.classList.add('header-cell');
+			if (header.hasAttribute('sortable')) {
+				header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
+				header.addEventListener("sortChange", (e) => {
+					e.stopPropagation();
+					const sortState = e.detail.sortState;
+					sortableHeaders.forEach(h => h.discardSort());
+					header.children[0].setSort(sortState);
+					host.dispatchEvent(new CustomEvent('sortChange', {
+						detail: {property: header.getAttribute('sortableproperty'), sortState: sortState}, bubbles: true
+					}));
+				});
+				sortableHeaders.push(header.children[0]);
+			}
+		}
+	}
 	
 </script>

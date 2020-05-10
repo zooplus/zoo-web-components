@@ -29,7 +29,7 @@
 
 	.box {
 		pointer-events: initial;
-		box-shadow: $box-shadow;
+		box-shadow: $box-shadow-strong;
 		border-radius: $input-border-radius;
 		position: absolute;
 		transform: translate(0%, -50%);

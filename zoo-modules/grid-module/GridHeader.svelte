@@ -5,6 +5,8 @@
 </div>
 
 <style type='text/scss'>
+	@import "variables";
+
 	.box {
 		display: flex;
 		align-items: center;
@@ -15,28 +17,25 @@
 			transform: rotate(0deg);
 			transition: opacity 0.1s;
 			cursor: pointer;
+			margin-left: 5px;
+			border-radius: $input-border-radius;
 
 			&:hover {
 				opacity: 1;
-			}
-
-			&:active {
-				opacity: 0.5;
+				background: $grey-ultralight;
 			}
 		}
 
 		.sort-arrow[sortstate='asc'] {
 			transform: rotate(180deg);
-			opacity: 1;
-
-			&:active {
-				opacity: 0.5;
-			}
 		}
 
-		.sort-arrow[sortstate='desc'] {
+		.sort-arrow[sortstate='desc'], .sort-arrow[sortstate='asc'] {
 			opacity: 1;
+			background: $grey-ultralight;
+		}
 
+		.sort-arrow, .sort-arrow[sortstate='desc'], .sort-arrow[sortstate='asc'] {
 			&:active {
 				opacity: 0.5;
 			}
@@ -47,7 +46,7 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let sortState = 'none';
+	let sortState;
 	let gridHeaderRoot;
 	let host;
 
@@ -56,14 +55,22 @@
 	});
 
 	const handleSortClick = () => {
-		if (sortState == 'none') {
+		if (!sortState) {
 			sortState = 'desc';
 		} else if (sortState == 'desc') {
 			sortState = 'asc';
 		} else if (sortState = 'asc') {
-			sortState = 'none';
+			sortState = undefined;
 		}
-		host.dispatchEvent(new Event('sortChange', {sortState: sortState}));
+		host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: sortState}, bubbles: true}));
+	}
+
+	export const discardSort = () => {
+		sortState = undefined;
+	}
+
+	export const setSort = newSortState => {
+		sortState = newSortState;
 	}
 
 </script>

@@ -1846,9 +1846,9 @@
     			add_location(zoo_checkbox, file$3, 38, 2, 1588);
     			add_location(br2, file$3, 42, 2, 1768);
     			attr_dev(span3, "slot", "buttoncontent");
-    			add_location(span3, file$3, 44, 3, 1871);
+    			add_location(span3, file$3, 44, 3, 1874);
     			set_style(zoo_button4, "margin", "0 auto");
-    			set_custom_element_data(zoo_button4, "type", "hot");
+    			set_custom_element_data(zoo_button4, "type", "hollow");
     			set_custom_element_data(zoo_button4, "size", "medium");
     			add_location(zoo_button4, file$3, 43, 2, 1775);
     			add_location(div2, file$3, 22, 1, 1105);

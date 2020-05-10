@@ -49,7 +49,6 @@
 <script>
 	import { onMount } from 'svelte';
 	let list;
-	let inputSlotExample = `<slot name="inputelement"></slot>`;
 	let example = `<div style="width: 250px;">\n  <zoo-link href="https://google.com" text="Link to google" type="primary"></zoo-link>\n</div>`;
 	onMount(() => {
 		list.items = [

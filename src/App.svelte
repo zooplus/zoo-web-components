@@ -90,6 +90,8 @@
 			<hr>
 			<docs-tooltip id="tooltip-doc"></docs-tooltip>
 			<hr>
+			<docs-grid id="grid-doc"></docs-grid>
+			<hr>
 			<docs-theming id="theming-doc"></docs-theming>
 			<hr>
 		</div>
@@ -304,6 +306,11 @@
 			text: 'Tooltip'
 		},
 		{
+			href: '#grid-doc',
+			target: '',
+			text: 'Grid'
+		},
+		{
 			href: '#theming-doc',
 			target: '',
 			text: 'Theming'
@@ -314,12 +321,12 @@
 			{
 				href: 'https://github.com/zooplus/zoo-web-components',
 				text: 'Github',
-				type: 'standard'
+				type: 'negative'
 			},
 			{
 				href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
 				text: 'NPM',
-				type: 'standard'
+				type: 'negative'
 			}
 		];
 	});

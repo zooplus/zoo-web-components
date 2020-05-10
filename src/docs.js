@@ -20,4 +20,5 @@ import './docs/SearchableSelectDocs.svelte';
 import './docs/SelectDocs.svelte';
 import './docs/ToastDocs.svelte';
 import './docs/TooltipDocs.svelte';
+import './docs/GridDocs.svelte';
 import './docs/ThemingDocs.svelte';

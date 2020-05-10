@@ -2051,58 +2051,58 @@
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
-    	child_ctx[23] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
-    	child_ctx[23] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_6(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_7(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     // (10:2) {#each headers as header}
     function create_each_block_7(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2112,8 +2112,8 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
     			add_location(div, file$4, 10, 3, 450);
     		},
     		m: function mount(target, anchor) {
@@ -2146,31 +2146,31 @@
     	let input_checked_value;
     	let t0;
     	let div1;
-    	let t1_value = /*row*/ ctx[24].createdDate + "";
+    	let t1_value = /*row*/ ctx[26].createdDate + "";
     	let t1;
     	let t2;
     	let div2;
-    	let t3_value = /*row*/ ctx[24].status + "";
+    	let t3_value = /*row*/ ctx[26].status + "";
     	let t3;
     	let t4;
     	let div3;
-    	let t5_value = /*row*/ ctx[24].minWeight + "";
+    	let t5_value = /*row*/ ctx[26].minWeight + "";
     	let t5;
     	let t6;
     	let div4;
-    	let t7_value = /*row*/ ctx[24].maxWeight + "";
+    	let t7_value = /*row*/ ctx[26].maxWeight + "";
     	let t7;
     	let t8;
     	let div5;
-    	let t9_value = /*row*/ ctx[24].deliveryDate + "";
+    	let t9_value = /*row*/ ctx[26].deliveryDate + "";
     	let t9;
     	let t10;
     	let div6;
-    	let t11_value = /*row*/ ctx[24].noOfPieces + "";
+    	let t11_value = /*row*/ ctx[26].noOfPieces + "";
     	let t11;
     	let t12;
     	let div7;
-    	let t13_value = /*row*/ ctx[24].price + "";
+    	let t13_value = /*row*/ ctx[26].price + "";
     	let t13;
 
     	const block = {
@@ -2200,7 +2200,7 @@
     			t12 = space();
     			div7 = element("div");
     			t13 = text(t13_value);
-    			input.checked = input_checked_value = /*row*/ ctx[24].activated;
+    			input.checked = input_checked_value = /*row*/ ctx[26].activated;
     			attr_dev(input, "slot", "checkboxelement");
     			attr_dev(input, "type", "checkbox");
     			add_location(input, file$4, 16, 6, 712);
@@ -2265,7 +2265,7 @@
     // (32:4) {#each possibleNumberOfItems as number, idx}
     function create_each_block_5(ctx) {
     	let option;
-    	let t_value = /*number*/ ctx[21] + "";
+    	let t_value = /*number*/ ctx[23] + "";
     	let t;
     	let option_selected_value;
     	let option_value_value;
@@ -2274,8 +2274,8 @@
     		c: function create() {
     			option = element("option");
     			t = text(t_value);
-    			option.selected = option_selected_value = /*idx*/ ctx[23] == 0;
-    			option.__value = option_value_value = /*number*/ ctx[21];
+    			option.selected = option_selected_value = /*idx*/ ctx[25] == 0;
+    			option.__value = option_value_value = /*number*/ ctx[23];
     			option.value = option.__value;
     			add_location(option, file$4, 32, 5, 1229);
     		},
@@ -2300,10 +2300,10 @@
     	return block;
     }
 
-    // (42:2) {#each extendedHeaders as header}
+    // (43:2) {#each extendedHeaders as header}
     function create_each_block_4(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2313,9 +2313,9 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
-    			add_location(div, file$4, 42, 3, 1638);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
+    			add_location(div, file$4, 43, 3, 1741);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2331,14 +2331,14 @@
     		block,
     		id: create_each_block_4.name,
     		type: "each",
-    		source: "(42:2) {#each extendedHeaders as header}",
+    		source: "(43:2) {#each extendedHeaders as header}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (46:2) {#each extendedData as row}
+    // (47:2) {#each extendedData as row}
     function create_each_block_3(ctx) {
     	let div10;
     	let div0;
@@ -2347,35 +2347,35 @@
     	let input0_checked_value;
     	let t0;
     	let div1;
-    	let t1_value = /*row*/ ctx[24].createdDate + "";
+    	let t1_value = /*row*/ ctx[26].createdDate + "";
     	let t1;
     	let t2;
     	let div2;
-    	let t3_value = /*row*/ ctx[24].status + "";
+    	let t3_value = /*row*/ ctx[26].status + "";
     	let t3;
     	let t4;
     	let div3;
-    	let t5_value = /*row*/ ctx[24].minWeight + "";
+    	let t5_value = /*row*/ ctx[26].minWeight + "";
     	let t5;
     	let t6;
     	let div4;
-    	let t7_value = /*row*/ ctx[24].maxWeight + "";
+    	let t7_value = /*row*/ ctx[26].maxWeight + "";
     	let t7;
     	let t8;
     	let div5;
-    	let t9_value = /*row*/ ctx[24].deliveryDate + "";
+    	let t9_value = /*row*/ ctx[26].deliveryDate + "";
     	let t9;
     	let t10;
     	let div6;
-    	let t11_value = /*row*/ ctx[24].noOfPieces + "";
+    	let t11_value = /*row*/ ctx[26].noOfPieces + "";
     	let t11;
     	let t12;
     	let div7;
-    	let t13_value = /*row*/ ctx[24].price + "";
+    	let t13_value = /*row*/ ctx[26].price + "";
     	let t13;
     	let t14;
     	let div8;
-    	let t15_value = /*row*/ ctx[24].rating + "";
+    	let t15_value = /*row*/ ctx[26].rating + "";
     	let t15;
     	let t16;
     	let div9;
@@ -2417,31 +2417,31 @@
     			div9 = element("div");
     			zoo_checkbox1 = element("zoo-checkbox");
     			input1 = element("input");
-    			input0.checked = input0_checked_value = /*row*/ ctx[24].activated;
+    			input0.checked = input0_checked_value = /*row*/ ctx[26].activated;
     			attr_dev(input0, "slot", "checkboxelement");
     			attr_dev(input0, "type", "checkbox");
-    			add_location(input0, file$4, 49, 6, 1909);
-    			add_location(zoo_checkbox0, file$4, 48, 5, 1888);
+    			add_location(input0, file$4, 50, 6, 2012);
+    			add_location(zoo_checkbox0, file$4, 49, 5, 1991);
     			set_style(div0, "width", "30px");
-    			add_location(div0, file$4, 47, 4, 1856);
-    			add_location(div1, file$4, 52, 4, 2019);
-    			add_location(div2, file$4, 53, 4, 2052);
-    			add_location(div3, file$4, 54, 4, 2080);
-    			add_location(div4, file$4, 55, 4, 2111);
-    			add_location(div5, file$4, 56, 4, 2142);
-    			add_location(div6, file$4, 57, 4, 2176);
-    			add_location(div7, file$4, 58, 4, 2208);
-    			add_location(div8, file$4, 59, 4, 2235);
-    			input1.checked = input1_checked_value = /*row*/ ctx[24].promotion;
+    			add_location(div0, file$4, 48, 4, 1959);
+    			add_location(div1, file$4, 53, 4, 2122);
+    			add_location(div2, file$4, 54, 4, 2155);
+    			add_location(div3, file$4, 55, 4, 2183);
+    			add_location(div4, file$4, 56, 4, 2214);
+    			add_location(div5, file$4, 57, 4, 2245);
+    			add_location(div6, file$4, 58, 4, 2279);
+    			add_location(div7, file$4, 59, 4, 2311);
+    			add_location(div8, file$4, 60, 4, 2338);
+    			input1.checked = input1_checked_value = /*row*/ ctx[26].promotion;
     			attr_dev(input1, "slot", "checkboxelement");
     			attr_dev(input1, "type", "checkbox");
-    			add_location(input1, file$4, 62, 6, 2316);
-    			add_location(zoo_checkbox1, file$4, 61, 5, 2295);
+    			add_location(input1, file$4, 63, 6, 2419);
+    			add_location(zoo_checkbox1, file$4, 62, 5, 2398);
     			set_style(div9, "width", "30px");
-    			add_location(div9, file$4, 60, 4, 2263);
+    			add_location(div9, file$4, 61, 4, 2366);
     			attr_dev(div10, "class", "example-row");
     			attr_dev(div10, "slot", "row");
-    			add_location(div10, file$4, 46, 3, 1815);
+    			add_location(div10, file$4, 47, 3, 1918);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div10, anchor);
@@ -2487,17 +2487,17 @@
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(46:2) {#each extendedData as row}",
+    		source: "(47:2) {#each extendedData as row}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (71:4) {#each possibleNumberOfItems as number, idx}
+    // (72:4) {#each possibleNumberOfItems as number, idx}
     function create_each_block_2(ctx) {
     	let option;
-    	let t_value = /*number*/ ctx[21] + "";
+    	let t_value = /*number*/ ctx[23] + "";
     	let t;
     	let option_selected_value;
     	let option_value_value;
@@ -2506,10 +2506,10 @@
     		c: function create() {
     			option = element("option");
     			t = text(t_value);
-    			option.selected = option_selected_value = /*idx*/ ctx[23] == 0;
-    			option.__value = option_value_value = /*number*/ ctx[21];
+    			option.selected = option_selected_value = /*idx*/ ctx[25] == 0;
+    			option.__value = option_value_value = /*number*/ ctx[23];
     			option.value = option.__value;
-    			add_location(option, file$4, 71, 5, 2617);
+    			add_location(option, file$4, 72, 5, 2720);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -2525,17 +2525,17 @@
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(71:4) {#each possibleNumberOfItems as number, idx}",
+    		source: "(72:4) {#each possibleNumberOfItems as number, idx}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (81:2) {#each headers as header}
+    // (82:2) {#each headers as header}
     function create_each_block_1$1(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2545,9 +2545,9 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
-    			add_location(div, file$4, 81, 3, 2812);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
+    			add_location(div, file$4, 82, 3, 2915);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2563,17 +2563,17 @@
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(81:2) {#each headers as header}",
+    		source: "(82:2) {#each headers as header}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (92:2) {#each headers as header}
+    // (93:2) {#each headers as header}
     function create_each_block$2(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2583,9 +2583,9 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
-    			add_location(div, file$4, 92, 3, 3134);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
+    			add_location(div, file$4, 93, 3, 3237);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2601,7 +2601,7 @@
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(92:2) {#each headers as header}",
+    		source: "(93:2) {#each headers as header}",
     		ctx
     	});
 
@@ -2799,13 +2799,13 @@
     			add_location(zoo_grid0, file$4, 6, 1, 230);
     			add_location(h31, file$4, 38, 1, 1333);
     			attr_dev(select1, "slot", "selectelement");
-    			add_location(select1, file$4, 69, 3, 2533);
+    			add_location(select1, file$4, 70, 3, 2636);
     			set_custom_element_data(zoo_select1, "labeltext", "Items per page");
     			set_custom_element_data(zoo_select1, "labelposition", "left");
     			set_custom_element_data(zoo_select1, "slot", "pagesizeselector");
-    			add_location(zoo_select1, file$4, 68, 2, 2445);
+    			add_location(zoo_select1, file$4, 69, 2, 2548);
     			set_style(zoo_grid1, "max-height", "300px");
-    			set_style(zoo_grid1, "max-width", "900px");
+    			set_style(zoo_grid1, "max-width", "1024px");
     			set_style(zoo_grid1, "margin", "0 auto");
     			set_style(zoo_grid1, "display", "block");
     			set_custom_element_data(zoo_grid1, "stickyheader", "");
@@ -2813,17 +2813,17 @@
     			set_custom_element_data(zoo_grid1, "currentpage", "5");
     			set_custom_element_data(zoo_grid1, "maxpages", "20");
     			add_location(zoo_grid1, file$4, 40, 1, 1438);
-    			add_location(h32, file$4, 77, 1, 2721);
+    			add_location(h32, file$4, 78, 1, 2824);
     			attr_dev(div0, "slot", "norecords");
-    			add_location(div0, file$4, 83, 2, 2956);
+    			add_location(div0, file$4, 84, 2, 3059);
     			set_custom_element_data(zoo_grid2, "paginator", "");
-    			add_location(zoo_grid2, file$4, 79, 1, 2760);
-    			add_location(h33, file$4, 88, 1, 3026);
+    			add_location(zoo_grid2, file$4, 80, 1, 2863);
+    			add_location(h33, file$4, 89, 1, 3129);
     			attr_dev(div1, "slot", "norecords");
-    			add_location(div1, file$4, 94, 2, 3278);
+    			add_location(div1, file$4, 95, 2, 3381);
     			set_custom_element_data(zoo_grid3, "loading", zoo_grid3_loading_value = true);
     			set_custom_element_data(zoo_grid3, "paginator", "");
-    			add_location(zoo_grid3, file$4, 90, 1, 3067);
+    			add_location(zoo_grid3, file$4, 91, 1, 3170);
     			attr_dev(div2, "class", "grids-holder");
     			add_location(div2, file$4, 4, 0, 124);
     		},
@@ -2903,12 +2903,14 @@
 
     			append_dev(zoo_grid3, t18);
     			append_dev(zoo_grid3, div1);
-    			/*div2_binding*/ ctx[15](div2);
+    			/*div2_binding*/ ctx[17](div2);
     			if (remount) run_all(dispose);
 
     			dispose = [
     				listen_dev(zoo_grid0, "sortChange", /*sortChange_handler*/ ctx[12], false, false, false),
-    				listen_dev(zoo_grid0, "pageChange", /*pageChange_handler*/ ctx[13], false, false, false)
+    				listen_dev(zoo_grid0, "pageChange", /*pageChange_handler*/ ctx[13], false, false, false),
+    				listen_dev(zoo_grid1, "sortChange", /*sortChange_handler_1*/ ctx[15], false, false, false),
+    				listen_dev(zoo_grid1, "pageChange", /*pageChange_handler_1*/ ctx[16], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
@@ -3120,7 +3122,7 @@
     			/*zoo_grid1_binding*/ ctx[14](null);
     			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
-    			/*div2_binding*/ ctx[15](null);
+    			/*div2_binding*/ ctx[17](null);
     			run_all(dispose);
     		}
     	};
@@ -3265,6 +3267,9 @@
     		});
     	}
 
+    	const sortChange_handler_1 = e => handleSortChange(e.detail);
+    	const pageChange_handler_1 = e => handlePageChange(e.detail);
+
     	function div2_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
     			$$invalidate(1, gridHolder = $$value);
@@ -3317,6 +3322,8 @@
     		sortChange_handler,
     		pageChange_handler,
     		zoo_grid1_binding,
+    		sortChange_handler_1,
+    		pageChange_handler_1,
     		div2_binding
     	];
     }
@@ -3324,7 +3331,7 @@
     class Grids extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>h3{color:#3C9700}.example-row{min-width:1024px}.example-row>div{word-break:break-word;padding-right:10px}.grids-holder{}</style>`;
+    		this.shadowRoot.innerHTML = `<style>h3{color:#3C9700}.example-row{min-width:1280px}.example-row>div{word-break:break-word;padding-right:10px}</style>`;
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, {}, [-1, -1]);
 
     		if (options) {
@@ -4430,7 +4437,7 @@
     			t13 = text(";");
     			t14 = space();
     			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
-    			zoo_collapsable_list_item1.textContent = "This component does not accept any slots.";
+    			zoo_collapsable_list_item1.textContent = "This component accepts unnamed slots.";
     			t16 = space();
     			div2 = element("div");
     			code = element("code");
@@ -4458,14 +4465,14 @@
     			add_location(zoo_collapsable_list, file$9, 4, 2, 161);
     			attr_dev(div0, "class", "list");
     			add_location(div0, file$9, 3, 1, 140);
-    			add_location(pre, file$9, 21, 8, 716);
-    			add_location(code, file$9, 21, 2, 710);
+    			add_location(pre, file$9, 21, 8, 712);
+    			add_location(code, file$9, 21, 2, 706);
     			set_custom_element_data(zoo_feedback, "text", "This is an info message.");
-    			add_location(zoo_feedback, file$9, 24, 3, 807);
+    			add_location(zoo_feedback, file$9, 24, 3, 803);
     			set_style(div1, "width", "250px");
-    			add_location(div1, file$9, 23, 2, 776);
+    			add_location(div1, file$9, 23, 2, 772);
     			attr_dev(div2, "class", "example");
-    			add_location(div2, file$9, 20, 1, 686);
+    			add_location(div2, file$9, 20, 1, 682);
     			attr_dev(div3, "class", "doc-element");
     			add_location(div3, file$9, 2, 0, 113);
     		},
@@ -5658,7 +5665,7 @@
     			append_dev(li5, b10);
     			append_dev(zoo_collapsable_list, t27);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
     			append_dev(div3, t29);
     			append_dev(div3, div2);
     			append_dev(div2, code);
@@ -5674,7 +5681,7 @@
     			if (detaching) detach_dev(app_context);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div3);
-    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
     		}
     	};
 
@@ -5691,7 +5698,6 @@
 
     function instance$d($$self, $$props, $$invalidate) {
     	let list;
-    	let inputSlotExample = `<slot name="inputelement"></slot>`;
     	let example = `<div style="width: 250px;">\n  <zoo-link href="https://google.com" text="Link to google" type="primary"></zoo-link>\n</div>`;
 
     	onMount(() => {
@@ -5713,11 +5719,10 @@
     		});
     	}
 
-    	$$self.$capture_state = () => ({ onMount, list, inputSlotExample, example });
+    	$$self.$capture_state = () => ({ onMount, list, example });
 
     	$$self.$inject_state = $$props => {
     		if ("list" in $$props) $$invalidate(0, list = $$props.list);
-    		if ("inputSlotExample" in $$props) inputSlotExample = $$props.inputSlotExample;
     		if ("example" in $$props) $$invalidate(1, example = $$props.example);
     	};
 
@@ -5725,7 +5730,7 @@
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [list, example, inputSlotExample, zoo_collapsable_list_binding];
+    	return [list, example, zoo_collapsable_list_binding];
     }
 
     class LinkDocs extends SvelteElement {
@@ -6329,7 +6334,7 @@
     			append_dev(li2, t8);
     			append_dev(zoo_collapsable_list, t9);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
     			append_dev(div3, t11);
     			append_dev(div3, div2);
     			append_dev(div2, code);
@@ -6352,7 +6357,7 @@
     			if (detaching) detach_dev(app_context);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div3);
-    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
     		}
     	};
 
@@ -6369,7 +6374,6 @@
 
     function instance$g($$self, $$props, $$invalidate) {
     	let list;
-    	let inputSlotExample = `<slot name="inputelement"></slot>`;
     	let example = `<div style="width: 250px;">\n  <zoo-radio infotext="infotext">\n    <input type="radio" id="contactChoice4" name="contact" value="email" disabled>\n    <label for="contactChoice4">Email</label>\n    <input type="radio" id="contactChoice5" name="contact" value="phone">\n    <label for="contactChoice5">Phone</label>\n  </zoo-radio>\n</div>`;
 
     	onMount(() => {
@@ -6391,11 +6395,10 @@
     		});
     	}
 
-    	$$self.$capture_state = () => ({ onMount, list, inputSlotExample, example });
+    	$$self.$capture_state = () => ({ onMount, list, example });
 
     	$$self.$inject_state = $$props => {
     		if ("list" in $$props) $$invalidate(0, list = $$props.list);
-    		if ("inputSlotExample" in $$props) inputSlotExample = $$props.inputSlotExample;
     		if ("example" in $$props) $$invalidate(1, example = $$props.example);
     	};
 
@@ -6403,7 +6406,7 @@
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [list, example, inputSlotExample, zoo_collapsable_list_binding];
+    	return [list, example, zoo_collapsable_list_binding];
     }
 
     class RadioDocs extends SvelteElement {
@@ -7296,7 +7299,7 @@
     			append_dev(li4, t25);
     			append_dev(zoo_collapsable_list, t26);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
     			append_dev(div2, t28);
     			append_dev(div2, div1);
     			append_dev(div1, code);
@@ -7309,7 +7312,7 @@
     			if (detaching) detach_dev(app_context);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div2);
-    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
     		}
     	};
 
@@ -7326,7 +7329,6 @@
 
     function instance$j($$self, $$props, $$invalidate) {
     	let list;
-    	let inputSlotExample = `<slot name="inputelement"></slot>`;
     	let example = `<zoo-toast type="info" text="This is an info message."></zoo-toast>`;
 
     	onMount(() => {
@@ -7348,11 +7350,10 @@
     		});
     	}
 
-    	$$self.$capture_state = () => ({ onMount, list, inputSlotExample, example });
+    	$$self.$capture_state = () => ({ onMount, list, example });
 
     	$$self.$inject_state = $$props => {
     		if ("list" in $$props) $$invalidate(0, list = $$props.list);
-    		if ("inputSlotExample" in $$props) inputSlotExample = $$props.inputSlotExample;
     		if ("example" in $$props) $$invalidate(1, example = $$props.example);
     	};
 
@@ -7360,7 +7361,7 @@
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [list, example, inputSlotExample, zoo_collapsable_list_binding];
+    	return [list, example, zoo_collapsable_list_binding];
     }
 
     class ToastDocs extends SvelteElement {
@@ -7578,7 +7579,7 @@
     			append_dev(code1, pre1);
     			append_dev(zoo_collapsable_list, t23);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
-    			/*zoo_collapsable_list_binding*/ ctx[5](zoo_collapsable_list);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
     			append_dev(div4, t25);
     			append_dev(div4, div3);
     			append_dev(div3, code2);
@@ -7597,7 +7598,7 @@
     			if (detaching) detach_dev(app_context);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div4);
-    			/*zoo_collapsable_list_binding*/ ctx[5](null);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
     		}
     	};
 
@@ -7614,7 +7615,6 @@
 
     function instance$k($$self, $$props, $$invalidate) {
     	let list;
-    	let inputSlotExample = `<slot name="inputelement"></slot>`;
     	let example = `<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>`;
     	let keyframesSnippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n    animation: fadeTooltipIn 0.2s;\n  }\n}`;
     	let snippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n  }\n}`;
@@ -7641,7 +7641,6 @@
     	$$self.$capture_state = () => ({
     		onMount,
     		list,
-    		inputSlotExample,
     		example,
     		keyframesSnippet,
     		snippet
@@ -7649,7 +7648,6 @@
 
     	$$self.$inject_state = $$props => {
     		if ("list" in $$props) $$invalidate(0, list = $$props.list);
-    		if ("inputSlotExample" in $$props) inputSlotExample = $$props.inputSlotExample;
     		if ("example" in $$props) $$invalidate(1, example = $$props.example);
     		if ("keyframesSnippet" in $$props) $$invalidate(2, keyframesSnippet = $$props.keyframesSnippet);
     		if ("snippet" in $$props) $$invalidate(3, snippet = $$props.snippet);
@@ -7659,14 +7657,7 @@
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [
-    		list,
-    		example,
-    		keyframesSnippet,
-    		snippet,
-    		inputSlotExample,
-    		zoo_collapsable_list_binding
-    	];
+    	return [list, example, keyframesSnippet, snippet, zoo_collapsable_list_binding];
     }
 
     class TooltipDocs extends SvelteElement {
@@ -7685,10 +7676,531 @@
 
     customElements.define("docs-tooltip", TooltipDocs);
 
-    /* src/docs/ThemingDocs.svelte generated by Svelte v3.22.2 */
-    const file$l = "src/docs/ThemingDocs.svelte";
+    /* src/docs/GridDocs.svelte generated by Svelte v3.22.2 */
+    const file$l = "src/docs/GridDocs.svelte";
 
     function create_fragment$l(ctx) {
+    	let app_context;
+    	let t0;
+    	let div10;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul0;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let br0;
+    	let t3;
+    	let t4;
+    	let li1;
+    	let b1;
+    	let t6;
+    	let t7;
+    	let li2;
+    	let b2;
+    	let t9;
+    	let t10;
+    	let li3;
+    	let b3;
+    	let t12;
+    	let t13;
+    	let li4;
+    	let b4;
+    	let t15;
+    	let t16;
+    	let li5;
+    	let b5;
+    	let t18;
+    	let br1;
+    	let t19;
+    	let br2;
+    	let t20;
+    	let b6;
+    	let br3;
+    	let t22;
+    	let b7;
+    	let t24;
+    	let br4;
+    	let t25;
+    	let br5;
+    	let t26;
+    	let b8;
+    	let t28;
+    	let t29;
+    	let li6;
+    	let b9;
+    	let t31;
+    	let br6;
+    	let t32;
+    	let br7;
+    	let t33;
+    	let b10;
+    	let br8;
+    	let t35;
+    	let b11;
+    	let t37;
+    	let t38;
+    	let zoo_collapsable_list_item1;
+    	let t39;
+    	let ul1;
+    	let li7;
+    	let t41;
+    	let li8;
+    	let t43;
+    	let li9;
+    	let t45;
+    	let li10;
+    	let t47;
+    	let div9;
+    	let code;
+    	let pre;
+    	let t49;
+    	let zoo_grid;
+    	let div1;
+    	let t51;
+    	let div2;
+    	let t53;
+    	let div5;
+    	let div3;
+    	let t55;
+    	let div4;
+    	let t57;
+    	let div8;
+    	let div6;
+    	let t59;
+    	let div7;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div10 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul0 = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "loading";
+    			t2 = text(" - whether to show the loader on the grid ");
+    			br0 = element("br");
+    			t3 = text(" (for example, when waiting for backend to respond).");
+    			t4 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "stickyheader";
+    			t6 = text(" - whether the header of the grid should be sticky.");
+    			t7 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "paginator";
+    			t9 = text(" - whether the paginator for the grid should be shown.");
+    			t10 = space();
+    			li3 = element("li");
+    			b3 = element("b");
+    			b3.textContent = "currentpage";
+    			t12 = text(" - current page that the user is on.");
+    			t13 = space();
+    			li4 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "maxpages";
+    			t15 = text(" - maximum number of pages");
+    			t16 = space();
+    			li5 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "Event (sortChange)";
+    			t18 = text(" - whenever user changes sorting");
+    			br1 = element("br");
+    			t19 = text(" the following object will be dispatched in event:");
+    			br2 = element("br");
+    			t20 = space();
+    			b6 = element("b");
+    			b6.textContent = `${/*sortChangeExample*/ ctx[1]}`;
+    			br3 = element("br");
+    			t22 = space();
+    			b7 = element("b");
+    			b7.textContent = "$propertyName";
+    			t24 = text(" - is the name of property");
+    			br4 = element("br");
+    			t25 = text("passed to 'sortable' header cell via 'sortableproperty' property;");
+    			br5 = element("br");
+    			t26 = space();
+    			b8 = element("b");
+    			b8.textContent = "$direction";
+    			t28 = text(" - either desc, asc or undefined.");
+    			t29 = space();
+    			li6 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "Event (pageChange)";
+    			t31 = text(" - whenever user changes current page");
+    			br6 = element("br");
+    			t32 = text("the following object will be dispatched in event:");
+    			br7 = element("br");
+    			t33 = space();
+    			b10 = element("b");
+    			b10.textContent = `${/*pageChangeExample*/ ctx[2]}`;
+    			br8 = element("br");
+    			t35 = space();
+    			b11 = element("b");
+    			b11.textContent = "$pageNumber";
+    			t37 = text(" - number of the page user wants to go to.");
+    			t38 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t39 = text("This component accepts following slots:\n\t\t\t\t");
+    			ul1 = element("ul");
+    			li7 = element("li");
+    			li7.textContent = `${/*headerSlotExample*/ ctx[3]}`;
+    			t41 = space();
+    			li8 = element("li");
+    			li8.textContent = `${/*rowSlotExample*/ ctx[4]}`;
+    			t43 = space();
+    			li9 = element("li");
+    			li9.textContent = `${/*paginatorSlotExample*/ ctx[6]}`;
+    			t45 = space();
+    			li10 = element("li");
+    			li10.textContent = `${/*pageSizeSlotExample*/ ctx[7]}`;
+    			t47 = space();
+    			div9 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[5]}`;
+    			t49 = text("\n\t\twill produce the following:\n\t\t");
+    			zoo_grid = element("zoo-grid");
+    			div1 = element("div");
+    			div1.textContent = "Title 1";
+    			t51 = space();
+    			div2 = element("div");
+    			div2.textContent = "Title 2";
+    			t53 = space();
+    			div5 = element("div");
+    			div3 = element("div");
+    			div3.textContent = "Cell 1";
+    			t55 = space();
+    			div4 = element("div");
+    			div4.textContent = "Cell 2";
+    			t57 = space();
+    			div8 = element("div");
+    			div6 = element("div");
+    			div6.textContent = "Cell 3";
+    			t59 = space();
+    			div7 = element("div");
+    			div7.textContent = "Cell 4";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Grid component API.");
+    			add_location(app_context, file$l, 2, 0, 51);
+    			add_location(b0, file$l, 9, 6, 263);
+    			add_location(br0, file$l, 9, 62, 319);
+    			add_location(li0, file$l, 8, 5, 252);
+    			add_location(b1, file$l, 12, 6, 403);
+    			add_location(li1, file$l, 11, 5, 392);
+    			add_location(b2, file$l, 15, 6, 501);
+    			add_location(li2, file$l, 14, 5, 490);
+    			add_location(b3, file$l, 18, 6, 599);
+    			add_location(li3, file$l, 17, 5, 588);
+    			add_location(b4, file$l, 21, 6, 681);
+    			add_location(li4, file$l, 20, 5, 670);
+    			add_location(b5, file$l, 24, 6, 750);
+    			add_location(br1, file$l, 24, 63, 807);
+    			add_location(br2, file$l, 24, 117, 861);
+    			add_location(b6, file$l, 25, 6, 872);
+    			add_location(br3, file$l, 25, 32, 898);
+    			add_location(b7, file$l, 26, 6, 909);
+    			add_location(br4, file$l, 26, 52, 955);
+    			add_location(br5, file$l, 26, 121, 1024);
+    			add_location(b8, file$l, 27, 6, 1035);
+    			add_location(li5, file$l, 23, 5, 739);
+    			add_location(b9, file$l, 30, 6, 1113);
+    			add_location(br6, file$l, 30, 68, 1175);
+    			add_location(br7, file$l, 30, 121, 1228);
+    			add_location(b10, file$l, 31, 6, 1239);
+    			add_location(br8, file$l, 31, 32, 1265);
+    			add_location(b11, file$l, 32, 6, 1276);
+    			add_location(li6, file$l, 29, 5, 1102);
+    			add_location(ul0, file$l, 7, 4, 242);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$l, 6, 3, 197);
+    			add_location(li7, file$l, 39, 5, 1517);
+    			add_location(li8, file$l, 40, 5, 1551);
+    			add_location(li9, file$l, 41, 5, 1582);
+    			add_location(li10, file$l, 42, 5, 1619);
+    			set_style(ul1, "white-space", "pre");
+    			add_location(ul1, file$l, 38, 4, 1482);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$l, 36, 3, 1393);
+    			add_location(zoo_collapsable_list, file$l, 5, 2, 154);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$l, 4, 1, 133);
+    			add_location(pre, file$l, 48, 8, 1757);
+    			add_location(code, file$l, 48, 2, 1751);
+    			attr_dev(div1, "slot", "headercell");
+    			attr_dev(div1, "sortable", "");
+    			attr_dev(div1, "sortableproperty", "title1");
+    			add_location(div1, file$l, 51, 3, 1871);
+    			attr_dev(div2, "slot", "headercell");
+    			add_location(div2, file$l, 52, 3, 1946);
+    			add_location(div3, file$l, 54, 4, 2007);
+    			add_location(div4, file$l, 55, 4, 2029);
+    			attr_dev(div5, "slot", "row");
+    			add_location(div5, file$l, 53, 3, 1986);
+    			add_location(div6, file$l, 58, 4, 2081);
+    			add_location(div7, file$l, 59, 4, 2103);
+    			attr_dev(div8, "slot", "row");
+    			add_location(div8, file$l, 57, 3, 2060);
+    			set_custom_element_data(zoo_grid, "paginator", "");
+    			set_custom_element_data(zoo_grid, "currentpage", "1");
+    			set_custom_element_data(zoo_grid, "maxpages", "50");
+    			add_location(zoo_grid, file$l, 50, 2, 1817);
+    			attr_dev(div9, "class", "example");
+    			add_location(div9, file$l, 47, 1, 1727);
+    			attr_dev(div10, "class", "doc-element");
+    			add_location(div10, file$l, 3, 0, 106);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div10, anchor);
+    			append_dev(div10, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul0);
+    			append_dev(ul0, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, br0);
+    			append_dev(li0, t3);
+    			append_dev(ul0, t4);
+    			append_dev(ul0, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t6);
+    			append_dev(ul0, t7);
+    			append_dev(ul0, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t9);
+    			append_dev(ul0, t10);
+    			append_dev(ul0, li3);
+    			append_dev(li3, b3);
+    			append_dev(li3, t12);
+    			append_dev(ul0, t13);
+    			append_dev(ul0, li4);
+    			append_dev(li4, b4);
+    			append_dev(li4, t15);
+    			append_dev(ul0, t16);
+    			append_dev(ul0, li5);
+    			append_dev(li5, b5);
+    			append_dev(li5, t18);
+    			append_dev(li5, br1);
+    			append_dev(li5, t19);
+    			append_dev(li5, br2);
+    			append_dev(li5, t20);
+    			append_dev(li5, b6);
+    			append_dev(li5, br3);
+    			append_dev(li5, t22);
+    			append_dev(li5, b7);
+    			append_dev(li5, t24);
+    			append_dev(li5, br4);
+    			append_dev(li5, t25);
+    			append_dev(li5, br5);
+    			append_dev(li5, t26);
+    			append_dev(li5, b8);
+    			append_dev(li5, t28);
+    			append_dev(ul0, t29);
+    			append_dev(ul0, li6);
+    			append_dev(li6, b9);
+    			append_dev(li6, t31);
+    			append_dev(li6, br6);
+    			append_dev(li6, t32);
+    			append_dev(li6, br7);
+    			append_dev(li6, t33);
+    			append_dev(li6, b10);
+    			append_dev(li6, br8);
+    			append_dev(li6, t35);
+    			append_dev(li6, b11);
+    			append_dev(li6, t37);
+    			append_dev(zoo_collapsable_list, t38);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t39);
+    			append_dev(zoo_collapsable_list_item1, ul1);
+    			append_dev(ul1, li7);
+    			append_dev(ul1, t41);
+    			append_dev(ul1, li8);
+    			append_dev(ul1, t43);
+    			append_dev(ul1, li9);
+    			append_dev(ul1, t45);
+    			append_dev(ul1, li10);
+    			/*zoo_collapsable_list_binding*/ ctx[8](zoo_collapsable_list);
+    			append_dev(div10, t47);
+    			append_dev(div10, div9);
+    			append_dev(div9, code);
+    			append_dev(code, pre);
+    			append_dev(div9, t49);
+    			append_dev(div9, zoo_grid);
+    			append_dev(zoo_grid, div1);
+    			append_dev(zoo_grid, t51);
+    			append_dev(zoo_grid, div2);
+    			append_dev(zoo_grid, t53);
+    			append_dev(zoo_grid, div5);
+    			append_dev(div5, div3);
+    			append_dev(div5, t55);
+    			append_dev(div5, div4);
+    			append_dev(zoo_grid, t57);
+    			append_dev(zoo_grid, div8);
+    			append_dev(div8, div6);
+    			append_dev(div8, t59);
+    			append_dev(div8, div7);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div10);
+    			/*zoo_collapsable_list_binding*/ ctx[8](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$l.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$l($$self, $$props, $$invalidate) {
+    	let list;
+    	let sortChangeExample = `{detail: { property: $propertyName, direction: $direction }}`;
+    	let pageChangeExample = `{detail: { pageNumber: $pageNumber }}`;
+    	let headerSlotExample = `Headers: \n{#each headers as header}\n  <div slot="headercell"\n  sortable={header.sortable ? 'sortable' : null}\n  sortableproperty='{header.sortProperty}'>\n  {header.title}\n  </div>\n{/each}`;
+
+    	let rowSlotExample = `Rows: \n{#each data as row} 
+	<div class="example-row" slot="row">
+		<div>{row.activated}</div>
+		<div>{row.createdDate}</div>
+		<div>{row.status}</div>
+		<div>{row.minWeight}</div>
+		<div>{row.maxWeight}</div>
+		<div>{row.deliveryDate}</div>
+		<div>{row.noOfPieces}</div>
+		<div>{row.price}</div>
+	</div>
+{/each}`;
+
+    	let example = `<zoo-grid paginator currentpage="1" maxpages="50">
+	<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
+	<div slot="headercell">Title 2</div>
+	<div slot="row">
+		<div>Cell 1</div>
+		<div>Cell 2</div>
+	</div>
+	<div slot="row">
+		<div>Cell 3</div>
+		<div>Cell 4</div>
+	</div>
+</zoo-grid>`;
+
+    	let paginatorSlotExample = `Paginator (you can provide your own implementation):\n<zoo-grid-paginator>
+	<slot name="pagesizeselector" 
+		slot="pagesizeselector">
+	</slot>
+</zoo-grid-paginator>`;
+
+    	let pageSizeSlotExample = `Items per page selector\n(you should provide your own implementation):
+<zoo-select labeltext="Items per page"
+	slot="pagesizeselector">
+	<select slot="selectelement">
+		{#each possibleNumberOfItems as number}
+			<option>{number}</option>
+		{/each}
+	</select>
+</zoo-select>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-grid> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-grid", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		sortChangeExample,
+    		pageChangeExample,
+    		headerSlotExample,
+    		rowSlotExample,
+    		example,
+    		paginatorSlotExample,
+    		pageSizeSlotExample
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("sortChangeExample" in $$props) $$invalidate(1, sortChangeExample = $$props.sortChangeExample);
+    		if ("pageChangeExample" in $$props) $$invalidate(2, pageChangeExample = $$props.pageChangeExample);
+    		if ("headerSlotExample" in $$props) $$invalidate(3, headerSlotExample = $$props.headerSlotExample);
+    		if ("rowSlotExample" in $$props) $$invalidate(4, rowSlotExample = $$props.rowSlotExample);
+    		if ("example" in $$props) $$invalidate(5, example = $$props.example);
+    		if ("paginatorSlotExample" in $$props) $$invalidate(6, paginatorSlotExample = $$props.paginatorSlotExample);
+    		if ("pageSizeSlotExample" in $$props) $$invalidate(7, pageSizeSlotExample = $$props.pageSizeSlotExample);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		list,
+    		sortChangeExample,
+    		pageChangeExample,
+    		headerSlotExample,
+    		rowSlotExample,
+    		example,
+    		paginatorSlotExample,
+    		pageSizeSlotExample,
+    		zoo_collapsable_list_binding
+    	];
+    }
+
+    class GridDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-grid", GridDocs);
+
+    /* src/docs/ThemingDocs.svelte generated by Svelte v3.22.2 */
+    const file$m = "src/docs/ThemingDocs.svelte";
+
+    function create_fragment$m(ctx) {
     	let app_context;
     	let t0;
     	let div2;
@@ -7803,40 +8315,40 @@
     			pre1.textContent = `${/*exampleCss*/ ctx[2]}`;
     			this.c = noop;
     			set_custom_element_data(app_context, "text", "Theming API.");
-    			add_location(app_context, file$l, 2, 0, 54);
+    			add_location(app_context, file$m, 2, 0, 54);
     			attr_dev(a, "href", "https://developer.mozilla.org/en-US/docs/Web/CSS/--*");
     			attr_dev(a, "target", "about:blank");
-    			add_location(a, file$l, 5, 57, 205);
-    			add_location(b0, file$l, 11, 6, 482);
-    			add_location(li0, file$l, 10, 5, 471);
-    			add_location(b1, file$l, 14, 6, 533);
-    			add_location(li1, file$l, 13, 5, 522);
-    			add_location(b2, file$l, 17, 6, 586);
-    			add_location(li2, file$l, 16, 5, 575);
-    			add_location(b3, file$l, 20, 6, 644);
-    			add_location(li3, file$l, 19, 5, 633);
-    			add_location(b4, file$l, 23, 6, 696);
-    			add_location(li4, file$l, 22, 5, 685);
-    			add_location(b5, file$l, 26, 6, 749);
-    			add_location(li5, file$l, 25, 5, 738);
-    			add_location(b6, file$l, 29, 6, 804);
-    			add_location(li6, file$l, 28, 5, 793);
-    			add_location(b7, file$l, 32, 6, 864);
-    			add_location(li7, file$l, 31, 5, 853);
-    			add_location(ul, file$l, 9, 4, 461);
+    			add_location(a, file$m, 5, 57, 205);
+    			add_location(b0, file$m, 11, 6, 482);
+    			add_location(li0, file$m, 10, 5, 471);
+    			add_location(b1, file$m, 14, 6, 533);
+    			add_location(li1, file$m, 13, 5, 522);
+    			add_location(b2, file$m, 17, 6, 586);
+    			add_location(li2, file$m, 16, 5, 575);
+    			add_location(b3, file$m, 20, 6, 644);
+    			add_location(li3, file$m, 19, 5, 633);
+    			add_location(b4, file$m, 23, 6, 696);
+    			add_location(li4, file$m, 22, 5, 685);
+    			add_location(b5, file$m, 26, 6, 749);
+    			add_location(li5, file$m, 25, 5, 738);
+    			add_location(b6, file$m, 29, 6, 804);
+    			add_location(li6, file$m, 28, 5, 793);
+    			add_location(b7, file$m, 32, 6, 864);
+    			add_location(li7, file$m, 31, 5, 853);
+    			add_location(ul, file$m, 9, 4, 461);
     			set_custom_element_data(zoo_collapsable_list_item, "slot", "item0");
-    			add_location(zoo_collapsable_list_item, file$l, 8, 3, 416);
-    			add_location(zoo_collapsable_list, file$l, 7, 2, 373);
+    			add_location(zoo_collapsable_list_item, file$m, 8, 3, 416);
+    			add_location(zoo_collapsable_list, file$m, 7, 2, 373);
     			attr_dev(div0, "class", "list");
-    			add_location(div0, file$l, 4, 1, 129);
-    			add_location(pre0, file$l, 40, 8, 1040);
-    			add_location(code0, file$l, 40, 2, 1034);
-    			add_location(pre1, file$l, 42, 8, 1105);
-    			add_location(code1, file$l, 42, 2, 1099);
+    			add_location(div0, file$m, 4, 1, 129);
+    			add_location(pre0, file$m, 40, 8, 1040);
+    			add_location(code0, file$m, 40, 2, 1034);
+    			add_location(pre1, file$m, 42, 8, 1105);
+    			add_location(code1, file$m, 42, 2, 1099);
     			attr_dev(div1, "class", "example");
-    			add_location(div1, file$l, 38, 1, 979);
+    			add_location(div1, file$m, 38, 1, 979);
     			attr_dev(div2, "class", "doc-element");
-    			add_location(div2, file$l, 3, 0, 102);
+    			add_location(div2, file$m, 3, 0, 102);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7906,7 +8418,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$l.name,
+    		id: create_fragment$m.name,
     		type: "component",
     		source: "",
     		ctx
@@ -7915,7 +8427,7 @@
     	return block;
     }
 
-    function instance$l($$self, $$props, $$invalidate) {
+    function instance$m($$self, $$props, $$invalidate) {
     	let list;
     	let exampleScss = `@import "variables";\n:root {\n  --primary-mid: #{$primary-mid};\n  --primary-light: #{$primary-light};\n  --primary-dark: #{$primary-dark};\n  --secondary-mid: #{$secondary-mid};\n  --secondary-light: #{$secondary-light};\n  --secondary-dark: #{$secondary-dark};\n}`;
     	let exampleCss = `:root {\n  --primary-mid: #040C40;\n  --primary-light: #040C40;\n  --primary-dark: #020729;\n  --secondary-mid: #5D4200;\n  --secondary-light: #745300;\n  --secondary-dark: #3B2B00;\n}`;
@@ -7958,7 +8470,7 @@
     	constructor(options) {
     		super();
     		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
-    		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, {});
+    		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, {});
 
     		if (options) {
     			if (options.target) {

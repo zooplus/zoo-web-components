@@ -40,7 +40,6 @@
 <script>
 	import { onMount } from 'svelte';
 	let list;
-	let inputSlotExample = `<slot name="inputelement"></slot>`;
 	let example = `<zoo-toast type="info" text="This is an info message."></zoo-toast>`;
 	onMount(() => {
 		list.items = [

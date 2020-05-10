@@ -2055,7 +2055,7 @@
     class Checkbox extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{margin-top:21px}.box{width:100%;display:flex;flex-direction:column;position:relative;box-sizing:border-box;cursor:pointer}.box.highlighted{border:1px solid #E6E6E6;border-radius:5px;padding:12px 15px}.box.clicked{border:2px solid var(--success-mid, #3C9700)}.box.error{border:2px solid var(--warning-mid, #ED1C24)}.box.disabled{cursor:not-allowed}.box.disabled .input-slot{cursor:not-allowed}.box .input-slot{width:100%;display:flex;flex-direction:row;cursor:pointer}.box .input-slot .input-label{display:flex;align-items:center;position:relative;left:5px}::slotted(input[type="checkbox"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="checkbox"])::before{position:relative;display:inline-block;width:24px;height:24px;content:"";border-radius:3px;border:2px solid var(--success-mid, #3C9700);background:white}::slotted(input[type="checkbox"]:checked)::before{background:white}::slotted(input[type="checkbox"]:checked)::after{content:"";position:absolute;top:4px;left:10px;width:6px;height:14px;border-bottom:2px solid;border-right:2px solid;transform:rotate(40deg);color:var(--primary-mid, #3C9700)}::slotted(input[type="checkbox"]:disabled){cursor:not-allowed}::slotted(input[type="checkbox"]:checked.error)::after{color:var(--warning-mid, #ED1C24)}::slotted(input[type="checkbox"]:disabled)::before{border-color:#E6E6E6;background-color:#F2F3F4}::slotted(input[type="checkbox"]:disabled)::after{color:#767676}::slotted(input[type="checkbox"].error)::before{border-color:var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{margin-top:21px}.box{width:100%;display:flex;flex-direction:column;position:relative;box-sizing:border-box;cursor:pointer}.box.highlighted{border:1px solid #E6E6E6;border-radius:5px;padding:12px 15px}.box.highlighted.clicked{border:2px solid var(--success-mid, #3C9700)}.box.highlighted.error{border:2px solid var(--warning-mid, #ED1C24)}.box.disabled{cursor:not-allowed}.box.disabled .input-slot{cursor:not-allowed}.box .input-slot{width:100%;display:flex;flex-direction:row;cursor:pointer}.box .input-slot .input-label{display:flex;align-items:center;position:relative;left:5px}::slotted(input[type="checkbox"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="checkbox"])::before{position:relative;display:inline-block;width:24px;height:24px;content:"";border-radius:3px;border:2px solid var(--success-mid, #3C9700);background:white}::slotted(input[type="checkbox"]:checked)::before{background:white}::slotted(input[type="checkbox"]:checked)::after{content:"";position:absolute;top:4px;left:10px;width:6px;height:14px;border-bottom:2px solid;border-right:2px solid;transform:rotate(40deg);color:var(--primary-mid, #3C9700)}::slotted(input[type="checkbox"]:disabled){cursor:not-allowed}::slotted(input[type="checkbox"]:checked.error)::after{color:var(--warning-mid, #ED1C24)}::slotted(input[type="checkbox"]:disabled)::before{border-color:#E6E6E6;background-color:#F2F3F4}::slotted(input[type="checkbox"]:disabled)::after{color:#767676}::slotted(input[type="checkbox"].error)::before{border-color:var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$5, create_fragment$5, safe_not_equal, {
     			labeltext: 1,
@@ -5699,7 +5699,7 @@
     class Spinner extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.spinner{position:absolute;left:0;top:0;right:0;bottom:0;height:150px;width:150px;margin:auto;transform-origin:center center;animation:rotate 2s linear infinite}.spinner .path{animation:dash 1.5s ease-in-out infinite;stroke:var(--primary-mid, #3C9700);stroke-dasharray:1, 200;stroke-dashoffset:0;stroke-linecap:round}@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1, 200;stroke-dashoffset:0}50%{stroke-dasharray:89, 200;stroke-dashoffset:-35px}100%{stroke-dasharray:89, 200;stroke-dashoffset:-124px}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.spinner{position:absolute;left:0;top:0;right:0;bottom:0;height:140px;width:140px;margin:auto;transform-origin:center center;animation:rotate 2s linear infinite;z-index:100000}.spinner .path{animation:dash 1.5s ease-in-out infinite;stroke:var(--primary-mid, #3C9700);stroke-dasharray:1, 200;stroke-dashoffset:0;stroke-linecap:round}@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1, 200;stroke-dashoffset:0}50%{stroke-dasharray:89, 200;stroke-dashoffset:-35px}100%{stroke-dasharray:89, 200;stroke-dashoffset:-124px}}</style>`;
     		init(this, { target: this.shadowRoot }, instance$j, create_fragment$j, safe_not_equal, {});
 
     		if (options) {
@@ -5715,47 +5715,20 @@
     /* zoo-modules/grid-module/Grid.svelte generated by Svelte v3.22.2 */
     const file$k = "zoo-modules/grid-module/Grid.svelte";
 
-    // (8:1) {#if paginator}
+    // (3:1) {#if loading}
     function create_if_block$6(ctx) {
-    	let slot1;
-    	let zoo_grid_paginator;
-    	let slot0;
-    	let dispose;
+    	let zoo_spinner;
 
     	const block = {
     		c: function create() {
-    			slot1 = element("slot");
-    			zoo_grid_paginator = element("zoo-grid-paginator");
-    			slot0 = element("slot");
-    			attr_dev(slot0, "name", "pagesizeselector");
-    			attr_dev(slot0, "slot", "pagesizeselector");
-    			add_location(slot0, file$k, 10, 4, 451);
-    			set_custom_element_data(zoo_grid_paginator, "class", "paginator");
-    			set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
-    			set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
-    			add_location(zoo_grid_paginator, file$k, 9, 3, 339);
-    			attr_dev(slot1, "name", "paginator");
-    			add_location(slot1, file$k, 8, 2, 312);
+    			zoo_spinner = element("zoo-spinner");
+    			add_location(zoo_spinner, file$k, 3, 2, 105);
     		},
-    		m: function mount(target, anchor, remount) {
-    			insert_dev(target, slot1, anchor);
-    			append_dev(slot1, zoo_grid_paginator);
-    			append_dev(zoo_grid_paginator, slot0);
-    			if (remount) dispose();
-    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[13], false, false, false);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*currentpage*/ 1) {
-    				set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
-    			}
-
-    			if (dirty & /*maxpages*/ 2) {
-    				set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
-    			}
+    		m: function mount(target, anchor) {
+    			insert_dev(target, zoo_spinner, anchor);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(slot1);
-    			dispose();
+    			if (detaching) detach_dev(zoo_spinner);
     		}
     	};
 
@@ -5763,7 +5736,7 @@
     		block,
     		id: create_if_block$6.name,
     		type: "if",
-    		source: "(8:1) {#if paginator}",
+    		source: "(3:1) {#if loading}",
     		ctx
     	});
 
@@ -5772,82 +5745,124 @@
 
     function create_fragment$k(ctx) {
     	let div1;
+    	let t0;
     	let div0;
     	let slot0;
-    	let t0;
-    	let slot1;
     	let t1;
-    	let slot2;
+    	let slot1;
     	let t2;
-    	let if_block = /*paginator*/ ctx[5] && create_if_block$6(ctx);
+    	let slot2;
+    	let t3;
+    	let slot4;
+    	let zoo_grid_paginator;
+    	let slot3;
+    	let dispose;
+    	let if_block = /*loading*/ ctx[2] && create_if_block$6(ctx);
 
     	const block = {
     		c: function create() {
     			div1 = element("div");
+    			if (if_block) if_block.c();
+    			t0 = space();
     			div0 = element("div");
     			slot0 = element("slot");
-    			t0 = space();
-    			slot1 = element("slot");
     			t1 = space();
-    			slot2 = element("slot");
+    			slot1 = element("slot");
     			t2 = space();
-    			if (if_block) if_block.c();
+    			slot2 = element("slot");
+    			t3 = space();
+    			slot4 = element("slot");
+    			zoo_grid_paginator = element("zoo-grid-paginator");
+    			slot3 = element("slot");
     			this.c = noop;
     			attr_dev(slot0, "name", "headercell");
-    			add_location(slot0, file$k, 3, 2, 168);
+    			add_location(slot0, file$k, 6, 2, 220);
     			attr_dev(div0, "class", "header-row");
-    			toggle_class(div0, "sticky", /*stickyheader*/ ctx[2]);
-    			add_location(div0, file$k, 2, 1, 89);
+    			toggle_class(div0, "sticky", /*stickyheader*/ ctx[3]);
+    			add_location(div0, file$k, 5, 1, 141);
     			attr_dev(slot1, "name", "row");
-    			add_location(slot1, file$k, 5, 1, 236);
+    			add_location(slot1, file$k, 8, 1, 288);
     			attr_dev(slot2, "name", "norecords");
-    			add_location(slot2, file$k, 6, 1, 262);
+    			add_location(slot2, file$k, 9, 1, 334);
+    			attr_dev(slot3, "name", "pagesizeselector");
+    			attr_dev(slot3, "slot", "pagesizeselector");
+    			add_location(slot3, file$k, 12, 3, 597);
+    			set_custom_element_data(zoo_grid_paginator, "class", "paginator");
+    			set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
+    			set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
+    			toggle_class(zoo_grid_paginator, "paginator-hidden", !/*paginator*/ ctx[6]);
+    			add_location(zoo_grid_paginator, file$k, 11, 2, 418);
+    			attr_dev(slot4, "name", "paginator");
+    			add_location(slot4, file$k, 10, 1, 366);
     			attr_dev(div1, "class", "box");
     			add_location(div1, file$k, 1, 0, 49);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor) {
+    		m: function mount(target, anchor, remount) {
     			insert_dev(target, div1, anchor);
+    			if (if_block) if_block.m(div1, null);
+    			append_dev(div1, t0);
     			append_dev(div1, div0);
     			append_dev(div0, slot0);
-    			/*slot0_binding*/ ctx[11](slot0);
-    			/*div0_binding*/ ctx[12](div0);
-    			append_dev(div1, t0);
-    			append_dev(div1, slot1);
+    			/*slot0_binding*/ ctx[15](slot0);
+    			/*div0_binding*/ ctx[16](div0);
     			append_dev(div1, t1);
-    			append_dev(div1, slot2);
+    			append_dev(div1, slot1);
+    			/*slot1_binding*/ ctx[17](slot1);
     			append_dev(div1, t2);
-    			if (if_block) if_block.m(div1, null);
-    			/*div1_binding*/ ctx[14](div1);
+    			append_dev(div1, slot2);
+    			append_dev(div1, t3);
+    			append_dev(div1, slot4);
+    			append_dev(slot4, zoo_grid_paginator);
+    			append_dev(zoo_grid_paginator, slot3);
+    			/*zoo_grid_paginator_binding*/ ctx[18](zoo_grid_paginator);
+    			/*slot4_binding*/ ctx[20](slot4);
+    			/*div1_binding*/ ctx[21](div1);
+    			if (remount) dispose();
+    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[19], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*stickyheader*/ 4) {
-    				toggle_class(div0, "sticky", /*stickyheader*/ ctx[2]);
-    			}
-
-    			if (/*paginator*/ ctx[5]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
+    			if (/*loading*/ ctx[2]) {
+    				if (if_block) ; else {
     					if_block = create_if_block$6(ctx);
     					if_block.c();
-    					if_block.m(div1, null);
+    					if_block.m(div1, t0);
     				}
     			} else if (if_block) {
     				if_block.d(1);
     				if_block = null;
+    			}
+
+    			if (dirty & /*stickyheader*/ 8) {
+    				toggle_class(div0, "sticky", /*stickyheader*/ ctx[3]);
+    			}
+
+    			if (dirty & /*currentpage*/ 1) {
+    				set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
+    			}
+
+    			if (dirty & /*maxpages*/ 2) {
+    				set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
+    			}
+
+    			if (dirty & /*paginator*/ 64) {
+    				toggle_class(zoo_grid_paginator, "paginator-hidden", !/*paginator*/ ctx[6]);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
-    			/*slot0_binding*/ ctx[11](null);
-    			/*div0_binding*/ ctx[12](null);
     			if (if_block) if_block.d();
-    			/*div1_binding*/ ctx[14](null);
+    			/*slot0_binding*/ ctx[15](null);
+    			/*div0_binding*/ ctx[16](null);
+    			/*slot1_binding*/ ctx[17](null);
+    			/*zoo_grid_paginator_binding*/ ctx[18](null);
+    			/*slot4_binding*/ ctx[20](null);
+    			/*div1_binding*/ ctx[21](null);
+    			dispose();
     		}
     	};
 
@@ -5865,6 +5880,7 @@
     function instance$k($$self, $$props, $$invalidate) {
     	let { currentpage = "" } = $$props;
     	let { maxpages = "" } = $$props;
+    	let { loading = false } = $$props;
     	let stickyheader = false;
     	let gridRoot;
     	let headerCellSlot;
@@ -5872,6 +5888,9 @@
     	let sortableHeaders = [];
     	let headerRow;
     	let host;
+    	let rowSlot;
+    	let paginatorSlot;
+    	let paginatorFallback;
 
     	onMount(() => {
     		headerCellSlot.addEventListener("slotchange", () => {
@@ -5881,11 +5900,28 @@
     			handleHeaders(headers, host);
 
     			if (host.hasAttribute("paginator")) {
-    				$$invalidate(5, paginator = true);
+    				$$invalidate(6, paginator = true);
     			}
 
     			if (host.hasAttribute("stickyheader")) {
-    				$$invalidate(2, stickyheader = true);
+    				$$invalidate(3, stickyheader = true);
+    			}
+    		});
+
+    		rowSlot.addEventListener("slotchange", () => {
+    			const exampleRow = rowSlot.assignedNodes()[0];
+    			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue("min-width");
+    			$$invalidate(7, headerRow.style.minWidth = minWidth, headerRow);
+    		});
+
+    		paginatorSlot.addEventListener("slotchange", () => {
+    			const paginatorEl = paginatorSlot.assignedNodes()[0];
+    			const minWidth = window.getComputedStyle(headerRow).getPropertyValue("min-width");
+
+    			if (paginatorEl) {
+    				paginatorEl.style.minWidth = minWidth;
+    			} else {
+    				$$invalidate(10, paginatorFallback.style.minWidth = minWidth, paginatorFallback);
     			}
     		});
     	});
@@ -5903,14 +5939,14 @@
     					sortableHeaders.forEach(h => h.discardSort());
     					header.children[0].setSort(sortState);
 
-    					host.dispatchEvent(new CustomEvent("sortChange",
-    					{
-    							detail: {
-    								property: header.getAttribute("sortableproperty"),
-    								sortState
-    							},
-    							bubbles: true
-    						}));
+    					const detail = sortState
+    					? {
+    							property: header.getAttribute("sortableproperty"),
+    							direction: sortState
+    						}
+    					: undefined;
+
+    					host.dispatchEvent(new CustomEvent("sortChange", { detail, bubbles: true }));
     				});
 
     				sortableHeaders.push(header.children[0]);
@@ -5926,7 +5962,7 @@
     			}));
     	};
 
-    	const writable_props = ["currentpage", "maxpages"];
+    	const writable_props = ["currentpage", "maxpages", "loading"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<zoo-grid> was created with unknown prop '${key}'`);
@@ -5937,33 +5973,53 @@
 
     	function slot0_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(4, headerCellSlot = $$value);
+    			$$invalidate(5, headerCellSlot = $$value);
     		});
     	}
 
     	function div0_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(6, headerRow = $$value);
+    			$$invalidate(7, headerRow = $$value);
+    		});
+    	}
+
+    	function slot1_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(8, rowSlot = $$value);
+    		});
+    	}
+
+    	function zoo_grid_paginator_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(10, paginatorFallback = $$value);
     		});
     	}
 
     	const pageChange_handler = e => dispatchPageEvent(e);
 
+    	function slot4_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(9, paginatorSlot = $$value);
+    		});
+    	}
+
     	function div1_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
-    			$$invalidate(3, gridRoot = $$value);
+    			$$invalidate(4, gridRoot = $$value);
     		});
     	}
 
     	$$self.$set = $$props => {
     		if ("currentpage" in $$props) $$invalidate(0, currentpage = $$props.currentpage);
     		if ("maxpages" in $$props) $$invalidate(1, maxpages = $$props.maxpages);
+    		if ("loading" in $$props) $$invalidate(2, loading = $$props.loading);
     	};
 
     	$$self.$capture_state = () => ({
     		onMount,
     		currentpage,
     		maxpages,
+    		loading,
     		stickyheader,
     		gridRoot,
     		headerCellSlot,
@@ -5971,6 +6027,9 @@
     		sortableHeaders,
     		headerRow,
     		host,
+    		rowSlot,
+    		paginatorSlot,
+    		paginatorFallback,
     		handleHeaders,
     		dispatchPageEvent
     	});
@@ -5978,13 +6037,17 @@
     	$$self.$inject_state = $$props => {
     		if ("currentpage" in $$props) $$invalidate(0, currentpage = $$props.currentpage);
     		if ("maxpages" in $$props) $$invalidate(1, maxpages = $$props.maxpages);
-    		if ("stickyheader" in $$props) $$invalidate(2, stickyheader = $$props.stickyheader);
-    		if ("gridRoot" in $$props) $$invalidate(3, gridRoot = $$props.gridRoot);
-    		if ("headerCellSlot" in $$props) $$invalidate(4, headerCellSlot = $$props.headerCellSlot);
-    		if ("paginator" in $$props) $$invalidate(5, paginator = $$props.paginator);
+    		if ("loading" in $$props) $$invalidate(2, loading = $$props.loading);
+    		if ("stickyheader" in $$props) $$invalidate(3, stickyheader = $$props.stickyheader);
+    		if ("gridRoot" in $$props) $$invalidate(4, gridRoot = $$props.gridRoot);
+    		if ("headerCellSlot" in $$props) $$invalidate(5, headerCellSlot = $$props.headerCellSlot);
+    		if ("paginator" in $$props) $$invalidate(6, paginator = $$props.paginator);
     		if ("sortableHeaders" in $$props) sortableHeaders = $$props.sortableHeaders;
-    		if ("headerRow" in $$props) $$invalidate(6, headerRow = $$props.headerRow);
+    		if ("headerRow" in $$props) $$invalidate(7, headerRow = $$props.headerRow);
     		if ("host" in $$props) host = $$props.host;
+    		if ("rowSlot" in $$props) $$invalidate(8, rowSlot = $$props.rowSlot);
+    		if ("paginatorSlot" in $$props) $$invalidate(9, paginatorSlot = $$props.paginatorSlot);
+    		if ("paginatorFallback" in $$props) $$invalidate(10, paginatorFallback = $$props.paginatorFallback);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -5994,18 +6057,25 @@
     	return [
     		currentpage,
     		maxpages,
+    		loading,
     		stickyheader,
     		gridRoot,
     		headerCellSlot,
     		paginator,
     		headerRow,
+    		rowSlot,
+    		paginatorSlot,
+    		paginatorFallback,
     		dispatchPageEvent,
     		host,
     		sortableHeaders,
     		handleHeaders,
     		slot0_binding,
     		div0_binding,
+    		slot1_binding,
+    		zoo_grid_paginator_binding,
     		pageChange_handler,
+    		slot4_binding,
     		div1_binding
     	];
     }
@@ -6013,8 +6083,8 @@
     class Grid extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{max-height:inherit;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{display:block;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}</style>`;
-    		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1 });
+    		this.shadowRoot.innerHTML = `<style>.box{position:relative;max-height:inherit;max-width:inherit;min-height:200px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{display:block;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}.box .paginator-hidden{display:none}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1, loading: 2 });
 
     		if (options) {
     			if (options.target) {
@@ -6029,7 +6099,7 @@
     	}
 
     	static get observedAttributes() {
-    		return ["currentpage", "maxpages"];
+    		return ["currentpage", "maxpages", "loading"];
     	}
 
     	get currentpage() {
@@ -6047,6 +6117,15 @@
 
     	set maxpages(maxpages) {
     		this.$set({ maxpages });
+    		flush();
+    	}
+
+    	get loading() {
+    		return this.$$.ctx[2];
+    	}
+
+    	set loading(loading) {
+    		this.$set({ loading });
     		flush();
     	}
     }
@@ -6674,7 +6753,7 @@
     class GridPaginator extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{display:flex;justify-content:end;padding:10px 15px 10px 0;font-size:14px}.box .paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.box .paging.hidden{opacity:0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.box .btn:active{opacity:0.5}.box .btn.hidden{display:none}.box .btn.next{margin-left:5px}.box .btn.next svg{transform:rotate(-90deg)}.box .btn.prev{margin-right:10px}.box .btn.prev svg{transform:rotate(90deg)}.box svg{fill:#555555}.box .nav-arrow path{fill:var(--primary-mid, #3C9700)}.box .page-element{cursor:pointer}.box .page-element:hover{background:#F2F3F4}.box .page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.box .page-element,.box .page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.box .page-element-dots{display:none}.box .page-element+.page-element-dots{display:flex}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{padding:10px}.box{display:flex;justify-content:end;font-size:14px}.box .paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.box .paging.hidden{opacity:0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.box .btn:active{opacity:0.5}.box .btn.hidden{display:none}.box .btn.next{margin-left:5px}.box .btn.next svg{transform:rotate(-90deg)}.box .btn.prev{margin-right:10px}.box .btn.prev svg{transform:rotate(90deg)}.box svg{fill:#555555}.box .nav-arrow path{fill:var(--primary-mid, #3C9700)}.box .page-element{cursor:pointer}.box .page-element:hover{background:#F2F3F4}.box .page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.box .page-element,.box .page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.box .page-element-dots{display:none}.box .page-element+.page-element-dots{display:flex}</style>`;
     		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, { maxpages: 1, currentpage: 0 });
 
     		if (options) {

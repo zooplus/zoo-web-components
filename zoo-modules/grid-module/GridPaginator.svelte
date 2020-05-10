@@ -21,10 +21,13 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		padding: 10px;
+	}
+
 	.box {
 		display: flex;
 		justify-content: end;
-		padding: 10px 15px 10px 0;
 		font-size: $p1-size;
 
 		.paging {

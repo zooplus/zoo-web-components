@@ -1,24 +1,28 @@
 <svelte:options tag="zoo-grid"></svelte:options>
 <div class="box" bind:this={gridRoot}>
+	{#if loading}
+		<zoo-spinner></zoo-spinner>
+	{/if}
 	<div class="header-row" class:sticky="{stickyheader}" bind:this={headerRow}>
 		<slot name="headercell" bind:this={headerCellSlot}></slot>
 	</div>
-	<slot name="row"></slot>
+	<slot name="row" bind:this={rowSlot}></slot>
 	<slot name="norecords"></slot>
-	{#if paginator}
-		<slot name="paginator">
-			<zoo-grid-paginator class="paginator" {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
-				<slot name="pagesizeselector" slot="pagesizeselector"></slot>
-			</zoo-grid-paginator>
-		</slot>
-	{/if}
+	<slot name="paginator" bind:this={paginatorSlot}>
+		<zoo-grid-paginator bind:this={paginatorFallback} class:paginator-hidden="{!paginator}" class="paginator" {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
+			<slot name="pagesizeselector" slot="pagesizeselector"></slot>
+		</zoo-grid-paginator>
+	</slot>
 </div>
 
 <style type='text/scss'>
 	@import "variables";
 
 	.box {
+		position: relative;
 		max-height: inherit;
+		max-width: inherit;
+		min-height: 200px;
 		overflow: auto;
 		box-shadow: $box-shadow-strong;
 
@@ -72,6 +76,10 @@
 			bottom: 0;
 			background: $white;
 		}
+
+		.paginator-hidden {
+			display: none;
+		}
 	}
 </style>
 
@@ -79,6 +87,7 @@
 	import { onMount } from 'svelte';
 	export let currentpage = '';
 	export let maxpages = '';
+	export let loading = false;
 	let stickyheader = false;
 	let gridRoot;
 	let headerCellSlot;
@@ -86,6 +95,9 @@
 	let sortableHeaders = [];
 	let headerRow;
 	let host;
+	let rowSlot;
+	let paginatorSlot;
+	let paginatorFallback;
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
 			host = gridRoot.getRootNode().host;
@@ -100,6 +112,22 @@
 				stickyheader = true;
 			}
 		});
+
+		rowSlot.addEventListener("slotchange", () => {
+			const exampleRow = rowSlot.assignedNodes()[0];
+			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue('min-width');
+			headerRow.style.minWidth = minWidth;
+		});
+
+		paginatorSlot.addEventListener("slotchange", () => {
+			const paginatorEl = paginatorSlot.assignedNodes()[0];
+			const minWidth = window.getComputedStyle(headerRow).getPropertyValue('min-width');
+			if (paginatorEl) {
+				paginatorEl.style.minWidth = minWidth;
+			} else {
+				paginatorFallback.style.minWidth = minWidth;
+			}
+		});
 	});
 
 	const handleHeaders = (headers, host) => {
@@ -112,8 +140,9 @@
 					const sortState = e.detail.sortState;
 					sortableHeaders.forEach(h => h.discardSort());
 					header.children[0].setSort(sortState);
+					const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
 					host.dispatchEvent(new CustomEvent('sortChange', {
-						detail: {property: header.getAttribute('sortableproperty'), sortState: sortState}, bubbles: true
+						detail: detail, bubbles: true
 					}));
 				});
 				sortableHeaders.push(header.children[0]);

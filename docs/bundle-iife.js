@@ -1162,8 +1162,8 @@
     		c: function create() {
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			attr_dev(path, "d", "M12 15.75a1.125 1.125 0 1 1 .001 2.25A1.125 1.125 0 0 1 12 15.75H12zm.75-2.25a.75.75 0 1 1-1.5 0V5.25a.75.75 0 1 1 1.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z");
-    			add_location(path, file$3, 12, 72, 571);
+    			attr_dev(path, "d", "M12 15.75a1.125 1.125 0 11.001 2.25A1.125 1.125 0 0112 15.75zm.75-2.25a.75.75 0 11-1.5 0V5.25a.75.75 0 111.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z");
+    			add_location(path, file$3, 13, 4, 576);
     			attr_dev(svg, "class", "error-circle");
     			attr_dev(svg, "width", "22");
     			attr_dev(svg, "height", "22");
@@ -1241,7 +1241,7 @@
     			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[7]);
     			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[5]);
     			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[6]);
-    			add_location(zoo_input_info, file$3, 15, 1, 998);
+    			add_location(zoo_input_info, file$3, 17, 1, 997);
     			attr_dev(div, "class", div_class_value = "box " + /*labelposition*/ ctx[0] + " " + /*linkAbsentClass*/ ctx[11]);
     			add_location(div, file$3, 1, 0, 50);
     		},
@@ -2427,14 +2427,14 @@
     			this.c = noop;
     			attr_dev(path, "d", "M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z");
     			attr_dev(path, "fill-rule", "evenodd");
-    			add_location(path, file$7, 2, 64, 142);
+    			add_location(path, file$7, 3, 2, 145);
     			attr_dev(svg, "class", /*type*/ ctx[0]);
     			attr_dev(svg, "width", "30");
     			attr_dev(svg, "height", "30");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			add_location(svg, file$7, 2, 1, 79);
     			attr_dev(span, "class", "text");
-    			add_location(span, file$7, 3, 1, 557);
+    			add_location(span, file$7, 5, 1, 562);
     			attr_dev(div, "class", div_class_value = "box " + /*type*/ ctx[0]);
     			add_location(div, file$7, 1, 0, 53);
     		},
@@ -4516,7 +4516,7 @@
     			add_location(div1, file$c, 5, 1, 178);
     			add_location(style, file$c, 9, 2, 322);
     			attr_dev(path, "d", "M12 15.75a1.125 1.125 0 11.001 2.25A1.125 1.125 0 0112 15.75zm.75-2.25a.75.75 0 11-1.5 0V5.25a.75.75 0 111.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z");
-    			add_location(path, file$c, 10, 50, 413);
+    			add_location(path, file$c, 11, 3, 417);
     			attr_dev(svg, "width", "18");
     			attr_dev(svg, "height", "18");
     			attr_dev(svg, "viewBox", "0 0 24 24");

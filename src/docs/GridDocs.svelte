@@ -48,18 +48,20 @@
 	<div class="example">
 		<code><pre>{example}</pre></code>
 		will produce the following:
-		<zoo-grid paginator currentpage="1" maxpages="50">
-			<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
-			<div slot="headercell">Title 2</div>
-			<div slot="row">
-				<div>Cell 1</div>
-				<div>Cell 2</div>
-			</div>
-			<div slot="row">
-				<div>Cell 3</div>
-				<div>Cell 4</div>
-			</div>
-		</zoo-grid>
+		<div style="padding: 10px;">
+			<zoo-grid paginator currentpage="1" maxpages="50">
+				<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
+				<div slot="headercell">Title 2</div>
+				<div slot="row">
+					<div>Cell 1</div>
+					<div>Cell 2</div>
+				</div>
+				<div slot="row">
+					<div>Cell 3</div>
+					<div>Cell 4</div>
+				</div>
+			</zoo-grid>
+		</div>
 	</div>
 </div>
 

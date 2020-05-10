@@ -7682,7 +7682,7 @@
     function create_fragment$l(ctx) {
     	let app_context;
     	let t0;
-    	let div10;
+    	let div11;
     	let div0;
     	let zoo_collapsable_list;
     	let zoo_collapsable_list_item0;
@@ -7752,10 +7752,11 @@
     	let t45;
     	let li10;
     	let t47;
-    	let div9;
+    	let div10;
     	let code;
     	let pre;
     	let t49;
+    	let div9;
     	let zoo_grid;
     	let div1;
     	let t51;
@@ -7775,7 +7776,7 @@
     		c: function create() {
     			app_context = element("app-context");
     			t0 = space();
-    			div10 = element("div");
+    			div11 = element("div");
     			div0 = element("div");
     			zoo_collapsable_list = element("zoo-collapsable-list");
     			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
@@ -7861,11 +7862,12 @@
     			li10 = element("li");
     			li10.textContent = `${/*pageSizeSlotExample*/ ctx[7]}`;
     			t47 = space();
-    			div9 = element("div");
+    			div10 = element("div");
     			code = element("code");
     			pre = element("pre");
     			pre.textContent = `${/*example*/ ctx[5]}`;
     			t49 = text("\n\t\twill produce the following:\n\t\t");
+    			div9 = element("div");
     			zoo_grid = element("zoo-grid");
     			div1 = element("div");
     			div1.textContent = "Title 1";
@@ -7936,25 +7938,27 @@
     			attr_dev(div1, "slot", "headercell");
     			attr_dev(div1, "sortable", "");
     			attr_dev(div1, "sortableproperty", "title1");
-    			add_location(div1, file$l, 51, 3, 1871);
+    			add_location(div1, file$l, 52, 4, 1904);
     			attr_dev(div2, "slot", "headercell");
-    			add_location(div2, file$l, 52, 3, 1946);
-    			add_location(div3, file$l, 54, 4, 2007);
-    			add_location(div4, file$l, 55, 4, 2029);
+    			add_location(div2, file$l, 53, 4, 1980);
+    			add_location(div3, file$l, 55, 5, 2043);
+    			add_location(div4, file$l, 56, 5, 2066);
     			attr_dev(div5, "slot", "row");
-    			add_location(div5, file$l, 53, 3, 1986);
-    			add_location(div6, file$l, 58, 4, 2081);
-    			add_location(div7, file$l, 59, 4, 2103);
+    			add_location(div5, file$l, 54, 4, 2021);
+    			add_location(div6, file$l, 59, 5, 2121);
+    			add_location(div7, file$l, 60, 5, 2144);
     			attr_dev(div8, "slot", "row");
-    			add_location(div8, file$l, 57, 3, 2060);
+    			add_location(div8, file$l, 58, 4, 2099);
     			set_custom_element_data(zoo_grid, "paginator", "");
     			set_custom_element_data(zoo_grid, "currentpage", "1");
     			set_custom_element_data(zoo_grid, "maxpages", "50");
-    			add_location(zoo_grid, file$l, 50, 2, 1817);
-    			attr_dev(div9, "class", "example");
-    			add_location(div9, file$l, 47, 1, 1727);
-    			attr_dev(div10, "class", "doc-element");
-    			add_location(div10, file$l, 3, 0, 106);
+    			add_location(zoo_grid, file$l, 51, 3, 1849);
+    			set_style(div9, "padding", "10px");
+    			add_location(div9, file$l, 50, 2, 1817);
+    			attr_dev(div10, "class", "example");
+    			add_location(div10, file$l, 47, 1, 1727);
+    			attr_dev(div11, "class", "doc-element");
+    			add_location(div11, file$l, 3, 0, 106);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7962,8 +7966,8 @@
     		m: function mount(target, anchor) {
     			insert_dev(target, app_context, anchor);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div10, anchor);
-    			append_dev(div10, div0);
+    			insert_dev(target, div11, anchor);
+    			append_dev(div11, div0);
     			append_dev(div0, zoo_collapsable_list);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
     			append_dev(zoo_collapsable_list_item0, ul0);
@@ -8032,11 +8036,12 @@
     			append_dev(ul1, t45);
     			append_dev(ul1, li10);
     			/*zoo_collapsable_list_binding*/ ctx[8](zoo_collapsable_list);
-    			append_dev(div10, t47);
-    			append_dev(div10, div9);
-    			append_dev(div9, code);
+    			append_dev(div11, t47);
+    			append_dev(div11, div10);
+    			append_dev(div10, code);
     			append_dev(code, pre);
-    			append_dev(div9, t49);
+    			append_dev(div10, t49);
+    			append_dev(div10, div9);
     			append_dev(div9, zoo_grid);
     			append_dev(zoo_grid, div1);
     			append_dev(zoo_grid, t51);
@@ -8058,7 +8063,7 @@
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(app_context);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div10);
+    			if (detaching) detach_dev(div11);
     			/*zoo_collapsable_list_binding*/ ctx[8](null);
     		}
     	};

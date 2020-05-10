@@ -23,7 +23,7 @@ describe('Zoo link', function() {
 				const linkAttrs = {
 					anchorTarget: anchor.target,
 					anchorHref: anchor.href,
-					anchorTypeStandard: anchor.classList.contains('standard'),
+					anchorTypeNegative: anchor.classList.contains('negative'),
 					anchorDisabledClass: anchor.classList.contains('disabled'),
 					anchorTextAlign: anchor.style.textAlign
 				};
@@ -31,7 +31,7 @@ describe('Zoo link', function() {
 			});
 			expect(linkAttrs.anchorTarget).equal('about:blank');
 			expect(linkAttrs.anchorHref).equal('https://google.com/');
-			expect(linkAttrs.anchorTypeStandard).to.be.true;
+			expect(linkAttrs.anchorTypeNegative).to.be.true;
 			expect(linkAttrs.anchorDisabledClass).to.be.false;
 			expect(linkAttrs.anchorTextAlign).equal('center');
 		});

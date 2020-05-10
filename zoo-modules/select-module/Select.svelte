@@ -105,7 +105,7 @@
 	export let infotext = "";
 	export let valid = true;
 	export let loading = false;
-	export let linktype = "green";
+	export let linktype = "primary";
 	let _prevValid;
 	let _multiple = false;
 	let _slottedSelect;

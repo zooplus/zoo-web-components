@@ -2,7 +2,7 @@
 <div class="box {position}">
 	<div class="tooltip-content">
 		<slot>
-			{#if text}<span class="text">{text}</span>{/if}
+			<span class="text">{text}</span>
 		</slot>
 	</div>
 	<div class="tip {position}"></div>	
@@ -58,7 +58,8 @@
 
 		.tooltip-content {
 			padding: 10px;
-			font-size: $p1-size;
+			font-size: $p2-size;
+			line-height: $p2-line-height;
 			position: relative;
 			z-index: 1;
 			background: white;

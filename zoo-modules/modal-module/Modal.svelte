@@ -2,7 +2,7 @@
 <div class="box {hidden ? 'hide' : 'show'}" bind:this={_modalRoot}>
 	<div class="dialog-content">
 		<div class="heading">
-			<h2>{headertext}</h2>
+			<span class="header-text">{headertext}</span>
 			<div class="close" on:click="{event => closeModal()}">
 				<svg width="24" height="24" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>
 			</div>
@@ -35,7 +35,7 @@
 		align-items: center;
 
 		.dialog-content {
-			padding: 30px 40px;
+			padding: 0 20px 20px 20px;
 			box-sizing: border-box;
 			background: white;
 			overflow-y: auto;
@@ -47,20 +47,21 @@
 				flex-direction: row;
 				align-items: flex-start;
 
+				.header-text {
+					font-size: $h2-size;
+					line-height: $h2-line-height;
+					font-weight: bold;
+					margin: 30px 0;
+				}
+
 				.close {
 					cursor: pointer;
-					margin-left: auto;
-					font-size: 40px;
-					padding-left: 15px;
+					margin: 30px 0 30px auto;
 
 					path {
 						fill: var(--primary-mid, #{$primary-mid});
 					}
 				}
-			}
-
-			.content {
-				padding-bottom: 30px;
 			}
 
 			@media only screen and (max-width: 544px) {

@@ -116,7 +116,7 @@
 	export let infotext = "";
 	export let valid = true;
 	export let nopadding = false;
-	export let linktype = "green";
+	export let linktype = "primary";
 	let _slottedInput;
 	let _prevValid;
 	let _inputSlot;

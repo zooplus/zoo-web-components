@@ -32,7 +32,7 @@
 				}
 			}
 
-			&.green {
+			&.primary {
 				color: var(--primary-mid, #{$primary-mid});
 
 				&:hover, &:focus, &:active {
@@ -44,7 +44,7 @@
 				}
 			}
 
-			&.standard {
+			&.negative {
 				color: white;
 
 				&:hover, &:focus, &:active {
@@ -74,6 +74,14 @@
 
 			&.grey {
 				color: $grey-mid;
+
+				&:hover, &:focus, &:active {
+					color: var(--primary-dark, #{$primary-dark});
+				}
+
+				&:visited {
+					color: var(--primary-light, #{$primary-light});
+				}
 			}
 		}
 	}
@@ -83,7 +91,7 @@
 	export let href = "";
 	export let text = "";
 	export let target = "about:blank";
-	export let type = "standard";
+	export let type = "negative"; // primary
 	export let disabled = false;
 	export let textalign = 'center';
 </script>

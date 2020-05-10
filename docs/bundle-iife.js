@@ -572,7 +572,7 @@
     	let div4;
     	let div3;
     	let div1;
-    	let h2;
+    	let span;
     	let t0;
     	let t1;
     	let div0;
@@ -589,7 +589,7 @@
     			div4 = element("div");
     			div3 = element("div");
     			div1 = element("div");
-    			h2 = element("h2");
+    			span = element("span");
     			t0 = text(/*headertext*/ ctx[0]);
     			t1 = space();
     			div0 = element("div");
@@ -599,20 +599,21 @@
     			div2 = element("div");
     			slot = element("slot");
     			this.c = noop;
-    			add_location(h2, file$1, 4, 3, 175);
+    			attr_dev(span, "class", "header-text");
+    			add_location(span, file$1, 4, 3, 175);
     			attr_dev(path, "d", "M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z");
-    			add_location(path, file$1, 6, 52, 307);
+    			add_location(path, file$1, 6, 52, 331);
     			attr_dev(svg, "width", "24");
     			attr_dev(svg, "height", "24");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$1, 6, 4, 259);
+    			add_location(svg, file$1, 6, 4, 283);
     			attr_dev(div0, "class", "close");
-    			add_location(div0, file$1, 5, 3, 200);
+    			add_location(div0, file$1, 5, 3, 224);
     			attr_dev(div1, "class", "heading");
     			add_location(div1, file$1, 3, 2, 150);
-    			add_location(slot, file$1, 10, 3, 423);
+    			add_location(slot, file$1, 10, 3, 447);
     			attr_dev(div2, "class", "content");
-    			add_location(div2, file$1, 9, 2, 398);
+    			add_location(div2, file$1, 9, 2, 422);
     			attr_dev(div3, "class", "dialog-content");
     			add_location(div3, file$1, 2, 1, 119);
     			attr_dev(div4, "class", div4_class_value = "box " + (/*hidden*/ ctx[3] ? "hide" : "show"));
@@ -625,8 +626,8 @@
     			insert_dev(target, div4, anchor);
     			append_dev(div4, div3);
     			append_dev(div3, div1);
-    			append_dev(div1, h2);
-    			append_dev(h2, t0);
+    			append_dev(div1, span);
+    			append_dev(span, t0);
     			append_dev(div1, t1);
     			append_dev(div1, div0);
     			append_dev(div0, svg);
@@ -760,7 +761,7 @@
     class Modal extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:none}.box{position:fixed;width:100%;height:100%;background:rgba(0, 0, 0, 0.8);opacity:0;transition:opacity 0.3s;z-index:9999;left:0;top:0;display:flex;justify-content:center;align-items:center}.box .dialog-content{padding:30px 40px;box-sizing:border-box;background:white;overflow-y:auto;max-height:95%;border-radius:5px}.box .dialog-content .heading{display:flex;flex-direction:row;align-items:flex-start}.box .dialog-content .heading .close{cursor:pointer;margin-left:auto;font-size:40px;padding-left:15px}.box .dialog-content .heading .close path{fill:var(--primary-mid, #3C9700)}.box .dialog-content .content{padding-bottom:30px}@media only screen and (max-width: 544px){.box .dialog-content{padding:25px}}@media only screen and (max-width: 375px){.box .dialog-content{width:100%;height:100%;top:0;left:0;transform:none}}.box.show{opacity:1}.box.hide{opacity:0}.box .dialog-content{animation-duration:0.3s;animation-fill-mode:forwards}.box.show .dialog-content{animation-name:anim-show}.box.hide .dialog-content{animation-name:anim-hide}@keyframes anim-show{0%{opacity:0;transform:scale3d(0.9, 0.9, 1)}100%{opacity:1;transform:scale3d(1, 1, 1)}}@keyframes anim-hide{0%{opacity:1}100%{opacity:0;transform:scale3d(0.9, 0.9, 1)}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:none}.box{position:fixed;width:100%;height:100%;background:rgba(0, 0, 0, 0.8);opacity:0;transition:opacity 0.3s;z-index:9999;left:0;top:0;display:flex;justify-content:center;align-items:center}.box .dialog-content{padding:0 20px 20px 20px;box-sizing:border-box;background:white;overflow-y:auto;max-height:95%;border-radius:5px}.box .dialog-content .heading{display:flex;flex-direction:row;align-items:flex-start}.box .dialog-content .heading .header-text{font-size:24px;line-height:29px;font-weight:bold;margin:30px 0}.box .dialog-content .heading .close{cursor:pointer;margin:30px 0 30px auto}.box .dialog-content .heading .close path{fill:var(--primary-mid, #3C9700)}@media only screen and (max-width: 544px){.box .dialog-content{padding:25px}}@media only screen and (max-width: 375px){.box .dialog-content{width:100%;height:100%;top:0;left:0;transform:none}}.box.show{opacity:1}.box.hide{opacity:0}.box .dialog-content{animation-duration:0.3s;animation-fill-mode:forwards}.box.show .dialog-content{animation-name:anim-show}.box.hide .dialog-content{animation-name:anim-hide}@keyframes anim-show{0%{opacity:0;transform:scale3d(0.9, 0.9, 1)}100%{opacity:1;transform:scale3d(1, 1, 1)}}@keyframes anim-hide{0%{opacity:1}100%{opacity:0;transform:scale3d(0.9, 0.9, 1)}}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$1, create_fragment$1, safe_not_equal, {
     			headertext: 0,
@@ -1357,7 +1358,7 @@
     	let { infotext = "" } = $$props;
     	let { valid = true } = $$props;
     	let { nopadding = false } = $$props;
-    	let { linktype = "green" } = $$props;
+    	let { linktype = "primary" } = $$props;
     	let _slottedInput;
     	let _prevValid;
     	let _inputSlot;
@@ -2555,65 +2556,34 @@
 
     const file$8 = "zoo-modules/tooltip-module/Tooltip.svelte";
 
-    // (5:3) {#if text}
-    function create_if_block$2(ctx) {
-    	let span;
-    	let t;
-
-    	const block = {
-    		c: function create() {
-    			span = element("span");
-    			t = text(/*text*/ ctx[0]);
-    			attr_dev(span, "class", "text");
-    			add_location(span, file$8, 4, 13, 134);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, span, anchor);
-    			append_dev(span, t);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*text*/ 1) set_data_dev(t, /*text*/ ctx[0]);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(span);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block$2.name,
-    		type: "if",
-    		source: "(5:3) {#if text}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
     function create_fragment$8(ctx) {
     	let div2;
     	let div0;
     	let slot;
-    	let t;
+    	let span;
+    	let t0;
+    	let t1;
     	let div1;
     	let div1_class_value;
     	let div2_class_value;
-    	let if_block = /*text*/ ctx[0] && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
     			div2 = element("div");
     			div0 = element("div");
     			slot = element("slot");
-    			if (if_block) if_block.c();
-    			t = space();
+    			span = element("span");
+    			t0 = text(/*text*/ ctx[0]);
+    			t1 = space();
     			div1 = element("div");
     			this.c = noop;
+    			attr_dev(span, "class", "text");
+    			add_location(span, file$8, 4, 3, 124);
     			add_location(slot, file$8, 3, 2, 114);
     			attr_dev(div0, "class", "tooltip-content");
     			add_location(div0, file$8, 2, 1, 82);
     			attr_dev(div1, "class", div1_class_value = "tip " + /*position*/ ctx[1]);
-    			add_location(div1, file$8, 7, 1, 191);
+    			add_location(div1, file$8, 7, 1, 176);
     			attr_dev(div2, "class", div2_class_value = "box " + /*position*/ ctx[1]);
     			add_location(div2, file$8, 1, 0, 52);
     		},
@@ -2624,23 +2594,13 @@
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
     			append_dev(div0, slot);
-    			if (if_block) if_block.m(slot, null);
-    			append_dev(div2, t);
+    			append_dev(slot, span);
+    			append_dev(span, t0);
+    			append_dev(div2, t1);
     			append_dev(div2, div1);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*text*/ ctx[0]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
-    					if_block = create_if_block$2(ctx);
-    					if_block.c();
-    					if_block.m(slot, null);
-    				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
-    			}
+    			if (dirty & /*text*/ 1) set_data_dev(t0, /*text*/ ctx[0]);
 
     			if (dirty & /*position*/ 2 && div1_class_value !== (div1_class_value = "tip " + /*position*/ ctx[1])) {
     				attr_dev(div1, "class", div1_class_value);
@@ -2654,7 +2614,6 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
-    			if (if_block) if_block.d();
     		}
     	};
 
@@ -2703,7 +2662,7 @@
     class Tooltip extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:flex;position:absolute;width:100%;height:100%;z-index:10000;left:0;bottom:0;pointer-events:none;line-height:initial;font-size:initial;font-weight:initial;contain:layout;justify-content:center}.box{pointer-events:initial;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);border-radius:5px;position:absolute;transform:translate(0%, -50%)}.box.top{bottom:calc(100% + 11px);right:50%;transform:translate3d(50%, 0, 0)}.box.right{left:calc(100% + 10px);top:50%}.box.bottom{top:100%;right:50%;transform:translate3d(50%, 20%, 0)}.box.left{right:calc(100% + 11px);top:50%}.box .tooltip-content{padding:10px;font-size:14px;position:relative;z-index:1;background:white;border-radius:5px}.box .tooltip-content .text{white-space:pre;color:black}.box .tip{position:absolute}.box .tip:after{content:"";width:16px;height:16px;position:absolute;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);top:-8px;transform:rotate(45deg);z-index:0;background:white}.box .tip.top,.box .tip.bottom{right:calc(50% + 8px)}.box .tip.right{bottom:50%;left:-8px}.box .tip.bottom{top:0}.box .tip.left{bottom:50%;right:8px}@keyframes fadeTooltipIn{from{opacity:0}to{opacity:1}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:flex;position:absolute;width:100%;height:100%;z-index:10000;left:0;bottom:0;pointer-events:none;line-height:initial;font-size:initial;font-weight:initial;contain:layout;justify-content:center}.box{pointer-events:initial;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);border-radius:5px;position:absolute;transform:translate(0%, -50%)}.box.top{bottom:calc(100% + 11px);right:50%;transform:translate3d(50%, 0, 0)}.box.right{left:calc(100% + 10px);top:50%}.box.bottom{top:100%;right:50%;transform:translate3d(50%, 20%, 0)}.box.left{right:calc(100% + 11px);top:50%}.box .tooltip-content{padding:10px;font-size:12px;line-height:14px;position:relative;z-index:1;background:white;border-radius:5px}.box .tooltip-content .text{white-space:pre;color:black}.box .tip{position:absolute}.box .tip:after{content:"";width:16px;height:16px;position:absolute;box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);top:-8px;transform:rotate(45deg);z-index:0;background:white}.box .tip.top,.box .tip.bottom{right:calc(50% + 8px)}.box .tip.right{bottom:50%;left:-8px}.box .tip.bottom{top:0}.box .tip.left{bottom:50%;right:8px}@keyframes fadeTooltipIn{from{opacity:0}to{opacity:1}}</style>`;
     		init(this, { target: this.shadowRoot }, instance$8, create_fragment$8, safe_not_equal, { text: 0, position: 1 });
 
     		if (options) {
@@ -2747,7 +2706,7 @@
     const file$9 = "zoo-modules/select-module/Select.svelte";
 
     // (9:2) {#if !_multiple}
-    function create_if_block$3(ctx) {
+    function create_if_block$2(ctx) {
     	let svg;
     	let path;
     	let svg_class_value;
@@ -2824,7 +2783,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(9:2) {#if !_multiple}",
     		ctx
@@ -2919,7 +2878,7 @@
     	let t3;
     	let zoo_input_info;
     	let div1_class_value;
-    	let if_block = !/*_multiple*/ ctx[10] && create_if_block$3(ctx);
+    	let if_block = !/*_multiple*/ ctx[10] && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -2999,7 +2958,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$3(ctx);
+    					if_block = create_if_block$2(ctx);
     					if_block.c();
     					if_block.m(div0, null);
     				}
@@ -3054,7 +3013,7 @@
     	let { infotext = "" } = $$props;
     	let { valid = true } = $$props;
     	let { loading = false } = $$props;
-    	let { linktype = "green" } = $$props;
+    	let { linktype = "primary" } = $$props;
     	let _prevValid;
     	let _multiple = false;
     	let _slottedSelect;
@@ -3440,7 +3399,7 @@
     }
 
     // (3:1) {#if !_isMobile}
-    function create_if_block$4(ctx) {
+    function create_if_block$3(ctx) {
     	let t0;
     	let zoo_input;
     	let input;
@@ -3607,7 +3566,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$4.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(3:1) {#if !_isMobile}",
     		ctx
@@ -3722,7 +3681,7 @@
     	let div;
 
     	function select_block_type(ctx, dirty) {
-    		if (!/*_isMobile*/ ctx[12]) return create_if_block$4;
+    		if (!/*_isMobile*/ ctx[12]) return create_if_block$3;
     		return create_else_block;
     	}
 
@@ -4246,7 +4205,7 @@
     const file$b = "zoo-modules/link-module/Link.svelte";
 
     // (2:0) {#if text && href}
-    function create_if_block$5(ctx) {
+    function create_if_block$4(ctx) {
     	let div1;
     	let a;
     	let span;
@@ -4312,7 +4271,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$5.name,
+    		id: create_if_block$4.name,
     		type: "if",
     		source: "(2:0) {#if text && href}",
     		ctx
@@ -4323,7 +4282,7 @@
 
     function create_fragment$b(ctx) {
     	let if_block_anchor;
-    	let if_block = /*text*/ ctx[1] && /*href*/ ctx[0] && create_if_block$5(ctx);
+    	let if_block = /*text*/ ctx[1] && /*href*/ ctx[0] && create_if_block$4(ctx);
 
     	const block = {
     		c: function create() {
@@ -4343,7 +4302,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$5(ctx);
+    					if_block = create_if_block$4(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -4375,7 +4334,7 @@
     	let { href = "" } = $$props;
     	let { text = "" } = $$props;
     	let { target = "about:blank" } = $$props;
-    	let { type = "standard" } = $$props;
+    	let { type = "negative" } = $$props; // primary
     	let { disabled = false } = $$props;
     	let { textalign = "center" } = $$props;
     	const writable_props = ["href", "text", "target", "type", "disabled", "textalign"];
@@ -4424,7 +4383,7 @@
     class Link extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.link-box{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}.link-box a{text-decoration:none;font-size:12px;line-height:14px}.link-box a.disabled{color:#E6E6E6}.link-box a.disabled:hover{cursor:not-allowed}.link-box a.green{color:var(--primary-mid, #3C9700)}.link-box a.green:hover,.link-box a.green:focus,.link-box a.green:active{color:var(--primary-dark, #286400)}.link-box a.green:visited{color:var(--primary-light, #66B100)}.link-box a.standard{color:white}.link-box a.standard:hover,.link-box a.standard:focus,.link-box a.standard:active{color:#FFFFFF;cursor:pointer}.link-box a.standard:visited{color:#FFFFFF}.link-box a.standard .bottom-line{position:absolute;bottom:-3px;left:0;overflow:hidden;width:0;border-bottom:1px solid #fff;color:#fff;transition:width 0.3s}.link-box a.standard:hover .bottom-line{width:100%}.link-box a.grey{color:#767676}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.link-box{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}.link-box a{text-decoration:none;font-size:12px;line-height:14px}.link-box a.disabled{color:#E6E6E6}.link-box a.disabled:hover{cursor:not-allowed}.link-box a.primary{color:var(--primary-mid, #3C9700)}.link-box a.primary:hover,.link-box a.primary:focus,.link-box a.primary:active{color:var(--primary-dark, #286400)}.link-box a.primary:visited{color:var(--primary-light, #66B100)}.link-box a.negative{color:white}.link-box a.negative:hover,.link-box a.negative:focus,.link-box a.negative:active{color:#FFFFFF;cursor:pointer}.link-box a.negative:visited{color:#FFFFFF}.link-box a.negative .bottom-line{position:absolute;bottom:-3px;left:0;overflow:hidden;width:0;border-bottom:1px solid #fff;color:#fff;transition:width 0.3s}.link-box a.negative:hover .bottom-line{width:100%}.link-box a.grey{color:#767676}.link-box a.grey:hover,.link-box a.grey:focus,.link-box a.grey:active{color:var(--primary-dark, #286400)}.link-box a.grey:visited{color:var(--primary-light, #66B100)}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$b, create_fragment$b, safe_not_equal, {
     			href: 0,
@@ -4801,7 +4760,7 @@
     const file$e = "zoo-modules/shared-module/InputLabel.svelte";
 
     // (2:0) {#if labeltext}
-    function create_if_block$6(ctx) {
+    function create_if_block$5(ctx) {
     	let div;
     	let span;
     	let t;
@@ -4830,7 +4789,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$6.name,
+    		id: create_if_block$5.name,
     		type: "if",
     		source: "(2:0) {#if labeltext}",
     		ctx
@@ -4841,7 +4800,7 @@
 
     function create_fragment$e(ctx) {
     	let if_block_anchor;
-    	let if_block = /*labeltext*/ ctx[0] && create_if_block$6(ctx);
+    	let if_block = /*labeltext*/ ctx[0] && create_if_block$5(ctx);
 
     	const block = {
     		c: function create() {
@@ -4861,7 +4820,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$6(ctx);
+    					if_block = create_if_block$5(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -5750,7 +5709,7 @@
     const file$k = "zoo-modules/grid-module/Grid.svelte";
 
     // (8:1) {#if paginator}
-    function create_if_block$7(ctx) {
+    function create_if_block$6(ctx) {
     	let slot1;
     	let zoo_grid_paginator;
     	let slot0;
@@ -5791,7 +5750,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$7.name,
+    		id: create_if_block$6.name,
     		type: "if",
     		source: "(8:1) {#if paginator}",
     		ctx
@@ -5809,7 +5768,7 @@
     	let t1;
     	let slot2;
     	let t2;
-    	let if_block = /*paginator*/ ctx[5] && create_if_block$7(ctx);
+    	let if_block = /*paginator*/ ctx[5] && create_if_block$6(ctx);
 
     	const block = {
     		c: function create() {
@@ -5860,7 +5819,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$7(ctx);
+    					if_block = create_if_block$6(ctx);
     					if_block.c();
     					if_block.m(div1, null);
     				}
@@ -6221,7 +6180,7 @@
     }
 
     // (8:3) {#if page == 1 || page == currentpage || i == currentpage - 2 || i == currentpage || page == maxpages}
-    function create_if_block$8(ctx) {
+    function create_if_block$7(ctx) {
     	let div;
     	let t_value = /*page*/ ctx[14] + "";
     	let t;
@@ -6261,7 +6220,7 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$8.name,
+    		id: create_if_block$7.name,
     		type: "if",
     		source: "(8:3) {#if page == 1 || page == currentpage || i == currentpage - 2 || i == currentpage || page == maxpages}",
     		ctx
@@ -6275,7 +6234,7 @@
     	let if_block_anchor;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*page*/ ctx[14] == 1 || /*page*/ ctx[14] == /*currentpage*/ ctx[0] || /*i*/ ctx[16] == /*currentpage*/ ctx[0] - 2 || /*i*/ ctx[16] == /*currentpage*/ ctx[0] || /*page*/ ctx[14] == /*maxpages*/ ctx[1]) return create_if_block$8;
+    		if (/*page*/ ctx[14] == 1 || /*page*/ ctx[14] == /*currentpage*/ ctx[0] || /*i*/ ctx[16] == /*currentpage*/ ctx[0] - 2 || /*i*/ ctx[16] == /*currentpage*/ ctx[0] || /*page*/ ctx[14] == /*maxpages*/ ctx[1]) return create_if_block$7;
     		return create_else_block$1;
     	}
 

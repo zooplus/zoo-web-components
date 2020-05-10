@@ -27,6 +27,7 @@
 			grid-template-columns: repeat(var(--grid-columns-num), minmax(50px, 1fr));
 			padding: 10px;
 			border-bottom: 1px solid rgba(0,0,0, 0.2);
+			min-height: 40px;
 		}
 
 		::slotted(*[slot="row"]) {

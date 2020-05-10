@@ -43,11 +43,11 @@
 
 	.arrows {
 		path {
-			fill: var(--main-color, #{$main-color});
+			fill: var(--primary-mid, #{$primary-mid});
 		}
 
 		&.disabled path {
-			fill: $whisper;
+			fill: $grey-light;
 		}
 	}
 
@@ -60,9 +60,9 @@
 		line-height: $p1-line-height;
 		padding: 13px 40px 13px 15px;
 		border: 1px solid;
-		border-color: $border-color;
-		border-radius: 3px;
-		color: $matterhorn;
+		border-color: $grey-dark;
+		border-radius: $input-border-radius;
+		color: $grey-dark;
 		outline: none;
 		box-sizing: border-box;
 		overflow: hidden;
@@ -88,7 +88,7 @@
 	::slotted(select.error) {
 		border: 2px solid;
 		padding: 12px 14px;
-		border-color: $error-text-color;
+		border-color: var(--warning-mid, #{$warning-mid});
 		transition: border-color 0.3s ease;
 	}
 </style>

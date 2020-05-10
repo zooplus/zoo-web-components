@@ -33,24 +33,30 @@
 		line-height: $p1-line-height;
 
 		&.info {
-			background: $info-color-ultralight;
-			border-color: $info-color;
+			background: var(--info-ultralight, #{$info-ultralight});
+			border-color: var(--info-mid, #{$info-mid});;
 
-			svg {fill: $info-color;}
+			svg {
+				fill: var(--info-mid, #{$info-mid});
+			}
 		}
 
 		&.error {
-			background: $warning-color-ultralight;
-			border-color: $warning-color;
+			background: var(--warning-ultralight, #{$warning-ultralight});
+			border-color: var(--warning-mid, #{$warning-mid});
 
-			svg {fill: $warning-color;}
+			svg {
+				fill: var(--warning-mid, #{$warning-mid});
+			}
 		}
 
 		&.success {
-			background: $main-color-ultralight;
-			border-color: $main-color;
+			background: var(--primary-ultralight, #{$primary-ultralight});
+			border-color: var(--primary-mid, #{$primary-mid});
 
-			svg {fill: $main-color;}
+			svg {
+				fill: var(--primary-mid, #{$primary-mid});
+			}
 		}
 
 		.close {

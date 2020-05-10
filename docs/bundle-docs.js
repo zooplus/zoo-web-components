@@ -494,7 +494,7 @@
     class Context extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.context{min-height:80px;display:flex;align-items:center;margin-left:20px;background:white}.back-btn{margin-left:5px}.back-btn a{text-decoration:none;color:white}h2{color:var(--main-color, #3C9700);font-size:23px}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.context{min-height:80px;display:flex;align-items:center;margin-left:20px;background:white}.back-btn{margin-left:5px}.back-btn a{text-decoration:none;color:white}h2{color:var(--primary-mid, #3C9700);font-size:23px}</style>`;
     		init(this, { target: this.shadowRoot }, instance, create_fragment, safe_not_equal, { text: 0, backbtn: 1 });
 
     		if (options) {
@@ -790,28 +790,22 @@
 
     		switch (pallete) {
     			case "zoo":
-    				setColorVar("--main-color", "#3C9700");
-    				setColorVar("--main-color-light", "#66B100");
-    				setColorVar("--main-color-dark", "#286400");
-    				setColorVar("--secondary-color", "#FF6200");
-    				setColorVar("--secondary-color-light", "#FF8800");
-    				setColorVar("--secondary-color-dark", "#CC4E00");
+    				setColorVar("--primary-mid", "#3C9700");
+    				setColorVar("--primary-light", "#66B100");
+    				setColorVar("--primary-dark", "#286400");
+    				setColorVar("--primary-ultralight", "#EBF4E5");
+    				setColorVar("--secondary-mid", "#FF6200");
+    				setColorVar("--secondary-light", "#FF8800");
+    				setColorVar("--secondary-dark", "#CC4E00");
     				break;
     			case "grey":
-    				setColorVar("--main-color", "#676778");
-    				setColorVar("--main-color-light", "#838399");
-    				setColorVar("--main-color-dark", "#565664");
-    				setColorVar("--secondary-color", "#ff3e00");
-    				setColorVar("--secondary-color-light", "#ff794d");
-    				setColorVar("--secondary-color-dark", "#c53100");
-    				break;
-    			case "black":
-    				setColorVar("--main-color", "#20232a");
-    				setColorVar("--main-color-light", "#3b414e");
-    				setColorVar("--main-color-dark", "#0e1013");
-    				setColorVar("--secondary-color", "#1cb11c");
-    				setColorVar("--secondary-color-light", "#39d639");
-    				setColorVar("--secondary-color-dark", "#157915");
+    				setColorVar("--primary-mid", "#676778");
+    				setColorVar("--primary-light", "#838399");
+    				setColorVar("--primary-dark", "#565664");
+    				setColorVar("--primary-ultralight", "#838399");
+    				setColorVar("--secondary-mid", "#ff3e00");
+    				setColorVar("--secondary-light", "#ff794d");
+    				setColorVar("--secondary-dark", "#c53100");
     				break;
     		}
     	};
@@ -824,14 +818,15 @@
     		$$invalidate(0, theme = "random");
     		const main = randomRgbaString();
     		const mainHex = rgbToHex(main.r, main.g, main.b);
-    		setColorVar("--main-color", mainHex);
-    		setColorVar("--main-color-light", lightenDarkenColor(mainHex, 30));
-    		setColorVar("--main-color-dark", lightenDarkenColor(mainHex, -30));
+    		setColorVar("--primary-mid", mainHex);
+    		setColorVar("--primary-light", lightenDarkenColor(mainHex, 30));
+    		setColorVar("--primary-dark", lightenDarkenColor(mainHex, -30));
+    		setColorVar("--primary-ultralight", lightenDarkenColor(mainHex, 60));
     		const second = randomRgbaString();
     		const secondHex = rgbToHex(second.r, second.g, second.b);
-    		setColorVar("--secondary-color", rgbToHex(second.r, second.g, second.b));
-    		setColorVar("--secondary-color-light", lightenDarkenColor(secondHex, 30));
-    		setColorVar("--secondary-color-dark", lightenDarkenColor(secondHex, -30));
+    		setColorVar("--secondary-mid", rgbToHex(second.r, second.g, second.b));
+    		setColorVar("--secondary-light", lightenDarkenColor(secondHex, 30));
+    		setColorVar("--secondary-dark", lightenDarkenColor(secondHex, -30));
     	};
 
     	const randomRgbaString = () => {
@@ -6452,32 +6447,32 @@
     			ul = element("ul");
     			li0 = element("li");
     			b0 = element("b");
-    			b0.textContent = "--main-color";
+    			b0.textContent = "--primary-mid";
     			t5 = text(" -");
     			t6 = space();
     			li1 = element("li");
     			b1 = element("b");
-    			b1.textContent = "--main-color-light";
+    			b1.textContent = "--primary-light";
     			t8 = text(" -");
     			t9 = space();
     			li2 = element("li");
     			b2 = element("b");
-    			b2.textContent = "--main-color-dark";
+    			b2.textContent = "--primary-dark";
     			t11 = text(" -");
     			t12 = space();
     			li3 = element("li");
     			b3 = element("b");
-    			b3.textContent = "--secondary-color";
+    			b3.textContent = "--secondary-mid";
     			t14 = text(" -");
     			t15 = space();
     			li4 = element("li");
     			b4 = element("b");
-    			b4.textContent = "--secondary-color-light";
+    			b4.textContent = "--secondary-light";
     			t17 = text(" -");
     			t18 = space();
     			li5 = element("li");
     			b5 = element("b");
-    			b5.textContent = "--secondary-color-dark";
+    			b5.textContent = "--secondary-dark";
     			t20 = text(" -");
     			t21 = space();
     			div1 = element("div");
@@ -6497,28 +6492,28 @@
     			add_location(a, file$k, 5, 57, 205);
     			add_location(b0, file$k, 11, 6, 482);
     			add_location(li0, file$k, 10, 5, 471);
-    			add_location(b1, file$k, 14, 6, 532);
-    			add_location(li1, file$k, 13, 5, 521);
-    			add_location(b2, file$k, 17, 6, 588);
-    			add_location(li2, file$k, 16, 5, 577);
-    			add_location(b3, file$k, 20, 6, 643);
-    			add_location(li3, file$k, 19, 5, 632);
-    			add_location(b4, file$k, 23, 6, 698);
-    			add_location(li4, file$k, 22, 5, 687);
-    			add_location(b5, file$k, 26, 6, 759);
-    			add_location(li5, file$k, 25, 5, 748);
+    			add_location(b1, file$k, 14, 6, 533);
+    			add_location(li1, file$k, 13, 5, 522);
+    			add_location(b2, file$k, 17, 6, 586);
+    			add_location(li2, file$k, 16, 5, 575);
+    			add_location(b3, file$k, 20, 6, 638);
+    			add_location(li3, file$k, 19, 5, 627);
+    			add_location(b4, file$k, 23, 6, 691);
+    			add_location(li4, file$k, 22, 5, 680);
+    			add_location(b5, file$k, 26, 6, 746);
+    			add_location(li5, file$k, 25, 5, 735);
     			add_location(ul, file$k, 9, 4, 461);
     			set_custom_element_data(zoo_collapsable_list_item, "slot", "item0");
     			add_location(zoo_collapsable_list_item, file$k, 8, 3, 416);
     			add_location(zoo_collapsable_list, file$k, 7, 2, 373);
     			attr_dev(div0, "class", "list");
     			add_location(div0, file$k, 4, 1, 129);
-    			add_location(pre0, file$k, 34, 8, 941);
-    			add_location(code0, file$k, 34, 2, 935);
-    			add_location(pre1, file$k, 36, 8, 1006);
-    			add_location(code1, file$k, 36, 2, 1000);
+    			add_location(pre0, file$k, 34, 8, 922);
+    			add_location(code0, file$k, 34, 2, 916);
+    			add_location(pre1, file$k, 36, 8, 987);
+    			add_location(code1, file$k, 36, 2, 981);
     			attr_dev(div1, "class", "example");
-    			add_location(div1, file$k, 32, 1, 880);
+    			add_location(div1, file$k, 32, 1, 861);
     			attr_dev(div2, "class", "doc-element");
     			add_location(div2, file$k, 3, 0, 102);
     		},
@@ -6593,8 +6588,8 @@
 
     function instance$k($$self, $$props, $$invalidate) {
     	let list;
-    	let exampleScss = `@import "variables";\n:root {\n  --main-color: #{$main-color};\n  --main-color-light: #{$main-color-light};\n  --main-color-dark: #{$main-color-dark};\n  --secondary-color: #{$secondary-color};\n  --secondary-color-light: #{$secondary-color-light};\n  --secondary-color-dark: #{$secondary-color-dark};\n}`;
-    	let exampleCss = `:root {\n  --main-color: #040C40;\n  --main-color-light: #040C40;\n  --main-color-dark: #020729;\n  --secondary-color: #5D4200;\n  --secondary-color-light: #745300;\n  --secondary-color-dark: #3B2B00;\n}`;
+    	let exampleScss = `@import "variables";\n:root {\n  --primary-mid: #{$primary-mid};\n  --primary-light: #{$primary-light};\n  --primary-dark: #{$primary-dark};\n  --secondary-mic: #{$secondary-mic};\n  --secondary-light: #{$secondary-light};\n  --secondary-dark: #{$secondary-dark};\n}`;
+    	let exampleCss = `:root {\n  --primary-mid: #040C40;\n  --primary-light: #040C40;\n  --primary-dark: #020729;\n  --secondary-mid: #5D4200;\n  --secondary-light: #745300;\n  --secondary-dark: #3B2B00;\n}`;
 
     	onMount(() => {
     		$$invalidate(0, list.items = [{ header: "API" }], list);

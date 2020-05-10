@@ -50,15 +50,15 @@
 		}
 
 		::slotted(*[slot="row"]:nth-child(odd)) {
-			background: $anti-flash-white;
+			background: $grey-ultralight;
 		}
 
 		::slotted(*[slot="row"]:hover) {
-			background: $whisper;
+			background: $grey-light;
 		}
 
 		::slotted(*[slot="norecords"]) {
-			color: $error-text-color;
+			color: var(--warning-mid, #{$warning-mid});
 			grid-column: span var(--grid-columns-num);
 			text-align: center;
 			padding: 10px 0;

@@ -26,7 +26,7 @@
 			justify-content: center;
 			color: $white;
 			border: 0;
-			border-radius: 5px;
+			border-radius: $input-border-radius;
 			cursor: pointer;
 			width: 100%;
 			height: 100%;
@@ -37,49 +37,49 @@
 			line-height: $p1-line-height;
 
 			&.hollow {
-				border: 2px solid var(--main-color, #{$main-color});
-				color: var(--main-color, #{$main-color});
+				border: 2px solid var(--primary-mid, #{$primary-mid});
+				color: var(--primary-mid, #{$primary-mid});
 				background: transparent;
 			}
 
 			&.hot {
-				background-image: linear-gradient(left, var(--secondary-color, #{$secondary-color}), var(--secondary-color-light, #{$secondary-color-light}));
-				background-image: -webkit-linear-gradient(left, var(--secondary-color, #{$secondary-color}), var(--secondary-color-light, #{$secondary-color-light}));
+				background-image: linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
+				background-image: -webkit-linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
 
 				&:hover, &:focus {
-					background: var(--secondary-color, #{$secondary-color});
+					background: var(--secondary-mid, #{$secondary-mid});
 				}
 
 				&:active {
-					background: var(--secondary-color-dark, #{$secondary-color-dark});
+					background: var(--secondary-dark, #{$secondary-dark});
 				}
 			}
 
 			&.cold {
-				background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
-				background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+				background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+				background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 			}
 
 			&.cold, &.hollow {
 				&:hover, &:focus {
-					background: var(--main-color, #{$main-color});
+					background: var(--primary-mid, #{$primary-mid});
 					color: $white;
 				}
 
 				&:active {
-					background: var(--main-color-dark, #{$main-color-dark});
+					background: var(--primary-dark, #{$primary-dark});
 					color: $white;
 				}
 			}
 
 			&:disabled {
-				background: $anti-flash-white;
+				background: $grey-ultralight;
 				color: #7a7a7a;
-				border: 1px solid $whisper;
+				border: 1px solid $grey-light;
 
 				&:hover, &:focus, &:active {
 					cursor: not-allowed;
-					background: $anti-flash-white;
+					background: $grey-ultralight;
 					color: #7a7a7a;
 				}
 			}

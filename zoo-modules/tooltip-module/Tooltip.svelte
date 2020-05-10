@@ -30,7 +30,7 @@
 	.box {
 		pointer-events: initial;
 		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
-		border-radius: 3px;
+		border-radius: $input-border-radius;
 		position: absolute;
 		transform: translate(0%, -50%);
 
@@ -62,7 +62,7 @@
 			position: relative;
 			z-index: 1;
 			background: white;
-			border-radius: 3px;
+			border-radius: $input-border-radius;
 
 			.text {
 				white-space: pre;

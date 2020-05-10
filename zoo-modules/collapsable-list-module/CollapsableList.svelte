@@ -30,7 +30,7 @@
 
 	.item {
 		position: relative;
-		color: $grey;
+		color: $grey-mid;
 		list-style-type: none;
 		padding: 0 10px;
 		border: 0px solid black;
@@ -42,14 +42,14 @@
 			padding: 20px 0;
 			font-size: $p1-size;
 			line-height: $p1-line-height;
-			color: var(--main-color, #{$main-color});
+			color: var(--primary-mid, #{$primary-mid});
 			font-weight: bold;
 			cursor: pointer;
 
 			svg {
 				display: flex;
 				margin-left: auto;
-				fill: var(--main-color, #{$main-color});
+				fill: var(--primary-mid, #{$primary-mid});
 				transition: transform 0.3s;
 			}
 		}
@@ -58,10 +58,10 @@
 			border: 1px solid rgba(0, 0, 0, 0.2);
 
 			.header {
-				color: var(--main-color-dark, #{$main-color-dark});
+				color: var(--primary-dark, #{$primary-dark});
 
 				svg {
-					fill: var(--main-color-dark, #{$main-color-dark});
+					fill: var(--primary-dark, #{$primary-dark});
 					transform: rotateX(180deg);
 				}
 			}

@@ -72,10 +72,12 @@
 		.nav-link {
 			cursor: pointer;
 			display: flex;
-   			align-items: center;
+			align-items: center;
+
 			&:hover {
 				background: rgba(255, 255, 255, 0.3);
 			}
+			
 			a {
 				color: white;
 				text-decoration: none;
@@ -106,28 +108,22 @@
 		theme = pallete;
 		switch (pallete) {
 			case 'zoo':
-				setColorVar('--main-color', '#3C9700');
-				setColorVar('--main-color-light', '#66B100');
-				setColorVar('--main-color-dark', '#286400');
-				setColorVar('--secondary-color', '#FF6200');
-				setColorVar('--secondary-color-light', '#FF8800');
-				setColorVar('--secondary-color-dark', '#CC4E00');
+				setColorVar('--primary-mid', '#3C9700');
+				setColorVar('--primary-light', '#66B100');
+				setColorVar('--primary-dark', '#286400');
+				setColorVar('--primary-ultralight', '#EBF4E5');
+				setColorVar('--secondary-mid', '#FF6200');
+				setColorVar('--secondary-light', '#FF8800');
+				setColorVar('--secondary-dark', '#CC4E00');
 				break;
 			case 'grey':
-				setColorVar('--main-color', '#676778');
-				setColorVar('--main-color-light', '#838399');
-				setColorVar('--main-color-dark', '#565664');
-				setColorVar('--secondary-color', '#ff3e00');
-				setColorVar('--secondary-color-light', '#ff794d');
-				setColorVar('--secondary-color-dark', '#c53100');
-				break;
-			case 'black':
-				setColorVar('--main-color', '#20232a');
-				setColorVar('--main-color-light', '#3b414e');
-				setColorVar('--main-color-dark', '#0e1013');
-				setColorVar('--secondary-color', '#1cb11c');
-				setColorVar('--secondary-color-light', '#39d639');
-				setColorVar('--secondary-color-dark', '#157915');
+				setColorVar('--primary-mid', '#676778');
+				setColorVar('--primary-light', '#838399');
+				setColorVar('--primary-dark', '#565664');
+				setColorVar('--primary-ultralight', '#838399');
+				setColorVar('--secondary-mid', '#ff3e00');
+				setColorVar('--secondary-light', '#ff794d');
+				setColorVar('--secondary-dark', '#c53100');
 				break;
 			default:
 				break;
@@ -142,14 +138,15 @@
 		theme = 'random';
 		const main = randomRgbaString();
 		const mainHex = rgbToHex(main.r, main.g, main.b);
-		setColorVar('--main-color', mainHex);
-		setColorVar('--main-color-light', lightenDarkenColor(mainHex, 30));
-		setColorVar('--main-color-dark', lightenDarkenColor(mainHex, -30));
+		setColorVar('--primary-mid', mainHex);
+		setColorVar('--primary-light', lightenDarkenColor(mainHex, 30));
+		setColorVar('--primary-dark', lightenDarkenColor(mainHex, -30));
+		setColorVar('--primary-ultralight', lightenDarkenColor(mainHex, 60));
 		const second = randomRgbaString();
 		const secondHex = rgbToHex(second.r, second.g, second.b);
-		setColorVar('--secondary-color', rgbToHex(second.r, second.g, second.b));
-		setColorVar('--secondary-color-light', lightenDarkenColor(secondHex, 30));
-		setColorVar('--secondary-color-dark', lightenDarkenColor(secondHex, -30));
+		setColorVar('--secondary-mid', rgbToHex(second.r, second.g, second.b));
+		setColorVar('--secondary-light', lightenDarkenColor(secondHex, 30));
+		setColorVar('--secondary-dark', lightenDarkenColor(secondHex, -30));
 	}
 
 	const randomRgbaString = () => {

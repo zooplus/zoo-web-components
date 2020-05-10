@@ -25,7 +25,7 @@
 			line-height: $p2-line-height;
 
 			&.disabled {
-				color: $grey-chateau;
+				color: $grey-light;
 
 				&:hover {
 					cursor: not-allowed;
@@ -33,14 +33,14 @@
 			}
 
 			&.green {
-				color: var(--main-color, #{$main-color});
+				color: var(--primary-mid, #{$primary-mid});
 
 				&:hover, &:focus, &:active {
-					color: var(--main-color-dark, #{$main-color-dark});
+					color: var(--primary-dark, #{$primary-dark});
 				}
 
 				&:visited {
-					color: var(--main-color-light, #{$main-color-light});
+					color: var(--primary-light, #{$primary-light});
 				}
 			}
 
@@ -73,7 +73,7 @@
 			}
 
 			&.grey {
-				color: $placeholder-color;
+				color: $grey-mid;
 			}
 		}
 	}

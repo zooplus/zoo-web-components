@@ -32,10 +32,10 @@
 
 	.app-name {
 		display: inline-block;
-		color: var(--main-color, #{$main-color});
-		font-size: 21px;
+		color: var(--primary-mid, #{$primary-mid});
+		font-size: $h2-size;
+		line-height: $h2-line-height;
 		padding: 0 25px 0 0;
-		line-height: 16px;
 		font-weight: 400;
 		@media only screen and (max-width: 544px) {
 			display: none;

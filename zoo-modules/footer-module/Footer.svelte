@@ -27,8 +27,8 @@
 
 	.footer-links {
 		display: flex;
-		background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
-		background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 		justify-content: center;
 		padding: 10px 30px;
 		flex-wrap: wrap;
@@ -65,7 +65,7 @@
 		line-height: $p2-line-height;
 		text-align: left;
 		background: $white;
-		color: $matterhorn;
+		color: $grey-dark;
 		padding: 10px 0 10px 30px;
 		@media only screen and (max-width: 544px) {
 			text-align: center;

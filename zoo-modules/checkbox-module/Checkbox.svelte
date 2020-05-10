@@ -26,25 +26,25 @@
 
 		&.highlighted {
 			border: 2px solid;
-			border-color: $whisper;
-			border-radius: 3px;
+			border-color: $grey-light;
+			border-radius: $input-border-radius;
 			padding: 12px 15px;
 
 			&.focused {
-				border-color: $matterhorn;
+				border-color: $grey-dark;
 			}
 		}
 
 		&.clicked {
-			border-color: var(--main-color, #{$main-color});
+			border-color: var(--primary-mid, #{$primary-mid});
 		}
 
 		&.error {
-			border-color: $error-text-color;
+			border-color: var(--warning-mid, #{$warning-mid});
 
 			.input-slot {
 				.input-label {
-					color: $error-text-color;
+					color: var(--warning-mid, #{$warning-mid});
 				}
 			}
 		}
@@ -56,7 +56,7 @@
 				cursor: not-allowed;
 
 				.input-label {
-					color: $grey-chateau;
+					color: $grey-light;
 				}
 			}
 		}
@@ -91,8 +91,8 @@
 		width: 20px;
 		height: 20px;
 		content: "";
-		border-radius: 3px;
-		border: 2px solid var(--main-color, #{$main-color});
+		border-radius: $input-border-radius;
+		border: 2px solid var(--primary-mid, #{$primary-mid});
 		background: white;
 	}
 
@@ -110,11 +110,11 @@
 		border-bottom: 2px solid;
 		border-right: 2px solid;
 		transform: rotate(40deg);
-		color: var(--main-color, #{$main-color});
+		color: var(--primary-mid, #{$primary-mid});
 	}
 
 	::slotted(input[type="checkbox"]:checked.error)::after {
-		color: $error-text-color;
+		color: var(--warning-mid, #{$warning-mid});
 	}
 
 	::slotted(input[type="checkbox"]:disabled) {
@@ -122,16 +122,16 @@
 	}
 
 	::slotted(input[type="checkbox"]:disabled)::before {
-		border-color: $grey;
-		background-color: $whisper;
+		border-color: $grey-mid;
+		background-color: $grey-light;
 	}
 
 	::slotted(input[type="checkbox"]:disabled)::after {
-		color: $grey;
+		color: $grey-mid;
 	}
 
 	::slotted(input[type="checkbox"].error)::before {
-		border-color: $error-text-color;
+		border-color: var(--warning-mid, #{$warning-mid});
 		transition: border-color 0.3s ease;
 	}
 </style>

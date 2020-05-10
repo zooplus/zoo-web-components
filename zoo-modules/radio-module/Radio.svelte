@@ -31,7 +31,7 @@
 	}
 
 	::slotted(input[type="radio"]):focus::before {
-		border-color: $matterhorn;
+		border-color: $grey-dark;
 	}
 
 	::slotted(input[type="radio"])::before {
@@ -41,7 +41,7 @@
 		height: 16px;
 		content: "";
 		border-radius: 50%;
-		border: 2px solid var(--main-color, #{$main-color});
+		border: 2px solid var(--primary-mid, #{$primary-mid});
 		background: white;
 	}
 
@@ -57,22 +57,22 @@
 		width: 6px;
 		height: 6px;
 		transform: rotate(40deg);
-		color: var(--main-color, #{$main-color});
+		color: var(--primary-mid, #{$primary-mid});
 		border: 2px solid;
 		border-radius: 50%;
 	}
 
 	::slotted(input[type="radio"]:checked)::after {
-		background: var(--main-color, #{$main-color});
+		background: var(--primary-mid, #{$primary-mid});
 	}
 
 	::slotted(input[type="radio"].focused)::after {
-		background: $whisper;
-		color: $whisper;
+		background: $grey-light;
+		color: $grey-light;
 	}
 
 	::slotted(input.focused)::before {
-		border-color: $matterhorn;
+		border-color: $grey-dark;
 	}
 
 	::slotted(label) {
@@ -86,16 +86,16 @@
 	}
 
 	::slotted(input[type="radio"]:disabled)::before {
-		border-color: $grey;
-		background-color: $whisper;
+		border-color: $grey-mid;
+		background-color: $grey-light;
 	}
 
 	::slotted(input[type="radio"].error)::before {
-		border-color: $error-text-color;
+		border-color: var(--warning-mid, #{$warning-mid});
 	}
 
 	::slotted(label.error) {
-		color: $error-text-color;
+		color: var(--warning-mid, #{$warning-mid});
 	}
 </style>
 

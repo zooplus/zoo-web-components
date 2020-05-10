@@ -18,7 +18,7 @@
 	.info, .error {
 		padding: 0 2px 2px 0;
 		font-size: $p2-size;
-		color: $matterhorn;
+		color: $grey-dark;
 		display: flex;
 		align-items: center;
 
@@ -28,15 +28,15 @@
 	}
 
 	.info svg path {
-		fill: $info-color;
+		fill: $info-mid;
 	}
 
 	.error {
 		animation: hideshow 0.5s ease;
-		color: $error-text-color;
+		color: var(--warning-mid, #{$warning-mid});
 
 		svg path {
-			fill: $error-text-color;
+			fill: var(--warning-mid, #{$warning-mid});
 		}
 	}
 	@keyframes hideshow {

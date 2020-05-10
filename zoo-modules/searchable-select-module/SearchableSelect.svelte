@@ -71,7 +71,7 @@
 		width: 100%;
 		padding: 13px 15px;
 		border: 2px solid;
-		color: $matterhorn;
+		color: $grey-dark;
 		border-bottom-left-radius: 3px;
 		border-bottom-right-radius: 3px;
 		border-top: none;
@@ -82,7 +82,7 @@
 	}
 
 	::slotted(select.error) {
-		border-color: $error-text-color;
+		border-color: var(--warning-mid, #{$warning-mid});
 		transition: border-color 0.3s ease;
 	}
 

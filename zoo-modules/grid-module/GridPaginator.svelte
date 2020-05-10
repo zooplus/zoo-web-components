@@ -30,8 +30,8 @@
 		.paging {
 			display: flex;
 			align-items: center;
-			border: 1px solid $border-color;
-			border-radius: 5px;
+			border: 1px solid $grey-dark;
+			border-radius: $input-border-radius;
 			margin: 3px 0 3px 20px;
 
 			&.hidden {
@@ -72,23 +72,23 @@
 		}
 
 		svg {
-			fill: $matterhorn;
+			fill: $grey-dark;
 		}
 
 		.nav-arrow {
-			path { fill: var(--main-color, #{$main-color}); }
+			path { fill: var(--primary-mid, #{$primary-mid}); }
 		}
 
 		.page-element {
 			cursor: pointer;
 
 			&:hover {
-				background: $anti-flash-white;
+				background: $grey-ultralight;
 			}
 
 			&.active {
-				background: $main-color-ultralight;
-				color: var(--main-color, #{$main-color});
+				background: var(--primary-ultralight, #{$primary-ultralight});
+				color: var(--primary-mid, #{$primary-mid});
 			}
 		}
 
@@ -96,7 +96,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			border-radius: 3px;
+			border-radius: $input-border-radius;
 			width: 24px;
 			height: 24px;
 			margin-right: 5px;

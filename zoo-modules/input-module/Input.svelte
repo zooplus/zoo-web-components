@@ -27,11 +27,11 @@
 		right: 0;
 		top: 0;
 		padding: 11px;
-		color: $error-text-color;
+		color: var(--warning-mid, #{$warning-mid});
 		pointer-events: none;
 
 		& > path {
-			fill: $error-text-color;
+			fill: var(--warning-mid, #{$warning-mid});
 		}
 	}
 
@@ -43,9 +43,9 @@
 		padding: 13px 35px 13px 15px;
 		margin: 0;
 		border: 1px solid;
-		border-color: $border-color;
-		border-radius: 3px;
-		color: $matterhorn;
+		border-color: $grey-dark;
+		border-radius: $input-border-radius;
+		color: $grey-dark;
 		outline: none;
 		box-sizing: border-box;
 		text-overflow: ellipsis;
@@ -64,7 +64,7 @@
 
 	::slotted(input::placeholder),
 	::slotted(textarea::placeholder) {
-		color: $placeholder-color;
+		color: $grey-mid;
 		opacity: 1;
 	}
 
@@ -87,7 +87,7 @@
 		transition: border-color 0.3s ease;
 		border: 2px solid;
 		padding: 12px 34px 12px 14px;
-		border-color: $error-text-color;
+		border-color: var(--warning-mid, #{$warning-mid});
 	}
 
 	::slotted(input[type='date']), ::slotted(input[type='time']) {

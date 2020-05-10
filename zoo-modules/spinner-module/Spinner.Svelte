@@ -20,7 +20,7 @@
 
 		.path {
 			animation: dash 1.5s ease-in-out infinite;
-			stroke: var(--main-color, #{$main-color});
+			stroke: var(--primary-mid, #{$primary-mid});
 			stroke-dasharray: 1, 200;
 			stroke-dashoffset: 0;
 			stroke-linecap: round;

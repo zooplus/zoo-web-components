@@ -1,31 +1,29 @@
-$error-text-color: #ED1C24;
-
 // grayscale
-$placeholder-color: #767676;
-$border-color: #97999C;
-$matterhorn: #555555;
-$whisper: #E6E6E6;
 $white: #FFFFFF;
-$anti-flash-white: #F2F3F4;
-$grey-chateau: #97999C;
-$grey: #767676;
-
-// zooplus theme
-$main-color: #3C9700;
-$main-color-light: #66B100;
-$main-color-ultralight: #EBF4E5;
-$main-color-dark: #286400;
-
-$secondary-color: #FF6200;
-$secondary-color-light: #FF8800;
-$secondary-color-dark: #CC4E00;
-
-$info-color: #459FD0;
-$info-color-ultralight: #ECF5FA;
-
-$warning-color: #ED1C24;
-$warning-color-dark: #BD161C;
-$warning-color-ultralight: #FDE8E9;
+$grey-ultralight: #F2F3F4;
+$grey-light: #E6E6E6;
+$grey-mid: #767676;
+$grey-dark: #555555;
+// primary
+$primary-ultralight: #EBF4E5;
+$primary-light: #66B100;
+$primary-mid: #3C9700;
+$primary-dark: #286400;
+// secondary
+$secondary-ultralight: #FFF0E7;
+$secondary-light: #FF8800;
+$secondary-mid: #FF6200;
+$secondary-dark: #CC4E00;
+// info
+$info-ultralight: #ECF5FA;
+$info-mid: #459FD0;
+// warning
+$warning-ultralight: #FDE8E9;
+$warning-mid: #ED1C24;
+$warning-dark: #BD161C;
+// success
+$success-ultralight: #EBF4E5;
+$success-mid: #3C9700;
 
 // font-sizes
 $p1-size: 14px;
@@ -34,3 +32,14 @@ $p3-size: 10px;
 $p1-line-height: 20px;
 $p2-line-height: 16px;
 $p2-line-height: 14px;
+$h1-size: 32px;
+$h2-size: 24px;
+$h3-size: 18px;
+$h4-size: 16px;
+$h1-line-height: 38px;
+$h2-line-height: 29px;
+$h3-line-height: 22px;
+$h4-line-height: 22px;
+
+// forms common
+$input-border-radius: 5px;

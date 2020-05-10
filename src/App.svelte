@@ -217,7 +217,7 @@
 	}
 
 	.what-list {
-		color: var(--main-color, #{$main-color});
+		color: var(--primary-mid, #{$primary-mid});
 		font-size: 20px;
 	}
 
@@ -256,7 +256,7 @@
 		}
 
 		a {
-			color: var(--main-color, $main-color);
+			color: var(--primary-mid, $primary-mid);
 			padding: 12px;
 			display: block;
 			text-decoration: none;
@@ -303,7 +303,7 @@
 	}
 
 	hr {
-		border-color: var(--main-color, #{$main-color});
+		border-color: var(--primary-mid, #{$primary-mid});
 		margin: 45px 0;
 		opacity: 0.3;
 	}

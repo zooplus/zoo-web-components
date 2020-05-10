@@ -40,7 +40,7 @@
 			background: white;
 			overflow-y: auto;
 			max-height: 95%;
-			border-radius: 5px;
+			border-radius: $input-border-radius;
 
 			.heading {
 				display: flex;
@@ -54,7 +54,7 @@
 					padding-left: 15px;
 
 					path {
-						fill: var(--main-color, #{$main-color});
+						fill: var(--primary-mid, #{$primary-mid});
 					}
 				}
 			}

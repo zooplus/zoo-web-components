@@ -9,22 +9,28 @@
 			<zoo-collapsable-list-item slot="item0">
 				<ul>
 					<li>
-						<b>--main-color</b> - 
+						<b>--primary-mid</b> - 
 					</li>
 					<li>
-						<b>--main-color-light</b> - 
+						<b>--primary-light</b> - 
 					</li>
 					<li>
-						<b>--main-color-dark</b> - 
+						<b>--primary-ultralight</b> - 
 					</li>
 					<li>
-						<b>--secondary-color</b> - 
+						<b>--primary-dark</b> - 
 					</li>
 					<li>
-						<b>--secondary-color-light</b> - 
+						<b>--secondary-mid</b> - 
 					</li>
 					<li>
-						<b>--secondary-color-dark</b> - 
+						<b>--secondary-light</b> - 
+					</li>
+					<li>
+						<b>--secondary-ultralight</b> - 
+					</li>
+					<li>
+						<b>--secondary-dark</b> - 
 					</li>
 				</ul>
 			</zoo-collapsable-list-item>
@@ -45,8 +51,8 @@
 <script>
 import { onMount } from 'svelte';
 	let list;
-	let exampleScss = `@import "variables";\n:root {\n  --main-color: #{$main-color};\n  --main-color-light: #{$main-color-light};\n  --main-color-dark: #{$main-color-dark};\n  --secondary-color: #{$secondary-color};\n  --secondary-color-light: #{$secondary-color-light};\n  --secondary-color-dark: #{$secondary-color-dark};\n}`;
-	let exampleCss = `:root {\n  --main-color: #040C40;\n  --main-color-light: #040C40;\n  --main-color-dark: #020729;\n  --secondary-color: #5D4200;\n  --secondary-color-light: #745300;\n  --secondary-color-dark: #3B2B00;\n}`;
+	let exampleScss = `@import "variables";\n:root {\n  --primary-mid: #{$primary-mid};\n  --primary-light: #{$primary-light};\n  --primary-dark: #{$primary-dark};\n  --secondary-mid: #{$secondary-mid};\n  --secondary-light: #{$secondary-light};\n  --secondary-dark: #{$secondary-dark};\n}`;
+	let exampleCss = `:root {\n  --primary-mid: #040C40;\n  --primary-light: #040C40;\n  --primary-dark: #020729;\n  --secondary-mid: #5D4200;\n  --secondary-light: #745300;\n  --secondary-dark: #3B2B00;\n}`;
 	onMount(() => {
 		list.items = [{header: 'API'}];
 	});

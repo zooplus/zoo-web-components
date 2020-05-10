@@ -1,6 +1,7 @@
 <div class="app">
 	<app-header></app-header>
-	<zoo-grid bind:this={zooGrid} style="padding: 10px;" stickyheader paginator currentpage="5" maxpages="20" on:sortChange="{e => console.log(e.detail)}">
+	<zoo-grid bind:this={zooGrid} style="padding: 10px;" stickyheader paginator currentpage="5" maxpages="20" 
+		on:sortChange="{e => console.log(e.detail)}" on:pageChange="{e => console.log(e)}">
 		<div slot="headercell" sortable sortableproperty="action">Actions</div>
 		<div slot="headercell" sortable>Created Date</div>
 		<div slot="headercell">Status</div>

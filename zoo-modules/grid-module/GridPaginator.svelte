@@ -169,6 +169,8 @@
 	}
 	const goToPage = (pageNumber) => {
 		currentpage = pageNumber;
-		host.dispatchEvent(new Event('pageChange', {pageNumber: pageNumber}));
+		host.dispatchEvent(new CustomEvent('pageChange', {
+			detail: {pageNumber: pageNumber}, bubbles: true
+		}));
 	}
 </script>

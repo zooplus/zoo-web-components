@@ -7,7 +7,7 @@
 	<slot name="norecords"></slot>
 	{#if paginator}
 		<slot name="paginator">
-			<zoo-grid-paginator class="paginator" {currentpage} {maxpages}>
+			<zoo-grid-paginator class="paginator" {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
 				<slot name="pagesizeselector" slot="pagesizeselector"></slot>
 			</zoo-grid-paginator>
 		</slot>
@@ -85,9 +85,10 @@
 	let paginator = false;
 	let sortableHeaders = [];
 	let headerRow;
+	let host;
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
-			const host = gridRoot.getRootNode().host;
+			host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			gridRoot.style.setProperty('--grid-columns-num', headers.length);
 			handleHeaders(headers, host);
@@ -119,5 +120,11 @@
 			}
 		}
 	}
+
+	const dispatchPageEvent = e => {
+		host.dispatchEvent(new CustomEvent('pageChange', {
+			detail: {pageNumber: e.detail.pageNumber}, bubbles: true
+		}));
+	};
 	
 </script>

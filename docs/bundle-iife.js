@@ -5720,6 +5720,7 @@
     	let slot1;
     	let zoo_grid_paginator;
     	let slot0;
+    	let dispose;
 
     	const block = {
     		c: function create() {
@@ -5728,7 +5729,7 @@
     			slot0 = element("slot");
     			attr_dev(slot0, "name", "pagesizeselector");
     			attr_dev(slot0, "slot", "pagesizeselector");
-    			add_location(slot0, file$k, 10, 4, 407);
+    			add_location(slot0, file$k, 10, 4, 451);
     			set_custom_element_data(zoo_grid_paginator, "class", "paginator");
     			set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
     			set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
@@ -5736,10 +5737,12 @@
     			attr_dev(slot1, "name", "paginator");
     			add_location(slot1, file$k, 8, 2, 312);
     		},
-    		m: function mount(target, anchor) {
+    		m: function mount(target, anchor, remount) {
     			insert_dev(target, slot1, anchor);
     			append_dev(slot1, zoo_grid_paginator);
     			append_dev(zoo_grid_paginator, slot0);
+    			if (remount) dispose();
+    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[13], false, false, false);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*currentpage*/ 1) {
@@ -5752,6 +5755,7 @@
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(slot1);
+    			dispose();
     		}
     	};
 
@@ -5808,15 +5812,15 @@
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
     			append_dev(div0, slot0);
-    			/*slot0_binding*/ ctx[9](slot0);
-    			/*div0_binding*/ ctx[10](div0);
+    			/*slot0_binding*/ ctx[11](slot0);
+    			/*div0_binding*/ ctx[12](div0);
     			append_dev(div1, t0);
     			append_dev(div1, slot1);
     			append_dev(div1, t1);
     			append_dev(div1, slot2);
     			append_dev(div1, t2);
     			if (if_block) if_block.m(div1, null);
-    			/*div1_binding*/ ctx[11](div1);
+    			/*div1_binding*/ ctx[14](div1);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*stickyheader*/ 4) {
@@ -5840,10 +5844,10 @@
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
-    			/*slot0_binding*/ ctx[9](null);
-    			/*div0_binding*/ ctx[10](null);
+    			/*slot0_binding*/ ctx[11](null);
+    			/*div0_binding*/ ctx[12](null);
     			if (if_block) if_block.d();
-    			/*div1_binding*/ ctx[11](null);
+    			/*div1_binding*/ ctx[14](null);
     		}
     	};
 
@@ -5867,10 +5871,11 @@
     	let paginator = false;
     	let sortableHeaders = [];
     	let headerRow;
+    	let host;
 
     	onMount(() => {
     		headerCellSlot.addEventListener("slotchange", () => {
-    			const host = gridRoot.getRootNode().host;
+    			host = gridRoot.getRootNode().host;
     			const headers = headerCellSlot.assignedNodes();
     			gridRoot.style.setProperty("--grid-columns-num", headers.length);
     			handleHeaders(headers, host);
@@ -5913,6 +5918,14 @@
     		}
     	};
 
+    	const dispatchPageEvent = e => {
+    		host.dispatchEvent(new CustomEvent("pageChange",
+    		{
+    				detail: { pageNumber: e.detail.pageNumber },
+    				bubbles: true
+    			}));
+    	};
+
     	const writable_props = ["currentpage", "maxpages"];
 
     	Object.keys($$props).forEach(key => {
@@ -5933,6 +5946,8 @@
     			$$invalidate(6, headerRow = $$value);
     		});
     	}
+
+    	const pageChange_handler = e => dispatchPageEvent(e);
 
     	function div1_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -5955,7 +5970,9 @@
     		paginator,
     		sortableHeaders,
     		headerRow,
-    		handleHeaders
+    		host,
+    		handleHeaders,
+    		dispatchPageEvent
     	});
 
     	$$self.$inject_state = $$props => {
@@ -5967,6 +5984,7 @@
     		if ("paginator" in $$props) $$invalidate(5, paginator = $$props.paginator);
     		if ("sortableHeaders" in $$props) sortableHeaders = $$props.sortableHeaders;
     		if ("headerRow" in $$props) $$invalidate(6, headerRow = $$props.headerRow);
+    		if ("host" in $$props) host = $$props.host;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -5981,10 +5999,13 @@
     		headerCellSlot,
     		paginator,
     		headerRow,
+    		dispatchPageEvent,
+    		host,
     		sortableHeaders,
     		handleHeaders,
     		slot0_binding,
     		div0_binding,
+    		pageChange_handler,
     		div1_binding
     	];
     }
@@ -6576,7 +6597,7 @@
 
     	const goToPage = pageNumber => {
     		$$invalidate(0, currentpage = pageNumber);
-    		host.dispatchEvent(new Event("pageChange", { pageNumber }));
+    		host.dispatchEvent(new CustomEvent("pageChange", { detail: { pageNumber }, bubbles: true }));
     	};
 
     	const writable_props = ["maxpages", "currentpage"];

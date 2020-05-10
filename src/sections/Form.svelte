@@ -65,7 +65,7 @@
 		</select>
 	</zoo-select>
 	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox with some additional event handling of clicks inside">
-		<input slot="checkboxelement" type="checkbox"/>
+		<input disabled slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
 		<template>

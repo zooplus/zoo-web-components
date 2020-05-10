@@ -59,8 +59,7 @@
 		font-size: $p1-size;
 		line-height: $p1-line-height;
 		padding: 13px 40px 13px 15px;
-		border: 1px solid;
-		border-color: $grey-dark;
+		border: $stroked-box-grey;
 		border-radius: $input-border-radius;
 		color: $grey-dark;
 		outline: none;
@@ -71,9 +70,9 @@
 	}
 
 	::slotted(select:disabled) {
-		border-color: #e6e6e6;
-		background-color: #f2f3f4;
-		color: #97999c;
+		border: $stroked-box-grey-light;
+		background-color: $grey-ultralight;
+		color: $grey-light;
 	}
 
 	::slotted(select:disabled:hover) {
@@ -81,14 +80,13 @@
 	}
 
 	::slotted(select:focus) {
-		border: 2px solid;
+		border: $stroked-box-grey-dark-bold;
 		padding: 12px 40px 12px 14px;
 	}
 
 	::slotted(select.error) {
-		border: 2px solid;
+		border: $stroked-box-warning-bold;
 		padding: 12px 14px;
-		border-color: var(--warning-mid, #{$warning-mid});
 		transition: border-color 0.3s ease;
 	}
 </style>

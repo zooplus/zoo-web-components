@@ -30,9 +30,10 @@
 		.paging {
 			display: flex;
 			align-items: center;
-			border: 1px solid $grey-dark;
+			border: $stroked-box-grey-light;
 			border-radius: $input-border-radius;
 			margin: 3px 0 3px 20px;
+			padding: 0 15px;
 
 			&.hidden {
 				opacity: 0;
@@ -44,14 +45,13 @@
 			cursor: pointer;
 			opacity: 1;
 			transition: opacity 0.1s;
-			margin-left: 10px;
 
 			&:active {
 				opacity: 0.5;
 			}
 
 			&.hidden {
-				opacity: 0;
+				display: none;
 			}
 
 			&.next {

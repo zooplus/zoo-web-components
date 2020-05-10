@@ -44,8 +44,7 @@
 		line-height: $p1-line-height;
 		padding: 13px 35px 13px 15px;
 		margin: 0;
-		border: 1px solid;
-		border-color: $grey-dark;
+		border: $stroked-box-grey;
 		border-radius: $input-border-radius;
 		color: $grey-dark;
 		outline: none;
@@ -72,24 +71,23 @@
 
 	::slotted(input:disabled),
 	::slotted(textarea:disabled) {
-		border-color: #e6e6e6;
-		background-color: #f2f3f4;
-		color: #97999c;
+		border: $stroked-box-grey-light;
+		background-color: $grey-ultralight;
+		color: $grey-light;
 		cursor: not-allowed;
 	}
 
 	::slotted(input:focus),
 	::slotted(textarea:focus) {
-		border: 2px solid;
+		border: $stroked-box-grey-dark-bold;
 		padding: 12px 34px 12px 14px;
 	}
 
 	::slotted(input.error),
 	::slotted(textarea.error) {
 		transition: border-color 0.3s ease;
-		border: 2px solid;
+		border: $stroked-box-warning-bold;
 		padding: 12px 34px 12px 14px;
-		border-color: var(--warning-mid, #{$warning-mid});
 	}
 
 	::slotted(input[type='date']), ::slotted(input[type='time']) {

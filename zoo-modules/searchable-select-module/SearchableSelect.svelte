@@ -70,8 +70,7 @@
 		text-overflow: '';
 		width: 100%;
 		padding: 13px 15px;
-		border: 2px solid;
-		color: $grey-dark;
+		border: $stroked-box-grey;
 		border-bottom-left-radius: 3px;
 		border-bottom-right-radius: 3px;
 		border-top: none;
@@ -82,7 +81,7 @@
 	}
 
 	::slotted(select.error) {
-		border-color: var(--warning-mid, #{$warning-mid});
+		border: $stroked-box-warning-bold;
 		transition: border-color 0.3s ease;
 	}
 
@@ -91,9 +90,9 @@
 	}
 
 	::slotted(select:disabled) {
-		border-color: #e6e6e6;
-		background-color: #f2f3f4;
-		color: #97999c;
+		border: $stroked-box-grey-light;
+		background-color: $grey-ultralight;
+		color: $grey-light;
 	}
 
 	::slotted(select:disabled:hover) {

@@ -25,28 +25,17 @@
 		cursor: pointer;
 
 		&.highlighted {
-			border: 2px solid;
-			border-color: $grey-light;
+			border: $stroked-box-grey-light;
 			border-radius: $input-border-radius;
 			padding: 12px 15px;
-
-			&.focused {
-				border-color: $grey-dark;
-			}
 		}
 
 		&.clicked {
-			border-color: var(--primary-mid, #{$primary-mid});
+			border: $stroked-box-success-bold;
 		}
 
 		&.error {
-			border-color: var(--warning-mid, #{$warning-mid});
-
-			.input-slot {
-				.input-label {
-					color: var(--warning-mid, #{$warning-mid});
-				}
-			}
+			border: $stroked-box-warning-bold;
 		}
 
 		&.disabled {
@@ -54,10 +43,6 @@
 
 			.input-slot {
 				cursor: not-allowed;
-
-				.input-label {
-					color: $grey-light;
-				}
 			}
 		}
 
@@ -88,11 +73,11 @@
 	::slotted(input[type="checkbox"])::before {
 		position: relative;
 		display: inline-block;
-		width: 20px;
-		height: 20px;
+		width: 24px;
+		height: 24px;
 		content: "";
-		border-radius: $input-border-radius;
-		border: 2px solid var(--primary-mid, #{$primary-mid});
+		border-radius: 3px;
+		border: $stroked-box-success-bold;
 		background: white;
 	}
 
@@ -104,26 +89,26 @@
 		content: "";
 		position: absolute;
 		top: 4px;
-		left: 9px;
-		width: 5px;
-		height: 11px;
+		left: 10px;
+		width: 6px;
+		height: 14px;
 		border-bottom: 2px solid;
 		border-right: 2px solid;
 		transform: rotate(40deg);
 		color: var(--primary-mid, #{$primary-mid});
 	}
 
-	::slotted(input[type="checkbox"]:checked.error)::after {
-		color: var(--warning-mid, #{$warning-mid});
-	}
-
 	::slotted(input[type="checkbox"]:disabled) {
 		cursor: not-allowed;
 	}
 
+	::slotted(input[type="checkbox"]:checked.error)::after {
+		color: var(--warning-mid, #{$warning-mid});
+	}
+
 	::slotted(input[type="checkbox"]:disabled)::before {
-		border-color: $grey-mid;
-		background-color: $grey-light;
+		border-color: $grey-light;
+		background-color: $grey-ultralight;
 	}
 
 	::slotted(input[type="checkbox"]:disabled)::after {
@@ -197,6 +182,9 @@
 			});
 			if (_slottedInput.checked) {
 				_clicked = true;
+			}
+			if (_slottedInput.disabled) {
+				disabled = true;
 			}
 			changeValidState(valid);
 		});

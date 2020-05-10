@@ -33,7 +33,7 @@
 		color: $grey-mid;
 		list-style-type: none;
 		padding: 0 10px;
-		border: 0px solid black;
+		border: 0;
 
 		.header {
 			display: flex;

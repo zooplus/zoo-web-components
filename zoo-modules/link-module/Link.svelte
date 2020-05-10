@@ -63,7 +63,7 @@
 					overflow: hidden;
 					width: 0;
 					border-bottom: 1px solid #fff;
-					color: #fff;
+					color: $white;
 					transition: width 0.3s;
 				}
 

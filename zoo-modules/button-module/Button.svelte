@@ -37,7 +37,7 @@
 			padding: 0 20px;
 
 			&.hollow {
-				border: 2px solid var(--primary-mid, #{$primary-mid});
+				border: $stroked-box-primary-bold;
 				color: var(--primary-mid, #{$primary-mid});
 				background: transparent;
 			}
@@ -74,13 +74,13 @@
 
 			&:disabled {
 				background: $grey-ultralight;
-				color: #7a7a7a;
-				border: 1px solid $grey-light;
+				color: $grey-mid;
+				border: $stroked-box-grey-light;
 
 				&:hover, &:focus, &:active {
 					cursor: not-allowed;
 					background: $grey-ultralight;
-					color: #7a7a7a;
+					color: $grey-mid;
 				}
 			}
 

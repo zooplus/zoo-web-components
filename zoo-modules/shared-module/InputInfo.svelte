@@ -18,6 +18,7 @@
 	.info, .error {
 		padding: 0 2px 2px 0;
 		font-size: $p2-size;
+		line-height: $p2-line-height;
 		color: $grey-dark;
 		display: flex;
 		align-items: center;
@@ -33,7 +34,6 @@
 
 	.error {
 		animation: hideshow 0.5s ease;
-		color: var(--warning-mid, #{$warning-mid});
 
 		svg path {
 			fill: var(--warning-mid, #{$warning-mid});

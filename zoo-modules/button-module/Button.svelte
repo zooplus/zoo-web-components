@@ -31,10 +31,10 @@
 			width: 100%;
 			height: 100%;
 			font-size: $p1-size;
+			line-height: $p1-line-height;
 			font-weight: bold;
 			text-align: center;
 			padding: 0 20px;
-			line-height: $p1-line-height;
 
 			&.hollow {
 				border: 2px solid var(--primary-mid, #{$primary-mid});

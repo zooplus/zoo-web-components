@@ -65,8 +65,8 @@
 		top: 0;
 		color: white;
 		font-size: $p1-size;
-		font-weight: bold;
 		line-height: $p1-line-height;
+		font-weight: bold;
 		cursor: pointer;
 
 		.nav-link {

@@ -27,7 +27,7 @@
 		&.highlighted {
 			border: $stroked-box-grey-light;
 			border-radius: $input-border-radius;
-			padding: 12px 15px;
+			padding: 10px 15px;
 
 			&.clicked {
 				border: $stroked-box-success-bold;

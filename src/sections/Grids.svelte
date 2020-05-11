@@ -19,7 +19,7 @@
 				</div>
 				<div>{row.createdDate}</div>
 				<div>
-					<div class="item-per-page-selector-holder" slot="pagesizeselector">
+					<div class="status">
 						<zoo-select>
 							<select disabled="{row.status == 'DELIVERED' ? true : null}" slot="selectelement" class="item-per-page-selector">
 								{#each statuses as status}
@@ -31,10 +31,10 @@
 				</div>
 				<div>{row.minWeight}</div>
 				<div>{row.maxWeight}</div>
-				<div>
-				<zoo-input>
-					<input disabled="{row.status == 'DELIVERED' ? true : null}" value="{row.deliveryDate}" slot="inputelement" type="date" placeholder="Enter date" />
-				</zoo-input>
+				<div class="delivery-date">
+					<zoo-input>
+						<input disabled="{row.status == 'DELIVERED' ? true : null}" value="{row.deliveryDate}" slot="inputelement" type="date" placeholder="Enter date" />
+					</zoo-input>
 				</div>
 				<div>{row.noOfPieces}</div>
 				<div>{row.price}</div>
@@ -122,6 +122,10 @@
 
 	h3 {
 		color: $primary-mid;
+	}
+
+	.status, .delivery-date {
+		margin-right: 10px;
 	}
 
 	.example-row {

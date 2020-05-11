@@ -7,9 +7,18 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+	}
+
 	.box {
 		display: flex;
 		align-items: center;
+		width: 100%;
+		height: 100%;
 
 		.sort-arrow {
 			width: 20px;
@@ -19,11 +28,11 @@
 			cursor: pointer;
 			margin-left: 5px;
 			border-radius: $input-border-radius;
+		}
 
-			&:hover {
-				opacity: 1;
-				background: $grey-ultralight;
-			}
+		&:hover .sort-arrow {
+			opacity: 1;
+			background: $grey-ultralight;
 		}
 
 		.sort-arrow[sortstate='asc'] {

@@ -22,7 +22,8 @@
 		position: relative;
 		max-height: inherit;
 		max-width: inherit;
-		min-height: 200px;
+		min-height: inherit;
+		min-width: inherit;
 		overflow: auto;
 		box-shadow: $box-shadow-strong;
 

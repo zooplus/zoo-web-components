@@ -104,6 +104,9 @@
     function afterUpdate(fn) {
         get_current_component().$$.after_update.push(fn);
     }
+    function onDestroy(fn) {
+        get_current_component().$$.on_destroy.push(fn);
+    }
 
     const dirty_components = [];
     const binding_callbacks = [];
@@ -1496,7 +1499,7 @@
     class Input extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.error-circle{animation:hideshow 0.5s ease;position:absolute;right:0;top:14px;padding:0 15px 0 5px;color:var(--warning-mid, #ED1C24);pointer-events:none}.error-circle path{fill:var(--warning-mid, #ED1C24)}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 35px 13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;text-overflow:ellipsis;-moz-appearance:textfield}::slotted(input)::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}::slotted(input)::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676;opacity:1}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#E6E6E6;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555555;padding:12px 34px 12px 14px}::slotted(input.error),::slotted(textarea.error){transition:border-color 0.3s ease;border:2px solid var(--warning-mid, #ED1C24);padding:12px 34px 12px 14px}::slotted(input[type='date']),::slotted(input[type='time']){-webkit-appearance:none}.input-slot.no-padding ::slotted(input){padding:0}@keyframes hideshow{0%{opacity:0}100%{opacity:1}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.error-circle{animation:hideshow 0.5s ease;position:absolute;right:0;top:14px;padding:0 15px 0 5px;color:var(--warning-mid, #ED1C24);pointer-events:none}.error-circle path{fill:var(--warning-mid, #ED1C24)}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;text-overflow:ellipsis;-moz-appearance:textfield}::slotted(input)::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}::slotted(input)::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676;opacity:1}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555555;padding:12px 14px}::slotted(input.error),::slotted(textarea.error){transition:border-color 0.3s ease;border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px}::slotted(input[type='date']),::slotted(input[type='time']){-webkit-appearance:none}.input-slot.no-padding ::slotted(input){padding:0}@keyframes hideshow{0%{opacity:0}100%{opacity:1}}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$3, create_fragment$3, safe_not_equal, {
     			labelposition: 0,
@@ -3190,7 +3193,7 @@
     class Select extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:12px}.close{display:inline-block;cursor:pointer;right:28px;top:14px}.arrows path{fill:var(--primary-mid, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;font-size:14px;line-height:20px;padding:13px 40px 13px 15px;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#E6E6E6}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555555;padding:12px 40px 12px 14px}::slotted(select.error){border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px;transition:border-color 0.3s ease}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.box.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.box.left{grid-template-areas:"label link link" "label input input" "label info info"}}.box.left .input-label{align-self:center;padding-right:5px}.box .input-label{grid-area:label;align-self:self-start}.box .input-link{grid-area:link;align-self:flex-end}.box .input-slot{grid-area:input;position:relative}.box .input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:12px}.close{display:inline-block;cursor:pointer;right:28px;top:14px}.arrows path{fill:var(--primary-mid, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;font-size:14px;line-height:20px;padding:13px 15px;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555555;padding:12px 14px}::slotted(select.error){border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px;transition:border-color 0.3s ease}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$9, create_fragment$9, safe_not_equal, {
     			labelposition: 0,
@@ -4054,7 +4057,7 @@
     class SearchableSelect extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.close{display:inline-block;position:absolute;top:34%;right:4%;cursor:pointer}:host{position:relative}.box{position:relative}.box:hover .selected-options{display:block;animation:fadeTooltipIn 0.2s}.selected-options{display:none}.selected-options:hover{display:block}::slotted(select.searchable-zoo-select){-webkit-appearance:none;-moz-appearance:none;text-indent:1px;text-overflow:'';width:100%;padding:13px 15px;border:1px solid #767676;border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-top:none;position:absolute;z-index:2;top:60px;font-size:14px}::slotted(select.error){border:2px solid var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}::slotted(select.hidden){display:none}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#E6E6E6}::slotted(select:disabled:hover){cursor:not-allowed}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.close{display:inline-block;position:absolute;top:34%;right:4%;cursor:pointer}:host{position:relative}.box{position:relative}.box:hover .selected-options{display:block;animation:fadeTooltipIn 0.2s}.selected-options{display:none}.selected-options:hover{display:block}::slotted(select.searchable-zoo-select){-webkit-appearance:none;-moz-appearance:none;text-indent:1px;text-overflow:'';width:100%;padding:13px 15px;border:1px solid #767676;border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-top:none;position:absolute;z-index:2;top:60px;font-size:14px}::slotted(select.error){border:2px solid var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}::slotted(select.hidden){display:none}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}</style>`;
 
     		init(
     			this,
@@ -5722,7 +5725,7 @@
     	const block = {
     		c: function create() {
     			zoo_spinner = element("zoo-spinner");
-    			add_location(zoo_spinner, file$k, 3, 2, 105);
+    			add_location(zoo_spinner, file$k, 3, 2, 142);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_spinner, anchor);
@@ -5776,25 +5779,26 @@
     			slot3 = element("slot");
     			this.c = noop;
     			attr_dev(slot0, "name", "headercell");
-    			add_location(slot0, file$k, 6, 2, 220);
+    			add_location(slot0, file$k, 6, 2, 257);
     			attr_dev(div0, "class", "header-row");
     			toggle_class(div0, "sticky", /*stickyheader*/ ctx[3]);
-    			add_location(div0, file$k, 5, 1, 141);
+    			add_location(div0, file$k, 5, 1, 178);
     			attr_dev(slot1, "name", "row");
-    			add_location(slot1, file$k, 8, 1, 288);
+    			add_location(slot1, file$k, 8, 1, 325);
     			attr_dev(slot2, "name", "norecords");
-    			add_location(slot2, file$k, 9, 1, 334);
+    			add_location(slot2, file$k, 9, 1, 371);
     			attr_dev(slot3, "name", "pagesizeselector");
     			attr_dev(slot3, "slot", "pagesizeselector");
-    			add_location(slot3, file$k, 12, 3, 597);
+    			add_location(slot3, file$k, 12, 3, 634);
     			set_custom_element_data(zoo_grid_paginator, "class", "paginator");
     			set_custom_element_data(zoo_grid_paginator, "currentpage", /*currentpage*/ ctx[0]);
     			set_custom_element_data(zoo_grid_paginator, "maxpages", /*maxpages*/ ctx[1]);
     			toggle_class(zoo_grid_paginator, "paginator-hidden", !/*paginator*/ ctx[6]);
-    			add_location(zoo_grid_paginator, file$k, 11, 2, 418);
+    			add_location(zoo_grid_paginator, file$k, 11, 2, 455);
     			attr_dev(slot4, "name", "paginator");
-    			add_location(slot4, file$k, 10, 1, 366);
+    			add_location(slot4, file$k, 10, 1, 403);
     			attr_dev(div1, "class", "box");
+    			toggle_class(div1, "resizable", /*applyResizeLogic*/ ctx[11]);
     			add_location(div1, file$k, 1, 0, 49);
     		},
     		l: function claim(nodes) {
@@ -5806,22 +5810,22 @@
     			append_dev(div1, t0);
     			append_dev(div1, div0);
     			append_dev(div0, slot0);
-    			/*slot0_binding*/ ctx[15](slot0);
-    			/*div0_binding*/ ctx[16](div0);
+    			/*slot0_binding*/ ctx[20](slot0);
+    			/*div0_binding*/ ctx[21](div0);
     			append_dev(div1, t1);
     			append_dev(div1, slot1);
-    			/*slot1_binding*/ ctx[17](slot1);
+    			/*slot1_binding*/ ctx[22](slot1);
     			append_dev(div1, t2);
     			append_dev(div1, slot2);
     			append_dev(div1, t3);
     			append_dev(div1, slot4);
     			append_dev(slot4, zoo_grid_paginator);
     			append_dev(zoo_grid_paginator, slot3);
-    			/*zoo_grid_paginator_binding*/ ctx[18](zoo_grid_paginator);
-    			/*slot4_binding*/ ctx[20](slot4);
-    			/*div1_binding*/ ctx[21](div1);
+    			/*zoo_grid_paginator_binding*/ ctx[23](zoo_grid_paginator);
+    			/*slot4_binding*/ ctx[25](slot4);
+    			/*div1_binding*/ ctx[26](div1);
     			if (remount) dispose();
-    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[19], false, false, false);
+    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[24], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (/*loading*/ ctx[2]) {
@@ -5850,18 +5854,22 @@
     			if (dirty & /*paginator*/ 64) {
     				toggle_class(zoo_grid_paginator, "paginator-hidden", !/*paginator*/ ctx[6]);
     			}
+
+    			if (dirty & /*applyResizeLogic*/ 2048) {
+    				toggle_class(div1, "resizable", /*applyResizeLogic*/ ctx[11]);
+    			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
     			if (if_block) if_block.d();
-    			/*slot0_binding*/ ctx[15](null);
-    			/*div0_binding*/ ctx[16](null);
-    			/*slot1_binding*/ ctx[17](null);
-    			/*zoo_grid_paginator_binding*/ ctx[18](null);
-    			/*slot4_binding*/ ctx[20](null);
-    			/*div1_binding*/ ctx[21](null);
+    			/*slot0_binding*/ ctx[20](null);
+    			/*div0_binding*/ ctx[21](null);
+    			/*slot1_binding*/ ctx[22](null);
+    			/*zoo_grid_paginator_binding*/ ctx[23](null);
+    			/*slot4_binding*/ ctx[25](null);
+    			/*div1_binding*/ ctx[26](null);
     			dispose();
     		}
     	};
@@ -5891,13 +5899,14 @@
     	let rowSlot;
     	let paginatorSlot;
     	let paginatorFallback;
+    	let resizeObserver;
+    	let applyResizeLogic = false;
 
     	onMount(() => {
     		headerCellSlot.addEventListener("slotchange", () => {
     			host = gridRoot.getRootNode().host;
     			const headers = headerCellSlot.assignedNodes();
     			gridRoot.style.setProperty("--grid-columns-num", headers.length);
-    			handleHeaders(headers, host);
 
     			if (host.hasAttribute("paginator")) {
     				$$invalidate(6, paginator = true);
@@ -5906,12 +5915,32 @@
     			if (host.hasAttribute("stickyheader")) {
     				$$invalidate(3, stickyheader = true);
     			}
+
+    			if (host.hasAttribute("resizable")) {
+    				$$invalidate(11, applyResizeLogic = true);
+    			}
+
+    			handleHeaders(headers);
     		});
 
     		rowSlot.addEventListener("slotchange", () => {
     			const exampleRow = rowSlot.assignedNodes()[0];
     			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue("min-width");
     			$$invalidate(7, headerRow.style.minWidth = minWidth, headerRow);
+
+    			if (applyResizeLogic) {
+    				const allRows = rowSlot.assignedNodes();
+
+    				for (const row of allRows) {
+    					let i = 1;
+
+    					for (const child of row.children) {
+    						child.setAttribute("column", i);
+    						child.style.flexGrow = 1;
+    						i++;
+    					}
+    				}
+    			}
     		});
 
     		paginatorSlot.addEventListener("slotchange", () => {
@@ -5927,8 +5956,21 @@
     	});
 
     	const handleHeaders = (headers, host) => {
+    		handleSortableHeaders(headers);
+    		if (applyResizeLogic) handleResizableHeaders(headers);
+    	};
+
+    	const handleSortableHeaders = headers => {
+    		let i = 1;
+
     		for (let header of headers) {
     			header.classList.add("header-cell");
+
+    			if (applyResizeLogic) {
+    				header.style.flexGrow = 1;
+    				header.setAttribute("column", i);
+    				i++;
+    			}
 
     			if (header.hasAttribute("sortable")) {
     				header.innerHTML = "<zoo-grid-header>" + header.innerHTML + "</zoo-grid-header>";
@@ -5954,6 +5996,44 @@
     		}
     	};
 
+    	const handleResizableHeaders = headers => {
+    		// only first run will iterate over whole grid
+    		resizeObserver = new ResizeObserver(debounce(
+    				entries => {
+    					for (const entry of entries) {
+    						const columnElements = host.querySelectorAll("[column=\"" + entry.target.getAttribute("column") + "\"]");
+
+    						for (const columnEl of columnElements) {
+    							columnEl.style.width = entry.contentRect.width + "px";
+    						}
+    					}
+    				},
+    				200
+    			));
+
+    		for (let header of headers) {
+    			resizeObserver.observe(header);
+    		}
+    	};
+
+    	const debounce = (func, wait, immediate) => {
+    		let timeout;
+
+    		return function () {
+    			const context = this, args = arguments;
+
+    			const later = function () {
+    				timeout = null;
+    				if (!immediate) func.apply(context, args);
+    			};
+
+    			const callNow = immediate && !timeout;
+    			clearTimeout(timeout);
+    			timeout = setTimeout(later, wait);
+    			if (callNow) func.apply(context, args);
+    		};
+    	};
+
     	const dispatchPageEvent = e => {
     		host.dispatchEvent(new CustomEvent("pageChange",
     		{
@@ -5961,6 +6041,12 @@
     				bubbles: true
     			}));
     	};
+
+    	onDestroy(() => {
+    		if (resizeObserver) {
+    			resizeObserver.disconnect();
+    		}
+    	});
 
     	const writable_props = ["currentpage", "maxpages", "loading"];
 
@@ -6017,6 +6103,7 @@
 
     	$$self.$capture_state = () => ({
     		onMount,
+    		onDestroy,
     		currentpage,
     		maxpages,
     		loading,
@@ -6030,7 +6117,12 @@
     		rowSlot,
     		paginatorSlot,
     		paginatorFallback,
+    		resizeObserver,
+    		applyResizeLogic,
     		handleHeaders,
+    		handleSortableHeaders,
+    		handleResizableHeaders,
+    		debounce,
     		dispatchPageEvent
     	});
 
@@ -6048,6 +6140,8 @@
     		if ("rowSlot" in $$props) $$invalidate(8, rowSlot = $$props.rowSlot);
     		if ("paginatorSlot" in $$props) $$invalidate(9, paginatorSlot = $$props.paginatorSlot);
     		if ("paginatorFallback" in $$props) $$invalidate(10, paginatorFallback = $$props.paginatorFallback);
+    		if ("resizeObserver" in $$props) resizeObserver = $$props.resizeObserver;
+    		if ("applyResizeLogic" in $$props) $$invalidate(11, applyResizeLogic = $$props.applyResizeLogic);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -6066,10 +6160,15 @@
     		rowSlot,
     		paginatorSlot,
     		paginatorFallback,
+    		applyResizeLogic,
     		dispatchPageEvent,
     		host,
+    		resizeObserver,
     		sortableHeaders,
     		handleHeaders,
+    		handleSortableHeaders,
+    		handleResizableHeaders,
+    		debounce,
     		slot0_binding,
     		div0_binding,
     		slot1_binding,
@@ -6083,7 +6182,7 @@
     class Grid extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{position:relative;max-height:inherit;max-width:inherit;min-height:200px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box ::slotted(*[slot="row"]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{display:block;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}.box .paginator-hidden{display:none}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit;min-width:inherit;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)}.box ::slotted(*[slot="row"]){overflow:visible}.box .header-row,.box ::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box.resizable .header-row,.box.resizable ::slotted(*[slot="row"]){display:flex;padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px}.box.resizable ::slotted(.header-cell){overflow:auto;resize:horizontal}.box ::slotted(*[slot="row"]){align-items:center}.box ::slotted(*[slot="row"] *[column]){align-items:center}.box .header-row{z-index:1}.box .header-row.sticky{top:0;position:sticky;background:white}.box ::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}.box ::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}.box ::slotted(*[slot="row"]:hover){background:#E6E6E6}.box ::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.box .paginator{display:block;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}.box .paginator-hidden{display:none}</style>`;
     		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1, loading: 2 });
 
     		if (options) {
@@ -6281,7 +6380,7 @@
     class GridHeader extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{display:flex;align-items:center}.box .sort-arrow{width:20px;opacity:0;transform:rotate(0deg);transition:opacity 0.1s;cursor:pointer;margin-left:5px;border-radius:5px}.box .sort-arrow:hover{opacity:1;background:#F2F3F4}.box .sort-arrow[sortstate='asc']{transform:rotate(180deg)}.box .sort-arrow[sortstate='desc'],.box .sort-arrow[sortstate='asc']{opacity:1;background:#F2F3F4}.box .sort-arrow:active,.box .sort-arrow[sortstate='desc']:active,.box .sort-arrow[sortstate='asc']:active{opacity:0.5}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:flex;align-items:center;width:100%;height:100%}.box{display:flex;align-items:center;width:100%;height:100%}.box .sort-arrow{width:20px;opacity:0;transform:rotate(0deg);transition:opacity 0.1s;cursor:pointer;margin-left:5px;border-radius:5px}.box:hover .sort-arrow{opacity:1;background:#F2F3F4}.box .sort-arrow[sortstate='asc']{transform:rotate(180deg)}.box .sort-arrow[sortstate='desc'],.box .sort-arrow[sortstate='asc']{opacity:1;background:#F2F3F4}.box .sort-arrow:active,.box .sort-arrow[sortstate='desc']:active,.box .sort-arrow[sortstate='asc']:active{opacity:0.5}</style>`;
     		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, { discardSort: 3, setSort: 4 });
 
     		if (options) {
@@ -6753,7 +6852,7 @@
     class GridPaginator extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{padding:10px}.box{display:flex;justify-content:end;font-size:14px}.box .paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.box .paging.hidden{opacity:0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.box .btn:active{opacity:0.5}.box .btn.hidden{display:none}.box .btn.next{margin-left:5px}.box .btn.next svg{transform:rotate(-90deg)}.box .btn.prev{margin-right:10px}.box .btn.prev svg{transform:rotate(90deg)}.box svg{fill:#555555}.box .nav-arrow path{fill:var(--primary-mid, #3C9700)}.box .page-element{cursor:pointer}.box .page-element:hover{background:#F2F3F4}.box .page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.box .page-element,.box .page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.box .page-element-dots{display:none}.box .page-element+.page-element-dots{display:flex}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{padding:10px}.box{display:flex;justify-content:flex-end;font-size:14px}.box .paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.box .paging.hidden{opacity:0}.box .btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.box .btn:active{opacity:0.5}.box .btn.hidden{display:none}.box .btn.next{margin-left:5px}.box .btn.next svg{transform:rotate(-90deg)}.box .btn.prev{margin-right:10px}.box .btn.prev svg{transform:rotate(90deg)}.box svg{fill:#555555}.box .nav-arrow path{fill:var(--primary-mid, #3C9700)}.box .page-element{cursor:pointer}.box .page-element:hover{background:#F2F3F4}.box .page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.box .page-element,.box .page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.box .page-element-dots{display:none}.box .page-element+.page-element-dots{display:flex}</style>`;
     		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, { maxpages: 1, currentpage: 0 });
 
     		if (options) {

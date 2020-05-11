@@ -27,7 +27,7 @@
 
 	.box {
 		display: flex;
-		justify-content: end;
+		justify-content: flex-end;
 		font-size: $p1-size;
 
 		.paging {

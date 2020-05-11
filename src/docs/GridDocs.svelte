@@ -32,6 +32,9 @@
 						<b>{pageChangeExample}</b><br>
 						<b>$pageNumber</b> - number of the page user wants to go to.
 					</li>
+					<li>
+						<b>resizable</b> - whether columns should be resizable. To prevent resizing particular column set `min-width` and `max-width`;
+					</li>
 				</ul>
 			</zoo-collapsable-list-item>
 			<zoo-collapsable-list-item slot="item1">

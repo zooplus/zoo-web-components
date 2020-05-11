@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-grid"></svelte:options>
-<div class="box" bind:this={gridRoot}>
+<div class="box" bind:this={gridRoot} class:resizable="{applyResizeLogic}">
 	{#if loading}
 		<zoo-spinner></zoo-spinner>
 	{/if}
@@ -27,6 +27,10 @@
 		overflow: auto;
 		box-shadow: $box-shadow-strong;
 
+		::slotted(*[slot="row"]) {
+			overflow: visible;
+		}
+
 		.header-row, ::slotted(*[slot="row"]) {
 			display: grid;
 			grid-template-columns: repeat(var(--grid-columns-num), minmax(50px, 1fr));
@@ -35,7 +39,25 @@
 			min-height: 40px;
 		}
 
+		&.resizable {
+			.header-row, ::slotted(*[slot="row"]) {
+				display: flex;
+				padding: 10px;
+				border-bottom: 1px solid rgba(0,0,0, 0.2);
+				min-height: 40px;
+			}
+
+			::slotted(.header-cell) {
+				overflow: auto;
+				resize: horizontal;
+			}
+		}
+
 		::slotted(*[slot="row"]) {
+			align-items: center;
+		}
+
+		::slotted(*[slot="row"] *[column]) {
 			align-items: center;
 		}
 
@@ -85,7 +107,7 @@
 </style>
 
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	export let currentpage = '';
 	export let maxpages = '';
 	export let loading = false;
@@ -99,12 +121,13 @@
 	let rowSlot;
 	let paginatorSlot;
 	let paginatorFallback;
+	let resizeObserver;
+	let applyResizeLogic = false;
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
 			host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			gridRoot.style.setProperty('--grid-columns-num', headers.length);
-			handleHeaders(headers, host);
 			
 			if (host.hasAttribute('paginator')) {
 				paginator = true;
@@ -112,12 +135,27 @@
 			if (host.hasAttribute('stickyheader')) {
 				stickyheader = true;
 			}
+			if (host.hasAttribute('resizable')) {
+				applyResizeLogic = true;
+			}
+			handleHeaders(headers, host);
 		});
 
 		rowSlot.addEventListener("slotchange", () => {
 			const exampleRow = rowSlot.assignedNodes()[0];
 			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue('min-width');
 			headerRow.style.minWidth = minWidth;
+			if (applyResizeLogic) {
+				const allRows = rowSlot.assignedNodes();
+				for (const row of allRows) {
+					let i = 1;
+					for (const child of row.children) {
+						child.setAttribute('column', i);
+						child.style.flexGrow = 1;
+						i++;
+					}
+				}
+			}
 		});
 
 		paginatorSlot.addEventListener("slotchange", () => {
@@ -132,8 +170,19 @@
 	});
 
 	const handleHeaders = (headers, host) => {
+		handleSortableHeaders(headers);
+		if (applyResizeLogic) handleResizableHeaders(headers);
+	}
+
+	const handleSortableHeaders = headers => {
+		let i = 1;
 		for (let header of headers) {
 			header.classList.add('header-cell');
+			if (applyResizeLogic) {
+				header.style.flexGrow = 1;
+				header.setAttribute('column', i);
+				i++;
+			}
 			if (header.hasAttribute('sortable')) {
 				header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
 				header.addEventListener("sortChange", (e) => {
@@ -151,10 +200,46 @@
 		}
 	}
 
+	const handleResizableHeaders = headers => {
+		// only first run will iterate over whole grid
+		resizeObserver = new ResizeObserver(debounce(entries => {
+			for (const entry of entries) {
+				const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
+				for (const columnEl of columnElements) {
+					columnEl.style.width = entry.contentRect.width + 'px';
+				}
+			}
+		}, 200));
+		for (let header of headers) {
+			resizeObserver.observe(header);
+		}
+	}
+
+	const debounce = (func, wait, immediate) => {
+		let timeout;
+		return function() {
+			const context = this, args = arguments;
+			const later = function() {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			const callNow = immediate && !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (callNow) func.apply(context, args);
+		};
+	};
+
 	const dispatchPageEvent = e => {
 		host.dispatchEvent(new CustomEvent('pageChange', {
 			detail: {pageNumber: e.detail.pageNumber}, bubbles: true
 		}));
 	};
+
+	onDestroy(() => {
+		if(resizeObserver) {
+			resizeObserver.disconnect();
+		}
+	});
 	
 </script>

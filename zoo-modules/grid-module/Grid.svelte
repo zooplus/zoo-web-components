@@ -31,12 +31,21 @@
 			overflow: visible;
 		}
 
+		.header-row {
+			font-size: $p2-size;
+			line-height: $p2-line-height;
+			font-weight: 600;
+			color: $grey-dark;
+		}
+
 		.header-row, ::slotted(*[slot="row"]) {
 			display: grid;
 			grid-template-columns: repeat(var(--grid-columns-num), minmax(50px, 1fr));
 			padding: 10px;
 			border-bottom: 1px solid rgba(0,0,0, 0.2);
 			min-height: 40px;
+			font-size: $p1-size;
+			line-height: $p1-line-height;
 		}
 
 		&.resizable {

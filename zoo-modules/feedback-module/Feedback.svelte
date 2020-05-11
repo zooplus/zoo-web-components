@@ -50,8 +50,8 @@
 		}
 
 		svg {
-			min-width: 24px;
-			min-height: 24px;
+			min-width: 30px;
+			min-height: 30px;
 			padding: 0 10px 0 15px;
 		}
 

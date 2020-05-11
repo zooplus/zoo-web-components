@@ -88,10 +88,18 @@
 </style>
 
 <script>
+	import { onMount } from 'svelte';
+
 	export let href = "";
 	export let text = "";
 	export let target = "about:blank";
-	export let type = "negative"; // primary
+	export let type = "negative"; // primary, grey
 	export let disabled = false;
 	export let textalign = 'center';
+
+	onMount(() => {
+		if (type != 'negative' || type != 'primary' || type != 'grey') {
+			type = 'negative';
+		}
+	});
 </script>

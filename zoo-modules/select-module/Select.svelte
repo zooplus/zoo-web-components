@@ -42,6 +42,8 @@
 	}
 
 	.arrows {
+		pointer-events: none;
+
 		path {
 			fill: var(--primary-mid, #{$primary-mid});
 		}

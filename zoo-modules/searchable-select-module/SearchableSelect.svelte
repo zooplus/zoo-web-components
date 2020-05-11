@@ -92,7 +92,7 @@
 	::slotted(select:disabled) {
 		border: $stroked-box-grey-light;
 		background-color: $grey-ultralight;
-		color: $grey-light;
+		color: $grey-mid;
 	}
 
 	::slotted(select:disabled:hover) {

@@ -27,14 +27,16 @@
 		&.highlighted {
 			border: $stroked-box-grey-light;
 			border-radius: $input-border-radius;
-			padding: 10px 15px;
+			padding: 6px 15px;
 
 			&.clicked {
 				border: $stroked-box-success-bold;
+				padding: 5px 14px;
 			}
 
 			&.error {
 				border: $stroked-box-warning-bold;
+				padding: 5px 14px;
 			}
 		}
 
@@ -51,12 +53,15 @@
 			display: flex;
 			flex-direction: row;
 			cursor: pointer;
+			align-items: center;
+			font-size: $p1-size;
+			line-height: $p1-line-height;
 
 			.input-label {
 				display: flex;
 				align-items: center;
 				position: relative;
-				left: 5px;
+				left: 10px;
 			}
 		}
 	}

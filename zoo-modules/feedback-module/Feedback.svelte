@@ -21,48 +21,48 @@
 		width: 100%;
 		height: 100%;
 		padding: 5px 0;
+	}
 
-		&.info {
-			background: var(--info-ultralight, #{$info-ultralight});
-			border-color: var(--info-mid, #{$info-mid});
+	svg {
+		min-width: 30px;
+		min-height: 30px;
+		padding: 0 10px 0 15px;
+	}
 
-			svg {
-				fill: var(--info-mid, #{$info-mid});
-			}
-		}
+	.text {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		height: 100%;
+		overflow: auto;
+		box-sizing: border-box;
+		padding: 5px 5px 5px 0;
+	}
 
-		&.error {
-			background: var(--warning-ultralight, #{$warning-ultralight});
-			border-color: var(--warning-mid, #{$warning-mid});
-
-			svg {
-				fill: var(--warning-mid, #{$warning-mid});
-			}
-		}
-
-		&.success {
-			background: var(--primary-ultralight, #{$primary-ultralight});
-			border-color: var(--primary-mid, #{$primary-mid});
-
-			svg {
-				fill: var(--primary-mid, #{$primary-mid});
-			}
-		}
+	.info {
+		background: var(--info-ultralight, #{$info-ultralight});
+		border-color: var(--info-mid, #{$info-mid});
 
 		svg {
-			min-width: 30px;
-			min-height: 30px;
-			padding: 0 10px 0 15px;
+			fill: var(--info-mid, #{$info-mid});
 		}
+	}
 
-		.text {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			height: 100%;
-			overflow: auto;
-			box-sizing: border-box;
-			padding: 5px 5px 5px 0;
+	.error {
+		background: var(--warning-ultralight, #{$warning-ultralight});
+		border-color: var(--warning-mid, #{$warning-mid});
+
+		svg {
+			fill: var(--warning-mid, #{$warning-mid});
+		}
+	}
+
+	.success {
+		background: var(--primary-ultralight, #{$primary-ultralight});
+		border-color: var(--primary-mid, #{$primary-mid});
+
+		svg {
+			fill: var(--primary-mid, #{$primary-mid});
 		}
 	}
 </style>

@@ -18,70 +18,69 @@
 		flex-direction: column;
 		justify-content: center;
 		position: relative;
+	}
 
-		a {
-			text-decoration: none;
-			font-size: $p2-size;
-			line-height: $p2-line-height;
+	a {
+		text-decoration: none;
+		font-size: $p2-size;
+		line-height: $p2-line-height;
 
-			&.disabled {
-				color: $grey-light;
+		&.disabled {
+			color: $grey-light;
 
-				&:hover {
-					cursor: not-allowed;
-				}
+			&:hover {
+				cursor: not-allowed;
+			}
+		}
+
+		&.primary {
+			color: var(--primary-mid, #{$primary-mid});
+
+			&:hover, &:focus, &:active {
+				color: var(--primary-dark, #{$primary-dark});
 			}
 
-			&.primary {
-				color: var(--primary-mid, #{$primary-mid});
+			&:visited {
+				color: var(--primary-light, #{$primary-light});
+			}
+		}
 
-				&:hover, &:focus, &:active {
-					color: var(--primary-dark, #{$primary-dark});
-				}
+		&.negative {
+			color: white;
 
-				&:visited {
-					color: var(--primary-light, #{$primary-light});
-				}
+			&:hover, &:focus, &:active {
+				color: $white;
+				cursor: pointer;
 			}
 
-			&.negative {
-				color: white;
-
-				&:hover, &:focus, &:active {
-					color: $white;
-					cursor: pointer;
-				}
-
-				&:visited {
-					color: $white;
-				}
-
-				.bottom-line {
-					position: absolute;
-					bottom: -3px;
-					left: 0;
-					overflow: hidden;
-					width: 0;
-					border-bottom: 1px solid #fff;
-					color: $white;
-					transition: width 0.3s;
-				}
-
-				&:hover .bottom-line {
-					width: 100%;
-				}
+			&:visited {
+				color: $white;
 			}
 
-			&.grey {
-				color: $grey-mid;
+			.bottom-line {
+				position: absolute;
+				bottom: -3px;
+				left: 0;
+				overflow: hidden;
+				width: 0;
+				border-bottom: 1px solid #fff;
+				color: $white;
+			}
 
-				&:hover, &:focus, &:active {
-					color: var(--primary-dark, #{$primary-dark});
-				}
+			&:hover .bottom-line {
+				width: 100%;
+			}
+		}
 
-				&:visited {
-					color: var(--primary-light, #{$primary-light});
-				}
+		&.grey {
+			color: $grey-mid;
+
+			&:hover, &:focus, &:active {
+				color: var(--primary-dark, #{$primary-dark});
+			}
+
+			&:visited {
+				color: var(--primary-light, #{$primary-light});
 			}
 		}
 	}

@@ -6,40 +6,38 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 3px;
 	position: relative;
+}
 
-	&.link-absent {
-		grid-template-areas: "label label label" "input input input" "info info info";
-		grid-gap: 3px 0;
+.link-absent {
+	grid-template-areas: "label label label" "input input input" "info info info";
+	grid-gap: 3px 0;
+}
+@media only screen and (min-width: 500px) {
+	.left {
+		grid-template-areas: "label link link" "label input input" "label info info";
 	}
-	@media only screen and (min-width: 500px) {
-		&.left {
-			grid-template-areas: "label link link" "label input input" "label info info";
-		}
-	}
+}
 
-	&.left {
-		.input-label {
-			align-self: center;
-			padding-right: 5px;
-		}	
-	}
+.left .input-label {
+	align-self: center;
+	padding-right: 5px;
+}
 
-	.input-label {
-		grid-area: label;
-		align-self: self-start;
-	}
+.input-label {
+	grid-area: label;
+	align-self: self-start;
+}
 
-	.input-link {
-		grid-area: link;
-		align-self: flex-end;
-	}
+.input-link {
+	grid-area: link;
+	align-self: flex-end;
+}
 
-	.input-slot {
-		grid-area: input;
-		position: relative;
-	}
+.input-slot {
+	grid-area: input;
+	position: relative;
+}
 
-	.input-info {
-		grid-area: info;
-	}
+.input-info {
+	grid-area: info;
 }

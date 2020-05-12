@@ -23,96 +23,96 @@
 
 	:host {
 		padding: 10px;
+		min-width: inherit;
 	}
 
 	.box {
 		display: flex;
 		justify-content: flex-end;
 		font-size: $p1-size;
+	}
 
-		.paging {
-			display: flex;
-			align-items: center;
-			border: $stroked-box-grey-light;
-			border-radius: $input-border-radius;
-			margin: 3px 0 3px 20px;
-			padding: 0 15px;
+	.paging {
+		display: flex;
+		align-items: center;
+		border: $stroked-box-grey-light;
+		border-radius: $input-border-radius;
+		margin: 3px 0 3px 20px;
+		padding: 0 15px;
 
-			&.hidden {
-				opacity: 0;
-			}
+		&.hidden {
+			opacity: 0;
+		}
+	}
+
+	.btn {
+		display: flex;
+		cursor: pointer;
+		opacity: 1;
+		transition: opacity 0.1s;
+
+		&:active {
+			opacity: 0.5;
 		}
 
-		.btn {
-			display: flex;
-			cursor: pointer;
-			opacity: 1;
-			transition: opacity 0.1s;
-
-			&:active {
-				opacity: 0.5;
-			}
-
-			&.hidden {
-				display: none;
-			}
-
-			&.next {
-				margin-left: 5px;
-
-				svg {
-					transform: rotate(-90deg);
-				}
-			}
-
-			&.prev {
-				margin-right: 10px;
-
-				svg {
-					transform: rotate(90deg);
-				}
-			}
-		}
-
-		svg {
-			fill: $grey-dark;
-		}
-
-		.nav-arrow {
-			path { fill: var(--primary-mid, #{$primary-mid}); }
-		}
-
-		.page-element {
-			cursor: pointer;
-
-			&:hover {
-				background: $grey-ultralight;
-			}
-
-			&.active {
-				background: var(--primary-ultralight, #{$primary-ultralight});
-				color: var(--primary-mid, #{$primary-mid});
-			}
-		}
-
-		.page-element, .page-element-dots {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border-radius: $input-border-radius;
-			width: 24px;
-			height: 24px;
-			margin-right: 5px;
-		}
-
-		.page-element-dots {
+		&.hidden {
 			display: none;
 		}
 
-		.page-element + .page-element-dots {
-			display: flex;
+		&.next {
+			margin-left: 5px;
+
+			svg {
+				transform: rotate(-90deg);
+			}
 		}
 
+		&.prev {
+			margin-right: 10px;
+
+			svg {
+				transform: rotate(90deg);
+			}
+		}
+	}
+
+	svg {
+		fill: $grey-dark;
+	}
+
+	.nav-arrow {
+		path { fill: var(--primary-mid, #{$primary-mid}); }
+	}
+
+	.page-element {
+		cursor: pointer;
+
+		&:hover {
+			background: $grey-ultralight;
+		}
+
+		&.active {
+			background: var(--primary-ultralight, #{$primary-ultralight});
+			color: var(--primary-mid, #{$primary-mid});
+		}
+	}
+
+	.page-element, .page-element-dots {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: $input-border-radius;
+		width: 24px;
+		height: 24px;
+		margin-right: 5px;
+	}
+
+	.page-element-dots {
+		display: none;
+	}
+
+	.page-element + .page-element-dots {
+		display: flex;
 	}
 </style>
 

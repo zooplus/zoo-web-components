@@ -33,68 +33,68 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
 
-		.dialog-content {
-			padding: 0 20px 20px 20px;
-			box-sizing: border-box;
-			background: white;
-			overflow-y: auto;
-			max-height: 95%;
-			border-radius: $input-border-radius;
+	.dialog-content {
+		padding: 0 20px 20px 20px;
+		box-sizing: border-box;
+		background: white;
+		overflow-y: auto;
+		max-height: 95%;
+		border-radius: $input-border-radius;
 
-			.heading {
-				display: flex;
-				flex-direction: row;
-				align-items: flex-start;
+		.heading {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
 
-				.header-text {
-					font-size: $h2-size;
-					line-height: $h2-line-height;
-					font-weight: bold;
-					margin: 30px 0;
+			.header-text {
+				font-size: $h2-size;
+				line-height: $h2-line-height;
+				font-weight: bold;
+				margin: 30px 0;
+			}
+
+			.close {
+				cursor: pointer;
+				margin: 30px 0 30px auto;
+
+				path {
+					fill: var(--primary-mid, #{$primary-mid});
 				}
-
-				.close {
-					cursor: pointer;
-					margin: 30px 0 30px auto;
-
-					path {
-						fill: var(--primary-mid, #{$primary-mid});
-					}
-				}
 			}
+		}
 
-			@media only screen and (max-width: 544px) {
-				padding: 25px;
-			}
-			@media only screen and (max-width: 375px) {
-				width: 100%;
-				height: 100%;
-				top: 0;
-				left: 0;
-				transform: none;
-			}
+		@media only screen and (max-width: 544px) {
+			padding: 25px;
+		}
+		@media only screen and (max-width: 375px) {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			transform: none;
 		}
 	}
 
-	.box.show {
+	.show {
 		opacity: 1;
 	}
 
-	.box.hide {
+	.hide {
 		opacity: 0;
 	}
 
-	.box .dialog-content {
+	.dialog-content {
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;
 	}
 
-	.box.show .dialog-content {
+	.show .dialog-content {
 		animation-name: anim-show;
 	}
 
-	.box.hide .dialog-content {
+	.hide .dialog-content {
 		animation-name: anim-hide;
 	}
 	@keyframes anim-show {

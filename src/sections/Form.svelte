@@ -38,7 +38,7 @@
 			<option>3</option>
 		</select>
 	</zoo-select>
-	<zoo-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
+	<zoo-searchable-select valid="{inputState}" inputerrormsg="Value is invalid" labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
 		<select multiple slot="selectelement">
 			{#each options as option}
 				<option value="{option.value}">

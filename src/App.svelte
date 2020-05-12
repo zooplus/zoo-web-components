@@ -41,11 +41,6 @@
 						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=custom-elementsv1" target="about:blank">Can I Use custom-elementsv1?</a></span>
 					</zoo-button>
 				</div>
-				<div class="back-btn">
-					<zoo-button>
-						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=template" target="about:blank">Can I Use template?</a> </span>
-					</zoo-button>
-				</div>
 			</div>
 		</div>
 		<div id="how" class="spec-docs">

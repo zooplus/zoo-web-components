@@ -42,6 +42,17 @@
 		flex-direction: row;
 		flex-grow: 1;
 		padding: 0 25px 0 0;
+
+		@media only screen and (max-width: 900px) {
+			justify-content: initial;
+			overflow: scroll;
+			max-width: 250px;
+		}
+		@media only screen and (max-width: 544px) {
+			justify-content: initial;
+			overflow: scroll;
+			max-width: 250px;
+		}
 	}
 
 	.header-button {
@@ -52,11 +63,6 @@
 
 		zoo-button {
 			align-self: center;
-		}
-		@media only screen and (max-width: 544px) {
-			.slotted-span {
-				display: none;
-			}
 		}
 	}
 

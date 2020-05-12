@@ -7,10 +7,10 @@
 
 <style type="text/scss">
 	ul {
-		padding: 0;
+		padding: 0;	
+	}
 
-		li {
-			list-style-type: none;
-		}
+	li {
+		list-style-type: none;
 	}
 </style>

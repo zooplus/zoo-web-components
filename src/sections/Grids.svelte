@@ -3,8 +3,10 @@
 <app-context text="Forth section is a showcase of grids"></app-context>
 
 <div class="grids-holder" bind:this="{gridHolder}">
-	<h3>Standard grid with pagination and sorting.</h3>
-	<zoo-grid bind:this={zooGrid} stickyheader paginator currentpage="5" maxpages="20" resizable
+	<h3>A grid with pagination, resizing and sorting.</h3>
+
+	<div class="grid-holder">
+	<zoo-grid class="limited-width" bind:this={zooGrid} stickyheader paginator currentpage="5" maxpages="20" resizable
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 		{#each headers as header, idx}
@@ -51,70 +53,77 @@
 			</zoo-select>
 		</div>
 	</zoo-grid>
+	</div>
 
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
-	<zoo-grid bind:this={zooGrid} style="max-height: 300px; max-width: 850px; margin: 0 auto; display: block;" stickyheader paginator
-		currentpage="5" maxpages="20" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
-		{#each extendedHeaders as header}
-			<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
-		{/each}
+	<div class="grid-holder" style="max-width: 850px;">
+		<zoo-grid class="limited-width" bind:this={zooGrid} style="max-height: 300px; min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
+			currentpage="5" maxpages="20" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
+			{#each extendedHeaders as header}
+				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+			{/each}
 
-		{#each extendedData as row} 
-			<div class="example-row limited-width" slot="row">
-				<div>
-					<zoo-checkbox labeltext="Valid">
-						<input disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
-					</zoo-checkbox>
+			{#each extendedData as row} 
+				<div class="example-row limited-width" slot="row">
+					<div>
+						<zoo-checkbox labeltext="Valid">
+							<input disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
+						</zoo-checkbox>
+					</div>
+					<div>{row.createdDate}</div>
+					<div>{row.status}</div>
+					<div>{row.minWeight}</div>
+					<div>{row.maxWeight}</div>
+					<div>{row.deliveryDate}</div>
+					<div>{row.noOfPieces}</div>
+					<div>{row.price}</div>
+					<div>{row.rating}</div>
+					<div style="width: 30px;">
+						<zoo-checkbox>
+							<input checked="{row.promotion}" slot="checkboxelement" type="checkbox"/>
+						</zoo-checkbox>
+					</div>
 				</div>
-				<div>{row.createdDate}</div>
-				<div>{row.status}</div>
-				<div>{row.minWeight}</div>
-				<div>{row.maxWeight}</div>
-				<div>{row.deliveryDate}</div>
-				<div>{row.noOfPieces}</div>
-				<div>{row.price}</div>
-				<div>{row.rating}</div>
-				<div style="width: 30px;">
-					<zoo-checkbox>
-						<input checked="{row.promotion}" slot="checkboxelement" type="checkbox"/>
-					</zoo-checkbox>
-				</div>
+			{/each}
+
+			<div class="item-per-page-selector-holder" slot="pagesizeselector">
+				<zoo-select labeltext="Page size" labelposition="left" >
+					<select slot="selectelement" class="item-per-page-selector">
+						{#each possibleNumberOfItems as number, idx}
+							<option selected="{idx == 0}">{number}</option>
+						{/each}
+					</select>
+				</zoo-select>
 			</div>
-		{/each}
-
-		<div class="item-per-page-selector-holder" slot="pagesizeselector">
-			<zoo-select labeltext="Page size" labelposition="left" >
-				<select slot="selectelement" class="item-per-page-selector">
-					{#each possibleNumberOfItems as number, idx}
-						<option selected="{idx == 0}">{number}</option>
-					{/each}
-				</select>
-			</zoo-select>
-		</div>
-	</zoo-grid>
+		</zoo-grid>
+	</div>
 
 	<h3>Grid with no rows provided.</h3>
 
-	<zoo-grid paginator>
-		{#each headers as header}
-			<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
-		{/each}
-		<div slot="norecords">
-			No records to show!
-		</div>
-	</zoo-grid>
+	<div class="grid-holder">
+		<zoo-grid class="limited-width" paginator>
+			{#each headers as header}
+				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+			{/each}
+			<div slot="norecords" class="example-row limited-width">
+				No records to show!
+			</div>
+		</zoo-grid>
+	</div>
 
 	<h3>Grid which is loading indefinitely.</h3>
 
-	<zoo-grid loading={true} paginator style="min-height: 200px;">
-		{#each headers as header}
-			<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
-		{/each}
-		<div slot="norecords">
-			
-		</div>
-	</zoo-grid>
+	<div class="grid-holder">
+		<zoo-grid class="limited-width" loading={true} paginator style="min-height: 200px;">
+			{#each headers as header}
+				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+			{/each}
+			<div slot="norecords" class="example-row limited-width">
+				
+			</div>
+		</zoo-grid>
+	</div>
 </div>
 
 <style type='text/scss'>
@@ -124,15 +133,28 @@
 		color: $primary-mid;
 	}
 
+	.grids-holder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.grid-holder {
+		max-width: 1280px;
+		overflow: scroll;
+		box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+		width: 95%;
+	}
+
 	.status, .delivery-date {
 		margin-right: 10px;
 	}
 
-	.example-row {
-		&.limited-width {
-			min-width: 1024px;
-		}
+	.limited-width {
+		min-width: 1024px;
+	}
 
+	.example-row {
 		& > div {
 			word-break: break-word;
 		}

@@ -29,7 +29,7 @@
 
 	.box {
 		pointer-events: initial;
-		box-shadow: $box-shadow-strong;
+		box-shadow: $box-shadow;
 		border-radius: $input-border-radius;
 		position: absolute;
 		transform: translate(0%, -50%);
@@ -55,54 +55,54 @@
 			right: calc(100% + 11px);
 			top: 50%;
 		}
+	}
 
-		.tooltip-content {
-			padding: 10px;
-			font-size: $p2-size;
-			line-height: $p2-line-height;
-			position: relative;
-			z-index: 1;
+	.tooltip-content {
+		padding: 10px;
+		font-size: $p2-size;
+		line-height: $p2-line-height;
+		position: relative;
+		z-index: 1;
+		background: white;
+		border-radius: $input-border-radius;
+
+		.text {
+			white-space: pre;
+			color: black;
+		}
+	}
+
+	.tip {
+		position: absolute;
+
+		&:after {
+			content: "";
+			width: 16px;
+			height: 16px;
+			position: absolute;
+			box-shadow: $box-shadow;
+			top: -8px;
+			transform: rotate(45deg);
+			z-index: 0;
 			background: white;
-			border-radius: $input-border-radius;
-
-			.text {
-				white-space: pre;
-				color: black;
-			}
 		}
 
-		.tip {
-			position: absolute;
+		&.top, &.bottom {
+			right: calc(50% + 8px);
+		}
 
-			&:after {
-				content: "";
-				width: 16px;
-				height: 16px;
-				position: absolute;
-				box-shadow: $box-shadow;
-				top: -8px;
-				transform: rotate(45deg);
-				z-index: 0;
-				background: white;
-			}
+		&.right {
+			bottom: 50%;
+			left: -8px;
+		}
 
-			&.top, &.bottom {
-				right: calc(50% + 8px);
-			}
+		&.bottom {
+			top: 0;
+		}
 
-			&.right {
-				bottom: 50%;
-				left: -8px;
-			}
-
-			&.bottom {
-				top: 0;
-			}
-
-			&.left {
-				bottom: 50%;
-				right: 8px;
-			}
+		&.left {
+			bottom: 50%;
+			right: 8px;
 		}
 	}
 	@keyframes fadeTooltipIn {

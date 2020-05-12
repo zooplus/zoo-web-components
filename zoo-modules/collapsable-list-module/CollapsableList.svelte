@@ -35,25 +35,6 @@
 		padding: 0 10px;
 		border: 0;
 
-		.header {
-			display: flex;
-			align-items: center;
-			height: 8px;
-			padding: 20px 0;
-			font-size: $p1-size;
-			line-height: $p1-line-height;
-			color: var(--primary-mid, #{$primary-mid});
-			font-weight: bold;
-			cursor: pointer;
-
-			svg {
-				display: flex;
-				margin-left: auto;
-				fill: var(--primary-mid, #{$primary-mid});
-				transition: transform 0.3s;
-			}
-		}
-
 		&.active {
 			border: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -65,6 +46,25 @@
 					transform: rotateX(180deg);
 				}
 			}
+		}
+	}
+	
+	.header {
+		display: flex;
+		align-items: center;
+		height: 8px;
+		padding: 20px 0;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
+		color: var(--primary-mid, #{$primary-mid});
+		font-weight: bold;
+		cursor: pointer;
+
+		svg {
+			display: flex;
+			margin-left: auto;
+			fill: var(--primary-mid, #{$primary-mid});
+			transition: transform 0.3s;
 		}
 	}
 </style>

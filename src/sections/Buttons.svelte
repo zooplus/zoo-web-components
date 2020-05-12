@@ -54,6 +54,7 @@
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		grid-gap: 15px;
 		width: 90%;
+		justify-content: center;
 		@media only screen and (max-width: 850px) {
 			grid-template-columns: auto;
 		}

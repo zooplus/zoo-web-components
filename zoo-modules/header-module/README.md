@@ -10,7 +10,6 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 ```
 <zoo-input>
 	<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
-	<span class="icon-search-default" slot="inputicon"></span>
 </zoo-input>
 ```
 
@@ -22,7 +21,6 @@ To use it in your project add the following to your mark-up file:
 		<div class="header-search">
 			<zoo-input>
 				<input slot="inputelement" placeholder="Search for more than 8.000 products"/>
-				<span class="icon-search-default" slot="inputicon"></span>
 			</zoo-input>
 		</div>
 		<div class="header-button">

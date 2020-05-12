@@ -1,3 +1,6 @@
+# 4.5.2
+`zoo-spinner` - fixed bumping page scrollbar by fixing position of element
+
 # 4.5.1
 Fixed a typo in documentation.
 `zoo-feedback` - fixed size of icon to have min-width and min-height;

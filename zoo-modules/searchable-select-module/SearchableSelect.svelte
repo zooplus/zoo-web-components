@@ -1,14 +1,13 @@
 <svelte:options tag="zoo-searchable-select"></svelte:options>
-<div class="box">
+<div class="box {valid ? '' : 'error'}">
 	{#if !_isMobile}
 		{#if tooltipText}
-			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}" folding="{true}">
+			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}">
 			</zoo-tooltip>
 		{/if}
-		<zoo-input class:mobile="{_isMobile}" infotext="{infotext}" valid="{valid}" on:click="{() => openSearchableSelect()}"
-			type="text" labeltext="{labeltext}" inputerrormsg="{inputerrormsg}"
-			labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}">
-			<input slot="inputelement" type="text" placeholder="{placeholder}" bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
+		<zoo-input class:mobile="{_isMobile}" valid="{valid}" on:click="{() => openSearchableSelect()}"
+			type="text" {labeltext} {inputerrormsg} {labelposition} {linktext} {linkhref} {linktarget} {infotext}>
+			<input disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
 				{#if _valueSelected}
 					<svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>
@@ -22,8 +21,7 @@
 		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
-		<zoo-select labelposition="{labelposition}" linktext="{linktext}" linkhref="{linkhref}" linktarget="{linktarget}"
-			labeltext="{labeltext}" inputerrormsg="{inputerrormsg}" infotext="{infotext}" valid="{valid}">
+		<zoo-select {labelposition} {linktext} {linkhref} {linktarget} {labeltext} {inputerrormsg} {infotext} valid="{valid}">
 			<slot bind:this={_selectSlot} name="selectelement" slot="selectelement"></slot>
 		</zoo-select>
 	{/if}
@@ -80,7 +78,7 @@
 		font-size: $p1-size;
 	}
 
-	::slotted(select.error) {
+	.box.error ::slotted(select) {
 		border: $stroked-box-warning-bold;
 		transition: border-color 0.3s ease;
 	}
@@ -101,7 +99,7 @@
 </style>
 
 <script>
-	import { onMount, beforeUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 
 	export let labelposition = "top";
 	export let labeltext = "";
@@ -117,18 +115,10 @@
 	let searchableInput;
 	let _selectSlot;
 	let _selectElement;
-	let _prevValid;
 	let options;
 	let _isMobile;
 	let _valueSelected;
 	let tooltipText;
-
-	beforeUpdate(() => {
-		if (valid != _prevValid) {
-			_prevValid = valid;
-			changeValidState(valid);
-		}
-	});
 
 	onMount(() => {
 		_isMobile = isMobile();
@@ -148,12 +138,9 @@
 			_selectElement.addEventListener('change', () => handleOptionChange());
 			_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
 
-			observeDisabledAttributeChange();
-
 			_selectElement.classList.add('searchable-zoo-select');
 			_selectElement.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
 			_hideSelectOptions();
-			changeValidState(valid);
 	    });
 		searchableInput.addEventListener('focus', () => {
 			_selectElement.classList.remove('hidden');
@@ -165,20 +152,6 @@
 			}
 		});
 	});
-
-	const observeDisabledAttributeChange = () => {
-		const observer = new MutationObserver(mutations => {
-			mutations.forEach(mutation => {
-				if (mutation.type == 'attributes' && mutation.attributeName == 'disabled') {
-					searchableInput.disabled = _selectElement.disabled;
-				}
-			});
-		});
-
-		observer.observe(_selectElement, {
-			attributes: true
-		});
-	}
 
 	const handleSearchChange = () => {
 		const inputVal = searchableInput.value.toLowerCase();
@@ -220,17 +193,6 @@
 	const _hideSelectOptions = () => {
 		_selectElement.classList.add('hidden');
 		searchableInput.value = null;
-	}
-
-	const changeValidState = (state) => {
-		if (_selectElement && state !== undefined) {
-			if (state === false) {
-				_selectElement.classList.add('error');
-			} else if (state) {
-				_selectElement.classList.remove('error');
-			}
-			valid = state;
-		}
 	}
 
 	const isMobile = () => {

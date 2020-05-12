@@ -1,6 +1,6 @@
 {
   "name": "@zooplus/zoo-web-components",
-  "version": "5.0.0-beta7",
+  "version": "5.0.0-beta8",
   "main": "dist/zoo-components-iife.js",
   "files": [
     "dist/zoo-components-esm.js",

@@ -2,6 +2,16 @@
     'use strict';
 
     function noop() { }
+    const identity = x => x;
+    function assign(tar, src) {
+        // @ts-ignore
+        for (const k in src)
+            tar[k] = src[k];
+        return tar;
+    }
+    function is_promise(value) {
+        return value && typeof value === 'object' && typeof value.then === 'function';
+    }
     function add_location(element, file, line, column, char) {
         element.__svelte_meta = {
             loc: { file, line, column, char }
@@ -22,6 +32,141 @@
     function safe_not_equal(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
+    function not_equal(a, b) {
+        return a != a ? b == b : a !== b;
+    }
+    function validate_store(store, name) {
+        if (store != null && typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function get_store_value(store) {
+        let value;
+        subscribe(store, _ => value = _)();
+        return value;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
+    function create_slot(definition, ctx, $$scope, fn) {
+        if (definition) {
+            const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+            return definition[0](slot_ctx);
+        }
+    }
+    function get_slot_context(definition, ctx, $$scope, fn) {
+        return definition[1] && fn
+            ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
+            : $$scope.ctx;
+    }
+    function get_slot_changes(definition, $$scope, dirty, fn) {
+        if (definition[2] && fn) {
+            const lets = definition[2](fn(dirty));
+            if ($$scope.dirty === undefined) {
+                return lets;
+            }
+            if (typeof lets === 'object') {
+                const merged = [];
+                const len = Math.max($$scope.dirty.length, lets.length);
+                for (let i = 0; i < len; i += 1) {
+                    merged[i] = $$scope.dirty[i] | lets[i];
+                }
+                return merged;
+            }
+            return $$scope.dirty | lets;
+        }
+        return $$scope.dirty;
+    }
+    function exclude_internal_props(props) {
+        const result = {};
+        for (const k in props)
+            if (k[0] !== '$')
+                result[k] = props[k];
+        return result;
+    }
+    function compute_rest_props(props, keys) {
+        const rest = {};
+        keys = new Set(keys);
+        for (const k in props)
+            if (!keys.has(k) && k[0] !== '$')
+                rest[k] = props[k];
+        return rest;
+    }
+    function once(fn) {
+        let ran = false;
+        return function (...args) {
+            if (ran)
+                return;
+            ran = true;
+            fn.call(this, ...args);
+        };
+    }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
+    function set_store_value(store, ret, value = ret) {
+        store.set(value);
+        return ret;
+    }
+    const has_prop = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+    function action_destroyer(action_result) {
+        return action_result && is_function(action_result.destroy) ? action_result.destroy : noop;
+    }
+
+    const is_client = typeof window !== 'undefined';
+    let now = is_client
+        ? () => window.performance.now()
+        : () => Date.now();
+    let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+    // used internally for testing
+    function set_now(fn) {
+        now = fn;
+    }
+    function set_raf(fn) {
+        raf = fn;
+    }
+
+    const tasks = new Set();
+    function run_tasks(now) {
+        tasks.forEach(task => {
+            if (!task.c(now)) {
+                tasks.delete(task);
+                task.f();
+            }
+        });
+        if (tasks.size !== 0)
+            raf(run_tasks);
+    }
+    /**
+     * For testing purposes only!
+     */
+    function clear_loops() {
+        tasks.clear();
+    }
+    /**
+     * Creates a new task that runs on each raf frame
+     * until it returns a falsy value or is aborted
+     */
+    function loop(callback) {
+        let task;
+        if (tasks.size === 0)
+            raf(run_tasks);
+        return {
+            promise: new Promise(fulfill => {
+                tasks.add(task = { c: callback, f: fulfill });
+            }),
+            abort() {
+                tasks.delete(task);
+            }
+        };
+    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -41,6 +186,21 @@
     function element(name) {
         return document.createElement(name);
     }
+    function element_is(name, is) {
+        return document.createElement(name, { is });
+    }
+    function object_without_properties(obj, exclude) {
+        const target = {};
+        for (const k in obj) {
+            if (has_prop(obj, k)
+                // @ts-ignore
+                && exclude.indexOf(k) === -1) {
+                // @ts-ignore
+                target[k] = obj[k];
+            }
+        }
+        return target;
+    }
     function svg_element(name) {
         return document.createElementNS('http://www.w3.org/2000/svg', name);
     }
@@ -57,11 +217,55 @@
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
     }
+    function prevent_default(fn) {
+        return function (event) {
+            event.preventDefault();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
+    function stop_propagation(fn) {
+        return function (event) {
+            event.stopPropagation();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
+    function self(fn) {
+        return function (event) {
+            // @ts-ignore
+            if (event.target === this)
+                fn.call(this, event);
+        };
+    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
         else if (node.getAttribute(attribute) !== value)
             node.setAttribute(attribute, value);
+    }
+    function set_attributes(node, attributes) {
+        // @ts-ignore
+        const descriptors = Object.getOwnPropertyDescriptors(node.__proto__);
+        for (const key in attributes) {
+            if (attributes[key] == null) {
+                node.removeAttribute(key);
+            }
+            else if (key === 'style') {
+                node.style.cssText = attributes[key];
+            }
+            else if (key === '__value' || descriptors[key] && descriptors[key].set) {
+                node[key] = attributes[key];
+            }
+            else {
+                attr(node, key, attributes[key]);
+            }
+        }
+    }
+    function set_svg_attributes(node, attributes) {
+        for (const key in attributes) {
+            attr(node, key, attributes[key]);
+        }
     }
     function set_custom_element_data(node, prop, value) {
         if (prop in node) {
@@ -71,11 +275,153 @@
             attr(node, prop, value);
         }
     }
+    function xlink_attr(node, attribute, value) {
+        node.setAttributeNS('http://www.w3.org/1999/xlink', attribute, value);
+    }
+    function get_binding_group_value(group) {
+        const value = [];
+        for (let i = 0; i < group.length; i += 1) {
+            if (group[i].checked)
+                value.push(group[i].__value);
+        }
+        return value;
+    }
+    function to_number(value) {
+        return value === '' ? undefined : +value;
+    }
+    function time_ranges_to_array(ranges) {
+        const array = [];
+        for (let i = 0; i < ranges.length; i += 1) {
+            array.push({ start: ranges.start(i), end: ranges.end(i) });
+        }
+        return array;
+    }
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function claim_element(nodes, name, attributes, svg) {
+        for (let i = 0; i < nodes.length; i += 1) {
+            const node = nodes[i];
+            if (node.nodeName === name) {
+                let j = 0;
+                while (j < node.attributes.length) {
+                    const attribute = node.attributes[j];
+                    if (attributes[attribute.name]) {
+                        j++;
+                    }
+                    else {
+                        node.removeAttribute(attribute.name);
+                    }
+                }
+                return nodes.splice(i, 1)[0];
+            }
+        }
+        return svg ? svg_element(name) : element(name);
+    }
+    function claim_text(nodes, data) {
+        for (let i = 0; i < nodes.length; i += 1) {
+            const node = nodes[i];
+            if (node.nodeType === 3) {
+                node.data = '' + data;
+                return nodes.splice(i, 1)[0];
+            }
+        }
+        return text(data);
+    }
+    function claim_space(nodes) {
+        return claim_text(nodes, ' ');
+    }
+    function set_data(text, data) {
+        data = '' + data;
+        if (text.data !== data)
+            text.data = data;
+    }
+    function set_input_value(input, value) {
+        if (value != null || input.value) {
+            input.value = value;
+        }
+    }
+    function set_input_type(input, type) {
+        try {
+            input.type = type;
+        }
+        catch (e) {
+            // do nothing
+        }
+    }
     function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
+    }
+    function select_option(select, value) {
+        for (let i = 0; i < select.options.length; i += 1) {
+            const option = select.options[i];
+            if (option.__value === value) {
+                option.selected = true;
+                return;
+            }
+        }
+    }
+    function select_options(select, value) {
+        for (let i = 0; i < select.options.length; i += 1) {
+            const option = select.options[i];
+            option.selected = ~value.indexOf(option.__value);
+        }
+    }
+    function select_value(select) {
+        const selected_option = select.querySelector(':checked') || select.options[0];
+        return selected_option && selected_option.__value;
+    }
+    function select_multiple_value(select) {
+        return [].map.call(select.querySelectorAll(':checked'), option => option.__value);
+    }
+    // unfortunately this can't be a constant as that wouldn't be tree-shakeable
+    // so we cache the result instead
+    let crossorigin;
+    function is_crossorigin() {
+        if (crossorigin === undefined) {
+            crossorigin = false;
+            try {
+                if (typeof window !== 'undefined' && window.parent) {
+                    void window.parent.document;
+                }
+            }
+            catch (error) {
+                crossorigin = true;
+            }
+        }
+        return crossorigin;
+    }
+    function add_resize_listener(node, fn) {
+        const computed_style = getComputedStyle(node);
+        const z_index = (parseInt(computed_style.zIndex) || 0) - 1;
+        if (computed_style.position === 'static') {
+            node.style.position = 'relative';
+        }
+        const iframe = element('iframe');
+        iframe.setAttribute('style', `display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; ` +
+            `overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: ${z_index};`);
+        iframe.setAttribute('aria-hidden', 'true');
+        iframe.tabIndex = -1;
+        let unsubscribe;
+        if (is_crossorigin()) {
+            iframe.src = `data:text/html,<script>onresize=function(){parent.postMessage(0,'*')}</script>`;
+            unsubscribe = listen(window, 'message', (event) => {
+                if (event.source === iframe.contentWindow)
+                    fn();
+            });
+        }
+        else {
+            iframe.src = 'about:blank';
+            iframe.onload = () => {
+                unsubscribe = listen(iframe.contentWindow, 'resize', fn);
+            };
+        }
+        append(node, iframe);
+        return () => {
+            detach(iframe);
+            if (unsubscribe)
+                unsubscribe();
+        };
     }
     function toggle_class(element, name, toggle) {
         element.classList[toggle ? 'add' : 'remove'](name);
@@ -84,6 +430,164 @@
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, false, false, detail);
         return e;
+    }
+    function query_selector_all(selector, parent = document.body) {
+        return Array.from(parent.querySelectorAll(selector));
+    }
+    class HtmlTag {
+        constructor(html, anchor = null) {
+            this.e = element('div');
+            this.a = anchor;
+            this.u(html);
+        }
+        m(target, anchor = null) {
+            for (let i = 0; i < this.n.length; i += 1) {
+                insert(target, this.n[i], anchor);
+            }
+            this.t = target;
+        }
+        u(html) {
+            this.e.innerHTML = html;
+            this.n = Array.from(this.e.childNodes);
+        }
+        p(html) {
+            this.d();
+            this.u(html);
+            this.m(this.t, this.a);
+        }
+        d() {
+            this.n.forEach(detach);
+        }
+    }
+
+    const active_docs = new Set();
+    let active = 0;
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        const doc = node.ownerDocument;
+        active_docs.add(doc);
+        const stylesheet = doc.__svelte_stylesheet || (doc.__svelte_stylesheet = doc.head.appendChild(element('style')).sheet);
+        const current_rules = doc.__svelte_rules || (doc.__svelte_rules = {});
+        if (!current_rules[name]) {
+            current_rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ``}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        const previous = (node.style.animation || '').split(', ');
+        const next = previous.filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        );
+        const deleted = previous.length - next.length;
+        if (deleted) {
+            node.style.animation = next.join(', ');
+            active -= deleted;
+            if (!active)
+                clear_rules();
+        }
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            active_docs.forEach(doc => {
+                const stylesheet = doc.__svelte_stylesheet;
+                let i = stylesheet.cssRules.length;
+                while (i--)
+                    stylesheet.deleteRule(i);
+                doc.__svelte_rules = {};
+            });
+            active_docs.clear();
+        });
+    }
+
+    function create_animation(node, from, fn, params) {
+        if (!from)
+            return noop;
+        const to = node.getBoundingClientRect();
+        if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
+            return noop;
+        const { delay = 0, duration = 300, easing = identity, 
+        // @ts-ignore todo: should this be separated from destructuring? Or start/end added to public api and documentation?
+        start: start_time = now() + delay, 
+        // @ts-ignore todo:
+        end = start_time + duration, tick = noop, css } = fn(node, { from, to }, params);
+        let running = true;
+        let started = false;
+        let name;
+        function start() {
+            if (css) {
+                name = create_rule(node, 0, 1, duration, delay, easing, css);
+            }
+            if (!delay) {
+                started = true;
+            }
+        }
+        function stop() {
+            if (css)
+                delete_rule(node, name);
+            running = false;
+        }
+        loop(now => {
+            if (!started && now >= start_time) {
+                started = true;
+            }
+            if (started && now >= end) {
+                tick(1, 0);
+                stop();
+            }
+            if (!running) {
+                return false;
+            }
+            if (started) {
+                const p = now - start_time;
+                const t = 0 + 1 * easing(p / duration);
+                tick(t, 1 - t);
+            }
+            return true;
+        });
+        start();
+        tick(0, 1);
+        return stop;
+    }
+    function fix_position(node) {
+        const style = getComputedStyle(node);
+        if (style.position !== 'absolute' && style.position !== 'fixed') {
+            const { width, height } = style;
+            const a = node.getBoundingClientRect();
+            node.style.position = 'absolute';
+            node.style.width = width;
+            node.style.height = height;
+            add_transform(node, a);
+        }
+    }
+    function add_transform(node, a) {
+        const b = node.getBoundingClientRect();
+        if (a.left !== b.left || a.top !== b.top) {
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
+            node.style.transform = `${transform} translate(${a.left - b.left}px, ${a.top - b.top}px)`;
+        }
     }
 
     let current_component;
@@ -107,8 +611,38 @@
     function onDestroy(fn) {
         get_current_component().$$.on_destroy.push(fn);
     }
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail);
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+            }
+        };
+    }
+    function setContext(key, context) {
+        get_current_component().$$.context.set(key, context);
+    }
+    function getContext(key) {
+        return get_current_component().$$.context.get(key);
+    }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            callbacks.slice().forEach(fn => fn(event));
+        }
+    }
 
     const dirty_components = [];
+    const intros = { enabled: false };
     const binding_callbacks = [];
     const render_callbacks = [];
     const flush_callbacks = [];
@@ -120,8 +654,15 @@
             resolved_promise.then(flush);
         }
     }
+    function tick() {
+        schedule_update();
+        return resolved_promise;
+    }
     function add_render_callback(fn) {
         render_callbacks.push(fn);
+    }
+    function add_flush_callback(fn) {
+        flush_callbacks.push(fn);
     }
     let flushing = false;
     const seen_callbacks = new Set();
@@ -170,12 +711,642 @@
             $$.after_update.forEach(add_render_callback);
         }
     }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
     const outroing = new Set();
+    let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
     function transition_in(block, local) {
         if (block && block.i) {
             outroing.delete(block);
             block.i(local);
         }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+    }
+    const null_transition = { duration: 0 };
+    function create_in_transition(node, fn, params) {
+        let config = fn(node, params);
+        let running = false;
+        let animation_name;
+        let task;
+        let uid = 0;
+        function cleanup() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function go() {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            if (css)
+                animation_name = create_rule(node, 0, 1, duration, delay, easing, css, uid++);
+            tick(0, 1);
+            const start_time = now() + delay;
+            const end_time = start_time + duration;
+            if (task)
+                task.abort();
+            running = true;
+            add_render_callback(() => dispatch(node, true, 'start'));
+            task = loop(now => {
+                if (running) {
+                    if (now >= end_time) {
+                        tick(1, 0);
+                        dispatch(node, true, 'end');
+                        cleanup();
+                        return running = false;
+                    }
+                    if (now >= start_time) {
+                        const t = easing((now - start_time) / duration);
+                        tick(t, 1 - t);
+                    }
+                }
+                return running;
+            });
+        }
+        let started = false;
+        return {
+            start() {
+                if (started)
+                    return;
+                delete_rule(node);
+                if (is_function(config)) {
+                    config = config();
+                    wait().then(go);
+                }
+                else {
+                    go();
+                }
+            },
+            invalidate() {
+                started = false;
+            },
+            end() {
+                if (running) {
+                    cleanup();
+                    running = false;
+                }
+            }
+        };
+    }
+    function create_out_transition(node, fn, params) {
+        let config = fn(node, params);
+        let running = true;
+        let animation_name;
+        const group = outros;
+        group.r += 1;
+        function go() {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            if (css)
+                animation_name = create_rule(node, 1, 0, duration, delay, easing, css);
+            const start_time = now() + delay;
+            const end_time = start_time + duration;
+            add_render_callback(() => dispatch(node, false, 'start'));
+            loop(now => {
+                if (running) {
+                    if (now >= end_time) {
+                        tick(0, 1);
+                        dispatch(node, false, 'end');
+                        if (!--group.r) {
+                            // this will result in `end()` being called,
+                            // so we don't need to clean up here
+                            run_all(group.c);
+                        }
+                        return false;
+                    }
+                    if (now >= start_time) {
+                        const t = easing((now - start_time) / duration);
+                        tick(1 - t, t);
+                    }
+                }
+                return running;
+            });
+        }
+        if (is_function(config)) {
+            wait().then(() => {
+                // @ts-ignore
+                config = config();
+                go();
+            });
+        }
+        else {
+            go();
+        }
+        return {
+            end(reset) {
+                if (reset && config.tick) {
+                    config.tick(1, 0);
+                }
+                if (running) {
+                    if (animation_name)
+                        delete_rule(node, animation_name);
+                    running = false;
+                }
+            }
+        };
+    }
+    function create_bidirectional_transition(node, fn, params, intro) {
+        let config = fn(node, params);
+        let t = intro ? 0 : 1;
+        let running_program = null;
+        let pending_program = null;
+        let animation_name = null;
+        function clear_animation() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function init(program, duration) {
+            const d = program.b - t;
+            duration *= Math.abs(d);
+            return {
+                a: t,
+                b: program.b,
+                d,
+                duration,
+                start: program.start,
+                end: program.start + duration,
+                group: program.group
+            };
+        }
+        function go(b) {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            const program = {
+                start: now() + delay,
+                b
+            };
+            if (!b) {
+                // @ts-ignore todo: improve typings
+                program.group = outros;
+                outros.r += 1;
+            }
+            if (running_program) {
+                pending_program = program;
+            }
+            else {
+                // if this is an intro, and there's a delay, we need to do
+                // an initial tick and/or apply CSS animation immediately
+                if (css) {
+                    clear_animation();
+                    animation_name = create_rule(node, t, b, duration, delay, easing, css);
+                }
+                if (b)
+                    tick(0, 1);
+                running_program = init(program, duration);
+                add_render_callback(() => dispatch(node, b, 'start'));
+                loop(now => {
+                    if (pending_program && now > pending_program.start) {
+                        running_program = init(pending_program, duration);
+                        pending_program = null;
+                        dispatch(node, running_program.b, 'start');
+                        if (css) {
+                            clear_animation();
+                            animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                        }
+                    }
+                    if (running_program) {
+                        if (now >= running_program.end) {
+                            tick(t = running_program.b, 1 - t);
+                            dispatch(node, running_program.b, 'end');
+                            if (!pending_program) {
+                                // we're done
+                                if (running_program.b) {
+                                    // intro — we can tidy up immediately
+                                    clear_animation();
+                                }
+                                else {
+                                    // outro — needs to be coordinated
+                                    if (!--running_program.group.r)
+                                        run_all(running_program.group.c);
+                                }
+                            }
+                            running_program = null;
+                        }
+                        else if (now >= running_program.start) {
+                            const p = now - running_program.start;
+                            t = running_program.a + running_program.d * easing(p / running_program.duration);
+                            tick(t, 1 - t);
+                        }
+                    }
+                    return !!(running_program || pending_program);
+                });
+            }
+        }
+        return {
+            run(b) {
+                if (is_function(config)) {
+                    wait().then(() => {
+                        // @ts-ignore
+                        config = config();
+                        go(b);
+                    });
+                }
+                else {
+                    go(b);
+                }
+            },
+            end() {
+                clear_animation();
+                running_program = pending_program = null;
+            }
+        };
+    }
+
+    function handle_promise(promise, info) {
+        const token = info.token = {};
+        function update(type, index, key, value) {
+            if (info.token !== token)
+                return;
+            info.resolved = value;
+            let child_ctx = info.ctx;
+            if (key !== undefined) {
+                child_ctx = child_ctx.slice();
+                child_ctx[key] = value;
+            }
+            const block = type && (info.current = type)(child_ctx);
+            let needs_flush = false;
+            if (info.block) {
+                if (info.blocks) {
+                    info.blocks.forEach((block, i) => {
+                        if (i !== index && block) {
+                            group_outros();
+                            transition_out(block, 1, 1, () => {
+                                info.blocks[i] = null;
+                            });
+                            check_outros();
+                        }
+                    });
+                }
+                else {
+                    info.block.d(1);
+                }
+                block.c();
+                transition_in(block, 1);
+                block.m(info.mount(), info.anchor);
+                needs_flush = true;
+            }
+            info.block = block;
+            if (info.blocks)
+                info.blocks[index] = block;
+            if (needs_flush) {
+                flush();
+            }
+        }
+        if (is_promise(promise)) {
+            const current_component = get_current_component();
+            promise.then(value => {
+                set_current_component(current_component);
+                update(info.then, 1, info.value, value);
+                set_current_component(null);
+            }, error => {
+                set_current_component(current_component);
+                update(info.catch, 2, info.error, error);
+                set_current_component(null);
+            });
+            // if we previously had a then/catch block, destroy it
+            if (info.current !== info.pending) {
+                update(info.pending, 0);
+                return true;
+            }
+        }
+        else {
+            if (info.current !== info.then) {
+                update(info.then, 1, info.value, promise);
+                return true;
+            }
+            info.resolved = promise;
+        }
+    }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+
+    function destroy_block(block, lookup) {
+        block.d(1);
+        lookup.delete(block.key);
+    }
+    function outro_and_destroy_block(block, lookup) {
+        transition_out(block, 1, 1, () => {
+            lookup.delete(block.key);
+        });
+    }
+    function fix_and_destroy_block(block, lookup) {
+        block.f();
+        destroy_block(block, lookup);
+    }
+    function fix_and_outro_and_destroy_block(block, lookup) {
+        block.f();
+        outro_and_destroy_block(block, lookup);
+    }
+    function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block, next, get_context) {
+        let o = old_blocks.length;
+        let n = list.length;
+        let i = o;
+        const old_indexes = {};
+        while (i--)
+            old_indexes[old_blocks[i].key] = i;
+        const new_blocks = [];
+        const new_lookup = new Map();
+        const deltas = new Map();
+        i = n;
+        while (i--) {
+            const child_ctx = get_context(ctx, list, i);
+            const key = get_key(child_ctx);
+            let block = lookup.get(key);
+            if (!block) {
+                block = create_each_block(key, child_ctx);
+                block.c();
+            }
+            else if (dynamic) {
+                block.p(child_ctx, dirty);
+            }
+            new_lookup.set(key, new_blocks[i] = block);
+            if (key in old_indexes)
+                deltas.set(key, Math.abs(i - old_indexes[key]));
+        }
+        const will_move = new Set();
+        const did_move = new Set();
+        function insert(block) {
+            transition_in(block, 1);
+            block.m(node, next, lookup.has(block.key));
+            lookup.set(block.key, block);
+            next = block.first;
+            n--;
+        }
+        while (o && n) {
+            const new_block = new_blocks[n - 1];
+            const old_block = old_blocks[o - 1];
+            const new_key = new_block.key;
+            const old_key = old_block.key;
+            if (new_block === old_block) {
+                // do nothing
+                next = new_block.first;
+                o--;
+                n--;
+            }
+            else if (!new_lookup.has(old_key)) {
+                // remove old block
+                destroy(old_block, lookup);
+                o--;
+            }
+            else if (!lookup.has(new_key) || will_move.has(new_key)) {
+                insert(new_block);
+            }
+            else if (did_move.has(old_key)) {
+                o--;
+            }
+            else if (deltas.get(new_key) > deltas.get(old_key)) {
+                did_move.add(new_key);
+                insert(new_block);
+            }
+            else {
+                will_move.add(old_key);
+                o--;
+            }
+        }
+        while (o--) {
+            const old_block = old_blocks[o];
+            if (!new_lookup.has(old_block.key))
+                destroy(old_block, lookup);
+        }
+        while (n)
+            insert(new_blocks[n - 1]);
+        return new_blocks;
+    }
+    function validate_each_keys(ctx, list, get_context, get_key) {
+        const keys = new Set();
+        for (let i = 0; i < list.length; i++) {
+            const key = get_key(get_context(ctx, list, i));
+            if (keys.has(key)) {
+                throw new Error(`Cannot have duplicate keys in a keyed each`);
+            }
+            keys.add(key);
+        }
+    }
+
+    function get_spread_update(levels, updates) {
+        const update = {};
+        const to_null_out = {};
+        const accounted_for = { $$scope: 1 };
+        let i = levels.length;
+        while (i--) {
+            const o = levels[i];
+            const n = updates[i];
+            if (n) {
+                for (const key in o) {
+                    if (!(key in n))
+                        to_null_out[key] = 1;
+                }
+                for (const key in n) {
+                    if (!accounted_for[key]) {
+                        update[key] = n[key];
+                        accounted_for[key] = 1;
+                    }
+                }
+                levels[i] = n;
+            }
+            else {
+                for (const key in o) {
+                    accounted_for[key] = 1;
+                }
+            }
+        }
+        for (const key in to_null_out) {
+            if (!(key in update))
+                update[key] = undefined;
+        }
+        return update;
+    }
+    function get_spread_object(spread_props) {
+        return typeof spread_props === 'object' && spread_props !== null ? spread_props : {};
+    }
+
+    // source: https://html.spec.whatwg.org/multipage/indices.html
+    const boolean_attributes = new Set([
+        'allowfullscreen',
+        'allowpaymentrequest',
+        'async',
+        'autofocus',
+        'autoplay',
+        'checked',
+        'controls',
+        'default',
+        'defer',
+        'disabled',
+        'formnovalidate',
+        'hidden',
+        'ismap',
+        'loop',
+        'multiple',
+        'muted',
+        'nomodule',
+        'novalidate',
+        'open',
+        'playsinline',
+        'readonly',
+        'required',
+        'reversed',
+        'selected'
+    ]);
+
+    const invalid_attribute_name_character = /[\s'">/=\u{FDD0}-\u{FDEF}\u{FFFE}\u{FFFF}\u{1FFFE}\u{1FFFF}\u{2FFFE}\u{2FFFF}\u{3FFFE}\u{3FFFF}\u{4FFFE}\u{4FFFF}\u{5FFFE}\u{5FFFF}\u{6FFFE}\u{6FFFF}\u{7FFFE}\u{7FFFF}\u{8FFFE}\u{8FFFF}\u{9FFFE}\u{9FFFF}\u{AFFFE}\u{AFFFF}\u{BFFFE}\u{BFFFF}\u{CFFFE}\u{CFFFF}\u{DFFFE}\u{DFFFF}\u{EFFFE}\u{EFFFF}\u{FFFFE}\u{FFFFF}\u{10FFFE}\u{10FFFF}]/u;
+    // https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
+    // https://infra.spec.whatwg.org/#noncharacter
+    function spread(args, classes_to_add) {
+        const attributes = Object.assign({}, ...args);
+        if (classes_to_add) {
+            if (attributes.class == null) {
+                attributes.class = classes_to_add;
+            }
+            else {
+                attributes.class += ' ' + classes_to_add;
+            }
+        }
+        let str = '';
+        Object.keys(attributes).forEach(name => {
+            if (invalid_attribute_name_character.test(name))
+                return;
+            const value = attributes[name];
+            if (value === true)
+                str += " " + name;
+            else if (boolean_attributes.has(name.toLowerCase())) {
+                if (value)
+                    str += " " + name;
+            }
+            else if (value != null) {
+                str += ` ${name}="${String(value).replace(/"/g, '&#34;').replace(/'/g, '&#39;')}"`;
+            }
+        });
+        return str;
+    }
+    const escaped = {
+        '"': '&quot;',
+        "'": '&#39;',
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;'
+    };
+    function escape(html) {
+        return String(html).replace(/["'&<>]/g, match => escaped[match]);
+    }
+    function each(items, fn) {
+        let str = '';
+        for (let i = 0; i < items.length; i += 1) {
+            str += fn(items[i], i);
+        }
+        return str;
+    }
+    const missing_component = {
+        $$render: () => ''
+    };
+    function validate_component(component, name) {
+        if (!component || !component.$$render) {
+            if (name === 'svelte:component')
+                name += ' this={...}';
+            throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules`);
+        }
+        return component;
+    }
+    function debug(file, line, column, values) {
+        console.log(`{@debug} ${file ? file + ' ' : ''}(${line}:${column})`); // eslint-disable-line no-console
+        console.log(values); // eslint-disable-line no-console
+        return '';
+    }
+    let on_destroy;
+    function create_ssr_component(fn) {
+        function $$render(result, props, bindings, slots) {
+            const parent_component = current_component;
+            const $$ = {
+                on_destroy,
+                context: new Map(parent_component ? parent_component.$$.context : []),
+                // these will be immediately discarded
+                on_mount: [],
+                before_update: [],
+                after_update: [],
+                callbacks: blank_object()
+            };
+            set_current_component({ $$ });
+            const html = fn(result, props, bindings, slots);
+            set_current_component(parent_component);
+            return html;
+        }
+        return {
+            render: (props = {}, options = {}) => {
+                on_destroy = [];
+                const result = { title: '', head: '', css: new Set() };
+                const html = $$render(result, props, {}, options);
+                run_all(on_destroy);
+                return {
+                    html,
+                    css: {
+                        code: Array.from(result.css).map(css => css.code).join('\n'),
+                        map: null // TODO
+                    },
+                    head: result.title + result.head
+                };
+            },
+            $$render
+        };
+    }
+    function add_attribute(name, value, boolean) {
+        if (value == null || (boolean && !value))
+            return '';
+        return ` ${name}${value === true ? '' : `=${typeof value === 'string' ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
+    }
+    function add_classes(classes) {
+        return classes ? ` class="${classes}"` : ``;
+    }
+
+    function bind(component, name, callback) {
+        const index = component.$$.props[name];
+        if (index !== undefined) {
+            component.$$.bound[index] = callback;
+            callback(component.$$.ctx[index]);
+        }
+    }
+    function create_component(block) {
+        block && block.c();
+    }
+    function claim_component(block, parent_nodes) {
+        block && block.l(parent_nodes);
     }
     function mount_component(component, target, anchor) {
         const { fragment, on_mount, on_destroy, after_update } = component.$$;
@@ -308,6 +1479,24 @@
             }
         };
     }
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set() {
+            // overridden by instance, if it has props
+        }
+    }
 
     function dispatch_dev(type, detail) {
         document.dispatchEvent(custom_event(type, Object.assign({ version: '3.22.2' }, detail)));
@@ -323,6 +1512,21 @@
     function detach_dev(node) {
         dispatch_dev("SvelteDOMRemove", { node });
         detach(node);
+    }
+    function detach_between_dev(before, after) {
+        while (before.nextSibling && before.nextSibling !== after) {
+            detach_dev(before.nextSibling);
+        }
+    }
+    function detach_before_dev(after) {
+        while (after.previousSibling) {
+            detach_dev(after.previousSibling);
+        }
+    }
+    function detach_after_dev(before) {
+        while (before.nextSibling) {
+            detach_dev(before.nextSibling);
+        }
     }
     function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
         const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
@@ -348,6 +1552,10 @@
         node[property] = value;
         dispatch_dev("SvelteDOMSetProperty", { node, property, value });
     }
+    function dataset_dev(node, property, value) {
+        node.dataset[property] = value;
+        dispatch_dev("SvelteDOMSetDataset", { node, property, value });
+    }
     function set_data_dev(text, data) {
         data = '' + data;
         if (text.data === data)
@@ -370,6 +1578,30 @@
                 console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
             }
         }
+    }
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error(`'target' is a required option`);
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn(`Component was already destroyed`); // eslint-disable-line no-console
+            };
+        }
+        $capture_state() { }
+        $inject_state() { }
+    }
+    function loop_guard(timeout) {
+        const start = Date.now();
+        return () => {
+            if (Date.now() - start > timeout) {
+                throw new Error(`Infinite loop detected`);
+            }
+        };
     }
 
     /* zoo-modules/header-module/Header.svelte generated by Svelte v3.22.2 */
@@ -764,7 +1996,7 @@
     class Modal extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:none}.box{position:fixed;width:100%;height:100%;background:rgba(0, 0, 0, 0.8);opacity:0;transition:opacity 0.3s;z-index:9999;left:0;top:0;display:flex;justify-content:center;align-items:center}.dialog-content{padding:0 20px 20px 20px;box-sizing:border-box;background:white;overflow-y:auto;max-height:95%;border-radius:5px}.dialog-content .heading{display:flex;flex-direction:row;align-items:flex-start}.dialog-content .heading .header-text{font-size:24px;line-height:29px;font-weight:bold;margin:30px 0}.dialog-content .heading .close{cursor:pointer;margin:30px 0 30px auto}.dialog-content .heading .close path{fill:var(--primary-mid, #3C9700)}@media only screen and (max-width: 544px){.dialog-content{padding:25px}}@media only screen and (max-width: 375px){.dialog-content{width:100%;height:100%;top:0;left:0;transform:none}}.show{opacity:1}.hide{opacity:0}.dialog-content{animation-duration:0.3s;animation-fill-mode:forwards}.show .dialog-content{animation-name:anim-show}.hide .dialog-content{animation-name:anim-hide}@keyframes anim-show{0%{opacity:0;transform:scale3d(0.9, 0.9, 1)}100%{opacity:1;transform:scale3d(1, 1, 1)}}@keyframes anim-hide{0%{opacity:1}100%{opacity:0;transform:scale3d(0.9, 0.9, 1)}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:none;contain:layout}.box{position:fixed;width:100%;height:100%;background:rgba(0, 0, 0, 0.8);opacity:0;transition:opacity 0.3s;z-index:9999;left:0;top:0;display:flex;justify-content:center;align-items:center}.dialog-content{padding:0 20px 20px 20px;box-sizing:border-box;background:white;overflow-y:auto;max-height:95%;border-radius:5px}.dialog-content .heading{display:flex;flex-direction:row;align-items:flex-start}.dialog-content .heading .header-text{font-size:24px;line-height:29px;font-weight:bold;margin:30px 0}.dialog-content .heading .close{cursor:pointer;margin:30px 0 30px auto}.dialog-content .heading .close path{fill:var(--primary-mid, #3C9700)}@media only screen and (max-width: 544px){.dialog-content{padding:25px}}@media only screen and (max-width: 375px){.dialog-content{width:100%;height:100%;top:0;left:0;transform:none}}.show{opacity:1}.hide{opacity:0}.dialog-content{animation-duration:0.3s;animation-fill-mode:forwards}.show .dialog-content{animation-name:anim-show}.hide .dialog-content{animation-name:anim-hide}@keyframes anim-show{0%{opacity:0;transform:scale3d(0.9, 0.9, 1)}100%{opacity:1;transform:scale3d(1, 1, 1)}}@keyframes anim-hide{0%{opacity:1}100%{opacity:0;transform:scale3d(0.9, 0.9, 1)}}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$1, create_fragment$1, safe_not_equal, {
     			headertext: 0,
@@ -1350,7 +2582,7 @@
     class Input extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.left{grid-template-areas:"label link link" "label input input" "label info info"}}.left .input-label{align-self:center;padding-right:5px}.input-label{grid-area:label;align-self:self-start}.input-link{grid-area:link;align-self:flex-end}.input-slot{grid-area:input;position:relative}.input-info{grid-area:info}.error-circle{position:absolute;right:0;top:14px;padding:0 15px 0 5px;color:var(--warning-mid, #ED1C24);pointer-events:none;opacity:0;transition:opacity 0.2s}.error-circle path{fill:var(--warning-mid, #ED1C24)}.input-slot.error ::slotted(input),.input-slot.error ::slotted(textarea){transition:border-color 0.3s ease;border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px}.input-slot.error .error-circle{opacity:1}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;text-overflow:ellipsis;-moz-appearance:textfield}::slotted(input)::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}::slotted(input)::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676;opacity:1}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555555;padding:12px 14px}::slotted(input[type='date']),::slotted(input[type='time']){-webkit-appearance:none}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.left{grid-template-areas:"label link link" "label input input" "label info info"}}.left .input-label{align-self:center;padding-right:5px}.input-label{grid-area:label;align-self:self-start}.input-link{grid-area:link;align-self:flex-end}.input-slot{grid-area:input;position:relative}.input-info{grid-area:info}:host{contain:layout}.error-circle{position:absolute;right:0;top:14px;padding:0 15px 0 5px;color:var(--warning-mid, #ED1C24);pointer-events:none;opacity:0;transition:opacity 0.2s}.error-circle path{fill:var(--warning-mid, #ED1C24)}.input-slot.error ::slotted(input),.input-slot.error ::slotted(textarea){transition:border-color 0.3s ease;border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px}.input-slot.error .error-circle{opacity:1}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;text-overflow:ellipsis;-moz-appearance:textfield}::slotted(input)::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}::slotted(input)::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676;opacity:1}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555555;padding:12px 14px}::slotted(input[type='date']),::slotted(input[type='time']){-webkit-appearance:none}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$3, create_fragment$3, safe_not_equal, {
     			labelposition: 0,
@@ -1860,7 +3092,7 @@
     class Checkbox extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{margin-top:21px}.box{width:100%;display:flex;flex-direction:column;position:relative;box-sizing:border-box;cursor:pointer}.box.highlighted{border:1px solid #E6E6E6;border-radius:5px;padding:6px 15px}.box.highlighted.clicked{border:2px solid var(--success-mid, #3C9700);padding:5px 14px}.box.highlighted.clicked .input-slot .input-label{left:8px}.box.highlighted.error{border:2px solid var(--warning-mid, #ED1C24);padding:5px 14px}.box.disabled{cursor:not-allowed}.box.disabled .input-slot{cursor:not-allowed}.input-slot{width:100%;display:flex;flex-direction:row;cursor:pointer;align-items:center;font-size:14px;line-height:20px}.input-label{display:flex;align-items:center;position:relative;left:10px}::slotted(input[type="checkbox"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="checkbox"])::before{position:relative;display:inline-block;width:24px;height:24px;content:"";border-radius:3px;border:1px solid #767676;background:transparent}::slotted(input[type="checkbox"]:focus)::before{border:2px solid #767676}::slotted(input[type="checkbox"]:checked)::before{background:transparent;border:2px solid var(--success-mid, #3C9700)}::slotted(input[type="checkbox"]:checked)::after{content:"";position:absolute;top:4px;left:10px;width:6px;height:14px;border-bottom:2px solid;border-right:2px solid;transform:rotate(40deg);color:var(--primary-mid, #3C9700)}::slotted(input[type="checkbox"]:disabled){cursor:not-allowed}::slotted(input[type="checkbox"]:disabled)::before{border-color:#E6E6E6;background-color:#F2F3F4}::slotted(input[type="checkbox"]:disabled)::after{color:#767676}.box.error ::slotted(input[type="checkbox"])::before{border-color:var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}.box.error ::slotted(input[type="checkbox"]:checked)::after{color:var(--warning-mid, #ED1C24)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{margin-top:21px;contain:layout}.box{width:100%;display:flex;flex-direction:column;position:relative;box-sizing:border-box;cursor:pointer}.box.highlighted{border:1px solid #E6E6E6;border-radius:5px;padding:6px 15px}.box.highlighted.clicked{border:2px solid var(--success-mid, #3C9700);padding:5px 14px}.box.highlighted.clicked .input-slot .input-label{left:8px}.box.highlighted.error{border:2px solid var(--warning-mid, #ED1C24);padding:5px 14px}.box.disabled{cursor:not-allowed}.box.disabled .input-slot{cursor:not-allowed}.input-slot{width:100%;display:flex;flex-direction:row;cursor:pointer;align-items:center;font-size:14px;line-height:20px}.input-label{display:flex;align-items:center;position:relative;left:10px}::slotted(input[type="checkbox"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="checkbox"])::before{position:relative;display:inline-block;width:24px;height:24px;content:"";border-radius:3px;border:1px solid #767676;background:transparent}::slotted(input[type="checkbox"]:focus)::before{border:2px solid #767676}::slotted(input[type="checkbox"]:checked)::before{background:transparent;border:2px solid var(--success-mid, #3C9700)}::slotted(input[type="checkbox"]:checked)::after{content:"";position:absolute;top:4px;left:10px;width:6px;height:14px;border-bottom:2px solid;border-right:2px solid;transform:rotate(40deg);color:var(--primary-mid, #3C9700)}::slotted(input[type="checkbox"]:disabled){cursor:not-allowed}::slotted(input[type="checkbox"]:disabled)::before{border-color:#E6E6E6;background-color:#F2F3F4}::slotted(input[type="checkbox"]:disabled)::after{color:#767676}.box.error ::slotted(input[type="checkbox"])::before{border-color:var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}.box.error ::slotted(input[type="checkbox"]:checked)::after{color:var(--warning-mid, #ED1C24)}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$5, create_fragment$5, safe_not_equal, {
     			labeltext: 1,
@@ -2107,7 +3339,7 @@
     class Radio extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:flex;flex-direction:column}.template-slot{display:flex}::slotted(input[type="radio"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="radio"]):focus::before{border-color:#555555}::slotted(input[type="radio"])::before{position:relative;display:inline-block;width:16px;height:16px;content:"";border-radius:50%;border:2px solid var(--primary-mid, #3C9700);background:white}::slotted(input[type="radio"]:checked)::before{background:white}::slotted(input[type="radio"]:checked)::after,::slotted(input[type="radio"]:focus)::after{content:"";position:absolute;top:5px;left:5px;width:6px;height:6px;transform:rotate(40deg);color:var(--primary-mid, #3C9700);border:2px solid;border-radius:50%}::slotted(input[type="radio"]:checked)::after{background:var(--primary-mid, #3C9700)}::slotted(input[type="radio"]:focus)::after{background:#E6E6E6;color:#E6E6E6}::slotted(input:focus)::before{border-color:#555555}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}::slotted(input[type="radio"]:disabled){cursor:not-allowed}::slotted(input[type="radio"]:disabled)::before{border-color:#767676;background-color:#E6E6E6}.template-slot.error ::slotted(input[type="radio"])::before{border-color:var(--warning-mid, #ED1C24)}.template-slot.error ::slotted(label){color:var(--warning-mid, #ED1C24)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:flex;flex-direction:column;contain:layout}.template-slot{display:flex}::slotted(input[type="radio"]){position:relative;margin:0;-webkit-appearance:none;-moz-appearance:none;outline:none;cursor:pointer}::slotted(input[type="radio"]):focus::before{border-color:#555555}::slotted(input[type="radio"])::before{position:relative;display:inline-block;width:16px;height:16px;content:"";border-radius:50%;border:2px solid var(--primary-mid, #3C9700);background:white}::slotted(input[type="radio"]:checked)::before{background:white}::slotted(input[type="radio"]:checked)::after,::slotted(input[type="radio"]:focus)::after{content:"";position:absolute;top:5px;left:5px;width:6px;height:6px;transform:rotate(40deg);color:var(--primary-mid, #3C9700);border:2px solid;border-radius:50%}::slotted(input[type="radio"]:checked)::after{background:var(--primary-mid, #3C9700)}::slotted(input[type="radio"]:focus)::after{background:#E6E6E6;color:#E6E6E6}::slotted(input:focus)::before{border-color:#555555}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}::slotted(input[type="radio"]:disabled){cursor:not-allowed}::slotted(input[type="radio"]:disabled)::before{border-color:#767676;background-color:#E6E6E6}.template-slot.error ::slotted(input[type="radio"])::before{border-color:var(--warning-mid, #ED1C24)}.template-slot.error ::slotted(label){color:var(--warning-mid, #ED1C24)}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$6, create_fragment$6, safe_not_equal, {
     			valid: 0,
@@ -2283,7 +3515,7 @@
     class Feedback extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid;display:flex;align-items:center;width:100%;height:100%;padding:5px 0}svg{min-width:30px;min-height:30px;padding:0 10px 0 15px}.text{display:flex;flex-direction:row;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}.info{background:var(--info-ultralight, #ECF5FA);border-color:var(--info-mid, #459FD0)}.info svg{fill:var(--info-mid, #459FD0)}.error{background:var(--warning-ultralight, #FDE8E9);border-color:var(--warning-mid, #ED1C24)}.error svg{fill:var(--warning-mid, #ED1C24)}.success{background:var(--primary-ultralight, #EBF4E5);border-color:var(--primary-mid, #3C9700)}.success svg{fill:var(--primary-mid, #3C9700)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.box{box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid;display:flex;align-items:center;width:100%;height:100%;padding:5px 0}svg{min-width:30px;min-height:30px;padding:0 10px 0 15px}.text{display:flex;flex-direction:row;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}.info{background:var(--info-ultralight, #ECF5FA);border-color:var(--info-mid, #459FD0)}.info svg{fill:var(--info-mid, #459FD0)}.error{background:var(--warning-ultralight, #FDE8E9);border-color:var(--warning-mid, #ED1C24)}.error svg{fill:var(--warning-mid, #ED1C24)}.success{background:var(--primary-ultralight, #EBF4E5);border-color:var(--primary-mid, #3C9700)}.success svg{fill:var(--primary-mid, #3C9700)}</style>`;
     		init(this, { target: this.shadowRoot }, instance$7, create_fragment$7, safe_not_equal, { type: 0, text: 1 });
 
     		if (options) {
@@ -2525,7 +3757,9 @@
     			}
 
     			if (/*loading*/ ctx[8]) {
-    				if (if_block0) ; else {
+    				if (if_block0) {
+    					
+    				} else {
     					if_block0 = create_if_block_2(ctx);
     					if_block0.c();
     					if_block0.m(t1.parentNode, t1);
@@ -2918,7 +4152,7 @@
     class Select extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.left{grid-template-areas:"label link link" "label input input" "label info info"}}.left .input-label{align-self:center;padding-right:5px}.input-label{grid-area:label;align-self:self-start}.input-link{grid-area:link;align-self:flex-end}.input-slot{grid-area:input;position:relative}.input-info{grid-area:info}.close,.arrows{position:absolute;right:9px;top:12px}.close{cursor:pointer;right:28px;top:14px}.arrows{pointer-events:none}.arrows path{fill:var(--primary-mid, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;font-size:14px;line-height:20px;padding:13px 15px;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555555;padding:12px 14px}.input-slot.error ::slotted(select){border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px;transition:border-color 0.3s ease}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.box{box-sizing:border-box;width:100%;display:grid;grid-template-areas:"label label link" "input input input" "info info info";grid-template-columns:1fr 1fr 1fr;grid-gap:3px;position:relative}.link-absent{grid-template-areas:"label label label" "input input input" "info info info";grid-gap:3px 0}@media only screen and (min-width: 500px){.left{grid-template-areas:"label link link" "label input input" "label info info"}}.left .input-label{align-self:center;padding-right:5px}.input-label{grid-area:label;align-self:self-start}.input-link{grid-area:link;align-self:flex-end}.input-slot{grid-area:input;position:relative}.input-info{grid-area:info}:host{contain:layout}.close,.arrows{position:absolute;right:9px;top:12px}.close{cursor:pointer;right:28px;top:14px}.arrows{pointer-events:none}.arrows path{fill:var(--primary-mid, #3C9700)}.arrows.disabled path{fill:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;background:white;font-size:14px;line-height:20px;padding:13px 15px;border:1px solid #767676;border-radius:5px;color:#555555;outline:none;box-sizing:border-box;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555555;padding:12px 14px}.input-slot.error ::slotted(select){border:2px solid var(--warning-mid, #ED1C24);padding:12px 14px;transition:border-color 0.3s ease}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$9, create_fragment$9, safe_not_equal, {
     			labelposition: 0,
@@ -3234,7 +4468,9 @@
     			}
 
     			if (/*_valueSelected*/ ctx[14]) {
-    				if (if_block1) ; else {
+    				if (if_block1) {
+    					
+    				} else {
     					if_block1 = create_if_block_2$1(ctx);
     					if_block1.c();
     					if_block1.m(div, null);
@@ -3245,7 +4481,9 @@
     			}
 
     			if (/*loading*/ ctx[9]) {
-    				if (if_block2) ; else {
+    				if (if_block2) {
+    					
+    				} else {
     					if_block2 = create_if_block_1$1(ctx);
     					if_block2.c();
     					if_block2.m(span, null);
@@ -3425,7 +4663,7 @@
     		return create_else_block;
     	}
 
-    	let current_block_type = select_block_type(ctx);
+    	let current_block_type = select_block_type(ctx, -1);
     	let if_block = current_block_type(ctx);
 
     	const block = {
@@ -3444,7 +4682,7 @@
     			if_block.m(div, null);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx, dirty)) && if_block) {
     				if_block.p(ctx, dirty);
     			} else {
     				if_block.d(1);
@@ -3749,7 +4987,7 @@
     class SearchableSelect extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.close{display:inline-block;position:absolute;top:34%;right:4%;cursor:pointer}:host{position:relative}.box{position:relative}.box:hover .selected-options{display:block;animation:fadeTooltipIn 0.2s}.selected-options{display:none}.selected-options:hover{display:block}::slotted(select.searchable-zoo-select){-webkit-appearance:none;-moz-appearance:none;text-indent:1px;text-overflow:'';width:100%;padding:13px 15px;border:1px solid #767676;border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-top:none;position:absolute;z-index:2;top:60px;font-size:14px}.box.error ::slotted(select){border:2px solid var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}::slotted(select.hidden){display:none}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.close{display:inline-block;position:absolute;top:34%;right:4%;cursor:pointer}:host{position:relative}.box{position:relative}.box:hover .selected-options{display:block;animation:fadeTooltipIn 0.2s}.selected-options{display:none}.selected-options:hover{display:block}::slotted(select.searchable-zoo-select){-webkit-appearance:none;-moz-appearance:none;text-indent:1px;text-overflow:'';width:100%;padding:13px 15px;border:1px solid #767676;border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-top:none;position:absolute;z-index:2;top:60px;font-size:14px}.box.error ::slotted(select){border:2px solid var(--warning-mid, #ED1C24);transition:border-color 0.3s ease}::slotted(select.hidden){display:none}::slotted(select:disabled){border:1px solid #E6E6E6;background-color:#F2F3F4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$a, create_fragment$a, safe_not_equal, {
     			labelposition: 0,
@@ -4084,7 +5322,7 @@
     class Link extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.link-box{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}a{text-decoration:none;font-size:12px;line-height:14px}a.disabled{color:#E6E6E6}a.disabled:hover{cursor:not-allowed}a.primary{color:var(--primary-mid, #3C9700)}a.primary:hover,a.primary:focus,a.primary:active{color:var(--primary-dark, #286400)}a.primary:visited{color:var(--primary-light, #66B100)}a.negative{color:white}a.negative:hover,a.negative:focus,a.negative:active{color:#FFFFFF;cursor:pointer}a.negative:visited{color:#FFFFFF}a.negative .bottom-line{position:absolute;bottom:-3px;left:0;overflow:hidden;width:0;border-bottom:1px solid #fff;color:#FFFFFF}a.negative:hover .bottom-line{width:100%}a.grey{color:#767676}a.grey:hover,a.grey:focus,a.grey:active{color:var(--primary-dark, #286400)}a.grey:visited{color:var(--primary-light, #66B100)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.link-box{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}a{text-decoration:none;font-size:12px;line-height:14px}a.disabled{color:#E6E6E6}a.disabled:hover{cursor:not-allowed}a.primary{color:var(--primary-mid, #3C9700)}a.primary:hover,a.primary:focus,a.primary:active{color:var(--primary-dark, #286400)}a.primary:visited{color:var(--primary-light, #66B100)}a.negative{color:white}a.negative:hover,a.negative:focus,a.negative:active{color:#FFFFFF;cursor:pointer}a.negative:visited{color:#FFFFFF}a.negative .bottom-line{position:absolute;bottom:-3px;left:0;overflow:hidden;width:0;border-bottom:1px solid #fff;color:#FFFFFF}a.negative:hover .bottom-line{width:100%}a.grey{color:#767676}a.grey:hover,a.grey:focus,a.grey:active{color:var(--primary-dark, #286400)}a.grey:visited{color:var(--primary-light, #66B100)}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$b, create_fragment$b, safe_not_equal, {
     			href: 1,
@@ -4443,7 +5681,7 @@
     class Navigation extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{height:56px;background-image:linear-gradient(left, var(--primary-mid, #3C9700), var(--primary-light, #66B100));background-image:-webkit-linear-gradient(left, var(--primary-mid, #3C9700), var(--primary-light, #66B100))}::slotted(*:first-child){display:flex;flex-direction:row;height:100%;overflow:auto;overflow-y:hidden;padding:0 20px}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.box{height:56px;background-image:linear-gradient(left, var(--primary-mid, #3C9700), var(--primary-light, #66B100));background-image:-webkit-linear-gradient(left, var(--primary-mid, #3C9700), var(--primary-light, #66B100))}::slotted(*:first-child){display:flex;flex-direction:row;height:100%;overflow:auto;overflow-y:hidden;padding:0 20px}</style>`;
     		init(this, { target: this.shadowRoot }, instance$d, create_fragment$d, safe_not_equal, {});
 
     		if (options) {
@@ -4774,7 +6012,7 @@
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("zoo-toast", $$slots, []);
-    	const click_handler = event => close();
+    	const click_handler = event => close(event);
 
     	function div1_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -4829,7 +6067,7 @@
     class Toast extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{display:none;top:20px;right:20px;position:fixed;z-index:10001}.toast{max-width:330px;min-height:50px;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);border-left:3px solid;display:flex;align-items:center;word-break:break-word;font-size:14px;line-height:20px;padding:15px;transition:transform 0.3s, opacity 0.4s}.info{background:var(--info-ultralight, #ECF5FA);border-color:var(--info-mid, #459FD0)}.info svg{fill:var(--info-mid, #459FD0)}.error{background:var(--warning-ultralight, #FDE8E9);border-color:var(--warning-mid, #ED1C24)}.error svg{fill:var(--warning-mid, #ED1C24)}.success{background:var(--primary-ultralight, #EBF4E5);border-color:var(--primary-mid, #3C9700)}.success svg{fill:var(--primary-mid, #3C9700)}.text{flex-grow:1}.close{cursor:pointer}svg{padding-right:10px;min-width:48px}.hide{opacity:0;transform:translate3d(100%, 0, 0)}.show{opacity:1;transform:translate3d(0, 0, 0)}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{display:none;top:20px;right:20px;position:fixed;z-index:10001;contain:layout}.toast{max-width:330px;min-height:50px;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);border-left:3px solid;display:flex;align-items:center;word-break:break-word;font-size:14px;line-height:20px;padding:15px;transition:transform 0.3s, opacity 0.4s}.info{background:var(--info-ultralight, #ECF5FA);border-color:var(--info-mid, #459FD0)}.info svg{fill:var(--info-mid, #459FD0)}.error{background:var(--warning-ultralight, #FDE8E9);border-color:var(--warning-mid, #ED1C24)}.error svg{fill:var(--warning-mid, #ED1C24)}.success{background:var(--primary-ultralight, #EBF4E5);border-color:var(--primary-mid, #3C9700)}.success svg{fill:var(--primary-mid, #3C9700)}.text{flex-grow:1}.close{cursor:pointer}svg{padding-right:10px;min-width:48px}.hide{opacity:0;transform:translate3d(100%, 0, 0)}.show{opacity:1;transform:translate3d(0, 0, 0)}</style>`;
 
     		init(this, { target: this.shadowRoot }, instance$f, create_fragment$f, safe_not_equal, {
     			type: 0,
@@ -5135,7 +6373,7 @@
     class CollapsableList extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.item ::slotted(*){display:none}.item.active ::slotted(*){display:initial}ul{padding:0}.item{position:relative;color:#767676;list-style-type:none;padding:0 10px;border:0}.item.active{border:1px solid rgba(0, 0, 0, 0.2)}.item.active .header{color:var(--primary-dark, #286400)}.item.active .header svg{fill:var(--primary-dark, #286400);transform:rotateX(180deg)}.header{display:flex;align-items:center;height:8px;padding:20px 0;font-size:14px;line-height:20px;color:var(--primary-mid, #3C9700);font-weight:bold;cursor:pointer}.header svg{display:flex;margin-left:auto;fill:var(--primary-mid, #3C9700);transition:transform 0.3s}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.item ::slotted(*){display:none}.item.active ::slotted(*){display:initial}ul{padding:0}.item{position:relative;color:#767676;list-style-type:none;padding:0 10px;border:0}.item.active{border:1px solid rgba(0, 0, 0, 0.2)}.item.active .header{color:var(--primary-dark, #286400)}.item.active .header svg{fill:var(--primary-dark, #286400);transform:rotateX(180deg)}.header{display:flex;align-items:center;height:8px;padding:20px 0;font-size:14px;line-height:20px;color:var(--primary-mid, #3C9700);font-weight:bold;cursor:pointer}.header svg{display:flex;margin-left:auto;fill:var(--primary-mid, #3C9700);transition:transform 0.3s}</style>`;
     		init(this, { target: this.shadowRoot }, instance$g, create_fragment$g, safe_not_equal, { items: 0 });
 
     		if (options) {
@@ -5394,7 +6632,7 @@
     class Spinner extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.spinner{position:absolute;left:0;top:0;right:0;bottom:0;height:140px;width:140px;margin:auto;transform-origin:center center;animation:rotate 2s linear infinite;z-index:100000}.spinner .path{animation:dash 1.5s ease-in-out infinite;stroke:var(--primary-mid, #3C9700);stroke-dasharray:1, 200;stroke-dashoffset:0;stroke-linecap:round}@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1, 200;stroke-dashoffset:0}50%{stroke-dasharray:89, 200;stroke-dashoffset:-35px}100%{stroke-dasharray:89, 200;stroke-dashoffset:-124px}}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.spinner{position:absolute;left:calc(50% - 60px);top:calc(50% - 60px);right:0;bottom:0;height:120px;width:120px;transform-origin:center center;animation:rotate 2s linear infinite;z-index:100000}.spinner .path{animation:dash 1.5s ease-in-out infinite;stroke:var(--primary-mid, #3C9700);stroke-dasharray:1, 200;stroke-dashoffset:0;stroke-linecap:round}@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1, 200;stroke-dashoffset:0}50%{stroke-dasharray:89, 200;stroke-dashoffset:-35px}100%{stroke-dasharray:89, 200;stroke-dashoffset:-124px}}</style>`;
     		init(this, { target: this.shadowRoot }, instance$j, create_fragment$j, safe_not_equal, {});
 
     		if (options) {
@@ -5515,7 +6753,9 @@
     		},
     		p: function update(ctx, [dirty]) {
     			if (/*loading*/ ctx[2]) {
-    				if (if_block) ; else {
+    				if (if_block) {
+    					
+    				} else {
     					if_block = create_if_block$5(ctx);
     					if_block.c();
     					if_block.m(div1, t0);
@@ -5568,6 +6808,7 @@
     	let resizeObserver;
     	let applyResizeLogic = false;
 
+    	// TODO handle particular column resize via client set width
     	onMount(() => {
     		headerCellSlot.addEventListener("slotchange", () => {
     			host = gridRoot.getRootNode().host;
@@ -5578,7 +6819,7 @@
     				applyResizeLogic = true;
     			}
 
-    			handleHeaders(headers);
+    			handleHeaders(headers, host);
     		});
 
     		rowSlot.addEventListener("slotchange", () => {
@@ -5793,7 +7034,7 @@
     class Grid extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit;min-width:inherit;overflow:auto}::slotted(*[slot="row"]){overflow:visible}.header-row{min-width:inherit;font-size:12px;line-height:14px;font-weight:600;color:#555555;box-sizing:border-box}.header-row,::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px;font-size:14px;line-height:20px}:host([resizable]) .header-row,:host([resizable]) ::slotted(*[slot="row"]){display:flex;padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:50px}:host([resizable]) ::slotted(.header-cell){overflow:auto;resize:horizontal}::slotted(*[slot="row"]){align-items:center;box-sizing:border-box}::slotted(*[slot="row"] *[column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky;background:white}.header-row{z-index:1}::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}::slotted(*[slot="row"]:hover){background:#E6E6E6}::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.paginator{display:none;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}:host([paginator]) zoo-grid-paginator{display:block}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit;min-width:inherit;overflow:auto}::slotted(*[slot="row"]){overflow:visible}.header-row{min-width:inherit;font-size:12px;line-height:14px;font-weight:600;color:#555555;box-sizing:border-box}.header-row,::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px;font-size:14px;line-height:20px}:host([resizable]) .header-row,:host([resizable]) ::slotted(*[slot="row"]){display:flex;padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:50px}:host([resizable]) ::slotted(.header-cell){overflow:auto;resize:horizontal}::slotted(*[slot="row"]){align-items:center;box-sizing:border-box}::slotted(*[slot="row"] *[column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky;background:white}.header-row{z-index:1}::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}::slotted(*[slot="row"]:hover){background:#E6E6E6}::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.paginator{display:none;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}:host([paginator]) zoo-grid-paginator{display:block}</style>`;
     		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1, loading: 2 });
 
     		if (options) {
@@ -6129,7 +7370,7 @@
     		return create_else_block$1;
     	}
 
-    	let current_block_type = select_block_type(ctx);
+    	let current_block_type = select_block_type(ctx, -1);
     	let if_block = current_block_type(ctx);
 
     	const block = {
@@ -6142,7 +7383,7 @@
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx, dirty)) && if_block) {
     				if_block.p(ctx, dirty);
     			} else {
     				if_block.d(1);
@@ -6182,6 +7423,8 @@
     	let div1;
     	let t3;
     	let template;
+    	let style;
+    	let t5;
     	let svg;
     	let path;
     	let dispose;
@@ -6210,6 +7453,9 @@
     			div1 = element("div");
     			t3 = space();
     			template = element("template");
+    			style = element("style");
+    			style.textContent = ".btn.next svg {transform: rotate(-90deg);}\n\t\t\t\t.btn.prev svg {transform: rotate(90deg);}";
+    			t5 = space();
     			svg = svg_element("svg");
     			path = svg_element("path");
     			this.c = noop;
@@ -6221,13 +7467,14 @@
     			attr_dev(div1, "class", "btn next");
     			toggle_class(div1, "hidden", !/*currentpage*/ ctx[0] || !/*maxpages*/ ctx[1] || /*currentpage*/ ctx[0] == /*maxpages*/ ctx[1]);
     			add_location(div1, file$m, 13, 2, 706);
+    			add_location(style, file$m, 15, 3, 866);
     			attr_dev(path, "d", "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
-    			add_location(path, file$m, 15, 69, 932);
-    			attr_dev(svg, "class", "nav-arrow");
+    			add_location(path, file$m, 19, 65, 1044);
+    			attr_dev(svg, "class", "arrow");
     			attr_dev(svg, "width", "24");
     			attr_dev(svg, "height", "24");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$m, 15, 3, 866);
+    			add_location(svg, file$m, 19, 3, 982);
     			attr_dev(template, "id", "arrow");
     			add_location(template, file$m, 14, 2, 841);
     			attr_dev(div2, "class", "paging");
@@ -6255,6 +7502,8 @@
     			append_dev(div2, div1);
     			append_dev(div2, t3);
     			append_dev(div2, template);
+    			append_dev(template.content, style);
+    			append_dev(template.content, t5);
     			append_dev(template.content, svg);
     			append_dev(svg, path);
     			/*div3_binding*/ ctx[13](div3);
@@ -6463,7 +7712,7 @@
     class GridPaginator extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{padding:10px;min-width:inherit}.box{display:flex;justify-content:flex-end;font-size:14px}.paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.paging.hidden{opacity:0}.btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.btn:active{opacity:0.5}.btn.hidden{display:none}.btn.next{margin-left:5px}.btn.prev{margin-right:10px}svg{fill:#555555}.nav-arrow path{fill:var(--primary-mid, #3C9700)}.page-element{cursor:pointer}.page-element:hover{background:#F2F3F4}.page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.page-element,.page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.page-element-dots{display:none}.page-element+.page-element-dots{display:flex}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{padding:10px;min-width:inherit;border-top:1px solid #E6E6E6}.box{display:flex;justify-content:flex-end;font-size:14px}.paging{display:flex;align-items:center;border:1px solid #E6E6E6;border-radius:5px;margin:3px 0 3px 20px;padding:0 15px}.paging.hidden{opacity:0}.btn{display:flex;cursor:pointer;opacity:1;transition:opacity 0.1s}.btn:active{opacity:0.5}.btn.hidden{display:none}.btn.next{margin-left:5px}.btn.prev{margin-right:10px}svg{fill:#555555}.arrow path{fill:var(--primary-mid, #3C9700)}.page-element{cursor:pointer}.page-element:hover{background:#F2F3F4}.page-element.active{background:var(--primary-ultralight, #EBF4E5);color:var(--primary-mid, #3C9700)}.page-element,.page-element-dots{display:flex;align-items:center;justify-content:center;border-radius:5px;width:24px;height:24px;margin-right:5px}.page-element-dots{display:none}.page-element+.page-element-dots{display:flex}</style>`;
     		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, { maxpages: 1, currentpage: 0 });
 
     		if (options) {

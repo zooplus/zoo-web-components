@@ -13,7 +13,11 @@
 		{/each}
 		<div class="btn next" class:hidden="{!currentpage || !maxpages || currentpage == maxpages}" on:click="{() => goToNextPage()}"></div>
 		<template id="arrow">
-			<svg class="nav-arrow" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+			<style>
+				.btn.next svg {transform: rotate(-90deg);}
+				.btn.prev svg {transform: rotate(90deg);}
+			</style>
+			<svg class="arrow" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
 		</template>
 	</div>
 </div>
@@ -24,6 +28,7 @@
 	:host {
 		padding: 10px;
 		min-width: inherit;
+		border-top: $stroked-box-grey-light;
 	}
 
 	.box {
@@ -61,18 +66,10 @@
 
 		&.next {
 			margin-left: 5px;
-
-			svg {
-				transform: rotate(-90deg);
-			}
 		}
 
 		&.prev {
 			margin-right: 10px;
-
-			svg {
-				transform: rotate(90deg);
-			}
 		}
 	}
 
@@ -80,7 +77,7 @@
 		fill: $grey-dark;
 	}
 
-	.nav-arrow {
+	.arrow {
 		path { fill: var(--primary-mid, #{$primary-mid}); }
 	}
 

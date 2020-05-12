@@ -1,12 +1,12 @@
 <svelte:options tag="zoo-checkbox"></svelte:options>
-<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''} {_focused ? 'focused':''}" class:error="{!valid}" class:disabled="{disabled}" on:click="{e => handleClick(e)}">
+<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="{!valid}" class:disabled="{disabled}" on:click="{e => handleClick(e)}">
 	<label class="input-slot">
 		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>
 		<span class="input-label">
 			{labeltext}
 		</span>
 	</label>
-	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{inputerrormsg}" infotext="{infotext}"></zoo-input-info>
+	<zoo-input-info class="input-info" valid="{valid}" {inputerrormsg} {infotext}></zoo-input-info>
 </div>
 
 <style type='text/scss'>
@@ -32,6 +32,10 @@
 			&.clicked {
 				border: $stroked-box-success-bold;
 				padding: 5px 14px;
+
+				.input-slot .input-label {
+					left: 8px;
+				}
 			}
 
 			&.error {
@@ -48,24 +52,25 @@
 			}
 		}
 
-		.input-slot {
-			width: 100%;
-			display: flex;
-			flex-direction: row;
-			cursor: pointer;
-			align-items: center;
-			font-size: $p1-size;
-			line-height: $p1-line-height;
-
-			.input-label {
-				display: flex;
-				align-items: center;
-				position: relative;
-				left: 10px;
-			}
-		}
 	}
 
+	.input-slot {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		cursor: pointer;
+		align-items: center;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
+	}
+
+	.input-label {
+		display: flex;
+		align-items: center;
+		position: relative;
+		left: 10px;
+	}
+	
 	::slotted(input[type="checkbox"]) {
 		position: relative;
 		margin: 0;
@@ -82,12 +87,17 @@
 		height: 24px;
 		content: "";
 		border-radius: 3px;
-		border: $stroked-box-success-bold;
-		background: white;
+		border: $stroked-box-grey;
+		background: transparent;
+	}
+
+	::slotted(input[type="checkbox"]:focus)::before {
+		border: $stroked-box-grey-bold;
 	}
 
 	::slotted(input[type="checkbox"]:checked)::before {
-		background: white;
+		background: transparent;
+		border: $stroked-box-success-bold;
 	}
 
 	::slotted(input[type="checkbox"]:checked)::after {
@@ -107,10 +117,6 @@
 		cursor: not-allowed;
 	}
 
-	::slotted(input[type="checkbox"]:checked.error)::after {
-		color: var(--warning-mid, #{$warning-mid});
-	}
-
 	::slotted(input[type="checkbox"]:disabled)::before {
 		border-color: $grey-light;
 		background-color: $grey-ultralight;
@@ -120,14 +126,20 @@
 		color: $grey-mid;
 	}
 
-	::slotted(input[type="checkbox"].error)::before {
-		border-color: var(--warning-mid, #{$warning-mid});
-		transition: border-color 0.3s ease;
+	.box.error {
+		::slotted(input[type="checkbox"])::before {
+			border-color: var(--warning-mid, #{$warning-mid});
+			transition: border-color 0.3s ease;
+		}
+
+		::slotted(input[type="checkbox"]:checked)::after {
+			color: var(--warning-mid, #{$warning-mid});
+		}
 	}
 </style>
 
 <script>
-	import { beforeUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	export let labeltext = '';
 	export let valid = true;
@@ -137,9 +149,7 @@
 	export let infotext = '';
 	let _clicked = false;
 	let _slottedInput;
-	let _prevValid;
 	let _inputSlot;
-	let _focused = false;
 
 	const handleClick = (event) => {
 		if (disabled) {
@@ -158,40 +168,16 @@
 		_clicked = !_clicked;
 		event.stopImmediatePropagation();
 	};
-
-	const changeValidState = (state) => {
-		if (_slottedInput) {
-			if (state === false) {
-				_slottedInput.classList.add("error");
-			} else if (state === true) {
-				_slottedInput.classList.remove("error");
-			}
-		}
-	}
-
-	beforeUpdate(() => {
-		if (valid != _prevValid) {
-			_prevValid = valid;
-			changeValidState(valid);
-		}
-	});
 	  
 	onMount(() => {
 		_inputSlot.addEventListener("slotchange", () => {
 			_slottedInput = _inputSlot.assignedNodes()[0];
-			_slottedInput.addEventListener('focus', () => {
-				_focused = true;
-			});
-			_slottedInput.addEventListener('blur', () => {
-				_focused = false;
-			});
 			if (_slottedInput.checked) {
 				_clicked = true;
 			}
 			if (_slottedInput.disabled) {
 				disabled = true;
 			}
-			changeValidState(valid);
 		});
 		_inputSlot.addEventListener('keypress', e => {
 			if (e.keyCode === 13) {

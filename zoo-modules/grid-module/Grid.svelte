@@ -1,15 +1,15 @@
 <svelte:options tag="zoo-grid"></svelte:options>
-<div class="box" bind:this={gridRoot} class:resizable="{applyResizeLogic}">
+<div class="box" bind:this={gridRoot}>
 	{#if loading}
 		<zoo-spinner></zoo-spinner>
 	{/if}
-	<div class="header-row" class:sticky="{stickyheader}" bind:this={headerRow}>
+	<div class="header-row">
 		<slot name="headercell" bind:this={headerCellSlot}></slot>
 	</div>
 	<slot name="row" bind:this={rowSlot}></slot>
 	<slot name="norecords"></slot>
-	<slot name="paginator" bind:this={paginatorSlot}>
-		<zoo-grid-paginator bind:this={paginatorFallback} class:paginator-hidden="{!paginator}" class="paginator" {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
+	<slot name="paginator">
+		<zoo-grid-paginator class="paginator" {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
 			<slot name="pagesizeselector" slot="pagesizeselector"></slot>
 		</zoo-grid-paginator>
 	</slot>
@@ -25,93 +25,95 @@
 		min-height: inherit;
 		min-width: inherit;
 		overflow: auto;
-		box-shadow: $box-shadow-strong;
+	}
 
-		::slotted(*[slot="row"]) {
-			overflow: visible;
-		}
+	::slotted(*[slot="row"]) {
+		overflow: visible;
+	}
 
-		.header-row {
-			font-size: $p2-size;
-			line-height: $p2-line-height;
-			font-weight: 600;
-			color: $grey-dark;
-		}
+	.header-row {
+		min-width: inherit;
+		font-size: $p2-size;
+		line-height: $p2-line-height;
+		font-weight: 600;
+		color: $grey-dark;
+		box-sizing: border-box;
+	}
 
+	.header-row, ::slotted(*[slot="row"]) {
+		display: grid;
+		grid-template-columns: repeat(var(--grid-columns-num), minmax(50px, 1fr));
+		padding: 10px;
+		border-bottom: 1px solid rgba(0,0,0, 0.2);
+		min-height: 40px;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
+	}
+
+	:host([resizable]) {
 		.header-row, ::slotted(*[slot="row"]) {
-			display: grid;
-			grid-template-columns: repeat(var(--grid-columns-num), minmax(50px, 1fr));
+			display: flex;
 			padding: 10px;
 			border-bottom: 1px solid rgba(0,0,0, 0.2);
-			min-height: 40px;
-			font-size: $p1-size;
-			line-height: $p1-line-height;
-		}
-
-		&.resizable {
-			.header-row, ::slotted(*[slot="row"]) {
-				display: flex;
-				padding: 10px;
-				border-bottom: 1px solid rgba(0,0,0, 0.2);
-				min-height: 40px;
-			}
-
-			::slotted(.header-cell) {
-				overflow: auto;
-				resize: horizontal;
-			}
-		}
-
-		::slotted(*[slot="row"]) {
-			align-items: center;
-		}
-
-		::slotted(*[slot="row"] *[column]) {
-			align-items: center;
-		}
-
-		.header-row {
-			z-index: 1;
-
-			&.sticky {
-				top: 0;
-				position: sticky;
-				background: white;
-			}
+			min-height: 50px;
 		}
 
 		::slotted(.header-cell) {
-			display: flex;
-			align-items: center;
-			padding-right: 5px;
+			overflow: auto;
+			resize: horizontal;
 		}
+	}
 
-		::slotted(*[slot="row"]:nth-child(odd)) {
-			background: $grey-ultralight;
-		}
+	::slotted(*[slot="row"]) {
+		align-items: center;
+		box-sizing: border-box;
+	}
 
-		::slotted(*[slot="row"]:hover) {
-			background: $grey-light;
-		}
+	::slotted(*[slot="row"] *[column]) {
+		align-items: center;
+	}
 
-		::slotted(*[slot="norecords"]) {
-			color: var(--warning-mid, #{$warning-mid});
-			grid-column: span var(--grid-columns-num);
-			text-align: center;
-			padding: 10px 0;
-		}
+	:host([stickyheader]) .header-row {
+		top: 0;
+		position: sticky;
+		background: white;
+	}
 
-		.paginator {
-			display: block;
-			position: sticky;
-			grid-column: span var(--grid-columns-num);
-			bottom: 0;
-			background: $white;
-		}
+	.header-row {
+		z-index: 1;
+	}
 
-		.paginator-hidden {
-			display: none;
-		}
+	::slotted(.header-cell) {
+		display: flex;
+		align-items: center;
+		padding-right: 5px;
+	}
+
+	::slotted(*[slot="row"]:nth-child(odd)) {
+		background: $grey-ultralight;
+	}
+
+	::slotted(*[slot="row"]:hover) {
+		background: $grey-light;
+	}
+
+	::slotted(*[slot="norecords"]) {
+		color: var(--warning-mid, #{$warning-mid});
+		grid-column: span var(--grid-columns-num);
+		text-align: center;
+		padding: 10px 0;
+	}
+
+	.paginator {
+		display: none;
+		position: sticky;
+		grid-column: span var(--grid-columns-num);
+		bottom: 0;
+		background: $white;
+	}
+
+	:host([paginator]) zoo-grid-paginator {
+		display: block;
 	}
 </style>
 
@@ -120,16 +122,11 @@
 	export let currentpage = '';
 	export let maxpages = '';
 	export let loading = false;
-	let stickyheader = false;
 	let gridRoot;
 	let headerCellSlot;
-	let paginator = false;
 	let sortableHeaders = [];
-	let headerRow;
 	let host;
 	let rowSlot;
-	let paginatorSlot;
-	let paginatorFallback;
 	let resizeObserver;
 	let applyResizeLogic = false;
 	onMount(() => {
@@ -137,13 +134,6 @@
 			host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			gridRoot.style.setProperty('--grid-columns-num', headers.length);
-			
-			if (host.hasAttribute('paginator')) {
-				paginator = true;
-			}
-			if (host.hasAttribute('stickyheader')) {
-				stickyheader = true;
-			}
 			if (host.hasAttribute('resizable')) {
 				applyResizeLogic = true;
 			}
@@ -153,7 +143,6 @@
 		rowSlot.addEventListener("slotchange", () => {
 			const exampleRow = rowSlot.assignedNodes()[0];
 			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue('min-width');
-			headerRow.style.minWidth = minWidth;
 			if (applyResizeLogic) {
 				const allRows = rowSlot.assignedNodes();
 				for (const row of allRows) {
@@ -166,24 +155,9 @@
 				}
 			}
 		});
-
-		paginatorSlot.addEventListener("slotchange", () => {
-			const paginatorEl = paginatorSlot.assignedNodes()[0];
-			const minWidth = window.getComputedStyle(headerRow).getPropertyValue('min-width');
-			if (paginatorEl) {
-				paginatorEl.style.minWidth = minWidth;
-			} else {
-				paginatorFallback.style.minWidth = minWidth;
-			}
-		});
 	});
 
 	const handleHeaders = (headers, host) => {
-		handleSortableHeaders(headers);
-		if (applyResizeLogic) handleResizableHeaders(headers);
-	}
-
-	const handleSortableHeaders = headers => {
 		let i = 1;
 		for (let header of headers) {
 			header.classList.add('header-cell');
@@ -193,20 +167,25 @@
 				i++;
 			}
 			if (header.hasAttribute('sortable')) {
-				header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
-				header.addEventListener("sortChange", (e) => {
-					e.stopPropagation();
-					const sortState = e.detail.sortState;
-					sortableHeaders.forEach(h => h.discardSort());
-					header.children[0].setSort(sortState);
-					const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
-					host.dispatchEvent(new CustomEvent('sortChange', {
-						detail: detail, bubbles: true
-					}));
-				});
-				sortableHeaders.push(header.children[0]);
+				handleSortableHeader(header);
 			}
 		}
+		if (applyResizeLogic) handleResizableHeaders(headers);
+	}
+
+	const handleSortableHeader = header => {
+		header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
+		header.addEventListener("sortChange", (e) => {
+			e.stopPropagation();
+			const sortState = e.detail.sortState;
+			sortableHeaders.forEach(h => h.discardSort());
+			header.children[0].setSort(sortState);
+			const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
+			host.dispatchEvent(new CustomEvent('sortChange', {
+				detail: detail, bubbles: true
+			}));
+		});
+		sortableHeaders.push(header.children[0]);
 	}
 
 	const handleResizableHeaders = headers => {

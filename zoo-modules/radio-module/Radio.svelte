@@ -2,7 +2,7 @@
 <div class="box">
 	<zoo-input-label class="input-label" {labeltext}>
 	</zoo-input-label>
-	<span class="template-slot">
+	<span class="template-slot {valid ? '' : 'error'}">
 		<slot bind:this={_templateSlot}></slot>
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
@@ -49,7 +49,7 @@
 		background: white;
 	}
 
-	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"].focused)::after {
+	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"]:focus)::after {
 		content: "";
 		position: absolute;
 		top: 5px;
@@ -66,12 +66,12 @@
 		background: var(--primary-mid, #{$primary-mid});
 	}
 
-	::slotted(input[type="radio"].focused)::after {
+	::slotted(input[type="radio"]:focus)::after {
 		background: $grey-light;
 		color: $grey-light;
 	}
 
-	::slotted(input.focused)::before {
+	::slotted(input:focus)::before {
 		border-color: $grey-dark;
 	}
 
@@ -90,46 +90,26 @@
 		background-color: $grey-light;
 	}
 
-	::slotted(input[type="radio"].error)::before {
-		border-color: var(--warning-mid, #{$warning-mid});
-	}
+	.template-slot.error {
+		::slotted(input[type="radio"])::before {
+			border-color: var(--warning-mid, #{$warning-mid});
+		}
 
-	::slotted(label.error) {
-		color: var(--warning-mid, #{$warning-mid});
+		::slotted(label) {
+			color: var(--warning-mid, #{$warning-mid});
+		}
 	}
 </style>
 
 <script>
-	import { beforeUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	export let valid = true;
 	export let errormsg = '';
 	export let infotext = '';
 	export let labeltext = '';
-	let _prevValid;
 	let _templateSlot;
 	let clone;
-
-	const changeValidState = (valid) => {
-		if (_templateSlot) {
-			_templateSlot.assignedNodes().forEach(el => {
-				if (el.classList) {
-					if (valid === false) {
-						el.classList.add('error');
-					} else if (valid) {
-						el.classList.remove('error');
-					}
-				}
-			});
-		}
-	}
-
-	beforeUpdate(() => {
-		if (valid !== _prevValid) {
-			_prevValid = valid;
-			changeValidState(valid);
-		}
-	});
 	  
 	onMount(() => {
 		_templateSlot.addEventListener("slotchange", () => {
@@ -140,14 +120,6 @@
 					_templateSlot.getRootNode().querySelector('slot').assignedNodes()[0].remove();
 					_templateSlot.getRootNode().host.appendChild(clone);
 				}
-				_templateSlot.getRootNode().host.querySelectorAll('input').forEach(input => {
-					input.addEventListener('focus', e => {
-						e.target.classList.add('focused');
-					});
-					input.addEventListener('blur', e => {
-						e.target.classList.remove('focused');
-					});
-				})
 			}
 		});
 	});

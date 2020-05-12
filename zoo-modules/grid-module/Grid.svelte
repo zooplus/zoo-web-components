@@ -1,6 +1,7 @@
 <svelte:options tag="zoo-grid"></svelte:options>
 <div class="box" bind:this={gridRoot}>
 	{#if loading}
+		<div class="loading-shade"></div>
 		<zoo-spinner></zoo-spinner>
 	{/if}
 	<div class="header-row">
@@ -31,6 +32,21 @@
 		overflow: auto;
 	}
 
+	.loading-shade {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 56px;
+		z-index: 10000;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.15);
+		pointer-events: none;
+	}
+
 	::slotted(*[slot="row"]) {
 		overflow: visible;
 	}
@@ -46,10 +62,10 @@
 
 	.header-row, ::slotted(*[slot="row"]) {
 		display: grid;
-		grid-template-columns: repeat(var(--grid-columns-num), minmax(50px, 1fr));
-		padding: 10px;
+		grid-template-columns: var(--grid-columns-sizes);
+		padding: 5px;
 		border-bottom: 1px solid rgba(0,0,0, 0.2);
-		min-height: 40px;
+		min-height: 50px;
 		font-size: $p1-size;
 		line-height: $p1-line-height;
 	}
@@ -57,9 +73,6 @@
 	:host([resizable]) {
 		.header-row, ::slotted(*[slot="row"]) {
 			display: flex;
-			padding: 10px;
-			border-bottom: 1px solid rgba(0,0,0, 0.2);
-			min-height: 50px;
 		}
 
 		::slotted(.header-cell) {
@@ -136,7 +149,8 @@
 		headerCellSlot.addEventListener("slotchange", () => {
 			host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
-			gridRoot.style.setProperty('--grid-columns-num', headers.length);
+			host.style.setProperty('--grid-columns-num', headers.length);
+			host.style.setProperty('--grid-columns-sizes', 'repeat(var(--grid-columns-num), minmax(50px, 1fr))');
 			handleHeaders(headers, host, host.hasAttribute('resizable'));
 		});
 

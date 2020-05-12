@@ -11,6 +11,10 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	.box {
 		box-sizing: border-box;
 		font-size: $p1-size;

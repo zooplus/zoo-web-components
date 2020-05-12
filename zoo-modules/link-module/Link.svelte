@@ -11,6 +11,10 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	.link-box {
 		width: 100%;
 		height: 100%;

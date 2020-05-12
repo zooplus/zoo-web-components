@@ -30,6 +30,10 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	.close {
 		display: inline-block;
 		position: absolute;

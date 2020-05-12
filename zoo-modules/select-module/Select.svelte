@@ -25,6 +25,10 @@
 	@import "variables";
 	@import "input";
 
+	:host {
+		contain: layout;
+	}
+
 	.close, .arrows {
 		position: absolute;
 		right: 9px;

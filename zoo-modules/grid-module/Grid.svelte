@@ -18,6 +18,10 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	.box {
 		position: relative;
 		max-height: inherit;
@@ -129,6 +133,7 @@
 	let rowSlot;
 	let resizeObserver;
 	let applyResizeLogic = false;
+	// TODO handle particular column resize via client set width
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
 			host = gridRoot.getRootNode().host;

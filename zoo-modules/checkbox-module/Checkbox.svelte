@@ -14,6 +14,7 @@
 	
 	:host {
 		margin-top: 21px;
+		contain: layout;
 	}
 
 	.box {

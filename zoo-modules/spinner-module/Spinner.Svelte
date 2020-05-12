@@ -6,15 +6,18 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	.spinner {
 		position: absolute;
-		left: 0;
-		top: 0;
+		left: calc(50% - 60px);
+		top: calc(50% - 60px);
 		right: 0;
 		bottom: 0;
-		height: 140px;
-		width: 140px;
-		margin: auto;
+		height: 120px;
+		width: 120px;
 		transform-origin: center center;
 		animation: rotate 2s linear infinite;
 		z-index: 100000;

@@ -20,6 +20,7 @@
 		right: 20px;
 		position: fixed;
 		z-index: 10001;
+		contain: layout;
 	}
 
 	.toast {

@@ -132,48 +132,39 @@
 	let host;
 	let rowSlot;
 	let resizeObserver;
-	let applyResizeLogic = false;
-	// TODO handle particular column resize via client set width
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
 			host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			gridRoot.style.setProperty('--grid-columns-num', headers.length);
-			if (host.hasAttribute('resizable')) {
-				applyResizeLogic = true;
-			}
-			handleHeaders(headers, host);
+			handleHeaders(headers, host, host.hasAttribute('resizable'));
 		});
 
 		rowSlot.addEventListener("slotchange", () => {
 			const exampleRow = rowSlot.assignedNodes()[0];
 			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue('min-width');
-			if (applyResizeLogic) {
-				const allRows = rowSlot.assignedNodes();
-				for (const row of allRows) {
-					let i = 1;
-					for (const child of row.children) {
-						child.setAttribute('column', i);
-						child.style.flexGrow = 1;
-						i++;
-					}
+			const allRows = rowSlot.assignedNodes();
+			for (const row of allRows) {
+				let i = 1;
+				for (const child of row.children) {
+					child.setAttribute('column', i);
+					child.style.flexGrow = 1;
+					i++;
 				}
 			}
 		});
 	});
 
-	const handleHeaders = (headers, host) => {
+	const handleHeaders = (headers, host, applyResizeLogic) => {
 		let i = 1;
 		for (let header of headers) {
 			header.classList.add('header-cell');
-			if (applyResizeLogic) {
-				header.style.flexGrow = 1;
-				header.setAttribute('column', i);
-				i++;
-			}
+			header.style.flexGrow = 1;
+			header.setAttribute('column', i);
 			if (header.hasAttribute('sortable')) {
 				handleSortableHeader(header);
 			}
+			i++;
 		}
 		if (applyResizeLogic) handleResizableHeaders(headers);
 	}

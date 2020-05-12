@@ -4751,7 +4751,7 @@
     class Grids extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>h3{color:#3C9700}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-holder{max-width:1280px;overflow:scroll;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}</style>`;
+    		this.shadowRoot.innerHTML = `<style>h3{color:#3c9700}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-holder{max-width:1280px;overflow:scroll;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #e6e6e6}</style>`;
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, {}, [-1, -1]);
 
     		if (options) {

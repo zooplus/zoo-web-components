@@ -6737,19 +6737,19 @@
     			append_dev(div1, t0);
     			append_dev(div1, div0);
     			append_dev(div0, slot0);
-    			/*slot0_binding*/ ctx[15](slot0);
+    			/*slot0_binding*/ ctx[14](slot0);
     			append_dev(div1, t1);
     			append_dev(div1, slot1);
-    			/*slot1_binding*/ ctx[16](slot1);
+    			/*slot1_binding*/ ctx[15](slot1);
     			append_dev(div1, t2);
     			append_dev(div1, slot2);
     			append_dev(div1, t3);
     			append_dev(div1, slot4);
     			append_dev(slot4, zoo_grid_paginator);
     			append_dev(zoo_grid_paginator, slot3);
-    			/*div1_binding*/ ctx[18](div1);
+    			/*div1_binding*/ ctx[17](div1);
     			if (remount) dispose();
-    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[17], false, false, false);
+    			dispose = listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[16], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (/*loading*/ ctx[2]) {
@@ -6778,9 +6778,9 @@
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
     			if (if_block) if_block.d();
-    			/*slot0_binding*/ ctx[15](null);
-    			/*slot1_binding*/ ctx[16](null);
-    			/*div1_binding*/ ctx[18](null);
+    			/*slot0_binding*/ ctx[14](null);
+    			/*slot1_binding*/ ctx[15](null);
+    			/*div1_binding*/ ctx[17](null);
     			dispose();
     		}
     	};
@@ -6806,57 +6806,45 @@
     	let host;
     	let rowSlot;
     	let resizeObserver;
-    	let applyResizeLogic = false;
 
-    	// TODO handle particular column resize via client set width
     	onMount(() => {
     		headerCellSlot.addEventListener("slotchange", () => {
     			host = gridRoot.getRootNode().host;
     			const headers = headerCellSlot.assignedNodes();
     			gridRoot.style.setProperty("--grid-columns-num", headers.length);
-
-    			if (host.hasAttribute("resizable")) {
-    				applyResizeLogic = true;
-    			}
-
-    			handleHeaders(headers, host);
+    			handleHeaders(headers, host, host.hasAttribute("resizable"));
     		});
 
     		rowSlot.addEventListener("slotchange", () => {
     			const exampleRow = rowSlot.assignedNodes()[0];
     			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue("min-width");
+    			const allRows = rowSlot.assignedNodes();
 
-    			if (applyResizeLogic) {
-    				const allRows = rowSlot.assignedNodes();
+    			for (const row of allRows) {
+    				let i = 1;
 
-    				for (const row of allRows) {
-    					let i = 1;
-
-    					for (const child of row.children) {
-    						child.setAttribute("column", i);
-    						child.style.flexGrow = 1;
-    						i++;
-    					}
+    				for (const child of row.children) {
+    					child.setAttribute("column", i);
+    					child.style.flexGrow = 1;
+    					i++;
     				}
     			}
     		});
     	});
 
-    	const handleHeaders = (headers, host) => {
+    	const handleHeaders = (headers, host, applyResizeLogic) => {
     		let i = 1;
 
     		for (let header of headers) {
     			header.classList.add("header-cell");
-
-    			if (applyResizeLogic) {
-    				header.style.flexGrow = 1;
-    				header.setAttribute("column", i);
-    				i++;
-    			}
+    			header.style.flexGrow = 1;
+    			header.setAttribute("column", i);
 
     			if (header.hasAttribute("sortable")) {
     				handleSortableHeader(header);
     			}
+
+    			i++;
     		}
 
     		if (applyResizeLogic) handleResizableHeaders(headers);
@@ -6983,7 +6971,6 @@
     		host,
     		rowSlot,
     		resizeObserver,
-    		applyResizeLogic,
     		handleHeaders,
     		handleSortableHeader,
     		handleResizableHeaders,
@@ -7001,7 +6988,6 @@
     		if ("host" in $$props) host = $$props.host;
     		if ("rowSlot" in $$props) $$invalidate(5, rowSlot = $$props.rowSlot);
     		if ("resizeObserver" in $$props) resizeObserver = $$props.resizeObserver;
-    		if ("applyResizeLogic" in $$props) applyResizeLogic = $$props.applyResizeLogic;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -7018,7 +7004,6 @@
     		dispatchPageEvent,
     		host,
     		resizeObserver,
-    		applyResizeLogic,
     		sortableHeaders,
     		handleHeaders,
     		handleSortableHeader,
@@ -7034,7 +7019,7 @@
     class Grid extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit;min-width:inherit;overflow:auto}::slotted(*[slot="row"]){overflow:visible}.header-row{min-width:inherit;font-size:12px;line-height:14px;font-weight:600;color:#555555;box-sizing:border-box}.header-row,::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px;font-size:14px;line-height:20px}:host([resizable]) .header-row,:host([resizable]) ::slotted(*[slot="row"]){display:flex;padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:50px}:host([resizable]) ::slotted(.header-cell){overflow:auto;resize:horizontal}::slotted(*[slot="row"]){align-items:center;box-sizing:border-box}::slotted(*[slot="row"] *[column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky;background:white}.header-row{z-index:1}::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}::slotted(*[slot="row"]:nth-child(odd)){background:#F2F3F4}::slotted(*[slot="row"]:hover){background:#E6E6E6}::slotted(*[slot="norecords"]){color:var(--warning-mid, #ED1C24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.paginator{display:none;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#FFFFFF}:host([paginator]) zoo-grid-paginator{display:block}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit;min-width:inherit;overflow:auto}::slotted(*[slot="row"]){overflow:visible}.header-row{min-width:inherit;font-size:12px;line-height:14px;font-weight:600;color:#555555;box-sizing:border-box}.header-row,::slotted(*[slot="row"]){display:grid;grid-template-columns:repeat(var(--grid-columns-num), minmax(50px, 1fr));padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:40px;font-size:14px;line-height:20px}:host([resizable]) .header-row,:host([resizable]) ::slotted(*[slot="row"]){display:flex;padding:10px;border-bottom:1px solid rgba(0, 0, 0, 0.2);min-height:50px}:host([resizable]) ::slotted(.header-cell){overflow:auto;resize:horizontal}::slotted(*[slot="row"]){align-items:center;box-sizing:border-box}::slotted(*[slot="row"] *[column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky;background:white}.header-row{z-index:1}::slotted(.header-cell){display:flex;align-items:center;padding-right:5px}::slotted(*[slot="row"]:nth-child(odd)){background:#f2f3f4}::slotted(*[slot="row"]:hover){background:#e6e6e6}::slotted(*[slot="norecords"]){color:var(--warning-mid, #ed1c24);grid-column:span var(--grid-columns-num);text-align:center;padding:10px 0}.paginator{display:none;position:sticky;grid-column:span var(--grid-columns-num);bottom:0;background:#ffffff}:host([paginator]) zoo-grid-paginator{display:block}</style>`;
     		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, { currentpage: 0, maxpages: 1, loading: 2 });
 
     		if (options) {

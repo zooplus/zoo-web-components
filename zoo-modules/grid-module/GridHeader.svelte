@@ -53,15 +53,8 @@
 </style>
 
 <script>
-	import { onMount } from 'svelte';
-
 	let sortState;
 	let gridHeaderRoot;
-	let host;
-
-	onMount(() => {
-		host = gridHeaderRoot.getRootNode().host;
-	});
 
 	const handleSortClick = () => {
 		if (!sortState) {
@@ -71,7 +64,7 @@
 		} else if (sortState = 'asc') {
 			sortState = undefined;
 		}
-		host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: sortState}, bubbles: true}));
+		gridHeaderRoot.getRootNode().host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: sortState}, bubbles: true}));
 	}
 
 	export const discardSort = () => {

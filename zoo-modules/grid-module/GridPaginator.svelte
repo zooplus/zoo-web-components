@@ -149,6 +149,7 @@
 	beforeUpdate(() => {
 		if (pages.length != maxpages) {
 			let temp = 1;
+			pages = [];
 			while(temp <= +maxpages) {
 				pages.push(temp);
 				temp++;

@@ -3,18 +3,18 @@
 	<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
 	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right"></zoo-link>
 	<div class="input-slot {valid ? '' : 'error'}">
-		<slot bind:this={_selectSlot} name="selectelement"></slot>
-		{#if _slottedSelect && !_slottedSelect.hasAttribute('multiple')}
-			<svg class="arrows {_slottedSelect && _slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+		<slot bind:this={selectSlot} name="selectelement"></slot>
+		{#if slottedSelect && !slottedSelect.hasAttribute('multiple')}
+			<svg class="arrows {slottedSelect && slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24">
+				<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+			</svg>
 			{#if loading}
 				<zoo-preloader></zoo-preloader>
 			{/if}
-			{#if _valueSelected}
-				<div class="close" on:click="{e => handleCrossClick()}">
-					<svg width="20" height="20" viewBox="0 0 24 24">
-						<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
-					</svg>
-				</div>
+			{#if valueSelected}
+				<svg width="20" height="20" viewBox="0 0 24 24" class="close" on:click="{e => handleCrossClick()}">
+					<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
+				</svg>
 			{/if}
 		{/if}
 	</div>
@@ -106,20 +106,22 @@
 	export let valid = true;
 	export let loading = false;
 	export let linktype = "primary";
-	let _slottedSelect;
-	let _selectSlot;
-	let _valueSelected;
+	let slottedSelect;
+	let selectSlot;
+	let valueSelected;
+	let selects = {};
+
+	// todo support multiple slots
 
 	onMount(() => {
-		_selectSlot.addEventListener("slotchange", () => {
-			let select = _selectSlot.assignedNodes()[0];
-			_slottedSelect = select;
-			_slottedSelect.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
+		selectSlot.addEventListener("slotchange", () => {
+			slottedSelect = selectSlot.assignedNodes()[0];
+			slottedSelect.addEventListener('change', e => valueSelected = e.target.value ? true : false);
 		});
 	});
 
 	const handleCrossClick = () => {
-		_slottedSelect.value = null;
-		_slottedSelect.dispatchEvent(new Event("change"));
+		slottedSelect.value = null;
+		slottedSelect.dispatchEvent(new Event("change"));
 	}
 </script>

@@ -171,6 +171,7 @@
 	};
 	  
 	onMount(() => {
+		// todo support multiple slots
 		_inputSlot.addEventListener("slotchange", () => {
 			_slottedInput = _inputSlot.assignedNodes()[0];
 			if (_slottedInput.checked) {

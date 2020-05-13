@@ -113,6 +113,7 @@
 	let clone;
 	  
 	onMount(() => {
+		// todo support multiple slots
 		_templateSlot.addEventListener("slotchange", () => {
 			if (!clone) {
 				const template = _templateSlot.assignedNodes()[0];

@@ -126,6 +126,7 @@
 
 	onMount(() => {
 		_isMobile = isMobile();
+		// todo support multiple slots
 		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;

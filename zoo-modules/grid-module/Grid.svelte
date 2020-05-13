@@ -62,8 +62,8 @@
 
 	.header-row, ::slotted(*[slot="row"]) {
 		display: grid;
-		grid-template-columns: var(--grid-columns-sizes);
-		padding: 5px;
+		grid-template-columns: var(--grid-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
+		padding: 5px 10px;
 		border-bottom: 1px solid rgba(0,0,0, 0.2);
 		min-height: 50px;
 		font-size: $p1-size;
@@ -116,7 +116,7 @@
 
 	::slotted(*[slot="norecords"]) {
 		color: var(--warning-mid, #{$warning-mid});
-		grid-column: span var(--grid-columns-num);
+		grid-column: span var(--grid-column-num);
 		text-align: center;
 		padding: 10px 0;
 	}
@@ -124,7 +124,7 @@
 	.paginator {
 		display: none;
 		position: sticky;
-		grid-column: span var(--grid-columns-num);
+		grid-column: span var(--grid-column-num);
 		bottom: 0;
 		background: $white;
 	}
@@ -142,21 +142,20 @@
 	let gridRoot;
 	let headerCellSlot;
 	let sortableHeaders = [];
-	let host;
 	let rowSlot;
 	let resizeObserver;
+	// sortable grid -> set min-width to set width
+	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
 		headerCellSlot.addEventListener("slotchange", () => {
-			host = gridRoot.getRootNode().host;
+			const host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
-			host.style.setProperty('--grid-columns-num', headers.length);
-			host.style.setProperty('--grid-columns-sizes', 'repeat(var(--grid-columns-num), minmax(50px, 1fr))');
+			host.style.setProperty('--grid-column-num', headers.length);
+			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
 			handleHeaders(headers, host, host.hasAttribute('resizable'));
 		});
 
 		rowSlot.addEventListener("slotchange", () => {
-			const exampleRow = rowSlot.assignedNodes()[0];
-			const minWidth = window.getComputedStyle(exampleRow).getPropertyValue('min-width');
 			const allRows = rowSlot.assignedNodes();
 			for (const row of allRows) {
 				let i = 1;
@@ -171,19 +170,21 @@
 
 	const handleHeaders = (headers, host, applyResizeLogic) => {
 		let i = 1;
+		if (applyResizeLogic) {
+			createResizeObserver(host);
+		}
 		for (let header of headers) {
 			header.classList.add('header-cell');
 			header.style.flexGrow = 1;
 			header.setAttribute('column', i);
-			if (header.hasAttribute('sortable')) {
-				handleSortableHeader(header);
-			}
+			header.setAttribute('draggable', true);
+			if (header.hasAttribute('sortable')) handleSortableHeader(header, host);
+			if (applyResizeLogic) resizeObserver.observe(header);
 			i++;
 		}
-		if (applyResizeLogic) handleResizableHeaders(headers);
 	}
 
-	const handleSortableHeader = header => {
+	const handleSortableHeader = (header, host) => {
 		header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
 		header.addEventListener("sortChange", (e) => {
 			e.stopPropagation();
@@ -198,8 +199,7 @@
 		sortableHeaders.push(header.children[0]);
 	}
 
-	const handleResizableHeaders = headers => {
-		// only first run will iterate over whole grid
+	const createResizeObserver = host => {
 		resizeObserver = new ResizeObserver(debounce(entries => {
 			for (const entry of entries) {
 				const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
@@ -208,9 +208,6 @@
 				}
 			}
 		}, 200));
-		for (let header of headers) {
-			resizeObserver.observe(header);
-		}
 	}
 
 	const debounce = (func, wait, immediate) => {
@@ -229,6 +226,7 @@
 	};
 
 	const dispatchPageEvent = e => {
+		const host = gridRoot.getRootNode().host;
 		host.dispatchEvent(new CustomEvent('pageChange', {
 			detail: {pageNumber: e.detail.pageNumber}, bubbles: true
 		}));

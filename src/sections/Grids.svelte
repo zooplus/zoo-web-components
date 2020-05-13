@@ -6,11 +6,11 @@
 	<h3>A grid with pagination, resizing and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid class="limited-width" bind:this={zooGrid} stickyheader paginator currentpage="5" maxpages="20" resizable
+	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 		{#each headers as header, idx}
-			<div class="header-cell" slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+			<div class="header-cell {idx == 0 ? 'min-width' : ''}" slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
 		{/each}
 		{#each data as row} 
 			<div class="example-row limited-width" slot="row">
@@ -58,9 +58,9 @@
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 	<div class="grid-holder" style="max-width: 850px;">
-		<zoo-grid class="limited-width" bind:this={zooGrid} style="max-height: 300px; min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
+		<zoo-grid class="limited-width grid-2" style="max-height: 300px; min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
 			currentpage="5" maxpages="20" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
-			{#each extendedHeaders as header}
+			{#each extendedHeaders as header, i}
 				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
 			{/each}
 
@@ -133,10 +133,22 @@
 		color: $primary-mid;
 	}
 
+	.min-width { 
+		min-width: 200px;
+	}
+
 	.grids-holder {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.grid-1 {
+		--grid-column-sizes: 150px repeat(7, minmax(50px, 1fr)) !important;
+	}
+
+	.grid-2 {
+		--grid-column-sizes: 150px repeat(9, minmax(50px, 1fr)) !important;
 	}
 
 	.grid-holder {
@@ -170,7 +182,6 @@
 </style>
 
 <script>
-	let zooGrid;
 	let toast;
 	let possibleNumberOfItems = [5, 10, 25, 100];
 	let gridHolder;

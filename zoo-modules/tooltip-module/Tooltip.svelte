@@ -16,7 +16,7 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		z-index: 10000;
+		z-index: 9997;
 		left: 0;
 		bottom: 0;
 		pointer-events: none;

@@ -20,7 +20,7 @@
 		width: 120px;
 		transform-origin: center center;
 		animation: rotate 2s linear infinite;
-		z-index: 100000;
+		z-index: 10002;
 
 		.path {
 			animation: dash 1.5s ease-in-out infinite;

@@ -19,5 +19,5 @@ export { default as CollapsableListItem } from '../zoo-modules/collapsable-list-
 export { default as Preloader } from  '../zoo-modules/shared-module/Preloader.svelte';
 export { default as Spinner } from  '../zoo-modules/spinner-module/Spinner.svelte';
 export { default as Grid } from  '../zoo-modules/grid-module/Grid.svelte';
-export { default as Grid } from  '../zoo-modules/grid-module/GridHeader.svelte';
-export { default as Grid } from  '../zoo-modules/grid-module/GridPaginator.svelte';
+export { default as GridHeader } from  '../zoo-modules/grid-module/GridHeader.svelte';
+export { default as GridPaginator } from  '../zoo-modules/grid-module/GridPaginator.svelte';

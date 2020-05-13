@@ -33,7 +33,6 @@
 		line-height: $p1-line-height;
 		font-weight: bold;
 		text-align: center;
-		padding: 0 20px;
 
 		&.hollow {
 			border: $stroked-box-primary-bold;
@@ -94,6 +93,10 @@
 		&.medium {
 			min-height: 46px;
 		}
+	}
+
+	::slotted(*) {
+		padding: 0 20px;
 	}
 </style>
 

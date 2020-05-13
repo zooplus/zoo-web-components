@@ -18,7 +18,7 @@
 
 	:host {
 		display: none;
-		contain: layout;
+		contain: style;
 	}
 
 	.box {

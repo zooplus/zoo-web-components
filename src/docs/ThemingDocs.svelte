@@ -9,28 +9,49 @@
 			<zoo-collapsable-list-item slot="item0">
 				<ul>
 					<li>
-						<b>--primary-mid</b> - 
+						<b>--primary-mid</b> - default color #3C9700;
 					</li>
 					<li>
-						<b>--primary-light</b> - 
+						<b>--primary-light</b> - default color #66B100;
 					</li>
 					<li>
-						<b>--primary-ultralight</b> - 
+						<b>--primary-ultralight</b> - default color #EBF4E5;
 					</li>
 					<li>
-						<b>--primary-dark</b> - 
+						<b>--primary-dark</b> - default color #286400;
 					</li>
 					<li>
-						<b>--secondary-mid</b> - 
+						<b>--secondary-mid</b> - default color #FF6200;
 					</li>
 					<li>
-						<b>--secondary-light</b> - 
+						<b>--secondary-light</b> - default color #FF8800;
 					</li>
 					<li>
-						<b>--secondary-ultralight</b> - 
+						<b>--secondary-ultralight</b> - default color #FFF0E7;
 					</li>
 					<li>
-						<b>--secondary-dark</b> - 
+						<b>--secondary-dark</b> - default color #CC4E00;
+					</li>
+					<li>
+						<b>--warning-ultralight</b> - default color #FDE8E9;
+					</li>
+					<li>
+						<b>--warning-mid</b> - default color #ED1C24;
+					</li>
+					<li>
+						<b>--warning-dark</b> - default color #BD161C;
+					</li>
+					<li>
+						<b>--success-ultralight</b> - default color #EBF4E5;
+					</li>
+					<li>
+						<b>--success-mid</b> - default color #3C9700;
+					</li>
+					<li>
+						<b>--info-ultralight</b> - default color #ECF5FA;
+					</li>
+					<li>
+						<b>--info-mid</b> - default color #459FD0;
 					</li>
 				</ul>
 			</zoo-collapsable-list-item>

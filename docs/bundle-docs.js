@@ -1080,33 +1080,42 @@
     	let option10;
     	let option11;
     	let t23;
-    	let zoo_checkbox;
-    	let input5;
-    	let zoo_checkbox_highlighted_value;
+    	let zoo_select3;
+    	let select5;
+    	let option12;
+    	let zoo_select3_loading_value;
     	let t24;
+    	let zoo_checkbox0;
+    	let input5;
+    	let zoo_checkbox0_highlighted_value;
+    	let t25;
+    	let zoo_checkbox1;
+    	let input6;
+    	let zoo_checkbox1_highlighted_value;
+    	let t26;
     	let zoo_radio0;
     	let template;
-    	let input6;
-    	let t25;
-    	let label0;
-    	let t27;
     	let input7;
-    	let t28;
-    	let label1;
-    	let t30;
+    	let t27;
+    	let label0;
+    	let t29;
     	let input8;
-    	let t31;
-    	let label2;
-    	let t33;
-    	let zoo_radio1;
+    	let t30;
+    	let label1;
+    	let t32;
     	let input9;
-    	let t34;
-    	let label3;
-    	let t36;
+    	let t33;
+    	let label2;
+    	let t35;
+    	let zoo_radio1;
     	let input10;
-    	let t37;
-    	let label4;
+    	let t36;
+    	let label3;
+    	let t38;
+    	let input11;
     	let t39;
+    	let label4;
+    	let t41;
     	let div;
     	let zoo_button;
     	let span;
@@ -1199,37 +1208,44 @@
     			option11 = element("option");
     			option11.textContent = "3";
     			t23 = space();
-    			zoo_checkbox = element("zoo-checkbox");
-    			input5 = element("input");
+    			zoo_select3 = element("zoo-select");
+    			select5 = element("select");
+    			option12 = element("option");
     			t24 = space();
+    			zoo_checkbox0 = element("zoo-checkbox");
+    			input5 = element("input");
+    			t25 = space();
+    			zoo_checkbox1 = element("zoo-checkbox");
+    			input6 = element("input");
+    			t26 = space();
     			zoo_radio0 = element("zoo-radio");
     			template = element("template");
-    			input6 = element("input");
-    			t25 = space();
+    			input7 = element("input");
+    			t27 = space();
     			label0 = element("label");
     			label0.textContent = "Email";
-    			t27 = space();
-    			input7 = element("input");
-    			t28 = space();
+    			t29 = space();
+    			input8 = element("input");
+    			t30 = space();
     			label1 = element("label");
     			label1.textContent = "Phone";
-    			t30 = space();
-    			input8 = element("input");
-    			t31 = space();
+    			t32 = space();
+    			input9 = element("input");
+    			t33 = space();
     			label2 = element("label");
     			label2.textContent = "Mail";
-    			t33 = space();
+    			t35 = space();
     			zoo_radio1 = element("zoo-radio");
-    			input9 = element("input");
-    			t34 = space();
+    			input10 = element("input");
+    			t36 = space();
     			label3 = element("label");
     			label3.textContent = "Email";
-    			t36 = space();
-    			input10 = element("input");
-    			t37 = space();
+    			t38 = space();
+    			input11 = element("input");
+    			t39 = space();
     			label4 = element("label");
     			label4.textContent = "Phone";
-    			t39 = space();
+    			t41 = space();
     			div = element("div");
     			zoo_button = element("zoo-button");
     			span = element("span");
@@ -1370,70 +1386,85 @@
     			add_location(select4, file$2, 59, 2, 3073);
     			set_custom_element_data(zoo_select2, "labeltext", "Disabled select");
     			add_location(zoo_select2, file$2, 58, 1, 3030);
+    			option12.__value = "";
+    			option12.value = option12.__value;
+    			add_location(option12, file$2, 68, 3, 3377);
+    			attr_dev(select5, "slot", "selectelement");
+    			add_location(select5, file$2, 67, 2, 3344);
+    			set_custom_element_data(zoo_select3, "labeltext", "Loading select");
+    			set_custom_element_data(zoo_select3, "loading", zoo_select3_loading_value = true);
+    			add_location(zoo_select3, file$2, 66, 1, 3285);
     			attr_dev(input5, "slot", "checkboxelement");
     			attr_dev(input5, "type", "checkbox");
-    			add_location(input5, file$2, 67, 2, 3429);
-    			set_custom_element_data(zoo_checkbox, "highlighted", zoo_checkbox_highlighted_value = true);
-    			set_custom_element_data(zoo_checkbox, "valid", /*inputState*/ ctx[0]);
-    			set_custom_element_data(zoo_checkbox, "labeltext", "An example checkbox with some additional event handling of clicks inside");
-    			add_location(zoo_checkbox, file$2, 66, 1, 3285);
-    			attr_dev(input6, "type", "radio");
-    			attr_dev(input6, "id", "contactChoice1");
-    			attr_dev(input6, "name", "contact");
-    			input6.value = "email";
+    			add_location(input5, file$2, 72, 2, 3523);
+    			set_custom_element_data(zoo_checkbox0, "highlighted", zoo_checkbox0_highlighted_value = true);
+    			set_custom_element_data(zoo_checkbox0, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_checkbox0, "labeltext", "An example checkbox");
+    			add_location(zoo_checkbox0, file$2, 71, 1, 3432);
     			input6.disabled = true;
-    			add_location(input6, file$2, 71, 3, 3607);
-    			attr_dev(label0, "for", "contactChoice1");
-    			add_location(label0, file$2, 72, 3, 3689);
+    			attr_dev(input6, "slot", "checkboxelement");
+    			attr_dev(input6, "type", "checkbox");
+    			add_location(input6, file$2, 75, 2, 3657);
+    			set_custom_element_data(zoo_checkbox1, "highlighted", zoo_checkbox1_highlighted_value = true);
+    			set_custom_element_data(zoo_checkbox1, "labeltext", "Disabled checkbox");
+    			add_location(zoo_checkbox1, file$2, 74, 1, 3589);
     			attr_dev(input7, "type", "radio");
-    			attr_dev(input7, "id", "contactChoice2");
+    			attr_dev(input7, "id", "contactChoice1");
     			attr_dev(input7, "name", "contact");
-    			input7.value = "phone";
-    			add_location(input7, file$2, 73, 3, 3734);
-    			attr_dev(label1, "for", "contactChoice2");
-    			add_location(label1, file$2, 74, 3, 3807);
+    			input7.value = "email";
+    			input7.disabled = true;
+    			add_location(input7, file$2, 79, 3, 3844);
+    			attr_dev(label0, "for", "contactChoice1");
+    			add_location(label0, file$2, 80, 3, 3926);
     			attr_dev(input8, "type", "radio");
-    			attr_dev(input8, "id", "contactChoice3");
+    			attr_dev(input8, "id", "contactChoice2");
     			attr_dev(input8, "name", "contact");
-    			input8.value = "mail";
-    			add_location(input8, file$2, 75, 3, 3852);
+    			input8.value = "phone";
+    			add_location(input8, file$2, 81, 3, 3971);
+    			attr_dev(label1, "for", "contactChoice2");
+    			add_location(label1, file$2, 82, 3, 4044);
+    			attr_dev(input9, "type", "radio");
+    			attr_dev(input9, "id", "contactChoice3");
+    			attr_dev(input9, "name", "contact");
+    			input9.value = "mail";
+    			add_location(input9, file$2, 83, 3, 4089);
     			attr_dev(label2, "for", "contactChoice3");
-    			add_location(label2, file$2, 76, 3, 3924);
-    			add_location(template, file$2, 70, 2, 3593);
+    			add_location(label2, file$2, 84, 3, 4161);
+    			add_location(template, file$2, 78, 2, 3830);
     			set_custom_element_data(zoo_radio0, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_radio0, "errormsg", "errormsg");
     			set_custom_element_data(zoo_radio0, "infotext", "infotext");
     			set_custom_element_data(zoo_radio0, "labeltext", "Label text");
-    			add_location(zoo_radio0, file$2, 69, 1, 3495);
-    			attr_dev(input9, "type", "radio");
-    			attr_dev(input9, "id", "contactChoice4");
-    			attr_dev(input9, "name", "contact");
-    			input9.value = "email";
-    			input9.disabled = true;
-    			add_location(input9, file$2, 81, 2, 4070);
-    			attr_dev(label3, "for", "contactChoice4");
-    			add_location(label3, file$2, 82, 2, 4151);
+    			add_location(zoo_radio0, file$2, 77, 1, 3732);
     			attr_dev(input10, "type", "radio");
-    			attr_dev(input10, "id", "contactChoice5");
+    			attr_dev(input10, "id", "contactChoice4");
     			attr_dev(input10, "name", "contact");
-    			input10.value = "phone";
-    			add_location(input10, file$2, 83, 2, 4195);
+    			input10.value = "email";
+    			input10.disabled = true;
+    			add_location(input10, file$2, 89, 2, 4307);
+    			attr_dev(label3, "for", "contactChoice4");
+    			add_location(label3, file$2, 90, 2, 4388);
+    			attr_dev(input11, "type", "radio");
+    			attr_dev(input11, "id", "contactChoice5");
+    			attr_dev(input11, "name", "contact");
+    			input11.value = "phone";
+    			add_location(input11, file$2, 91, 2, 4432);
     			attr_dev(label4, "for", "contactChoice5");
-    			add_location(label4, file$2, 84, 2, 4267);
+    			add_location(label4, file$2, 92, 2, 4504);
     			set_custom_element_data(zoo_radio1, "valid", /*inputState*/ ctx[0]);
     			set_custom_element_data(zoo_radio1, "errormsg", "errormsg");
     			set_custom_element_data(zoo_radio1, "infotext", "infotext");
-    			add_location(zoo_radio1, file$2, 80, 1, 3995);
+    			add_location(zoo_radio1, file$2, 88, 1, 4232);
     			attr_dev(form, "class", "form");
     			add_location(form, file$2, 2, 0, 175);
     			attr_dev(span, "slot", "buttoncontent");
     			attr_dev(span, "class", "slotted-span");
-    			add_location(span, file$2, 89, 2, 4418);
+    			add_location(span, file$2, 97, 2, 4655);
     			set_custom_element_data(zoo_button, "type", "hot");
     			set_custom_element_data(zoo_button, "size", "medium");
-    			add_location(zoo_button, file$2, 88, 1, 4353);
+    			add_location(zoo_button, file$2, 96, 1, 4590);
     			attr_dev(div, "class", "submit");
-    			add_location(div, file$2, 87, 0, 4331);
+    			add_location(div, file$2, 95, 0, 4568);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1497,32 +1528,39 @@
     			append_dev(select4, option10);
     			append_dev(select4, option11);
     			append_dev(form, t23);
-    			append_dev(form, zoo_checkbox);
-    			append_dev(zoo_checkbox, input5);
+    			append_dev(form, zoo_select3);
+    			append_dev(zoo_select3, select5);
+    			append_dev(select5, option12);
     			append_dev(form, t24);
+    			append_dev(form, zoo_checkbox0);
+    			append_dev(zoo_checkbox0, input5);
+    			append_dev(form, t25);
+    			append_dev(form, zoo_checkbox1);
+    			append_dev(zoo_checkbox1, input6);
+    			append_dev(form, t26);
     			append_dev(form, zoo_radio0);
     			append_dev(zoo_radio0, template);
-    			append_dev(template.content, input6);
-    			append_dev(template.content, t25);
-    			append_dev(template.content, label0);
-    			append_dev(template.content, t27);
     			append_dev(template.content, input7);
-    			append_dev(template.content, t28);
-    			append_dev(template.content, label1);
-    			append_dev(template.content, t30);
+    			append_dev(template.content, t27);
+    			append_dev(template.content, label0);
+    			append_dev(template.content, t29);
     			append_dev(template.content, input8);
-    			append_dev(template.content, t31);
+    			append_dev(template.content, t30);
+    			append_dev(template.content, label1);
+    			append_dev(template.content, t32);
+    			append_dev(template.content, input9);
+    			append_dev(template.content, t33);
     			append_dev(template.content, label2);
-    			append_dev(form, t33);
+    			append_dev(form, t35);
     			append_dev(form, zoo_radio1);
-    			append_dev(zoo_radio1, input9);
-    			append_dev(zoo_radio1, t34);
-    			append_dev(zoo_radio1, label3);
-    			append_dev(zoo_radio1, t36);
     			append_dev(zoo_radio1, input10);
-    			append_dev(zoo_radio1, t37);
+    			append_dev(zoo_radio1, t36);
+    			append_dev(zoo_radio1, label3);
+    			append_dev(zoo_radio1, t38);
+    			append_dev(zoo_radio1, input11);
+    			append_dev(zoo_radio1, t39);
     			append_dev(zoo_radio1, label4);
-    			insert_dev(target, t39, anchor);
+    			insert_dev(target, t41, anchor);
     			insert_dev(target, div, anchor);
     			append_dev(div, zoo_button);
     			append_dev(zoo_button, span);
@@ -1599,7 +1637,7 @@
     			}
 
     			if (dirty & /*inputState*/ 1) {
-    				set_custom_element_data(zoo_checkbox, "valid", /*inputState*/ ctx[0]);
+    				set_custom_element_data(zoo_checkbox0, "valid", /*inputState*/ ctx[0]);
     			}
 
     			if (dirty & /*inputState*/ 1) {
@@ -1618,7 +1656,7 @@
     			if (detaching) detach_dev(form);
     			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t39);
+    			if (detaching) detach_dev(t41);
     			if (detaching) detach_dev(div);
     			dispose();
     		}
@@ -1674,7 +1712,7 @@
     class Form extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.form{flex:1 0 auto;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-template-rows:120px 150px 150px 100px 80px;grid-gap:20px}@media only screen and (max-width: 544px){.form{width:300px;grid-template-columns:auto}}@media only screen and (max-width: 812px){.form{grid-template-rows:120px 150px 120px 120px}}.submit{display:flex;justify-content:center}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.form{flex:1 0 auto;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-template-rows:120px 150px 150px 100px 80px;grid-gap:20px}@media only screen and (max-width: 544px){.form{width:300px;grid-template-columns:auto}}@media only screen and (max-width: 812px){.form{grid-template-rows:120px 150px 120px 120px}}.form zoo-select,.form zoo-searchable-select{z-index:5}.submit{display:flex;justify-content:center}</style>`;
     		init(this, { target: this.shadowRoot }, instance$2, create_fragment$2, safe_not_equal, {});
 
     		if (options) {
@@ -3013,7 +3051,6 @@
     			attr_dev(div2, "slot", "pagesizeselector");
     			add_location(div2, file$4, 89, 3, 3487);
     			set_custom_element_data(zoo_grid1, "class", "limited-width grid-2");
-    			set_style(zoo_grid1, "max-height", "300px");
     			set_style(zoo_grid1, "min-width", "1024px");
     			set_style(zoo_grid1, "margin", "0 auto");
     			set_style(zoo_grid1, "display", "block");
@@ -3021,9 +3058,10 @@
     			set_custom_element_data(zoo_grid1, "paginator", "");
     			set_custom_element_data(zoo_grid1, "currentpage", "5");
     			set_custom_element_data(zoo_grid1, "maxpages", "20");
-    			add_location(zoo_grid1, file$4, 60, 2, 2278);
+    			add_location(zoo_grid1, file$4, 60, 2, 2297);
     			attr_dev(div3, "class", "grid-holder");
     			set_style(div3, "max-width", "850px");
+    			set_style(div3, "max-height", "300px");
     			add_location(div3, file$4, 59, 1, 2224);
     			add_location(h32, file$4, 101, 1, 3869);
     			attr_dev(div4, "slot", "norecords");
@@ -3538,7 +3576,7 @@
     class Grids extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>h3{color:#3C9700}.min-width{min-width:200px}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-1{--grid-column-sizes:150px repeat(7, minmax(50px, 1fr)) !important}.grid-2{--grid-column-sizes:150px repeat(9, minmax(50px, 1fr)) !important}.grid-holder{max-width:1280px;overflow:scroll;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}</style>`;
+    		this.shadowRoot.innerHTML = `<style>h3{color:#3C9700}.min-width{min-width:200px}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-1{--grid-column-sizes:150px repeat(7, minmax(50px, 1fr)) !important}.grid-2{--grid-column-sizes:150px repeat(9, minmax(50px, 1fr)) !important}.grid-holder{max-width:1280px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}</style>`;
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, {}, [-1, -1]);
 
     		if (options) {
@@ -7893,7 +7931,7 @@
     	let div0;
     	let zoo_collapsable_list;
     	let zoo_collapsable_list_item0;
-    	let ul0;
+    	let ul;
     	let li0;
     	let b0;
     	let t2;
@@ -7954,33 +7992,27 @@
     	let t41;
     	let zoo_collapsable_list_item1;
     	let t42;
-    	let ul1;
-    	let li8;
+    	let zoo_link;
+    	let t43;
     	let t44;
-    	let li9;
-    	let t46;
-    	let li10;
-    	let t48;
-    	let li11;
-    	let t50;
     	let div10;
     	let code;
     	let pre;
-    	let t52;
+    	let t46;
     	let div9;
     	let zoo_grid;
     	let div1;
-    	let t54;
+    	let t48;
     	let div2;
-    	let t56;
+    	let t50;
     	let div5;
     	let div3;
-    	let t58;
+    	let t52;
     	let div4;
-    	let t60;
+    	let t54;
     	let div8;
     	let div6;
-    	let t62;
+    	let t56;
     	let div7;
 
     	const block = {
@@ -7991,7 +8023,7 @@
     			div0 = element("div");
     			zoo_collapsable_list = element("zoo-collapsable-list");
     			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
-    			ul0 = element("ul");
+    			ul = element("ul");
     			li0 = element("li");
     			b0 = element("b");
     			b0.textContent = "loading";
@@ -8064,119 +8096,108 @@
     			t40 = text(" - whether columns should be resizable. To prevent resizing particular column set `min-width` and `max-width`;");
     			t41 = space();
     			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
-    			t42 = text("This component accepts following slots:\n\t\t\t\t");
-    			ul1 = element("ul");
-    			li8 = element("li");
-    			li8.textContent = `${/*headerSlotExample*/ ctx[3]}`;
+    			t42 = text("More in depth documentation can be found ");
+    			zoo_link = element("zoo-link");
+    			t43 = text(".");
     			t44 = space();
-    			li9 = element("li");
-    			li9.textContent = `${/*rowSlotExample*/ ctx[4]}`;
-    			t46 = space();
-    			li10 = element("li");
-    			li10.textContent = `${/*paginatorSlotExample*/ ctx[6]}`;
-    			t48 = space();
-    			li11 = element("li");
-    			li11.textContent = `${/*pageSizeSlotExample*/ ctx[7]}`;
-    			t50 = space();
     			div10 = element("div");
     			code = element("code");
     			pre = element("pre");
-    			pre.textContent = `${/*example*/ ctx[5]}`;
-    			t52 = text("\n\t\twill produce the following:\n\t\t");
+    			pre.textContent = `${/*example*/ ctx[3]}`;
+    			t46 = text("\n\t\twill produce the following:\n\t\t");
     			div9 = element("div");
     			zoo_grid = element("zoo-grid");
     			div1 = element("div");
     			div1.textContent = "Title 1";
-    			t54 = space();
+    			t48 = space();
     			div2 = element("div");
     			div2.textContent = "Title 2";
-    			t56 = space();
+    			t50 = space();
     			div5 = element("div");
     			div3 = element("div");
     			div3.textContent = "Cell 1";
-    			t58 = space();
+    			t52 = space();
     			div4 = element("div");
     			div4.textContent = "Cell 2";
-    			t60 = space();
+    			t54 = space();
     			div8 = element("div");
     			div6 = element("div");
     			div6.textContent = "Cell 3";
-    			t62 = space();
+    			t56 = space();
     			div7 = element("div");
     			div7.textContent = "Cell 4";
     			this.c = noop;
     			set_custom_element_data(app_context, "text", "Grid component API.");
-    			add_location(app_context, file$l, 2, 0, 51);
-    			add_location(b0, file$l, 9, 6, 263);
-    			add_location(br0, file$l, 9, 62, 319);
-    			add_location(li0, file$l, 8, 5, 252);
-    			add_location(b1, file$l, 12, 6, 403);
-    			add_location(li1, file$l, 11, 5, 392);
-    			add_location(b2, file$l, 15, 6, 501);
-    			add_location(li2, file$l, 14, 5, 490);
-    			add_location(b3, file$l, 18, 6, 599);
-    			add_location(li3, file$l, 17, 5, 588);
-    			add_location(b4, file$l, 21, 6, 681);
-    			add_location(li4, file$l, 20, 5, 670);
-    			add_location(b5, file$l, 24, 6, 750);
-    			add_location(br1, file$l, 24, 63, 807);
-    			add_location(br2, file$l, 24, 117, 861);
-    			add_location(b6, file$l, 25, 6, 872);
-    			add_location(br3, file$l, 25, 32, 898);
-    			add_location(b7, file$l, 26, 6, 909);
-    			add_location(br4, file$l, 26, 52, 955);
-    			add_location(br5, file$l, 26, 121, 1024);
-    			add_location(b8, file$l, 27, 6, 1035);
-    			add_location(li5, file$l, 23, 5, 739);
-    			add_location(b9, file$l, 30, 6, 1113);
-    			add_location(br6, file$l, 30, 68, 1175);
-    			add_location(br7, file$l, 30, 121, 1228);
-    			add_location(b10, file$l, 31, 6, 1239);
-    			add_location(br8, file$l, 31, 32, 1265);
-    			add_location(b11, file$l, 32, 6, 1276);
-    			add_location(li6, file$l, 29, 5, 1102);
-    			add_location(b12, file$l, 35, 6, 1364);
-    			add_location(li7, file$l, 34, 5, 1353);
-    			add_location(ul0, file$l, 7, 4, 242);
+    			add_location(app_context, file$l, 1, 0, 50);
+    			add_location(b0, file$l, 8, 6, 262);
+    			add_location(br0, file$l, 8, 62, 318);
+    			add_location(li0, file$l, 7, 5, 251);
+    			add_location(b1, file$l, 11, 6, 402);
+    			add_location(li1, file$l, 10, 5, 391);
+    			add_location(b2, file$l, 14, 6, 500);
+    			add_location(li2, file$l, 13, 5, 489);
+    			add_location(b3, file$l, 17, 6, 598);
+    			add_location(li3, file$l, 16, 5, 587);
+    			add_location(b4, file$l, 20, 6, 680);
+    			add_location(li4, file$l, 19, 5, 669);
+    			add_location(b5, file$l, 23, 6, 749);
+    			add_location(br1, file$l, 23, 63, 806);
+    			add_location(br2, file$l, 23, 117, 860);
+    			add_location(b6, file$l, 24, 6, 871);
+    			add_location(br3, file$l, 24, 32, 897);
+    			add_location(b7, file$l, 25, 6, 908);
+    			add_location(br4, file$l, 25, 52, 954);
+    			add_location(br5, file$l, 25, 121, 1023);
+    			add_location(b8, file$l, 26, 6, 1034);
+    			add_location(li5, file$l, 22, 5, 738);
+    			add_location(b9, file$l, 29, 6, 1112);
+    			add_location(br6, file$l, 29, 68, 1174);
+    			add_location(br7, file$l, 29, 121, 1227);
+    			add_location(b10, file$l, 30, 6, 1238);
+    			add_location(br8, file$l, 30, 32, 1264);
+    			add_location(b11, file$l, 31, 6, 1275);
+    			add_location(li6, file$l, 28, 5, 1101);
+    			add_location(b12, file$l, 34, 6, 1363);
+    			add_location(li7, file$l, 33, 5, 1352);
+    			add_location(ul, file$l, 6, 4, 241);
     			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
-    			add_location(zoo_collapsable_list_item0, file$l, 6, 3, 197);
-    			add_location(li8, file$l, 42, 5, 1671);
-    			add_location(li9, file$l, 43, 5, 1705);
-    			add_location(li10, file$l, 44, 5, 1736);
-    			add_location(li11, file$l, 45, 5, 1773);
-    			set_style(ul1, "white-space", "pre");
-    			add_location(ul1, file$l, 41, 4, 1636);
+    			add_location(zoo_collapsable_list_item0, file$l, 5, 3, 196);
+    			set_custom_element_data(zoo_link, "class", "doc-link");
+    			set_custom_element_data(zoo_link, "href", "https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/grid-module");
+    			set_custom_element_data(zoo_link, "text", "here");
+    			set_custom_element_data(zoo_link, "type", "primary");
+    			add_location(zoo_link, file$l, 39, 45, 1632);
     			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
-    			add_location(zoo_collapsable_list_item1, file$l, 39, 3, 1547);
-    			add_location(zoo_collapsable_list, file$l, 5, 2, 154);
+    			add_location(zoo_collapsable_list_item1, file$l, 38, 3, 1546);
+    			add_location(zoo_collapsable_list, file$l, 4, 2, 153);
     			attr_dev(div0, "class", "list");
-    			add_location(div0, file$l, 4, 1, 133);
-    			add_location(pre, file$l, 51, 8, 1911);
-    			add_location(code, file$l, 51, 2, 1905);
+    			add_location(div0, file$l, 3, 1, 132);
+    			add_location(pre, file$l, 44, 8, 1885);
+    			add_location(code, file$l, 44, 2, 1879);
     			attr_dev(div1, "slot", "headercell");
     			attr_dev(div1, "sortable", "");
     			attr_dev(div1, "sortableproperty", "title1");
-    			add_location(div1, file$l, 55, 4, 2058);
+    			add_location(div1, file$l, 48, 4, 2032);
     			attr_dev(div2, "slot", "headercell");
-    			add_location(div2, file$l, 56, 4, 2134);
-    			add_location(div3, file$l, 58, 5, 2197);
-    			add_location(div4, file$l, 59, 5, 2220);
+    			add_location(div2, file$l, 49, 4, 2108);
+    			add_location(div3, file$l, 51, 5, 2171);
+    			add_location(div4, file$l, 52, 5, 2194);
     			attr_dev(div5, "slot", "row");
-    			add_location(div5, file$l, 57, 4, 2175);
-    			add_location(div6, file$l, 62, 5, 2275);
-    			add_location(div7, file$l, 63, 5, 2298);
+    			add_location(div5, file$l, 50, 4, 2149);
+    			add_location(div6, file$l, 55, 5, 2249);
+    			add_location(div7, file$l, 56, 5, 2272);
     			attr_dev(div8, "slot", "row");
-    			add_location(div8, file$l, 61, 4, 2253);
+    			add_location(div8, file$l, 54, 4, 2227);
     			set_custom_element_data(zoo_grid, "paginator", "");
     			set_custom_element_data(zoo_grid, "currentpage", "1");
     			set_custom_element_data(zoo_grid, "maxpages", "50");
-    			add_location(zoo_grid, file$l, 54, 3, 2003);
+    			add_location(zoo_grid, file$l, 47, 3, 1977);
     			set_style(div9, "padding", "10px");
-    			add_location(div9, file$l, 53, 2, 1971);
+    			add_location(div9, file$l, 46, 2, 1945);
     			attr_dev(div10, "class", "example");
-    			add_location(div10, file$l, 50, 1, 1881);
+    			add_location(div10, file$l, 43, 1, 1855);
     			attr_dev(div11, "class", "doc-element");
-    			add_location(div11, file$l, 3, 0, 106);
+    			add_location(div11, file$l, 2, 0, 105);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8188,30 +8209,30 @@
     			append_dev(div11, div0);
     			append_dev(div0, zoo_collapsable_list);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
-    			append_dev(zoo_collapsable_list_item0, ul0);
-    			append_dev(ul0, li0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
     			append_dev(li0, b0);
     			append_dev(li0, t2);
     			append_dev(li0, br0);
     			append_dev(li0, t3);
-    			append_dev(ul0, t4);
-    			append_dev(ul0, li1);
+    			append_dev(ul, t4);
+    			append_dev(ul, li1);
     			append_dev(li1, b1);
     			append_dev(li1, t6);
-    			append_dev(ul0, t7);
-    			append_dev(ul0, li2);
+    			append_dev(ul, t7);
+    			append_dev(ul, li2);
     			append_dev(li2, b2);
     			append_dev(li2, t9);
-    			append_dev(ul0, t10);
-    			append_dev(ul0, li3);
+    			append_dev(ul, t10);
+    			append_dev(ul, li3);
     			append_dev(li3, b3);
     			append_dev(li3, t12);
-    			append_dev(ul0, t13);
-    			append_dev(ul0, li4);
+    			append_dev(ul, t13);
+    			append_dev(ul, li4);
     			append_dev(li4, b4);
     			append_dev(li4, t15);
-    			append_dev(ul0, t16);
-    			append_dev(ul0, li5);
+    			append_dev(ul, t16);
+    			append_dev(ul, li5);
     			append_dev(li5, b5);
     			append_dev(li5, t18);
     			append_dev(li5, br1);
@@ -8229,8 +8250,8 @@
     			append_dev(li5, t26);
     			append_dev(li5, b8);
     			append_dev(li5, t28);
-    			append_dev(ul0, t29);
-    			append_dev(ul0, li6);
+    			append_dev(ul, t29);
+    			append_dev(ul, li6);
     			append_dev(li6, b9);
     			append_dev(li6, t31);
     			append_dev(li6, br6);
@@ -8242,41 +8263,35 @@
     			append_dev(li6, t35);
     			append_dev(li6, b11);
     			append_dev(li6, t37);
-    			append_dev(ul0, t38);
-    			append_dev(ul0, li7);
+    			append_dev(ul, t38);
+    			append_dev(ul, li7);
     			append_dev(li7, b12);
     			append_dev(li7, t40);
     			append_dev(zoo_collapsable_list, t41);
     			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
     			append_dev(zoo_collapsable_list_item1, t42);
-    			append_dev(zoo_collapsable_list_item1, ul1);
-    			append_dev(ul1, li8);
-    			append_dev(ul1, t44);
-    			append_dev(ul1, li9);
-    			append_dev(ul1, t46);
-    			append_dev(ul1, li10);
-    			append_dev(ul1, t48);
-    			append_dev(ul1, li11);
-    			/*zoo_collapsable_list_binding*/ ctx[8](zoo_collapsable_list);
-    			append_dev(div11, t50);
+    			append_dev(zoo_collapsable_list_item1, zoo_link);
+    			append_dev(zoo_collapsable_list_item1, t43);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div11, t44);
     			append_dev(div11, div10);
     			append_dev(div10, code);
     			append_dev(code, pre);
-    			append_dev(div10, t52);
+    			append_dev(div10, t46);
     			append_dev(div10, div9);
     			append_dev(div9, zoo_grid);
     			append_dev(zoo_grid, div1);
-    			append_dev(zoo_grid, t54);
+    			append_dev(zoo_grid, t48);
     			append_dev(zoo_grid, div2);
-    			append_dev(zoo_grid, t56);
+    			append_dev(zoo_grid, t50);
     			append_dev(zoo_grid, div5);
     			append_dev(div5, div3);
-    			append_dev(div5, t58);
+    			append_dev(div5, t52);
     			append_dev(div5, div4);
-    			append_dev(zoo_grid, t60);
+    			append_dev(zoo_grid, t54);
     			append_dev(zoo_grid, div8);
     			append_dev(div8, div6);
-    			append_dev(div8, t62);
+    			append_dev(div8, t56);
     			append_dev(div8, div7);
     		},
     		p: noop,
@@ -8286,7 +8301,7 @@
     			if (detaching) detach_dev(app_context);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div11);
-    			/*zoo_collapsable_list_binding*/ ctx[8](null);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
     		}
     	};
 
@@ -8305,20 +8320,6 @@
     	let list;
     	let sortChangeExample = `{detail: { property: $propertyName, direction: $direction }}`;
     	let pageChangeExample = `{detail: { pageNumber: $pageNumber }}`;
-    	let headerSlotExample = `Headers: \n{#each headers as header}\n  <div slot="headercell"\n  sortable={header.sortable ? 'sortable' : null}\n  sortableproperty='{header.sortProperty}'>\n  {header.title}\n  </div>\n{/each}`;
-
-    	let rowSlotExample = `Rows: \n{#each data as row} 
-	<div class="example-row" slot="row">
-		<div>{row.activated}</div>
-		<div>{row.createdDate}</div>
-		<div>{row.status}</div>
-		<div>{row.minWeight}</div>
-		<div>{row.maxWeight}</div>
-		<div>{row.deliveryDate}</div>
-		<div>{row.noOfPieces}</div>
-		<div>{row.price}</div>
-	</div>
-{/each}`;
 
     	let example = `<zoo-grid paginator currentpage="1" maxpages="50">
 	<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
@@ -8332,22 +8333,6 @@
 		<div>Cell 4</div>
 	</div>
 </zoo-grid>`;
-
-    	let paginatorSlotExample = `Paginator (you can provide your own implementation):\n<zoo-grid-paginator>
-	<slot name="pagesizeselector" 
-		slot="pagesizeselector">
-	</slot>
-</zoo-grid-paginator>`;
-
-    	let pageSizeSlotExample = `Items per page selector\n(you should provide your own implementation):
-<zoo-select labeltext="Items per page"
-	slot="pagesizeselector">
-	<select slot="selectelement">
-		{#each possibleNumberOfItems as number}
-			<option>{number}</option>
-		{/each}
-	</select>
-</zoo-select>`;
 
     	onMount(() => {
     		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
@@ -8373,22 +8358,14 @@
     		list,
     		sortChangeExample,
     		pageChangeExample,
-    		headerSlotExample,
-    		rowSlotExample,
-    		example,
-    		paginatorSlotExample,
-    		pageSizeSlotExample
+    		example
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("list" in $$props) $$invalidate(0, list = $$props.list);
     		if ("sortChangeExample" in $$props) $$invalidate(1, sortChangeExample = $$props.sortChangeExample);
     		if ("pageChangeExample" in $$props) $$invalidate(2, pageChangeExample = $$props.pageChangeExample);
-    		if ("headerSlotExample" in $$props) $$invalidate(3, headerSlotExample = $$props.headerSlotExample);
-    		if ("rowSlotExample" in $$props) $$invalidate(4, rowSlotExample = $$props.rowSlotExample);
-    		if ("example" in $$props) $$invalidate(5, example = $$props.example);
-    		if ("paginatorSlotExample" in $$props) $$invalidate(6, paginatorSlotExample = $$props.paginatorSlotExample);
-    		if ("pageSizeSlotExample" in $$props) $$invalidate(7, pageSizeSlotExample = $$props.pageSizeSlotExample);
+    		if ("example" in $$props) $$invalidate(3, example = $$props.example);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -8399,11 +8376,7 @@
     		list,
     		sortChangeExample,
     		pageChangeExample,
-    		headerSlotExample,
-    		rowSlotExample,
     		example,
-    		paginatorSlotExample,
-    		pageSizeSlotExample,
     		zoo_collapsable_list_binding
     	];
     }
@@ -8411,7 +8384,7 @@
     class GridDocs extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}.doc-link{display:inline-block;padding:5px 0 0 0}</style>`;
     		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, {});
 
     		if (options) {

@@ -64,8 +64,16 @@
 			<option>3</option>
 		</select>
 	</zoo-select>
-	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox with some additional event handling of clicks inside">
+	<zoo-select labeltext="Loading select" loading="{true}">
+		<select slot="selectelement">
+			<option value=""></option>
+		</select>
+	</zoo-select>
+	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox">
 		<input slot="checkboxelement" type="checkbox"/>
+	</zoo-checkbox>
+	<zoo-checkbox highlighted="{true}" labeltext="Disabled checkbox">
+		<input disabled slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
 		<template>
@@ -107,6 +115,10 @@
 		}
 
 		grid-gap: 20px;
+
+		zoo-select, zoo-searchable-select {
+			z-index: 5;
+		}
 	}
 
 	.submit {

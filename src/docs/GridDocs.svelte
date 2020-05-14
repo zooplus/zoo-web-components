@@ -1,5 +1,4 @@
 <svelte:options tag="docs-grid"></svelte:options>
-
 <app-context text="Grid component API."></app-context>
 <div class="doc-element">
 	<div class="list">
@@ -38,13 +37,7 @@
 				</ul>
 			</zoo-collapsable-list-item>
 			<zoo-collapsable-list-item slot="item1">
-				This component accepts following slots:
-				<ul style="white-space: pre">
-					<li>{headerSlotExample}</li>
-					<li>{rowSlotExample}</li>
-					<li>{paginatorSlotExample}</li>
-					<li>{pageSizeSlotExample}</li>
-				</ul>
+				More in depth documentation can be found <zoo-link class="doc-link" href="https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/grid-module" text="here" type="primary"></zoo-link>.
 			</zoo-collapsable-list-item>
 		</zoo-collapsable-list>
 	</div>
@@ -70,6 +63,11 @@
 
 <style type="text/scss">
 	@import "shared";
+
+	.doc-link {
+		display: inline-block;
+		padding: 5px 0 0 0;
+	}
 </style>
 
 <script>
@@ -77,19 +75,6 @@
 	let list;
 	let sortChangeExample = `{detail: { property: $propertyName, direction: $direction }}`;
 	let pageChangeExample = `{detail: { pageNumber: $pageNumber }}`;
-	let headerSlotExample = `Headers: \n{#each headers as header}\n  <div slot="headercell"\n  sortable={header.sortable ? 'sortable' : null}\n  sortableproperty='{header.sortProperty}'>\n  {header.title}\n  </div>\n{/each}`;
-	let rowSlotExample = `Rows: \n{#each data as row} 
-	<div class="example-row" slot="row">
-		<div>{row.activated}</div>
-		<div>{row.createdDate}</div>
-		<div>{row.status}</div>
-		<div>{row.minWeight}</div>
-		<div>{row.maxWeight}</div>
-		<div>{row.deliveryDate}</div>
-		<div>{row.noOfPieces}</div>
-		<div>{row.price}</div>
-	</div>
-{/each}`;
 	let example = `<zoo-grid paginator currentpage="1" maxpages="50">
 	<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
 	<div slot="headercell">Title 2</div>
@@ -102,20 +87,6 @@
 		<div>Cell 4</div>
 	</div>
 </zoo-grid>`;
-	let paginatorSlotExample = `Paginator (you can provide your own implementation):\n<zoo-grid-paginator>
-	<slot name="pagesizeselector" 
-		slot="pagesizeselector">
-	</slot>
-</zoo-grid-paginator>`;
-	let pageSizeSlotExample = `Items per page selector\n(you should provide your own implementation):
-<zoo-select labeltext="Items per page"
-	slot="pagesizeselector">
-	<select slot="selectelement">
-		{#each possibleNumberOfItems as number}
-			<option>{number}</option>
-		{/each}
-	</select>
-</zoo-select>`;
 	onMount(() => {
 		list.items = [
 			{

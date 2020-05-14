@@ -5,14 +5,14 @@
 	<div class="input-slot {valid ? '' : 'error'}">
 		<slot bind:this={selectSlot} name="selectelement"></slot>
 		{#if slottedSelect && !slottedSelect.hasAttribute('multiple')}
-			<svg class="arrows {slottedSelect && slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24">
+			<svg class="arrows {slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24">
 				<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
 			</svg>
 			{#if loading}
 				<zoo-preloader></zoo-preloader>
 			{/if}
 			{#if valueSelected}
-				<svg width="20" height="20" viewBox="0 0 24 24" class="close" on:click="{e => handleCrossClick()}">
+				<svg width="20" height="20" viewBox="0 0 24 24" class="close" on:click="{() => handleCrossClick()}">
 					<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
 				</svg>
 			{/if}

@@ -1,11 +1,11 @@
 <svelte:options tag="zoo-searchable-select"></svelte:options>
-<div class="box {valid ? '' : 'error'}">
+<div class="box {valid ? '' : 'error'} {hidden ? 'hidden' : ''}">
 	{#if !_isMobile}
 		{#if tooltipText}
 			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}">
 			</zoo-tooltip>
 		{/if}
-		<zoo-input class:mobile="{_isMobile}" valid="{valid}" on:click="{() => openSearchableSelect()}"
+		<zoo-input class:mobile="{_isMobile}" valid="{valid}"
 			type="text" {labeltext} {inputerrormsg} {labelposition} {linktext} {linkhref} {linktarget} {infotext}>
 			<input disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
@@ -52,7 +52,6 @@
 		&:hover {
 			.selected-options {
 				display: block;
-				animation: fadeTooltipIn 0.2s;
 			}
 		}
 	}
@@ -65,7 +64,7 @@
 		}
 	}
 
-	::slotted(select.searchable-zoo-select) {
+	::slotted(select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
 		text-indent: 1px;
@@ -87,7 +86,7 @@
 		transition: border-color 0.3s ease;
 	}
 
-	::slotted(select.hidden) {
+	.box.hidden ::slotted(select) {
 		display: none;
 	}
 
@@ -115,7 +114,6 @@
 	export let valid = true;
 	export let placeholder = '';
 	export let loading = false;
-	let multiple = false;
 	let searchableInput;
 	let _selectSlot;
 	let _selectElement;
@@ -123,6 +121,7 @@
 	let _isMobile;
 	let _valueSelected;
 	let tooltipText;
+	let hidden = true;
 
 	onMount(() => {
 		_isMobile = isMobile();
@@ -130,32 +129,21 @@
 		_selectSlot.addEventListener("slotchange", () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
-			options = _selectElement.options;
-			if (!options || options.length < 1) {
-				tooltipText = null;
-			}
-			_selectElement.addEventListener('blur', () => {
-				_hideSelectOptions();
+			options = select.options;
+			select.size = 4;
+			select.addEventListener('blur', () => _hideSelectOptions());
+			select.addEventListener('change', () => handleOptionChange());
+			select.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
+			select.addEventListener('keydown', e => handleOptionKeydown(e));
+		});
+		if (searchableInput) {
+			searchableInput.addEventListener('focus', () => hidden = false);
+			searchableInput.addEventListener('blur', event => {
+				if (event.relatedTarget !== _selectElement) {
+					_hideSelectOptions();
+				}
 			});
-			if (_selectElement.multiple === true) {
-				multiple = true;
-			}
-			_selectElement.addEventListener('change', () => handleOptionChange());
-			_selectElement.addEventListener('keydown', e => handleOptionKeydown(e));
-
-			_selectElement.classList.add('searchable-zoo-select');
-			_selectElement.addEventListener('change', e => _valueSelected = e.target.value ? true : false);
-			_hideSelectOptions();
-	    });
-		searchableInput.addEventListener('focus', () => {
-			_selectElement.classList.remove('hidden');
-			openSearchableSelect();
-		});
-		searchableInput.addEventListener('blur', event => {
-			if (event.relatedTarget !== _selectElement) {
-				_hideSelectOptions();
-			}
-		});
+		}
 	});
 
 	const handleSearchChange = () => {
@@ -165,12 +153,6 @@
 			else option.style.display = 'none';
 		}
 	};
-
-	const openSearchableSelect = () => {
-		if (!multiple) {
-			_selectElement.size = 4;
-		}
-	}
 
 	const handleOptionKeydown = e => {
 		if (e.keyCode && e.keyCode === 13) {
@@ -188,16 +170,20 @@
 		}
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		tooltipText = inputValString;
-		searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
+		if (searchableInput) {
+			searchableInput.placeholder = inputValString && inputValString.length > 0 ? inputValString : placeholder;
+		}
 		for (const option of options) {
 			option.style.display = 'block';
 		}
-		if (!multiple) _hideSelectOptions();
+		if (!_selectElement.multiple) _hideSelectOptions();
 	}
 
 	const _hideSelectOptions = () => {
-		_selectElement.classList.add('hidden');
-		searchableInput.value = null;
+		hidden = true;
+		if (searchableInput) {
+			searchableInput.value = null;
+		}
 	}
 
 	const isMobile = () => {

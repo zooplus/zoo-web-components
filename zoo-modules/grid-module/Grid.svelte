@@ -29,7 +29,6 @@
 		max-width: inherit;
 		min-height: inherit;
 		min-width: inherit;
-		overflow: auto;
 	}
 
 	.loading-shade {

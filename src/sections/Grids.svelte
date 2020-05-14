@@ -57,8 +57,8 @@
 
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
-	<div class="grid-holder" style="max-width: 850px;">
-		<zoo-grid class="limited-width grid-2" style="max-height: 300px; min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
+	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
+		<zoo-grid class="limited-width grid-2" style="min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
 			currentpage="5" maxpages="20" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
 				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
@@ -153,7 +153,7 @@
 
 	.grid-holder {
 		max-width: 1280px;
-		overflow: scroll;
+		overflow: auto;
 		box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 		width: 95%;
 	}

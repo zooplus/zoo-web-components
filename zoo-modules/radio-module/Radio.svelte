@@ -1,8 +1,8 @@
 <svelte:options tag="zoo-radio"></svelte:options>
 <div class="box">
-	<zoo-input-label class="input-label" valid="{valid}" labeltext="{labeltext}">
+	<zoo-input-label class="input-label" {labeltext}>
 	</zoo-input-label>
-	<span class="template-slot">
+	<span class="template-slot {valid ? '' : 'error'}">
 		<slot bind:this={_templateSlot}></slot>
 	</span>
 	<zoo-input-info class="input-info" valid="{valid}" inputerrormsg="{errormsg}" infotext="{infotext}">
@@ -15,6 +15,7 @@
 	:host {
 		display: flex;
 		flex-direction: column;
+		contain: layout;
 	}
 
 	.template-slot {
@@ -31,7 +32,7 @@
 	}
 
 	::slotted(input[type="radio"]):focus::before {
-		border-color: $matterhorn;
+		border-color: $grey-dark;
 	}
 
 	::slotted(input[type="radio"])::before {
@@ -41,7 +42,7 @@
 		height: 16px;
 		content: "";
 		border-radius: 50%;
-		border: 2px solid var(--main-color, #{$main-color});
+		border: 2px solid var(--primary-mid, #{$primary-mid});
 		background: white;
 	}
 
@@ -49,7 +50,7 @@
 		background: white;
 	}
 
-	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"].focused)::after {
+	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"]:focus)::after {
 		content: "";
 		position: absolute;
 		top: 5px;
@@ -57,22 +58,22 @@
 		width: 6px;
 		height: 6px;
 		transform: rotate(40deg);
-		color: var(--main-color, #{$main-color});
+		color: var(--primary-mid, #{$primary-mid});
 		border: 2px solid;
 		border-radius: 50%;
 	}
 
 	::slotted(input[type="radio"]:checked)::after {
-		background: var(--main-color, #{$main-color});
+		background: var(--primary-mid, #{$primary-mid});
 	}
 
-	::slotted(input[type="radio"].focused)::after {
-		background: $whisper;
-		color: $whisper;
+	::slotted(input[type="radio"]:focus)::after {
+		background: $grey-light;
+		color: $grey-light;
 	}
 
-	::slotted(input.focused)::before {
-		border-color: $matterhorn;
+	::slotted(input:focus)::before {
+		border-color: $grey-dark;
 	}
 
 	::slotted(label) {
@@ -86,52 +87,33 @@
 	}
 
 	::slotted(input[type="radio"]:disabled)::before {
-		border-color: $grey;
-		background-color: $whisper;
+		border-color: $grey-mid;
+		background-color: $grey-light;
 	}
 
-	::slotted(input[type="radio"].error)::before {
-		border-color: $error-text-color;
-	}
+	.template-slot.error {
+		::slotted(input[type="radio"])::before {
+			border-color: var(--warning-mid, #{$warning-mid});
+		}
 
-	::slotted(label.error) {
-		color: $error-text-color;
+		::slotted(label) {
+			color: var(--warning-mid, #{$warning-mid});
+		}
 	}
 </style>
 
 <script>
-	import { beforeUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	export let valid = true;
 	export let errormsg = '';
 	export let infotext = '';
 	export let labeltext = '';
-	let _prevValid;
 	let _templateSlot;
 	let clone;
-
-	const changeValidState = (valid) => {
-		if (_templateSlot) {
-			_templateSlot.assignedNodes().forEach(el => {
-				if (el.classList) {
-					if (valid === false) {
-						el.classList.add('error');
-					} else if (valid) {
-						el.classList.remove('error');
-					}
-				}
-			});
-		}
-	}
-
-	beforeUpdate(() => {
-		if (valid !== _prevValid) {
-			_prevValid = valid;
-			changeValidState(valid);
-		}
-	});
 	  
 	onMount(() => {
+		// todo support multiple slots
 		_templateSlot.addEventListener("slotchange", () => {
 			if (!clone) {
 				const template = _templateSlot.assignedNodes()[0];
@@ -140,14 +122,6 @@
 					_templateSlot.getRootNode().querySelector('slot').assignedNodes()[0].remove();
 					_templateSlot.getRootNode().host.appendChild(clone);
 				}
-				_templateSlot.getRootNode().host.querySelectorAll('input').forEach(input => {
-					input.addEventListener('focus', e => {
-						e.target.classList.add('focused');
-					});
-					input.addEventListener('blur', e => {
-						e.target.classList.remove('focused');
-					});
-				})
 			}
 		});
 	});

@@ -43,7 +43,6 @@
 <script>
 	import { onMount } from 'svelte';
 	let list;
-	let inputSlotExample = `<slot name="inputelement"></slot>`;
 	let example = `<div style="width: 250px;">\n  <zoo-radio infotext="infotext">\n    <input type="radio" id="contactChoice4" name="contact" value="email" disabled>\n    <label for="contactChoice4">Email</label>\n    <input type="radio" id="contactChoice5" name="contact" value="phone">\n    <label for="contactChoice5">Phone</label>\n  </zoo-radio>\n</div>`;
 	onMount(() => {
 		list.items = [

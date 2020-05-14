@@ -2,7 +2,7 @@
 
 ## API
 - `type` `optional` - accepts following values: `cold`, `hot`. Default is `cold`;
-- `size` `optional` - accepts following values: `small`, `medium`, `big`. Default is `small`;
+- `size` `optional` - accepts following values: `small`, `medium`. Default is `small`;
  - `disabled` - whether the button should be disabled or not.
 
 ## Slots

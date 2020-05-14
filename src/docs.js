@@ -2,6 +2,7 @@ import './common/Context.svelte';
 import './sections/Header.svelte';
 import './sections/Form.svelte';
 import './sections/Buttons.svelte';
+import './sections/Grids.svelte';
 import './sections/TooltipAndFeedback.svelte';
 
 import './docs/ButtonDocs.svelte';
@@ -19,4 +20,5 @@ import './docs/SearchableSelectDocs.svelte';
 import './docs/SelectDocs.svelte';
 import './docs/ToastDocs.svelte';
 import './docs/TooltipDocs.svelte';
+import './docs/GridDocs.svelte';
 import './docs/ThemingDocs.svelte';

@@ -25,12 +25,10 @@ describe('Zoo select', function() {
 				const selectBox = select.shadowRoot.querySelector('.box');
 				const label = selectBox.querySelector('.input-label').shadowRoot;
 				return {
-					labelText: label.querySelector('span').innerHTML,
-					errorClassPresent: label.querySelector('.label').classList.contains('error')
+					labelText: label.querySelector('span').innerHTML
 				};
 			});
 			expect(labelAttrs.labelText).equal('label');
-			expect(labelAttrs.errorClassPresent).to.be.true;
 		});
 
 		it('should pass attributes to input link component', async() => {

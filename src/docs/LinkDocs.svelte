@@ -17,7 +17,7 @@
 							<b>target</b> - how the link should behave (default - <b>about:blank</b>)
 						</li>
 						<li>
-							<b>type</b> - currently supports 2 values: <b>standard</b> and <b>green</b>, default - <b>standard</b>. Responsible for coloring of the links, standard is white
+							<b>type</b> - currently supports 2 values: <b>negative</b> and <b>primary</b>, default - <b>negative</b>. Responsible for coloring of the links, negative is white
 						</li>
 						<li>
 							<b>disabled</b> - flag indicating whether the anchor link should be disabled
@@ -37,7 +37,7 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-link href="https://google.com" text="Link to google" type="green"></zoo-link>
+			<zoo-link href="https://google.com" text="Link to google" type="primary"></zoo-link>
 		</div>
 	</div>
 </div>
@@ -49,8 +49,7 @@
 <script>
 	import { onMount } from 'svelte';
 	let list;
-	let inputSlotExample = `<slot name="inputelement"></slot>`;
-	let example = `<div style="width: 250px;">\n  <zoo-link href="https://google.com" text="Link to google" type="green"></zoo-link>\n</div>`;
+	let example = `<div style="width: 250px;">\n  <zoo-link href="https://google.com" text="Link to google" type="primary"></zoo-link>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

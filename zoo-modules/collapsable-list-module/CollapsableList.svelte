@@ -5,7 +5,7 @@
 			<li class="item" class:active="{_items && _items[idx].active}"> 
 				<span class="header" on:click="{e => handleItemHeaderClick(e, idx)}">
 					{item.header}
-					<svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>
+					<svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
 				</span>
 				<slot name="item{idx}"></slot>
 			</li>
@@ -15,6 +15,10 @@
 
 <style type="text/scss">
 	@import "variables";
+
+	:host {
+		contain: layout;
+	}
 
 	.item ::slotted(*) {
 		display: none;
@@ -30,41 +34,41 @@
 
 	.item {
 		position: relative;
-		color: $grey;
+		color: $grey-mid;
 		list-style-type: none;
 		padding: 0 10px;
-		border: 0px solid black;
-
-		.header {
-			display: flex;
-			align-items: center;
-			height: 8px;
-			padding: 20px 0;
-			font-size: 14px;
-			line-height: 20px;
-			color: var(--main-color, #{$main-color});
-			font-weight: bold;
-			cursor: pointer;
-
-			svg {
-				display: flex;
-				margin-left: auto;
-				fill: var(--main-color, #{$main-color});
-				transition: transform 0.3s;
-			}
-		}
+		border: 0;
 
 		&.active {
 			border: 1px solid rgba(0, 0, 0, 0.2);
 
 			.header {
-				color: var(--main-color-dark, #{$main-color-dark});
+				color: var(--primary-dark, #{$primary-dark});
 
 				svg {
-					fill: var(--main-color-dark, #{$main-color-dark});
+					fill: var(--primary-dark, #{$primary-dark});
 					transform: rotateX(180deg);
 				}
 			}
+		}
+	}
+	
+	.header {
+		display: flex;
+		align-items: center;
+		height: 8px;
+		padding: 20px 0;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
+		color: var(--primary-mid, #{$primary-mid});
+		font-weight: bold;
+		cursor: pointer;
+
+		svg {
+			display: flex;
+			margin-left: auto;
+			fill: var(--primary-mid, #{$primary-mid});
+			transition: transform 0.3s;
 		}
 	}
 </style>

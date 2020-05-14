@@ -57,7 +57,6 @@
 <script>
 	import { onMount } from 'svelte';
 	let list;
-	let inputSlotExample = `<slot name="inputelement"></slot>`;
 	let example = `<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>`;
 	let keyframesSnippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n    animation: fadeTooltipIn 0.2s;\n  }\n}`;
 	let snippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n  }\n}`;

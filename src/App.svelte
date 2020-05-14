@@ -11,11 +11,13 @@
 	</ul>
 	<div class="page-content">
 		<div class="overview">
-			<app-form id="app-form"></app-form>
+			<app-form></app-form>
 			<hr>
-			<app-buttons id="app-buttons"></app-buttons>
+			<app-buttons></app-buttons>
 			<hr>
-			<app-tooltip-and-feedback id="app-tooltip-and-feedback"></app-tooltip-and-feedback>
+			<app-tooltip-and-feedback></app-tooltip-and-feedback>
+			<hr>
+			<app-grids></app-grids>
 			<hr>
 		</div>
 		<div id="when" class="caniuse">
@@ -37,11 +39,6 @@
 				<div class="back-btn">
 					<zoo-button>
 						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=custom-elementsv1" target="about:blank">Can I Use custom-elementsv1?</a></span>
-					</zoo-button>
-				</div>
-				<div class="back-btn">
-					<zoo-button>
-						<span slot="buttoncontent"><a href="http://caniuse.com/#feat=template" target="about:blank">Can I Use template?</a> </span>
 					</zoo-button>
 				</div>
 			</div>
@@ -88,6 +85,8 @@
 			<hr>
 			<docs-tooltip id="tooltip-doc"></docs-tooltip>
 			<hr>
+			<docs-grid id="grid-doc"></docs-grid>
+			<hr>
 			<docs-theming id="theming-doc"></docs-theming>
 			<hr>
 		</div>
@@ -103,7 +102,7 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		box-shadow: 15px 0px 40px 0px rgba(85,85,85, 0.3), -15px 0px 40px 0px rgba(85,85,85, 0.3);
+		box-shadow: $box-shadow;
 	}
 
 	.page-content {
@@ -126,7 +125,7 @@
 	}
 
 	.what-list {
-		color: var(--main-color, #{$main-color});
+		color: var(--primary-mid, #{$primary-mid});
 		font-size: 20px;
 	}
 
@@ -165,7 +164,7 @@
 		}
 
 		a {
-			color: var(--main-color, $main-color);
+			color: var(--primary-mid, $primary-mid);
 			padding: 12px;
 			display: block;
 			text-decoration: none;
@@ -212,7 +211,7 @@
 	}
 
 	hr {
-		border-color: var(--main-color, #{$main-color});
+		border-color: var(--primary-mid, #{$primary-mid});
 		margin: 45px 0;
 		opacity: 0.3;
 	}
@@ -302,6 +301,11 @@
 			text: 'Tooltip'
 		},
 		{
+			href: '#grid-doc',
+			target: '',
+			text: 'Grid'
+		},
+		{
 			href: '#theming-doc',
 			target: '',
 			text: 'Theming'
@@ -312,12 +316,12 @@
 			{
 				href: 'https://github.com/zooplus/zoo-web-components',
 				text: 'Github',
-				type: 'standard'
+				type: 'negative'
 			},
 			{
 				href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
 				text: 'NPM',
-				type: 'standard'
+				type: 'negative'
 			}
 		];
 	});

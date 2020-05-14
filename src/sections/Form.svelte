@@ -16,6 +16,9 @@
 	<zoo-input labeltext="This input has type time" infotext="Select time">
 		<input slot="inputelement" type="time" placeholder="Enter time" />
 	</zoo-input>
+	<zoo-input labeltext="This input is disabled">
+		<input disabled slot="inputelement" type="text"/>
+	</zoo-input>
 	<zoo-input labeltext="Textarea example" valid="{inputState}">
 		<textarea slot="inputelement" placeholder="Textarea"></textarea>
 	</zoo-input>
@@ -35,7 +38,7 @@
 			<option>3</option>
 		</select>
 	</zoo-select>
-	<zoo-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
+	<zoo-searchable-select valid="{inputState}" inputerrormsg="Value is invalid" labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
 		<select multiple slot="selectelement">
 			{#each options as option}
 				<option value="{option.value}">
@@ -53,8 +56,24 @@
 			{/each}
 		</select>
 	</zoo-searchable-select>
-	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox with some additional event handling of clicks inside">
+	<zoo-select labeltext="Disabled select">
+		<select disabled slot="selectelement">
+			<option class="placeholder" value="" disabled selected>Placeholder</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+	</zoo-select>
+	<zoo-select labeltext="Loading select" loading="{true}">
+		<select slot="selectelement">
+			<option value=""></option>
+		</select>
+	</zoo-select>
+	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox">
 		<input slot="checkboxelement" type="checkbox"/>
+	</zoo-checkbox>
+	<zoo-checkbox highlighted="{true}" labeltext="Disabled checkbox">
+		<input disabled slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
 		<template>
@@ -86,7 +105,7 @@
 		margin: 20px auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-		grid-template-rows: 120px 150px 120px 80px;
+		grid-template-rows: 120px 150px 150px 100px 80px;
 		@media only screen and (max-width: 544px) {
 			width: 300px;
 			grid-template-columns: auto;
@@ -96,12 +115,15 @@
 		}
 
 		grid-gap: 20px;
+
+		zoo-select, zoo-searchable-select {
+			z-index: 5;
+		}
 	}
 
 	.submit {
-		width: 250px;
-		height: 50px;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
 	}
 </style>
 

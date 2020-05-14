@@ -2,19 +2,21 @@
 <div class="box {position}">
 	<div class="tooltip-content">
 		<slot>
-			{#if text}<span class="text">{text}</span>{/if}
+			<span class="text">{text}</span>
 		</slot>
 	</div>
 	<div class="tip {position}"></div>	
 </div>
 
 <style type='text/scss'>
+	@import "variables";
+	
 	:host {
 		display: flex;
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		z-index: 10000;
+		z-index: 9997;
 		left: 0;
 		bottom: 0;
 		pointer-events: none;
@@ -27,8 +29,8 @@
 
 	.box {
 		pointer-events: initial;
-		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
-		border-radius: 3px;
+		box-shadow: $box-shadow;
+		border-radius: $input-border-radius;
 		position: absolute;
 		transform: translate(0%, -50%);
 
@@ -53,53 +55,54 @@
 			right: calc(100% + 11px);
 			top: 50%;
 		}
+	}
 
-		.tooltip-content {
-			padding: 10px;
-			font-size: 15px;
-			position: relative;
-			z-index: 1;
+	.tooltip-content {
+		padding: 10px;
+		font-size: $p2-size;
+		line-height: $p2-line-height;
+		position: relative;
+		z-index: 1;
+		background: white;
+		border-radius: $input-border-radius;
+
+		.text {
+			white-space: pre;
+			color: black;
+		}
+	}
+
+	.tip {
+		position: absolute;
+
+		&:after {
+			content: "";
+			width: 16px;
+			height: 16px;
+			position: absolute;
+			box-shadow: $box-shadow;
+			top: -8px;
+			transform: rotate(45deg);
+			z-index: 0;
 			background: white;
-			border-radius: 3px;
-
-			.text {
-				white-space: pre;
-				color: black;
-			}
 		}
 
-		.tip {
-			position: absolute;
+		&.top, &.bottom {
+			right: calc(50% + 8px);
+		}
 
-			&:after {
-				content: "";
-				width: 16px;
-				height: 16px;
-				position: absolute;
-				box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
-				top: -8px;
-				transform: rotate(45deg);
-				z-index: 0;
-				background: white;
-			}
+		&.right {
+			bottom: 50%;
+			left: -8px;
+		}
 
-			&.top, &.bottom {
-				right: calc(50% + 8px);
-			}
+		&.bottom {
+			top: 0;
+		}
 
-			&.right {
-				bottom: 50%;
-				left: -8px;
-			}
-
-			&.bottom {
-				top: 0;
-			}
-
-			&.left {
-				bottom: 50%;
-				right: 8px;
-			}
+		&.left {
+			bottom: 50%;
+			right: 8px;
 		}
 	}
 	@keyframes fadeTooltipIn {

@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-input-label"></svelte:options>
 {#if labeltext}
-<div class="label" class:error="{!valid}">
+<div class="label">
 	<span>{labeltext}</span>
 </div>
 {/if}
@@ -9,19 +9,14 @@
 	@import "variables";
 
 	.label {
-		font-size: 14px;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
 		font-weight: 800;
-		line-height: 20px;
-		color: $matterhorn;
+		color: $grey-dark;
 		text-align: left;
-	}
-
-	.error {
-		color: $error-text-color;
 	}
 </style>
 
 <script>
-	export let valid = true;
 	export let labeltext = '';
 </script>

@@ -1,3 +1,35 @@
+# 5.0.0
+
+This release mainly concentrates on internal performance and size improvements and alignment with newer version of the styleguide. The biggest change for library users is change of the names external css custom variables, read on to know more.      
+
+`zoo-grid` - new component for data table presentation.
+`zoo-button` - simplify internal css structure, prevent emitting click event when button is disabled. Added new type `hollow`, address docs for example and usage; Aligned with newer version of style guide;
+`zoo-checkbox` - simplify internal structure of css. Aligned with newer version of style guide;
+`zoo-collapsable-list` - simplify internal css structure, optimize svg;
+`zoo-feedback` - use only 1 type of svg for all type of feedback component. Simplify internal css structure;
+`zoo-footer` - simplify internal css structure;
+`zoo-input` - simplify internal css structure; optimize svg size; align with newer version of style guide; remove redundant valid state related JS;
+`zoo-link` - simplify internal css structure; New `type` attribute possible values are: `primary`, `negative` and `grey`;
+`zoo-modal` - simplify internal css structure;
+`zoo-radio` - simplify internal css structure; remove redundant valid state related JS;
+`zoo-searchable-select` - internal css and js optimizations;
+`zoo-select` - aligned with newer version of style guide; simplify internal css structure; optimize svgs; internal JS optimizations;
+`zoo-toast` - optimize svgs; simplify internal css structure;
+`zoo-tooltip` - simplify internal css structure; align with newer version of style guide;
+
+
+## Breaking changes
+`zoo-input` - no longer accepts `nopadding` attribute;
+`zoo-link` - no longer accepts `type="standard"` nor `type="green"` attributes, unknown `type` attributes will fall back to `primary` value;
+
+### Theming breaking changes
+To override color pallete the following css custom properties can be used:
+- Primary color: `--primary-ultralight`, `--primary-light`, `--primary-mid`, `--primary-dark`;
+- Secondary color: `--secondary-ultralight`, `--secondary-light`, `--secondary-mid`, `--secondary-dark`;
+- Warning/error color: `--warning-ultralight`, `--warning-mid`, `--warning-dark`;
+- Success color: `$success-ultralight`, `$success-mid`;
+- Info color: `$info-ultralight`, `$info-mid`;
+
 # 4.5.2
 `zoo-spinner` - fixed bumping page scrollbar by fixing position of element
 

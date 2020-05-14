@@ -6,10 +6,14 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	.box {
 		height: 56px;
-		background-image: linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
-		background-image: -webkit-linear-gradient(left, var(--main-color, #{$main-color}), var(--main-color-light, #{$main-color-light}));
+		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 	}
 
 	::slotted(*:first-child) {

@@ -18,3 +18,6 @@ import '../zoo-modules/collapsable-list-module/CollapsableList.svelte';
 import '../zoo-modules/collapsable-list-module/CollapsableListItem.svelte';
 import '../zoo-modules/shared-module/Preloader.svelte';
 import '../zoo-modules/spinner-module/Spinner.svelte';
+import '../zoo-modules/grid-module/Grid.svelte';
+import '../zoo-modules/grid-module/GridHeader.svelte';
+import '../zoo-modules/grid-module/GridPaginator.svelte';

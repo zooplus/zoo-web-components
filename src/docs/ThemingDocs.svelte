@@ -9,22 +9,49 @@
 			<zoo-collapsable-list-item slot="item0">
 				<ul>
 					<li>
-						<b>--main-color</b> - 
+						<b>--primary-mid</b> - default color #3C9700;
 					</li>
 					<li>
-						<b>--main-color-light</b> - 
+						<b>--primary-light</b> - default color #66B100;
 					</li>
 					<li>
-						<b>--main-color-dark</b> - 
+						<b>--primary-ultralight</b> - default color #EBF4E5;
 					</li>
 					<li>
-						<b>--secondary-color</b> - 
+						<b>--primary-dark</b> - default color #286400;
 					</li>
 					<li>
-						<b>--secondary-color-light</b> - 
+						<b>--secondary-mid</b> - default color #FF6200;
 					</li>
 					<li>
-						<b>--secondary-color-dark</b> - 
+						<b>--secondary-light</b> - default color #FF8800;
+					</li>
+					<li>
+						<b>--secondary-ultralight</b> - default color #FFF0E7;
+					</li>
+					<li>
+						<b>--secondary-dark</b> - default color #CC4E00;
+					</li>
+					<li>
+						<b>--warning-ultralight</b> - default color #FDE8E9;
+					</li>
+					<li>
+						<b>--warning-mid</b> - default color #ED1C24;
+					</li>
+					<li>
+						<b>--warning-dark</b> - default color #BD161C;
+					</li>
+					<li>
+						<b>--success-ultralight</b> - default color #EBF4E5;
+					</li>
+					<li>
+						<b>--success-mid</b> - default color #3C9700;
+					</li>
+					<li>
+						<b>--info-ultralight</b> - default color #ECF5FA;
+					</li>
+					<li>
+						<b>--info-mid</b> - default color #459FD0;
 					</li>
 				</ul>
 			</zoo-collapsable-list-item>
@@ -45,8 +72,8 @@
 <script>
 import { onMount } from 'svelte';
 	let list;
-	let exampleScss = `@import "variables";\n:root {\n  --main-color: #{$main-color};\n  --main-color-light: #{$main-color-light};\n  --main-color-dark: #{$main-color-dark};\n  --secondary-color: #{$secondary-color};\n  --secondary-color-light: #{$secondary-color-light};\n  --secondary-color-dark: #{$secondary-color-dark};\n}`;
-	let exampleCss = `:root {\n  --main-color: #040C40;\n  --main-color-light: #040C40;\n  --main-color-dark: #020729;\n  --secondary-color: #5D4200;\n  --secondary-color-light: #745300;\n  --secondary-color-dark: #3B2B00;\n}`;
+	let exampleScss = `@import "variables";\n:root {\n  --primary-mid: #{$primary-mid};\n  --primary-light: #{$primary-light};\n  --primary-dark: #{$primary-dark};\n  --secondary-mid: #{$secondary-mid};\n  --secondary-light: #{$secondary-light};\n  --secondary-dark: #{$secondary-dark};\n}`;
+	let exampleCss = `:root {\n  --primary-mid: #040C40;\n  --primary-light: #040C40;\n  --primary-dark: #020729;\n  --secondary-mid: #5D4200;\n  --secondary-light: #745300;\n  --secondary-dark: #3B2B00;\n}`;
 	onMount(() => {
 		list.items = [{header: 'API'}];
 	});

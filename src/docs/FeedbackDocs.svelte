@@ -14,7 +14,7 @@
 				</ul>
 			</zoo-collapsable-list-item>
 			<zoo-collapsable-list-item slot="item1">
-				This component does not accept any slots.
+				This component accepts unnamed slots.
 			</zoo-collapsable-list-item>
 		</zoo-collapsable-list>
 	</div>

@@ -31,8 +31,7 @@ describe('Zoo searchable select', function() {
 
 				const label = nestedInput.querySelector('.input-label').shadowRoot;
 				const createdLabel = {
-					labelText: label.querySelector('span').innerHTML,
-					errorClassPresent: label.querySelector('.label').classList.contains('error')
+					labelText: label.querySelector('span').innerHTML
 				};
 				return {
 					link: createdLink,
@@ -47,7 +46,6 @@ describe('Zoo searchable select', function() {
 
 			const label = createdElements.label;
 			expect(label.labelText).equal('label-text');
-			expect(label.errorClassPresent).to.be.true;
 
 			const info = createdElements.info;
 			expect(info.infoText).equal('info-text');

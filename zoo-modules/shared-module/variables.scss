@@ -1,22 +1,63 @@
-$error-text-color: #ED1C24;
-
 // grayscale
-$placeholder-color: #767676;
-$border-color: #97999C;
-$matterhorn: #555555;
-$whisper: #E6E6E6;
 $white: #FFFFFF;
-$anti-flash-white: #F2F3F4;
-$grey-chateau: #97999C;
-$grey: #767676;
+$grey-ultralight: #F2F3F4;
+$grey-light: #E6E6E6;
+$grey-mid: #767676;
+$grey-dark: #555555;
+// primary
+$primary-ultralight: #EBF4E5;
+$primary-light: #66B100;
+$primary-mid: #3C9700;
+$primary-dark: #286400;
+// secondary
+$secondary-ultralight: #FFF0E7;
+$secondary-light: #FF8800;
+$secondary-mid: #FF6200;
+$secondary-dark: #CC4E00;
+// info
+$info-ultralight: #ECF5FA;
+$info-mid: #459FD0;
+// warning
+$warning-ultralight: #FDE8E9;
+$warning-mid: #ED1C24;
+$warning-dark: #BD161C;
+// success
+$success-ultralight: #EBF4E5;
+$success-mid: #3C9700;
 
-// zooplus theme
-$main-color: #3C9700;
-$main-color-light: #66B100;
-$main-color-dark: #286400;
+// font-sizes
+$p1-size: 14px;
+$p2-size: 12px;
+$p3-size: 10px;
+$p1-line-height: 20px;
+$p2-line-height: 16px;
+$p2-line-height: 14px;
+$h1-size: 32px;
+$h2-size: 24px;
+$h3-size: 18px;
+$h4-size: 16px;
+$h1-line-height: 38px;
+$h2-line-height: 29px;
+$h3-line-height: 22px;
+$h4-line-height: 22px;
 
-$secondary-color: #FF6200;
-$secondary-color-light: #FF8800;
-$secondary-color-dark: #CC4E00;
+// forms common
+$input-border-radius: 5px;
 
-$info-color: #459FD0;
+// shadows
+$box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+$box-shadow-strong: 0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+
+// container boxes
+$stroked-box-grey: 1px solid $grey-mid;
+$stroked-box-grey-bold: 2px solid $grey-mid;
+$stroked-box-grey-light: 1px solid $grey-light;
+$stroked-box-grey-dark-bold: 2px solid $grey-dark;
+$stroked-box-success: 1px solid var(--success-mid, #{$success-mid});
+$stroked-box-success-bold: 2px solid var(--success-mid, #{$success-mid});
+$stroked-box-warning: 1px solid var(--warning-mid, #{$warning-mid});
+$stroked-box-warning-bold: 2px solid var(--warning-mid, #{$warning-mid});
+$stroked-box-primary: 1px solid var(--primary-mid, #{$primary-mid});
+$stroked-box-primary-bold: 2px solid var(--primary-mid, #{$primary-mid});
+$stroked-box-secondary: 1px solid var(--secondary-mid, #{$secondary-mid});
+$stroked-box-secondary-bold: 2px solid var(--secondary-mid, #{$secondary-mid});

@@ -7,23 +7,25 @@
 	@import "variables";
 
 	:host {
+		contain: layout;
 		position: relative;
 	}
 
 	.spinner {
 		position: absolute;
-		left: -75px;
-		top: -75px;
+		left: calc(50% - 60px);
+		top: calc(50% - 60px);
 		right: 0;
 		bottom: 0;
-		height: 150px;
-		width: 150px;
+		height: 120px;
+		width: 120px;
 		transform-origin: center center;
 		animation: rotate 2s linear infinite;
+		z-index: 10002;
 
 		.path {
 			animation: dash 1.5s ease-in-out infinite;
-			stroke: var(--main-color, #{$main-color});
+			stroke: var(--primary-mid, #{$primary-mid});
 			stroke-dasharray: 1, 200;
 			stroke-dashoffset: 0;
 			stroke-linecap: round;

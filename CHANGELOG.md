@@ -1,3 +1,6 @@
+# 5.0.1
+`zoo-spinner` - remove merged `position: relative` from previous version.
+
 # 5.0.0
 
 This release mainly concentrates on internal performance and size improvements and alignment with newer version of the styleguide. The biggest change for library users is change of the names external css custom variables, read on to know more.      

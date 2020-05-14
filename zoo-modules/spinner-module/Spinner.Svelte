@@ -8,6 +8,7 @@
 
 	:host {
 		contain: layout;
+		position: relative;
 	}
 
 	.spinner {

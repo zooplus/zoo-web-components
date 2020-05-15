@@ -18,7 +18,7 @@
 			{/if}
 		{/if}
 	</div>
-	<zoo-input-info class="input-info" valid="{valid}" {inputerrormsg} {infotext}></zoo-input-info>
+	<zoo-input-info class="input-info" {valid} {inputerrormsg} {infotext}></zoo-input-info>
 </div>
 
 <style type='text/scss'>

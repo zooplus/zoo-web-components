@@ -25,13 +25,13 @@ describe('Zoo searchable select', function() {
 
 				const info = nestedInput.querySelector('.input-info').shadowRoot;
 				const createdInfo = {
-					infoText: info.querySelector('.info-text').innerHTML,
-					errorMsg: info.querySelector('.error-label').innerHTML
+					infoText: info.querySelector('.info').innerHTML,
+					errorMsg: info.querySelector('.error').innerHTML
 				};
 
 				const label = nestedInput.querySelector('.input-label').shadowRoot;
 				const createdLabel = {
-					labelText: label.querySelector('span').innerHTML
+					labelText: label.querySelector('div').innerHTML
 				};
 				return {
 					link: createdLink,
@@ -48,8 +48,8 @@ describe('Zoo searchable select', function() {
 			expect(label.labelText).equal('label-text');
 
 			const info = createdElements.info;
-			expect(info.infoText).equal('info-text');
-			expect(info.errorMsg).equal('errormsg');
+			expect(info.infoText.indexOf('info-text')).not.equal(-1);
+			expect(info.errorMsg.indexOf('errormsg')).not.equal(-1);
 		});
 
 		it('should accept 1 slot', async() => {

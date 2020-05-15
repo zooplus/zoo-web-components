@@ -25,7 +25,7 @@ describe('Zoo select', function() {
 				const selectBox = select.shadowRoot.querySelector('.box');
 				const label = selectBox.querySelector('.input-label').shadowRoot;
 				return {
-					labelText: label.querySelector('span').innerHTML
+					labelText: label.querySelector('div').innerHTML
 				};
 			});
 			expect(labelAttrs.labelText).equal('label');
@@ -62,12 +62,12 @@ describe('Zoo select', function() {
 				const selectBox = select.shadowRoot.querySelector('.box');
 				const info = selectBox.querySelector('.input-info').shadowRoot;
 				return {
-					infoText: info.querySelector('.info-text').innerHTML,
-					errorMsg: info.querySelector('.error-label').innerHTML
+					infoText: info.querySelector('.info').innerHTML,
+					errorMsg: info.querySelector('.error').innerHTML
 				};
 			});
-			expect(infoAttrs.infoText).equal('info-text');
-			expect(infoAttrs.errorMsg).equal('errormsg');
+			expect(infoAttrs.infoText.indexOf('info-text')).not.equal(-1);
+			expect(infoAttrs.errorMsg.indexOf('errormsg')).not.equal(-1);
 		});
 
 		it('should accept 1 slot', async() => {

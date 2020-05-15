@@ -1,3 +1,9 @@
+# 5.0.3
+`zoo-input-label` - simplification of internal DOM tree.      
+`zoo-input-info` - simplification of internal DOM tree.      
+`zoo-radio` - simplification of internal DOM tree.      
+`zoo-checkbox` - fixed dynamic reflection of changing attributes and fixed `input-info` part to be outside of checkbox border.
+
 # 5.0.2
 `zoo-searchable-select` - added `:focus-within` to show focus both on input and select elements;      
 `zoo-button` - made API make more sense, new types are `primary`, `secondary` and `hollow`. Previous values `cold` and `hot` are still supported but will be removed in the major release. Showing warning in console when inappropriate type is passed.

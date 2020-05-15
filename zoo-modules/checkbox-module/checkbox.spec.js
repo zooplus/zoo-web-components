@@ -8,11 +8,12 @@ describe('Zoo checkbox', function() {
 				checkbox.highlighted = true;
 				document.body.appendChild(checkbox);
 				const inputBox = checkbox.shadowRoot.querySelector('.box');
+				const checkboxInner = checkbox.shadowRoot.querySelector('.checkbox');
 
 				return {
-					inputLabelText: inputBox.querySelector('.input-label').innerHTML,
-					errorClassPresent: inputBox.classList.contains('error'),
-					highlightedClassPresent: inputBox.classList.contains('highlighted')
+					inputLabelText: inputBox.querySelector('span').innerHTML,
+					errorClassPresent: checkboxInner.classList.contains('error'),
+					highlightedClassPresent: checkboxInner.classList.contains('highlighted')
 				};
 			});
 			expect(inputAttrs.inputLabelText).equal('label-text');
@@ -30,7 +31,7 @@ describe('Zoo checkbox', function() {
 				document.body.appendChild(checkbox);
 
 				await new Promise(r => setTimeout(r, 10));
-				const inputSlot = checkbox.shadowRoot.querySelector('.input-slot');
+				const inputSlot = checkbox.shadowRoot.querySelector('.checkbox');
 				const slottedCheckbox = checkbox.shadowRoot.querySelector('slot[name="checkboxelement"]').assignedNodes()[0];
 				inputSlot.click();
 				return slottedCheckbox.checked;

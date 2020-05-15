@@ -18,14 +18,14 @@ describe('Zoo input info', function() {
 				inputInfo.inputerrormsg = 'error';
 				document.body.appendChild(inputInfo);
 				const errorIcon = inputInfo.shadowRoot.querySelector('.exclamation-circle');
-				const errorMsg = inputInfo.shadowRoot.querySelector('.error-label');
+				const errorMsg = inputInfo.shadowRoot.querySelector('.error');
 				return {
 					errorIconPresent: errorIcon !== undefined,
 					errorMsg: errorMsg.innerHTML
 				};
 			});
 			expect(inputInfoErrorAttrs.errorIconPresent).to.be.true;
-			expect(inputInfoErrorAttrs.errorMsg).equal('error');
+			expect(inputInfoErrorAttrs.errorMsg.indexOf('error')).not.equal(-1);
 		});
 	});
 });

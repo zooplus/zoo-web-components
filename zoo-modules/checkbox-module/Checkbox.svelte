@@ -1,75 +1,88 @@
 <svelte:options tag="zoo-checkbox"></svelte:options>
-<div class="box {_clicked ? 'clicked':''} {highlighted ? 'highlighted':''}" class:error="{!valid}" class:disabled="{disabled}" on:click="{e => handleClick(e)}">
-	<label class="input-slot">
+<div class="box" class:disabled="{_slottedInput && _slottedInput.disabled}" on:click="{e => handleClick(e)}">
+	<div class="checkbox" class:clicked="{_clicked}" class:highlighted="{highlighted}" class:error="{!valid}">
 		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>
-		<span class="input-label">
-			{labeltext}
-		</span>
-	</label>
-	<zoo-input-info class="input-info" valid="{valid}" {inputerrormsg} {infotext}></zoo-input-info>
+		<span>{labeltext}</span>
+	</div>
+	<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
 </div>
 
 <style type='text/scss'>
 	@import "variables";
 	
 	:host {
-		margin-top: 21px;
 		contain: layout;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100%;
 	}
 
 	.box {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		margin-bottom: 2px;
 		position: relative;
 		box-sizing: border-box;
 		cursor: pointer;
-
-		&.highlighted {
-			border: $stroked-box-grey-light;
-			border-radius: $input-border-radius;
-			padding: 6px 15px;
-
-			&.clicked {
-				border: $stroked-box-success-bold;
-				padding: 5px 14px;
-
-				.input-slot .input-label {
-					left: 8px;
-				}
-			}
-
-			&.error {
-				border: $stroked-box-warning-bold;
-				padding: 5px 14px;
-			}
-		}
+		font-size: $p1-size;
+		line-height: $p1-line-height;
 
 		&.disabled {
 			cursor: not-allowed;
+		}
+	}
 
-			.input-slot {
-				cursor: not-allowed;
+	.checkbox {
+		display: flex;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 6px 15px;
+
+
+		&.clicked {
+			padding: 4px 14px;
+
+			span {
+				left: 8px;
 			}
 		}
 
+		&.error {
+			padding: 5px 14px;
+
+			&.clicked {
+				padding: 4px 14px;
+			}
+		}
 	}
 
-	.input-slot {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		cursor: pointer;
-		align-items: center;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+	.highlighted {
+		border: $stroked-box-grey-light;
+		border-radius: $input-border-radius;
+
+		&.clicked {
+			border: $stroked-box-success-bold;
+		}
 	}
 
-	.input-label {
+	.highlighted.error {
+		border: $stroked-box-warning-bold;
+	}
+
+	span {
 		display: flex;
 		align-items: center;
 		position: relative;
 		left: 10px;
+	}
+
+	zoo-input-info {
+		display: flex;
+		align-self: flex-start;
+		margin-top: 2px;
 	}
 	
 	::slotted(input[type="checkbox"]) {
@@ -127,7 +140,7 @@
 		color: $grey-mid;
 	}
 
-	.box.error {
+	.error {
 		::slotted(input[type="checkbox"])::before {
 			border-color: var(--warning-mid, #{$warning-mid});
 			transition: border-color 0.3s ease;
@@ -144,7 +157,6 @@
 
 	export let labeltext = '';
 	export let valid = true;
-	export let disabled = false;
 	export let highlighted = false;
 	export let inputerrormsg = '';
 	export let infotext = '';
@@ -153,7 +165,7 @@
 	let _inputSlot;
 
 	const handleClick = (event) => {
-		if (disabled) {
+		if (_slottedInput.disabled) {
 			event.preventDefault();
 			return;
 		}
@@ -162,7 +174,7 @@
 	};
 
 	const handleSlotClick = (event) => {
-		if (disabled) {
+		if (_slottedInput.disabled) {
 			event.preventDefault();
 			return;
 		}
@@ -172,15 +184,7 @@
 	  
 	onMount(() => {
 		// todo support multiple slots
-		_inputSlot.addEventListener("slotchange", () => {
-			_slottedInput = _inputSlot.assignedNodes()[0];
-			if (_slottedInput.checked) {
-				_clicked = true;
-			}
-			if (_slottedInput.disabled) {
-				disabled = true;
-			}
-		});
+		_inputSlot.addEventListener("slotchange", () => _slottedInput = _inputSlot.assignedNodes()[0]);
 		_inputSlot.addEventListener('keypress', e => {
 			if (e.keyCode === 13) {
 				_slottedInput.click();

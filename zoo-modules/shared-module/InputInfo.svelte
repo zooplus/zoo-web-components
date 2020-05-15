@@ -1,11 +1,7 @@
 <svelte:options tag="zoo-input-info"></svelte:options>
 <div bind:this={root}>
-	<div class="info" class:hidden="{!infotext}">
-		<span class="info-text">{infotext}</span>
-	</div>
-	<div class="error" class:hidden="{valid || !inputerrormsg}">
-		<span class="error-label">{inputerrormsg}</span>
-	</div>
+	<div class="info" class:hidden="{!infotext}">{infotext}</div>
+	<div class="error" class:hidden="{valid || !inputerrormsg}">{inputerrormsg}</div>
 	<template id="icon">
 		<style>svg {padding-right: 5px;}</style>
 		<svg width="18" height="18" viewBox="0 0 24 24">
@@ -35,7 +31,7 @@
 	}
 
 	.error {
-		animation: hideshow 0.5s ease;
+		animation: hideshow 0.4s ease;
 
 		svg path {
 			fill: var(--warning-mid, #{$warning-mid});

@@ -69,11 +69,14 @@
 			<option value=""></option>
 		</select>
 	</zoo-select>
-	<zoo-checkbox highlighted="{true}" valid="{inputState}" labeltext="An example checkbox">
+	<zoo-checkbox highlighted="{true}" valid="{inputState}" inputerrormsg="error" labeltext="An example checkbox">
 		<input slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
 	<zoo-checkbox highlighted="{true}" labeltext="Disabled checkbox">
 		<input disabled slot="checkboxelement" type="checkbox"/>
+	</zoo-checkbox>
+	<zoo-checkbox labeltext="Not highlighted checkbox">
+		<input slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
 		<template>
@@ -105,13 +108,13 @@
 		margin: 20px auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-		grid-template-rows: 120px 150px 150px 100px 80px;
+		grid-template-rows: 120px 150px 150px 100px 80px 100px;
 		@media only screen and (max-width: 544px) {
 			width: 300px;
 			grid-template-columns: auto;
 		}
 		@media only screen and (max-width: 812px) {
-			grid-template-rows: 120px 150px 120px 120px;
+			grid-template-rows: 120px 150px 120px 120px 80px 100px;
 		}
 
 		grid-gap: 20px;

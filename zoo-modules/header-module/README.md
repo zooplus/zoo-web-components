@@ -25,7 +25,7 @@ To use it in your project add the following to your mark-up file:
 		</div>
 		<div class="header-button">
 			<zoo-button>
-				<button slot="button" class="medium hot" type="button">
+				<button slot="button" type="button">
 					<span class="icon-cart-copy"></span>
 					<span class="slotted-span">Shopping Cart</span>
 				</button>

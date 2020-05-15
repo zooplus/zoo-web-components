@@ -26,7 +26,7 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-button type="hot" size="medium">
+			<zoo-button type="secondary" size="medium">
 				<span slot="buttoncontent">Shopping Cart</span>
 			</zoo-button>
 		</div>
@@ -41,7 +41,7 @@
 	import { onMount } from 'svelte';
 	let list;
 	let buttonSlotText = `<slot name="buttoncontent"></slot>`;
-	let example = `<div style="width: 250px;">\n  <zoo-button type="hot" size="medium">\n    <span slot="buttoncontent">Shopping Cart</span>\n  </zoo-button>\n</div>`;
+	let example = `<div style="width: 250px;">\n  <zoo-button type="secondary" size="medium">\n    <span slot="buttoncontent">Shopping Cart</span>\n  </zoo-button>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

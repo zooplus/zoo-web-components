@@ -1,3 +1,8 @@
+# 5.0.2
+`zoo-searchable-select` - added `:focus-within` to show focus both on input and select elements;      
+`zoo-button` - made API make more sense, new types are `primary`, `secondary` and `hollow`. Previous values `cold` and `hot` are still supported but will be removed in the major release. Showing warning in console when inappropriate type is passed.
+`zoo-link` - showing warning in console when inappropriate type is passed.
+
 # 5.0.1
 `zoo-spinner` - remove merged `position: relative` from previous version.
 

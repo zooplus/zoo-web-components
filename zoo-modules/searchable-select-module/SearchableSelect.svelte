@@ -34,6 +34,17 @@
 		contain: layout;
 	}
 
+	.box:focus-within ::slotted(select) {
+		border: $stroked-box-grey-dark-bold;
+		border-top: none;
+		padding: 12px 14px;
+	}
+
+	.box:focus-within input {
+		border: $stroked-box-grey-dark-bold;
+		padding: 12px 14px;
+	}
+
 	.close {
 		display: inline-block;
 		position: absolute;

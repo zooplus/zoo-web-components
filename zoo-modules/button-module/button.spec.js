@@ -1,22 +1,22 @@
 describe('Zoo button', function() {
 	describe('Button', () => {
-		it('should create cold button', async () => {
+		it('should create primary button', async () => {
 			const result = await page.evaluate(() => {
 				let button = document.createElement('zoo-button');
-				button.type = 'cold';
+				button.type = 'primary';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
-				return nestedButton.classList.contains('cold');
+				return nestedButton.classList.contains('primary');
 			});
 			expect(result).to.be.true;
 		});
-		it('should create hot button', async() => {
+		it('should create secondary button', async() => {
 			const result = await page.evaluate(() => {
 				let button = document.createElement('zoo-button');
-				button.type = 'hot';
+				button.type = 'secondary';
 				document.body.appendChild(button);
 				const nestedButton = button.shadowRoot.querySelector('button');
-				return nestedButton.classList.contains('hot');
+				return nestedButton.classList.contains('secondary');
 			});
 			expect(result).to.be.true;
 		});
@@ -40,16 +40,6 @@ describe('Zoo button', function() {
 			});
 			expect(result).to.be.true;
 		});
-		it('should create big button', async() => {
-			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-button');
-				button.size = 'big';
-				document.body.appendChild(button);
-				const nestedButton = button.shadowRoot.querySelector('button');
-				return nestedButton.classList.contains('big');
-			});
-			expect(result).to.be.true;
-		});
 
 		it('should create disabled button', async() => {
 			const disabledAttr = await page.evaluate(() => {
@@ -70,12 +60,12 @@ describe('Zoo button', function() {
 				const defaultAttrs = {};
 				defaultAttrs.disabled = nestedButton.getAttribute('disabled');
 				defaultAttrs.smallSize = nestedButton.classList.contains('small');
-				defaultAttrs.coldType = nestedButton.classList.contains('cold');
+				defaultAttrs.primaryType = nestedButton.classList.contains('primary');
 				return defaultAttrs;
 			});
 			expect(defaultAttrs.disabled).to.be.null;
 			expect(defaultAttrs.smallSize).to.be.true;
-			expect(defaultAttrs.coldType).to.be.true;
+			expect(defaultAttrs.primaryType).to.be.true;
 		});
 	});
 });

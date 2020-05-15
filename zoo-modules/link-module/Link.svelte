@@ -91,7 +91,7 @@
 </style>
 
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 
 	export let href = "";
 	export let text = "";
@@ -100,9 +100,21 @@
 	export let disabled = false;
 	export let textalign = 'center';
 
-	onMount(() => {
-		if (type != 'negative' || type != 'primary' || type != 'grey') {
+	onMount(() => checkTypes());
+	afterUpdate(() => checkTypes());
+
+	const checkTypes = () => {
+		if (type == 'standard') {
+			console.warn(getWarnString('standard', 'negative'));
 			type = 'negative';
 		}
-	});
+		if (type == 'green') {
+			console.warn(getWarnString('green', 'primary'));
+			type = 'primary';
+		}
+	}
+
+	const getWarnString = (prev, actual) => {
+		return 'type="' + prev + '" is not supported and will be removed from future version, use ' + actual + ' instead.';
+	}
 </script>

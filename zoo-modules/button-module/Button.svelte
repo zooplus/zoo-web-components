@@ -40,7 +40,7 @@
 			background: transparent;
 		}
 
-		&.hot {
+		&.secondary {
 			background-image: linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
 			background-image: -webkit-linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
 
@@ -53,12 +53,12 @@
 			}
 		}
 
-		&.cold {
+		&.primary {
 			background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 			background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 		}
 
-		&.cold, &.hollow {
+		&.primary, &.hollow {
 			&:hover, &:focus {
 				background: var(--primary-mid, #{$primary-mid});
 				color: $white;
@@ -101,7 +101,26 @@
 </style>
 
 <script>
-	export let type = "cold"; //'hot', 'hollow'
+	import { onMount, afterUpdate } from 'svelte';
+	export let type = "primary"; //'secondary', 'hollow'
 	export let size = "small"; //'medium'
 	export let disabled = false;
+
+	onMount(() => checkTypes());
+	afterUpdate(() => checkTypes());
+
+	const checkTypes = () => {
+		if (type == 'cold') {
+			console.warn(getWarnString('cold', 'primary'));
+			type = 'primary';
+		}
+		if (type == 'hot') {
+			console.warn(getWarnString('hot', 'secondary'));
+			type = 'secondary';
+		}
+	}
+
+	const getWarnString = (prev, actual) => {
+		return 'type="' + prev + '" is not supported and will be removed from future version, use ' + actual + ' instead.';
+	}
 </script>

@@ -32,7 +32,7 @@ Just add `slot` attribute to the `HTMLElement` you provide for this component, l
 		</zoo-checkbox>
 		<br>
 		<zoo-button>
-			<button slot="button" class="medium hot" type="button">
+			<button slot="button" type="button">
 				<span class="slotted-span">Add to cart</span>
 			</button>
 		</zoo-button>

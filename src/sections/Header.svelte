@@ -3,17 +3,17 @@
 	<zoo-header imgsrc="logo.png" headertext="Zooplus web components">
 		<div class="buttons-holder">
 			<div class="header-button">
-				<zoo-button type="{theme === 'zoo' ? 'hot' : 'cold'}" size="medium" on:click={() => changeTheme('zoo')}>
+				<zoo-button type="{theme === 'zoo' ? 'secondary' : 'primary'}" size="medium" on:click={() => changeTheme('zoo')}>
 					<span slot="buttoncontent" class="slotted-span">Zoo+ theme</span>
 				</zoo-button>
 			</div>
 			<div class="header-button">
-				<zoo-button type="{theme === 'grey' ? 'hot' : 'cold'}" size="medium" on:click={() => changeTheme('grey')}>
+				<zoo-button type="{theme === 'grey' ? 'secondary' : 'primary'}" size="medium" on:click={() => changeTheme('grey')}>
 					<span slot="buttoncontent" class="slotted-span">Grey theme</span>
 				</zoo-button>
 			</div>
 			<div class="header-button">
-				<zoo-button type="{theme === 'random' ? 'hot' : 'cold'}" size="medium" on:click={() => generateRandomTheme()}>
+				<zoo-button type="{theme === 'random' ? 'secondary' : 'primary'}" size="medium" on:click={() => generateRandomTheme()}>
 					<span slot="buttoncontent" class="slotted-span">Random theme</span>
 				</zoo-button>
 			</div>

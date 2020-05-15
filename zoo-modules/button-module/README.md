@@ -1,7 +1,7 @@
 # Button module
 
 ## API
-- `type` `optional` - accepts following values: `cold`, `hot`. Default is `cold`;
+- `type` `optional` - accepts following values: `primary`, `secondary`, `hollow`. Default is `primary`;
 - `size` `optional` - accepts following values: `small`, `medium`. Default is `small`;
  - `disabled` - whether the button should be disabled or not.
 
@@ -13,7 +13,7 @@ This component accept one `<slot name="buttoncontent"></slot>` which is replaced
 
 ## Example usage 
 ```
-<zoo-button type="hot" size="medium">
+<zoo-button type="secondary" size="medium">
 	<div slot="buttoncontent">
 		<span class="icon-cart-copy"></span>
 		<span class="slotted-span">Shopping Cart</span>

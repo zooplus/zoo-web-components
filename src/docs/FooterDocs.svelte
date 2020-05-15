@@ -68,12 +68,12 @@
 			{
 				href: 'https://github.com/zooplus/zoo-web-components',
 				text: 'Github',
-				type: 'standard'
+				type: 'negative'
 			},
 			{
 				href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
 				text: 'NPM',
-				type: 'standard'
+				type: 'negative'
 			}
 		];
 	});

@@ -94,7 +94,7 @@
 	</zoo-radio>
 </form>
 <div class="submit">
-	<zoo-button type="hot" size="medium" on:click="{changeState}">
+	<zoo-button type="secondary" size="medium" on:click="{changeState}">
 		<span slot="buttoncontent" class="slotted-span">Trigger invalid state!</span>
 	</zoo-button>
 </div>

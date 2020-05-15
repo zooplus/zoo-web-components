@@ -569,9 +569,9 @@
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(a, "href", a_href_value = /*link*/ ctx[12].href);
-    			add_location(a, file$1, 25, 5, 1008);
+    			add_location(a, file$1, 25, 5, 1035);
     			attr_dev(div, "class", "nav-link");
-    			add_location(div, file$1, 24, 4, 980);
+    			add_location(div, file$1, 24, 4, 1007);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -656,36 +656,36 @@
     			this.c = noop;
     			attr_dev(span0, "slot", "buttoncontent");
     			attr_dev(span0, "class", "slotted-span");
-    			add_location(span0, file$1, 6, 5, 304);
-    			set_custom_element_data(zoo_button0, "type", zoo_button0_type_value = /*theme*/ ctx[0] === "zoo" ? "hot" : "cold");
+    			add_location(span0, file$1, 6, 5, 313);
+    			set_custom_element_data(zoo_button0, "type", zoo_button0_type_value = /*theme*/ ctx[0] === "zoo" ? "secondary" : "primary");
     			set_custom_element_data(zoo_button0, "size", "medium");
     			add_location(zoo_button0, file$1, 5, 4, 194);
     			attr_dev(div0, "class", "header-button");
     			add_location(div0, file$1, 4, 3, 162);
     			attr_dev(span1, "slot", "buttoncontent");
     			attr_dev(span1, "class", "slotted-span");
-    			add_location(span1, file$1, 11, 5, 545);
-    			set_custom_element_data(zoo_button1, "type", zoo_button1_type_value = /*theme*/ ctx[0] === "grey" ? "hot" : "cold");
+    			add_location(span1, file$1, 11, 5, 563);
+    			set_custom_element_data(zoo_button1, "type", zoo_button1_type_value = /*theme*/ ctx[0] === "grey" ? "secondary" : "primary");
     			set_custom_element_data(zoo_button1, "size", "medium");
-    			add_location(zoo_button1, file$1, 10, 4, 433);
+    			add_location(zoo_button1, file$1, 10, 4, 442);
     			attr_dev(div1, "class", "header-button");
-    			add_location(div1, file$1, 9, 3, 401);
+    			add_location(div1, file$1, 9, 3, 410);
     			attr_dev(span2, "slot", "buttoncontent");
     			attr_dev(span2, "class", "slotted-span");
-    			add_location(span2, file$1, 16, 5, 790);
-    			set_custom_element_data(zoo_button2, "type", zoo_button2_type_value = /*theme*/ ctx[0] === "random" ? "hot" : "cold");
+    			add_location(span2, file$1, 16, 5, 817);
+    			set_custom_element_data(zoo_button2, "type", zoo_button2_type_value = /*theme*/ ctx[0] === "random" ? "secondary" : "primary");
     			set_custom_element_data(zoo_button2, "size", "medium");
-    			add_location(zoo_button2, file$1, 15, 4, 674);
+    			add_location(zoo_button2, file$1, 15, 4, 692);
     			attr_dev(div2, "class", "header-button");
-    			add_location(div2, file$1, 14, 3, 642);
+    			add_location(div2, file$1, 14, 3, 660);
     			attr_dev(div3, "class", "buttons-holder");
     			add_location(div3, file$1, 3, 2, 130);
     			set_custom_element_data(zoo_header, "imgsrc", "logo.png");
     			set_custom_element_data(zoo_header, "headertext", "Zooplus web components");
     			add_location(zoo_header, file$1, 2, 1, 61);
-    			add_location(div4, file$1, 22, 2, 942);
+    			add_location(div4, file$1, 22, 2, 969);
     			set_custom_element_data(zoo_navigation, "class", "nav");
-    			add_location(zoo_navigation, file$1, 21, 1, 911);
+    			add_location(zoo_navigation, file$1, 21, 1, 938);
     			add_location(header, file$1, 1, 0, 51);
     		},
     		l: function claim(nodes) {
@@ -723,15 +723,15 @@
     			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*theme*/ 1 && zoo_button0_type_value !== (zoo_button0_type_value = /*theme*/ ctx[0] === "zoo" ? "hot" : "cold")) {
+    			if (dirty & /*theme*/ 1 && zoo_button0_type_value !== (zoo_button0_type_value = /*theme*/ ctx[0] === "zoo" ? "secondary" : "primary")) {
     				set_custom_element_data(zoo_button0, "type", zoo_button0_type_value);
     			}
 
-    			if (dirty & /*theme*/ 1 && zoo_button1_type_value !== (zoo_button1_type_value = /*theme*/ ctx[0] === "grey" ? "hot" : "cold")) {
+    			if (dirty & /*theme*/ 1 && zoo_button1_type_value !== (zoo_button1_type_value = /*theme*/ ctx[0] === "grey" ? "secondary" : "primary")) {
     				set_custom_element_data(zoo_button1, "type", zoo_button1_type_value);
     			}
 
-    			if (dirty & /*theme*/ 1 && zoo_button2_type_value !== (zoo_button2_type_value = /*theme*/ ctx[0] === "random" ? "hot" : "cold")) {
+    			if (dirty & /*theme*/ 1 && zoo_button2_type_value !== (zoo_button2_type_value = /*theme*/ ctx[0] === "random" ? "secondary" : "primary")) {
     				set_custom_element_data(zoo_button2, "type", zoo_button2_type_value);
     			}
 
@@ -1459,8 +1459,8 @@
     			add_location(form, file$2, 2, 0, 175);
     			attr_dev(span, "slot", "buttoncontent");
     			attr_dev(span, "class", "slotted-span");
-    			add_location(span, file$2, 97, 2, 4655);
-    			set_custom_element_data(zoo_button, "type", "hot");
+    			add_location(span, file$2, 97, 2, 4661);
+    			set_custom_element_data(zoo_button, "type", "secondary");
     			set_custom_element_data(zoo_button, "size", "medium");
     			add_location(zoo_button, file$2, 96, 1, 4590);
     			attr_dev(div, "class", "submit");
@@ -1871,32 +1871,31 @@
     			set_custom_element_data(zoo_button1, "class", "top-tooltip");
     			add_location(zoo_button1, file$3, 8, 1, 440);
     			attr_dev(span1, "slot", "buttoncontent");
-    			add_location(span1, file$3, 15, 2, 749);
-    			set_custom_element_data(zoo_button2, "type", "hot");
+    			add_location(span1, file$3, 15, 2, 755);
+    			set_custom_element_data(zoo_button2, "type", "secondary");
     			set_custom_element_data(zoo_button2, "size", "small");
     			add_location(zoo_button2, file$3, 14, 1, 673);
     			attr_dev(span2, "slot", "buttoncontent");
-    			add_location(span2, file$3, 18, 2, 852);
+    			add_location(span2, file$3, 18, 2, 858);
     			set_custom_element_data(zoo_button3, "type", "hollow");
     			set_custom_element_data(zoo_button3, "size", "small");
-    			add_location(zoo_button3, file$3, 17, 1, 810);
+    			add_location(zoo_button3, file$3, 17, 1, 816);
     			attr_dev(path0, "d", "M9 14.998a3 3 0 010 6v2.252a.75.75 0 11-1.5 0v-7.434a.75.75 0 01.747-.818h.753zm3.875-15c.597 0 1.17.238 1.591.66l5.871 5.87c.422.423.66.995.659 1.592v4.628a.75.75 0 11-1.5 0V8.12a.75.75 0 00-.22-.53l-5.87-5.872a.75.75 0 00-.531-.22H2.246a.75.75 0 00-.75.75v19.5c0 .414.336.75.75.75h3a.75.75 0 110 1.5h-3a2.25 2.25 0 01-2.25-2.25v-19.5a2.25 2.25 0 012.25-2.25h10.63zm10.371 15a.75.75 0 010 1.5h-1.5a.75.75 0 00-.75.75v2.251l1.504.001a.75.75 0 110 1.5l-1.504-.001v2.249a.75.75 0 11-1.5 0v-6a2.25 2.25 0 012.25-2.25h1.5zm-9 0a3.75 3.75 0 013.75 3.75v1.5a3.75 3.75 0 01-3.75 3.75.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75zm.75 1.628v5.744a2.25 2.25 0 001.5-2.122v-1.5a2.25 2.25 0 00-1.5-2.122zM9 16.498v3a1.5 1.5 0 000-3z");
-    			add_location(path0, file$3, 21, 137, 1125);
+    			add_location(path0, file$3, 21, 137, 1119);
     			attr_dev(path1, "d", "M20.246 7.498a.75.75 0 110 1.5h-6a2.25 2.25 0 01-2.25-2.25v-6a.75.75 0 011.5 0v6c0 .414.336.75.75.75h6z");
-    			add_location(path1, file$3, 21, 868, 1856);
+    			add_location(path1, file$3, 21, 868, 1850);
     			attr_dev(g, "fill", "#555");
     			attr_dev(g, "fill-rule", "evenodd");
-    			add_location(g, file$3, 21, 102, 1090);
+    			add_location(g, file$3, 21, 102, 1084);
     			attr_dev(svg0, "class", "btn-svg");
     			attr_dev(svg0, "slot", "buttoncontent");
     			attr_dev(svg0, "width", "24");
     			attr_dev(svg0, "height", "24");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
-    			add_location(svg0, file$3, 21, 2, 990);
-    			set_custom_element_data(zoo_button4, "type", "cold");
+    			add_location(svg0, file$3, 21, 2, 984);
     			set_custom_element_data(zoo_button4, "size", "small");
     			set_custom_element_data(zoo_button4, "class", "icon-btn");
-    			add_location(zoo_button4, file$3, 20, 1, 933);
+    			add_location(zoo_button4, file$3, 20, 1, 939);
     			attr_dev(path2, "d", "M12 4.324l1.036-1.035a6.423 6.423 0 019.094 9.071l-9.589 10.003a.75.75 0 01-1.082 0l-9.577-9.988A6.422 6.422 0 015.394 1.49a6.423 6.423 0 015.57 1.798L12 4.324z");
     			attr_dev(path2, "fill", "#555");
     			attr_dev(path2, "fill-rule", "evenodd");
@@ -1907,10 +1906,10 @@
     			attr_dev(svg1, "height", "24");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			add_location(svg1, file$3, 24, 2, 2054);
-    			set_custom_element_data(zoo_button5, "type", "hot");
+    			set_custom_element_data(zoo_button5, "type", "secondary");
     			set_custom_element_data(zoo_button5, "size", "small");
     			set_custom_element_data(zoo_button5, "class", "icon-btn");
-    			add_location(zoo_button5, file$3, 23, 1, 1998);
+    			add_location(zoo_button5, file$3, 23, 1, 1992);
     			attr_dev(div1, "class", "buttons");
     			add_location(div1, file$3, 4, 0, 293);
     			set_custom_element_data(zoo_feedback, "type", "info");
@@ -3965,8 +3964,8 @@
     			add_location(pre, file$6, 25, 8, 1000);
     			add_location(code, file$6, 25, 2, 994);
     			attr_dev(span, "slot", "buttoncontent");
-    			add_location(span, file$6, 29, 4, 1133);
-    			set_custom_element_data(zoo_button, "type", "hot");
+    			add_location(span, file$6, 29, 4, 1139);
+    			set_custom_element_data(zoo_button, "type", "secondary");
     			set_custom_element_data(zoo_button, "size", "medium");
     			add_location(zoo_button, file$6, 28, 3, 1091);
     			set_style(div1, "width", "250px");
@@ -4056,7 +4055,7 @@
     function instance$6($$self, $$props, $$invalidate) {
     	let list;
     	let buttonSlotText = `<slot name="buttoncontent"></slot>`;
-    	let example = `<div style="width: 250px;">\n  <zoo-button type="hot" size="medium">\n    <span slot="buttoncontent">Shopping Cart</span>\n  </zoo-button>\n</div>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-button type="secondary" size="medium">\n    <span slot="buttoncontent">Shopping Cart</span>\n  </zoo-button>\n</div>`;
 
     	onMount(() => {
     		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
@@ -5101,12 +5100,12 @@
     				{
     					href: "https://github.com/zooplus/zoo-web-components",
     					text: "Github",
-    					type: "standard"
+    					type: "negative"
     				},
     				{
     					href: "https://www.npmjs.com/package/@zooplus/zoo-web-components",
     					text: "NPM",
-    					type: "standard"
+    					type: "negative"
     				}
     			],
     			exampleFooter

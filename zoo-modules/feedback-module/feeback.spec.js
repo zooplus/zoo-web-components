@@ -5,7 +5,7 @@ describe('Zoo feedback', function() {
 				let feedback = document.createElement('zoo-feedback');
 				document.body.appendChild(feedback);
 				const infoIcon = feedback.shadowRoot.querySelector('.info-rounded-circle-o');
-				const text = feedback.shadowRoot.querySelector('.text').innerHTML;
+				const text = feedback.shadowRoot.querySelector('span').innerHTML;
 				const feedbackAttrs = {
 					infoIcon: infoIcon,
 					text: text
@@ -23,7 +23,7 @@ describe('Zoo feedback', function() {
 				feedback.text = 'test-text';
 				document.body.appendChild(feedback);
 				const infoIcon = feedback.shadowRoot.querySelector('.info-rounded-circle-o');
-				const text = feedback.shadowRoot.querySelector('.text').innerHTML;
+				const text = feedback.shadowRoot.querySelector('span').innerHTML;
 				const feedbackAttrs = {
 					infoIcon: infoIcon,
 					text: text
@@ -41,7 +41,7 @@ describe('Zoo feedback', function() {
 				feedback.text = 'test-text';
 				document.body.appendChild(feedback);
 				const infoIcon = feedback.shadowRoot.querySelector('.happiness');
-				const text = feedback.shadowRoot.querySelector('.text').innerHTML;
+				const text = feedback.shadowRoot.querySelector('span').innerHTML;
 				const feedbackAttrs = {
 					infoIcon: infoIcon,
 					text: text
@@ -59,7 +59,7 @@ describe('Zoo feedback', function() {
 				feedback.text = 'test-text';
 				document.body.appendChild(feedback);
 				const infoIcon = feedback.shadowRoot.querySelector('.error');
-				const text = feedback.shadowRoot.querySelector('.text').innerHTML;
+				const text = feedback.shadowRoot.querySelector('span').innerHTML;
 				const feedbackAttrs = {
 					infoIcon: infoIcon,
 					text: text

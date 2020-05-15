@@ -1,9 +1,7 @@
 <svelte:options tag="zoo-button"></svelte:options>
-<div class="box">
-	<button disabled={disabled ? true : null} class="{type} {size} btn" type="button" on:click="{e => disabled ? e.preventDefault() : ''}">
-		<slot name="buttoncontent"></slot>
-	</button>
-</div>
+<button {disabled} class="{type} {size}" type="button" on:click="{e => disabled ? e.preventDefault() : ''}">
+	<slot name="buttoncontent"></slot>
+</button>
 
 <style type='text/scss'>
 	@import "variables";
@@ -12,13 +10,10 @@
 		display: block;
 		max-width: 330px;
 		contain: layout;
-	}
-
-	.box {
 		position: relative;
 	}
 
-	.btn {
+	button {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -33,42 +28,6 @@
 		line-height: $p1-line-height;
 		font-weight: bold;
 		text-align: center;
-
-		&.hollow {
-			border: $stroked-box-primary-bold;
-			color: var(--primary-mid, #{$primary-mid});
-			background: transparent;
-		}
-
-		&.secondary {
-			background-image: linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
-			background-image: -webkit-linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
-
-			&:hover, &:focus {
-				background: var(--secondary-mid, #{$secondary-mid});
-			}
-
-			&:active {
-				background: var(--secondary-dark, #{$secondary-dark});
-			}
-		}
-
-		&.primary {
-			background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
-			background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
-		}
-
-		&.primary, &.hollow {
-			&:hover, &:focus {
-				background: var(--primary-mid, #{$primary-mid});
-				color: $white;
-			}
-
-			&:active {
-				background: var(--primary-dark, #{$primary-dark});
-				color: $white;
-			}
-		}
 
 		&:disabled {
 			background: $grey-ultralight;
@@ -85,14 +44,50 @@
 		&:active {
 			transform: translateY(1px);
 		}
+	}
 
-		&.small {
-			min-height: 36px;
+	.hollow {
+		border: $stroked-box-primary-bold;
+		color: var(--primary-mid, #{$primary-mid});
+		background: transparent;
+	}
+
+	.secondary {
+		background-image: linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
+		background-image: -webkit-linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
+
+		&:hover, &:focus {
+			background: var(--secondary-mid, #{$secondary-mid});
 		}
 
-		&.medium {
-			min-height: 46px;
+		&:active {
+			background: var(--secondary-dark, #{$secondary-dark});
 		}
+	}
+
+	.primary {
+		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+	}
+
+	.primary, .hollow {
+		&:hover, &:focus {
+			background: var(--primary-mid, #{$primary-mid});
+			color: $white;
+		}
+
+		&:active {
+			background: var(--primary-dark, #{$primary-dark});
+			color: $white;
+		}
+	}
+
+	.small {
+		min-height: 36px;
+	}
+
+	.medium {
+		min-height: 46px;
 	}
 
 	::slotted(*) {

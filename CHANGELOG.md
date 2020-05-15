@@ -1,3 +1,7 @@
+# 5.0.4
+`grid-paginator` - hide page size select when no rows supplied.      
+`zoo-button` - simplify internal css structure.
+
 # 5.0.3
 `zoo-input-label` - simplification of internal DOM tree.      
 `zoo-input-info` - simplification of internal DOM tree.      

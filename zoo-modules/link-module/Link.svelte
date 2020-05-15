@@ -50,7 +50,7 @@
 		}
 
 		&.negative {
-			color: white;
+			color: $white;
 
 			&:hover, &:focus, &:active {
 				color: $white;
@@ -67,7 +67,7 @@
 				left: 0;
 				overflow: hidden;
 				width: 0;
-				border-bottom: 1px solid #fff;
+				border-bottom: 1px solid $white;
 				color: $white;
 			}
 

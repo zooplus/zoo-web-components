@@ -4,7 +4,7 @@
 	<span class="template-slot {valid ? '' : 'error'}">
 		<slot bind:this={_templateSlot}></slot>
 	</span>
-	<zoo-input-info class="input-info" {valid} inputerrormsg="{errormsg}" {infotext}></zoo-input-info>
+	<zoo-input-info {valid} inputerrormsg="{errormsg}" {infotext}></zoo-input-info>
 </div>
 
 <style type='text/scss'>

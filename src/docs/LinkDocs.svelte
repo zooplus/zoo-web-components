@@ -25,6 +25,9 @@
 						<li>
 							<b>textalign</b> - standard css behaviour. Default value is <b>center</b>
 						</li>
+						<li>
+							<b>size</b> - size of the link text. Supports values: <b>regular</b>, <b>bold</b>, <b>large</b>. Default value is <b>regular</b>
+						</li>
 					</ul>
 				</ul>
 			</zoo-collapsable-list-item>

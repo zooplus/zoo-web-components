@@ -109,10 +109,8 @@
 	let slottedSelect;
 	let selectSlot;
 	let valueSelected;
-	let selects = {};
 
 	// todo support multiple slots
-
 	onMount(() => {
 		selectSlot.addEventListener("slotchange", () => {
 			slottedSelect = selectSlot.assignedNodes()[0];

@@ -53,6 +53,10 @@
 	</div>
 </zoo-modal>
 <style type='text/scss'>
+
+	:host {
+		contain: layout;
+	}
 	.buttons {
 		max-width: 1280px;
 		margin: 20px auto;

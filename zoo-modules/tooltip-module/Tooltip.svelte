@@ -20,9 +20,6 @@
 		left: 0;
 		bottom: 0;
 		pointer-events: none;
-		line-height: initial;
-		font-size: initial;
-		font-weight: initial;
 		contain: layout;
 		justify-content: center;
 	}
@@ -61,6 +58,7 @@
 		padding: 10px;
 		font-size: $p2-size;
 		line-height: $p2-line-height;
+		font-weight: initial;
 		position: relative;
 		z-index: 1;
 		background: white;

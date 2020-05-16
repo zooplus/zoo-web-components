@@ -13,9 +13,19 @@
 		<zoo-feedback type="success" text="This is a success message. This element will show tooltip on the bottom side on hover."></zoo-feedback>
 		<zoo-tooltip position="bottom" text="Hello from below"></zoo-tooltip>
 	</div>
+	<div class="feedback-tooltip">
+		<zoo-feedback type="success">
+			<div class="feedback-slot">
+				<span>Feedback element with slotted content</span>
+				<zoo-button type="hollow">
+					<span slot="buttoncontent">Slotted button</span>
+				</zoo-button>
+			</div>
+		</zoo-feedback>
+	</div>
 	<div class="special-tooltip"> 
 		<zoo-button on:click="{showSpecialTooltip}">
-			<span class="slotted-span" slot="buttoncontent">This element will show tooltip on top only when it is clicked.</span>
+			<span slot="buttoncontent">This element will show tooltip on top only when it is clicked.</span>
 		</zoo-button>
 		<zoo-tooltip bind:this={specialTooltip} text="Hello from up above">
 			<zoo-input class="input-in-tooltip">
@@ -28,6 +38,10 @@
 </div>
 
 <style type='text/scss'>
+	:host {
+		contain: layout;
+	}
+	
 	.inner-content {
 		flex: 1 0 auto;
 		width: 70%;
@@ -52,10 +66,6 @@
 		position: relative;
 		margin: 0 auto;
 		cursor: pointer;
-
-		.slotted-span {
-			line-height: 25px;
-		}
 	}
 
 	.top-tooltip {
@@ -77,6 +87,17 @@
 	.input-in-tooltip:hover~.nested-tooltip {
 		display: block;
 		animation: fadeTooltipIn 0.2s;
+	}
+
+	.feedback-slot {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding-right: 50px;
+		
+		span {
+			flex-grow: 1;
+		}
 	}
 </style>
 

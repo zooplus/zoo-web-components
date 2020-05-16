@@ -103,6 +103,10 @@
 </div>
 
 <style type='text/scss'>
+	:host {
+		contain: layout;
+	}
+
 	.form {
 		flex: 1 0 auto;
 		margin: 20px auto;

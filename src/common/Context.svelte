@@ -4,6 +4,7 @@
 	{#if backbtn}
 		<div class="back-btn">
 			<zoo-button>
+				<!-- svelte-ignore a11y-invalid-attribute -->
 				<span slot="buttoncontent"><a href="#">Go to top</a></span>
 			</zoo-button>
 		</div>

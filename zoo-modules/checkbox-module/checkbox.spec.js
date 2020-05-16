@@ -58,5 +58,146 @@ describe('Zoo checkbox', function() {
 			expect(ret.tagName).equal('INPUT');
 			expect(ret.type).equal('checkbox')
 		});
+
+		it('should create highlighted checkbox', async() => {
+			const elementAttrs = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				checkbox.highlighted = true;
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const elementBox = checkbox.shadowRoot.querySelector('.checkbox');
+
+				return {
+					containsHighlightedClass: elementBox.classList.contains('highlighted')
+				};
+			});
+			expect(elementAttrs.containsHighlightedClass).to.be.true;
+		});
+
+		it('should create disabled checkbox', async() => {
+			const elementAttrs = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				input.disabled = true;
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const elementBox = checkbox.shadowRoot.querySelector('.box');
+
+				return new Promise((fulfil, reject) => {
+					setTimeout(() => {
+						return fulfil({
+							containsDisabledClass: elementBox.classList.contains('disabled')
+						});
+					}, 100);
+				});
+			});
+			expect(elementAttrs.containsDisabledClass).to.be.true;
+		});
+
+		it('should render labeltext when such attribute is passed', async() => {
+			const label = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				checkbox.labeltext = 'labeltext';
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const labelText = checkbox.shadowRoot.querySelector('span');
+
+				return labelText.innerHTML;
+			});
+			expect(label).equal('labeltext');
+		});
+
+		it('should pass input info attributes to zoo-input-info when supplied', async() => {
+			const valid = true;
+			const inputerrormsg = 'error message';
+			const infotext = 'info text';
+			const ret = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				checkbox.valid = true;
+				checkbox.inputerrormsg = 'error message';
+				checkbox.infotext = 'info text';
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const zooInputInfoEl = checkbox.shadowRoot.querySelector('zoo-input-info');
+
+				return {
+					valid: zooInputInfoEl.valid,
+					inputerrormsg: zooInputInfoEl.inputerrormsg,
+					infotext: zooInputInfoEl.infotext
+				};
+			});
+			expect(ret.valid).equal(valid);
+			expect(ret.inputerrormsg).equal(inputerrormsg);
+			expect(ret.infotext).equal(infotext);
+		});
+
+		it('should not add error class based on valid attribute', async() => {
+			let errorClassPresent = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				checkbox.valid = true;
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const checkboxEl = checkbox.shadowRoot.querySelector('.checkbox');
+
+				return checkboxEl.classList.contains('error');
+			});
+			
+			expect(errorClassPresent).to.be.false;
+		});
+
+		it('should add error class based on valid attribute', async() => {
+			let errorClassPresent = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				checkbox.valid = false;
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const checkboxEl = checkbox.shadowRoot.querySelector('.checkbox');
+
+				return checkboxEl.classList.contains('error');
+			});
+			
+			expect(errorClassPresent).to.be.true;
+		});
+
+		it('should add and then remove error class based on valid attribute', async() => {
+			let ret = await page.evaluate(() => {
+				let checkbox = document.createElement('zoo-checkbox');
+				let input = document.createElement('input');
+				checkbox.valid = false;
+				input.type = 'checkbox';
+				input.slot = 'checkboxelement';
+				checkbox.appendChild(input);
+				document.body.appendChild(checkbox);
+				const checkboxEl = checkbox.shadowRoot.querySelector('.checkbox');
+				const firstValue = checkboxEl.classList.contains('error');
+
+				checkbox.valid = true;
+				const secondValue = checkboxEl.classList.contains('error');
+				return {
+					firstValue: firstValue,
+					secondValue: secondValue
+				};
+			});
+			
+			expect(ret.firstValue).to.be.true;
+			expect(ret.secondValue).to.be.false;
+		});
 	});
 });

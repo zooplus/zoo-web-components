@@ -1,3 +1,14 @@
+# 5.1.0
+`zoo-tooltip` - remove unused css;      
+`zoo-toast` - simplify HTML structure;      
+`zoo-select` - remove unused variable;      
+`zoo-modal` - move element to a separate rendering layer;      
+`zoo-link` - remove unnecessary `if` for rendering, simplify css structure; Added new API param `size`      
+`zoo-header` - mark logo image with `importance="high"`;      
+`zoo-grid` - simplify debounce function, perform resize on next frame;      
+`zoo-collapsable-list` - simplify HTML structure;        
+Various performance improvements for documentation page.
+
 # 5.0.4
 `grid-paginator` - hide page size select when no rows supplied.      
 `zoo-button` - simplify internal css structure.

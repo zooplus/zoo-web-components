@@ -20,7 +20,7 @@
 		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
-		<zoo-select {labelposition} {linktext} {linkhref} {linktarget} {labeltext} {inputerrormsg} {infotext} valid="{valid}">
+		<zoo-select {labelposition} {linktext} {linkhref} {linktarget} {labeltext} {inputerrormsg} {infotext} {valid}>
 			<slot bind:this={_selectSlot} name="selectelement" slot="selectelement"></slot>
 		</zoo-select>
 	{/if}

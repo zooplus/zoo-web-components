@@ -4,6 +4,7 @@ import './sections/Form.svelte';
 import './sections/Buttons.svelte';
 import './sections/Grids.svelte';
 import './sections/TooltipAndFeedback.svelte';
+import './sections/Links.svelte';
 
 import './docs/ButtonDocs.svelte';
 import './docs/CheckboxDocs.svelte';

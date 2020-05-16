@@ -1,12 +1,12 @@
 <svelte:options tag="zoo-link"></svelte:options>
-{#if text && href}
-	<div class="link-box">
-		<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type}" class:disabled="{disabled}">
-			<span>{text}</span>
-			<div class="bottom-line"></div>
-		</a>
-	</div>
-{/if}
+<div class="box" class:hidden="{!text || !href}">
+	<slot name="pre"></slot>
+	<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type} {size}" class:disabled="{disabled}" on:click="{e => handleClick(e)}">
+		<span>{text}</span>
+		<div class="bottom-line"></div>
+	</a>
+	<slot name="post"></slot>
+</div>
 
 <style type='text/scss'>
 	@import "variables";
@@ -15,77 +15,98 @@
 		contain: layout;
 	}
 
-	.link-box {
+	.box {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 		position: relative;
+		padding: 0 5px;
 	}
 
 	a {
 		text-decoration: none;
 		font-size: $p2-size;
 		line-height: $p2-line-height;
+		padding: 0 2px;
+	}
 
-		&.disabled {
-			color: $grey-light;
+	.hidden, .hidden a {
+		padding: 0;
+	}
 
-			&:hover {
-				cursor: not-allowed;
-			}
+	.disabled {
+		color: $grey-mid !important;
+
+		&:hover {
+			cursor: not-allowed;
+		}
+	}
+
+	.primary {
+		color: var(--primary-mid, #{$primary-mid});
+
+		&:visited {
+			color: var(--primary-light, #{$primary-light});
 		}
 
-		&.primary {
-			color: var(--primary-mid, #{$primary-mid});
-
-			&:hover, &:focus, &:active {
-				color: var(--primary-dark, #{$primary-dark});
-			}
-
-			&:visited {
-				color: var(--primary-light, #{$primary-light});
-			}
+		&:hover, &:focus, &:active {
+			color: var(--primary-dark, #{$primary-dark});
 		}
+	}
 
-		&.negative {
+	.negative {
+		color: $white;
+
+		&:hover, &:focus, &:active {
 			color: $white;
-
-			&:hover, &:focus, &:active {
-				color: $white;
-				cursor: pointer;
-			}
-
-			&:visited {
-				color: $white;
-			}
-
-			.bottom-line {
-				position: absolute;
-				bottom: -3px;
-				left: 0;
-				overflow: hidden;
-				width: 0;
-				border-bottom: 1px solid $white;
-				color: $white;
-			}
-
-			&:hover .bottom-line {
-				width: 100%;
-			}
+			cursor: pointer;
 		}
 
-		&.grey {
-			color: $grey-mid;
+		.bottom-line {
+			position: absolute;
+			bottom: -3px;
+			left: 0;
+			overflow: hidden;
+			width: 0;
+			border-bottom: 1px solid $white;
+			color: $white;
+		}
 
-			&:hover, &:focus, &:active {
-				color: var(--primary-dark, #{$primary-dark});
-			}
+		&:hover .bottom-line {
+			width: 100%;
+		}
+	}
 
-			&:visited {
-				color: var(--primary-light, #{$primary-light});
-			}
+	.grey {
+		color: $grey-mid;
+
+		&:hover, &:focus, &:active {
+			color: var(--primary-dark, #{$primary-dark});
+		}
+	}
+
+	.warning {
+		color: $warning-mid;
+
+		&:hover, &:focus, &:active {
+			color: var(--warning-dark, #{$warning-dark});
+		}
+	}
+
+	.large {
+		font-size: $h3-size;
+		line-height: $h3-line-height;
+		font-weight: bold;
+	}
+
+	.bold {
+		font-weight: bold;
+
+		&:active {
+			background: $grey-light;
+			border-radius: 5px;
 		}
 	}
 </style>
@@ -93,12 +114,13 @@
 <script>
 	import { onMount, afterUpdate } from 'svelte';
 
-	export let href = "";
-	export let text = "";
-	export let target = "about:blank";
-	export let type = "negative"; // primary, grey
+	export let href = '';
+	export let text = '';
+	export let target = 'about:blank';
+	export let type = 'negative'; // primary, grey, warning
 	export let disabled = false;
 	export let textalign = 'center';
+	export let size = 'regular'; // bold, large
 
 	onMount(() => checkTypes());
 	afterUpdate(() => checkTypes());
@@ -116,5 +138,9 @@
 
 	const getWarnString = (prev, actual) => {
 		return 'type="' + prev + '" is not supported and will be removed from future version, use ' + actual + ' instead.';
+	}
+
+	const handleClick = e => {
+		if (disabled) e.preventDefault();
 	}
 </script>

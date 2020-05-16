@@ -34,6 +34,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		will-change: opacity;
+		transform: translateZ(0);
 	}
 
 	.dialog-content {

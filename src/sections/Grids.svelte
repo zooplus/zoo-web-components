@@ -119,9 +119,6 @@
 			{#each headers as header}
 				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
 			{/each}
-			<div slot="norecords" class="example-row limited-width">
-				
-			</div>
 		</zoo-grid>
 	</div>
 </div>
@@ -129,8 +126,12 @@
 <style type='text/scss'>
 	@import "variables";
 
+	:host {
+		contain: layout;
+	}
+
 	h3 {
-		color: $primary-mid;
+		color: var(--primary-mid, #{$primary-mid});
 	}
 
 	.min-width { 

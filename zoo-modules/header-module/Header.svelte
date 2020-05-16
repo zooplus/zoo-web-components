@@ -1,6 +1,6 @@
 <svelte:options tag="zoo-header"></svelte:options>
 <div class="box" bind:this={_headerRoot}>
-	<img class="app-logo" src="{imgsrc}" alt="{imgalt}" bind:this={_img}/>
+	<img importance="high" class="app-logo" src="{imgsrc}" alt="{imgalt}" bind:this={_img}/>
 	<span class="app-name">{headertext}</span>
 	<slot></slot>
 </div>

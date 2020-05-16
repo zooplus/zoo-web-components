@@ -19,6 +19,8 @@
 			<hr>
 			<app-grids></app-grids>
 			<hr>
+			<app-links></app-links>
+			<hr>
 		</div>
 		<div id="when" class="caniuse">
 			<app-context text="When can I use it?" backbtn="{true}"></app-context>
@@ -108,7 +110,7 @@
 	.page-content {
 		position: relative;
 		display: grid;
-		grid-template-columns: 320px 1fr;
+		grid-template-columns: 340px 1fr;
 		grid-gap: 30px;
 		grid-template-areas: "overview overview"
 		"caniuse caniuse"

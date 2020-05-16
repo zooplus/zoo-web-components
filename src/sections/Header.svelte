@@ -32,6 +32,11 @@
 
 <style type='text/scss'>
 	@import "variables";
+
+	:host {
+		contain: layout;
+	}
+	
 	header {
 		position: relative;
 	}

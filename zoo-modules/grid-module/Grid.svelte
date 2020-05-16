@@ -200,27 +200,28 @@
 
 	const createResizeObserver = host => {
 		resizeObserver = new ResizeObserver(debounce(entries => {
-			for (const entry of entries) {
-				const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
-				for (const columnEl of columnElements) {
-					columnEl.style.width = entry.contentRect.width + 'px';
+			requestAnimationFrame(() => {
+				for (const entry of entries) {
+					const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
+					const width = entry.contentRect.width;
+					for (const columnEl of columnElements) {
+						columnEl.style.width = width + 'px';
+					}
 				}
-			}
-		}, 200));
+			});
+		}, 250));
 	}
 
-	const debounce = (func, wait, immediate) => {
+	const debounce = (func, wait) => {
 		let timeout;
 		return function() {
-			const context = this, args = arguments;
-			const later = function() {
+			const later = () => {
 				timeout = null;
-				if (!immediate) func.apply(context, args);
+				func.apply(this, arguments);
 			};
-			const callNow = immediate && !timeout;
 			clearTimeout(timeout);
 			timeout = setTimeout(later, wait);
-			if (callNow) func.apply(context, args);
+			if (!timeout) func.apply(this, arguments);
 		};
 	};
 

@@ -55,7 +55,7 @@
 </style>
 
 <script>
-	let sortState;
+	export let sortState = undefined;
 	let gridHeaderRoot;
 
 	const handleSortClick = () => {
@@ -67,14 +67,6 @@
 			sortState = undefined;
 		}
 		gridHeaderRoot.getRootNode().host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: sortState}, bubbles: true}));
-	}
-
-	export const discardSort = () => {
-		sortState = undefined;
-	}
-
-	export const setSort = newSortState => {
-		sortState = newSortState;
 	}
 
 </script>

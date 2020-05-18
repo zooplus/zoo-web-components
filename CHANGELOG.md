@@ -1,3 +1,9 @@
+# 5.1.1
+`zoo-checkbox` - avoid checkbox jumping when it changes state from/to clicked. Fix setting clicked class on create;      
+`zoo-grid` - simplify communication with `zoo-grid-header`, performance improvements when changing column width;       
+`zoo-link` - fix padding in `zoo-footer`;      
+`zoo-select` - show arrow/cross icons interchangeably when option is(not) selected.
+
 # 5.1.0
 `zoo-tooltip` - remove unused css;      
 `zoo-toast` - simplify HTML structure;      

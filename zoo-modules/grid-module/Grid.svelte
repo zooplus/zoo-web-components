@@ -176,7 +176,6 @@
 			header.classList.add('header-cell');
 			header.style.flexGrow = 1;
 			header.setAttribute('column', i);
-			header.setAttribute('draggable', true);
 			if (header.hasAttribute('sortable')) handleSortableHeader(header, host);
 			if (applyResizeLogic) resizeObserver.observe(header);
 			i++;
@@ -188,8 +187,9 @@
 		header.addEventListener("sortChange", (e) => {
 			e.stopPropagation();
 			const sortState = e.detail.sortState;
-			sortableHeaders.forEach(h => h.discardSort());
-			header.children[0].setSort(sortState);
+			sortableHeaders.forEach(h => {
+				if (!h.isEqualNode(header.children[0])) h.sortState = undefined;
+			});
 			const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
 			host.dispatchEvent(new CustomEvent('sortChange', {
 				detail: detail, bubbles: true
@@ -200,15 +200,15 @@
 
 	const createResizeObserver = host => {
 		resizeObserver = new ResizeObserver(debounce(entries => {
-			requestAnimationFrame(() => {
-				for (const entry of entries) {
-					const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
-					const width = entry.contentRect.width;
+			for (const entry of entries) {
+				const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
+				const width = entry.contentRect.width;
+				requestAnimationFrame(() => {
 					for (const columnEl of columnElements) {
 						columnEl.style.width = width + 'px';
 					}
-				}
-			});
+				});
+			}
 		}, 250));
 	}
 

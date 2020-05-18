@@ -33,7 +33,7 @@ const shared = {
 			customElement: true
 		}),
 		resolve(),
-		production && terser()
+		terser()
 	]
 }
 

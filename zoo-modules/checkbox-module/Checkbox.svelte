@@ -23,7 +23,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 2px;
 		position: relative;
 		box-sizing: border-box;
 		cursor: pointer;
@@ -39,44 +38,30 @@
 		display: flex;
 		width: 100%;
 		box-sizing: border-box;
-		padding: 6px 15px;
-
-
-		&.clicked {
-			padding: 4px 14px;
-
-			span {
-				left: 8px;
-			}
-		}
-
-		&.error {
-			padding: 5px 14px;
-
-			&.clicked {
-				padding: 4px 14px;
-			}
-		}
+		padding: 6px 0;
 	}
 
 	.highlighted {
 		border: $stroked-box-grey-light;
 		border-radius: $input-border-radius;
+		padding: 6px 15px;
 
 		&.clicked {
 			border: $stroked-box-success-bold;
 		}
-	}
 
-	.highlighted.error {
-		border: $stroked-box-warning-bold;
+		&.error {
+			border: $stroked-box-warning-bold;
+		}
+
+		&.error, &.clicked {
+			padding: 5px 14px;
+		}
 	}
 
 	span {
 		display: flex;
 		align-items: center;
-		position: relative;
-		left: 10px;
 	}
 
 	zoo-input-info {
@@ -87,15 +72,19 @@
 	
 	::slotted(input[type="checkbox"]) {
 		position: relative;
-		margin: 0;
+		display: flex;
+		margin: 0 10px 0 0;
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		outline: none;
 		cursor: pointer;
 	}
 
+	::slotted(input[type="checkbox"]:checked), ::slotted(input[type="checkbox"]:focus) {
+		margin: 0 9px 0 0;
+	}
+
 	::slotted(input[type="checkbox"])::before {
-		position: relative;
 		display: inline-block;
 		width: 24px;
 		height: 24px;
@@ -103,15 +92,17 @@
 		border-radius: 3px;
 		border: $stroked-box-grey;
 		background: transparent;
+		margin: 1px;
 	}
 
 	::slotted(input[type="checkbox"]:focus)::before {
 		border: $stroked-box-grey-bold;
+		margin: 0 1px 0 0;
 	}
 
 	::slotted(input[type="checkbox"]:checked)::before {
-		background: transparent;
 		border: $stroked-box-success-bold;
+		margin: 0 1px 0 0;
 	}
 
 	::slotted(input[type="checkbox"]:checked)::after {
@@ -143,7 +134,6 @@
 	.error {
 		::slotted(input[type="checkbox"])::before {
 			border-color: var(--warning-mid, #{$warning-mid});
-			transition: border-color 0.3s ease;
 		}
 
 		::slotted(input[type="checkbox"]:checked)::after {
@@ -164,27 +154,30 @@
 	let _slottedInput;
 	let _inputSlot;
 
-	const handleClick = (event) => {
+	const handleClick = e => {
 		if (_slottedInput.disabled) {
-			event.preventDefault();
+			e.preventDefault();
 			return;
 		}
-		event.stopImmediatePropagation();
+		e.stopImmediatePropagation();
 		_slottedInput.click();
 	};
 
-	const handleSlotClick = (event) => {
+	const handleSlotClick = e => {
+		_clicked = _slottedInput.checked;
 		if (_slottedInput.disabled) {
-			event.preventDefault();
+			e.preventDefault();
 			return;
 		}
-		_clicked = !_clicked;
-		event.stopImmediatePropagation();
+		e.stopImmediatePropagation();
 	};
 	  
 	onMount(() => {
 		// todo support multiple slots
-		_inputSlot.addEventListener("slotchange", () => _slottedInput = _inputSlot.assignedNodes()[0]);
+		_inputSlot.addEventListener("slotchange", () => {
+			_slottedInput = _inputSlot.assignedNodes()[0];
+			_clicked = _slottedInput.checked;
+		});
 		_inputSlot.addEventListener('keypress', e => {
 			if (e.keyCode === 13) {
 				_slottedInput.click();

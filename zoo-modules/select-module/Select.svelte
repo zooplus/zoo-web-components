@@ -5,15 +5,16 @@
 	<div class="input-slot {valid ? '' : 'error'}">
 		<slot bind:this={selectSlot} name="selectelement"></slot>
 		{#if slottedSelect && !slottedSelect.hasAttribute('multiple')}
-			<svg class="arrows {slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24">
-				<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-			</svg>
 			{#if loading}
 				<zoo-preloader></zoo-preloader>
 			{/if}
 			{#if valueSelected}
-				<svg width="20" height="20" viewBox="0 0 24 24" class="close" on:click="{() => handleCrossClick()}">
+				<svg class="close" on:click="{() => handleCrossClick()}" width="21" height="21" viewBox="0 0 24 24">
 					<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
+				</svg>
+			{:else}
+				<svg class="arrows {slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24">
+					<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
 				</svg>
 			{/if}
 		{/if}
@@ -37,7 +38,7 @@
 
 	.close {
 		cursor: pointer;
-		right: 28px;
+		right: 11px;
 		top: 14px;
 	}
 
@@ -60,7 +61,7 @@
 		background: white;
 		font-size: $p1-size;
 		line-height: $p1-line-height;
-		padding: 13px 15px;
+		padding: 13px 25px 13px 15px;
 		border: $stroked-box-grey;
 		border-radius: $input-border-radius;
 		color: $grey-dark;
@@ -83,13 +84,12 @@
 
 	::slotted(select:focus) {
 		border: $stroked-box-grey-dark-bold;
-		padding: 12px 14px;
+		padding: 12px 24px 12px 14px;
 	}
 
 	.input-slot.error ::slotted(select) {
 		border: $stroked-box-warning-bold;
-		padding: 12px 14px;
-		transition: border-color 0.3s ease;
+		padding: 12px 24px 12px 14px;
 	}
 </style>
 
@@ -114,6 +114,7 @@
 	onMount(() => {
 		selectSlot.addEventListener("slotchange", () => {
 			slottedSelect = selectSlot.assignedNodes()[0];
+			valueSelected = slottedSelect.value && !slottedSelect.disabled ? true : false;
 			slottedSelect.addEventListener('change', e => valueSelected = e.target.value ? true : false);
 		});
 	});

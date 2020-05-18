@@ -75,7 +75,7 @@
 	<zoo-checkbox highlighted="{true}" labeltext="Disabled checkbox">
 		<input disabled slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
-	<zoo-checkbox labeltext="Not highlighted checkbox">
+	<zoo-checkbox labeltext="Not highlighted checkbox with a long label that short be wrapped around checkbox like this" valid="{inputState}" inputerrormsg="error">
 		<input slot="checkboxelement" type="checkbox"/>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">

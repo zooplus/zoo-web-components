@@ -13,6 +13,7 @@
 
 	:host {
 		contain: layout;
+		display: flex;
 	}
 
 	.box {

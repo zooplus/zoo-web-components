@@ -25,13 +25,13 @@ describe('Zoo input', function() {
 				const inputBox = input.shadowRoot.querySelector('.box');
 				const label = inputBox.querySelector('.input-label').shadowRoot;
 				return {
-					labelText: label.querySelector('div').innerHTML
+					labelText: label.querySelector('label').innerHTML
 				};
 			});
 			expect(labelAttrs.labelText).equal('label');
 		});
 
-		it('should pass attributes to input link component', async() => {
+		it('should render input link', async() => {
 			const linkAttrs = await page.evaluate(() => {
 				let input = document.createElement('zoo-input');
 				input.linkhref = 'https://google.com';
@@ -39,10 +39,9 @@ describe('Zoo input', function() {
 				input.linktext = 'link-text';
 				document.body.appendChild(input);
 				const inputBox = input.shadowRoot.querySelector('.box');
-				const link = inputBox.querySelector('.input-link').shadowRoot;
-				const linkAnchor = link.querySelector('a');
+				const linkAnchor = inputBox.querySelector('a');
 				return {
-					linkText: linkAnchor.querySelector('span').innerHTML,
+					linkText: linkAnchor.innerHTML,
 					linkTarget: linkAnchor.getAttribute('target'),
 					linkHref: linkAnchor.getAttribute('href')
 				};

@@ -41,3 +41,19 @@
 .input-info {
 	grid-area: info;
 }
+
+a {
+	text-align: right;
+	text-decoration: none;
+	font-size: $p2-size;
+	line-height: $p2-line-height;
+	color: var(--primary-mid, #{$primary-mid});
+
+	&:visited {
+		color: var(--primary-light, #{$primary-light});
+	}
+
+	&:hover, &:focus, &:active {
+		color: var(--primary-dark, #{$primary-dark});
+	}
+}

@@ -15,10 +15,9 @@ describe('Zoo searchable select', function() {
 
 				const nestedInput = select.shadowRoot.querySelector('zoo-input').shadowRoot;
 
-				const link = nestedInput.querySelector('.input-link').shadowRoot;
-				const linkAnchor = link.querySelector('a');
+				const linkAnchor = nestedInput.querySelector('a');
 				const createdLink = {
-					linkText: linkAnchor.querySelector('span').innerHTML,
+					linkText: linkAnchor.innerHTML,
 					linkTarget: linkAnchor.getAttribute('target'),
 					linkHref: linkAnchor.getAttribute('href')
 				};
@@ -29,9 +28,9 @@ describe('Zoo searchable select', function() {
 					errorMsg: info.querySelector('.error').innerHTML
 				};
 
-				const label = nestedInput.querySelector('.input-label').shadowRoot;
+				const label = nestedInput.querySelector('slot[name="inputlabel"]');
 				const createdLabel = {
-					labelText: label.querySelector('div').innerHTML
+					labelText: label.assignedNodes()[0].innerHTML
 				};
 				return {
 					link: createdLink,

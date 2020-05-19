@@ -12,8 +12,9 @@
 - `linktype` - type of zoo-link (green or standard).
 
 ### Slots
-This component accept one `<slot name="inputelement"></slot>` which is replaced with provided `input` element so that you can catch events from this element.       
-Just add `slot` attribute to the `input` you provide for this component, like so: `<input slot="inputelement">`;
+This component accepts the following slots:
+- `<slot name="inputelement"></slot>` which is replaced with provided `select` element so that you can catch events from this element.        
+- `<slot name="inputlabel"></slot>` which is replaced with provided `label` element for a11y reasons.
 
 ### States
 - `disabled` - the component provides styling for disabled type of input. For the styles to be applied just set the `disabled` attribute on slotted `input` element;

@@ -1,7 +1,9 @@
 <svelte:options tag="zoo-select"></svelte:options>
 <div class="box {labelposition} {linktext ? '' : 'link-absent'}">
-	<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
-	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right"></zoo-link>
+	<slot name="selectlabel">
+		<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
+	</slot>
+	<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>
 	<div class="input-slot {valid ? '' : 'error'}">
 		<slot bind:this={selectSlot} name="selectelement"></slot>
 		{#if slottedSelect && !slottedSelect.hasAttribute('multiple')}
@@ -91,6 +93,14 @@
 		border: $stroked-box-warning-bold;
 		padding: 12px 24px 12px 14px;
 	}
+
+	::slotted(label) {
+		font-size: $p1-size;
+		line-height: $p1-line-height;
+		font-weight: 800;
+		color: $grey-dark;
+		text-align: left;
+	}
 </style>
 
 <script>
@@ -100,12 +110,11 @@
 	export let labeltext = "";
 	export let linktext = "";
 	export let linkhref = "";
-	export let linktarget= "about:blank";
+	export let linktarget = "about:blank";
 	export let inputerrormsg = "";
 	export let infotext = "";
 	export let valid = true;
 	export let loading = false;
-	export let linktype = "primary";
 	let slottedSelect;
 	let selectSlot;
 	let valueSelected;

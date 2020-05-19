@@ -5,7 +5,7 @@ describe('Zoo input label', function() {
 				let inputInfo = document.createElement('zoo-input-label');
 				inputInfo.labeltext = 'label-text';
 				document.body.appendChild(inputInfo);
-				const text = inputInfo.shadowRoot.querySelector('div');
+				const text = inputInfo.shadowRoot.querySelector('label');
 				return text.innerHTML;
 			});
 			expect(infoText).to.have.string('label-text');

@@ -5,8 +5,9 @@
 			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}">
 			</zoo-tooltip>
 		{/if}
-		<zoo-input class:mobile="{_isMobile}" type="text" {valid} {labelposition} {labeltext} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
-			<input disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
+		<zoo-input class:mobile="{_isMobile}" type="text" {valid} {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
+			<label for="input" slot="inputlabel">{labeltext}</label>
+			<input id="input" disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
 				{#if _valueSelected}
 					<svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>

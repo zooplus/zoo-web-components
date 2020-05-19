@@ -1,8 +1,10 @@
 <svelte:options tag="zoo-checkbox"></svelte:options>
 <div class="box" class:disabled="{_slottedInput && _slottedInput.disabled}" on:click="{e => handleClick(e)}">
 	<div class="checkbox" class:clicked="{_clicked}" class:highlighted="{highlighted}" class:error="{!valid}">
-		<slot name="checkboxelement" on:click="{e => handleSlotClick(e)}" bind:this={_inputSlot}></slot>
-		<span>{labeltext}</span>
+		<slot name="checkboxelement" bind:this={_inputSlot}></slot>
+		<slot name="checkboxlabel" bind:this={_labelSlot}>
+			<span>{labeltext}</span>
+		</slot>
 	</div>
 	<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
 </div>
@@ -28,10 +30,6 @@
 		cursor: pointer;
 		font-size: $p1-size;
 		line-height: $p1-line-height;
-
-		&.disabled {
-			cursor: not-allowed;
-		}
 	}
 
 	.checkbox {
@@ -131,6 +129,16 @@
 		color: $grey-mid;
 	}
 
+	::slotted(label) {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.disabled, .disabled ::slotted(label) {
+		cursor: not-allowed;
+	}
+
 	.error {
 		::slotted(input[type="checkbox"])::before {
 			border-color: var(--warning-mid, #{$warning-mid});
@@ -153,23 +161,24 @@
 	let _clicked = false;
 	let _slottedInput;
 	let _inputSlot;
+	let _labelSlot;
+	let labelPresent = false;
 
 	const handleClick = e => {
+		// browser should handle it
+		if (labelPresent) {
+			_clicked = _slottedInput.checked;
+			return;
+		}
+		// replicate browser behaviour
 		if (_slottedInput.disabled) {
 			e.preventDefault();
 			return;
 		}
-		e.stopImmediatePropagation();
-		_slottedInput.click();
-	};
-
-	const handleSlotClick = e => {
+		if (e.target != _slottedInput) {
+			_slottedInput.checked = !_slottedInput.checked;
+		}
 		_clicked = _slottedInput.checked;
-		if (_slottedInput.disabled) {
-			e.preventDefault();
-			return;
-		}
-		e.stopImmediatePropagation();
 	};
 	  
 	onMount(() => {
@@ -178,6 +187,7 @@
 			_slottedInput = _inputSlot.assignedNodes()[0];
 			_clicked = _slottedInput.checked;
 		});
+		_labelSlot.addEventListener("slotchange", () => labelPresent = _labelSlot.assignedNodes()[0] ? true : false);
 		_inputSlot.addEventListener('keypress', e => {
 			if (e.keyCode === 13) {
 				_slottedInput.click();

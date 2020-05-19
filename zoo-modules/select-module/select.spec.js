@@ -25,13 +25,13 @@ describe('Zoo select', function() {
 				const selectBox = select.shadowRoot.querySelector('.box');
 				const label = selectBox.querySelector('.input-label').shadowRoot;
 				return {
-					labelText: label.querySelector('div').innerHTML
+					labelText: label.querySelector('label').innerHTML
 				};
 			});
 			expect(labelAttrs.labelText).equal('label');
 		});
 
-		it('should pass attributes to input link component', async() => {
+		it('should render input link', async() => {
 			const linkAttrs = await page.evaluate(() => {
 				let select = document.createElement('zoo-select');
 				select.linkhref = 'https://google.com';
@@ -39,10 +39,9 @@ describe('Zoo select', function() {
 				select.linktext = 'link-text';
 				document.body.appendChild(select);
 				const selectBox = select.shadowRoot.querySelector('.box');
-				const link = selectBox.querySelector('.input-link').shadowRoot;
-				const linkAnchor = link.querySelector('a');
+				const linkAnchor = selectBox.querySelector('a');
 				return {
-					linkText: linkAnchor.querySelector('span').innerHTML,
+					linkText: linkAnchor.innerHTML,
 					linkTarget: linkAnchor.getAttribute('target'),
 					linkHref: linkAnchor.getAttribute('href')
 				};
@@ -83,7 +82,7 @@ describe('Zoo select', function() {
 
 				select.appendChild(element);
 				document.body.appendChild(select);
-				const slot = select.shadowRoot.querySelector('slot');
+				const slot = select.shadowRoot.querySelector('slot[name="selectelement"]');
 				return {
 					optVal: slot.assignedNodes()[0].options[0].value,
 					optText: slot.assignedNodes()[0].options[0].innerHTML

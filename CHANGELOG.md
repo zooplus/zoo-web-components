@@ -1,3 +1,7 @@
+# 5.2.0
+`zoo-select`, `zoo-input` - added new `<slot name="selectlabel>` and `<slot name="inputlabel>` respectively for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y. Fixed link padding;      
+`zoo-checkbox` - added new `<slot name="checkboxlabel>` for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y.
+
 # 5.1.2
 `zoo-grid` - fix for sorting icon to have fixed size, fix for paginator elements to have dynamic size depending on the page number.
 

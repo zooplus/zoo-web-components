@@ -20,7 +20,15 @@
 				</ul>
 			</zoo-collapsable-list-item>
 			<zoo-collapsable-list-item slot="item1">
-				This component accept one <b>{inputSlotText}</b> which is replaced with provided <b>element</b> so that you can catch events/provide your css/attach framework specific directives from/to this element.     
+				This component accepts the following slots:
+				<ul>
+					<li>
+						<b>{inputSlotText}</b> - replaced with provided <b>input</b> so that you can catch events/provide your css/attach framework specific directives from/to this element.<br>
+					</li>
+					<li>
+						<b>{labelSlotText}</b> - replaced with provided <b>label</b> for a11y reasons.
+					</li>
+				</ul>
 			</zoo-collapsable-list-item>
 		</zoo-collapsable-list>
 	</div>
@@ -43,6 +51,7 @@
 	import { onMount } from 'svelte';
 	let list;
 	let inputSlotText = `<slot name="checkboxelement"></slot>`;
+	let labelSlotText = `<slot name="checkboxlabel"></slot>`;
 	let example = `<div style="width: 250px;">\n  <zoo-checkbox highlighted="1" labeltext="Example label for this particular checkbox">\n    <input slot="checkboxelement" type="checkbox"/>\n  </zoo-checkbox>\n</div>`;
 	onMount(() => {
 		list.items = [

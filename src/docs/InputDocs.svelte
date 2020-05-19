@@ -33,7 +33,15 @@
 				</ul>
 			</zoo-collapsable-list-item>
 			<zoo-collapsable-list-item slot="item1">
-				This component accepts one slot {inputSlotExample}.
+				This component accepts the following slots:
+				<ul>
+					<li>
+						<b>{inputSlotExample}</b> - replaced with provided <b>input</b> so that you can catch events/provide your css/attach framework specific directives from/to this element.<br>
+					</li>
+					<li>
+						<b>{labelSlotExample}</b> - replaced with provided <b>label</b> for a11y reasons.
+					</li>
+				</ul>
 			</zoo-collapsable-list-item>
 		</zoo-collapsable-list>
 	</div>
@@ -61,6 +69,7 @@
 	import { onMount } from 'svelte';
 	let list;
 	let inputSlotExample = `<slot name="inputelement"></slot>`;
+	let labelSlotExample = `<slot name="inputlabel"></slot>`;
 	let example = `<div style="width: 250px;">\n  <zoo-input labeltext="Input label"\n    linktext="Forgotten your password?"\n    linkhref="https://google.com"\n    linktarget="about:blank"\n    infotext="Additional helpful information for our users" >\n    <input slot="inputelement" placeholder="input"/>\n  </zoo-input>\n</div>`;
 	onMount(() => {
 		list.items = [

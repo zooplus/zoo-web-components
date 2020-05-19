@@ -1,7 +1,9 @@
 <svelte:options tag="zoo-input"></svelte:options>
 <div class="box {labelposition} {linktext ? '' : 'link-absent'}">
-	<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
-	<zoo-link class="input-link" href="{linkhref}" target="{linktarget}" type="{linktype}" text="{linktext}" textalign="right"></zoo-link>
+	<slot name="inputlabel">
+		<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
+	</slot>
+	<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>
 	<span class="input-slot {valid ? '' : 'error'}">
 		<slot name="inputelement"></slot>
 		<svg class="error-circle" width="18" height="18" viewBox="0 0 24 24">
@@ -96,6 +98,16 @@
 	::slotted(input[type='date']), ::slotted(input[type='time']) {
 		-webkit-appearance: none;
 	}
+
+	::slotted(label) {
+		grid-area: label;
+		align-self: self-start;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
+		font-weight: 800;
+		color: $grey-dark;
+		text-align: left;
+	}
 </style>
 
 <script>
@@ -107,5 +119,4 @@
 	export let inputerrormsg = "";
 	export let infotext = "";
 	export let valid = true;
-	export let linktype = "primary";
 </script>

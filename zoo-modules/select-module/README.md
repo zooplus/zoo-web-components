@@ -12,8 +12,9 @@
 - `linktype` - type of zoo-link (`primary` or `nagative`).
 
 ### Slots
-This component accept one `<slot name="selectelement"></slot>` which is replaced with provided `select` element so that you can catch events from this element.       
-Just add `slot` attribute to the `select` you provide for this component, like so: `<select slot="selectelement">`;
+This component accepts the following slots:
+- `<slot name="selectelement"></slot>` which is replaced with provided `select` element so that you can catch events from this element.        
+- `<slot name="selectlabel"></slot>` which is replaced with provided `label` element for a11y reasons.
 
 ### States
 - `disabled` - the component provides styling for disabled type of `select`. For the styles to be applied just set the `disabled` attribute on slotted `select` element;

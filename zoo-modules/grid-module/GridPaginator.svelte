@@ -100,9 +100,8 @@
 		align-items: center;
 		justify-content: center;
 		border-radius: $input-border-radius;
-		width: 24px;
-		height: 24px;
 		margin-right: 5px;
+		padding: 4px 8px;
 	}
 
 	.page-element-dots {

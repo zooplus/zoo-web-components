@@ -36,7 +36,6 @@
 		font-size: $h2-size;
 		line-height: $h2-line-height;
 		padding: 0 25px 0 0;
-		font-weight: 400;
 		@media only screen and (max-width: 544px) {
 			display: none;
 		}

@@ -1,3 +1,6 @@
+# 5.1.2
+`zoo-grid` - fix for sorting icon to have fixed size, fix for paginator elements to have dynamic size depending on the page number.
+
 # 5.1.1
 `zoo-checkbox` - avoid checkbox jumping when it changes state from/to clicked. Fix setting clicked class on create;      
 `zoo-grid` - simplify communication with `zoo-grid-header`, performance improvements when changing column width;       

@@ -29,6 +29,7 @@
 	}
 
 	.arrow {
+		min-width: 20px;
 		width: 20px;
 		opacity: 0;
 		transform: rotate(0deg);

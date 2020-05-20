@@ -1,3 +1,7 @@
+# 5.2.1
+`zoo-searchable-select` - remove `contain: layout` to fix stacking context. Fix focus/error css borders conflict.       
+`zoo-input`, `zoo-select` - fix pixels for icons;
+
 # 5.2.0
 `zoo-select`, `zoo-input` - added new `<slot name="selectlabel>` and `<slot name="inputlabel>` respectively for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y. Fixed link padding;      
 `zoo-checkbox` - added new `<slot name="checkboxlabel>` for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y.

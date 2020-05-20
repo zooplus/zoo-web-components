@@ -122,10 +122,6 @@
 		}
 
 		grid-gap: 20px;
-
-		zoo-select, zoo-searchable-select {
-			z-index: 5;
-		}
 	}
 
 	.submit {

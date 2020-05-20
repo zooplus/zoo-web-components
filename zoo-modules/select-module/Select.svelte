@@ -34,7 +34,7 @@
 
 	.close, .arrows {
 		position: absolute;
-		right: 9px;
+		right: 10px;
 		top: 12px;
 	}
 

@@ -23,9 +23,8 @@
 
 	.error-circle {
 		position: absolute;
-		right: 0;
-		top: 14px;
-		padding: 0 15px 0 5px;
+		right: 15px;
+		top: 15px;
 		color: var(--warning-mid, #{$warning-mid});
 		pointer-events: none;
 		opacity: 0;
@@ -61,6 +60,7 @@
 		color: $grey-dark;
 		outline: none;
 		box-sizing: border-box;
+		overflow: hidden;
 		text-overflow: ellipsis;
 		-moz-appearance: textfield;
 	}

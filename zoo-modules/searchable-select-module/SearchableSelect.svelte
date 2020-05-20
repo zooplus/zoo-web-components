@@ -30,41 +30,20 @@
 <style type='text/scss'>
 	@import "variables";
 
-	:host {
-		contain: layout;
-	}
-
-	.box:focus-within ::slotted(select) {
-		border: $stroked-box-grey-dark-bold;
-		border-top: none;
-		padding: 12px 14px;
-	}
-
-	.box:focus-within input {
-		border: $stroked-box-grey-dark-bold;
-		padding: 12px 14px;
+	:host, .box {
+		position: relative;
 	}
 
 	.close {
 		display: inline-block;
 		position: absolute;
-		top: 34%;
-		right: 4%;
+		top: 15px;
+		right: 14px;
 		cursor: pointer;
 	}
 
-	:host {
-		position: relative;
-	}
-
-	.box {
-		position: relative;
-
-		&:hover {
-			.selected-options {
-				display: block;
-			}
-		}
+	.box:hover .selected-options {
+		display: block;
 	}
 
 	.selected-options {
@@ -78,9 +57,8 @@
 	::slotted(select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
-		text-indent: 1px;
-		text-overflow: '';
 		width: 100%;
+		background: white;
 		padding: 13px 15px;
 		border: $stroked-box-grey;
 		border-bottom-left-radius: 3px;
@@ -92,13 +70,33 @@
 		font-size: $p1-size;
 	}
 
-	.box.error ::slotted(select) {
-		border: $stroked-box-warning-bold;
-		transition: border-color 0.3s ease;
-	}
-
 	.box.hidden ::slotted(select) {
 		display: none;
+	}
+
+	.box input {
+		padding: 13px 25px 13px 15px;
+	}
+
+	.box:focus-within ::slotted(select) {
+		border: $stroked-box-grey-dark-bold;
+		border-top: none;
+		padding: 12px 14px;
+	}
+
+	.box:focus-within input {
+		border: $stroked-box-grey-dark-bold;
+		padding: 12px 24px 12px 14px;
+	}
+
+	.box.error ::slotted(select) {
+		border: $stroked-box-warning-bold;
+		border-top: none;
+		padding: 12px 14px;
+	}
+
+	.box.error input {
+		border: $stroked-box-warning-bold;
 	}
 
 	::slotted(select:disabled) {

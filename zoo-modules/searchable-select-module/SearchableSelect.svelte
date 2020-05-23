@@ -1,10 +1,6 @@
 <svelte:options tag="zoo-searchable-select"></svelte:options>
 <div class="box {valid ? '' : 'error'} {hidden ? 'hidden' : ''}">
 	{#if !_isMobile}
-		{#if tooltipText}
-			<zoo-tooltip class="selected-options" position="right" text="{tooltipText}">
-			</zoo-tooltip>
-		{/if}
 		<zoo-input class:mobile="{_isMobile}" type="text" {valid} {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
 			<label for="input" slot="inputlabel">{labeltext}</label>
 			<input id="input" disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
@@ -18,6 +14,10 @@
 					<zoo-preloader></zoo-preloader>
 				{/if}
 			</span>
+			{#if tooltipText}
+				<zoo-tooltip slot="inputelement" class="selected-options" position="right" text="{tooltipText}">
+				</zoo-tooltip>
+			{/if}
 		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
@@ -40,6 +40,8 @@
 		top: 15px;
 		right: 14px;
 		cursor: pointer;
+		background: white;
+		z-index: 1;
 	}
 
 	.box:hover .selected-options {

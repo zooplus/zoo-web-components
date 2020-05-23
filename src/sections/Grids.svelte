@@ -59,7 +59,7 @@
 
 	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
 		<zoo-grid class="limited-width grid-2" style="min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
-			currentpage="5" maxpages="20" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
+			currentpage="1" maxpages="4" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
 				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
 			{/each}
@@ -178,6 +178,10 @@
 
 		.item-per-page-selector {
 			border: $stroked-box-grey-light;
+
+			&:focus {
+				border: $stroked-box-grey-dark-bold;
+			}
 		}
 	}
 </style>

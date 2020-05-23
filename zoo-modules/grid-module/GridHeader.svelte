@@ -48,9 +48,10 @@
 		background: $grey-ultralight;
 	}
 
-	.arrow, .arrow[sortstate='desc'], .arrow[sortstate='asc'] {
+	.box .arrow, .arrow[sortstate='desc'], .arrow[sortstate='asc'] {
 		&:active {
 			opacity: 0.5;
+			transform: translateY(1px);
 		}
 	}
 </style>

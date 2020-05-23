@@ -34,11 +34,14 @@
 
 	.box {
 		display: flex;
-		justify-content: flex-end;
 		font-size: $p1-size;
+		width: max-content;
+		right: 10px;
+		justify-self: flex-end;
+		position: sticky;
 
 		&.hidden {
-			opacity: 0;
+			display: none;
 		}
 	}
 

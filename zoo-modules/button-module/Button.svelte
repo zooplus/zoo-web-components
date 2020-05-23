@@ -9,7 +9,6 @@
 	:host {
 		display: block;
 		max-width: 330px;
-		contain: layout;
 		position: relative;
 	}
 

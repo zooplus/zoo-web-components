@@ -13,7 +13,6 @@
 	@import "variables";
 	
 	:host {
-		contain: layout;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

@@ -17,10 +17,6 @@
 	@import "variables";
 	@import "input";
 
-	:host {
-		contain: layout;
-	}
-
 	.error-circle {
 		position: absolute;
 		right: 15px;

@@ -10,7 +10,7 @@
 	<slot name="row" bind:this={rowSlot}></slot>
 	<slot name="norecords"></slot>
 	<slot name="paginator">
-		<zoo-grid-paginator class="paginator" {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
+		<zoo-grid-paginator {currentpage} {maxpages} on:pageChange="{e => dispatchPageEvent(e)}">
 			<slot name="pagesizeselector" slot="pagesizeselector"></slot>
 		</zoo-grid-paginator>
 	</slot>
@@ -74,7 +74,7 @@
 			display: flex;
 		}
 
-		::slotted(.header-cell) {
+		::slotted(*[slot="headercell"]) {
 			overflow: auto;
 			resize: horizontal;
 		}
@@ -99,10 +99,11 @@
 		z-index: 1;
 	}
 
-	::slotted(.header-cell) {
+	::slotted(*[slot="headercell"]) {
 		display: flex;
 		align-items: center;
 		padding-right: 5px;
+		flex-grow: 1;
 	}
 
 	::slotted(*[slot="row"]:nth-child(odd)) {
@@ -120,16 +121,12 @@
 		padding: 10px 0;
 	}
 
-	.paginator {
-		display: none;
+	zoo-grid-paginator {
+		display: grid;
 		position: sticky;
 		grid-column: span var(--grid-column-num);
 		bottom: 0;
 		background: $white;
-	}
-
-	:host([paginator]) zoo-grid-paginator {
-		display: block;
 	}
 </style>
 
@@ -173,8 +170,6 @@
 			createResizeObserver(host);
 		}
 		for (let header of headers) {
-			header.classList.add('header-cell');
-			header.style.flexGrow = 1;
 			header.setAttribute('column', i);
 			if (header.hasAttribute('sortable')) handleSortableHeader(header, host);
 			if (applyResizeLogic) resizeObserver.observe(header);

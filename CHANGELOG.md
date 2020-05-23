@@ -1,3 +1,7 @@
+# 5.2.2
+remove containment of most of elements that might be used a lot of a single page.      
+`zoo-grid` - simplification of internal styles and making `zoo-paginator` a sticky container which sticks to the right side.
+
 # 5.2.1
 `zoo-searchable-select` - remove `contain: layout` to fix stacking context. Fix focus/error css borders conflict.       
 `zoo-input`, `zoo-select` - fix pixels for icons;

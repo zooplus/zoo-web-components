@@ -14,10 +14,6 @@
 <style type="text/scss">
 	@import "variables";
 
-	:host {
-		contain: layout;
-	}
-
 	.item ::slotted(*) {
 		display: none;
 	}

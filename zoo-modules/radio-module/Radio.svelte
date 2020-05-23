@@ -13,7 +13,6 @@
 	:host {
 		display: flex;
 		flex-direction: column;
-		contain: layout;
 	}
 
 	.template-slot {

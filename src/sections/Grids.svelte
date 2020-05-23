@@ -6,11 +6,11 @@
 	<h3>A grid with pagination, resizing and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable draggable
+	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable dragndrop
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 		{#each headers as header, idx}
-			<div class="header-cell {idx == 0 ? 'min-width' : ''}" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</div>
+			<zoo-grid-header class="header-cell {idx == 0 ? 'min-width' : ''}" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
 		{#each data as row} 
 			<div class="example-row limited-width" slot="row">

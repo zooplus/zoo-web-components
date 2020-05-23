@@ -1,1 +1,9337 @@
-!function(){"use strict";function t(){}function e(t,e,o,n,l){t.__svelte_meta={loc:{file:e,line:o,column:n,char:l}}}function o(t){return t()}function n(){return Object.create(null)}function l(t){t.forEach(o)}function i(t){return"function"==typeof t}function s(t,e){return t!=t?e==e:t!==e||t&&"object"==typeof t||"function"==typeof t}function a(t){t.parentNode.removeChild(t)}function c(t,e){for(let o=0;o<t.length;o+=1)t[o]&&t[o].d(e)}function r(t){return document.createElement(t)}function d(t){return document.createElementNS("http://www.w3.org/2000/svg",t)}function p(t){return document.createTextNode(t)}function h(){return p(" ")}function u(t,e,o){null==o?t.removeAttribute(e):t.getAttribute(e)!==o&&t.setAttribute(e,o)}function m(t,e,o){e in t?t[e]=o:u(t,e,o)}function x(t,e,o,n){t.style.setProperty(e,o,n?"important":"")}let f;function b(t){f=t}function g(t){(function(){if(!f)throw new Error("Function called outside component initialization");return f})().$$.on_mount.push(t)}const w=[],v=[],y=[],k=[],$=Promise.resolve();let C=!1;function z(t){y.push(t)}let _=!1;const E=new Set;function S(){if(!_){_=!0;do{for(let t=0;t<w.length;t+=1){const e=w[t];b(e),j(e.$$)}for(w.length=0;v.length;)v.pop()();for(let t=0;t<y.length;t+=1){const e=y[t];E.has(e)||(E.add(e),e())}y.length=0}while(w.length);for(;k.length;)k.pop()();C=!1,_=!1,E.clear()}}function j(t){if(null!==t.fragment){t.update(),l(t.before_update);const e=t.dirty;t.dirty=[-1],t.fragment&&t.fragment.p(t.ctx,e),t.after_update.forEach(z)}}const R=new Set;const T="undefined"!=typeof window?window:"undefined"!=typeof globalThis?globalThis:global;function D(t,e){-1===t.$$.dirty[0]&&(w.push(t),C||(C=!0,$.then(S)),t.$$.dirty.fill(0)),t.$$.dirty[e/31|0]|=1<<e%31}function M(e,s,c,r,d,p,h=[-1]){const u=f;b(e);const m=s.props||{},x=e.$$={fragment:null,ctx:null,props:p,update:t,not_equal:d,bound:n(),on_mount:[],on_destroy:[],before_update:[],after_update:[],context:new Map(u?u.$$.context:[]),callbacks:n(),dirty:h};let g=!1;if(x.ctx=c?c(e,m,(t,o,...n)=>{const l=n.length?n[0]:o;return x.ctx&&d(x.ctx[t],x.ctx[t]=l)&&(x.bound[t]&&x.bound[t](l),g&&D(e,t)),o}):[],x.update(),g=!0,l(x.before_update),x.fragment=!!r&&r(x.ctx),s.target){if(s.hydrate){const t=function(t){return Array.from(t.childNodes)}(s.target);x.fragment&&x.fragment.l(t),t.forEach(a)}else x.fragment&&x.fragment.c();s.intro&&((w=e.$$.fragment)&&w.i&&(R.delete(w),w.i(v))),function(t,e,n){const{fragment:s,on_mount:a,on_destroy:c,after_update:r}=t.$$;s&&s.m(e,n),z(()=>{const e=a.map(o).filter(i);c?c.push(...e):l(e),t.$$.on_mount=[]}),r.forEach(z)}(e,s.target,s.anchor),S()}var w,v;b(u)}let P;function O(t,e){document.dispatchEvent(function(t,e){const o=document.createEvent("CustomEvent");return o.initCustomEvent(t,!1,!1,e),o}(t,Object.assign({version:"3.22.3"},e)))}function I(t,e){O("SvelteDOMInsert",{target:t,node:e}),function(t,e){t.appendChild(e)}(t,e)}function A(t,e,o){O("SvelteDOMInsert",{target:t,node:e,anchor:o}),function(t,e,o){t.insertBefore(e,o||null)}(t,e,o)}function H(t){O("SvelteDOMRemove",{node:t}),a(t)}function L(t,e,o,n,l,i){const s=!0===n?["capture"]:n?Array.from(Object.keys(n)):[];l&&s.push("preventDefault"),i&&s.push("stopPropagation"),O("SvelteDOMAddEventListener",{node:t,event:e,handler:o,modifiers:s});const a=function(t,e,o,n){return t.addEventListener(e,o,n),()=>t.removeEventListener(e,o,n)}(t,e,o,n);return()=>{O("SvelteDOMRemoveEventListener",{node:t,event:e,handler:o,modifiers:s}),a()}}function B(t,e,o){u(t,e,o),null==o?O("SvelteDOMRemoveAttribute",{node:t,attribute:e}):O("SvelteDOMSetAttribute",{node:t,attribute:e,value:o})}function F(t){if(!("string"==typeof t||t&&"object"==typeof t&&"length"in t)){let e="{#each} only iterates over array-like objects.";throw"function"==typeof Symbol&&t&&Symbol.iterator in t&&(e+=" You can use a spread to convert this iterable into an array."),new Error(e)}}function V(t,e,o){for(const n of Object.keys(e))~o.indexOf(n)||console.warn(`<${t}> received an unexpected slot "${n}".`)}"function"==typeof HTMLElement&&(P=class extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){for(const t in this.$$.slotted)this.appendChild(this.$$.slotted[t])}attributeChangedCallback(t,e,o){this[t]=o}$destroy(){!function(t,e){const o=t.$$;null!==o.fragment&&(l(o.on_destroy),o.fragment&&o.fragment.d(e),o.on_destroy=o.fragment=null,o.ctx=[])}(this,1),this.$destroy=t}$on(t,e){const o=this.$$.callbacks[t]||(this.$$.callbacks[t]=[]);return o.push(e),()=>{const t=o.indexOf(e);-1!==t&&o.splice(t,1)}}$set(){}});const N="src/common/Context.svelte";function W(t){let o,n,l,i;const s={c:function(){o=r("div"),n=r("zoo-button"),l=r("span"),i=r("a"),i.textContent="Go to top",B(i,"href","#"),e(i,N,7,31,228),B(l,"slot","buttoncontent"),e(l,N,7,4,201),e(n,N,5,3,134),B(o,"class","back-btn"),e(o,N,4,2,108)},m:function(t,e){A(t,o,e),I(o,n),I(n,l),I(l,i)},d:function(t){t&&H(o)}};return O("SvelteRegisterBlock",{block:s,id:W.name,type:"if",source:"(4:1) {#if backbtn}",ctx:t}),s}function G(o){let n,l,i,s,a=o[1]&&W(o);const c={c:function(){n=r("div"),l=r("h2"),i=p(o[0]),s=h(),a&&a.c(),this.c=t,e(l,N,2,1,75),B(n,"class","context"),e(n,N,1,0,52)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),I(n,l),I(l,i),I(n,s),a&&a.m(n,null)},p:function(t,[e]){1&e&&function(t,e){e=""+e,t.data!==e&&(O("SvelteDOMSetData",{node:t,data:e}),t.data=e)}(i,t[0]),t[1]?a||(a=W(t),a.c(),a.m(n,null)):a&&(a.d(1),a=null)},i:t,o:t,d:function(t){t&&H(n),a&&a.d()}};return O("SvelteRegisterBlock",{block:c,id:G.name,type:"component",source:"",ctx:o}),c}function Y(t,e,o){let{text:n=""}=e,{backbtn:l=!1}=e;const i=["text","backbtn"];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-context> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("app-context",s,[]),t.$set=t=>{"text"in t&&o(0,n=t.text),"backbtn"in t&&o(1,l=t.backbtn)},t.$capture_state=()=>({text:n,backbtn:l}),t.$inject_state=t=>{"text"in t&&o(0,n=t.text),"backbtn"in t&&o(1,l=t.backbtn)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l]}customElements.define("app-context",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.context{min-height:80px;display:flex;align-items:center;margin-left:20px;background:white}.back-btn{margin-left:5px}.back-btn a{text-decoration:none;color:white}h2{color:var(--primary-mid, #3C9700);font-size:23px}</style>",M(this,{target:this.shadowRoot},Y,G,s,{text:0,backbtn:1}),t&&(t.target&&A(t.target,this,t.anchor),t.props&&(this.$set(t.props),S()))}static get observedAttributes(){return["text","backbtn"]}get text(){return this.$$.ctx[0]}set text(t){this.$set({text:t}),S()}get backbtn(){return this.$$.ctx[1]}set backbtn(t){this.$set({backbtn:t}),S()}});const U="src/sections/Header.svelte";function q(t,e,o){const n=t.slice();return n[12]=e[o],n}function Z(o){let n,l,i,s,a,c=o[12].text+"";const d={c:function(){n=r("div"),l=r("a"),i=p(c),a=h(),B(l,"href",s=o[12].href),e(l,U,25,5,1035),B(n,"class","nav-link"),e(n,U,24,4,1007)},m:function(t,e){A(t,n,e),I(n,l),I(l,i),I(n,a)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:d,id:Z.name,type:"each",source:"(24:3) {#each navlinks as link}",ctx:o}),d}function J(o){let n,i,s,a,d,p,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j=o[1];F(j);let R=[];for(let t=0;t<j.length;t+=1)R[t]=Z(q(o,j,t));const T={c:function(){n=r("header"),i=r("zoo-header"),s=r("div"),a=r("div"),d=r("zoo-button"),p=r("span"),p.textContent="Zoo+ theme",x=h(),f=r("div"),b=r("zoo-button"),g=r("span"),g.textContent="Grey theme",v=h(),y=r("div"),k=r("zoo-button"),$=r("span"),$.textContent="Random theme",z=h(),_=r("zoo-navigation"),E=r("div");for(let t=0;t<R.length;t+=1)R[t].c();this.c=t,B(p,"slot","buttoncontent"),B(p,"class","slotted-span"),e(p,U,6,5,313),m(d,"type",u="zoo"===o[0]?"secondary":"primary"),m(d,"size","medium"),e(d,U,5,4,194),B(a,"class","header-button"),e(a,U,4,3,162),B(g,"slot","buttoncontent"),B(g,"class","slotted-span"),e(g,U,11,5,563),m(b,"type",w="grey"===o[0]?"secondary":"primary"),m(b,"size","medium"),e(b,U,10,4,442),B(f,"class","header-button"),e(f,U,9,3,410),B($,"slot","buttoncontent"),B($,"class","slotted-span"),e($,U,16,5,817),m(k,"type",C="random"===o[0]?"secondary":"primary"),m(k,"size","medium"),e(k,U,15,4,692),B(y,"class","header-button"),e(y,U,14,3,660),B(s,"class","buttons-holder"),e(s,U,3,2,130),m(i,"imgsrc","logo.png"),m(i,"headertext","Zooplus web components"),e(i,U,2,1,61),e(E,U,22,2,969),m(_,"class","nav"),e(_,U,21,1,938),e(n,U,1,0,51)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e,c){A(t,n,e),I(n,i),I(i,s),I(s,a),I(a,d),I(d,p),I(s,x),I(s,f),I(f,b),I(b,g),I(s,v),I(s,y),I(y,k),I(k,$),I(n,z),I(n,_),I(_,E);for(let t=0;t<R.length;t+=1)R[t].m(E,null);c&&l(S),S=[L(d,"click",o[9],!1,!1,!1),L(b,"click",o[10],!1,!1,!1),L(k,"click",o[11],!1,!1,!1)]},p:function(t,[e]){if(1&e&&u!==(u="zoo"===t[0]?"secondary":"primary")&&m(d,"type",u),1&e&&w!==(w="grey"===t[0]?"secondary":"primary")&&m(b,"type",w),1&e&&C!==(C="random"===t[0]?"secondary":"primary")&&m(k,"type",C),2&e){let o;for(j=t[1],F(j),o=0;o<j.length;o+=1){const n=q(t,j,o);R[o]?R[o].p(n,e):(R[o]=Z(n),R[o].c(),R[o].m(E,null))}for(;o<R.length;o+=1)R[o].d(1);R.length=j.length}},i:t,o:t,d:function(t){t&&H(n),c(R,t),l(S)}};return O("SvelteRegisterBlock",{block:T,id:J.name,type:"component",source:"",ctx:o}),T}function K(t,e,o){let n="zoo",l=[{href:"#what",text:"What is this project?"},{href:"#when",text:"When can I use it?"},{href:"#how",text:"How can I use it?"}];const i=t=>{switch(o(0,n=t),t){case"zoo":s("--primary-mid","#3C9700"),s("--primary-light","#66B100"),s("--primary-dark","#286400"),s("--primary-ultralight","#EBF4E5"),s("--secondary-mid","#FF6200"),s("--secondary-light","#FF8800"),s("--secondary-dark","#CC4E00");break;case"grey":s("--primary-mid","#676778"),s("--primary-light","#838399"),s("--primary-dark","#565664"),s("--primary-ultralight","#838399"),s("--secondary-mid","#ff3e00"),s("--secondary-light","#ff794d"),s("--secondary-dark","#c53100")}},s=(t,e)=>{document.documentElement.style.setProperty(t,e)},a=()=>{o(0,n="random");const t=c(),e=r(t.r,t.g,t.b);s("--primary-mid",e),s("--primary-light",p(e,30)),s("--primary-dark",p(e,-30)),s("--primary-ultralight",p(e,60));const l=c(),i=r(l.r,l.g,l.b);s("--secondary-mid",r(l.r,l.g,l.b)),s("--secondary-light",p(i,30)),s("--secondary-dark",p(i,-30))},c=()=>({r:Math.floor(255*Math.random()),g:Math.floor(255*Math.random()),b:Math.floor(255*Math.random())}),r=(t,e,o)=>"#"+d(t)+d(e)+d(o),d=t=>{let e=t.toString(16);return 1==e.length?"0"+e:e},p=(t,e)=>{var o=!1;"#"==t[0]&&(t=t.slice(1),o=!0);var n=parseInt(t,16),l=(n>>16)+e;l>255?l=255:l<0&&(l=0);var i=(n>>8&255)+e;i>255?i=255:i<0&&(i=0);var s=(255&n)+e;return s>255?s=255:s<0&&(s=0),(o?"#":"")+(s|i<<8|l<<16).toString(16)},h=[];Object.keys(e).forEach(t=>{~h.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-header> was created with unknown prop '${t}'`)});let{$$slots:u={},$$scope:m}=e;V("app-header",u,[]);return t.$capture_state=()=>({theme:n,navlinks:l,changeTheme:i,setColorVar:s,generateRandomTheme:a,randomRgbaString:c,rgbToHex:r,componentToHex:d,lightenDarkenColor:p}),t.$inject_state=t=>{"theme"in t&&o(0,n=t.theme),"navlinks"in t&&o(1,l=t.navlinks)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,a,s,c,r,d,p,()=>i("zoo"),()=>i("grey"),()=>a()]}customElements.define("app-header",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>:host{contain:layout}header{position:relative}.buttons-holder{display:flex;justify-content:flex-end;flex-direction:row;flex-grow:1;padding:0 25px 0 0}@media only screen and (max-width: 900px){.buttons-holder{justify-content:initial;overflow:scroll;max-width:250px}}@media only screen and (max-width: 544px){.buttons-holder{justify-content:initial;overflow:scroll;max-width:250px}}.header-button{display:flex;max-width:250px;min-width:140px;margin-left:15px}.header-button zoo-button{align-self:center}.nav{position:sticky;top:0;color:white;font-size:14px;line-height:20px;font-weight:bold;cursor:pointer}.nav .nav-link{cursor:pointer;display:flex;align-items:center}.nav .nav-link:hover{background:rgba(255, 255, 255, 0.3)}.nav .nav-link a{color:white;text-decoration:none;padding:0 15px}</style>",M(this,{target:this.shadowRoot},K,J,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const Q="src/sections/Form.svelte";function X(t,e,o){const n=t.slice();return n[3]=e[o],n}function tt(t,e,o){const n=t.slice();return n[3]=e[o],n}function et(o){let n,l,i,s,a=o[3].text+"";const c={c:function(){n=r("option"),l=p(a),i=h(),n.__value=s=o[3].value,n.value=n.__value,e(n,Q,43,4,2598)},m:function(t,e){A(t,n,e),I(n,l),I(n,i)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:et.name,type:"each",source:"(43:3) {#each options as option}",ctx:o}),c}function ot(o){let n,l,i,s,a=o[3].text+"";const c={c:function(){n=r("option"),l=p(a),i=h(),n.__value=s=o[3].value,n.value=n.__value,e(n,Q,52,4,2915)},m:function(t,e){A(t,n,e),I(n,l),I(n,i)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:ot.name,type:"each",source:"(52:3) {#each options as option}",ctx:o}),c}function nt(o){let n,l,i,s,a,d,p,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,V,N,W,G,Y,U,q,Z,J,K,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt,wt,vt,yt,kt,$t,Ct,zt,_t,Et,St,jt,Rt,Tt,Dt,Mt,Pt,Ot,It,At,Ht,Lt,Bt,Ft,Vt,Nt,Wt,Gt,Yt,Ut,qt,Zt,Jt,Kt,Qt,Xt,te,ee,oe,ne=o[1];F(ne);let le=[];for(let t=0;t<ne.length;t+=1)le[t]=et(tt(o,ne,t));let ie=o[1];F(ie);let se=[];for(let t=0;t<ie.length;t+=1)se[t]=ot(X(o,ie,t));const ae={c:function(){n=r("app-context"),l=h(),i=r("form"),s=r("zoo-input"),a=r("input"),d=h(),p=r("zoo-input"),u=r("input"),x=h(),f=r("zoo-input"),b=r("input"),g=h(),w=r("zoo-input"),v=r("input"),y=h(),k=r("zoo-input"),$=r("input"),C=h(),z=r("zoo-input"),_=r("textarea"),E=h(),S=r("zoo-select"),j=r("select"),R=r("option"),R.textContent="Placeholder",T=r("option"),T.textContent="1",D=r("option"),D.textContent="2",M=r("option"),M.textContent="3",P=h(),V=r("zoo-select"),N=r("select"),W=r("option"),W.textContent="Placeholder",G=r("option"),G.textContent="1",Y=r("option"),Y.textContent="2",U=r("option"),U.textContent="3",q=h(),Z=r("zoo-searchable-select"),J=r("select");for(let t=0;t<le.length;t+=1)le[t].c();K=h(),lt=r("zoo-searchable-select"),it=r("select");for(let t=0;t<se.length;t+=1)se[t].c();st=h(),at=r("zoo-select"),ct=r("select"),rt=r("option"),rt.textContent="Placeholder",dt=r("option"),dt.textContent="1",pt=r("option"),pt.textContent="2",ht=r("option"),ht.textContent="3",ut=h(),mt=r("zoo-select"),xt=r("select"),ft=r("option"),gt=h(),wt=r("zoo-checkbox"),vt=r("input"),kt=h(),$t=r("zoo-checkbox"),Ct=r("input"),_t=h(),Et=r("zoo-checkbox"),St=r("input"),jt=h(),Rt=r("zoo-radio"),Tt=r("template"),Dt=r("input"),Mt=h(),Pt=r("label"),Pt.textContent="Email",Ot=h(),It=r("input"),At=h(),Ht=r("label"),Ht.textContent="Phone",Lt=h(),Bt=r("input"),Ft=h(),Vt=r("label"),Vt.textContent="Mail",Nt=h(),Wt=r("zoo-radio"),Gt=r("input"),Yt=h(),Ut=r("label"),Ut.textContent="Email",qt=h(),Zt=r("input"),Jt=h(),Kt=r("label"),Kt.textContent="Phone",Qt=h(),Xt=r("div"),te=r("zoo-button"),ee=r("span"),ee.textContent="Trigger invalid state!",this.c=t,m(n,"text","First section is a showcase of different form elements like `input`, `textarea`, `select`."),e(n,Q,1,0,49),B(a,"slot","inputelement"),B(a,"type","text"),B(a,"placeholder","input"),e(a,Q,5,2,436),m(s,"labeltext","Input type text"),m(s,"linktext","Forgotten your password?"),m(s,"linkhref","https://google.com"),m(s,"linktarget","about:blank"),m(s,"valid",o[0]),m(s,"inputerrormsg","invalid"),m(s,"infotext","Additional helpful information for our users"),e(s,Q,3,1,196),B(u,"slot","inputelement"),B(u,"type","number"),B(u,"placeholder","input"),e(u,Q,9,2,674),m(p,"labeltext","Input type number"),m(p,"linkhref","https://google.com"),m(p,"linktarget","about:blank"),m(p,"infotext","Additional helpful information for our users"),e(p,Q,7,1,513),B(b,"slot","inputelement"),B(b,"type","date"),B(b,"placeholder","Enter date"),e(b,Q,13,2,1003),m(f,"labeltext","This input has type date"),m(f,"linktext","Native date picker -> click me"),m(f,"linkhref","https://github.com/jcgertig/date-input-polyfill"),m(f,"linktarget","about:blank"),m(f,"infotext","Click on input to show context menu with date selection"),e(f,Q,11,1,753),B(v,"slot","inputelement"),B(v,"type","time"),B(v,"placeholder","Enter time"),e(v,Q,16,2,1159),m(w,"labeltext","This input has type time"),m(w,"infotext","Select time"),e(w,Q,15,1,1085),$.disabled=!0,B($,"slot","inputelement"),B($,"type","text"),e($,Q,19,2,1290),m(k,"labeltext","This input is disabled"),e(k,Q,18,1,1241),B(_,"slot","inputelement"),B(_,"placeholder","Textarea"),e(_,Q,22,2,1419),m(z,"labeltext","Textarea example"),m(z,"valid",o[0]),e(z,Q,21,1,1355),B(R,"class","placeholder"),R.__value="",R.value=R.__value,R.disabled=!0,R.selected=!0,e(R,Q,26,3,1776),T.__value="1",T.value=T.__value,e(T,Q,27,3,1855),D.__value="2",D.value=D.__value,e(D,Q,28,3,1877),M.__value="3",M.value=M.__value,e(M,Q,29,3,1899),B(j,"slot","selectelement"),j.multiple=!0,e(j,Q,25,2,1734),m(S,"labeltext","Multiselect"),m(S,"linktext","Documentation link"),m(S,"linkhref","https://google.com"),m(S,"linktarget","about:blank"),m(S,"valid",o[0]),m(S,"inputerrormsg","Value is required"),m(S,"infotext","Additional helpful information for our users"),e(S,Q,24,1,1499),B(W,"class","placeholder"),W.__value="",W.value=W.__value,W.disabled=!0,W.selected=!0,e(W,Q,34,3,2133),G.__value="1",G.value=G.__value,e(G,Q,35,3,2212),Y.__value="2",Y.value=Y.__value,e(Y,Q,36,3,2234),U.__value="3",U.value=U.__value,e(U,Q,37,3,2256),B(N,"slot","selectelement"),e(N,Q,33,2,2100),m(V,"labeltext","Standard select"),m(V,"valid",o[0]),m(V,"inputerrormsg","Value is required"),m(V,"infotext","Additional helpful information for our users"),e(V,Q,32,1,1946),J.multiple=!0,B(J,"slot","selectelement"),e(J,Q,41,2,2526),m(Z,"valid",o[0]),m(Z,"inputerrormsg","Value is invalid"),m(Z,"labeltext","Searchable multiple select"),m(Z,"placeholder","Placeholder"),m(Z,"infotext","Additional helpful information for our users which is a long text."),e(Z,Q,40,1,2303),B(it,"slot","selectelement"),e(it,Q,50,2,2852),m(lt,"labeltext","Searchable select"),m(lt,"placeholder","Placeholder"),m(lt,"infotext","Additional helpful information for our users."),e(lt,Q,49,1,2713),B(rt,"class","placeholder"),rt.__value="",rt.value=rt.__value,rt.disabled=!0,rt.selected=!0,e(rt,Q,60,3,3115),dt.__value="1",dt.value=dt.__value,e(dt,Q,61,3,3194),pt.__value="2",pt.value=pt.__value,e(pt,Q,62,3,3216),ht.__value="3",ht.value=ht.__value,e(ht,Q,63,3,3238),ct.disabled=!0,B(ct,"slot","selectelement"),e(ct,Q,59,2,3073),m(at,"labeltext","Disabled select"),e(at,Q,58,1,3030),ft.__value="",ft.value=ft.__value,e(ft,Q,68,3,3377),B(xt,"slot","selectelement"),e(xt,Q,67,2,3344),m(mt,"labeltext","Loading select"),m(mt,"loading",bt=!0),e(mt,Q,66,1,3285),B(vt,"slot","checkboxelement"),B(vt,"type","checkbox"),e(vt,Q,72,2,3545),m(wt,"highlighted",yt=!0),m(wt,"valid",o[0]),m(wt,"inputerrormsg","error"),m(wt,"labeltext","An example checkbox"),e(wt,Q,71,1,3432),Ct.disabled=!0,B(Ct,"slot","checkboxelement"),B(Ct,"type","checkbox"),e(Ct,Q,75,2,3679),m($t,"highlighted",zt=!0),m($t,"labeltext","Disabled checkbox"),e($t,Q,74,1,3611),B(St,"slot","checkboxelement"),B(St,"type","checkbox"),e(St,Q,78,2,3917),m(Et,"labeltext","Not highlighted checkbox with a long label that short be wrapped around checkbox like this"),m(Et,"valid",o[0]),m(Et,"inputerrormsg","error"),e(Et,Q,77,1,3754),B(Dt,"type","radio"),B(Dt,"id","contactChoice1"),B(Dt,"name","contact"),Dt.value="email",Dt.disabled=!0,e(Dt,Q,82,3,4095),B(Pt,"for","contactChoice1"),e(Pt,Q,83,3,4177),B(It,"type","radio"),B(It,"id","contactChoice2"),B(It,"name","contact"),It.value="phone",e(It,Q,84,3,4222),B(Ht,"for","contactChoice2"),e(Ht,Q,85,3,4295),B(Bt,"type","radio"),B(Bt,"id","contactChoice3"),B(Bt,"name","contact"),Bt.value="mail",e(Bt,Q,86,3,4340),B(Vt,"for","contactChoice3"),e(Vt,Q,87,3,4412),e(Tt,Q,81,2,4081),m(Rt,"valid",o[0]),m(Rt,"errormsg","errormsg"),m(Rt,"infotext","infotext"),m(Rt,"labeltext","Label text"),e(Rt,Q,80,1,3983),B(Gt,"type","radio"),B(Gt,"id","contactChoice4"),B(Gt,"name","contact"),Gt.value="email",Gt.disabled=!0,e(Gt,Q,92,2,4558),B(Ut,"for","contactChoice4"),e(Ut,Q,93,2,4639),B(Zt,"type","radio"),B(Zt,"id","contactChoice5"),B(Zt,"name","contact"),Zt.value="phone",e(Zt,Q,94,2,4683),B(Kt,"for","contactChoice5"),e(Kt,Q,95,2,4755),m(Wt,"valid",o[0]),m(Wt,"errormsg","errormsg"),m(Wt,"infotext","infotext"),e(Wt,Q,91,1,4483),B(i,"class","form"),e(i,Q,2,0,175),B(ee,"slot","buttoncontent"),B(ee,"class","slotted-span"),e(ee,Q,100,2,4912),m(te,"type","secondary"),m(te,"size","medium"),e(te,Q,99,1,4841),B(Xt,"class","submit"),e(Xt,Q,98,0,4819)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e,c){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(i,d),I(i,p),I(p,u),I(i,x),I(i,f),I(f,b),I(i,g),I(i,w),I(w,v),I(i,y),I(i,k),I(k,$),I(i,C),I(i,z),I(z,_),I(i,E),I(i,S),I(S,j),I(j,R),I(j,T),I(j,D),I(j,M),I(i,P),I(i,V),I(V,N),I(N,W),I(N,G),I(N,Y),I(N,U),I(i,q),I(i,Z),I(Z,J);for(let t=0;t<le.length;t+=1)le[t].m(J,null);I(i,K),I(i,lt),I(lt,it);for(let t=0;t<se.length;t+=1)se[t].m(it,null);I(i,st),I(i,at),I(at,ct),I(ct,rt),I(ct,dt),I(ct,pt),I(ct,ht),I(i,ut),I(i,mt),I(mt,xt),I(xt,ft),I(i,gt),I(i,wt),I(wt,vt),I(i,kt),I(i,$t),I($t,Ct),I(i,_t),I(i,Et),I(Et,St),I(i,jt),I(i,Rt),I(Rt,Tt),I(Tt.content,Dt),I(Tt.content,Mt),I(Tt.content,Pt),I(Tt.content,Ot),I(Tt.content,It),I(Tt.content,At),I(Tt.content,Ht),I(Tt.content,Lt),I(Tt.content,Bt),I(Tt.content,Ft),I(Tt.content,Vt),I(i,Nt),I(i,Wt),I(Wt,Gt),I(Wt,Yt),I(Wt,Ut),I(Wt,qt),I(Wt,Zt),I(Wt,Jt),I(Wt,Kt),A(t,Qt,e),A(t,Xt,e),I(Xt,te),I(te,ee),c&&oe(),oe=L(te,"click",o[2],!1,!1,!1)},p:function(t,[e]){if(1&e&&m(s,"valid",t[0]),1&e&&m(z,"valid",t[0]),1&e&&m(S,"valid",t[0]),1&e&&m(V,"valid",t[0]),2&e){let o;for(ne=t[1],F(ne),o=0;o<ne.length;o+=1){const n=tt(t,ne,o);le[o]?le[o].p(n,e):(le[o]=et(n),le[o].c(),le[o].m(J,null))}for(;o<le.length;o+=1)le[o].d(1);le.length=ne.length}if(1&e&&m(Z,"valid",t[0]),2&e){let o;for(ie=t[1],F(ie),o=0;o<ie.length;o+=1){const n=X(t,ie,o);se[o]?se[o].p(n,e):(se[o]=ot(n),se[o].c(),se[o].m(it,null))}for(;o<se.length;o+=1)se[o].d(1);se.length=ie.length}1&e&&m(wt,"valid",t[0]),1&e&&m(Et,"valid",t[0]),1&e&&m(Rt,"valid",t[0]),1&e&&m(Wt,"valid",t[0])},i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),c(le,t),c(se,t),t&&H(Qt),t&&H(Xt),oe()}};return O("SvelteRegisterBlock",{block:ae,id:nt.name,type:"component",source:"",ctx:o}),ae}function lt(t,e,o){let n=[{text:"text",value:"value"},{text:"raNdOm",value:"random"},{text:"random1",value:"random1"},{text:"random2",value:"random2"}],l=!0;const i=()=>{o(0,l=!l)},s=[];Object.keys(e).forEach(t=>{~s.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-form> was created with unknown prop '${t}'`)});let{$$slots:a={},$$scope:c}=e;return V("app-form",a,[]),t.$capture_state=()=>({options:n,inputState:l,changeState:i}),t.$inject_state=t=>{"options"in t&&o(1,n=t.options),"inputState"in t&&o(0,l=t.inputState)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[l,n,i]}customElements.define("app-form",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>:host{contain:layout}.form{flex:1 0 auto;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-template-rows:120px 150px 150px 100px 80px 100px;grid-gap:20px}@media only screen and (max-width: 544px){.form{width:300px;grid-template-columns:auto}}@media only screen and (max-width: 812px){.form{grid-template-rows:120px 150px 120px 120px 80px 100px}}.submit{display:flex;justify-content:center}</style>",M(this,{target:this.shadowRoot},lt,nt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const it="src/sections/Buttons.svelte";function st(o){let n,i,s,a,c,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt,wt;const vt={c:function(){n=r("zoo-toast"),i=h(),s=r("zoo-toast"),a=h(),c=r("app-context"),u=h(),f=r("div"),b=r("zoo-button"),g=r("span"),g.textContent="Summon toast!",w=h(),v=r("zoo-button"),y=r("div"),k=p("Disabled :(\n\t\t\t"),$=r("zoo-tooltip"),z=h(),_=r("zoo-button"),E=r("span"),E.textContent="Show modal",S=h(),j=r("zoo-button"),R=r("span"),R.textContent="Dummy button that does nothing",T=h(),D=r("zoo-button"),M=d("svg"),P=d("g"),F=d("path"),V=d("path"),N=h(),W=r("zoo-button"),G=d("svg"),Y=d("path"),U=h(),q=r("zoo-modal"),Z=r("div"),J=r("zoo-feedback"),K=h(),Q=r("br"),X=h(),tt=r("zoo-select"),et=r("select"),ot=r("option"),ot.textContent="Doge",nt=r("option"),nt.textContent="Doge",lt=r("option"),lt.textContent="Catz",at=r("option"),at.textContent="Snek",rt=h(),dt=r("br"),pt=h(),ht=r("zoo-checkbox"),ut=r("input"),mt=h(),xt=r("br"),ft=h(),bt=r("zoo-button"),gt=r("span"),gt.textContent="Add to cart",this.c=t,m(n,"text","Search for more than 8.000 products."),e(n,it,1,0,52),m(s,"text","Added to cart!"),e(s,it,2,0,138),m(c,"text","Second section is a showcase of buttons and modals"),e(c,it,3,0,207),B(g,"slot","buttoncontent"),e(g,it,6,2,376),m(b,"size","small"),e(b,it,5,1,316),m($,"position","bottom"),m($,"text","Just set disabled attribute on `zoo-button`"),e($,it,11,3,551),B(y,"slot","buttoncontent"),e(y,it,9,2,506),m(v,"size","small"),m(v,"disabled",C=!0),m(v,"class","top-tooltip"),e(v,it,8,1,440),B(E,"slot","buttoncontent"),e(E,it,15,2,755),m(_,"type","secondary"),m(_,"size","small"),e(_,it,14,1,673),B(R,"slot","buttoncontent"),e(R,it,18,2,858),m(j,"type","hollow"),m(j,"size","small"),e(j,it,17,1,816),B(F,"d","M9 14.998a3 3 0 010 6v2.252a.75.75 0 11-1.5 0v-7.434a.75.75 0 01.747-.818h.753zm3.875-15c.597 0 1.17.238 1.591.66l5.871 5.87c.422.423.66.995.659 1.592v4.628a.75.75 0 11-1.5 0V8.12a.75.75 0 00-.22-.53l-5.87-5.872a.75.75 0 00-.531-.22H2.246a.75.75 0 00-.75.75v19.5c0 .414.336.75.75.75h3a.75.75 0 110 1.5h-3a2.25 2.25 0 01-2.25-2.25v-19.5a2.25 2.25 0 012.25-2.25h10.63zm10.371 15a.75.75 0 010 1.5h-1.5a.75.75 0 00-.75.75v2.251l1.504.001a.75.75 0 110 1.5l-1.504-.001v2.249a.75.75 0 11-1.5 0v-6a2.25 2.25 0 012.25-2.25h1.5zm-9 0a3.75 3.75 0 013.75 3.75v1.5a3.75 3.75 0 01-3.75 3.75.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75zm.75 1.628v5.744a2.25 2.25 0 001.5-2.122v-1.5a2.25 2.25 0 00-1.5-2.122zM9 16.498v3a1.5 1.5 0 000-3z"),e(F,it,21,137,1119),B(V,"d","M20.246 7.498a.75.75 0 110 1.5h-6a2.25 2.25 0 01-2.25-2.25v-6a.75.75 0 011.5 0v6c0 .414.336.75.75.75h6z"),e(V,it,21,868,1850),B(P,"fill","#555"),B(P,"fill-rule","evenodd"),e(P,it,21,102,1084),B(M,"class","btn-svg"),B(M,"slot","buttoncontent"),B(M,"width","24"),B(M,"height","24"),B(M,"xmlns","http://www.w3.org/2000/svg"),e(M,it,21,2,984),m(D,"size","small"),m(D,"class","icon-btn"),e(D,it,20,1,939),B(Y,"d","M12 4.324l1.036-1.035a6.423 6.423 0 019.094 9.071l-9.589 10.003a.75.75 0 01-1.082 0l-9.577-9.988A6.422 6.422 0 015.394 1.49a6.423 6.423 0 015.57 1.798L12 4.324z"),B(Y,"fill","#555"),B(Y,"fill-rule","evenodd"),e(Y,it,24,102,2154),B(G,"class","btn-svg"),B(G,"slot","buttoncontent"),B(G,"width","24"),B(G,"height","24"),B(G,"xmlns","http://www.w3.org/2000/svg"),e(G,it,24,2,2054),m(W,"type","secondary"),m(W,"size","small"),m(W,"class","icon-btn"),e(W,it,23,1,1992),B(f,"class","buttons"),e(f,it,4,0,293),m(J,"type","info"),m(J,"text","This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered."),e(J,it,29,2,2498),e(Q,it,33,2,2680),B(ot,"class","placeholder"),ot.__value="",ot.value=ot.__value,ot.disabled=!0,ot.selected=!0,e(ot,it,37,4,2788),nt.__value="Doge",nt.value=nt.__value,e(nt,it,38,4,2861),lt.__value="Catz",lt.value=lt.__value,e(lt,it,39,4,2887),at.__value="Snek",at.value=at.__value,e(at,it,40,4,2913),B(et,"slot","selectelement"),e(et,it,36,3,2754),m(tt,"labeltext","This product is for"),m(tt,"valid",ct=!0),e(tt,it,34,2,2687),e(dt,it,43,2,2966),B(ut,"slot","checkboxelement"),B(ut,"type","checkbox"),e(ut,it,46,3,3085),m(ht,"highlighted",""),m(ht,"labeltext","I understand and confirm that ALL of the above statements are true"),e(ht,it,44,2,2973),e(xt,it,48,2,3153),B(gt,"slot","buttoncontent"),e(gt,it,50,3,3259),x(bt,"margin","0 auto"),m(bt,"type","hollow"),m(bt,"size","medium"),e(bt,it,49,2,3160),e(Z,it,28,1,2490),x(q,"display","none"),m(q,"headertext","Your basket contains licensed items"),e(q,it,27,0,2388)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e,r){A(t,n,e),o[5](n),A(t,i,e),A(t,s,e),o[6](s),A(t,a,e),A(t,c,e),A(t,u,e),A(t,f,e),I(f,b),I(b,g),I(f,w),I(f,v),I(v,y),I(y,k),I(y,$),I(f,z),I(f,_),I(_,E),I(f,S),I(f,j),I(j,R),I(f,T),I(f,D),I(D,M),I(M,P),I(P,F),I(P,V),I(f,N),I(f,W),I(W,G),I(G,Y),A(t,U,e),A(t,q,e),I(q,Z),I(Z,J),I(Z,K),I(Z,Q),I(Z,X),I(Z,tt),I(tt,et),I(et,ot),I(et,nt),I(et,lt),I(et,at),I(Z,rt),I(Z,dt),I(Z,pt),I(Z,ht),I(ht,ut),I(Z,mt),I(Z,xt),I(Z,ft),I(Z,bt),I(bt,gt),o[10](q),r&&l(wt),wt=[L(b,"click",o[7],!1,!1,!1),L(_,"click",o[8],!1,!1,!1),L(bt,"click",o[9],!1,!1,!1)]},p:t,i:t,o:t,d:function(t){t&&H(n),o[5](null),t&&H(i),t&&H(s),o[6](null),t&&H(a),t&&H(c),t&&H(u),t&&H(f),t&&H(U),t&&H(q),o[10](null),l(wt)}};return O("SvelteRegisterBlock",{block:vt,id:st.name,type:"component",source:"",ctx:o}),vt}function at(t,e,o){let n,l,i;const s=()=>{o(1,l.style.display="block",l)},a=()=>{l.closeModal(),i.show()},c=[];Object.keys(e).forEach(t=>{~c.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-buttons> was created with unknown prop '${t}'`)});let{$$slots:r={},$$scope:d}=e;V("app-buttons",r,[]);return t.$capture_state=()=>({toast:n,modal:l,modalToast:i,showModal:s,closeModal:a}),t.$inject_state=t=>{"toast"in t&&o(0,n=t.toast),"modal"in t&&o(1,l=t.modal),"modalToast"in t&&o(2,i=t.modalToast)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,a,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})},function(t){v[t?"unshift":"push"](()=>{o(2,i=t)})},()=>n.show(),()=>l.openModal(),()=>a(),function(t){v[t?"unshift":"push"](()=>{o(1,l=t)})}]}customElements.define("app-buttons",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>:host{contain:layout}.buttons{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-gap:15px;width:90%;justify-content:center}@media only screen and (max-width: 850px){.buttons{grid-template-columns:auto}}zoo-tooltip{display:none}.top-tooltip{position:relative;display:inline-block}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}.icon-btn{width:40px}.btn-svg{padding:0}.btn-svg path{fill:white}</style>",M(this,{target:this.shadowRoot},at,st,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const{Object:ct}=T,rt="src/sections/Grids.svelte";function dt(t,e,o){const n=t.slice();return n[16]=e[o],n}function pt(t,e,o){const n=t.slice();return n[16]=e[o],n}function ht(t,e,o){const n=t.slice();return n[21]=e[o],n[23]=o,n}function ut(t,e,o){const n=t.slice();return n[24]=e[o],n}function mt(t,e,o){const n=t.slice();return n[16]=e[o],n[28]=o,n}function xt(t,e,o){const n=t.slice();return n[21]=e[o],n[23]=o,n}function ft(t,e,o){const n=t.slice();return n[32]=e[o],n}function bt(t,e,o){const n=t.slice();return n[24]=e[o],n}function gt(t,e,o){const n=t.slice();return n[16]=e[o],n[23]=o,n}function wt(o){let n,l,i,s,a,c=o[16].title+"";const d={c:function(){n=r("div"),l=p(c),B(n,"class",i="header-cell "+(0==o[23]?"min-width":"")),B(n,"slot","headercell"),B(n,"sortable",s=o[16].sortable),B(n,"sortableproperty",a=o[16].sortProperty),e(n,rt,12,3,514)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:d,id:wt.name,type:"each",source:"(12:2) {#each headers as header, idx}",ctx:o}),d}function vt(o){let n,l,i,s,a=o[32]+"";const c={c:function(){n=r("option"),l=p(a),n.selected=i=o[32]==o[24].status,n.__value=s=o[32],n.value=n.__value,e(n,rt,27,9,1225)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:vt.name,type:"each",source:"(27:8) {#each statuses as status}",ctx:o}),c}function yt(t){let o,n,l,i,s,a,d,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,V,N,W,G,Y=t[24].createdDate+"",U=t[24].minWeight+"",q=t[24].maxWeight+"",Z=t[24].noOfPieces+"",J=t[24].price+"",K=t[3];F(K);let Q=[];for(let e=0;e<K.length;e+=1)Q[e]=vt(ft(t,K,e));const X={c:function(){o=r("div"),n=r("div"),l=r("zoo-checkbox"),i=r("input"),d=h(),u=r("div"),x=p(Y),f=h(),b=r("div"),g=r("div"),w=r("zoo-select"),v=r("select");for(let t=0;t<Q.length;t+=1)Q[t].c();k=h(),$=r("div"),C=p(U),z=h(),_=r("div"),E=p(q),S=h(),j=r("div"),R=r("zoo-input"),T=r("input"),P=h(),L=r("div"),V=p(Z),N=h(),W=r("div"),G=p(J),i.disabled=s="DELIVERED"==t[24].status||null,i.checked=a=t[24].valid,B(i,"slot","checkboxelement"),B(i,"type","checkbox"),e(i,rt,18,6,817),m(l,"labeltext","Valid"),e(l,rt,17,5,778),e(n,rt,16,4,767),e(u,rt,21,4,976),v.disabled=y="DELIVERED"==t[24].status||null,B(v,"slot","selectelement"),B(v,"class","item-per-page-selector"),e(v,rt,25,7,1067),e(w,rt,24,6,1047),B(g,"class","status"),e(g,rt,23,5,1020),e(b,rt,22,4,1009),e($,rt,33,4,1365),e(_,rt,34,4,1396),T.disabled=D="DELIVERED"==t[24].status||null,T.value=M=t[24].deliveryDate,B(T,"slot","inputelement"),B(T,"type","date"),B(T,"placeholder","Enter date"),e(T,rt,37,6,1478),e(R,rt,36,5,1460),B(j,"class","delivery-date"),e(j,rt,35,4,1427),e(L,rt,40,4,1658),e(W,rt,41,4,1690),B(o,"class","example-row limited-width"),B(o,"slot","row"),e(o,rt,15,3,712)},m:function(t,e){A(t,o,e),I(o,n),I(n,l),I(l,i),I(o,d),I(o,u),I(u,x),I(o,f),I(o,b),I(b,g),I(g,w),I(w,v);for(let t=0;t<Q.length;t+=1)Q[t].m(v,null);I(o,k),I(o,$),I($,C),I(o,z),I(o,_),I(_,E),I(o,S),I(o,j),I(j,R),I(R,T),I(o,P),I(o,L),I(L,V),I(o,N),I(o,W),I(W,G)},p:function(t,e){if(40&e[0]){let o;for(K=t[3],F(K),o=0;o<K.length;o+=1){const n=ft(t,K,o);Q[o]?Q[o].p(n,e):(Q[o]=vt(n),Q[o].c(),Q[o].m(v,null))}for(;o<Q.length;o+=1)Q[o].d(1);Q.length=K.length}},d:function(t){t&&H(o),c(Q,t)}};return O("SvelteRegisterBlock",{block:X,id:yt.name,type:"each",source:"(15:2) {#each data as row}",ctx:t}),X}function kt(o){let n,l,i,s,a=o[21]+"";const c={c:function(){n=r("option"),l=p(a),n.selected=i=0==o[23],n.__value=s=o[21],n.value=n.__value,e(n,rt,49,6,1985)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:kt.name,type:"each",source:"(49:5) {#each possibleNumberOfItems as number, idx}",ctx:o}),c}function $t(o){let n,l,i,s,a=o[16].title+"";const c={c:function(){n=r("div"),l=p(a),B(n,"slot","headercell"),B(n,"sortable",i=o[16].sortable?"sortable":null),B(n,"sortableproperty",s=o[16].sortProperty),e(n,rt,63,4,2585)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:$t.name,type:"each",source:"(63:3) {#each extendedHeaders as header, i}",ctx:o}),c}function Ct(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q=o[24].createdDate+"",Z=o[24].status+"",J=o[24].minWeight+"",K=o[24].maxWeight+"",Q=o[24].deliveryDate+"",X=o[24].noOfPieces+"",tt=o[24].price+"",et=o[24].rating+"";const ot={c:function(){n=r("div"),l=r("div"),i=r("zoo-checkbox"),s=r("input"),d=h(),u=r("div"),f=p(q),b=h(),g=r("div"),w=p(Z),v=h(),y=r("div"),k=p(J),$=h(),C=r("div"),z=p(K),_=h(),E=r("div"),S=p(Q),j=h(),R=r("div"),T=p(X),D=h(),M=r("div"),P=p(tt),L=h(),F=r("div"),V=p(et),N=h(),W=r("div"),G=r("zoo-checkbox"),Y=r("input"),s.disabled=a="DELIVERED"==o[24].status||null,s.checked=c=o[24].valid,B(s,"slot","checkboxelement"),B(s,"type","checkbox"),e(s,rt,70,7,2873),m(i,"labeltext","Valid"),e(i,rt,69,6,2833),e(l,rt,68,5,2821),e(u,rt,73,5,3035),e(g,rt,74,5,3069),e(y,rt,75,5,3098),e(C,rt,76,5,3130),e(E,rt,77,5,3162),e(R,rt,78,5,3197),e(M,rt,79,5,3230),e(F,rt,80,5,3258),Y.checked=U=o[24].promotion,B(Y,"slot","checkboxelement"),B(Y,"type","checkbox"),e(Y,rt,83,7,3342),e(G,rt,82,6,3320),x(W,"width","30px"),e(W,rt,81,5,3287),B(n,"class","example-row limited-width"),B(n,"slot","row"),e(n,rt,67,4,2765)},m:function(t,e){A(t,n,e),I(n,l),I(l,i),I(i,s),I(n,d),I(n,u),I(u,f),I(n,b),I(n,g),I(g,w),I(n,v),I(n,y),I(y,k),I(n,$),I(n,C),I(C,z),I(n,_),I(n,E),I(E,S),I(n,j),I(n,R),I(R,T),I(n,D),I(n,M),I(M,P),I(n,L),I(n,F),I(F,V),I(n,N),I(n,W),I(W,G),I(G,Y)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:ot,id:Ct.name,type:"each",source:"(67:3) {#each extendedData as row}",ctx:o}),ot}function zt(o){let n,l,i,s,a=o[21]+"";const c={c:function(){n=r("option"),l=p(a),n.selected=i=0==o[23],n.__value=s=o[21],n.value=n.__value,e(n,rt,93,7,3729)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:zt.name,type:"each",source:"(93:6) {#each possibleNumberOfItems as number, idx}",ctx:o}),c}function _t(o){let n,l,i,s,a=o[16].title+"";const c={c:function(){n=r("div"),l=p(a),B(n,"slot","headercell"),B(n,"sortable",i=o[16].sortable?"sortable":null),B(n,"sortableproperty",s=o[16].sortProperty),e(n,rt,106,4,4001)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:_t.name,type:"each",source:"(106:3) {#each headers as header}",ctx:o}),c}function Et(o){let n,l,i,s,a=o[16].title+"";const c={c:function(){n=r("div"),l=p(a),B(n,"slot","headercell"),B(n,"sortable",i=o[16].sortable?"sortable":null),B(n,"sortableproperty",s=o[16].sortProperty),e(n,rt,119,4,4455)},m:function(t,e){A(t,n,e),I(n,l)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:c,id:Et.name,type:"each",source:"(119:3) {#each headers as header}",ctx:o}),c}function St(o){let n,i,s,a,d,p,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,V,N,W,G,Y,U,q,Z,J,K,Q=o[2];F(Q);let X=[];for(let t=0;t<Q.length;t+=1)X[t]=wt(gt(o,Q,t));let tt=o[5];F(tt);let et=[];for(let t=0;t<tt.length;t+=1)et[t]=yt(bt(o,tt,t));let ot=o[1];F(ot);let nt=[];for(let t=0;t<ot.length;t+=1)nt[t]=kt(xt(o,ot,t));let lt=o[4];F(lt);let it=[];for(let t=0;t<lt.length;t+=1)it[t]=$t(mt(o,lt,t));let st=o[6];F(st);let at=[];for(let t=0;t<st.length;t+=1)at[t]=Ct(ut(o,st,t));let ct=o[1];F(ct);let ft=[];for(let t=0;t<ct.length;t+=1)ft[t]=zt(ht(o,ct,t));let vt=o[2];F(vt);let jt=[];for(let t=0;t<vt.length;t+=1)jt[t]=_t(pt(o,vt,t));let Rt=o[2];F(Rt);let Tt=[];for(let t=0;t<Rt.length;t+=1)Tt[t]=Et(dt(o,Rt,t));const Dt={c:function(){n=r("app-context"),i=h(),s=r("div"),a=r("h3"),a.textContent="A grid with pagination, resizing and sorting.",d=h(),p=r("div"),u=r("zoo-grid");for(let t=0;t<X.length;t+=1)X[t].c();f=h();for(let t=0;t<et.length;t+=1)et[t].c();b=h(),g=r("div"),w=r("zoo-select"),v=r("select");for(let t=0;t<nt.length;t+=1)nt[t].c();y=h(),k=r("h3"),k.textContent="Grid with sticky header and pagination. Grid height and width are limited on the client side.",$=h(),C=r("div"),z=r("zoo-grid");for(let t=0;t<it.length;t+=1)it[t].c();_=h();for(let t=0;t<at.length;t+=1)at[t].c();E=h(),S=r("div"),j=r("zoo-select"),R=r("select");for(let t=0;t<ft.length;t+=1)ft[t].c();T=h(),D=r("h3"),D.textContent="Grid with no rows provided.",M=h(),P=r("div"),V=r("zoo-grid");for(let t=0;t<jt.length;t+=1)jt[t].c();N=h(),W=r("div"),W.textContent="No records to show!",G=h(),Y=r("h3"),Y.textContent="Grid which is loading indefinitely.",U=h(),q=r("div"),Z=r("zoo-grid");for(let t=0;t<Tt.length;t+=1)Tt[t].c();this.c=t,m(n,"text","Forth section is a showcase of grids"),e(n,rt,2,0,51),e(a,rt,5,1,177),B(v,"slot","selectelement"),B(v,"class","item-per-page-selector"),e(v,rt,47,4,1868),m(w,"labeltext","Page size"),m(w,"labelposition","left"),e(w,rt,46,3,1807),B(g,"class","item-per-page-selector-holder"),B(g,"slot","pagesizeselector"),e(g,rt,45,2,1736),m(u,"class","limited-width grid-1"),m(u,"stickyheader",""),m(u,"paginator",""),m(u,"currentpage","5"),m(u,"maxpages","20"),m(u,"resizable",""),m(u,"draggable",""),e(u,rt,8,1,261),B(p,"class","grid-holder"),e(p,rt,7,1,234),e(k,rt,57,1,2109),B(R,"slot","selectelement"),B(R,"class","item-per-page-selector"),e(R,rt,91,5,3610),m(j,"labeltext","Page size"),m(j,"labelposition","left"),e(j,rt,90,4,3548),B(S,"class","item-per-page-selector-holder"),B(S,"slot","pagesizeselector"),e(S,rt,89,3,3476),m(z,"class","limited-width grid-2"),x(z,"min-width","1024px"),x(z,"margin","0 auto"),x(z,"display","block"),m(z,"stickyheader",""),m(z,"paginator",""),m(z,"currentpage","1"),m(z,"maxpages","4"),e(z,rt,60,2,2287),B(C,"class","grid-holder"),x(C,"max-width","850px"),x(C,"max-height","300px"),e(C,rt,59,1,2214),e(D,rt,101,1,3858),B(W,"slot","norecords"),B(W,"class","example-row limited-width"),e(W,rt,108,3,4147),m(V,"class","limited-width"),m(V,"paginator",""),e(V,rt,104,2,3925),B(P,"class","grid-holder"),e(P,rt,103,1,3897),e(Y,rt,114,1,4262),m(Z,"class","limited-width"),m(Z,"loading",J=!0),m(Z,"paginator",""),x(Z,"min-height","200px"),e(Z,rt,117,2,4337),B(q,"class","grid-holder"),e(q,rt,116,1,4309),B(s,"class","grids-holder"),e(s,rt,4,0,124)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e,c){A(t,n,e),A(t,i,e),A(t,s,e),I(s,a),I(s,d),I(s,p),I(p,u);for(let t=0;t<X.length;t+=1)X[t].m(u,null);I(u,f);for(let t=0;t<et.length;t+=1)et[t].m(u,null);I(u,b),I(u,g),I(g,w),I(w,v);for(let t=0;t<nt.length;t+=1)nt[t].m(v,null);I(s,y),I(s,k),I(s,$),I(s,C),I(C,z);for(let t=0;t<it.length;t+=1)it[t].m(z,null);I(z,_);for(let t=0;t<at.length;t+=1)at[t].m(z,null);I(z,E),I(z,S),I(S,j),I(j,R);for(let t=0;t<ft.length;t+=1)ft[t].m(R,null);I(s,T),I(s,D),I(s,M),I(s,P),I(P,V);for(let t=0;t<jt.length;t+=1)jt[t].m(V,null);I(V,N),I(V,W),I(s,G),I(s,Y),I(s,U),I(s,q),I(q,Z);for(let t=0;t<Tt.length;t+=1)Tt[t].m(Z,null);o[15](s),c&&l(K),K=[L(u,"sortChange",o[11],!1,!1,!1),L(u,"pageChange",o[12],!1,!1,!1),L(z,"sortChange",o[13],!1,!1,!1),L(z,"pageChange",o[14],!1,!1,!1)]},p:function(t,e){if(4&e[0]){let o;for(Q=t[2],F(Q),o=0;o<Q.length;o+=1){const n=gt(t,Q,o);X[o]?X[o].p(n,e):(X[o]=wt(n),X[o].c(),X[o].m(u,f))}for(;o<X.length;o+=1)X[o].d(1);X.length=Q.length}if(40&e[0]){let o;for(tt=t[5],F(tt),o=0;o<tt.length;o+=1){const n=bt(t,tt,o);et[o]?et[o].p(n,e):(et[o]=yt(n),et[o].c(),et[o].m(u,b))}for(;o<et.length;o+=1)et[o].d(1);et.length=tt.length}if(2&e[0]){let o;for(ot=t[1],F(ot),o=0;o<ot.length;o+=1){const n=xt(t,ot,o);nt[o]?nt[o].p(n,e):(nt[o]=kt(n),nt[o].c(),nt[o].m(v,null))}for(;o<nt.length;o+=1)nt[o].d(1);nt.length=ot.length}if(16&e[0]){let o;for(lt=t[4],F(lt),o=0;o<lt.length;o+=1){const n=mt(t,lt,o);it[o]?it[o].p(n,e):(it[o]=$t(n),it[o].c(),it[o].m(z,_))}for(;o<it.length;o+=1)it[o].d(1);it.length=lt.length}if(64&e[0]){let o;for(st=t[6],F(st),o=0;o<st.length;o+=1){const n=ut(t,st,o);at[o]?at[o].p(n,e):(at[o]=Ct(n),at[o].c(),at[o].m(z,E))}for(;o<at.length;o+=1)at[o].d(1);at.length=st.length}if(2&e[0]){let o;for(ct=t[1],F(ct),o=0;o<ct.length;o+=1){const n=ht(t,ct,o);ft[o]?ft[o].p(n,e):(ft[o]=zt(n),ft[o].c(),ft[o].m(R,null))}for(;o<ft.length;o+=1)ft[o].d(1);ft.length=ct.length}if(4&e[0]){let o;for(vt=t[2],F(vt),o=0;o<vt.length;o+=1){const n=pt(t,vt,o);jt[o]?jt[o].p(n,e):(jt[o]=_t(n),jt[o].c(),jt[o].m(V,N))}for(;o<jt.length;o+=1)jt[o].d(1);jt.length=vt.length}if(4&e[0]){let o;for(Rt=t[2],F(Rt),o=0;o<Rt.length;o+=1){const n=dt(t,Rt,o);Tt[o]?Tt[o].p(n,e):(Tt[o]=Et(n),Tt[o].c(),Tt[o].m(Z,null))}for(;o<Tt.length;o+=1)Tt[o].d(1);Tt.length=Rt.length}},i:t,o:t,d:function(t){t&&H(n),t&&H(i),t&&H(s),c(X,t),c(et,t),c(nt,t),c(it,t),c(at,t),c(ft,t),c(jt,t),c(Tt,t),o[15](null),l(K)}};return O("SvelteRegisterBlock",{block:Dt,id:St.name,type:"component",source:"",ctx:o}),Dt}function jt(t,e,o){let n,l,i=[5,10,25,100],s=[{title:"Valid"},{title:"Created date",sortable:!0,sortProperty:"createdDate"},{title:"Status",sortable:!0,sortProperty:"status"},{title:"Minimum weight"},{title:"Maximum weight"},{title:"Delivery date",sortable:!0,sortProperty:"deliveryDate"},{title:"# of pieces"},{title:"Price"}],a=["DELIVERED","READY","PACKING"],c=[...s,{title:"Rating"},{title:"Promotion"}],r=(new Date).toISOString().substr(0,10),d=[{valid:!0,createdDate:r,status:"READY",minWeight:"1 kg",maxWeight:"10 kg",deliveryDate:"",noOfPieces:5,price:"12 EUR"},{valid:!0,createdDate:r,status:"DELIVERED",minWeight:"1 kg",maxWeight:"10 kg",deliveryDate:r,noOfPieces:5,price:"12 EUR"},{valid:!0,createdDate:r,status:"READY",minWeight:"1 kg",maxWeight:"10 kg",deliveryDate:"",noOfPieces:5,price:"12 EUR"},{valid:!0,createdDate:r,status:"DELIVERED",minWeight:"1 kg",maxWeight:"10 kg",deliveryDate:r,noOfPieces:5,price:"12 EUR"},{valid:!0,createdDate:r,status:"READY",minWeight:"1 kg",maxWeight:"10 kg",deliveryDate:"",noOfPieces:5,price:"12 EUR"}],p=[...d].map(t=>Object.assign(t,{rating:3,promotion:!1}));const h=t=>{const e=document.createElement("zoo-toast");e.text=t?"Sort state was changed. Property: "+t.property+", direction: "+t.direction:"Sort state was changed. Sort object is undefined.",l.appendChild(e),e.show()},u=t=>{const e=document.createElement("zoo-toast");e.text="Page was changed to: "+t.pageNumber,l.appendChild(e),e.show()},m=[];ct.keys(e).forEach(t=>{~m.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-grids> was created with unknown prop '${t}'`)});let{$$slots:x={},$$scope:f}=e;V("app-grids",x,[]);return t.$capture_state=()=>({toast:n,possibleNumberOfItems:i,gridHolder:l,headers:s,statuses:a,extendedHeaders:c,today:r,data:d,extendedData:p,handleSortChange:h,handlePageChange:u}),t.$inject_state=t=>{"toast"in t&&(n=t.toast),"possibleNumberOfItems"in t&&o(1,i=t.possibleNumberOfItems),"gridHolder"in t&&o(0,l=t.gridHolder),"headers"in t&&o(2,s=t.headers),"statuses"in t&&o(3,a=t.statuses),"extendedHeaders"in t&&o(4,c=t.extendedHeaders),"today"in t&&(r=t.today),"data"in t&&o(5,d=t.data),"extendedData"in t&&o(6,p=t.extendedData)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[l,i,s,a,c,d,p,h,u,n,r,t=>h(t.detail),t=>u(t.detail),t=>h(t.detail),t=>u(t.detail),function(t){v[t?"unshift":"push"](()=>{o(0,l=t)})}]}customElements.define("app-grids",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>:host{contain:layout}h3{color:var(--primary-mid, #3C9700)}.min-width{min-width:200px}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-1{--grid-column-sizes:150px repeat(7, minmax(50px, 1fr)) !important}.grid-2{--grid-column-sizes:150px repeat(9, minmax(50px, 1fr)) !important}.grid-holder{max-width:1280px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}.item-per-page-selector-holder .item-per-page-selector:focus{border:2px solid #555555}</style>",M(this,{target:this.shadowRoot},jt,St,s,{},[-1,-1]),t&&t.target&&A(t.target,this,t.anchor)}});const Rt="src/sections/TooltipAndFeedback.svelte";function Tt(o){let n,l,i,s,a,c,d,p,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,F,V,N,W,G,Y,U;const q={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-feedback"),c=h(),d=r("zoo-tooltip"),p=h(),u=r("div"),x=r("zoo-feedback"),f=h(),b=r("zoo-tooltip"),g=h(),w=r("div"),v=r("zoo-feedback"),y=h(),k=r("zoo-tooltip"),$=h(),C=r("div"),z=r("zoo-feedback"),_=r("div"),E=r("span"),E.textContent="Feedback element with slotted content",S=h(),j=r("zoo-button"),R=r("span"),R.textContent="Slotted button",T=h(),D=r("div"),M=r("zoo-button"),P=r("span"),P.textContent="This element will show tooltip on top only when it is clicked.",F=h(),V=r("zoo-tooltip"),N=r("zoo-input"),W=r("input"),G=h(),Y=r("zoo-tooltip"),this.c=t,m(n,"text","Third section is a showcase of tooltips and feedback boxes."),e(n,Rt,1,0,65),m(a,"type","info"),m(a,"text","This is an info message. This element will show tooltip on the right side on hover."),e(a,Rt,4,2,222),m(d,"position","right"),m(d,"text","Hello from right side."),e(d,Rt,5,2,357),B(s,"class","feedback-tooltip"),e(s,Rt,3,1,189),m(x,"type","error"),m(x,"text","This is an error message. This element will show tooltip on the left side on hover."),e(x,Rt,8,2,474),m(b,"position","left"),m(b,"text","Hello from left side."),e(b,Rt,9,2,610),B(u,"class","feedback-tooltip"),e(u,Rt,7,1,441),m(v,"type","success"),m(v,"text","This is a success message. This element will show tooltip on the bottom side on hover."),e(v,Rt,12,2,725),m(k,"position","bottom"),m(k,"text","Hello from below"),e(k,Rt,13,2,866),B(w,"class","feedback-tooltip"),e(w,Rt,11,1,692),e(E,Rt,18,4,1043),B(R,"slot","buttoncontent"),e(R,Rt,20,5,1130),m(j,"type","hollow"),e(j,Rt,19,4,1098),B(_,"class","feedback-slot"),e(_,Rt,17,3,1011),m(z,"type","success"),e(z,Rt,16,2,978),B(C,"class","feedback-tooltip"),e(C,Rt,15,1,945),B(P,"slot","buttoncontent"),e(P,Rt,27,3,1315),e(M,Rt,26,2,1267),B(W,"slot","inputelement"),B(W,"placeholder","Search for more than 8.000 products"),e(W,Rt,31,4,1542),m(N,"class","input-in-tooltip"),e(N,Rt,30,3,1501),m(Y,"class","nested-tooltip"),m(Y,"position","right"),m(Y,"text","Hello from nested tooltip."),e(Y,Rt,33,3,1640),m(V,"text","Hello from up above"),e(V,Rt,29,2,1430),B(D,"class","special-tooltip"),e(D,Rt,25,1,1234),B(i,"class","inner-content"),e(i,Rt,2,0,160)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e,r){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(s,c),I(s,d),I(i,p),I(i,u),I(u,x),I(u,f),I(u,b),I(i,g),I(i,w),I(w,v),I(w,y),I(w,k),I(i,$),I(i,C),I(C,z),I(z,_),I(_,E),I(_,S),I(_,j),I(j,R),I(i,T),I(i,D),I(D,M),I(M,P),I(D,F),I(D,V),I(V,N),I(N,W),I(V,G),I(V,Y),o[2](V),r&&U(),U=L(M,"click",o[1],!1,!1,!1)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[2](null),U()}};return O("SvelteRegisterBlock",{block:q,id:Tt.name,type:"component",source:"",ctx:o}),q}function Dt(t,e,o){let n;const l=()=>{const t=n.style,e=t.display&&"none"!==t.display?"none":"block";t.display=e},i=[];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-tooltip-and-feedback> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("app-tooltip-and-feedback",s,[]),t.$capture_state=()=>({specialTooltip:n,showSpecialTooltip:l}),t.$inject_state=t=>{"specialTooltip"in t&&o(0,n=t.specialTooltip)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("app-tooltip-and-feedback",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>:host{contain:layout}.inner-content{flex:1 0 auto;width:70%;margin:0 auto}.inner-content .feedback-tooltip{height:60px;margin-bottom:15px;position:relative}.inner-content .feedback-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}.special-tooltip{max-width:250px;position:relative;margin:0 auto;cursor:pointer}zoo-tooltip{display:none}.input-in-tooltip:hover~.nested-tooltip{display:block;animation:fadeTooltipIn 0.2s}.feedback-slot{display:flex;align-items:center;width:100%;padding-right:50px}.feedback-slot span{flex-grow:1}</style>",M(this,{target:this.shadowRoot},Dt,Tt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const Mt="src/sections/Links.svelte";function Pt(o){let n,l,i,s,a,c,p,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q;const Z={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("zoo-link"),a=h(),c=r("zoo-link"),p=h(),u=r("zoo-link"),x=h(),f=r("zoo-link"),b=h(),g=r("zoo-link"),w=h(),v=r("zoo-link"),y=h(),k=r("zoo-link"),$=h(),C=r("zoo-link"),z=h(),_=r("zoo-link"),E=d("svg"),S=d("rect"),j=d("path"),R=h(),T=r("zoo-link"),D=d("svg"),M=d("path"),P=d("path"),L=h(),F=r("zoo-link"),V=d("svg"),N=d("rect"),W=d("path"),G=h(),Y=d("svg"),U=d("path"),q=d("path"),this.c=t,m(n,"text","Fifth section is a showcase of links"),e(n,Mt,1,0,50),m(s,"type","primary"),m(s,"size","large"),m(s,"text","Primary large link"),m(s,"href","https://github.com/zooplus/zoo-web-components"),e(s,Mt,3,1,143),m(c,"type","warning"),m(c,"size","large"),m(c,"text","Warning large link"),m(c,"href","https://github.com/zooplus/zoo-web-components"),e(c,Mt,4,1,273),m(u,"type","primary"),m(u,"size","bold"),m(u,"text","Primary bold link"),m(u,"href","https://github.com/zooplus/zoo-web-components"),e(u,Mt,5,1,403),m(f,"type","warning"),m(f,"size","bold"),m(f,"text","Warning bold link"),m(f,"href","https://github.com/zooplus/zoo-web-components"),e(f,Mt,6,1,531),m(g,"type","primary"),m(g,"size","regular"),m(g,"text","Primary regular link"),m(g,"href","https://github.com/zooplus/zoo-web-components"),e(g,Mt,7,1,659),m(v,"type","warning"),m(v,"size","regular"),m(v,"text","Warning regular link"),m(v,"href","https://github.com/zooplus/zoo-web-components"),e(v,Mt,8,1,793),m(k,"type","grey"),m(k,"size","regular"),m(k,"text","Grey regular link"),m(k,"href","https://github.com/zooplus/zoo-web-components"),e(k,Mt,9,1,927),m(C,"type","grey"),m(C,"disabled","true"),m(C,"size","regular"),m(C,"text","Disabled link"),m(C,"href","https://github.com/zooplus/zoo-web-components"),e(C,Mt,10,1,1055),B(S,"fill","none"),B(S,"height","24"),B(S,"width","24"),e(S,Mt,12,134,1460),B(j,"d","M3,4V1h2v3h3v2H5v3H3V6H0V4H3z M6,10V7h3V4h7l1.83,2H21c1.1,0,2,0.9,2,2v12c0,1.1-0.9,2-2,2H5c-1.1,0-2-0.9-2-2V10H6z M13,19c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S10.24,19,13,19z M9.8,14c0,1.77,1.43,3.2,3.2,3.2s3.2-1.43,3.2-3.2 s-1.43-3.2-3.2-3.2S9.8,12.23,9.8,14z"),e(j,Mt,12,176,1502),B(E,"slot","pre"),B(E,"xmlns","http://www.w3.org/2000/svg"),B(E,"enable-background","new 0 0 24 24"),B(E,"viewBox","0 0 24 24"),B(E,"width","18px"),B(E,"height","18px"),e(E,Mt,12,2,1328),m(_,"class","with-icon"),m(_,"type","primary"),m(_,"size","regular"),m(_,"text","Icon before"),m(_,"href","https://github.com/zooplus/zoo-web-components"),e(_,Mt,11,1,1195),B(M,"d","M0 0h24v24H0z"),B(M,"fill","none"),e(M,Mt,15,101,2030),B(P,"d","M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"),e(P,Mt,15,138,2067),B(D,"slot","post"),B(D,"xmlns","http://www.w3.org/2000/svg"),B(D,"viewBox","0 0 24 24"),B(D,"width","18px"),B(D,"height","18px"),e(D,Mt,15,2,1931),m(T,"class","with-icon"),m(T,"type","primary"),m(T,"size","regular"),m(T,"text","Icon after"),m(T,"href","https://github.com/zooplus/zoo-web-components"),e(T,Mt,14,1,1799),B(N,"fill","none"),B(N,"height","24"),B(N,"width","24"),e(N,Mt,18,134,2481),B(W,"d","M3,4V1h2v3h3v2H5v3H3V6H0V4H3z M6,10V7h3V4h7l1.83,2H21c1.1,0,2,0.9,2,2v12c0,1.1-0.9,2-2,2H5c-1.1,0-2-0.9-2-2V10H6z M13,19c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S10.24,19,13,19z M9.8,14c0,1.77,1.43,3.2,3.2,3.2s3.2-1.43,3.2-3.2 s-1.43-3.2-3.2-3.2S9.8,12.23,9.8,14z"),e(W,Mt,18,176,2523),B(V,"slot","pre"),B(V,"xmlns","http://www.w3.org/2000/svg"),B(V,"enable-background","new 0 0 24 24"),B(V,"viewBox","0 0 24 24"),B(V,"width","18px"),B(V,"height","18px"),e(V,Mt,18,2,2349),B(U,"d","M0 0h24v24H0z"),B(U,"fill","none"),e(U,Mt,19,101,2907),B(q,"d","M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"),e(q,Mt,19,138,2944),B(Y,"slot","post"),B(Y,"xmlns","http://www.w3.org/2000/svg"),B(Y,"viewBox","0 0 24 24"),B(Y,"width","18px"),B(Y,"height","18px"),e(Y,Mt,19,2,2808),m(F,"class","with-icon"),m(F,"type","primary"),m(F,"size","regular"),m(F,"text","Icons around"),m(F,"href","https://github.com/zooplus/zoo-web-components"),e(F,Mt,17,1,2215),B(i,"class","links"),e(i,Mt,2,0,122)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(i,a),I(i,c),I(i,p),I(i,u),I(i,x),I(i,f),I(i,b),I(i,g),I(i,w),I(i,v),I(i,y),I(i,k),I(i,$),I(i,C),I(i,z),I(i,_),I(_,E),I(E,S),I(E,j),I(i,R),I(i,T),I(T,D),I(D,M),I(D,P),I(i,L),I(i,F),I(F,V),I(V,N),I(V,W),I(F,G),I(F,Y),I(Y,U),I(Y,q)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i)}};return O("SvelteRegisterBlock",{block:Z,id:Pt.name,type:"component",source:"",ctx:o}),Z}function Ot(t,e){const o=[];Object.keys(e).forEach(t=>{~o.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<app-links> was created with unknown prop '${t}'`)});let{$$slots:n={},$$scope:l}=e;return V("app-links",n,[]),[]}customElements.define("app-links",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>:host{contain:layout}.links{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));grid-gap:15px;width:90%;justify-content:center}@media only screen and (max-width: 850px){.links{grid-template-columns:auto}}.with-icon svg{fill:#3C9700}</style>",M(this,{target:this.shadowRoot},Ot,Pt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const It="src/docs/ButtonDocs.svelte";function At(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at;const ct={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="type",b=p(" - accepts following values: "),g=r("b"),g.textContent="cold",w=p(", "),v=r("b"),v.textContent="hot",y=p(", "),k=r("b"),k.textContent="hollow",$=p(". Default is "),C=r("b"),C.textContent="cold",z=p(";"),_=h(),E=r("li"),S=r("b"),S.textContent="size",j=p(" - accepts following values: "),R=r("b"),R.textContent="small",T=p(", "),D=r("b"),D.textContent="medium",M=p(", "),P=r("b"),P.textContent="big",L=p(". Default is "),F=r("b"),F.textContent="small",V=p(";"),N=h(),W=r("li"),G=r("b"),G.textContent="disabled",Y=p(" - whether the button should be disabled or not."),U=h(),q=r("zoo-collapsable-list-item"),Z=p("This component accept one "),J=r("b"),J.textContent=`${o[1]}`,K=p(" which is replaced with provided "),Q=r("b"),Q.textContent="element",X=p(" so that you can catch events/provide your css/attach framework specific directives from/to this element."),tt=h(),et=r("div"),ot=r("code"),nt=r("pre"),nt.textContent=`${o[2]}`,lt=p("\n\t\twill produce the following:\n\t\t"),it=r("div"),st=r("zoo-button"),at=r("span"),at.textContent="Shopping Cart",this.c=t,m(n,"text","Button component API."),e(n,It,2,0,53),e(f,It,9,6,267),e(g,It,9,46,307),e(v,It,9,59,320),e(k,It,9,71,332),e(C,It,9,97,358),e(u,It,8,5,256),e(S,It,12,6,398),e(R,It,12,46,438),e(D,It,12,60,452),e(P,It,12,75,467),e(F,It,12,98,490),e(E,It,11,5,387),e(G,It,15,6,531),e(W,It,14,5,520),e(d,It,7,4,246),m(c,"slot","item0"),e(c,It,6,3,201),e(J,It,20,30,722),e(Q,It,20,86,778),m(q,"slot","item1"),e(q,It,19,3,651),e(a,It,5,2,158),B(s,"class","list"),e(s,It,4,1,137),e(nt,It,25,8,1e3),e(ot,It,25,2,994),B(at,"slot","buttoncontent"),e(at,It,29,4,1139),m(st,"type","secondary"),m(st,"size","medium"),e(st,It,28,3,1091),x(it,"width","250px"),e(it,It,27,2,1060),B(et,"class","example"),e(et,It,24,1,970),B(i,"class","doc-element"),e(i,It,3,0,110)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(u,w),I(u,v),I(u,y),I(u,k),I(u,$),I(u,C),I(u,z),I(d,_),I(d,E),I(E,S),I(E,j),I(E,R),I(E,T),I(E,D),I(E,M),I(E,P),I(E,L),I(E,F),I(E,V),I(d,N),I(d,W),I(W,G),I(W,Y),I(a,U),I(a,q),I(q,Z),I(q,J),I(q,K),I(q,Q),I(q,X),o[3](a),I(i,tt),I(i,et),I(et,ot),I(ot,nt),I(et,lt),I(et,it),I(it,st),I(st,at)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[3](null)}};return O("SvelteRegisterBlock",{block:ct,id:At.name,type:"component",source:"",ctx:o}),ct}function Ht(t,e,o){let n,l='<slot name="buttoncontent"></slot>',i='<div style="width: 250px;">\n  <zoo-button type="secondary" size="medium">\n    <span slot="buttoncontent">Shopping Cart</span>\n  </zoo-button>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const s=[];Object.keys(e).forEach(t=>{~s.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-button> was created with unknown prop '${t}'`)});let{$$slots:a={},$$scope:c}=e;return V("docs-button",a,[]),t.$capture_state=()=>({onMount:g,list:n,buttonSlotText:l,example:i}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"buttonSlotText"in t&&o(1,l=t.buttonSlotText),"example"in t&&o(2,i=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-button",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Ht,At,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const Lt="src/docs/CheckboxDocs.svelte";function Bt(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt;const it={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="labeltext",b=p(" - text to be presented on the right side of the checkbox;"),g=h(),w=r("li"),v=r("b"),v.textContent="valid",y=p(" - flag which indicates whether the input is valid or not;"),k=h(),$=r("li"),C=r("b"),C.textContent="disabled",z=p(" - flag indicating whether the input is disabled."),_=h(),E=r("li"),S=r("b"),S.textContent="highlighted",j=p(" - flag indicating whether the outline around the input should be visible (border)."),R=h(),T=r("zoo-collapsable-list-item"),D=p("This component accepts the following slots:\n\t\t\t\t"),M=r("ul"),P=r("li"),L=r("b"),L.textContent=`${o[1]}`,F=p(" - replaced with provided "),V=r("b"),V.textContent="input",N=p(" so that you can catch events/provide your css/attach framework specific directives from/to this element."),W=r("br"),G=h(),Y=r("li"),U=r("b"),U.textContent=`${o[2]}`,q=p(" - replaced with provided "),Z=r("b"),Z.textContent="label",J=p(" for a11y reasons."),K=h(),Q=r("div"),X=r("code"),tt=r("pre"),tt.textContent=`${o[3]}`,et=p("\n\t\twill produce the following:\n\t\t"),ot=r("div"),nt=r("zoo-checkbox"),lt=r("input"),this.c=t,m(n,"text","Checkbox component API."),e(n,Lt,1,0,54),e(f,Lt,8,6,270),e(u,Lt,7,5,259),e(v,Lt,11,6,372),e(w,Lt,10,5,361),e(C,Lt,14,6,470),e($,Lt,13,5,459),e(S,Lt,17,6,562),e(E,Lt,16,5,551),e(d,Lt,6,4,249),m(c,"slot","item0"),e(c,Lt,5,3,204),e(L,Lt,25,6,834),e(V,Lt,25,54,882),e(W,Lt,25,171,999),e(P,Lt,24,5,823),e(U,Lt,28,6,1031),e(Z,Lt,28,54,1079),e(Y,Lt,27,5,1020),e(M,Lt,23,4,813),m(T,"slot","item1"),e(T,Lt,21,3,720),e(a,Lt,4,2,161),B(s,"class","list"),e(s,Lt,3,1,140),e(tt,Lt,35,8,1228),e(X,Lt,35,2,1222),B(lt,"slot","checkboxelement"),B(lt,"type","checkbox"),e(lt,Lt,39,4,1409),m(nt,"highlighted","1"),m(nt,"labeltext","Example label for this particular checkbox"),e(nt,Lt,38,3,1319),x(ot,"width","250px"),e(ot,Lt,37,2,1288),B(Q,"class","example"),e(Q,Lt,34,1,1198),B(i,"class","doc-element"),e(i,Lt,2,0,113)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(d,g),I(d,w),I(w,v),I(w,y),I(d,k),I(d,$),I($,C),I($,z),I(d,_),I(d,E),I(E,S),I(E,j),I(a,R),I(a,T),I(T,D),I(T,M),I(M,P),I(P,L),I(P,F),I(P,V),I(P,N),I(P,W),I(M,G),I(M,Y),I(Y,U),I(Y,q),I(Y,Z),I(Y,J),o[4](a),I(i,K),I(i,Q),I(Q,X),I(X,tt),I(Q,et),I(Q,ot),I(ot,nt),I(nt,lt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[4](null)}};return O("SvelteRegisterBlock",{block:it,id:Bt.name,type:"component",source:"",ctx:o}),it}function Ft(t,e,o){let n,l='<slot name="checkboxelement"></slot>',i='<slot name="checkboxlabel"></slot>',s='<div style="width: 250px;">\n  <zoo-checkbox highlighted="1" labeltext="Example label for this particular checkbox">\n    <input slot="checkboxelement" type="checkbox"/>\n  </zoo-checkbox>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const a=[];Object.keys(e).forEach(t=>{~a.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-checkbox> was created with unknown prop '${t}'`)});let{$$slots:c={},$$scope:r}=e;return V("docs-checkbox",c,[]),t.$capture_state=()=>({onMount:g,list:n,inputSlotText:l,labelSlotText:i,example:s}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"inputSlotText"in t&&o(1,l=t.inputSlotText),"labelSlotText"in t&&o(2,i=t.labelSlotText),"example"in t&&o(3,s=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-checkbox",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Ft,Bt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const Vt="src/docs/CollapsableListDocs.svelte";function Nt(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y;const U={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="items",b=p(" - array of objects of with one field "),g=r("code"),g.textContent="header: string",w=h(),v=r("li"),y=r("b"),y.textContent="highlighted",k=p(" - flag indicating whether the outline around the input should be visible (border)"),$=h(),C=r("zoo-collapsable-list-item"),z=p("This component accepts multiple "),_=r("b"),_.textContent=`${o[2]}`,E=p(" which are replaced with provided "),S=r("b"),S.textContent="elements",j=p("."),R=h(),T=r("div"),D=r("code"),M=r("pre"),M.textContent=`${o[3]}${o[4]}`,P=p("\n\t\twill produce the following:\n\t\t"),L=r("div"),F=r("zoo-collapsable-list"),V=r("zoo-collapsable-list-item"),N=r("span"),N.textContent="inner item0",W=h(),G=r("zoo-collapsable-list-item"),Y=r("span"),Y.textContent="inner item1",this.c=t,m(n,"text","Collapsable List component API."),e(n,Vt,1,0,62),e(f,Vt,8,6,286),e(g,Vt,8,56,336),e(u,Vt,7,5,275),e(y,Vt,11,6,391),e(v,Vt,10,5,380),e(d,Vt,6,4,265),m(c,"slot","item0"),e(c,Vt,5,3,220),e(_,Vt,16,36,625),e(S,Vt,16,91,680),m(C,"slot","item1"),e(C,Vt,15,3,548),e(a,Vt,4,2,177),B(s,"class","list"),e(s,Vt,3,1,156),e(M,Vt,21,8,794),e(D,Vt,21,2,788),e(N,Vt,26,5,997),m(V,"slot","item0"),e(V,Vt,25,4,951),e(Y,Vt,29,5,1105),m(G,"slot","item1"),e(G,Vt,28,4,1059),e(F,Vt,24,3,900),x(L,"width","250px"),e(L,Vt,23,2,869),B(T,"class","example"),e(T,Vt,20,1,764),B(i,"class","doc-element"),e(i,Vt,2,0,129)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(d,w),I(d,v),I(v,y),I(v,k),I(a,$),I(a,C),I(C,z),I(C,_),I(C,E),I(C,S),I(C,j),o[5](a),I(i,R),I(i,T),I(T,D),I(D,M),I(T,P),I(T,L),I(L,F),I(F,V),I(V,N),I(F,W),I(F,G),I(G,Y),o[6](F)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[5](null),o[6](null)}};return O("SvelteRegisterBlock",{block:U,id:Nt.name,type:"component",source:"",ctx:o}),U}function Wt(t,e,o){let n,l,i='<slot name="item{idx}"></slot>',s='<div style="width: 250px;">\n  <zoo-collapsable-list id="list">\n    <zoo-collapsable-list-item slot="item0">\n      <span>inner item0</span>\n    </zoo-collapsable-list-item>\n    <zoo-collapsable-list-item slot="item1">\n      <span>inner item1</span>\n    </zoo-collapsable-list-item>\n  </zoo-collapsable-list>\n</div>',a="\n<script>\n  document.getElementById('list').items=[{header: item0}, {header: item1}];\n<\/script>";g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n),o(1,l.items=[{header:"item0"},{header:"item1"}],l)});const c=[];Object.keys(e).forEach(t=>{~c.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-collapsable-list> was created with unknown prop '${t}'`)});let{$$slots:r={},$$scope:d}=e;return V("docs-collapsable-list",r,[]),t.$capture_state=()=>({onMount:g,list:n,listSlotText:i,example:s,scriptExample:a,exampleList:l}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"listSlotText"in t&&o(2,i=t.listSlotText),"example"in t&&o(3,s=t.example),"scriptExample"in t&&o(4,a=t.scriptExample),"exampleList"in t&&o(1,l=t.exampleList)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,a,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})},function(t){v[t?"unshift":"push"](()=>{o(1,l=t)})}]}customElements.define("docs-collapsable-list",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Wt,Nt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const Gt="src/docs/FeedbackDocs.svelte";function Yt(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N;const W={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="text",b=p(" - text to be presented in the feedback box"),g=h(),w=r("li"),v=r("b"),v.textContent="type",y=p(" - type of the feedback. Possible values are: "),k=r("b"),k.textContent="error",$=p(", "),C=r("b"),C.textContent="info",z=p(", "),_=r("b"),_.textContent="success",E=p(". Default is "),S=r("b"),S.textContent="info",j=p(";"),R=h(),T=r("zoo-collapsable-list-item"),T.textContent="This component accepts unnamed slots.",D=h(),M=r("div"),P=r("code"),L=r("pre"),L.textContent=`${o[1]}`,F=p("\n\t\twill produce the following:\n\t\t"),V=r("div"),N=r("zoo-feedback"),this.c=t,m(n,"text","Feedback component API."),e(n,Gt,1,0,54),e(f,Gt,8,6,270),e(u,Gt,7,5,259),e(v,Gt,11,6,352),e(k,Gt,11,63,409),e(C,Gt,11,77,423),e(_,Gt,11,90,436),e(S,Gt,11,117,463),e(w,Gt,10,5,341),e(d,Gt,6,4,249),m(c,"slot","item0"),e(c,Gt,5,3,204),m(T,"slot","item1"),e(T,Gt,15,3,532),e(a,Gt,4,2,161),B(s,"class","list"),e(s,Gt,3,1,140),e(L,Gt,21,8,712),e(P,Gt,21,2,706),m(N,"text","This is an info message."),e(N,Gt,24,3,803),x(V,"width","250px"),e(V,Gt,23,2,772),B(M,"class","example"),e(M,Gt,20,1,682),B(i,"class","doc-element"),e(i,Gt,2,0,113)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(d,g),I(d,w),I(w,v),I(w,y),I(w,k),I(w,$),I(w,C),I(w,z),I(w,_),I(w,E),I(w,S),I(w,j),I(a,R),I(a,T),o[3](a),I(i,D),I(i,M),I(M,P),I(P,L),I(M,F),I(M,V),I(V,N)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[3](null)}};return O("SvelteRegisterBlock",{block:W,id:Yt.name,type:"component",source:"",ctx:o}),W}function Ut(t,e,o){let n,l='<slot name="checkboxelement"></slot>',i='<div style="width: 250px;">\n  <zoo-feedback text="This is an info message."></zoo-feedback>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const s=[];Object.keys(e).forEach(t=>{~s.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-feedback> was created with unknown prop '${t}'`)});let{$$slots:a={},$$scope:c}=e;return V("docs-feedback",a,[]),t.$capture_state=()=>({onMount:g,list:n,inputSlotText:l,example:i}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"inputSlotText"in t&&(l=t.inputSlotText),"example"in t&&o(1,i=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,i,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-feedback",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Ut,Yt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const qt="src/docs/FooterDocs.svelte";function Zt(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt;const ht={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="footerlinks",b=p(" - an "),g=r("b"),g.textContent="array",w=p(" of objects where each object has the following structure:\n\t\t\t\t\t\t"),v=r("ul"),y=r("li"),k=r("b"),k.textContent="href",$=p(" - direct link"),C=h(),z=r("li"),_=r("b"),_.textContent="text",E=p(" - text to be displayed as link"),S=h(),j=r("li"),R=r("b"),R.textContent="target",T=p(" - how the link should behave (default - "),D=r("b"),D.textContent="about:blank",M=p(")"),P=h(),L=r("li"),F=r("b"),F.textContent="type",V=p(" - currently supports 2 values: "),N=r("b"),N.textContent="standard",W=p(" and "),G=r("b"),G.textContent="green",Y=p(", default - "),U=r("b"),U.textContent="standard",q=p(". Responsible for coloring of the links, standard is white"),Z=h(),J=r("li"),K=r("b"),K.textContent="disabled",Q=p(" - flag indicating whether the anchor link should be disabled"),X=h(),tt=r("li"),et=r("b"),et.textContent="copyright",ot=p(" - text to be presented as a copyright unde links (foe example, 'zooplus AG')"),nt=h(),lt=r("zoo-collapsable-list-item"),lt.textContent="This component does not accept slots.",it=h(),st=r("div"),at=r("code"),ct=r("pre"),ct.textContent=`${o[2]}${o[3]}`,rt=p("\n\t\twill produce the following:\n\t\t"),dt=r("div"),pt=r("zoo-footer"),this.c=t,m(n,"text","Footer component API."),e(n,qt,2,0,53),e(f,qt,9,6,267),e(g,qt,9,30,291),e(k,qt,12,8,393),e(y,qt,11,7,380),e(_,qt,15,8,452),e(z,qt,14,7,439),e(R,qt,18,8,528),e(D,qt,18,62,582),e(j,qt,17,7,515),e(F,qt,21,8,635),e(N,qt,21,51,678),e(G,qt,21,71,698),e(U,qt,21,95,722),e(L,qt,20,7,622),e(K,qt,24,8,829),e(J,qt,23,7,816),e(et,qt,27,8,939),e(tt,qt,26,7,926),e(v,qt,10,6,368),e(u,qt,8,5,256),e(d,qt,7,4,246),m(c,"slot","item0"),e(c,qt,6,3,201),m(lt,"slot","item1"),e(lt,qt,33,3,1114),e(a,qt,5,2,158),B(s,"class","list"),e(s,qt,4,1,137),e(ct,qt,39,8,1294),e(at,qt,39,2,1288),e(pt,qt,42,3,1400),x(dt,"width","250px"),e(dt,qt,41,2,1369),B(st,"class","example"),e(st,qt,38,1,1264),B(i,"class","doc-element"),e(i,qt,3,0,110)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(u,w),I(u,v),I(v,y),I(y,k),I(y,$),I(v,C),I(v,z),I(z,_),I(z,E),I(v,S),I(v,j),I(j,R),I(j,T),I(j,D),I(j,M),I(v,P),I(v,L),I(L,F),I(L,V),I(L,N),I(L,W),I(L,G),I(L,Y),I(L,U),I(L,q),I(v,Z),I(v,J),I(J,K),I(J,Q),I(v,X),I(v,tt),I(tt,et),I(tt,ot),I(a,nt),I(a,lt),o[4](a),I(i,it),I(i,st),I(st,at),I(at,ct),I(st,rt),I(st,dt),I(dt,pt),o[5](pt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[4](null),o[5](null)}};return O("SvelteRegisterBlock",{block:ht,id:Zt.name,type:"component",source:"",ctx:o}),ht}function Jt(t,e,o){let n,l,i='<div style="width: 250px;">\n  <zoo-footer id="footer"></zoo-footer>\n</div>',s="\n<script>\n  document.getElementById('footer').footerlinks=[{\n    href: 'https://github.com/zooplus/zoo-web-components',\n    text: 'Github',\n    type: 'standard'\n  },\n  {\n    href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',\n    text: 'NPM',\n    type: 'standard'\n  }];\n<\/script>";g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n),o(1,l.footerlinks=[{href:"https://github.com/zooplus/zoo-web-components",text:"Github",type:"negative"},{href:"https://www.npmjs.com/package/@zooplus/zoo-web-components",text:"NPM",type:"negative"}],l)});const a=[];Object.keys(e).forEach(t=>{~a.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-footer> was created with unknown prop '${t}'`)});let{$$slots:c={},$$scope:r}=e;return V("docs-footer",c,[]),t.$capture_state=()=>({onMount:g,list:n,exampleFooter:l,example:i,scriptExample:s}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"exampleFooter"in t&&o(1,l=t.exampleFooter),"example"in t&&o(2,i=t.example),"scriptExample"in t&&o(3,s=t.scriptExample)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})},function(t){v[t?"unshift":"push"](()=>{o(1,l=t)})}]}customElements.define("docs-footer",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Jt,Zt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const Kt="src/docs/HeaderDocs.svelte";function Qt(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P;const L={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="imgsrc",b=p(" - path to logo of your app"),g=h(),w=r("li"),v=r("b"),v.textContent="imgalt",y=p(" - text to be displayed when logo cannot be found"),k=h(),$=r("li"),C=r("b"),C.textContent="headertext",z=p(" - text to be displayed next to the logo"),_=h(),E=r("zoo-collapsable-list-item"),E.textContent="This component accepts unnamed slots, which will be rendered to the right after logo or text.",S=h(),j=r("div"),R=r("code"),T=r("pre"),T.textContent=`${o[1]}`,D=p("\n\t\twill produce the following:\n\t\t"),M=r("div"),P=r("zoo-header"),this.c=t,m(n,"text","Header component API."),e(n,Kt,2,0,53),e(f,Kt,9,6,267),e(u,Kt,8,5,256),e(v,Kt,12,6,335),e(w,Kt,11,5,324),e(C,Kt,15,6,425),e($,Kt,14,5,414),e(d,Kt,7,4,246),m(c,"slot","item0"),e(c,Kt,6,3,201),m(E,"slot","item1"),e(E,Kt,19,3,539),e(a,Kt,5,2,158),B(s,"class","list"),e(s,Kt,4,1,137),e(T,Kt,25,8,775),e(R,Kt,25,2,769),m(P,"imgsrc","logo.png"),m(P,"imgalt","zooplus"),m(P,"headertext","App name"),e(P,Kt,28,3,866),x(M,"width","250px"),e(M,Kt,27,2,835),B(j,"class","example"),e(j,Kt,24,1,745),B(i,"class","doc-element"),e(i,Kt,3,0,110)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(d,g),I(d,w),I(w,v),I(w,y),I(d,k),I(d,$),I($,C),I($,z),I(a,_),I(a,E),o[2](a),I(i,S),I(i,j),I(j,R),I(R,T),I(j,D),I(j,M),I(M,P)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[2](null)}};return O("SvelteRegisterBlock",{block:L,id:Qt.name,type:"component",source:"",ctx:o}),L}function Xt(t,e,o){let n,l='<div style="width: 250px;">\n  <zoo-header imgsrc="logo.png" imgalt="imgalt" headertext="App name"></zoo-header>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const i=[];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-header> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("docs-header",s,[]),t.$capture_state=()=>({onMount:g,list:n,example:l}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"example"in t&&o(1,l=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-header",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Xt,Qt,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const te="src/docs/InputDocs.svelte";function ee(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt,wt,vt,yt,kt,$t,Ct,zt,_t,Et;const St={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="labelposition",b=p(" - accepts following values: "),g=r("b"),g.textContent="top",w=p(", "),v=r("b"),v.textContent="left",y=p(". Default is "),k=r("b"),k.textContent="top",$=h(),C=r("li"),z=r("b"),z.textContent="labeltext",_=p(" - text to be presented as the label of the input"),E=h(),S=r("li"),j=r("b"),j.textContent="linktext",R=p(" - text to be presented as a link text"),T=h(),D=r("li"),M=r("b"),M.textContent="linkhref",P=p(" - where the link should lead"),L=h(),F=r("li"),V=r("b"),V.textContent="linktarget",N=p(" - target of the anchor link, default is "),W=r("b"),W.textContent="about:blank",G=h(),Y=r("li"),U=r("b"),U.textContent="inputerrormsg",q=p(" - error message to be presented when input is in invalid state"),Z=h(),J=r("li"),K=r("b"),K.textContent="infotext",Q=p(" - text to be presented below the input"),X=h(),tt=r("li"),et=r("b"),et.textContent="valid",ot=p(" - flag which indicates whether the input is valid or not"),nt=h(),lt=r("zoo-collapsable-list-item"),it=p("This component accepts the following slots:\n\t\t\t\t"),st=r("ul"),at=r("li"),ct=r("b"),ct.textContent=`${o[1]}`,rt=p(" - replaced with provided "),dt=r("b"),dt.textContent="input",pt=p(" so that you can catch events/provide your css/attach framework specific directives from/to this element."),ht=r("br"),ut=h(),mt=r("li"),xt=r("b"),xt.textContent=`${o[2]}`,ft=p(" - replaced with provided "),bt=r("b"),bt.textContent="label",gt=p(" for a11y reasons."),wt=h(),vt=r("div"),yt=r("code"),kt=r("pre"),kt.textContent=`${o[3]}`,$t=p("\n\t\twill produce the following:\n\t\t"),Ct=r("div"),zt=r("zoo-input"),_t=r("input"),this.c=t,m(n,"text","Input component API."),e(n,te,2,0,52),e(f,te,9,6,265),e(g,te,9,55,314),e(v,te,9,67,326),e(k,te,9,91,350),e(u,te,8,5,254),e(z,te,12,6,388),e(C,te,11,5,377),e(j,te,15,6,481),e(S,te,14,5,470),e(M,te,18,6,562),e(D,te,17,5,551),e(V,te,21,6,634),e(W,te,21,64,692),e(F,te,20,5,623),e(U,te,24,6,738),e(Y,te,23,5,727),e(K,te,27,6,849),e(J,te,26,5,838),e(et,te,30,6,931),e(tt,te,29,5,920),e(d,te,7,4,244),m(c,"slot","item0"),e(c,te,6,3,199),e(ct,te,38,6,1171),e(dt,te,38,57,1222),e(ht,te,38,174,1339),e(at,te,37,5,1160),e(xt,te,41,6,1371),e(bt,te,41,57,1422),e(mt,te,40,5,1360),e(st,te,36,4,1150),m(lt,"slot","item1"),e(lt,te,34,3,1057),e(a,te,5,2,156),B(s,"class","list"),e(s,te,4,1,135),e(kt,te,48,8,1571),e(yt,te,48,2,1565),B(_t,"slot","inputelement"),B(_t,"placeholder","input"),e(_t,te,57,4,1886),m(zt,"labeltext","Input label"),m(zt,"linktext","Forgotten your password?"),m(zt,"linkhref","https://google.com"),m(zt,"linktarget","about:blank"),m(zt,"valid",Et=!0),m(zt,"infotext","Additional helpful information for our users"),e(zt,te,51,3,1662),x(Ct,"width","250px"),e(Ct,te,50,2,1631),B(vt,"class","example"),e(vt,te,47,1,1541),B(i,"class","doc-element"),e(i,te,3,0,108)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(u,w),I(u,v),I(u,y),I(u,k),I(d,$),I(d,C),I(C,z),I(C,_),I(d,E),I(d,S),I(S,j),I(S,R),I(d,T),I(d,D),I(D,M),I(D,P),I(d,L),I(d,F),I(F,V),I(F,N),I(F,W),I(d,G),I(d,Y),I(Y,U),I(Y,q),I(d,Z),I(d,J),I(J,K),I(J,Q),I(d,X),I(d,tt),I(tt,et),I(tt,ot),I(a,nt),I(a,lt),I(lt,it),I(lt,st),I(st,at),I(at,ct),I(at,rt),I(at,dt),I(at,pt),I(at,ht),I(st,ut),I(st,mt),I(mt,xt),I(mt,ft),I(mt,bt),I(mt,gt),o[4](a),I(i,wt),I(i,vt),I(vt,yt),I(yt,kt),I(vt,$t),I(vt,Ct),I(Ct,zt),I(zt,_t)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[4](null)}};return O("SvelteRegisterBlock",{block:St,id:ee.name,type:"component",source:"",ctx:o}),St}function oe(t,e,o){let n,l='<slot name="inputelement"></slot>',i='<slot name="inputlabel"></slot>',s='<div style="width: 250px;">\n  <zoo-input labeltext="Input label"\n    linktext="Forgotten your password?"\n    linkhref="https://google.com"\n    linktarget="about:blank"\n    infotext="Additional helpful information for our users" >\n    <input slot="inputelement" placeholder="input"/>\n  </zoo-input>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const a=[];Object.keys(e).forEach(t=>{~a.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-input> was created with unknown prop '${t}'`)});let{$$slots:c={},$$scope:r}=e;return V("docs-input",c,[]),t.$capture_state=()=>({onMount:g,list:n,inputSlotExample:l,labelSlotExample:i,example:s}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"inputSlotExample"in t&&o(1,l=t.inputSlotExample),"labelSlotExample"in t&&o(2,i=t.labelSlotExample),"example"in t&&o(3,s=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-input",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},oe,ee,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const ne="src/docs/LinkDocs.svelte";function le(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt;const wt={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("ul"),f=r("li"),b=r("b"),b.textContent="href",g=p(" - direct link"),w=h(),v=r("li"),y=r("b"),y.textContent="text",k=p(" - text to be displayed as link"),$=h(),C=r("li"),z=r("b"),z.textContent="target",_=p(" - how the link should behave (default - "),E=r("b"),E.textContent="about:blank",S=p(")"),j=h(),R=r("li"),T=r("b"),T.textContent="type",D=p(" - currently supports 2 values: "),M=r("b"),M.textContent="negative",P=p(" and "),L=r("b"),L.textContent="primary",F=p(", default - "),V=r("b"),V.textContent="negative",N=p(". Responsible for coloring of the links, negative is white"),W=h(),G=r("li"),Y=r("b"),Y.textContent="disabled",U=p(" - flag indicating whether the anchor link should be disabled"),q=h(),Z=r("li"),J=r("b"),J.textContent="textalign",K=p(" - standard css behaviour. Default value is "),Q=r("b"),Q.textContent="center",X=h(),tt=r("li"),et=r("b"),et.textContent="size",ot=p(" - size of the link text. Supports values: "),nt=r("b"),nt.textContent="regular",lt=p(", "),it=r("b"),it.textContent="bold",st=p(", "),at=r("b"),at.textContent="large",ct=p(". Default value is "),rt=r("b"),rt.textContent="regular",dt=h(),pt=r("zoo-collapsable-list-item"),pt.textContent="This component does not accept slots.",ht=h(),ut=r("div"),mt=r("code"),xt=r("pre"),xt.textContent=`${o[1]}`,ft=p("\n\t\twill produce the following:\n\t\t"),bt=r("div"),gt=r("zoo-link"),this.c=t,m(n,"text","Link component API."),e(n,ne,2,0,51),e(b,ne,10,7,275),e(f,ne,9,6,263),e(y,ne,13,7,331),e(v,ne,12,6,319),e(z,ne,16,7,404),e(E,ne,16,61,458),e(C,ne,15,6,392),e(T,ne,19,7,508),e(M,ne,19,50,551),e(L,ne,19,70,571),e(V,ne,19,96,597),e(R,ne,18,6,496),e(Y,ne,22,7,701),e(G,ne,21,6,689),e(J,ne,25,7,808),e(Q,ne,25,67,868),e(Z,ne,24,6,796),e(et,ne,28,7,912),e(nt,ne,28,61,966),e(it,ne,28,77,982),e(at,ne,28,90,995),e(rt,ne,28,121,1026),e(tt,ne,27,6,900),e(u,ne,8,5,252),e(d,ne,7,4,242),m(c,"slot","item0"),e(c,ne,6,3,197),m(pt,"slot","item1"),e(pt,ne,33,3,1109),e(a,ne,5,2,154),B(s,"class","list"),e(s,ne,4,1,133),e(xt,ne,39,8,1289),e(mt,ne,39,2,1283),m(gt,"href","https://google.com"),m(gt,"text","Link to google"),m(gt,"type","primary"),e(gt,ne,42,3,1380),x(bt,"width","250px"),e(bt,ne,41,2,1349),B(ut,"class","example"),e(ut,ne,38,1,1259),B(i,"class","doc-element"),e(i,ne,3,0,106)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(f,b),I(f,g),I(u,w),I(u,v),I(v,y),I(v,k),I(u,$),I(u,C),I(C,z),I(C,_),I(C,E),I(C,S),I(u,j),I(u,R),I(R,T),I(R,D),I(R,M),I(R,P),I(R,L),I(R,F),I(R,V),I(R,N),I(u,W),I(u,G),I(G,Y),I(G,U),I(u,q),I(u,Z),I(Z,J),I(Z,K),I(Z,Q),I(u,X),I(u,tt),I(tt,et),I(tt,ot),I(tt,nt),I(tt,lt),I(tt,it),I(tt,st),I(tt,at),I(tt,ct),I(tt,rt),I(a,dt),I(a,pt),o[2](a),I(i,ht),I(i,ut),I(ut,mt),I(mt,xt),I(ut,ft),I(ut,bt),I(bt,gt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[2](null)}};return O("SvelteRegisterBlock",{block:wt,id:le.name,type:"component",source:"",ctx:o}),wt}function ie(t,e,o){let n,l='<div style="width: 250px;">\n  <zoo-link href="https://google.com" text="Link to google" type="primary"></zoo-link>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const i=[];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-link> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("docs-link",s,[]),t.$capture_state=()=>({onMount:g,list:n,example:l}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"example"in t&&o(1,l=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-link",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},ie,le,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const se="src/docs/ModalDocs.svelte";function ae(o){let n,l,i,s,a,c,d,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R;const T={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),x=r("b"),x.textContent="headertext",f=p(" - text to be displayed as modal's header"),b=h(),g=r("li"),w=r("b"),w.textContent="openModal()",v=p(" - function which can be called to open this particular modal window."),y=h(),k=r("li"),$=r("b"),$.textContent="closeModal()",C=p(" - function which can be called to close this particular modal window."),z=h(),_=r("zoo-collapsable-list-item"),_.textContent="This component accepts multiple unnamed slots.",E=h(),S=r("div"),j=r("code"),R=r("pre"),R.textContent=`${o[1]}`,this.c=t,m(n,"text","Modal component API."),e(n,se,2,0,52),e(x,se,9,6,265),e(u,se,8,5,254),e(w,se,12,6,351),e(g,se,11,5,340),e($,se,15,6,466),e(k,se,14,5,455),e(d,se,7,4,244),m(c,"slot","item0"),e(c,se,6,3,199),m(_,"slot","item1"),e(_,se,19,3,612),e(a,se,5,2,156),B(s,"class","list"),e(s,se,4,1,135),e(R,se,25,8,801),e(j,se,25,2,795),B(S,"class","example"),e(S,se,24,1,771),B(i,"class","doc-element"),e(i,se,3,0,108)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,x),I(u,f),I(d,b),I(d,g),I(g,w),I(g,v),I(d,y),I(d,k),I(k,$),I(k,C),I(a,z),I(a,_),o[2](a),I(i,E),I(i,S),I(S,j),I(j,R)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[2](null)}};return O("SvelteRegisterBlock",{block:T,id:ae.name,type:"component",source:"",ctx:o}),T}function ce(t,e,o){let n,l='<zoo-modal headertext="Your basket contains licensed items">\n  <zoo-feedback text="This is an info message."></zoo-feedback>\n</zoo-modal>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const i=[];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-modal> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("docs-modal",s,[]),t.$capture_state=()=>({onMount:g,list:n,example:l}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"example"in t&&o(1,l=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-modal",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},ce,ae,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const re="src/docs/NavigationDocs.svelte";function de(t,e,o){const n=t.slice();return n[4]=e[o],n}function pe(o){let n,l,i;const s={c:function(){n=r("zoo-link"),x(n,"margin-left","10px"),m(n,"href",l=o[4].href),m(n,"text",i=o[4].text),e(n,re,17,6,533)},m:function(t,e){A(t,n,e)},p:t,d:function(t){t&&H(n)}};return O("SvelteRegisterBlock",{block:s,id:pe.name,type:"each",source:"(17:5) {#each navlinks as link}",ctx:o}),s}function he(o){let n,l,i,s,a,d,p,u,f,b,g,w,v,y,k=o[1];F(k);let $=[];for(let t=0;t<k.length;t+=1)$[t]=pe(de(o,k,t));const C={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),d=r("zoo-collapsable-list-item"),d.textContent="This component accepts multiple unnamed slots.",p=h(),u=r("div"),f=r("code"),b=r("pre"),b.textContent=`${o[2]}`,g=h(),w=r("div"),v=r("zoo-navigation"),y=r("div");for(let t=0;t<$.length;t+=1)$[t].c();this.c=t,m(n,"text","Navigation component API."),e(n,re,2,0,57),m(d,"slot","item0"),e(d,re,6,3,209),e(a,re,5,2,166),B(s,"class","list"),e(s,re,4,1,145),e(b,re,12,8,398),e(f,re,12,2,392),e(y,re,15,4,491),m(v,"class","nav"),e(v,re,14,3,458),x(w,"width","250px"),e(w,re,13,2,428),B(u,"class","example"),e(u,re,11,1,368),B(i,"class","doc-element"),e(i,re,3,0,118)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,d),o[3](a),I(i,p),I(i,u),I(u,f),I(f,b),I(u,g),I(u,w),I(w,v),I(v,y);for(let t=0;t<$.length;t+=1)$[t].m(y,null)},p:function(t,[e]){if(2&e){let o;for(k=t[1],F(k),o=0;o<k.length;o+=1){const n=de(t,k,o);$[o]?$[o].p(n,e):($[o]=pe(n),$[o].c(),$[o].m(y,null))}for(;o<$.length;o+=1)$[o].d(1);$.length=k.length}},i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[3](null),c($,t)}};return O("SvelteRegisterBlock",{block:C,id:he.name,type:"component",source:"",ctx:o}),C}function ue(t,e,o){let n,l=[{href:"https://google.com",text:"Google"},{href:"https://svelte.technology/",text:"Svelte"}],i='<div style="width: 250px">\n  <zoo-navigation class="nav">\n    <div>\n      {#each navlinks as link}\n        <zoo-link style="margin-left: 10px;" href="{link.href}" text="{link.text}"></zoo-link>\n      {/each}\n    </div>\n  </zoo-navigation></div>';g(()=>{o(0,n.items=[{header:"Slots"}],n)});const s=[];Object.keys(e).forEach(t=>{~s.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-navigation> was created with unknown prop '${t}'`)});let{$$slots:a={},$$scope:c}=e;return V("docs-navigation",a,[]),t.$capture_state=()=>({onMount:g,list:n,navlinks:l,example:i}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"navlinks"in t&&o(1,l=t.navlinks),"example"in t&&o(2,i=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-navigation",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},ue,he,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const me="src/docs/RadioDocs.svelte";function xe(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y;const U={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="errormsg",b=p(" - error message to be presented when input is in invalid state"),g=h(),w=r("li"),v=r("b"),v.textContent="infotext",y=p(" - text to be presented below the input"),k=h(),$=r("li"),C=r("b"),C.textContent="valid",z=p(" - flag which indicates whether the input is valid or not"),_=h(),E=r("zoo-collapsable-list-item"),E.textContent="This component accepts multiple unnamed slots.",S=h(),j=r("div"),R=r("code"),T=r("pre"),T.textContent=`${o[1]}`,D=p("\n\t\twill produce the following:\n\t\t"),M=r("div"),P=r("zoo-radio"),L=r("input"),F=h(),V=r("label"),V.textContent="Email",N=h(),W=r("input"),G=h(),Y=r("label"),Y.textContent="Phone",this.c=t,m(n,"text","Radio component API."),e(n,me,2,0,52),e(f,me,9,6,265),e(u,me,8,5,254),e(v,me,12,6,371),e(w,me,11,5,360),e(C,me,15,6,453),e($,me,14,5,442),e(d,me,7,4,244),m(c,"slot","item0"),e(c,me,6,3,199),m(E,"slot","item1"),e(E,me,19,3,579),e(a,me,5,2,156),B(s,"class","list"),e(s,me,4,1,135),e(T,me,25,8,768),e(R,me,25,2,762),B(L,"type","radio"),B(L,"id","contactChoice4"),B(L,"name","contact"),L.value="email",L.disabled=!0,e(L,me,29,4,918),B(V,"for","contactChoice4"),e(V,me,30,4,1001),B(W,"type","radio"),B(W,"id","contactChoice5"),B(W,"name","contact"),W.value="phone",e(W,me,31,4,1047),B(Y,"for","contactChoice5"),e(Y,me,32,4,1121),m(P,"infotext","infotext"),m(P,"labeltext","Label text"),e(P,me,28,3,859),x(M,"width","250px"),e(M,me,27,2,828),B(j,"class","example"),e(j,me,24,1,738),B(i,"class","doc-element"),e(i,me,3,0,108)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(d,g),I(d,w),I(w,v),I(w,y),I(d,k),I(d,$),I($,C),I($,z),I(a,_),I(a,E),o[2](a),I(i,S),I(i,j),I(j,R),I(R,T),I(j,D),I(j,M),I(M,P),I(P,L),I(P,F),I(P,V),I(P,N),I(P,W),I(P,G),I(P,Y)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[2](null)}};return O("SvelteRegisterBlock",{block:U,id:xe.name,type:"component",source:"",ctx:o}),U}function fe(t,e,o){let n,l='<div style="width: 250px;">\n  <zoo-radio infotext="infotext">\n    <input type="radio" id="contactChoice4" name="contact" value="email" disabled>\n    <label for="contactChoice4">Email</label>\n    <input type="radio" id="contactChoice5" name="contact" value="phone">\n    <label for="contactChoice5">Phone</label>\n  </zoo-radio>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const i=[];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-radio> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("docs-radio",s,[]),t.$capture_state=()=>({onMount:g,list:n,example:l}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"example"in t&&o(1,l=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-radio",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},fe,xe,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const be="src/docs/SearchableSelectDocs.svelte";function ge(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt;const wt={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="labelposition",b=p(" - accepts following values: "),g=r("b"),g.textContent="top",w=p(", "),v=r("b"),v.textContent="left",y=p(". Default is "),k=r("b"),k.textContent="top",$=h(),C=r("li"),z=r("b"),z.textContent="labeltext",_=p(" - text to be presented as the label of the input"),E=h(),S=r("li"),j=r("b"),j.textContent="linktext",R=p(" - text to be presented as a link text"),T=h(),D=r("li"),M=r("b"),M.textContent="linkhref",P=p(" - where the link should lead"),L=h(),F=r("li"),V=r("b"),V.textContent="linktarget",N=p(" - target of the anchor link, default is "),W=r("b"),W.textContent="about:blank",G=h(),Y=r("li"),U=r("b"),U.textContent="inputerrormsg",q=p(" - error message to be presented when input is in invalid state"),Z=h(),J=r("li"),K=r("b"),K.textContent="infotext",Q=p(" - text to be presented below the input"),X=h(),tt=r("li"),et=r("b"),et.textContent="valid",ot=p(" - flag which indicates whether the input is valid or not"),nt=h(),lt=r("li"),it=r("b"),it.textContent="placeholder",st=p(" - text which should be displayed inside input used for searching"),at=h(),ct=r("zoo-collapsable-list-item"),ct.textContent=`\n\t\t\t\tThis component accepts one slot ${o[1]}.\n\t\t\t`,rt=h(),dt=r("div"),pt=r("code"),ht=r("pre"),ht.textContent=`${o[2]}`,ut=p("\n\t\twill produce the following:\n\t\t"),mt=r("div"),xt=r("zoo-searchable-select"),ft=r("select"),bt=r("option"),bt.textContent="1",gt=r("option"),gt.textContent="2",this.c=t,m(n,"text","Searchable select component API."),e(n,be,2,0,64),e(f,be,9,6,289),e(g,be,9,55,338),e(v,be,9,67,350),e(k,be,9,91,374),e(u,be,8,5,278),e(z,be,12,6,412),e(C,be,11,5,401),e(j,be,15,6,505),e(S,be,14,5,494),e(M,be,18,6,586),e(D,be,17,5,575),e(V,be,21,6,658),e(W,be,21,64,716),e(F,be,20,5,647),e(U,be,24,6,762),e(Y,be,23,5,751),e(K,be,27,6,873),e(J,be,26,5,862),e(et,be,30,6,955),e(tt,be,29,5,944),e(it,be,33,6,1052),e(lt,be,32,5,1041),e(d,be,7,4,268),m(c,"slot","item0"),e(c,be,6,3,223),m(ct,"slot","item1"),e(ct,be,37,3,1192),e(a,be,5,2,180),B(s,"class","list"),e(s,be,4,1,159),e(ht,be,43,8,1386),e(pt,be,43,2,1380),bt.__value="1",bt.value=bt.__value,e(bt,be,48,5,1605),gt.__value="2",gt.value=gt.__value,e(gt,be,49,5,1639),ft.multiple=!0,B(ft,"slot","selectelement"),e(ft,be,47,4,1561),m(xt,"labeltext","Searchable select"),m(xt,"placeholder","Placeholder"),e(xt,be,46,3,1477),x(mt,"width","250px"),e(mt,be,45,2,1446),B(dt,"class","example"),e(dt,be,42,1,1356),B(i,"class","doc-element"),e(i,be,3,0,132)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(u,w),I(u,v),I(u,y),I(u,k),I(d,$),I(d,C),I(C,z),I(C,_),I(d,E),I(d,S),I(S,j),I(S,R),I(d,T),I(d,D),I(D,M),I(D,P),I(d,L),I(d,F),I(F,V),I(F,N),I(F,W),I(d,G),I(d,Y),I(Y,U),I(Y,q),I(d,Z),I(d,J),I(J,K),I(J,Q),I(d,X),I(d,tt),I(tt,et),I(tt,ot),I(d,nt),I(d,lt),I(lt,it),I(lt,st),I(a,at),I(a,ct),o[3](a),I(i,rt),I(i,dt),I(dt,pt),I(pt,ht),I(dt,ut),I(dt,mt),I(mt,xt),I(xt,ft),I(ft,bt),I(ft,gt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[3](null)}};return O("SvelteRegisterBlock",{block:wt,id:ge.name,type:"component",source:"",ctx:o}),wt}function we(t,e,o){let n,l='<slot name="selectelement"></slot>',i='<div style="width: 250px;">\n  <zoo-searchable-select labeltext="Searchable select" placeholder="Placeholder">\n    <select multiple slot="selectelement">\n      <option value="1">1</option>\n      <option value="2">2</option>\n    </select>\n  </zoo-searchable-select>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const s=[];Object.keys(e).forEach(t=>{~s.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-searchable-select> was created with unknown prop '${t}'`)});let{$$slots:a={},$$scope:c}=e;return V("docs-searchable-select",a,[]),t.$capture_state=()=>({onMount:g,list:n,inputSlotExample:l,example:i}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"inputSlotExample"in t&&o(1,l=t.inputSlotExample),"example"in t&&o(2,i=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-searchable-select",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},we,ge,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const ve="src/docs/SelectDocs.svelte";function ye(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt,wt,vt,yt,kt,$t,Ct,zt,_t,Et,St,jt,Rt;const Tt={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="labelposition",b=p(" - accepts following values: "),g=r("b"),g.textContent="top",w=p(", "),v=r("b"),v.textContent="left",y=p(". Default is "),k=r("b"),k.textContent="top",$=h(),C=r("li"),z=r("b"),z.textContent="labeltext",_=p(" - text to be presented as the label of the input"),E=h(),S=r("li"),j=r("b"),j.textContent="linktext",R=p(" - text to be presented as a link text"),T=h(),D=r("li"),M=r("b"),M.textContent="linkhref",P=p(" - where the link should lead"),L=h(),F=r("li"),V=r("b"),V.textContent="linktarget",N=p(" - target of the anchor link, default is "),W=r("b"),W.textContent="about:blank",G=h(),Y=r("li"),U=r("b"),U.textContent="inputerrormsg",q=p(" - error message to be presented when input is in invalid state"),Z=h(),J=r("li"),K=r("b"),K.textContent="infotext",Q=p(" - text to be presented below the input"),X=h(),tt=r("li"),et=r("b"),et.textContent="valid",ot=p(" - flag which indicates whether the input is valid or not"),nt=h(),lt=r("zoo-collapsable-list-item"),it=p("This component accepts the following slots:\n\t\t\t\t"),st=r("ul"),at=r("li"),ct=r("b"),ct.textContent=`${o[1]}`,rt=p(" - replaced with provided "),dt=r("b"),dt.textContent="select",pt=p(" so that you can catch events/provide your css/attach framework specific directives from/to this element."),ht=r("br"),ut=h(),mt=r("li"),xt=r("b"),xt.textContent=`${o[2]}`,ft=p(" - replaced with provided "),bt=r("b"),bt.textContent="label",gt=p(" for a11y reasons."),wt=h(),vt=r("div"),yt=r("code"),kt=r("pre"),kt.textContent=`${o[3]}`,$t=p("\n\t\twill produce the following:\n\t\t"),Ct=r("div"),zt=r("zoo-select"),_t=r("select"),Et=r("option"),Et.textContent="Placeholder",St=r("option"),St.textContent="1",jt=r("option"),jt.textContent="2",Rt=r("option"),Rt.textContent="3",this.c=t,m(n,"text","Select component API."),e(n,ve,2,0,53),e(f,ve,9,6,267),e(g,ve,9,55,316),e(v,ve,9,67,328),e(k,ve,9,91,352),e(u,ve,8,5,256),e(z,ve,12,6,390),e(C,ve,11,5,379),e(j,ve,15,6,483),e(S,ve,14,5,472),e(M,ve,18,6,564),e(D,ve,17,5,553),e(V,ve,21,6,636),e(W,ve,21,64,694),e(F,ve,20,5,625),e(U,ve,24,6,740),e(Y,ve,23,5,729),e(K,ve,27,6,851),e(J,ve,26,5,840),e(et,ve,30,6,933),e(tt,ve,29,5,922),e(d,ve,7,4,246),m(c,"slot","item0"),e(c,ve,6,3,201),e(ct,ve,38,6,1173),e(dt,ve,38,57,1224),e(ht,ve,38,175,1342),e(at,ve,37,5,1162),e(xt,ve,41,6,1374),e(bt,ve,41,57,1425),e(mt,ve,40,5,1363),e(st,ve,36,4,1152),m(lt,"slot","item1"),e(lt,ve,34,3,1059),e(a,ve,5,2,158),B(s,"class","list"),e(s,ve,4,1,137),e(kt,ve,48,8,1574),e(yt,ve,48,2,1568),B(Et,"class","placeholder"),Et.__value="",Et.value=Et.__value,Et.disabled=!0,Et.selected=!0,e(Et,ve,53,5,1798),St.__value="1",St.value=St.__value,e(St,ve,54,5,1879),jt.__value="2",jt.value=jt.__value,e(jt,ve,55,5,1903),Rt.__value="3",Rt.value=Rt.__value,e(Rt,ve,56,5,1927),B(_t,"slot","selectelement"),e(_t,ve,52,4,1763),m(zt,"labeltext","Select label"),m(zt,"infotext","Additional helpful information for our users"),e(zt,ve,51,3,1665),x(Ct,"width","250px"),e(Ct,ve,50,2,1634),B(vt,"class","example"),e(vt,ve,47,1,1544),B(i,"class","doc-element"),e(i,ve,3,0,110)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(u,w),I(u,v),I(u,y),I(u,k),I(d,$),I(d,C),I(C,z),I(C,_),I(d,E),I(d,S),I(S,j),I(S,R),I(d,T),I(d,D),I(D,M),I(D,P),I(d,L),I(d,F),I(F,V),I(F,N),I(F,W),I(d,G),I(d,Y),I(Y,U),I(Y,q),I(d,Z),I(d,J),I(J,K),I(J,Q),I(d,X),I(d,tt),I(tt,et),I(tt,ot),I(a,nt),I(a,lt),I(lt,it),I(lt,st),I(st,at),I(at,ct),I(at,rt),I(at,dt),I(at,pt),I(at,ht),I(st,ut),I(st,mt),I(mt,xt),I(mt,ft),I(mt,bt),I(mt,gt),o[4](a),I(i,wt),I(i,vt),I(vt,yt),I(yt,kt),I(vt,$t),I(vt,Ct),I(Ct,zt),I(zt,_t),I(_t,Et),I(_t,St),I(_t,jt),I(_t,Rt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[4](null)}};return O("SvelteRegisterBlock",{block:Tt,id:ye.name,type:"component",source:"",ctx:o}),Tt}function ke(t,e,o){let n,l='<slot name="selectelement"></slot>',i='<slot name="selectlabel"></slot>',s='<div style="width: 250px;">\n  <zoo-select labeltext="Select label" infotext="Additional helpful information for our users">\n    <select slot="selectelement">\n      <option class="placeholder" value="" disabled selected>Placeholder</option>\n      <option>1</option>\n      <option>2</option>\n      <option>3</option>\n    </select>\n  </zoo-select>\n</div>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const a=[];Object.keys(e).forEach(t=>{~a.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-select> was created with unknown prop '${t}'`)});let{$$slots:c={},$$scope:r}=e;return V("docs-select",c,[]),t.$capture_state=()=>({onMount:g,list:n,inputSlotExample:l,labelSlotExample:i,example:s}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"inputSlotExample"in t&&o(1,l=t.inputSlotExample),"labelSlotExample"in t&&o(2,i=t.labelSlotExample),"example"in t&&o(3,s=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-select",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},ke,ye,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const $e="src/docs/ToastDocs.svelte";function Ce(o){let n,l,i,s,a,c,d,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt;const et={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),x=r("b"),x.textContent="text",f=p(" - text to be presented in the toast box"),b=h(),g=r("li"),w=r("b"),w.textContent="type",v=p(" - type of the toast. Possible values are: "),y=r("b"),y.textContent="error",k=p(", "),$=r("b"),$.textContent="info",C=p(", "),z=r("b"),z.textContent="success",_=p(". Default is "),E=r("b"),E.textContent="info",S=h(),j=r("li"),R=r("b"),R.textContent="timeout",T=p(" - how long the toast should be visible for (in seconds)"),D=h(),M=r("li"),P=r("b"),P.textContent="show()",L=p(" - "),F=r("b"),F.textContent="function",V=p(" to show the toast. Multiple calls to this functions until the toast is hidden will be ignored"),N=h(),W=r("li"),G=r("b"),G.textContent="hide()",Y=p(" - "),U=r("b"),U.textContent="function",q=p(" to hide the toast. Multiple calls to this functions until the toast is shown will be ignored"),Z=h(),J=r("zoo-collapsable-list-item"),J.textContent="This component does not accept slots.",K=h(),Q=r("div"),X=r("code"),tt=r("pre"),tt.textContent=`${o[1]}`,this.c=t,m(n,"text","Toast component API."),e(n,$e,2,0,52),e(x,$e,9,6,265),e(u,$e,8,5,254),e(w,$e,12,6,344),e(y,$e,12,60,398),e($,$e,12,74,412),e(z,$e,12,87,425),e(E,$e,12,114,452),e(g,$e,11,5,333),e(R,$e,15,6,491),e(j,$e,14,5,480),e(P,$e,18,6,589),e(F,$e,18,22,605),e(M,$e,17,5,578),e(G,$e,21,6,742),e(U,$e,21,22,758),e(W,$e,20,5,731),e(d,$e,7,4,244),m(c,"slot","item0"),e(c,$e,6,3,199),m(J,"slot","item1"),e(J,$e,25,3,923),e(a,$e,5,2,156),B(s,"class","list"),e(s,$e,4,1,135),e(tt,$e,31,8,1103),e(X,$e,31,2,1097),B(Q,"class","example"),e(Q,$e,30,1,1073),B(i,"class","doc-element"),e(i,$e,3,0,108)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,x),I(u,f),I(d,b),I(d,g),I(g,w),I(g,v),I(g,y),I(g,k),I(g,$),I(g,C),I(g,z),I(g,_),I(g,E),I(d,S),I(d,j),I(j,R),I(j,T),I(d,D),I(d,M),I(M,P),I(M,L),I(M,F),I(M,V),I(d,N),I(d,W),I(W,G),I(W,Y),I(W,U),I(W,q),I(a,Z),I(a,J),o[2](a),I(i,K),I(i,Q),I(Q,X),I(X,tt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[2](null)}};return O("SvelteRegisterBlock",{block:et,id:Ce.name,type:"component",source:"",ctx:o}),et}function ze(t,e,o){let n,l='<zoo-toast type="info" text="This is an info message."></zoo-toast>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const i=[];Object.keys(e).forEach(t=>{~i.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-toast> was created with unknown prop '${t}'`)});let{$$slots:s={},$$scope:a}=e;return V("docs-toast",s,[]),t.$capture_state=()=>({onMount:g,list:n,example:l}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"example"in t&&o(1,l=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-toast",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},ze,Ce,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const _e="src/docs/TooltipDocs.svelte";function Ee(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it;const st={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="text",b=p(" - text to be presented in the toast box"),g=h(),w=r("li"),v=r("b"),v.textContent="position",y=p(" - Possible values are: "),k=r("b"),k.textContent="top",$=p(", "),C=r("b"),C.textContent="right",z=p(", "),_=r("b"),_.textContent="bottom",E=p(" or "),S=r("b"),S.textContent="left",j=p(". Default is "),R=r("b"),R.textContent="top",T=h(),D=r("li"),M=r("b"),M.textContent="Showing the tooltip",P=p(" - to show the tooltip use the following snippet: "),L=r("code"),F=r("pre"),F.textContent=`${o[3]}`,V=h(),N=r("li"),W=r("b"),W.textContent="CSS keyframes",G=p(" - to enable animation use the following snippet: "),Y=r("code"),U=r("pre"),U.textContent=`${o[2]}`,q=h(),Z=r("zoo-collapsable-list-item"),Z.textContent="This component either renders a unnamed slot or presents text supplied as an attribute.",J=h(),K=r("div"),Q=r("code"),X=r("pre"),X.textContent=`${o[1]}`,tt=p("\n\t\twill produce the following:\n\t\t"),et=r("div"),ot=r("zoo-button"),nt=r("div"),lt=p("Button\n\t\t\t\t\t"),it=r("zoo-tooltip"),this.c=t,m(n,"text","Tooltip component API."),e(n,_e,2,0,54),e(f,_e,9,6,269),e(u,_e,8,5,258),e(v,_e,12,6,348),e(k,_e,12,45,387),e(C,_e,12,57,399),e(_,_e,12,71,413),e(S,_e,12,88,430),e(R,_e,12,112,454),e(w,_e,11,5,337),e(M,_e,15,6,492),e(F,_e,15,88,574),e(L,_e,15,82,568),e(D,_e,14,5,481),e(W,_e,18,6,629),e(U,_e,18,82,705),e(Y,_e,18,76,699),e(N,_e,17,5,618),e(d,_e,7,4,248),m(c,"slot","item0"),e(c,_e,6,3,203),m(Z,"slot","item1"),e(Z,_e,22,3,798),e(a,_e,5,2,160),B(s,"class","list"),e(s,_e,4,1,139),e(X,_e,28,8,1028),e(Q,_e,28,2,1022),m(it,"text","Tooltip text"),e(it,_e,34,5,1220),B(nt,"slot","buttoncontent"),e(nt,_e,32,4,1176),m(ot,"class","top-tooltip"),e(ot,_e,31,3,1139),x(et,"width","250px"),x(et,"margin-bottom","2px"),e(et,_e,30,2,1088),B(K,"class","example"),e(K,_e,27,1,998),B(i,"class","doc-element"),e(i,_e,3,0,112)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(d,g),I(d,w),I(w,v),I(w,y),I(w,k),I(w,$),I(w,C),I(w,z),I(w,_),I(w,E),I(w,S),I(w,j),I(w,R),I(d,T),I(d,D),I(D,M),I(D,P),I(D,L),I(L,F),I(d,V),I(d,N),I(N,W),I(N,G),I(N,Y),I(Y,U),I(a,q),I(a,Z),o[4](a),I(i,J),I(i,K),I(K,Q),I(Q,X),I(K,tt),I(K,et),I(et,ot),I(ot,nt),I(nt,lt),I(nt,it)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[4](null)}};return O("SvelteRegisterBlock",{block:st,id:Ee.name,type:"component",source:"",ctx:o}),st}function Se(t,e,o){let n,l='<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>',i=".class-name:hover {\n  zoo-tooltip {\n    display: block;\n    animation: fadeTooltipIn 0.2s;\n  }\n}",s=".class-name:hover {\n  zoo-tooltip {\n    display: block;\n  }\n}";g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const a=[];Object.keys(e).forEach(t=>{~a.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-tooltip> was created with unknown prop '${t}'`)});let{$$slots:c={},$$scope:r}=e;return V("docs-tooltip",c,[]),t.$capture_state=()=>({onMount:g,list:n,example:l,keyframesSnippet:i,snippet:s}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"example"in t&&o(1,l=t.example),"keyframesSnippet"in t&&o(2,i=t.keyframesSnippet),"snippet"in t&&o(3,s=t.snippet)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-tooltip",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}zoo-tooltip{display:none}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}</style>",M(this,{target:this.shadowRoot},Se,Ee,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const je="src/docs/GridDocs.svelte";function Re(o){let n,l,i,s,a,c,d,u,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt,wt,vt,yt,kt,$t,Ct,zt,_t,Et,St,jt,Rt,Tt,Dt,Mt,Pt,Ot,It,At,Ht,Lt,Bt,Ft,Vt,Nt,Wt,Gt,Yt,Ut;const qt={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=r("zoo-collapsable-list"),c=r("zoo-collapsable-list-item"),d=r("ul"),u=r("li"),f=r("b"),f.textContent="loading",b=p(" - whether to show the loader on the grid "),g=r("br"),w=p(" (for example, when waiting for backend to respond)."),v=h(),y=r("li"),k=r("b"),k.textContent="stickyheader",$=p(" - whether the header of the grid should be sticky."),C=h(),z=r("li"),_=r("b"),_.textContent="paginator",E=p(" - whether the paginator for the grid should be shown."),S=h(),j=r("li"),R=r("b"),R.textContent="currentpage",T=p(" - current page that the user is on."),D=h(),M=r("li"),P=r("b"),P.textContent="maxpages",L=p(" - maximum number of pages"),F=h(),V=r("li"),N=r("b"),N.textContent="Event (sortChange)",W=p(" - whenever user changes sorting"),G=r("br"),Y=p(" the following object will be dispatched in event:"),U=r("br"),q=h(),Z=r("b"),Z.textContent=`${o[1]}`,J=r("br"),K=h(),Q=r("b"),Q.textContent="$propertyName",X=p(" - is the name of property"),tt=r("br"),et=p("passed to 'sortable' header cell via 'sortableproperty' property;"),ot=r("br"),nt=h(),lt=r("b"),lt.textContent="$direction",it=p(" - either desc, asc or undefined."),st=h(),at=r("li"),ct=r("b"),ct.textContent="Event (pageChange)",rt=p(" - whenever user changes current page"),dt=r("br"),pt=p("the following object will be dispatched in event:"),ht=r("br"),ut=h(),mt=r("b"),mt.textContent=`${o[2]}`,xt=r("br"),ft=h(),bt=r("b"),bt.textContent="$pageNumber",gt=p(" - number of the page user wants to go to."),wt=h(),vt=r("li"),yt=r("b"),yt.textContent="resizable",kt=p(" - whether columns should be resizable. To prevent resizing particular column set `min-width` and `max-width`;"),$t=h(),Ct=r("zoo-collapsable-list-item"),zt=p("More in depth documentation can be found "),_t=r("zoo-link"),Et=p("."),St=h(),jt=r("div"),Rt=r("code"),Tt=r("pre"),Tt.textContent=`${o[3]}`,Dt=p("\n\t\twill produce the following:\n\t\t"),Mt=r("div"),Pt=r("zoo-grid"),Ot=r("div"),Ot.textContent="Title 1",It=h(),At=r("div"),At.textContent="Title 2",Ht=h(),Lt=r("div"),Bt=r("div"),Bt.textContent="Cell 1",Ft=h(),Vt=r("div"),Vt.textContent="Cell 2",Nt=h(),Wt=r("div"),Gt=r("div"),Gt.textContent="Cell 3",Yt=h(),Ut=r("div"),Ut.textContent="Cell 4",this.c=t,m(n,"text","Grid component API."),e(n,je,1,0,50),e(f,je,8,6,262),e(g,je,8,62,318),e(u,je,7,5,251),e(k,je,11,6,402),e(y,je,10,5,391),e(_,je,14,6,500),e(z,je,13,5,489),e(R,je,17,6,598),e(j,je,16,5,587),e(P,je,20,6,680),e(M,je,19,5,669),e(N,je,23,6,749),e(G,je,23,63,806),e(U,je,23,117,860),e(Z,je,24,6,871),e(J,je,24,32,897),e(Q,je,25,6,908),e(tt,je,25,52,954),e(ot,je,25,121,1023),e(lt,je,26,6,1034),e(V,je,22,5,738),e(ct,je,29,6,1112),e(dt,je,29,68,1174),e(ht,je,29,121,1227),e(mt,je,30,6,1238),e(xt,je,30,32,1264),e(bt,je,31,6,1275),e(at,je,28,5,1101),e(yt,je,34,6,1363),e(vt,je,33,5,1352),e(d,je,6,4,241),m(c,"slot","item0"),e(c,je,5,3,196),m(_t,"class","doc-link"),m(_t,"href","https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/grid-module"),m(_t,"text","here"),m(_t,"type","primary"),e(_t,je,39,45,1632),m(Ct,"slot","item1"),e(Ct,je,38,3,1546),e(a,je,4,2,153),B(s,"class","list"),e(s,je,3,1,132),e(Tt,je,44,8,1885),e(Rt,je,44,2,1879),B(Ot,"slot","headercell"),B(Ot,"sortable",""),B(Ot,"sortableproperty","title1"),e(Ot,je,48,4,2032),B(At,"slot","headercell"),e(At,je,49,4,2108),e(Bt,je,51,5,2171),e(Vt,je,52,5,2194),B(Lt,"slot","row"),e(Lt,je,50,4,2149),e(Gt,je,55,5,2249),e(Ut,je,56,5,2272),B(Wt,"slot","row"),e(Wt,je,54,4,2227),m(Pt,"paginator",""),m(Pt,"currentpage","1"),m(Pt,"maxpages","50"),e(Pt,je,47,3,1977),x(Mt,"padding","10px"),e(Mt,je,46,2,1945),B(jt,"class","example"),e(jt,je,43,1,1855),B(i,"class","doc-element"),e(i,je,2,0,105)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(a,c),I(c,d),I(d,u),I(u,f),I(u,b),I(u,g),I(u,w),I(d,v),I(d,y),I(y,k),I(y,$),I(d,C),I(d,z),I(z,_),I(z,E),I(d,S),I(d,j),I(j,R),I(j,T),I(d,D),I(d,M),I(M,P),I(M,L),I(d,F),I(d,V),I(V,N),I(V,W),I(V,G),I(V,Y),I(V,U),I(V,q),I(V,Z),I(V,J),I(V,K),I(V,Q),I(V,X),I(V,tt),I(V,et),I(V,ot),I(V,nt),I(V,lt),I(V,it),I(d,st),I(d,at),I(at,ct),I(at,rt),I(at,dt),I(at,pt),I(at,ht),I(at,ut),I(at,mt),I(at,xt),I(at,ft),I(at,bt),I(at,gt),I(d,wt),I(d,vt),I(vt,yt),I(vt,kt),I(a,$t),I(a,Ct),I(Ct,zt),I(Ct,_t),I(Ct,Et),o[4](a),I(i,St),I(i,jt),I(jt,Rt),I(Rt,Tt),I(jt,Dt),I(jt,Mt),I(Mt,Pt),I(Pt,Ot),I(Pt,It),I(Pt,At),I(Pt,Ht),I(Pt,Lt),I(Lt,Bt),I(Lt,Ft),I(Lt,Vt),I(Pt,Nt),I(Pt,Wt),I(Wt,Gt),I(Wt,Yt),I(Wt,Ut)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[4](null)}};return O("SvelteRegisterBlock",{block:qt,id:Re.name,type:"component",source:"",ctx:o}),qt}function Te(t,e,o){let n,l="{detail: { property: $propertyName, direction: $direction }}",i="{detail: { pageNumber: $pageNumber }}",s='<zoo-grid paginator currentpage="1" maxpages="50">\n\t<div slot="headercell" sortable sortableproperty="title1">Title 1</div>\n\t<div slot="headercell">Title 2</div>\n\t<div slot="row">\n\t\t<div>Cell 1</div>\n\t\t<div>Cell 2</div>\n\t</div>\n\t<div slot="row">\n\t\t<div>Cell 3</div>\n\t\t<div>Cell 4</div>\n\t</div>\n</zoo-grid>';g(()=>{o(0,n.items=[{header:"API"},{header:"Slots"}],n)});const a=[];Object.keys(e).forEach(t=>{~a.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-grid> was created with unknown prop '${t}'`)});let{$$slots:c={},$$scope:r}=e;return V("docs-grid",c,[]),t.$capture_state=()=>({onMount:g,list:n,sortChangeExample:l,pageChangeExample:i,example:s}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"sortChangeExample"in t&&o(1,l=t.sortChangeExample),"pageChangeExample"in t&&o(2,i=t.pageChangeExample),"example"in t&&o(3,s=t.example)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,s,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-grid",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}.doc-link{display:inline-block;padding:5px 0 0 0}</style>",M(this,{target:this.shadowRoot},Te,Re,s,{}),t&&t.target&&A(t.target,this,t.anchor)}});const De="src/docs/ThemingDocs.svelte";function Me(o){let n,l,i,s,a,c,d,u,x,f,b,g,w,v,y,k,$,C,z,_,E,S,j,R,T,D,M,P,L,F,V,N,W,G,Y,U,q,Z,J,K,Q,X,tt,et,ot,nt,lt,it,st,at,ct,rt,dt,pt,ht,ut,mt,xt,ft,bt,gt,wt,vt,yt,kt,$t,Ct,zt,_t,Et,St,jt,Rt,Tt,Dt,Mt,Pt;const Ot={c:function(){n=r("app-context"),l=h(),i=r("div"),s=r("div"),a=p("Theming can be achieved by using CSS Custom Properties "),c=r("a"),c.textContent="docs",d=p(".\n\t\tAPI describes possible variables which are understood by the library.\n\t\t"),u=r("zoo-collapsable-list"),x=r("zoo-collapsable-list-item"),f=r("ul"),b=r("li"),g=r("b"),g.textContent="--primary-mid",w=p(" - default color #3C9700;"),v=h(),y=r("li"),k=r("b"),k.textContent="--primary-light",$=p(" - default color #66B100;"),C=h(),z=r("li"),_=r("b"),_.textContent="--primary-ultralight",E=p(" - default color #EBF4E5;"),S=h(),j=r("li"),R=r("b"),R.textContent="--primary-dark",T=p(" - default color #286400;"),D=h(),M=r("li"),P=r("b"),P.textContent="--secondary-mid",L=p(" - default color #FF6200;"),F=h(),V=r("li"),N=r("b"),N.textContent="--secondary-light",W=p(" - default color #FF8800;"),G=h(),Y=r("li"),U=r("b"),U.textContent="--secondary-ultralight",q=p(" - default color #FFF0E7;"),Z=h(),J=r("li"),K=r("b"),K.textContent="--secondary-dark",Q=p(" - default color #CC4E00;"),X=h(),tt=r("li"),et=r("b"),et.textContent="--warning-ultralight",ot=p(" - default color #FDE8E9;"),nt=h(),lt=r("li"),it=r("b"),it.textContent="--warning-mid",st=p(" - default color #ED1C24;"),at=h(),ct=r("li"),rt=r("b"),rt.textContent="--warning-dark",dt=p(" - default color #BD161C;"),pt=h(),ht=r("li"),ut=r("b"),ut.textContent="--success-ultralight",mt=p(" - default color #EBF4E5;"),xt=h(),ft=r("li"),bt=r("b"),bt.textContent="--success-mid",gt=p(" - default color #3C9700;"),wt=h(),vt=r("li"),yt=r("b"),yt.textContent="--info-ultralight",kt=p(" - default color #ECF5FA;"),$t=h(),Ct=r("li"),zt=r("b"),zt.textContent="--info-mid",_t=p(" - default color #459FD0;"),Et=h(),St=r("div"),jt=p("Example with a preprocessor:\n\t\t"),Rt=r("code"),Tt=r("pre"),Tt.textContent=`${o[1]}`,Dt=p("\n\t\tExample with pure css:\n\t\t"),Mt=r("code"),Pt=r("pre"),Pt.textContent=`${o[2]}`,this.c=t,m(n,"text","Theming API."),e(n,De,2,0,54),B(c,"href","https://developer.mozilla.org/en-US/docs/Web/CSS/--*"),B(c,"target","about:blank"),e(c,De,5,57,205),e(g,De,11,6,482),e(b,De,10,5,471),e(k,De,14,6,555),e(y,De,13,5,544),e(_,De,17,6,630),e(z,De,16,5,619),e(R,De,20,6,710),e(j,De,19,5,699),e(P,De,23,6,784),e(M,De,22,5,773),e(N,De,26,6,859),e(V,De,25,5,848),e(U,De,29,6,936),e(Y,De,28,5,925),e(K,De,32,6,1018),e(J,De,31,5,1007),e(et,De,35,6,1094),e(tt,De,34,5,1083),e(it,De,38,6,1174),e(lt,De,37,5,1163),e(rt,De,41,6,1247),e(ct,De,40,5,1236),e(ut,De,44,6,1321),e(ht,De,43,5,1310),e(bt,De,47,6,1401),e(ft,De,46,5,1390),e(yt,De,50,6,1474),e(vt,De,49,5,1463),e(zt,De,53,6,1551),e(Ct,De,52,5,1540),e(f,De,9,4,461),m(x,"slot","item0"),e(x,De,8,3,416),e(u,De,7,2,373),B(s,"class","list"),e(s,De,4,1,129),e(Tt,De,61,8,1743),e(Rt,De,61,2,1737),e(Pt,De,63,8,1808),e(Mt,De,63,2,1802),B(St,"class","example"),e(St,De,59,1,1682),B(i,"class","doc-element"),e(i,De,3,0,102)},l:function(t){throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option")},m:function(t,e){A(t,n,e),A(t,l,e),A(t,i,e),I(i,s),I(s,a),I(s,c),I(s,d),I(s,u),I(u,x),I(x,f),I(f,b),I(b,g),I(b,w),I(f,v),I(f,y),I(y,k),I(y,$),I(f,C),I(f,z),I(z,_),I(z,E),I(f,S),I(f,j),I(j,R),I(j,T),I(f,D),I(f,M),I(M,P),I(M,L),I(f,F),I(f,V),I(V,N),I(V,W),I(f,G),I(f,Y),I(Y,U),I(Y,q),I(f,Z),I(f,J),I(J,K),I(J,Q),I(f,X),I(f,tt),I(tt,et),I(tt,ot),I(f,nt),I(f,lt),I(lt,it),I(lt,st),I(f,at),I(f,ct),I(ct,rt),I(ct,dt),I(f,pt),I(f,ht),I(ht,ut),I(ht,mt),I(f,xt),I(f,ft),I(ft,bt),I(ft,gt),I(f,wt),I(f,vt),I(vt,yt),I(vt,kt),I(f,$t),I(f,Ct),I(Ct,zt),I(Ct,_t),o[3](u),I(i,Et),I(i,St),I(St,jt),I(St,Rt),I(Rt,Tt),I(St,Dt),I(St,Mt),I(Mt,Pt)},p:t,i:t,o:t,d:function(t){t&&H(n),t&&H(l),t&&H(i),o[3](null)}};return O("SvelteRegisterBlock",{block:Ot,id:Me.name,type:"component",source:"",ctx:o}),Ot}function Pe(t,e,o){let n,l='@import "variables";\n:root {\n  --primary-mid: #{$primary-mid};\n  --primary-light: #{$primary-light};\n  --primary-dark: #{$primary-dark};\n  --secondary-mid: #{$secondary-mid};\n  --secondary-light: #{$secondary-light};\n  --secondary-dark: #{$secondary-dark};\n}',i=":root {\n  --primary-mid: #040C40;\n  --primary-light: #040C40;\n  --primary-dark: #020729;\n  --secondary-mid: #5D4200;\n  --secondary-light: #745300;\n  --secondary-dark: #3B2B00;\n}";g(()=>{o(0,n.items=[{header:"API"}],n)});const s=[];Object.keys(e).forEach(t=>{~s.indexOf(t)||"$$"===t.slice(0,2)||console.warn(`<docs-theming> was created with unknown prop '${t}'`)});let{$$slots:a={},$$scope:c}=e;return V("docs-theming",a,[]),t.$capture_state=()=>({onMount:g,list:n,exampleScss:l,exampleCss:i}),t.$inject_state=t=>{"list"in t&&o(0,n=t.list),"exampleScss"in t&&o(1,l=t.exampleScss),"exampleCss"in t&&o(2,i=t.exampleCss)},e&&"$$inject"in e&&t.$inject_state(e.$$inject),[n,l,i,function(t){v[t?"unshift":"push"](()=>{o(0,n=t)})}]}customElements.define("docs-theming",class extends P{constructor(t){super(),this.shadowRoot.innerHTML="<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>",M(this,{target:this.shadowRoot},Pe,Me,s,{}),t&&t.target&&A(t.target,this,t.anchor)}})}();
+(function () {
+    'use strict';
+
+    function noop() { }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function svg_element(name) {
+        return document.createElementNS('http://www.w3.org/2000/svg', name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function set_custom_element_data(node, prop, value) {
+        if (prop in node) {
+            node[prop] = value;
+        }
+        else {
+            attr(node, prop, value);
+        }
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error(`Function called outside component initialization`);
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    let flushing = false;
+    const seen_callbacks = new Set();
+    function flush() {
+        if (flushing)
+            return;
+        flushing = true;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            for (let i = 0; i < dirty_components.length; i += 1) {
+                const component = dirty_components[i];
+                set_current_component(component);
+                update(component.$$);
+            }
+            dirty_components.length = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        flushing = false;
+        seen_callbacks.clear();
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+    function mount_component(component, target, anchor) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        // onMount happens before the initial afterUpdate
+        add_render_callback(() => {
+            const new_on_destroy = on_mount.map(run).filter(is_function);
+            if (on_destroy) {
+                on_destroy.push(...new_on_destroy);
+            }
+            else {
+                // Edge case - component was destroyed immediately,
+                // most likely as a result of a binding initialising
+                run_all(new_on_destroy);
+            }
+            component.$$.on_mount = [];
+        });
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const prop_values = options.props || {};
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // everything else
+            callbacks: blank_object(),
+            dirty
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, prop_values, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if ($$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    let SvelteElement;
+    if (typeof HTMLElement === 'function') {
+        SvelteElement = class extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+            }
+            connectedCallback() {
+                // @ts-ignore todo: improve typings
+                for (const key in this.$$.slotted) {
+                    // @ts-ignore todo: improve typings
+                    this.appendChild(this.$$.slotted[key]);
+                }
+            }
+            attributeChangedCallback(attr, _oldValue, newValue) {
+                this[attr] = newValue;
+            }
+            $destroy() {
+                destroy_component(this, 1);
+                this.$destroy = noop;
+            }
+            $on(type, callback) {
+                // TODO should this delegate to addEventListener?
+                const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+                callbacks.push(callback);
+                return () => {
+                    const index = callbacks.indexOf(callback);
+                    if (index !== -1)
+                        callbacks.splice(index, 1);
+                };
+            }
+            $set() {
+                // overridden by instance, if it has props
+            }
+        };
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.22.3' }, detail)));
+    }
+    function append_dev(target, node) {
+        dispatch_dev("SvelteDOMInsert", { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev("SvelteDOMInsert", { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev("SvelteDOMRemove", { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev("SvelteDOMAddEventListener", { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev("SvelteDOMRemoveAttribute", { node, attribute });
+        else
+            dispatch_dev("SvelteDOMSetAttribute", { node, attribute, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.data === data)
+            return;
+        dispatch_dev("SvelteDOMSetData", { node: text, data });
+        text.data = data;
+    }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
+    function validate_slots(name, slot, keys) {
+        for (const slot_key of Object.keys(slot)) {
+            if (!~keys.indexOf(slot_key)) {
+                console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
+            }
+        }
+    }
+
+    /* src/common/Context.svelte generated by Svelte v3.22.3 */
+
+    const file = "src/common/Context.svelte";
+
+    // (4:1) {#if backbtn}
+    function create_if_block(ctx) {
+    	let div;
+    	let zoo_button;
+    	let span;
+    	let a;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			zoo_button = element("zoo-button");
+    			span = element("span");
+    			a = element("a");
+    			a.textContent = "Go to top";
+    			attr_dev(a, "href", "#");
+    			add_location(a, file, 7, 31, 228);
+    			attr_dev(span, "slot", "buttoncontent");
+    			add_location(span, file, 7, 4, 201);
+    			add_location(zoo_button, file, 5, 3, 134);
+    			attr_dev(div, "class", "back-btn");
+    			add_location(div, file, 4, 2, 108);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, zoo_button);
+    			append_dev(zoo_button, span);
+    			append_dev(span, a);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(4:1) {#if backbtn}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let div;
+    	let h2;
+    	let t0;
+    	let t1;
+    	let if_block = /*backbtn*/ ctx[1] && create_if_block(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			h2 = element("h2");
+    			t0 = text(/*text*/ ctx[0]);
+    			t1 = space();
+    			if (if_block) if_block.c();
+    			this.c = noop;
+    			add_location(h2, file, 2, 1, 75);
+    			attr_dev(div, "class", "context");
+    			add_location(div, file, 1, 0, 52);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h2);
+    			append_dev(h2, t0);
+    			append_dev(div, t1);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*text*/ 1) set_data_dev(t0, /*text*/ ctx[0]);
+
+    			if (/*backbtn*/ ctx[1]) {
+    				if (if_block) ; else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let { text = "" } = $$props;
+    	let { backbtn = false } = $$props;
+    	const writable_props = ["text", "backbtn"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-context> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-context", $$slots, []);
+
+    	$$self.$set = $$props => {
+    		if ("text" in $$props) $$invalidate(0, text = $$props.text);
+    		if ("backbtn" in $$props) $$invalidate(1, backbtn = $$props.backbtn);
+    	};
+
+    	$$self.$capture_state = () => ({ text, backbtn });
+
+    	$$self.$inject_state = $$props => {
+    		if ("text" in $$props) $$invalidate(0, text = $$props.text);
+    		if ("backbtn" in $$props) $$invalidate(1, backbtn = $$props.backbtn);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [text, backbtn];
+    }
+
+    class Context extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.context{min-height:80px;display:flex;align-items:center;margin-left:20px;background:white}.back-btn{margin-left:5px}.back-btn a{text-decoration:none;color:white}h2{color:var(--primary-mid, #3C9700);font-size:23px}</style>`;
+    		init(this, { target: this.shadowRoot }, instance, create_fragment, safe_not_equal, { text: 0, backbtn: 1 });
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+
+    			if (options.props) {
+    				this.$set(options.props);
+    				flush();
+    			}
+    		}
+    	}
+
+    	static get observedAttributes() {
+    		return ["text", "backbtn"];
+    	}
+
+    	get text() {
+    		return this.$$.ctx[0];
+    	}
+
+    	set text(text) {
+    		this.$set({ text });
+    		flush();
+    	}
+
+    	get backbtn() {
+    		return this.$$.ctx[1];
+    	}
+
+    	set backbtn(backbtn) {
+    		this.$set({ backbtn });
+    		flush();
+    	}
+    }
+
+    customElements.define("app-context", Context);
+
+    /* src/sections/Header.svelte generated by Svelte v3.22.3 */
+
+    const file$1 = "src/sections/Header.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[12] = list[i];
+    	return child_ctx;
+    }
+
+    // (24:3) {#each navlinks as link}
+    function create_each_block(ctx) {
+    	let div;
+    	let a;
+    	let t0_value = /*link*/ ctx[12].text + "";
+    	let t0;
+    	let a_href_value;
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			a = element("a");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(a, "href", a_href_value = /*link*/ ctx[12].href);
+    			add_location(a, file$1, 25, 5, 1035);
+    			attr_dev(div, "class", "nav-link");
+    			add_location(div, file$1, 24, 4, 1007);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, a);
+    			append_dev(a, t0);
+    			append_dev(div, t1);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(24:3) {#each navlinks as link}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$1(ctx) {
+    	let header;
+    	let zoo_header;
+    	let div3;
+    	let div0;
+    	let zoo_button0;
+    	let span0;
+    	let zoo_button0_type_value;
+    	let t1;
+    	let div1;
+    	let zoo_button1;
+    	let span1;
+    	let zoo_button1_type_value;
+    	let t3;
+    	let div2;
+    	let zoo_button2;
+    	let span2;
+    	let zoo_button2_type_value;
+    	let t5;
+    	let zoo_navigation;
+    	let div4;
+    	let dispose;
+    	let each_value = /*navlinks*/ ctx[1];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			header = element("header");
+    			zoo_header = element("zoo-header");
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_button0 = element("zoo-button");
+    			span0 = element("span");
+    			span0.textContent = "Zoo+ theme";
+    			t1 = space();
+    			div1 = element("div");
+    			zoo_button1 = element("zoo-button");
+    			span1 = element("span");
+    			span1.textContent = "Grey theme";
+    			t3 = space();
+    			div2 = element("div");
+    			zoo_button2 = element("zoo-button");
+    			span2 = element("span");
+    			span2.textContent = "Random theme";
+    			t5 = space();
+    			zoo_navigation = element("zoo-navigation");
+    			div4 = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			this.c = noop;
+    			attr_dev(span0, "slot", "buttoncontent");
+    			attr_dev(span0, "class", "slotted-span");
+    			add_location(span0, file$1, 6, 5, 313);
+    			set_custom_element_data(zoo_button0, "type", zoo_button0_type_value = /*theme*/ ctx[0] === "zoo" ? "secondary" : "primary");
+    			set_custom_element_data(zoo_button0, "size", "medium");
+    			add_location(zoo_button0, file$1, 5, 4, 194);
+    			attr_dev(div0, "class", "header-button");
+    			add_location(div0, file$1, 4, 3, 162);
+    			attr_dev(span1, "slot", "buttoncontent");
+    			attr_dev(span1, "class", "slotted-span");
+    			add_location(span1, file$1, 11, 5, 563);
+    			set_custom_element_data(zoo_button1, "type", zoo_button1_type_value = /*theme*/ ctx[0] === "grey" ? "secondary" : "primary");
+    			set_custom_element_data(zoo_button1, "size", "medium");
+    			add_location(zoo_button1, file$1, 10, 4, 442);
+    			attr_dev(div1, "class", "header-button");
+    			add_location(div1, file$1, 9, 3, 410);
+    			attr_dev(span2, "slot", "buttoncontent");
+    			attr_dev(span2, "class", "slotted-span");
+    			add_location(span2, file$1, 16, 5, 817);
+    			set_custom_element_data(zoo_button2, "type", zoo_button2_type_value = /*theme*/ ctx[0] === "random" ? "secondary" : "primary");
+    			set_custom_element_data(zoo_button2, "size", "medium");
+    			add_location(zoo_button2, file$1, 15, 4, 692);
+    			attr_dev(div2, "class", "header-button");
+    			add_location(div2, file$1, 14, 3, 660);
+    			attr_dev(div3, "class", "buttons-holder");
+    			add_location(div3, file$1, 3, 2, 130);
+    			set_custom_element_data(zoo_header, "imgsrc", "logo.png");
+    			set_custom_element_data(zoo_header, "headertext", "Zooplus web components");
+    			add_location(zoo_header, file$1, 2, 1, 61);
+    			add_location(div4, file$1, 22, 2, 969);
+    			set_custom_element_data(zoo_navigation, "class", "nav");
+    			add_location(zoo_navigation, file$1, 21, 1, 938);
+    			add_location(header, file$1, 1, 0, 51);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, header, anchor);
+    			append_dev(header, zoo_header);
+    			append_dev(zoo_header, div3);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_button0);
+    			append_dev(zoo_button0, span0);
+    			append_dev(div3, t1);
+    			append_dev(div3, div1);
+    			append_dev(div1, zoo_button1);
+    			append_dev(zoo_button1, span1);
+    			append_dev(div3, t3);
+    			append_dev(div3, div2);
+    			append_dev(div2, zoo_button2);
+    			append_dev(zoo_button2, span2);
+    			append_dev(header, t5);
+    			append_dev(header, zoo_navigation);
+    			append_dev(zoo_navigation, div4);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div4, null);
+    			}
+
+    			if (remount) run_all(dispose);
+
+    			dispose = [
+    				listen_dev(zoo_button0, "click", /*click_handler*/ ctx[9], false, false, false),
+    				listen_dev(zoo_button1, "click", /*click_handler_1*/ ctx[10], false, false, false),
+    				listen_dev(zoo_button2, "click", /*click_handler_2*/ ctx[11], false, false, false)
+    			];
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*theme*/ 1 && zoo_button0_type_value !== (zoo_button0_type_value = /*theme*/ ctx[0] === "zoo" ? "secondary" : "primary")) {
+    				set_custom_element_data(zoo_button0, "type", zoo_button0_type_value);
+    			}
+
+    			if (dirty & /*theme*/ 1 && zoo_button1_type_value !== (zoo_button1_type_value = /*theme*/ ctx[0] === "grey" ? "secondary" : "primary")) {
+    				set_custom_element_data(zoo_button1, "type", zoo_button1_type_value);
+    			}
+
+    			if (dirty & /*theme*/ 1 && zoo_button2_type_value !== (zoo_button2_type_value = /*theme*/ ctx[0] === "random" ? "secondary" : "primary")) {
+    				set_custom_element_data(zoo_button2, "type", zoo_button2_type_value);
+    			}
+
+    			if (dirty & /*navlinks*/ 2) {
+    				each_value = /*navlinks*/ ctx[1];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div4, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(header);
+    			destroy_each(each_blocks, detaching);
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let theme = "zoo";
+
+    	let navlinks = [
+    		{
+    			href: "#what",
+    			text: "What is this project?"
+    		},
+    		{
+    			href: "#when",
+    			text: "When can I use it?"
+    		},
+    		{ href: "#how", text: "How can I use it?" }
+    	];
+
+    	const changeTheme = pallete => {
+    		$$invalidate(0, theme = pallete);
+
+    		switch (pallete) {
+    			case "zoo":
+    				setColorVar("--primary-mid", "#3C9700");
+    				setColorVar("--primary-light", "#66B100");
+    				setColorVar("--primary-dark", "#286400");
+    				setColorVar("--primary-ultralight", "#EBF4E5");
+    				setColorVar("--secondary-mid", "#FF6200");
+    				setColorVar("--secondary-light", "#FF8800");
+    				setColorVar("--secondary-dark", "#CC4E00");
+    				break;
+    			case "grey":
+    				setColorVar("--primary-mid", "#676778");
+    				setColorVar("--primary-light", "#838399");
+    				setColorVar("--primary-dark", "#565664");
+    				setColorVar("--primary-ultralight", "#838399");
+    				setColorVar("--secondary-mid", "#ff3e00");
+    				setColorVar("--secondary-light", "#ff794d");
+    				setColorVar("--secondary-dark", "#c53100");
+    				break;
+    		}
+    	};
+
+    	const setColorVar = (name, value) => {
+    		document.documentElement.style.setProperty(name, value);
+    	};
+
+    	const generateRandomTheme = () => {
+    		$$invalidate(0, theme = "random");
+    		const main = randomRgbaString();
+    		const mainHex = rgbToHex(main.r, main.g, main.b);
+    		setColorVar("--primary-mid", mainHex);
+    		setColorVar("--primary-light", lightenDarkenColor(mainHex, 30));
+    		setColorVar("--primary-dark", lightenDarkenColor(mainHex, -30));
+    		setColorVar("--primary-ultralight", lightenDarkenColor(mainHex, 60));
+    		const second = randomRgbaString();
+    		const secondHex = rgbToHex(second.r, second.g, second.b);
+    		setColorVar("--secondary-mid", rgbToHex(second.r, second.g, second.b));
+    		setColorVar("--secondary-light", lightenDarkenColor(secondHex, 30));
+    		setColorVar("--secondary-dark", lightenDarkenColor(secondHex, -30));
+    	};
+
+    	const randomRgbaString = () => {
+    		let r = Math.floor(Math.random() * 255);
+    		let g = Math.floor(Math.random() * 255);
+    		let b = Math.floor(Math.random() * 255);
+    		return { r, g, b };
+    	};
+
+    	const rgbToHex = (r, g, b) => {
+    		return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    	};
+
+    	const componentToHex = c => {
+    		let hex = c.toString(16);
+    		return hex.length == 1 ? "0" + hex : hex;
+    	};
+
+    	const lightenDarkenColor = (col, amt) => {
+    		var usePound = false;
+
+    		if (col[0] == "#") {
+    			col = col.slice(1);
+    			usePound = true;
+    		}
+
+    		var num = parseInt(col, 16);
+    		var r = (num >> 16) + amt;
+    		if (r > 255) r = 255; else if (r < 0) r = 0;
+    		var b = (num >> 8 & 255) + amt;
+    		if (b > 255) b = 255; else if (b < 0) b = 0;
+    		var g = (num & 255) + amt;
+    		if (g > 255) g = 255; else if (g < 0) g = 0;
+    		return (usePound ? "#" : "") + (g | b << 8 | r << 16).toString(16);
+    	};
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-header> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-header", $$slots, []);
+    	const click_handler = () => changeTheme("zoo");
+    	const click_handler_1 = () => changeTheme("grey");
+    	const click_handler_2 = () => generateRandomTheme();
+
+    	$$self.$capture_state = () => ({
+    		theme,
+    		navlinks,
+    		changeTheme,
+    		setColorVar,
+    		generateRandomTheme,
+    		randomRgbaString,
+    		rgbToHex,
+    		componentToHex,
+    		lightenDarkenColor
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("theme" in $$props) $$invalidate(0, theme = $$props.theme);
+    		if ("navlinks" in $$props) $$invalidate(1, navlinks = $$props.navlinks);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		theme,
+    		navlinks,
+    		changeTheme,
+    		generateRandomTheme,
+    		setColorVar,
+    		randomRgbaString,
+    		rgbToHex,
+    		componentToHex,
+    		lightenDarkenColor,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2
+    	];
+    }
+
+    class Header extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}header{position:relative}.buttons-holder{display:flex;justify-content:flex-end;flex-direction:row;flex-grow:1;padding:0 25px 0 0}@media only screen and (max-width: 900px){.buttons-holder{justify-content:initial;overflow:scroll;max-width:250px}}@media only screen and (max-width: 544px){.buttons-holder{justify-content:initial;overflow:scroll;max-width:250px}}.header-button{display:flex;max-width:250px;min-width:140px;margin-left:15px}.header-button zoo-button{align-self:center}.nav{position:sticky;top:0;color:white;font-size:14px;line-height:20px;font-weight:bold;cursor:pointer}.nav .nav-link{cursor:pointer;display:flex;align-items:center}.nav .nav-link:hover{background:rgba(255, 255, 255, 0.3)}.nav .nav-link a{color:white;text-decoration:none;padding:0 15px}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$1, create_fragment$1, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("app-header", Header);
+
+    /* src/sections/Form.svelte generated by Svelte v3.22.3 */
+
+    const file$2 = "src/sections/Form.svelte";
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[3] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[3] = list[i];
+    	return child_ctx;
+    }
+
+    // (43:3) {#each options as option}
+    function create_each_block_1(ctx) {
+    	let option;
+    	let t0_value = /*option*/ ctx[3].text + "";
+    	let t0;
+    	let t1;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			option.__value = option_value_value = /*option*/ ctx[3].value;
+    			option.value = option.__value;
+    			add_location(option, file$2, 43, 4, 2598);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t0);
+    			append_dev(option, t1);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(43:3) {#each options as option}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (52:3) {#each options as option}
+    function create_each_block$1(ctx) {
+    	let option;
+    	let t0_value = /*option*/ ctx[3].text + "";
+    	let t0;
+    	let t1;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			option.__value = option_value_value = /*option*/ ctx[3].value;
+    			option.value = option.__value;
+    			add_location(option, file$2, 52, 4, 2915);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t0);
+    			append_dev(option, t1);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(52:3) {#each options as option}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$2(ctx) {
+    	let app_context;
+    	let t0;
+    	let form;
+    	let zoo_input0;
+    	let input0;
+    	let t1;
+    	let zoo_input1;
+    	let input1;
+    	let t2;
+    	let zoo_input2;
+    	let input2;
+    	let t3;
+    	let zoo_input3;
+    	let input3;
+    	let t4;
+    	let zoo_input4;
+    	let input4;
+    	let t5;
+    	let zoo_input5;
+    	let textarea;
+    	let t6;
+    	let zoo_select0;
+    	let select0;
+    	let option0;
+    	let option1;
+    	let option2;
+    	let option3;
+    	let t11;
+    	let zoo_select1;
+    	let select1;
+    	let option4;
+    	let option5;
+    	let option6;
+    	let option7;
+    	let t16;
+    	let zoo_searchable_select0;
+    	let select2;
+    	let t17;
+    	let zoo_searchable_select1;
+    	let select3;
+    	let t18;
+    	let zoo_select2;
+    	let select4;
+    	let option8;
+    	let option9;
+    	let option10;
+    	let option11;
+    	let t23;
+    	let zoo_select3;
+    	let select5;
+    	let option12;
+    	let zoo_select3_loading_value;
+    	let t24;
+    	let zoo_checkbox0;
+    	let input5;
+    	let zoo_checkbox0_highlighted_value;
+    	let t25;
+    	let zoo_checkbox1;
+    	let input6;
+    	let zoo_checkbox1_highlighted_value;
+    	let t26;
+    	let zoo_checkbox2;
+    	let input7;
+    	let t27;
+    	let zoo_radio0;
+    	let template;
+    	let input8;
+    	let t28;
+    	let label0;
+    	let t30;
+    	let input9;
+    	let t31;
+    	let label1;
+    	let t33;
+    	let input10;
+    	let t34;
+    	let label2;
+    	let t36;
+    	let zoo_radio1;
+    	let input11;
+    	let t37;
+    	let label3;
+    	let t39;
+    	let input12;
+    	let t40;
+    	let label4;
+    	let t42;
+    	let div;
+    	let zoo_button;
+    	let span;
+    	let dispose;
+    	let each_value_1 = /*options*/ ctx[1];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*options*/ ctx[1];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			form = element("form");
+    			zoo_input0 = element("zoo-input");
+    			input0 = element("input");
+    			t1 = space();
+    			zoo_input1 = element("zoo-input");
+    			input1 = element("input");
+    			t2 = space();
+    			zoo_input2 = element("zoo-input");
+    			input2 = element("input");
+    			t3 = space();
+    			zoo_input3 = element("zoo-input");
+    			input3 = element("input");
+    			t4 = space();
+    			zoo_input4 = element("zoo-input");
+    			input4 = element("input");
+    			t5 = space();
+    			zoo_input5 = element("zoo-input");
+    			textarea = element("textarea");
+    			t6 = space();
+    			zoo_select0 = element("zoo-select");
+    			select0 = element("select");
+    			option0 = element("option");
+    			option0.textContent = "Placeholder";
+    			option1 = element("option");
+    			option1.textContent = "1";
+    			option2 = element("option");
+    			option2.textContent = "2";
+    			option3 = element("option");
+    			option3.textContent = "3";
+    			t11 = space();
+    			zoo_select1 = element("zoo-select");
+    			select1 = element("select");
+    			option4 = element("option");
+    			option4.textContent = "Placeholder";
+    			option5 = element("option");
+    			option5.textContent = "1";
+    			option6 = element("option");
+    			option6.textContent = "2";
+    			option7 = element("option");
+    			option7.textContent = "3";
+    			t16 = space();
+    			zoo_searchable_select0 = element("zoo-searchable-select");
+    			select2 = element("select");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t17 = space();
+    			zoo_searchable_select1 = element("zoo-searchable-select");
+    			select3 = element("select");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t18 = space();
+    			zoo_select2 = element("zoo-select");
+    			select4 = element("select");
+    			option8 = element("option");
+    			option8.textContent = "Placeholder";
+    			option9 = element("option");
+    			option9.textContent = "1";
+    			option10 = element("option");
+    			option10.textContent = "2";
+    			option11 = element("option");
+    			option11.textContent = "3";
+    			t23 = space();
+    			zoo_select3 = element("zoo-select");
+    			select5 = element("select");
+    			option12 = element("option");
+    			t24 = space();
+    			zoo_checkbox0 = element("zoo-checkbox");
+    			input5 = element("input");
+    			t25 = space();
+    			zoo_checkbox1 = element("zoo-checkbox");
+    			input6 = element("input");
+    			t26 = space();
+    			zoo_checkbox2 = element("zoo-checkbox");
+    			input7 = element("input");
+    			t27 = space();
+    			zoo_radio0 = element("zoo-radio");
+    			template = element("template");
+    			input8 = element("input");
+    			t28 = space();
+    			label0 = element("label");
+    			label0.textContent = "Email";
+    			t30 = space();
+    			input9 = element("input");
+    			t31 = space();
+    			label1 = element("label");
+    			label1.textContent = "Phone";
+    			t33 = space();
+    			input10 = element("input");
+    			t34 = space();
+    			label2 = element("label");
+    			label2.textContent = "Mail";
+    			t36 = space();
+    			zoo_radio1 = element("zoo-radio");
+    			input11 = element("input");
+    			t37 = space();
+    			label3 = element("label");
+    			label3.textContent = "Email";
+    			t39 = space();
+    			input12 = element("input");
+    			t40 = space();
+    			label4 = element("label");
+    			label4.textContent = "Phone";
+    			t42 = space();
+    			div = element("div");
+    			zoo_button = element("zoo-button");
+    			span = element("span");
+    			span.textContent = "Trigger invalid state!";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "First section is a showcase of different form elements like `input`, `textarea`, `select`.");
+    			add_location(app_context, file$2, 1, 0, 49);
+    			attr_dev(input0, "slot", "inputelement");
+    			attr_dev(input0, "type", "text");
+    			attr_dev(input0, "placeholder", "input");
+    			add_location(input0, file$2, 5, 2, 436);
+    			set_custom_element_data(zoo_input0, "labeltext", "Input type text");
+    			set_custom_element_data(zoo_input0, "linktext", "Forgotten your password?");
+    			set_custom_element_data(zoo_input0, "linkhref", "https://google.com");
+    			set_custom_element_data(zoo_input0, "linktarget", "about:blank");
+    			set_custom_element_data(zoo_input0, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_input0, "inputerrormsg", "invalid");
+    			set_custom_element_data(zoo_input0, "infotext", "Additional helpful information for our users");
+    			add_location(zoo_input0, file$2, 3, 1, 196);
+    			attr_dev(input1, "slot", "inputelement");
+    			attr_dev(input1, "type", "number");
+    			attr_dev(input1, "placeholder", "input");
+    			add_location(input1, file$2, 9, 2, 674);
+    			set_custom_element_data(zoo_input1, "labeltext", "Input type number");
+    			set_custom_element_data(zoo_input1, "linkhref", "https://google.com");
+    			set_custom_element_data(zoo_input1, "linktarget", "about:blank");
+    			set_custom_element_data(zoo_input1, "infotext", "Additional helpful information for our users");
+    			add_location(zoo_input1, file$2, 7, 1, 513);
+    			attr_dev(input2, "slot", "inputelement");
+    			attr_dev(input2, "type", "date");
+    			attr_dev(input2, "placeholder", "Enter date");
+    			add_location(input2, file$2, 13, 2, 1003);
+    			set_custom_element_data(zoo_input2, "labeltext", "This input has type date");
+    			set_custom_element_data(zoo_input2, "linktext", "Native date picker -> click me");
+    			set_custom_element_data(zoo_input2, "linkhref", "https://github.com/jcgertig/date-input-polyfill");
+    			set_custom_element_data(zoo_input2, "linktarget", "about:blank");
+    			set_custom_element_data(zoo_input2, "infotext", "Click on input to show context menu with date selection");
+    			add_location(zoo_input2, file$2, 11, 1, 753);
+    			attr_dev(input3, "slot", "inputelement");
+    			attr_dev(input3, "type", "time");
+    			attr_dev(input3, "placeholder", "Enter time");
+    			add_location(input3, file$2, 16, 2, 1159);
+    			set_custom_element_data(zoo_input3, "labeltext", "This input has type time");
+    			set_custom_element_data(zoo_input3, "infotext", "Select time");
+    			add_location(zoo_input3, file$2, 15, 1, 1085);
+    			input4.disabled = true;
+    			attr_dev(input4, "slot", "inputelement");
+    			attr_dev(input4, "type", "text");
+    			add_location(input4, file$2, 19, 2, 1290);
+    			set_custom_element_data(zoo_input4, "labeltext", "This input is disabled");
+    			add_location(zoo_input4, file$2, 18, 1, 1241);
+    			attr_dev(textarea, "slot", "inputelement");
+    			attr_dev(textarea, "placeholder", "Textarea");
+    			add_location(textarea, file$2, 22, 2, 1419);
+    			set_custom_element_data(zoo_input5, "labeltext", "Textarea example");
+    			set_custom_element_data(zoo_input5, "valid", /*inputState*/ ctx[0]);
+    			add_location(zoo_input5, file$2, 21, 1, 1355);
+    			attr_dev(option0, "class", "placeholder");
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			option0.disabled = true;
+    			option0.selected = true;
+    			add_location(option0, file$2, 26, 3, 1776);
+    			option1.__value = "1";
+    			option1.value = option1.__value;
+    			add_location(option1, file$2, 27, 3, 1855);
+    			option2.__value = "2";
+    			option2.value = option2.__value;
+    			add_location(option2, file$2, 28, 3, 1877);
+    			option3.__value = "3";
+    			option3.value = option3.__value;
+    			add_location(option3, file$2, 29, 3, 1899);
+    			attr_dev(select0, "slot", "selectelement");
+    			select0.multiple = true;
+    			add_location(select0, file$2, 25, 2, 1734);
+    			set_custom_element_data(zoo_select0, "labeltext", "Multiselect");
+    			set_custom_element_data(zoo_select0, "linktext", "Documentation link");
+    			set_custom_element_data(zoo_select0, "linkhref", "https://google.com");
+    			set_custom_element_data(zoo_select0, "linktarget", "about:blank");
+    			set_custom_element_data(zoo_select0, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_select0, "inputerrormsg", "Value is required");
+    			set_custom_element_data(zoo_select0, "infotext", "Additional helpful information for our users");
+    			add_location(zoo_select0, file$2, 24, 1, 1499);
+    			attr_dev(option4, "class", "placeholder");
+    			option4.__value = "";
+    			option4.value = option4.__value;
+    			option4.disabled = true;
+    			option4.selected = true;
+    			add_location(option4, file$2, 34, 3, 2133);
+    			option5.__value = "1";
+    			option5.value = option5.__value;
+    			add_location(option5, file$2, 35, 3, 2212);
+    			option6.__value = "2";
+    			option6.value = option6.__value;
+    			add_location(option6, file$2, 36, 3, 2234);
+    			option7.__value = "3";
+    			option7.value = option7.__value;
+    			add_location(option7, file$2, 37, 3, 2256);
+    			attr_dev(select1, "slot", "selectelement");
+    			add_location(select1, file$2, 33, 2, 2100);
+    			set_custom_element_data(zoo_select1, "labeltext", "Standard select");
+    			set_custom_element_data(zoo_select1, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_select1, "inputerrormsg", "Value is required");
+    			set_custom_element_data(zoo_select1, "infotext", "Additional helpful information for our users");
+    			add_location(zoo_select1, file$2, 32, 1, 1946);
+    			select2.multiple = true;
+    			attr_dev(select2, "slot", "selectelement");
+    			add_location(select2, file$2, 41, 2, 2526);
+    			set_custom_element_data(zoo_searchable_select0, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_searchable_select0, "inputerrormsg", "Value is invalid");
+    			set_custom_element_data(zoo_searchable_select0, "labeltext", "Searchable multiple select");
+    			set_custom_element_data(zoo_searchable_select0, "placeholder", "Placeholder");
+    			set_custom_element_data(zoo_searchable_select0, "infotext", "Additional helpful information for our users which is a long text.");
+    			add_location(zoo_searchable_select0, file$2, 40, 1, 2303);
+    			attr_dev(select3, "slot", "selectelement");
+    			add_location(select3, file$2, 50, 2, 2852);
+    			set_custom_element_data(zoo_searchable_select1, "labeltext", "Searchable select");
+    			set_custom_element_data(zoo_searchable_select1, "placeholder", "Placeholder");
+    			set_custom_element_data(zoo_searchable_select1, "infotext", "Additional helpful information for our users.");
+    			add_location(zoo_searchable_select1, file$2, 49, 1, 2713);
+    			attr_dev(option8, "class", "placeholder");
+    			option8.__value = "";
+    			option8.value = option8.__value;
+    			option8.disabled = true;
+    			option8.selected = true;
+    			add_location(option8, file$2, 60, 3, 3115);
+    			option9.__value = "1";
+    			option9.value = option9.__value;
+    			add_location(option9, file$2, 61, 3, 3194);
+    			option10.__value = "2";
+    			option10.value = option10.__value;
+    			add_location(option10, file$2, 62, 3, 3216);
+    			option11.__value = "3";
+    			option11.value = option11.__value;
+    			add_location(option11, file$2, 63, 3, 3238);
+    			select4.disabled = true;
+    			attr_dev(select4, "slot", "selectelement");
+    			add_location(select4, file$2, 59, 2, 3073);
+    			set_custom_element_data(zoo_select2, "labeltext", "Disabled select");
+    			add_location(zoo_select2, file$2, 58, 1, 3030);
+    			option12.__value = "";
+    			option12.value = option12.__value;
+    			add_location(option12, file$2, 68, 3, 3377);
+    			attr_dev(select5, "slot", "selectelement");
+    			add_location(select5, file$2, 67, 2, 3344);
+    			set_custom_element_data(zoo_select3, "labeltext", "Loading select");
+    			set_custom_element_data(zoo_select3, "loading", zoo_select3_loading_value = true);
+    			add_location(zoo_select3, file$2, 66, 1, 3285);
+    			attr_dev(input5, "slot", "checkboxelement");
+    			attr_dev(input5, "type", "checkbox");
+    			add_location(input5, file$2, 72, 2, 3545);
+    			set_custom_element_data(zoo_checkbox0, "highlighted", zoo_checkbox0_highlighted_value = true);
+    			set_custom_element_data(zoo_checkbox0, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_checkbox0, "inputerrormsg", "error");
+    			set_custom_element_data(zoo_checkbox0, "labeltext", "An example checkbox");
+    			add_location(zoo_checkbox0, file$2, 71, 1, 3432);
+    			input6.disabled = true;
+    			attr_dev(input6, "slot", "checkboxelement");
+    			attr_dev(input6, "type", "checkbox");
+    			add_location(input6, file$2, 75, 2, 3679);
+    			set_custom_element_data(zoo_checkbox1, "highlighted", zoo_checkbox1_highlighted_value = true);
+    			set_custom_element_data(zoo_checkbox1, "labeltext", "Disabled checkbox");
+    			add_location(zoo_checkbox1, file$2, 74, 1, 3611);
+    			attr_dev(input7, "slot", "checkboxelement");
+    			attr_dev(input7, "type", "checkbox");
+    			add_location(input7, file$2, 78, 2, 3917);
+    			set_custom_element_data(zoo_checkbox2, "labeltext", "Not highlighted checkbox with a long label that short be wrapped around checkbox like this");
+    			set_custom_element_data(zoo_checkbox2, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_checkbox2, "inputerrormsg", "error");
+    			add_location(zoo_checkbox2, file$2, 77, 1, 3754);
+    			attr_dev(input8, "type", "radio");
+    			attr_dev(input8, "id", "contactChoice1");
+    			attr_dev(input8, "name", "contact");
+    			input8.value = "email";
+    			input8.disabled = true;
+    			add_location(input8, file$2, 82, 3, 4095);
+    			attr_dev(label0, "for", "contactChoice1");
+    			add_location(label0, file$2, 83, 3, 4177);
+    			attr_dev(input9, "type", "radio");
+    			attr_dev(input9, "id", "contactChoice2");
+    			attr_dev(input9, "name", "contact");
+    			input9.value = "phone";
+    			add_location(input9, file$2, 84, 3, 4222);
+    			attr_dev(label1, "for", "contactChoice2");
+    			add_location(label1, file$2, 85, 3, 4295);
+    			attr_dev(input10, "type", "radio");
+    			attr_dev(input10, "id", "contactChoice3");
+    			attr_dev(input10, "name", "contact");
+    			input10.value = "mail";
+    			add_location(input10, file$2, 86, 3, 4340);
+    			attr_dev(label2, "for", "contactChoice3");
+    			add_location(label2, file$2, 87, 3, 4412);
+    			add_location(template, file$2, 81, 2, 4081);
+    			set_custom_element_data(zoo_radio0, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_radio0, "errormsg", "errormsg");
+    			set_custom_element_data(zoo_radio0, "infotext", "infotext");
+    			set_custom_element_data(zoo_radio0, "labeltext", "Label text");
+    			add_location(zoo_radio0, file$2, 80, 1, 3983);
+    			attr_dev(input11, "type", "radio");
+    			attr_dev(input11, "id", "contactChoice4");
+    			attr_dev(input11, "name", "contact");
+    			input11.value = "email";
+    			input11.disabled = true;
+    			add_location(input11, file$2, 92, 2, 4558);
+    			attr_dev(label3, "for", "contactChoice4");
+    			add_location(label3, file$2, 93, 2, 4639);
+    			attr_dev(input12, "type", "radio");
+    			attr_dev(input12, "id", "contactChoice5");
+    			attr_dev(input12, "name", "contact");
+    			input12.value = "phone";
+    			add_location(input12, file$2, 94, 2, 4683);
+    			attr_dev(label4, "for", "contactChoice5");
+    			add_location(label4, file$2, 95, 2, 4755);
+    			set_custom_element_data(zoo_radio1, "valid", /*inputState*/ ctx[0]);
+    			set_custom_element_data(zoo_radio1, "errormsg", "errormsg");
+    			set_custom_element_data(zoo_radio1, "infotext", "infotext");
+    			add_location(zoo_radio1, file$2, 91, 1, 4483);
+    			attr_dev(form, "class", "form");
+    			add_location(form, file$2, 2, 0, 175);
+    			attr_dev(span, "slot", "buttoncontent");
+    			attr_dev(span, "class", "slotted-span");
+    			add_location(span, file$2, 100, 2, 4912);
+    			set_custom_element_data(zoo_button, "type", "secondary");
+    			set_custom_element_data(zoo_button, "size", "medium");
+    			add_location(zoo_button, file$2, 99, 1, 4841);
+    			attr_dev(div, "class", "submit");
+    			add_location(div, file$2, 98, 0, 4819);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, form, anchor);
+    			append_dev(form, zoo_input0);
+    			append_dev(zoo_input0, input0);
+    			append_dev(form, t1);
+    			append_dev(form, zoo_input1);
+    			append_dev(zoo_input1, input1);
+    			append_dev(form, t2);
+    			append_dev(form, zoo_input2);
+    			append_dev(zoo_input2, input2);
+    			append_dev(form, t3);
+    			append_dev(form, zoo_input3);
+    			append_dev(zoo_input3, input3);
+    			append_dev(form, t4);
+    			append_dev(form, zoo_input4);
+    			append_dev(zoo_input4, input4);
+    			append_dev(form, t5);
+    			append_dev(form, zoo_input5);
+    			append_dev(zoo_input5, textarea);
+    			append_dev(form, t6);
+    			append_dev(form, zoo_select0);
+    			append_dev(zoo_select0, select0);
+    			append_dev(select0, option0);
+    			append_dev(select0, option1);
+    			append_dev(select0, option2);
+    			append_dev(select0, option3);
+    			append_dev(form, t11);
+    			append_dev(form, zoo_select1);
+    			append_dev(zoo_select1, select1);
+    			append_dev(select1, option4);
+    			append_dev(select1, option5);
+    			append_dev(select1, option6);
+    			append_dev(select1, option7);
+    			append_dev(form, t16);
+    			append_dev(form, zoo_searchable_select0);
+    			append_dev(zoo_searchable_select0, select2);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(select2, null);
+    			}
+
+    			append_dev(form, t17);
+    			append_dev(form, zoo_searchable_select1);
+    			append_dev(zoo_searchable_select1, select3);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select3, null);
+    			}
+
+    			append_dev(form, t18);
+    			append_dev(form, zoo_select2);
+    			append_dev(zoo_select2, select4);
+    			append_dev(select4, option8);
+    			append_dev(select4, option9);
+    			append_dev(select4, option10);
+    			append_dev(select4, option11);
+    			append_dev(form, t23);
+    			append_dev(form, zoo_select3);
+    			append_dev(zoo_select3, select5);
+    			append_dev(select5, option12);
+    			append_dev(form, t24);
+    			append_dev(form, zoo_checkbox0);
+    			append_dev(zoo_checkbox0, input5);
+    			append_dev(form, t25);
+    			append_dev(form, zoo_checkbox1);
+    			append_dev(zoo_checkbox1, input6);
+    			append_dev(form, t26);
+    			append_dev(form, zoo_checkbox2);
+    			append_dev(zoo_checkbox2, input7);
+    			append_dev(form, t27);
+    			append_dev(form, zoo_radio0);
+    			append_dev(zoo_radio0, template);
+    			append_dev(template.content, input8);
+    			append_dev(template.content, t28);
+    			append_dev(template.content, label0);
+    			append_dev(template.content, t30);
+    			append_dev(template.content, input9);
+    			append_dev(template.content, t31);
+    			append_dev(template.content, label1);
+    			append_dev(template.content, t33);
+    			append_dev(template.content, input10);
+    			append_dev(template.content, t34);
+    			append_dev(template.content, label2);
+    			append_dev(form, t36);
+    			append_dev(form, zoo_radio1);
+    			append_dev(zoo_radio1, input11);
+    			append_dev(zoo_radio1, t37);
+    			append_dev(zoo_radio1, label3);
+    			append_dev(zoo_radio1, t39);
+    			append_dev(zoo_radio1, input12);
+    			append_dev(zoo_radio1, t40);
+    			append_dev(zoo_radio1, label4);
+    			insert_dev(target, t42, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, zoo_button);
+    			append_dev(zoo_button, span);
+    			if (remount) dispose();
+    			dispose = listen_dev(zoo_button, "click", /*changeState*/ ctx[2], false, false, false);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_input0, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_input5, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_select0, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_select1, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*options*/ 2) {
+    				each_value_1 = /*options*/ ctx[1];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(select2, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_searchable_select0, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*options*/ 2) {
+    				each_value = /*options*/ ctx[1];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select3, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_checkbox0, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_checkbox2, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_radio0, "valid", /*inputState*/ ctx[0]);
+    			}
+
+    			if (dirty & /*inputState*/ 1) {
+    				set_custom_element_data(zoo_radio1, "valid", /*inputState*/ ctx[0]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(form);
+    			destroy_each(each_blocks_1, detaching);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(t42);
+    			if (detaching) detach_dev(div);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$2.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let options = [
+    		{ text: "text", value: "value" },
+    		{ text: "raNdOm", value: "random" },
+    		{ text: "random1", value: "random1" },
+    		{ text: "random2", value: "random2" }
+    	];
+
+    	let inputState = true;
+
+    	const changeState = () => {
+    		$$invalidate(0, inputState = !inputState);
+    	};
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-form> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-form", $$slots, []);
+    	$$self.$capture_state = () => ({ options, inputState, changeState });
+
+    	$$self.$inject_state = $$props => {
+    		if ("options" in $$props) $$invalidate(1, options = $$props.options);
+    		if ("inputState" in $$props) $$invalidate(0, inputState = $$props.inputState);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [inputState, options, changeState];
+    }
+
+    class Form extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.form{flex:1 0 auto;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-template-rows:120px 150px 150px 100px 80px 100px;grid-gap:20px}@media only screen and (max-width: 544px){.form{width:300px;grid-template-columns:auto}}@media only screen and (max-width: 812px){.form{grid-template-rows:120px 150px 120px 120px 80px 100px}}.submit{display:flex;justify-content:center}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$2, create_fragment$2, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("app-form", Form);
+
+    /* src/sections/Buttons.svelte generated by Svelte v3.22.3 */
+
+    const file$3 = "src/sections/Buttons.svelte";
+
+    function create_fragment$3(ctx) {
+    	let zoo_toast0;
+    	let t0;
+    	let zoo_toast1;
+    	let t1;
+    	let app_context;
+    	let t2;
+    	let div1;
+    	let zoo_button0;
+    	let span0;
+    	let t4;
+    	let zoo_button1;
+    	let div0;
+    	let t5;
+    	let zoo_tooltip;
+    	let zoo_button1_disabled_value;
+    	let t6;
+    	let zoo_button2;
+    	let span1;
+    	let t8;
+    	let zoo_button3;
+    	let span2;
+    	let t10;
+    	let zoo_button4;
+    	let svg0;
+    	let g;
+    	let path0;
+    	let path1;
+    	let t11;
+    	let zoo_button5;
+    	let svg1;
+    	let path2;
+    	let t12;
+    	let zoo_modal;
+    	let div2;
+    	let zoo_feedback;
+    	let t13;
+    	let br0;
+    	let t14;
+    	let zoo_select;
+    	let select;
+    	let option0;
+    	let option1;
+    	let option2;
+    	let option3;
+    	let zoo_select_valid_value;
+    	let t19;
+    	let br1;
+    	let t20;
+    	let zoo_checkbox;
+    	let input;
+    	let t21;
+    	let br2;
+    	let t22;
+    	let zoo_button6;
+    	let span3;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			zoo_toast0 = element("zoo-toast");
+    			t0 = space();
+    			zoo_toast1 = element("zoo-toast");
+    			t1 = space();
+    			app_context = element("app-context");
+    			t2 = space();
+    			div1 = element("div");
+    			zoo_button0 = element("zoo-button");
+    			span0 = element("span");
+    			span0.textContent = "Summon toast!";
+    			t4 = space();
+    			zoo_button1 = element("zoo-button");
+    			div0 = element("div");
+    			t5 = text("Disabled :(\n\t\t\t");
+    			zoo_tooltip = element("zoo-tooltip");
+    			t6 = space();
+    			zoo_button2 = element("zoo-button");
+    			span1 = element("span");
+    			span1.textContent = "Show modal";
+    			t8 = space();
+    			zoo_button3 = element("zoo-button");
+    			span2 = element("span");
+    			span2.textContent = "Dummy button that does nothing";
+    			t10 = space();
+    			zoo_button4 = element("zoo-button");
+    			svg0 = svg_element("svg");
+    			g = svg_element("g");
+    			path0 = svg_element("path");
+    			path1 = svg_element("path");
+    			t11 = space();
+    			zoo_button5 = element("zoo-button");
+    			svg1 = svg_element("svg");
+    			path2 = svg_element("path");
+    			t12 = space();
+    			zoo_modal = element("zoo-modal");
+    			div2 = element("div");
+    			zoo_feedback = element("zoo-feedback");
+    			t13 = space();
+    			br0 = element("br");
+    			t14 = space();
+    			zoo_select = element("zoo-select");
+    			select = element("select");
+    			option0 = element("option");
+    			option0.textContent = "Doge";
+    			option1 = element("option");
+    			option1.textContent = "Doge";
+    			option2 = element("option");
+    			option2.textContent = "Catz";
+    			option3 = element("option");
+    			option3.textContent = "Snek";
+    			t19 = space();
+    			br1 = element("br");
+    			t20 = space();
+    			zoo_checkbox = element("zoo-checkbox");
+    			input = element("input");
+    			t21 = space();
+    			br2 = element("br");
+    			t22 = space();
+    			zoo_button6 = element("zoo-button");
+    			span3 = element("span");
+    			span3.textContent = "Add to cart";
+    			this.c = noop;
+    			set_custom_element_data(zoo_toast0, "text", "Search for more than 8.000 products.");
+    			add_location(zoo_toast0, file$3, 1, 0, 52);
+    			set_custom_element_data(zoo_toast1, "text", "Added to cart!");
+    			add_location(zoo_toast1, file$3, 2, 0, 138);
+    			set_custom_element_data(app_context, "text", "Second section is a showcase of buttons and modals");
+    			add_location(app_context, file$3, 3, 0, 207);
+    			attr_dev(span0, "slot", "buttoncontent");
+    			add_location(span0, file$3, 6, 2, 376);
+    			set_custom_element_data(zoo_button0, "size", "small");
+    			add_location(zoo_button0, file$3, 5, 1, 316);
+    			set_custom_element_data(zoo_tooltip, "position", "bottom");
+    			set_custom_element_data(zoo_tooltip, "text", "Just set disabled attribute on `zoo-button`");
+    			add_location(zoo_tooltip, file$3, 11, 3, 551);
+    			attr_dev(div0, "slot", "buttoncontent");
+    			add_location(div0, file$3, 9, 2, 506);
+    			set_custom_element_data(zoo_button1, "size", "small");
+    			set_custom_element_data(zoo_button1, "disabled", zoo_button1_disabled_value = true);
+    			set_custom_element_data(zoo_button1, "class", "top-tooltip");
+    			add_location(zoo_button1, file$3, 8, 1, 440);
+    			attr_dev(span1, "slot", "buttoncontent");
+    			add_location(span1, file$3, 15, 2, 755);
+    			set_custom_element_data(zoo_button2, "type", "secondary");
+    			set_custom_element_data(zoo_button2, "size", "small");
+    			add_location(zoo_button2, file$3, 14, 1, 673);
+    			attr_dev(span2, "slot", "buttoncontent");
+    			add_location(span2, file$3, 18, 2, 858);
+    			set_custom_element_data(zoo_button3, "type", "hollow");
+    			set_custom_element_data(zoo_button3, "size", "small");
+    			add_location(zoo_button3, file$3, 17, 1, 816);
+    			attr_dev(path0, "d", "M9 14.998a3 3 0 010 6v2.252a.75.75 0 11-1.5 0v-7.434a.75.75 0 01.747-.818h.753zm3.875-15c.597 0 1.17.238 1.591.66l5.871 5.87c.422.423.66.995.659 1.592v4.628a.75.75 0 11-1.5 0V8.12a.75.75 0 00-.22-.53l-5.87-5.872a.75.75 0 00-.531-.22H2.246a.75.75 0 00-.75.75v19.5c0 .414.336.75.75.75h3a.75.75 0 110 1.5h-3a2.25 2.25 0 01-2.25-2.25v-19.5a2.25 2.25 0 012.25-2.25h10.63zm10.371 15a.75.75 0 010 1.5h-1.5a.75.75 0 00-.75.75v2.251l1.504.001a.75.75 0 110 1.5l-1.504-.001v2.249a.75.75 0 11-1.5 0v-6a2.25 2.25 0 012.25-2.25h1.5zm-9 0a3.75 3.75 0 013.75 3.75v1.5a3.75 3.75 0 01-3.75 3.75.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75zm.75 1.628v5.744a2.25 2.25 0 001.5-2.122v-1.5a2.25 2.25 0 00-1.5-2.122zM9 16.498v3a1.5 1.5 0 000-3z");
+    			add_location(path0, file$3, 21, 137, 1119);
+    			attr_dev(path1, "d", "M20.246 7.498a.75.75 0 110 1.5h-6a2.25 2.25 0 01-2.25-2.25v-6a.75.75 0 011.5 0v6c0 .414.336.75.75.75h6z");
+    			add_location(path1, file$3, 21, 868, 1850);
+    			attr_dev(g, "fill", "#555");
+    			attr_dev(g, "fill-rule", "evenodd");
+    			add_location(g, file$3, 21, 102, 1084);
+    			attr_dev(svg0, "class", "btn-svg");
+    			attr_dev(svg0, "slot", "buttoncontent");
+    			attr_dev(svg0, "width", "24");
+    			attr_dev(svg0, "height", "24");
+    			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
+    			add_location(svg0, file$3, 21, 2, 984);
+    			set_custom_element_data(zoo_button4, "size", "small");
+    			set_custom_element_data(zoo_button4, "class", "icon-btn");
+    			add_location(zoo_button4, file$3, 20, 1, 939);
+    			attr_dev(path2, "d", "M12 4.324l1.036-1.035a6.423 6.423 0 019.094 9.071l-9.589 10.003a.75.75 0 01-1.082 0l-9.577-9.988A6.422 6.422 0 015.394 1.49a6.423 6.423 0 015.57 1.798L12 4.324z");
+    			attr_dev(path2, "fill", "#555");
+    			attr_dev(path2, "fill-rule", "evenodd");
+    			add_location(path2, file$3, 24, 102, 2154);
+    			attr_dev(svg1, "class", "btn-svg");
+    			attr_dev(svg1, "slot", "buttoncontent");
+    			attr_dev(svg1, "width", "24");
+    			attr_dev(svg1, "height", "24");
+    			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
+    			add_location(svg1, file$3, 24, 2, 2054);
+    			set_custom_element_data(zoo_button5, "type", "secondary");
+    			set_custom_element_data(zoo_button5, "size", "small");
+    			set_custom_element_data(zoo_button5, "class", "icon-btn");
+    			add_location(zoo_button5, file$3, 23, 1, 1992);
+    			attr_dev(div1, "class", "buttons");
+    			add_location(div1, file$3, 4, 0, 293);
+    			set_custom_element_data(zoo_feedback, "type", "info");
+    			set_custom_element_data(zoo_feedback, "text", "This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.");
+    			add_location(zoo_feedback, file$3, 29, 2, 2498);
+    			add_location(br0, file$3, 33, 2, 2680);
+    			attr_dev(option0, "class", "placeholder");
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			option0.disabled = true;
+    			option0.selected = true;
+    			add_location(option0, file$3, 37, 4, 2788);
+    			option1.__value = "Doge";
+    			option1.value = option1.__value;
+    			add_location(option1, file$3, 38, 4, 2861);
+    			option2.__value = "Catz";
+    			option2.value = option2.__value;
+    			add_location(option2, file$3, 39, 4, 2887);
+    			option3.__value = "Snek";
+    			option3.value = option3.__value;
+    			add_location(option3, file$3, 40, 4, 2913);
+    			attr_dev(select, "slot", "selectelement");
+    			add_location(select, file$3, 36, 3, 2754);
+    			set_custom_element_data(zoo_select, "labeltext", "This product is for");
+    			set_custom_element_data(zoo_select, "valid", zoo_select_valid_value = true);
+    			add_location(zoo_select, file$3, 34, 2, 2687);
+    			add_location(br1, file$3, 43, 2, 2966);
+    			attr_dev(input, "slot", "checkboxelement");
+    			attr_dev(input, "type", "checkbox");
+    			add_location(input, file$3, 46, 3, 3085);
+    			set_custom_element_data(zoo_checkbox, "highlighted", "");
+    			set_custom_element_data(zoo_checkbox, "labeltext", "I understand and confirm that ALL of the above statements are true");
+    			add_location(zoo_checkbox, file$3, 44, 2, 2973);
+    			add_location(br2, file$3, 48, 2, 3153);
+    			attr_dev(span3, "slot", "buttoncontent");
+    			add_location(span3, file$3, 50, 3, 3259);
+    			set_style(zoo_button6, "margin", "0 auto");
+    			set_custom_element_data(zoo_button6, "type", "hollow");
+    			set_custom_element_data(zoo_button6, "size", "medium");
+    			add_location(zoo_button6, file$3, 49, 2, 3160);
+    			add_location(div2, file$3, 28, 1, 2490);
+    			set_style(zoo_modal, "display", "none");
+    			set_custom_element_data(zoo_modal, "headertext", "Your basket contains licensed items");
+    			add_location(zoo_modal, file$3, 27, 0, 2388);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, zoo_toast0, anchor);
+    			/*zoo_toast0_binding*/ ctx[5](zoo_toast0);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, zoo_toast1, anchor);
+    			/*zoo_toast1_binding*/ ctx[6](zoo_toast1);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t2, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, zoo_button0);
+    			append_dev(zoo_button0, span0);
+    			append_dev(div1, t4);
+    			append_dev(div1, zoo_button1);
+    			append_dev(zoo_button1, div0);
+    			append_dev(div0, t5);
+    			append_dev(div0, zoo_tooltip);
+    			append_dev(div1, t6);
+    			append_dev(div1, zoo_button2);
+    			append_dev(zoo_button2, span1);
+    			append_dev(div1, t8);
+    			append_dev(div1, zoo_button3);
+    			append_dev(zoo_button3, span2);
+    			append_dev(div1, t10);
+    			append_dev(div1, zoo_button4);
+    			append_dev(zoo_button4, svg0);
+    			append_dev(svg0, g);
+    			append_dev(g, path0);
+    			append_dev(g, path1);
+    			append_dev(div1, t11);
+    			append_dev(div1, zoo_button5);
+    			append_dev(zoo_button5, svg1);
+    			append_dev(svg1, path2);
+    			insert_dev(target, t12, anchor);
+    			insert_dev(target, zoo_modal, anchor);
+    			append_dev(zoo_modal, div2);
+    			append_dev(div2, zoo_feedback);
+    			append_dev(div2, t13);
+    			append_dev(div2, br0);
+    			append_dev(div2, t14);
+    			append_dev(div2, zoo_select);
+    			append_dev(zoo_select, select);
+    			append_dev(select, option0);
+    			append_dev(select, option1);
+    			append_dev(select, option2);
+    			append_dev(select, option3);
+    			append_dev(div2, t19);
+    			append_dev(div2, br1);
+    			append_dev(div2, t20);
+    			append_dev(div2, zoo_checkbox);
+    			append_dev(zoo_checkbox, input);
+    			append_dev(div2, t21);
+    			append_dev(div2, br2);
+    			append_dev(div2, t22);
+    			append_dev(div2, zoo_button6);
+    			append_dev(zoo_button6, span3);
+    			/*zoo_modal_binding*/ ctx[10](zoo_modal);
+    			if (remount) run_all(dispose);
+
+    			dispose = [
+    				listen_dev(zoo_button0, "click", /*click_handler*/ ctx[7], false, false, false),
+    				listen_dev(zoo_button2, "click", /*click_handler_1*/ ctx[8], false, false, false),
+    				listen_dev(zoo_button6, "click", /*click_handler_2*/ ctx[9], false, false, false)
+    			];
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(zoo_toast0);
+    			/*zoo_toast0_binding*/ ctx[5](null);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(zoo_toast1);
+    			/*zoo_toast1_binding*/ ctx[6](null);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t12);
+    			if (detaching) detach_dev(zoo_modal);
+    			/*zoo_modal_binding*/ ctx[10](null);
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let toast;
+    	let modal;
+    	let modalToast;
+
+    	const showModal = () => {
+    		$$invalidate(1, modal.style.display = "block", modal);
+    	};
+
+    	const closeModal = () => {
+    		modal.closeModal();
+    		modalToast.show();
+    	};
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-buttons> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-buttons", $$slots, []);
+
+    	function zoo_toast0_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, toast = $$value);
+    		});
+    	}
+
+    	function zoo_toast1_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(2, modalToast = $$value);
+    		});
+    	}
+
+    	const click_handler = () => toast.show();
+    	const click_handler_1 = () => modal.openModal();
+    	const click_handler_2 = () => closeModal();
+
+    	function zoo_modal_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(1, modal = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		toast,
+    		modal,
+    		modalToast,
+    		showModal,
+    		closeModal
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("toast" in $$props) $$invalidate(0, toast = $$props.toast);
+    		if ("modal" in $$props) $$invalidate(1, modal = $$props.modal);
+    		if ("modalToast" in $$props) $$invalidate(2, modalToast = $$props.modalToast);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		toast,
+    		modal,
+    		modalToast,
+    		closeModal,
+    		showModal,
+    		zoo_toast0_binding,
+    		zoo_toast1_binding,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2,
+    		zoo_modal_binding
+    	];
+    }
+
+    class Buttons extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.buttons{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));grid-gap:15px;width:90%;justify-content:center}@media only screen and (max-width: 850px){.buttons{grid-template-columns:auto}}zoo-tooltip{display:none}.top-tooltip{position:relative;display:inline-block}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}.icon-btn{width:40px}.btn-svg{padding:0}.btn-svg path{fill:white}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$3, create_fragment$3, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("app-buttons", Buttons);
+
+    /* src/sections/Grids.svelte generated by Svelte v3.22.3 */
+
+    const { Object: Object_1 } = globals;
+    const file$4 = "src/sections/Grids.svelte";
+
+    function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[16] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[16] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[21] = list[i];
+    	child_ctx[23] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[24] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[16] = list[i];
+    	child_ctx[28] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[21] = list[i];
+    	child_ctx[23] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_7(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[32] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_6(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[24] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_8(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[16] = list[i];
+    	child_ctx[23] = i;
+    	return child_ctx;
+    }
+
+    // (12:2) {#each headers as header, idx}
+    function create_each_block_8(ctx) {
+    	let zoo_grid_header;
+    	let t_value = /*header*/ ctx[16].title + "";
+    	let t;
+    	let zoo_grid_header_class_value;
+    	let zoo_grid_header_sortable_value;
+    	let zoo_grid_header_sortableproperty_value;
+
+    	const block = {
+    		c: function create() {
+    			zoo_grid_header = element("zoo-grid-header");
+    			t = text(t_value);
+    			set_custom_element_data(zoo_grid_header, "class", zoo_grid_header_class_value = "header-cell " + (/*idx*/ ctx[23] == 0 ? "min-width" : ""));
+    			set_custom_element_data(zoo_grid_header, "slot", "headercell");
+    			set_custom_element_data(zoo_grid_header, "sortable", zoo_grid_header_sortable_value = /*header*/ ctx[16].sortable);
+    			set_custom_element_data(zoo_grid_header, "sortableproperty", zoo_grid_header_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			add_location(zoo_grid_header, file$4, 12, 3, 514);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, zoo_grid_header, anchor);
+    			append_dev(zoo_grid_header, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(zoo_grid_header);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_8.name,
+    		type: "each",
+    		source: "(12:2) {#each headers as header, idx}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (27:8) {#each statuses as status}
+    function create_each_block_7(ctx) {
+    	let option;
+    	let t_value = /*status*/ ctx[32] + "";
+    	let t;
+    	let option_selected_value;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.selected = option_selected_value = /*status*/ ctx[32] == /*row*/ ctx[24].status;
+    			option.__value = option_value_value = /*status*/ ctx[32];
+    			option.value = option.__value;
+    			add_location(option, file$4, 27, 9, 1249);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_7.name,
+    		type: "each",
+    		source: "(27:8) {#each statuses as status}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (15:2) {#each data as row}
+    function create_each_block_6(ctx) {
+    	let div9;
+    	let div0;
+    	let zoo_checkbox;
+    	let input0;
+    	let input0_disabled_value;
+    	let input0_checked_value;
+    	let t0;
+    	let div1;
+    	let t1_value = /*row*/ ctx[24].createdDate + "";
+    	let t1;
+    	let t2;
+    	let div3;
+    	let div2;
+    	let zoo_select;
+    	let select;
+    	let select_disabled_value;
+    	let t3;
+    	let div4;
+    	let t4_value = /*row*/ ctx[24].minWeight + "";
+    	let t4;
+    	let t5;
+    	let div5;
+    	let t6_value = /*row*/ ctx[24].maxWeight + "";
+    	let t6;
+    	let t7;
+    	let div6;
+    	let zoo_input;
+    	let input1;
+    	let input1_disabled_value;
+    	let input1_value_value;
+    	let t8;
+    	let div7;
+    	let t9_value = /*row*/ ctx[24].noOfPieces + "";
+    	let t9;
+    	let t10;
+    	let div8;
+    	let t11_value = /*row*/ ctx[24].price + "";
+    	let t11;
+    	let each_value_7 = /*statuses*/ ctx[3];
+    	validate_each_argument(each_value_7);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_7.length; i += 1) {
+    		each_blocks[i] = create_each_block_7(get_each_context_7(ctx, each_value_7, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div9 = element("div");
+    			div0 = element("div");
+    			zoo_checkbox = element("zoo-checkbox");
+    			input0 = element("input");
+    			t0 = space();
+    			div1 = element("div");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			div3 = element("div");
+    			div2 = element("div");
+    			zoo_select = element("zoo-select");
+    			select = element("select");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t3 = space();
+    			div4 = element("div");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			div5 = element("div");
+    			t6 = text(t6_value);
+    			t7 = space();
+    			div6 = element("div");
+    			zoo_input = element("zoo-input");
+    			input1 = element("input");
+    			t8 = space();
+    			div7 = element("div");
+    			t9 = text(t9_value);
+    			t10 = space();
+    			div8 = element("div");
+    			t11 = text(t11_value);
+    			input0.disabled = input0_disabled_value = /*row*/ ctx[24].status != "DELIVERED" ? null : true;
+    			input0.checked = input0_checked_value = /*row*/ ctx[24].valid;
+    			attr_dev(input0, "slot", "checkboxelement");
+    			attr_dev(input0, "type", "checkbox");
+    			add_location(input0, file$4, 18, 6, 841);
+    			set_custom_element_data(zoo_checkbox, "labeltext", "Valid");
+    			add_location(zoo_checkbox, file$4, 17, 5, 802);
+    			add_location(div0, file$4, 16, 4, 791);
+    			add_location(div1, file$4, 21, 4, 1000);
+    			select.disabled = select_disabled_value = /*row*/ ctx[24].status == "DELIVERED" ? true : null;
+    			attr_dev(select, "slot", "selectelement");
+    			attr_dev(select, "class", "item-per-page-selector");
+    			add_location(select, file$4, 25, 7, 1091);
+    			add_location(zoo_select, file$4, 24, 6, 1071);
+    			attr_dev(div2, "class", "status");
+    			add_location(div2, file$4, 23, 5, 1044);
+    			add_location(div3, file$4, 22, 4, 1033);
+    			add_location(div4, file$4, 33, 4, 1389);
+    			add_location(div5, file$4, 34, 4, 1420);
+    			input1.disabled = input1_disabled_value = /*row*/ ctx[24].status == "DELIVERED" ? true : null;
+    			input1.value = input1_value_value = /*row*/ ctx[24].deliveryDate;
+    			attr_dev(input1, "slot", "inputelement");
+    			attr_dev(input1, "type", "date");
+    			attr_dev(input1, "placeholder", "Enter date");
+    			add_location(input1, file$4, 37, 6, 1502);
+    			add_location(zoo_input, file$4, 36, 5, 1484);
+    			attr_dev(div6, "class", "delivery-date");
+    			add_location(div6, file$4, 35, 4, 1451);
+    			add_location(div7, file$4, 40, 4, 1682);
+    			add_location(div8, file$4, 41, 4, 1714);
+    			attr_dev(div9, "class", "example-row limited-width");
+    			attr_dev(div9, "slot", "row");
+    			add_location(div9, file$4, 15, 3, 736);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div9, anchor);
+    			append_dev(div9, div0);
+    			append_dev(div0, zoo_checkbox);
+    			append_dev(zoo_checkbox, input0);
+    			append_dev(div9, t0);
+    			append_dev(div9, div1);
+    			append_dev(div1, t1);
+    			append_dev(div9, t2);
+    			append_dev(div9, div3);
+    			append_dev(div3, div2);
+    			append_dev(div2, zoo_select);
+    			append_dev(zoo_select, select);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select, null);
+    			}
+
+    			append_dev(div9, t3);
+    			append_dev(div9, div4);
+    			append_dev(div4, t4);
+    			append_dev(div9, t5);
+    			append_dev(div9, div5);
+    			append_dev(div5, t6);
+    			append_dev(div9, t7);
+    			append_dev(div9, div6);
+    			append_dev(div6, zoo_input);
+    			append_dev(zoo_input, input1);
+    			append_dev(div9, t8);
+    			append_dev(div9, div7);
+    			append_dev(div7, t9);
+    			append_dev(div9, t10);
+    			append_dev(div9, div8);
+    			append_dev(div8, t11);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*statuses, data*/ 40) {
+    				each_value_7 = /*statuses*/ ctx[3];
+    				validate_each_argument(each_value_7);
+    				let i;
+
+    				for (i = 0; i < each_value_7.length; i += 1) {
+    					const child_ctx = get_each_context_7(ctx, each_value_7, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_7(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_7.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div9);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_6.name,
+    		type: "each",
+    		source: "(15:2) {#each data as row}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (49:5) {#each possibleNumberOfItems as number, idx}
+    function create_each_block_5(ctx) {
+    	let option;
+    	let t_value = /*number*/ ctx[21] + "";
+    	let t;
+    	let option_selected_value;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.selected = option_selected_value = /*idx*/ ctx[23] == 0;
+    			option.__value = option_value_value = /*number*/ ctx[21];
+    			option.value = option.__value;
+    			add_location(option, file$4, 49, 6, 2009);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_5.name,
+    		type: "each",
+    		source: "(49:5) {#each possibleNumberOfItems as number, idx}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:3) {#each extendedHeaders as header, i}
+    function create_each_block_4(ctx) {
+    	let div;
+    	let t_value = /*header*/ ctx[16].title + "";
+    	let t;
+    	let div_sortable_value;
+    	let div_sortableproperty_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t = text(t_value);
+    			attr_dev(div, "slot", "headercell");
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			add_location(div, file$4, 63, 4, 2609);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_4.name,
+    		type: "each",
+    		source: "(63:3) {#each extendedHeaders as header, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (67:3) {#each extendedData as row}
+    function create_each_block_3(ctx) {
+    	let div10;
+    	let div0;
+    	let zoo_checkbox0;
+    	let input0;
+    	let input0_disabled_value;
+    	let input0_checked_value;
+    	let t0;
+    	let div1;
+    	let t1_value = /*row*/ ctx[24].createdDate + "";
+    	let t1;
+    	let t2;
+    	let div2;
+    	let t3_value = /*row*/ ctx[24].status + "";
+    	let t3;
+    	let t4;
+    	let div3;
+    	let t5_value = /*row*/ ctx[24].minWeight + "";
+    	let t5;
+    	let t6;
+    	let div4;
+    	let t7_value = /*row*/ ctx[24].maxWeight + "";
+    	let t7;
+    	let t8;
+    	let div5;
+    	let t9_value = /*row*/ ctx[24].deliveryDate + "";
+    	let t9;
+    	let t10;
+    	let div6;
+    	let t11_value = /*row*/ ctx[24].noOfPieces + "";
+    	let t11;
+    	let t12;
+    	let div7;
+    	let t13_value = /*row*/ ctx[24].price + "";
+    	let t13;
+    	let t14;
+    	let div8;
+    	let t15_value = /*row*/ ctx[24].rating + "";
+    	let t15;
+    	let t16;
+    	let div9;
+    	let zoo_checkbox1;
+    	let input1;
+    	let input1_checked_value;
+
+    	const block = {
+    		c: function create() {
+    			div10 = element("div");
+    			div0 = element("div");
+    			zoo_checkbox0 = element("zoo-checkbox");
+    			input0 = element("input");
+    			t0 = space();
+    			div1 = element("div");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			div2 = element("div");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			div3 = element("div");
+    			t5 = text(t5_value);
+    			t6 = space();
+    			div4 = element("div");
+    			t7 = text(t7_value);
+    			t8 = space();
+    			div5 = element("div");
+    			t9 = text(t9_value);
+    			t10 = space();
+    			div6 = element("div");
+    			t11 = text(t11_value);
+    			t12 = space();
+    			div7 = element("div");
+    			t13 = text(t13_value);
+    			t14 = space();
+    			div8 = element("div");
+    			t15 = text(t15_value);
+    			t16 = space();
+    			div9 = element("div");
+    			zoo_checkbox1 = element("zoo-checkbox");
+    			input1 = element("input");
+    			input0.disabled = input0_disabled_value = /*row*/ ctx[24].status != "DELIVERED" ? null : true;
+    			input0.checked = input0_checked_value = /*row*/ ctx[24].valid;
+    			attr_dev(input0, "slot", "checkboxelement");
+    			attr_dev(input0, "type", "checkbox");
+    			add_location(input0, file$4, 70, 7, 2897);
+    			set_custom_element_data(zoo_checkbox0, "labeltext", "Valid");
+    			add_location(zoo_checkbox0, file$4, 69, 6, 2857);
+    			add_location(div0, file$4, 68, 5, 2845);
+    			add_location(div1, file$4, 73, 5, 3059);
+    			add_location(div2, file$4, 74, 5, 3093);
+    			add_location(div3, file$4, 75, 5, 3122);
+    			add_location(div4, file$4, 76, 5, 3154);
+    			add_location(div5, file$4, 77, 5, 3186);
+    			add_location(div6, file$4, 78, 5, 3221);
+    			add_location(div7, file$4, 79, 5, 3254);
+    			add_location(div8, file$4, 80, 5, 3282);
+    			input1.checked = input1_checked_value = /*row*/ ctx[24].promotion;
+    			attr_dev(input1, "slot", "checkboxelement");
+    			attr_dev(input1, "type", "checkbox");
+    			add_location(input1, file$4, 83, 7, 3366);
+    			add_location(zoo_checkbox1, file$4, 82, 6, 3344);
+    			set_style(div9, "width", "30px");
+    			add_location(div9, file$4, 81, 5, 3311);
+    			attr_dev(div10, "class", "example-row limited-width");
+    			attr_dev(div10, "slot", "row");
+    			add_location(div10, file$4, 67, 4, 2789);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div10, anchor);
+    			append_dev(div10, div0);
+    			append_dev(div0, zoo_checkbox0);
+    			append_dev(zoo_checkbox0, input0);
+    			append_dev(div10, t0);
+    			append_dev(div10, div1);
+    			append_dev(div1, t1);
+    			append_dev(div10, t2);
+    			append_dev(div10, div2);
+    			append_dev(div2, t3);
+    			append_dev(div10, t4);
+    			append_dev(div10, div3);
+    			append_dev(div3, t5);
+    			append_dev(div10, t6);
+    			append_dev(div10, div4);
+    			append_dev(div4, t7);
+    			append_dev(div10, t8);
+    			append_dev(div10, div5);
+    			append_dev(div5, t9);
+    			append_dev(div10, t10);
+    			append_dev(div10, div6);
+    			append_dev(div6, t11);
+    			append_dev(div10, t12);
+    			append_dev(div10, div7);
+    			append_dev(div7, t13);
+    			append_dev(div10, t14);
+    			append_dev(div10, div8);
+    			append_dev(div8, t15);
+    			append_dev(div10, t16);
+    			append_dev(div10, div9);
+    			append_dev(div9, zoo_checkbox1);
+    			append_dev(zoo_checkbox1, input1);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div10);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_3.name,
+    		type: "each",
+    		source: "(67:3) {#each extendedData as row}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (93:6) {#each possibleNumberOfItems as number, idx}
+    function create_each_block_2(ctx) {
+    	let option;
+    	let t_value = /*number*/ ctx[21] + "";
+    	let t;
+    	let option_selected_value;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.selected = option_selected_value = /*idx*/ ctx[23] == 0;
+    			option.__value = option_value_value = /*number*/ ctx[21];
+    			option.value = option.__value;
+    			add_location(option, file$4, 93, 7, 3753);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2.name,
+    		type: "each",
+    		source: "(93:6) {#each possibleNumberOfItems as number, idx}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (106:3) {#each headers as header}
+    function create_each_block_1$1(ctx) {
+    	let div;
+    	let t_value = /*header*/ ctx[16].title + "";
+    	let t;
+    	let div_sortable_value;
+    	let div_sortableproperty_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t = text(t_value);
+    			attr_dev(div, "slot", "headercell");
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			add_location(div, file$4, 106, 4, 4025);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$1.name,
+    		type: "each",
+    		source: "(106:3) {#each headers as header}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (119:3) {#each headers as header}
+    function create_each_block$2(ctx) {
+    	let div;
+    	let t_value = /*header*/ ctx[16].title + "";
+    	let t;
+    	let div_sortable_value;
+    	let div_sortableproperty_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t = text(t_value);
+    			attr_dev(div, "slot", "headercell");
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			add_location(div, file$4, 119, 4, 4479);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$2.name,
+    		type: "each",
+    		source: "(119:3) {#each headers as header}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$4(ctx) {
+    	let app_context;
+    	let t0;
+    	let div7;
+    	let h30;
+    	let t2;
+    	let div1;
+    	let zoo_grid0;
+    	let t3;
+    	let t4;
+    	let div0;
+    	let zoo_select0;
+    	let select0;
+    	let t5;
+    	let h31;
+    	let t7;
+    	let div3;
+    	let zoo_grid1;
+    	let t8;
+    	let t9;
+    	let div2;
+    	let zoo_select1;
+    	let select1;
+    	let t10;
+    	let h32;
+    	let t12;
+    	let div5;
+    	let zoo_grid2;
+    	let t13;
+    	let div4;
+    	let t15;
+    	let h33;
+    	let t17;
+    	let div6;
+    	let zoo_grid3;
+    	let zoo_grid3_loading_value;
+    	let dispose;
+    	let each_value_8 = /*headers*/ ctx[2];
+    	validate_each_argument(each_value_8);
+    	let each_blocks_7 = [];
+
+    	for (let i = 0; i < each_value_8.length; i += 1) {
+    		each_blocks_7[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
+    	}
+
+    	let each_value_6 = /*data*/ ctx[5];
+    	validate_each_argument(each_value_6);
+    	let each_blocks_6 = [];
+
+    	for (let i = 0; i < each_value_6.length; i += 1) {
+    		each_blocks_6[i] = create_each_block_6(get_each_context_6(ctx, each_value_6, i));
+    	}
+
+    	let each_value_5 = /*possibleNumberOfItems*/ ctx[1];
+    	validate_each_argument(each_value_5);
+    	let each_blocks_5 = [];
+
+    	for (let i = 0; i < each_value_5.length; i += 1) {
+    		each_blocks_5[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
+    	}
+
+    	let each_value_4 = /*extendedHeaders*/ ctx[4];
+    	validate_each_argument(each_value_4);
+    	let each_blocks_4 = [];
+
+    	for (let i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks_4[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    	}
+
+    	let each_value_3 = /*extendedData*/ ctx[6];
+    	validate_each_argument(each_value_3);
+    	let each_blocks_3 = [];
+
+    	for (let i = 0; i < each_value_3.length; i += 1) {
+    		each_blocks_3[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    	}
+
+    	let each_value_2 = /*possibleNumberOfItems*/ ctx[1];
+    	validate_each_argument(each_value_2);
+    	let each_blocks_2 = [];
+
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	let each_value_1 = /*headers*/ ctx[2];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*headers*/ ctx[2];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div7 = element("div");
+    			h30 = element("h3");
+    			h30.textContent = "A grid with pagination, resizing and sorting.";
+    			t2 = space();
+    			div1 = element("div");
+    			zoo_grid0 = element("zoo-grid");
+
+    			for (let i = 0; i < each_blocks_7.length; i += 1) {
+    				each_blocks_7[i].c();
+    			}
+
+    			t3 = space();
+
+    			for (let i = 0; i < each_blocks_6.length; i += 1) {
+    				each_blocks_6[i].c();
+    			}
+
+    			t4 = space();
+    			div0 = element("div");
+    			zoo_select0 = element("zoo-select");
+    			select0 = element("select");
+
+    			for (let i = 0; i < each_blocks_5.length; i += 1) {
+    				each_blocks_5[i].c();
+    			}
+
+    			t5 = space();
+    			h31 = element("h3");
+    			h31.textContent = "Grid with sticky header and pagination. Grid height and width are limited on the client side.";
+    			t7 = space();
+    			div3 = element("div");
+    			zoo_grid1 = element("zoo-grid");
+
+    			for (let i = 0; i < each_blocks_4.length; i += 1) {
+    				each_blocks_4[i].c();
+    			}
+
+    			t8 = space();
+
+    			for (let i = 0; i < each_blocks_3.length; i += 1) {
+    				each_blocks_3[i].c();
+    			}
+
+    			t9 = space();
+    			div2 = element("div");
+    			zoo_select1 = element("zoo-select");
+    			select1 = element("select");
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].c();
+    			}
+
+    			t10 = space();
+    			h32 = element("h3");
+    			h32.textContent = "Grid with no rows provided.";
+    			t12 = space();
+    			div5 = element("div");
+    			zoo_grid2 = element("zoo-grid");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t13 = space();
+    			div4 = element("div");
+    			div4.textContent = "No records to show!";
+    			t15 = space();
+    			h33 = element("h3");
+    			h33.textContent = "Grid which is loading indefinitely.";
+    			t17 = space();
+    			div6 = element("div");
+    			zoo_grid3 = element("zoo-grid");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Forth section is a showcase of grids");
+    			add_location(app_context, file$4, 2, 0, 51);
+    			add_location(h30, file$4, 5, 1, 177);
+    			attr_dev(select0, "slot", "selectelement");
+    			attr_dev(select0, "class", "item-per-page-selector");
+    			add_location(select0, file$4, 47, 4, 1892);
+    			set_custom_element_data(zoo_select0, "labeltext", "Page size");
+    			set_custom_element_data(zoo_select0, "labelposition", "left");
+    			add_location(zoo_select0, file$4, 46, 3, 1831);
+    			attr_dev(div0, "class", "item-per-page-selector-holder");
+    			attr_dev(div0, "slot", "pagesizeselector");
+    			add_location(div0, file$4, 45, 2, 1760);
+    			set_custom_element_data(zoo_grid0, "class", "limited-width grid-1");
+    			set_custom_element_data(zoo_grid0, "stickyheader", "");
+    			set_custom_element_data(zoo_grid0, "paginator", "");
+    			set_custom_element_data(zoo_grid0, "currentpage", "5");
+    			set_custom_element_data(zoo_grid0, "maxpages", "20");
+    			set_custom_element_data(zoo_grid0, "resizable", "");
+    			set_custom_element_data(zoo_grid0, "dragndrop", "");
+    			add_location(zoo_grid0, file$4, 8, 1, 261);
+    			attr_dev(div1, "class", "grid-holder");
+    			add_location(div1, file$4, 7, 1, 234);
+    			add_location(h31, file$4, 57, 1, 2133);
+    			attr_dev(select1, "slot", "selectelement");
+    			attr_dev(select1, "class", "item-per-page-selector");
+    			add_location(select1, file$4, 91, 5, 3634);
+    			set_custom_element_data(zoo_select1, "labeltext", "Page size");
+    			set_custom_element_data(zoo_select1, "labelposition", "left");
+    			add_location(zoo_select1, file$4, 90, 4, 3572);
+    			attr_dev(div2, "class", "item-per-page-selector-holder");
+    			attr_dev(div2, "slot", "pagesizeselector");
+    			add_location(div2, file$4, 89, 3, 3500);
+    			set_custom_element_data(zoo_grid1, "class", "limited-width grid-2");
+    			set_style(zoo_grid1, "min-width", "1024px");
+    			set_style(zoo_grid1, "margin", "0 auto");
+    			set_style(zoo_grid1, "display", "block");
+    			set_custom_element_data(zoo_grid1, "stickyheader", "");
+    			set_custom_element_data(zoo_grid1, "paginator", "");
+    			set_custom_element_data(zoo_grid1, "currentpage", "1");
+    			set_custom_element_data(zoo_grid1, "maxpages", "4");
+    			add_location(zoo_grid1, file$4, 60, 2, 2311);
+    			attr_dev(div3, "class", "grid-holder");
+    			set_style(div3, "max-width", "850px");
+    			set_style(div3, "max-height", "300px");
+    			add_location(div3, file$4, 59, 1, 2238);
+    			add_location(h32, file$4, 101, 1, 3882);
+    			attr_dev(div4, "slot", "norecords");
+    			attr_dev(div4, "class", "example-row limited-width");
+    			add_location(div4, file$4, 108, 3, 4171);
+    			set_custom_element_data(zoo_grid2, "class", "limited-width");
+    			set_custom_element_data(zoo_grid2, "paginator", "");
+    			add_location(zoo_grid2, file$4, 104, 2, 3949);
+    			attr_dev(div5, "class", "grid-holder");
+    			add_location(div5, file$4, 103, 1, 3921);
+    			add_location(h33, file$4, 114, 1, 4286);
+    			set_custom_element_data(zoo_grid3, "class", "limited-width");
+    			set_custom_element_data(zoo_grid3, "loading", zoo_grid3_loading_value = true);
+    			set_custom_element_data(zoo_grid3, "paginator", "");
+    			set_style(zoo_grid3, "min-height", "200px");
+    			add_location(zoo_grid3, file$4, 117, 2, 4361);
+    			attr_dev(div6, "class", "grid-holder");
+    			add_location(div6, file$4, 116, 1, 4333);
+    			attr_dev(div7, "class", "grids-holder");
+    			add_location(div7, file$4, 4, 0, 124);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div7, anchor);
+    			append_dev(div7, h30);
+    			append_dev(div7, t2);
+    			append_dev(div7, div1);
+    			append_dev(div1, zoo_grid0);
+
+    			for (let i = 0; i < each_blocks_7.length; i += 1) {
+    				each_blocks_7[i].m(zoo_grid0, null);
+    			}
+
+    			append_dev(zoo_grid0, t3);
+
+    			for (let i = 0; i < each_blocks_6.length; i += 1) {
+    				each_blocks_6[i].m(zoo_grid0, null);
+    			}
+
+    			append_dev(zoo_grid0, t4);
+    			append_dev(zoo_grid0, div0);
+    			append_dev(div0, zoo_select0);
+    			append_dev(zoo_select0, select0);
+
+    			for (let i = 0; i < each_blocks_5.length; i += 1) {
+    				each_blocks_5[i].m(select0, null);
+    			}
+
+    			append_dev(div7, t5);
+    			append_dev(div7, h31);
+    			append_dev(div7, t7);
+    			append_dev(div7, div3);
+    			append_dev(div3, zoo_grid1);
+
+    			for (let i = 0; i < each_blocks_4.length; i += 1) {
+    				each_blocks_4[i].m(zoo_grid1, null);
+    			}
+
+    			append_dev(zoo_grid1, t8);
+
+    			for (let i = 0; i < each_blocks_3.length; i += 1) {
+    				each_blocks_3[i].m(zoo_grid1, null);
+    			}
+
+    			append_dev(zoo_grid1, t9);
+    			append_dev(zoo_grid1, div2);
+    			append_dev(div2, zoo_select1);
+    			append_dev(zoo_select1, select1);
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].m(select1, null);
+    			}
+
+    			append_dev(div7, t10);
+    			append_dev(div7, h32);
+    			append_dev(div7, t12);
+    			append_dev(div7, div5);
+    			append_dev(div5, zoo_grid2);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(zoo_grid2, null);
+    			}
+
+    			append_dev(zoo_grid2, t13);
+    			append_dev(zoo_grid2, div4);
+    			append_dev(div7, t15);
+    			append_dev(div7, h33);
+    			append_dev(div7, t17);
+    			append_dev(div7, div6);
+    			append_dev(div6, zoo_grid3);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(zoo_grid3, null);
+    			}
+
+    			/*div7_binding*/ ctx[15](div7);
+    			if (remount) run_all(dispose);
+
+    			dispose = [
+    				listen_dev(zoo_grid0, "sortChange", /*sortChange_handler*/ ctx[11], false, false, false),
+    				listen_dev(zoo_grid0, "pageChange", /*pageChange_handler*/ ctx[12], false, false, false),
+    				listen_dev(zoo_grid1, "sortChange", /*sortChange_handler_1*/ ctx[13], false, false, false),
+    				listen_dev(zoo_grid1, "pageChange", /*pageChange_handler_1*/ ctx[14], false, false, false)
+    			];
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*headers*/ 4) {
+    				each_value_8 = /*headers*/ ctx[2];
+    				validate_each_argument(each_value_8);
+    				let i;
+
+    				for (i = 0; i < each_value_8.length; i += 1) {
+    					const child_ctx = get_each_context_8(ctx, each_value_8, i);
+
+    					if (each_blocks_7[i]) {
+    						each_blocks_7[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_7[i] = create_each_block_8(child_ctx);
+    						each_blocks_7[i].c();
+    						each_blocks_7[i].m(zoo_grid0, t3);
+    					}
+    				}
+
+    				for (; i < each_blocks_7.length; i += 1) {
+    					each_blocks_7[i].d(1);
+    				}
+
+    				each_blocks_7.length = each_value_8.length;
+    			}
+
+    			if (dirty[0] & /*data, statuses*/ 40) {
+    				each_value_6 = /*data*/ ctx[5];
+    				validate_each_argument(each_value_6);
+    				let i;
+
+    				for (i = 0; i < each_value_6.length; i += 1) {
+    					const child_ctx = get_each_context_6(ctx, each_value_6, i);
+
+    					if (each_blocks_6[i]) {
+    						each_blocks_6[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_6[i] = create_each_block_6(child_ctx);
+    						each_blocks_6[i].c();
+    						each_blocks_6[i].m(zoo_grid0, t4);
+    					}
+    				}
+
+    				for (; i < each_blocks_6.length; i += 1) {
+    					each_blocks_6[i].d(1);
+    				}
+
+    				each_blocks_6.length = each_value_6.length;
+    			}
+
+    			if (dirty[0] & /*possibleNumberOfItems*/ 2) {
+    				each_value_5 = /*possibleNumberOfItems*/ ctx[1];
+    				validate_each_argument(each_value_5);
+    				let i;
+
+    				for (i = 0; i < each_value_5.length; i += 1) {
+    					const child_ctx = get_each_context_5(ctx, each_value_5, i);
+
+    					if (each_blocks_5[i]) {
+    						each_blocks_5[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_5[i] = create_each_block_5(child_ctx);
+    						each_blocks_5[i].c();
+    						each_blocks_5[i].m(select0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_5.length; i += 1) {
+    					each_blocks_5[i].d(1);
+    				}
+
+    				each_blocks_5.length = each_value_5.length;
+    			}
+
+    			if (dirty[0] & /*extendedHeaders*/ 16) {
+    				each_value_4 = /*extendedHeaders*/ ctx[4];
+    				validate_each_argument(each_value_4);
+    				let i;
+
+    				for (i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+
+    					if (each_blocks_4[i]) {
+    						each_blocks_4[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_4[i] = create_each_block_4(child_ctx);
+    						each_blocks_4[i].c();
+    						each_blocks_4[i].m(zoo_grid1, t8);
+    					}
+    				}
+
+    				for (; i < each_blocks_4.length; i += 1) {
+    					each_blocks_4[i].d(1);
+    				}
+
+    				each_blocks_4.length = each_value_4.length;
+    			}
+
+    			if (dirty[0] & /*extendedData*/ 64) {
+    				each_value_3 = /*extendedData*/ ctx[6];
+    				validate_each_argument(each_value_3);
+    				let i;
+
+    				for (i = 0; i < each_value_3.length; i += 1) {
+    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
+
+    					if (each_blocks_3[i]) {
+    						each_blocks_3[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_3[i] = create_each_block_3(child_ctx);
+    						each_blocks_3[i].c();
+    						each_blocks_3[i].m(zoo_grid1, t9);
+    					}
+    				}
+
+    				for (; i < each_blocks_3.length; i += 1) {
+    					each_blocks_3[i].d(1);
+    				}
+
+    				each_blocks_3.length = each_value_3.length;
+    			}
+
+    			if (dirty[0] & /*possibleNumberOfItems*/ 2) {
+    				each_value_2 = /*possibleNumberOfItems*/ ctx[1];
+    				validate_each_argument(each_value_2);
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks_2[i]) {
+    						each_blocks_2[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_2[i] = create_each_block_2(child_ctx);
+    						each_blocks_2[i].c();
+    						each_blocks_2[i].m(select1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_2.length; i += 1) {
+    					each_blocks_2[i].d(1);
+    				}
+
+    				each_blocks_2.length = each_value_2.length;
+    			}
+
+    			if (dirty[0] & /*headers*/ 4) {
+    				each_value_1 = /*headers*/ ctx[2];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1$1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(zoo_grid2, t13);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty[0] & /*headers*/ 4) {
+    				each_value = /*headers*/ ctx[2];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$2(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(zoo_grid3, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div7);
+    			destroy_each(each_blocks_7, detaching);
+    			destroy_each(each_blocks_6, detaching);
+    			destroy_each(each_blocks_5, detaching);
+    			destroy_each(each_blocks_4, detaching);
+    			destroy_each(each_blocks_3, detaching);
+    			destroy_each(each_blocks_2, detaching);
+    			destroy_each(each_blocks_1, detaching);
+    			destroy_each(each_blocks, detaching);
+    			/*div7_binding*/ ctx[15](null);
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$4.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	let toast;
+    	let possibleNumberOfItems = [5, 10, 25, 100];
+    	let gridHolder;
+
+    	let headers = [
+    		{ title: "Valid" },
+    		{
+    			title: "Created date",
+    			sortable: true,
+    			sortProperty: "createdDate"
+    		},
+    		{
+    			title: "Status",
+    			sortable: true,
+    			sortProperty: "status"
+    		},
+    		{ title: "Minimum weight" },
+    		{ title: "Maximum weight" },
+    		{
+    			title: "Delivery date",
+    			sortable: true,
+    			sortProperty: "deliveryDate"
+    		},
+    		{ title: "# of pieces" },
+    		{ title: "Price" }
+    	];
+
+    	let statuses = ["DELIVERED", "READY", "PACKING"];
+    	let extendedHeaders = [...headers, { title: "Rating" }, { title: "Promotion" }];
+    	let today = new Date().toISOString().substr(0, 10);
+
+    	let data = [
+    		{
+    			valid: true,
+    			createdDate: today,
+    			status: "READY",
+    			minWeight: "1 kg",
+    			maxWeight: "10 kg",
+    			deliveryDate: "",
+    			noOfPieces: 5,
+    			price: "12 EUR"
+    		},
+    		{
+    			valid: true,
+    			createdDate: today,
+    			status: "DELIVERED",
+    			minWeight: "1 kg",
+    			maxWeight: "10 kg",
+    			deliveryDate: today,
+    			noOfPieces: 5,
+    			price: "12 EUR"
+    		},
+    		{
+    			valid: true,
+    			createdDate: today,
+    			status: "READY",
+    			minWeight: "1 kg",
+    			maxWeight: "10 kg",
+    			deliveryDate: "",
+    			noOfPieces: 5,
+    			price: "12 EUR"
+    		},
+    		{
+    			valid: true,
+    			createdDate: today,
+    			status: "DELIVERED",
+    			minWeight: "1 kg",
+    			maxWeight: "10 kg",
+    			deliveryDate: today,
+    			noOfPieces: 5,
+    			price: "12 EUR"
+    		},
+    		{
+    			valid: true,
+    			createdDate: today,
+    			status: "READY",
+    			minWeight: "1 kg",
+    			maxWeight: "10 kg",
+    			deliveryDate: "",
+    			noOfPieces: 5,
+    			price: "12 EUR"
+    		}
+    	];
+
+    	let extendedData = [...data].map(el => Object.assign(el, { rating: 3, promotion: false }));
+
+    	const handleSortChange = sortState => {
+    		const toast = document.createElement("zoo-toast");
+
+    		toast.text = sortState
+    		? "Sort state was changed. Property: " + sortState.property + ", direction: " + sortState.direction
+    		: "Sort state was changed. Sort object is undefined.";
+
+    		gridHolder.appendChild(toast);
+    		toast.show();
+    	};
+
+    	const handlePageChange = page => {
+    		const toast = document.createElement("zoo-toast");
+    		toast.text = "Page was changed to: " + page.pageNumber;
+    		gridHolder.appendChild(toast);
+    		toast.show();
+    	};
+
+    	const writable_props = [];
+
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-grids> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-grids", $$slots, []);
+    	const sortChange_handler = e => handleSortChange(e.detail);
+    	const pageChange_handler = e => handlePageChange(e.detail);
+    	const sortChange_handler_1 = e => handleSortChange(e.detail);
+    	const pageChange_handler_1 = e => handlePageChange(e.detail);
+
+    	function div7_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, gridHolder = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		toast,
+    		possibleNumberOfItems,
+    		gridHolder,
+    		headers,
+    		statuses,
+    		extendedHeaders,
+    		today,
+    		data,
+    		extendedData,
+    		handleSortChange,
+    		handlePageChange
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("toast" in $$props) toast = $$props.toast;
+    		if ("possibleNumberOfItems" in $$props) $$invalidate(1, possibleNumberOfItems = $$props.possibleNumberOfItems);
+    		if ("gridHolder" in $$props) $$invalidate(0, gridHolder = $$props.gridHolder);
+    		if ("headers" in $$props) $$invalidate(2, headers = $$props.headers);
+    		if ("statuses" in $$props) $$invalidate(3, statuses = $$props.statuses);
+    		if ("extendedHeaders" in $$props) $$invalidate(4, extendedHeaders = $$props.extendedHeaders);
+    		if ("today" in $$props) today = $$props.today;
+    		if ("data" in $$props) $$invalidate(5, data = $$props.data);
+    		if ("extendedData" in $$props) $$invalidate(6, extendedData = $$props.extendedData);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		gridHolder,
+    		possibleNumberOfItems,
+    		headers,
+    		statuses,
+    		extendedHeaders,
+    		data,
+    		extendedData,
+    		handleSortChange,
+    		handlePageChange,
+    		toast,
+    		today,
+    		sortChange_handler,
+    		pageChange_handler,
+    		sortChange_handler_1,
+    		pageChange_handler_1,
+    		div7_binding
+    	];
+    }
+
+    class Grids extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}h3{color:var(--primary-mid, #3C9700)}.min-width{min-width:200px}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-1{--grid-column-sizes:150px repeat(7, minmax(50px, 1fr)) !important}.grid-2{--grid-column-sizes:150px repeat(9, minmax(50px, 1fr)) !important}.grid-holder{max-width:1280px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}.item-per-page-selector-holder .item-per-page-selector:focus{border:2px solid #555555}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, {}, [-1, -1]);
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("app-grids", Grids);
+
+    /* src/sections/TooltipAndFeedback.svelte generated by Svelte v3.22.3 */
+
+    const file$5 = "src/sections/TooltipAndFeedback.svelte";
+
+    function create_fragment$5(ctx) {
+    	let app_context;
+    	let t0;
+    	let div6;
+    	let div0;
+    	let zoo_feedback0;
+    	let t1;
+    	let zoo_tooltip0;
+    	let t2;
+    	let div1;
+    	let zoo_feedback1;
+    	let t3;
+    	let zoo_tooltip1;
+    	let t4;
+    	let div2;
+    	let zoo_feedback2;
+    	let t5;
+    	let zoo_tooltip2;
+    	let t6;
+    	let div4;
+    	let zoo_feedback3;
+    	let div3;
+    	let span0;
+    	let t8;
+    	let zoo_button0;
+    	let span1;
+    	let t10;
+    	let div5;
+    	let zoo_button1;
+    	let span2;
+    	let t12;
+    	let zoo_tooltip4;
+    	let zoo_input;
+    	let input;
+    	let t13;
+    	let zoo_tooltip3;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div6 = element("div");
+    			div0 = element("div");
+    			zoo_feedback0 = element("zoo-feedback");
+    			t1 = space();
+    			zoo_tooltip0 = element("zoo-tooltip");
+    			t2 = space();
+    			div1 = element("div");
+    			zoo_feedback1 = element("zoo-feedback");
+    			t3 = space();
+    			zoo_tooltip1 = element("zoo-tooltip");
+    			t4 = space();
+    			div2 = element("div");
+    			zoo_feedback2 = element("zoo-feedback");
+    			t5 = space();
+    			zoo_tooltip2 = element("zoo-tooltip");
+    			t6 = space();
+    			div4 = element("div");
+    			zoo_feedback3 = element("zoo-feedback");
+    			div3 = element("div");
+    			span0 = element("span");
+    			span0.textContent = "Feedback element with slotted content";
+    			t8 = space();
+    			zoo_button0 = element("zoo-button");
+    			span1 = element("span");
+    			span1.textContent = "Slotted button";
+    			t10 = space();
+    			div5 = element("div");
+    			zoo_button1 = element("zoo-button");
+    			span2 = element("span");
+    			span2.textContent = "This element will show tooltip on top only when it is clicked.";
+    			t12 = space();
+    			zoo_tooltip4 = element("zoo-tooltip");
+    			zoo_input = element("zoo-input");
+    			input = element("input");
+    			t13 = space();
+    			zoo_tooltip3 = element("zoo-tooltip");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Third section is a showcase of tooltips and feedback boxes.");
+    			add_location(app_context, file$5, 1, 0, 65);
+    			set_custom_element_data(zoo_feedback0, "type", "info");
+    			set_custom_element_data(zoo_feedback0, "text", "This is an info message. This element will show tooltip on the right side on hover.");
+    			add_location(zoo_feedback0, file$5, 4, 2, 222);
+    			set_custom_element_data(zoo_tooltip0, "position", "right");
+    			set_custom_element_data(zoo_tooltip0, "text", "Hello from right side.");
+    			add_location(zoo_tooltip0, file$5, 5, 2, 357);
+    			attr_dev(div0, "class", "feedback-tooltip");
+    			add_location(div0, file$5, 3, 1, 189);
+    			set_custom_element_data(zoo_feedback1, "type", "error");
+    			set_custom_element_data(zoo_feedback1, "text", "This is an error message. This element will show tooltip on the left side on hover.");
+    			add_location(zoo_feedback1, file$5, 8, 2, 474);
+    			set_custom_element_data(zoo_tooltip1, "position", "left");
+    			set_custom_element_data(zoo_tooltip1, "text", "Hello from left side.");
+    			add_location(zoo_tooltip1, file$5, 9, 2, 610);
+    			attr_dev(div1, "class", "feedback-tooltip");
+    			add_location(div1, file$5, 7, 1, 441);
+    			set_custom_element_data(zoo_feedback2, "type", "success");
+    			set_custom_element_data(zoo_feedback2, "text", "This is a success message. This element will show tooltip on the bottom side on hover.");
+    			add_location(zoo_feedback2, file$5, 12, 2, 725);
+    			set_custom_element_data(zoo_tooltip2, "position", "bottom");
+    			set_custom_element_data(zoo_tooltip2, "text", "Hello from below");
+    			add_location(zoo_tooltip2, file$5, 13, 2, 866);
+    			attr_dev(div2, "class", "feedback-tooltip");
+    			add_location(div2, file$5, 11, 1, 692);
+    			add_location(span0, file$5, 18, 4, 1043);
+    			attr_dev(span1, "slot", "buttoncontent");
+    			add_location(span1, file$5, 20, 5, 1130);
+    			set_custom_element_data(zoo_button0, "type", "hollow");
+    			add_location(zoo_button0, file$5, 19, 4, 1098);
+    			attr_dev(div3, "class", "feedback-slot");
+    			add_location(div3, file$5, 17, 3, 1011);
+    			set_custom_element_data(zoo_feedback3, "type", "success");
+    			add_location(zoo_feedback3, file$5, 16, 2, 978);
+    			attr_dev(div4, "class", "feedback-tooltip");
+    			add_location(div4, file$5, 15, 1, 945);
+    			attr_dev(span2, "slot", "buttoncontent");
+    			add_location(span2, file$5, 27, 3, 1315);
+    			add_location(zoo_button1, file$5, 26, 2, 1267);
+    			attr_dev(input, "slot", "inputelement");
+    			attr_dev(input, "placeholder", "Search for more than 8.000 products");
+    			add_location(input, file$5, 31, 4, 1542);
+    			set_custom_element_data(zoo_input, "class", "input-in-tooltip");
+    			add_location(zoo_input, file$5, 30, 3, 1501);
+    			set_custom_element_data(zoo_tooltip3, "class", "nested-tooltip");
+    			set_custom_element_data(zoo_tooltip3, "position", "right");
+    			set_custom_element_data(zoo_tooltip3, "text", "Hello from nested tooltip.");
+    			add_location(zoo_tooltip3, file$5, 33, 3, 1640);
+    			set_custom_element_data(zoo_tooltip4, "text", "Hello from up above");
+    			add_location(zoo_tooltip4, file$5, 29, 2, 1430);
+    			attr_dev(div5, "class", "special-tooltip");
+    			add_location(div5, file$5, 25, 1, 1234);
+    			attr_dev(div6, "class", "inner-content");
+    			add_location(div6, file$5, 2, 0, 160);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div6, anchor);
+    			append_dev(div6, div0);
+    			append_dev(div0, zoo_feedback0);
+    			append_dev(div0, t1);
+    			append_dev(div0, zoo_tooltip0);
+    			append_dev(div6, t2);
+    			append_dev(div6, div1);
+    			append_dev(div1, zoo_feedback1);
+    			append_dev(div1, t3);
+    			append_dev(div1, zoo_tooltip1);
+    			append_dev(div6, t4);
+    			append_dev(div6, div2);
+    			append_dev(div2, zoo_feedback2);
+    			append_dev(div2, t5);
+    			append_dev(div2, zoo_tooltip2);
+    			append_dev(div6, t6);
+    			append_dev(div6, div4);
+    			append_dev(div4, zoo_feedback3);
+    			append_dev(zoo_feedback3, div3);
+    			append_dev(div3, span0);
+    			append_dev(div3, t8);
+    			append_dev(div3, zoo_button0);
+    			append_dev(zoo_button0, span1);
+    			append_dev(div6, t10);
+    			append_dev(div6, div5);
+    			append_dev(div5, zoo_button1);
+    			append_dev(zoo_button1, span2);
+    			append_dev(div5, t12);
+    			append_dev(div5, zoo_tooltip4);
+    			append_dev(zoo_tooltip4, zoo_input);
+    			append_dev(zoo_input, input);
+    			append_dev(zoo_tooltip4, t13);
+    			append_dev(zoo_tooltip4, zoo_tooltip3);
+    			/*zoo_tooltip4_binding*/ ctx[2](zoo_tooltip4);
+    			if (remount) dispose();
+    			dispose = listen_dev(zoo_button1, "click", /*showSpecialTooltip*/ ctx[1], false, false, false);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div6);
+    			/*zoo_tooltip4_binding*/ ctx[2](null);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$5.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let specialTooltip;
+
+    	const showSpecialTooltip = () => {
+    		const elStyle = specialTooltip.style;
+
+    		const display = !elStyle.display || elStyle.display === "none"
+    		? "block"
+    		: "none";
+
+    		elStyle.display = display;
+    	};
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-tooltip-and-feedback> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-tooltip-and-feedback", $$slots, []);
+
+    	function zoo_tooltip4_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, specialTooltip = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ specialTooltip, showSpecialTooltip });
+
+    	$$self.$inject_state = $$props => {
+    		if ("specialTooltip" in $$props) $$invalidate(0, specialTooltip = $$props.specialTooltip);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [specialTooltip, showSpecialTooltip, zoo_tooltip4_binding];
+    }
+
+    class TooltipAndFeedback extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.inner-content{flex:1 0 auto;width:70%;margin:0 auto}.inner-content .feedback-tooltip{height:60px;margin-bottom:15px;position:relative}.inner-content .feedback-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}.special-tooltip{max-width:250px;position:relative;margin:0 auto;cursor:pointer}zoo-tooltip{display:none}.input-in-tooltip:hover~.nested-tooltip{display:block;animation:fadeTooltipIn 0.2s}.feedback-slot{display:flex;align-items:center;width:100%;padding-right:50px}.feedback-slot span{flex-grow:1}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$5, create_fragment$5, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("app-tooltip-and-feedback", TooltipAndFeedback);
+
+    /* src/sections/Links.svelte generated by Svelte v3.22.3 */
+
+    const file$6 = "src/sections/Links.svelte";
+
+    function create_fragment$6(ctx) {
+    	let app_context;
+    	let t0;
+    	let div;
+    	let zoo_link0;
+    	let t1;
+    	let zoo_link1;
+    	let t2;
+    	let zoo_link2;
+    	let t3;
+    	let zoo_link3;
+    	let t4;
+    	let zoo_link4;
+    	let t5;
+    	let zoo_link5;
+    	let t6;
+    	let zoo_link6;
+    	let t7;
+    	let zoo_link7;
+    	let t8;
+    	let zoo_link8;
+    	let svg0;
+    	let rect0;
+    	let path0;
+    	let t9;
+    	let zoo_link9;
+    	let svg1;
+    	let path1;
+    	let path2;
+    	let t10;
+    	let zoo_link10;
+    	let svg2;
+    	let rect1;
+    	let path3;
+    	let t11;
+    	let svg3;
+    	let path4;
+    	let path5;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div = element("div");
+    			zoo_link0 = element("zoo-link");
+    			t1 = space();
+    			zoo_link1 = element("zoo-link");
+    			t2 = space();
+    			zoo_link2 = element("zoo-link");
+    			t3 = space();
+    			zoo_link3 = element("zoo-link");
+    			t4 = space();
+    			zoo_link4 = element("zoo-link");
+    			t5 = space();
+    			zoo_link5 = element("zoo-link");
+    			t6 = space();
+    			zoo_link6 = element("zoo-link");
+    			t7 = space();
+    			zoo_link7 = element("zoo-link");
+    			t8 = space();
+    			zoo_link8 = element("zoo-link");
+    			svg0 = svg_element("svg");
+    			rect0 = svg_element("rect");
+    			path0 = svg_element("path");
+    			t9 = space();
+    			zoo_link9 = element("zoo-link");
+    			svg1 = svg_element("svg");
+    			path1 = svg_element("path");
+    			path2 = svg_element("path");
+    			t10 = space();
+    			zoo_link10 = element("zoo-link");
+    			svg2 = svg_element("svg");
+    			rect1 = svg_element("rect");
+    			path3 = svg_element("path");
+    			t11 = space();
+    			svg3 = svg_element("svg");
+    			path4 = svg_element("path");
+    			path5 = svg_element("path");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Fifth section is a showcase of links");
+    			add_location(app_context, file$6, 1, 0, 50);
+    			set_custom_element_data(zoo_link0, "type", "primary");
+    			set_custom_element_data(zoo_link0, "size", "large");
+    			set_custom_element_data(zoo_link0, "text", "Primary large link");
+    			set_custom_element_data(zoo_link0, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link0, file$6, 3, 1, 143);
+    			set_custom_element_data(zoo_link1, "type", "warning");
+    			set_custom_element_data(zoo_link1, "size", "large");
+    			set_custom_element_data(zoo_link1, "text", "Warning large link");
+    			set_custom_element_data(zoo_link1, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link1, file$6, 4, 1, 273);
+    			set_custom_element_data(zoo_link2, "type", "primary");
+    			set_custom_element_data(zoo_link2, "size", "bold");
+    			set_custom_element_data(zoo_link2, "text", "Primary bold link");
+    			set_custom_element_data(zoo_link2, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link2, file$6, 5, 1, 403);
+    			set_custom_element_data(zoo_link3, "type", "warning");
+    			set_custom_element_data(zoo_link3, "size", "bold");
+    			set_custom_element_data(zoo_link3, "text", "Warning bold link");
+    			set_custom_element_data(zoo_link3, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link3, file$6, 6, 1, 531);
+    			set_custom_element_data(zoo_link4, "type", "primary");
+    			set_custom_element_data(zoo_link4, "size", "regular");
+    			set_custom_element_data(zoo_link4, "text", "Primary regular link");
+    			set_custom_element_data(zoo_link4, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link4, file$6, 7, 1, 659);
+    			set_custom_element_data(zoo_link5, "type", "warning");
+    			set_custom_element_data(zoo_link5, "size", "regular");
+    			set_custom_element_data(zoo_link5, "text", "Warning regular link");
+    			set_custom_element_data(zoo_link5, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link5, file$6, 8, 1, 793);
+    			set_custom_element_data(zoo_link6, "type", "grey");
+    			set_custom_element_data(zoo_link6, "size", "regular");
+    			set_custom_element_data(zoo_link6, "text", "Grey regular link");
+    			set_custom_element_data(zoo_link6, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link6, file$6, 9, 1, 927);
+    			set_custom_element_data(zoo_link7, "type", "grey");
+    			set_custom_element_data(zoo_link7, "disabled", "true");
+    			set_custom_element_data(zoo_link7, "size", "regular");
+    			set_custom_element_data(zoo_link7, "text", "Disabled link");
+    			set_custom_element_data(zoo_link7, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link7, file$6, 10, 1, 1055);
+    			attr_dev(rect0, "fill", "none");
+    			attr_dev(rect0, "height", "24");
+    			attr_dev(rect0, "width", "24");
+    			add_location(rect0, file$6, 12, 134, 1460);
+    			attr_dev(path0, "d", "M3,4V1h2v3h3v2H5v3H3V6H0V4H3z M6,10V7h3V4h7l1.83,2H21c1.1,0,2,0.9,2,2v12c0,1.1-0.9,2-2,2H5c-1.1,0-2-0.9-2-2V10H6z M13,19c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S10.24,19,13,19z M9.8,14c0,1.77,1.43,3.2,3.2,3.2s3.2-1.43,3.2-3.2 s-1.43-3.2-3.2-3.2S9.8,12.23,9.8,14z");
+    			add_location(path0, file$6, 12, 176, 1502);
+    			attr_dev(svg0, "slot", "pre");
+    			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg0, "enable-background", "new 0 0 24 24");
+    			attr_dev(svg0, "viewBox", "0 0 24 24");
+    			attr_dev(svg0, "width", "18px");
+    			attr_dev(svg0, "height", "18px");
+    			add_location(svg0, file$6, 12, 2, 1328);
+    			set_custom_element_data(zoo_link8, "class", "with-icon");
+    			set_custom_element_data(zoo_link8, "type", "primary");
+    			set_custom_element_data(zoo_link8, "size", "regular");
+    			set_custom_element_data(zoo_link8, "text", "Icon before");
+    			set_custom_element_data(zoo_link8, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link8, file$6, 11, 1, 1195);
+    			attr_dev(path1, "d", "M0 0h24v24H0z");
+    			attr_dev(path1, "fill", "none");
+    			add_location(path1, file$6, 15, 101, 2030);
+    			attr_dev(path2, "d", "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z");
+    			add_location(path2, file$6, 15, 138, 2067);
+    			attr_dev(svg1, "slot", "post");
+    			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg1, "viewBox", "0 0 24 24");
+    			attr_dev(svg1, "width", "18px");
+    			attr_dev(svg1, "height", "18px");
+    			add_location(svg1, file$6, 15, 2, 1931);
+    			set_custom_element_data(zoo_link9, "class", "with-icon");
+    			set_custom_element_data(zoo_link9, "type", "primary");
+    			set_custom_element_data(zoo_link9, "size", "regular");
+    			set_custom_element_data(zoo_link9, "text", "Icon after");
+    			set_custom_element_data(zoo_link9, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link9, file$6, 14, 1, 1799);
+    			attr_dev(rect1, "fill", "none");
+    			attr_dev(rect1, "height", "24");
+    			attr_dev(rect1, "width", "24");
+    			add_location(rect1, file$6, 18, 134, 2481);
+    			attr_dev(path3, "d", "M3,4V1h2v3h3v2H5v3H3V6H0V4H3z M6,10V7h3V4h7l1.83,2H21c1.1,0,2,0.9,2,2v12c0,1.1-0.9,2-2,2H5c-1.1,0-2-0.9-2-2V10H6z M13,19c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S10.24,19,13,19z M9.8,14c0,1.77,1.43,3.2,3.2,3.2s3.2-1.43,3.2-3.2 s-1.43-3.2-3.2-3.2S9.8,12.23,9.8,14z");
+    			add_location(path3, file$6, 18, 176, 2523);
+    			attr_dev(svg2, "slot", "pre");
+    			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg2, "enable-background", "new 0 0 24 24");
+    			attr_dev(svg2, "viewBox", "0 0 24 24");
+    			attr_dev(svg2, "width", "18px");
+    			attr_dev(svg2, "height", "18px");
+    			add_location(svg2, file$6, 18, 2, 2349);
+    			attr_dev(path4, "d", "M0 0h24v24H0z");
+    			attr_dev(path4, "fill", "none");
+    			add_location(path4, file$6, 19, 101, 2907);
+    			attr_dev(path5, "d", "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z");
+    			add_location(path5, file$6, 19, 138, 2944);
+    			attr_dev(svg3, "slot", "post");
+    			attr_dev(svg3, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg3, "viewBox", "0 0 24 24");
+    			attr_dev(svg3, "width", "18px");
+    			attr_dev(svg3, "height", "18px");
+    			add_location(svg3, file$6, 19, 2, 2808);
+    			set_custom_element_data(zoo_link10, "class", "with-icon");
+    			set_custom_element_data(zoo_link10, "type", "primary");
+    			set_custom_element_data(zoo_link10, "size", "regular");
+    			set_custom_element_data(zoo_link10, "text", "Icons around");
+    			set_custom_element_data(zoo_link10, "href", "https://github.com/zooplus/zoo-web-components");
+    			add_location(zoo_link10, file$6, 17, 1, 2215);
+    			attr_dev(div, "class", "links");
+    			add_location(div, file$6, 2, 0, 122);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, zoo_link0);
+    			append_dev(div, t1);
+    			append_dev(div, zoo_link1);
+    			append_dev(div, t2);
+    			append_dev(div, zoo_link2);
+    			append_dev(div, t3);
+    			append_dev(div, zoo_link3);
+    			append_dev(div, t4);
+    			append_dev(div, zoo_link4);
+    			append_dev(div, t5);
+    			append_dev(div, zoo_link5);
+    			append_dev(div, t6);
+    			append_dev(div, zoo_link6);
+    			append_dev(div, t7);
+    			append_dev(div, zoo_link7);
+    			append_dev(div, t8);
+    			append_dev(div, zoo_link8);
+    			append_dev(zoo_link8, svg0);
+    			append_dev(svg0, rect0);
+    			append_dev(svg0, path0);
+    			append_dev(div, t9);
+    			append_dev(div, zoo_link9);
+    			append_dev(zoo_link9, svg1);
+    			append_dev(svg1, path1);
+    			append_dev(svg1, path2);
+    			append_dev(div, t10);
+    			append_dev(div, zoo_link10);
+    			append_dev(zoo_link10, svg2);
+    			append_dev(svg2, rect1);
+    			append_dev(svg2, path3);
+    			append_dev(zoo_link10, t11);
+    			append_dev(zoo_link10, svg3);
+    			append_dev(svg3, path4);
+    			append_dev(svg3, path5);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$6.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$6($$self, $$props) {
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<app-links> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("app-links", $$slots, []);
+    	return [];
+    }
+
+    class Links extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}.links{max-width:1280px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));grid-gap:15px;width:90%;justify-content:center}@media only screen and (max-width: 850px){.links{grid-template-columns:auto}}.with-icon svg{fill:#3C9700}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$6, create_fragment$6, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("app-links", Links);
+
+    /* src/docs/ButtonDocs.svelte generated by Svelte v3.22.3 */
+    const file$7 = "src/docs/ButtonDocs.svelte";
+
+    function create_fragment$7(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let b1;
+    	let t4;
+    	let b2;
+    	let t6;
+    	let b3;
+    	let t8;
+    	let b4;
+    	let t10;
+    	let t11;
+    	let li1;
+    	let b5;
+    	let t13;
+    	let b6;
+    	let t15;
+    	let b7;
+    	let t17;
+    	let b8;
+    	let t19;
+    	let b9;
+    	let t21;
+    	let t22;
+    	let li2;
+    	let b10;
+    	let t24;
+    	let t25;
+    	let zoo_collapsable_list_item1;
+    	let t26;
+    	let b11;
+    	let t28;
+    	let b12;
+    	let t30;
+    	let t31;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t33;
+    	let div1;
+    	let zoo_button;
+    	let span;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "type";
+    			t2 = text(" - accepts following values: ");
+    			b1 = element("b");
+    			b1.textContent = "cold";
+    			t4 = text(", ");
+    			b2 = element("b");
+    			b2.textContent = "hot";
+    			t6 = text(", ");
+    			b3 = element("b");
+    			b3.textContent = "hollow";
+    			t8 = text(". Default is ");
+    			b4 = element("b");
+    			b4.textContent = "cold";
+    			t10 = text(";");
+    			t11 = space();
+    			li1 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "size";
+    			t13 = text(" - accepts following values: ");
+    			b6 = element("b");
+    			b6.textContent = "small";
+    			t15 = text(", ");
+    			b7 = element("b");
+    			b7.textContent = "medium";
+    			t17 = text(", ");
+    			b8 = element("b");
+    			b8.textContent = "big";
+    			t19 = text(". Default is ");
+    			b9 = element("b");
+    			b9.textContent = "small";
+    			t21 = text(";");
+    			t22 = space();
+    			li2 = element("li");
+    			b10 = element("b");
+    			b10.textContent = "disabled";
+    			t24 = text(" - whether the button should be disabled or not.");
+    			t25 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t26 = text("This component accept one ");
+    			b11 = element("b");
+    			b11.textContent = `${/*buttonSlotText*/ ctx[1]}`;
+    			t28 = text(" which is replaced with provided ");
+    			b12 = element("b");
+    			b12.textContent = "element";
+    			t30 = text(" so that you can catch events/provide your css/attach framework specific directives from/to this element.");
+    			t31 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[2]}`;
+    			t33 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_button = element("zoo-button");
+    			span = element("span");
+    			span.textContent = "Shopping Cart";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Button component API.");
+    			add_location(app_context, file$7, 2, 0, 53);
+    			add_location(b0, file$7, 9, 6, 267);
+    			add_location(b1, file$7, 9, 46, 307);
+    			add_location(b2, file$7, 9, 59, 320);
+    			add_location(b3, file$7, 9, 71, 332);
+    			add_location(b4, file$7, 9, 97, 358);
+    			add_location(li0, file$7, 8, 5, 256);
+    			add_location(b5, file$7, 12, 6, 398);
+    			add_location(b6, file$7, 12, 46, 438);
+    			add_location(b7, file$7, 12, 60, 452);
+    			add_location(b8, file$7, 12, 75, 467);
+    			add_location(b9, file$7, 12, 98, 490);
+    			add_location(li1, file$7, 11, 5, 387);
+    			add_location(b10, file$7, 15, 6, 531);
+    			add_location(li2, file$7, 14, 5, 520);
+    			add_location(ul, file$7, 7, 4, 246);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$7, 6, 3, 201);
+    			add_location(b11, file$7, 20, 30, 722);
+    			add_location(b12, file$7, 20, 86, 778);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$7, 19, 3, 651);
+    			add_location(zoo_collapsable_list, file$7, 5, 2, 158);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$7, 4, 1, 137);
+    			add_location(pre, file$7, 25, 8, 1000);
+    			add_location(code, file$7, 25, 2, 994);
+    			attr_dev(span, "slot", "buttoncontent");
+    			add_location(span, file$7, 29, 4, 1139);
+    			set_custom_element_data(zoo_button, "type", "secondary");
+    			set_custom_element_data(zoo_button, "size", "medium");
+    			add_location(zoo_button, file$7, 28, 3, 1091);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$7, 27, 2, 1060);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$7, 24, 1, 970);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$7, 3, 0, 110);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, b1);
+    			append_dev(li0, t4);
+    			append_dev(li0, b2);
+    			append_dev(li0, t6);
+    			append_dev(li0, b3);
+    			append_dev(li0, t8);
+    			append_dev(li0, b4);
+    			append_dev(li0, t10);
+    			append_dev(ul, t11);
+    			append_dev(ul, li1);
+    			append_dev(li1, b5);
+    			append_dev(li1, t13);
+    			append_dev(li1, b6);
+    			append_dev(li1, t15);
+    			append_dev(li1, b7);
+    			append_dev(li1, t17);
+    			append_dev(li1, b8);
+    			append_dev(li1, t19);
+    			append_dev(li1, b9);
+    			append_dev(li1, t21);
+    			append_dev(ul, t22);
+    			append_dev(ul, li2);
+    			append_dev(li2, b10);
+    			append_dev(li2, t24);
+    			append_dev(zoo_collapsable_list, t25);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t26);
+    			append_dev(zoo_collapsable_list_item1, b11);
+    			append_dev(zoo_collapsable_list_item1, t28);
+    			append_dev(zoo_collapsable_list_item1, b12);
+    			append_dev(zoo_collapsable_list_item1, t30);
+    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			append_dev(div3, t31);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t33);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_button);
+    			append_dev(zoo_button, span);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$7.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let list;
+    	let buttonSlotText = `<slot name="buttoncontent"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-button type="secondary" size="medium">\n    <span slot="buttoncontent">Shopping Cart</span>\n  </zoo-button>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-button> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-button", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, buttonSlotText, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("buttonSlotText" in $$props) $$invalidate(1, buttonSlotText = $$props.buttonSlotText);
+    		if ("example" in $$props) $$invalidate(2, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, buttonSlotText, example, zoo_collapsable_list_binding];
+    }
+
+    class ButtonDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$7, create_fragment$7, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-button", ButtonDocs);
+
+    /* src/docs/CheckboxDocs.svelte generated by Svelte v3.22.3 */
+    const file$8 = "src/docs/CheckboxDocs.svelte";
+
+    function create_fragment$8(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul0;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let t6;
+    	let li2;
+    	let b2;
+    	let t8;
+    	let t9;
+    	let li3;
+    	let b3;
+    	let t11;
+    	let t12;
+    	let zoo_collapsable_list_item1;
+    	let t13;
+    	let ul1;
+    	let li4;
+    	let b4;
+    	let t15;
+    	let b5;
+    	let t17;
+    	let br;
+    	let t18;
+    	let li5;
+    	let b6;
+    	let t20;
+    	let b7;
+    	let t22;
+    	let t23;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t25;
+    	let div1;
+    	let zoo_checkbox;
+    	let input;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul0 = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "labeltext";
+    			t2 = text(" - text to be presented on the right side of the checkbox;");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "valid";
+    			t5 = text(" - flag which indicates whether the input is valid or not;");
+    			t6 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "disabled";
+    			t8 = text(" - flag indicating whether the input is disabled.");
+    			t9 = space();
+    			li3 = element("li");
+    			b3 = element("b");
+    			b3.textContent = "highlighted";
+    			t11 = text(" - flag indicating whether the outline around the input should be visible (border).");
+    			t12 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t13 = text("This component accepts the following slots:\n\t\t\t\t");
+    			ul1 = element("ul");
+    			li4 = element("li");
+    			b4 = element("b");
+    			b4.textContent = `${/*inputSlotText*/ ctx[1]}`;
+    			t15 = text(" - replaced with provided ");
+    			b5 = element("b");
+    			b5.textContent = "input";
+    			t17 = text(" so that you can catch events/provide your css/attach framework specific directives from/to this element.");
+    			br = element("br");
+    			t18 = space();
+    			li5 = element("li");
+    			b6 = element("b");
+    			b6.textContent = `${/*labelSlotText*/ ctx[2]}`;
+    			t20 = text(" - replaced with provided ");
+    			b7 = element("b");
+    			b7.textContent = "label";
+    			t22 = text(" for a11y reasons.");
+    			t23 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[3]}`;
+    			t25 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_checkbox = element("zoo-checkbox");
+    			input = element("input");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Checkbox component API.");
+    			add_location(app_context, file$8, 1, 0, 54);
+    			add_location(b0, file$8, 8, 6, 270);
+    			add_location(li0, file$8, 7, 5, 259);
+    			add_location(b1, file$8, 11, 6, 372);
+    			add_location(li1, file$8, 10, 5, 361);
+    			add_location(b2, file$8, 14, 6, 470);
+    			add_location(li2, file$8, 13, 5, 459);
+    			add_location(b3, file$8, 17, 6, 562);
+    			add_location(li3, file$8, 16, 5, 551);
+    			add_location(ul0, file$8, 6, 4, 249);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$8, 5, 3, 204);
+    			add_location(b4, file$8, 25, 6, 834);
+    			add_location(b5, file$8, 25, 54, 882);
+    			add_location(br, file$8, 25, 171, 999);
+    			add_location(li4, file$8, 24, 5, 823);
+    			add_location(b6, file$8, 28, 6, 1031);
+    			add_location(b7, file$8, 28, 54, 1079);
+    			add_location(li5, file$8, 27, 5, 1020);
+    			add_location(ul1, file$8, 23, 4, 813);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$8, 21, 3, 720);
+    			add_location(zoo_collapsable_list, file$8, 4, 2, 161);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$8, 3, 1, 140);
+    			add_location(pre, file$8, 35, 8, 1228);
+    			add_location(code, file$8, 35, 2, 1222);
+    			attr_dev(input, "slot", "checkboxelement");
+    			attr_dev(input, "type", "checkbox");
+    			add_location(input, file$8, 39, 4, 1409);
+    			set_custom_element_data(zoo_checkbox, "highlighted", "1");
+    			set_custom_element_data(zoo_checkbox, "labeltext", "Example label for this particular checkbox");
+    			add_location(zoo_checkbox, file$8, 38, 3, 1319);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$8, 37, 2, 1288);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$8, 34, 1, 1198);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$8, 2, 0, 113);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul0);
+    			append_dev(ul0, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul0, t3);
+    			append_dev(ul0, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(ul0, t6);
+    			append_dev(ul0, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t8);
+    			append_dev(ul0, t9);
+    			append_dev(ul0, li3);
+    			append_dev(li3, b3);
+    			append_dev(li3, t11);
+    			append_dev(zoo_collapsable_list, t12);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t13);
+    			append_dev(zoo_collapsable_list_item1, ul1);
+    			append_dev(ul1, li4);
+    			append_dev(li4, b4);
+    			append_dev(li4, t15);
+    			append_dev(li4, b5);
+    			append_dev(li4, t17);
+    			append_dev(li4, br);
+    			append_dev(ul1, t18);
+    			append_dev(ul1, li5);
+    			append_dev(li5, b6);
+    			append_dev(li5, t20);
+    			append_dev(li5, b7);
+    			append_dev(li5, t22);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div3, t23);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t25);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_checkbox);
+    			append_dev(zoo_checkbox, input);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$8.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$8($$self, $$props, $$invalidate) {
+    	let list;
+    	let inputSlotText = `<slot name="checkboxelement"></slot>`;
+    	let labelSlotText = `<slot name="checkboxlabel"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-checkbox highlighted="1" labeltext="Example label for this particular checkbox">\n    <input slot="checkboxelement" type="checkbox"/>\n  </zoo-checkbox>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-checkbox> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-checkbox", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		inputSlotText,
+    		labelSlotText,
+    		example
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("inputSlotText" in $$props) $$invalidate(1, inputSlotText = $$props.inputSlotText);
+    		if ("labelSlotText" in $$props) $$invalidate(2, labelSlotText = $$props.labelSlotText);
+    		if ("example" in $$props) $$invalidate(3, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, inputSlotText, labelSlotText, example, zoo_collapsable_list_binding];
+    }
+
+    class CheckboxDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$8, create_fragment$8, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-checkbox", CheckboxDocs);
+
+    /* src/docs/CollapsableListDocs.svelte generated by Svelte v3.22.3 */
+    const file$9 = "src/docs/CollapsableListDocs.svelte";
+
+    function create_fragment$9(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list0;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let code0;
+    	let t4;
+    	let li1;
+    	let b1;
+    	let t6;
+    	let t7;
+    	let zoo_collapsable_list_item1;
+    	let t8;
+    	let b2;
+    	let t10;
+    	let b3;
+    	let t12;
+    	let t13;
+    	let div2;
+    	let code1;
+    	let pre;
+    	let t16;
+    	let div1;
+    	let zoo_collapsable_list1;
+    	let zoo_collapsable_list_item2;
+    	let span0;
+    	let t18;
+    	let zoo_collapsable_list_item3;
+    	let span1;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list0 = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "items";
+    			t2 = text(" - array of objects of with one field ");
+    			code0 = element("code");
+    			code0.textContent = "header: string";
+    			t4 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "highlighted";
+    			t6 = text(" - flag indicating whether the outline around the input should be visible (border)");
+    			t7 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t8 = text("This component accepts multiple ");
+    			b2 = element("b");
+    			b2.textContent = `${/*listSlotText*/ ctx[2]}`;
+    			t10 = text(" which are replaced with provided ");
+    			b3 = element("b");
+    			b3.textContent = "elements";
+    			t12 = text(".");
+    			t13 = space();
+    			div2 = element("div");
+    			code1 = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[3]}${/*scriptExample*/ ctx[4]}`;
+    			t16 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_collapsable_list1 = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item2 = element("zoo-collapsable-list-item");
+    			span0 = element("span");
+    			span0.textContent = "inner item0";
+    			t18 = space();
+    			zoo_collapsable_list_item3 = element("zoo-collapsable-list-item");
+    			span1 = element("span");
+    			span1.textContent = "inner item1";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Collapsable List component API.");
+    			add_location(app_context, file$9, 1, 0, 62);
+    			add_location(b0, file$9, 8, 6, 286);
+    			add_location(code0, file$9, 8, 56, 336);
+    			add_location(li0, file$9, 7, 5, 275);
+    			add_location(b1, file$9, 11, 6, 391);
+    			add_location(li1, file$9, 10, 5, 380);
+    			add_location(ul, file$9, 6, 4, 265);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$9, 5, 3, 220);
+    			add_location(b2, file$9, 16, 36, 625);
+    			add_location(b3, file$9, 16, 91, 680);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$9, 15, 3, 548);
+    			add_location(zoo_collapsable_list0, file$9, 4, 2, 177);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$9, 3, 1, 156);
+    			add_location(pre, file$9, 21, 8, 794);
+    			add_location(code1, file$9, 21, 2, 788);
+    			add_location(span0, file$9, 26, 5, 997);
+    			set_custom_element_data(zoo_collapsable_list_item2, "slot", "item0");
+    			add_location(zoo_collapsable_list_item2, file$9, 25, 4, 951);
+    			add_location(span1, file$9, 29, 5, 1105);
+    			set_custom_element_data(zoo_collapsable_list_item3, "slot", "item1");
+    			add_location(zoo_collapsable_list_item3, file$9, 28, 4, 1059);
+    			add_location(zoo_collapsable_list1, file$9, 24, 3, 900);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$9, 23, 2, 869);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$9, 20, 1, 764);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$9, 2, 0, 129);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list0);
+    			append_dev(zoo_collapsable_list0, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, code0);
+    			append_dev(ul, t4);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t6);
+    			append_dev(zoo_collapsable_list0, t7);
+    			append_dev(zoo_collapsable_list0, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t8);
+    			append_dev(zoo_collapsable_list_item1, b2);
+    			append_dev(zoo_collapsable_list_item1, t10);
+    			append_dev(zoo_collapsable_list_item1, b3);
+    			append_dev(zoo_collapsable_list_item1, t12);
+    			/*zoo_collapsable_list0_binding*/ ctx[5](zoo_collapsable_list0);
+    			append_dev(div3, t13);
+    			append_dev(div3, div2);
+    			append_dev(div2, code1);
+    			append_dev(code1, pre);
+    			append_dev(div2, t16);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_collapsable_list1);
+    			append_dev(zoo_collapsable_list1, zoo_collapsable_list_item2);
+    			append_dev(zoo_collapsable_list_item2, span0);
+    			append_dev(zoo_collapsable_list1, t18);
+    			append_dev(zoo_collapsable_list1, zoo_collapsable_list_item3);
+    			append_dev(zoo_collapsable_list_item3, span1);
+    			/*zoo_collapsable_list1_binding*/ ctx[6](zoo_collapsable_list1);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list0_binding*/ ctx[5](null);
+    			/*zoo_collapsable_list1_binding*/ ctx[6](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$9.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	let list;
+    	let listSlotText = `<slot name="item{idx}"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-collapsable-list id="list">\n    <zoo-collapsable-list-item slot="item0">\n      <span>inner item0</span>\n    </zoo-collapsable-list-item>\n    <zoo-collapsable-list-item slot="item1">\n      <span>inner item1</span>\n    </zoo-collapsable-list-item>\n  </zoo-collapsable-list>\n</div>`;
+    	let scriptExample = `\n<script>\n  document.getElementById('list').items=[{header: item0}, {header: item1}];\n<\/script>`;
+    	let exampleList;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    		$$invalidate(1, exampleList.items = [{ header: "item0" }, { header: "item1" }], exampleList);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-collapsable-list> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-collapsable-list", $$slots, []);
+
+    	function zoo_collapsable_list0_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	function zoo_collapsable_list1_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(1, exampleList = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		listSlotText,
+    		example,
+    		scriptExample,
+    		exampleList
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("listSlotText" in $$props) $$invalidate(2, listSlotText = $$props.listSlotText);
+    		if ("example" in $$props) $$invalidate(3, example = $$props.example);
+    		if ("scriptExample" in $$props) $$invalidate(4, scriptExample = $$props.scriptExample);
+    		if ("exampleList" in $$props) $$invalidate(1, exampleList = $$props.exampleList);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		list,
+    		exampleList,
+    		listSlotText,
+    		example,
+    		scriptExample,
+    		zoo_collapsable_list0_binding,
+    		zoo_collapsable_list1_binding
+    	];
+    }
+
+    class CollapsableListDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$9, create_fragment$9, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-collapsable-list", CollapsableListDocs);
+
+    /* src/docs/FeedbackDocs.svelte generated by Svelte v3.22.3 */
+    const file$a = "src/docs/FeedbackDocs.svelte";
+
+    function create_fragment$a(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let b2;
+    	let t7;
+    	let b3;
+    	let t9;
+    	let b4;
+    	let t11;
+    	let b5;
+    	let t13;
+    	let t14;
+    	let zoo_collapsable_list_item1;
+    	let t16;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t18;
+    	let div1;
+    	let zoo_feedback;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "text";
+    			t2 = text(" - text to be presented in the feedback box");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "type";
+    			t5 = text(" - type of the feedback. Possible values are: ");
+    			b2 = element("b");
+    			b2.textContent = "error";
+    			t7 = text(", ");
+    			b3 = element("b");
+    			b3.textContent = "info";
+    			t9 = text(", ");
+    			b4 = element("b");
+    			b4.textContent = "success";
+    			t11 = text(". Default is ");
+    			b5 = element("b");
+    			b5.textContent = "info";
+    			t13 = text(";");
+    			t14 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component accepts unnamed slots.";
+    			t16 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[1]}`;
+    			t18 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_feedback = element("zoo-feedback");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Feedback component API.");
+    			add_location(app_context, file$a, 1, 0, 54);
+    			add_location(b0, file$a, 8, 6, 270);
+    			add_location(li0, file$a, 7, 5, 259);
+    			add_location(b1, file$a, 11, 6, 352);
+    			add_location(b2, file$a, 11, 63, 409);
+    			add_location(b3, file$a, 11, 77, 423);
+    			add_location(b4, file$a, 11, 90, 436);
+    			add_location(b5, file$a, 11, 117, 463);
+    			add_location(li1, file$a, 10, 5, 341);
+    			add_location(ul, file$a, 6, 4, 249);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$a, 5, 3, 204);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$a, 15, 3, 532);
+    			add_location(zoo_collapsable_list, file$a, 4, 2, 161);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$a, 3, 1, 140);
+    			add_location(pre, file$a, 21, 8, 712);
+    			add_location(code, file$a, 21, 2, 706);
+    			set_custom_element_data(zoo_feedback, "text", "This is an info message.");
+    			add_location(zoo_feedback, file$a, 24, 3, 803);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$a, 23, 2, 772);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$a, 20, 1, 682);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$a, 2, 0, 113);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(li1, b2);
+    			append_dev(li1, t7);
+    			append_dev(li1, b3);
+    			append_dev(li1, t9);
+    			append_dev(li1, b4);
+    			append_dev(li1, t11);
+    			append_dev(li1, b5);
+    			append_dev(li1, t13);
+    			append_dev(zoo_collapsable_list, t14);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			append_dev(div3, t16);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t18);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_feedback);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$a.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let list;
+    	let inputSlotText = `<slot name="checkboxelement"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-feedback text="This is an info message."></zoo-feedback>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-feedback> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-feedback", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, inputSlotText, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("inputSlotText" in $$props) inputSlotText = $$props.inputSlotText;
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, inputSlotText, zoo_collapsable_list_binding];
+    }
+
+    class FeedbackDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$a, create_fragment$a, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-feedback", FeedbackDocs);
+
+    /* src/docs/FooterDocs.svelte generated by Svelte v3.22.3 */
+    const file$b = "src/docs/FooterDocs.svelte";
+
+    function create_fragment$b(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul1;
+    	let li6;
+    	let b0;
+    	let t2;
+    	let b1;
+    	let t4;
+    	let ul0;
+    	let li0;
+    	let b2;
+    	let t6;
+    	let t7;
+    	let li1;
+    	let b3;
+    	let t9;
+    	let t10;
+    	let li2;
+    	let b4;
+    	let t12;
+    	let b5;
+    	let t14;
+    	let t15;
+    	let li3;
+    	let b6;
+    	let t17;
+    	let b7;
+    	let t19;
+    	let b8;
+    	let t21;
+    	let b9;
+    	let t23;
+    	let t24;
+    	let li4;
+    	let b10;
+    	let t26;
+    	let t27;
+    	let li5;
+    	let b11;
+    	let t29;
+    	let t30;
+    	let zoo_collapsable_list_item1;
+    	let t32;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t35;
+    	let div1;
+    	let zoo_footer;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul1 = element("ul");
+    			li6 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "footerlinks";
+    			t2 = text(" - an ");
+    			b1 = element("b");
+    			b1.textContent = "array";
+    			t4 = text(" of objects where each object has the following structure:\n\t\t\t\t\t\t");
+    			ul0 = element("ul");
+    			li0 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "href";
+    			t6 = text(" - direct link");
+    			t7 = space();
+    			li1 = element("li");
+    			b3 = element("b");
+    			b3.textContent = "text";
+    			t9 = text(" - text to be displayed as link");
+    			t10 = space();
+    			li2 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "target";
+    			t12 = text(" - how the link should behave (default - ");
+    			b5 = element("b");
+    			b5.textContent = "about:blank";
+    			t14 = text(")");
+    			t15 = space();
+    			li3 = element("li");
+    			b6 = element("b");
+    			b6.textContent = "type";
+    			t17 = text(" - currently supports 2 values: ");
+    			b7 = element("b");
+    			b7.textContent = "standard";
+    			t19 = text(" and ");
+    			b8 = element("b");
+    			b8.textContent = "green";
+    			t21 = text(", default - ");
+    			b9 = element("b");
+    			b9.textContent = "standard";
+    			t23 = text(". Responsible for coloring of the links, standard is white");
+    			t24 = space();
+    			li4 = element("li");
+    			b10 = element("b");
+    			b10.textContent = "disabled";
+    			t26 = text(" - flag indicating whether the anchor link should be disabled");
+    			t27 = space();
+    			li5 = element("li");
+    			b11 = element("b");
+    			b11.textContent = "copyright";
+    			t29 = text(" - text to be presented as a copyright unde links (foe example, 'zooplus AG')");
+    			t30 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component does not accept slots.";
+    			t32 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[2]}${/*scriptExample*/ ctx[3]}`;
+    			t35 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_footer = element("zoo-footer");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Footer component API.");
+    			add_location(app_context, file$b, 2, 0, 53);
+    			add_location(b0, file$b, 9, 6, 267);
+    			add_location(b1, file$b, 9, 30, 291);
+    			add_location(b2, file$b, 12, 8, 393);
+    			add_location(li0, file$b, 11, 7, 380);
+    			add_location(b3, file$b, 15, 8, 452);
+    			add_location(li1, file$b, 14, 7, 439);
+    			add_location(b4, file$b, 18, 8, 528);
+    			add_location(b5, file$b, 18, 62, 582);
+    			add_location(li2, file$b, 17, 7, 515);
+    			add_location(b6, file$b, 21, 8, 635);
+    			add_location(b7, file$b, 21, 51, 678);
+    			add_location(b8, file$b, 21, 71, 698);
+    			add_location(b9, file$b, 21, 95, 722);
+    			add_location(li3, file$b, 20, 7, 622);
+    			add_location(b10, file$b, 24, 8, 829);
+    			add_location(li4, file$b, 23, 7, 816);
+    			add_location(b11, file$b, 27, 8, 939);
+    			add_location(li5, file$b, 26, 7, 926);
+    			add_location(ul0, file$b, 10, 6, 368);
+    			add_location(li6, file$b, 8, 5, 256);
+    			add_location(ul1, file$b, 7, 4, 246);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$b, 6, 3, 201);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$b, 33, 3, 1114);
+    			add_location(zoo_collapsable_list, file$b, 5, 2, 158);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$b, 4, 1, 137);
+    			add_location(pre, file$b, 39, 8, 1294);
+    			add_location(code, file$b, 39, 2, 1288);
+    			add_location(zoo_footer, file$b, 42, 3, 1400);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$b, 41, 2, 1369);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$b, 38, 1, 1264);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$b, 3, 0, 110);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul1);
+    			append_dev(ul1, li6);
+    			append_dev(li6, b0);
+    			append_dev(li6, t2);
+    			append_dev(li6, b1);
+    			append_dev(li6, t4);
+    			append_dev(li6, ul0);
+    			append_dev(ul0, li0);
+    			append_dev(li0, b2);
+    			append_dev(li0, t6);
+    			append_dev(ul0, t7);
+    			append_dev(ul0, li1);
+    			append_dev(li1, b3);
+    			append_dev(li1, t9);
+    			append_dev(ul0, t10);
+    			append_dev(ul0, li2);
+    			append_dev(li2, b4);
+    			append_dev(li2, t12);
+    			append_dev(li2, b5);
+    			append_dev(li2, t14);
+    			append_dev(ul0, t15);
+    			append_dev(ul0, li3);
+    			append_dev(li3, b6);
+    			append_dev(li3, t17);
+    			append_dev(li3, b7);
+    			append_dev(li3, t19);
+    			append_dev(li3, b8);
+    			append_dev(li3, t21);
+    			append_dev(li3, b9);
+    			append_dev(li3, t23);
+    			append_dev(ul0, t24);
+    			append_dev(ul0, li4);
+    			append_dev(li4, b10);
+    			append_dev(li4, t26);
+    			append_dev(ul0, t27);
+    			append_dev(ul0, li5);
+    			append_dev(li5, b11);
+    			append_dev(li5, t29);
+    			append_dev(zoo_collapsable_list, t30);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div3, t32);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t35);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_footer);
+    			/*zoo_footer_binding*/ ctx[5](zoo_footer);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
+    			/*zoo_footer_binding*/ ctx[5](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$b.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$b($$self, $$props, $$invalidate) {
+    	let list;
+    	let exampleFooter;
+    	let example = `<div style="width: 250px;">\n  <zoo-footer id="footer"></zoo-footer>\n</div>`;
+    	let scriptExample = `\n<script>\n  document.getElementById('footer').footerlinks=[{\n    href: 'https://github.com/zooplus/zoo-web-components',\n    text: 'Github',\n    type: 'standard'\n  },\n  {\n    href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',\n    text: 'NPM',\n    type: 'standard'\n  }];\n<\/script>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+
+    		$$invalidate(
+    			1,
+    			exampleFooter.footerlinks = [
+    				{
+    					href: "https://github.com/zooplus/zoo-web-components",
+    					text: "Github",
+    					type: "negative"
+    				},
+    				{
+    					href: "https://www.npmjs.com/package/@zooplus/zoo-web-components",
+    					text: "NPM",
+    					type: "negative"
+    				}
+    			],
+    			exampleFooter
+    		);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-footer> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-footer", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	function zoo_footer_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(1, exampleFooter = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		exampleFooter,
+    		example,
+    		scriptExample
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("exampleFooter" in $$props) $$invalidate(1, exampleFooter = $$props.exampleFooter);
+    		if ("example" in $$props) $$invalidate(2, example = $$props.example);
+    		if ("scriptExample" in $$props) $$invalidate(3, scriptExample = $$props.scriptExample);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		list,
+    		exampleFooter,
+    		example,
+    		scriptExample,
+    		zoo_collapsable_list_binding,
+    		zoo_footer_binding
+    	];
+    }
+
+    class FooterDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$b, create_fragment$b, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-footer", FooterDocs);
+
+    /* src/docs/HeaderDocs.svelte generated by Svelte v3.22.3 */
+    const file$c = "src/docs/HeaderDocs.svelte";
+
+    function create_fragment$c(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let t6;
+    	let li2;
+    	let b2;
+    	let t8;
+    	let t9;
+    	let zoo_collapsable_list_item1;
+    	let t11;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t13;
+    	let div1;
+    	let zoo_header;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "imgsrc";
+    			t2 = text(" - path to logo of your app");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "imgalt";
+    			t5 = text(" - text to be displayed when logo cannot be found");
+    			t6 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "headertext";
+    			t8 = text(" - text to be displayed next to the logo");
+    			t9 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component accepts unnamed slots, which will be rendered to the right after logo or text.";
+    			t11 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[1]}`;
+    			t13 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_header = element("zoo-header");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Header component API.");
+    			add_location(app_context, file$c, 2, 0, 53);
+    			add_location(b0, file$c, 9, 6, 267);
+    			add_location(li0, file$c, 8, 5, 256);
+    			add_location(b1, file$c, 12, 6, 335);
+    			add_location(li1, file$c, 11, 5, 324);
+    			add_location(b2, file$c, 15, 6, 425);
+    			add_location(li2, file$c, 14, 5, 414);
+    			add_location(ul, file$c, 7, 4, 246);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$c, 6, 3, 201);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$c, 19, 3, 539);
+    			add_location(zoo_collapsable_list, file$c, 5, 2, 158);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$c, 4, 1, 137);
+    			add_location(pre, file$c, 25, 8, 775);
+    			add_location(code, file$c, 25, 2, 769);
+    			set_custom_element_data(zoo_header, "imgsrc", "logo.png");
+    			set_custom_element_data(zoo_header, "imgalt", "zooplus");
+    			set_custom_element_data(zoo_header, "headertext", "App name");
+    			add_location(zoo_header, file$c, 28, 3, 866);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$c, 27, 2, 835);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$c, 24, 1, 745);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$c, 3, 0, 110);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(ul, t6);
+    			append_dev(ul, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t8);
+    			append_dev(zoo_collapsable_list, t9);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
+    			append_dev(div3, t11);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t13);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_header);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$c.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$c($$self, $$props, $$invalidate) {
+    	let list;
+    	let example = `<div style="width: 250px;">\n  <zoo-header imgsrc="logo.png" imgalt="imgalt" headertext="App name"></zoo-header>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-header> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-header", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, zoo_collapsable_list_binding];
+    }
+
+    class HeaderDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$c, create_fragment$c, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-header", HeaderDocs);
+
+    /* src/docs/InputDocs.svelte generated by Svelte v3.22.3 */
+    const file$d = "src/docs/InputDocs.svelte";
+
+    function create_fragment$d(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul0;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let b1;
+    	let t4;
+    	let b2;
+    	let t6;
+    	let b3;
+    	let t8;
+    	let li1;
+    	let b4;
+    	let t10;
+    	let t11;
+    	let li2;
+    	let b5;
+    	let t13;
+    	let t14;
+    	let li3;
+    	let b6;
+    	let t16;
+    	let t17;
+    	let li4;
+    	let b7;
+    	let t19;
+    	let b8;
+    	let t21;
+    	let li5;
+    	let b9;
+    	let t23;
+    	let t24;
+    	let li6;
+    	let b10;
+    	let t26;
+    	let t27;
+    	let li7;
+    	let b11;
+    	let t29;
+    	let t30;
+    	let zoo_collapsable_list_item1;
+    	let t31;
+    	let ul1;
+    	let li8;
+    	let b12;
+    	let t33;
+    	let b13;
+    	let t35;
+    	let br;
+    	let t36;
+    	let li9;
+    	let b14;
+    	let t38;
+    	let b15;
+    	let t40;
+    	let t41;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t43;
+    	let div1;
+    	let zoo_input;
+    	let input;
+    	let zoo_input_valid_value;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul0 = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "labelposition";
+    			t2 = text(" - accepts following values: ");
+    			b1 = element("b");
+    			b1.textContent = "top";
+    			t4 = text(", ");
+    			b2 = element("b");
+    			b2.textContent = "left";
+    			t6 = text(". Default is ");
+    			b3 = element("b");
+    			b3.textContent = "top";
+    			t8 = space();
+    			li1 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "labeltext";
+    			t10 = text(" - text to be presented as the label of the input");
+    			t11 = space();
+    			li2 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "linktext";
+    			t13 = text(" - text to be presented as a link text");
+    			t14 = space();
+    			li3 = element("li");
+    			b6 = element("b");
+    			b6.textContent = "linkhref";
+    			t16 = text(" - where the link should lead");
+    			t17 = space();
+    			li4 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "linktarget";
+    			t19 = text(" - target of the anchor link, default is ");
+    			b8 = element("b");
+    			b8.textContent = "about:blank";
+    			t21 = space();
+    			li5 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "inputerrormsg";
+    			t23 = text(" - error message to be presented when input is in invalid state");
+    			t24 = space();
+    			li6 = element("li");
+    			b10 = element("b");
+    			b10.textContent = "infotext";
+    			t26 = text(" - text to be presented below the input");
+    			t27 = space();
+    			li7 = element("li");
+    			b11 = element("b");
+    			b11.textContent = "valid";
+    			t29 = text(" - flag which indicates whether the input is valid or not");
+    			t30 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t31 = text("This component accepts the following slots:\n\t\t\t\t");
+    			ul1 = element("ul");
+    			li8 = element("li");
+    			b12 = element("b");
+    			b12.textContent = `${/*inputSlotExample*/ ctx[1]}`;
+    			t33 = text(" - replaced with provided ");
+    			b13 = element("b");
+    			b13.textContent = "input";
+    			t35 = text(" so that you can catch events/provide your css/attach framework specific directives from/to this element.");
+    			br = element("br");
+    			t36 = space();
+    			li9 = element("li");
+    			b14 = element("b");
+    			b14.textContent = `${/*labelSlotExample*/ ctx[2]}`;
+    			t38 = text(" - replaced with provided ");
+    			b15 = element("b");
+    			b15.textContent = "label";
+    			t40 = text(" for a11y reasons.");
+    			t41 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[3]}`;
+    			t43 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_input = element("zoo-input");
+    			input = element("input");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Input component API.");
+    			add_location(app_context, file$d, 2, 0, 52);
+    			add_location(b0, file$d, 9, 6, 265);
+    			add_location(b1, file$d, 9, 55, 314);
+    			add_location(b2, file$d, 9, 67, 326);
+    			add_location(b3, file$d, 9, 91, 350);
+    			add_location(li0, file$d, 8, 5, 254);
+    			add_location(b4, file$d, 12, 6, 388);
+    			add_location(li1, file$d, 11, 5, 377);
+    			add_location(b5, file$d, 15, 6, 481);
+    			add_location(li2, file$d, 14, 5, 470);
+    			add_location(b6, file$d, 18, 6, 562);
+    			add_location(li3, file$d, 17, 5, 551);
+    			add_location(b7, file$d, 21, 6, 634);
+    			add_location(b8, file$d, 21, 64, 692);
+    			add_location(li4, file$d, 20, 5, 623);
+    			add_location(b9, file$d, 24, 6, 738);
+    			add_location(li5, file$d, 23, 5, 727);
+    			add_location(b10, file$d, 27, 6, 849);
+    			add_location(li6, file$d, 26, 5, 838);
+    			add_location(b11, file$d, 30, 6, 931);
+    			add_location(li7, file$d, 29, 5, 920);
+    			add_location(ul0, file$d, 7, 4, 244);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$d, 6, 3, 199);
+    			add_location(b12, file$d, 38, 6, 1171);
+    			add_location(b13, file$d, 38, 57, 1222);
+    			add_location(br, file$d, 38, 174, 1339);
+    			add_location(li8, file$d, 37, 5, 1160);
+    			add_location(b14, file$d, 41, 6, 1371);
+    			add_location(b15, file$d, 41, 57, 1422);
+    			add_location(li9, file$d, 40, 5, 1360);
+    			add_location(ul1, file$d, 36, 4, 1150);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$d, 34, 3, 1057);
+    			add_location(zoo_collapsable_list, file$d, 5, 2, 156);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$d, 4, 1, 135);
+    			add_location(pre, file$d, 48, 8, 1571);
+    			add_location(code, file$d, 48, 2, 1565);
+    			attr_dev(input, "slot", "inputelement");
+    			attr_dev(input, "placeholder", "input");
+    			add_location(input, file$d, 57, 4, 1886);
+    			set_custom_element_data(zoo_input, "labeltext", "Input label");
+    			set_custom_element_data(zoo_input, "linktext", "Forgotten your password?");
+    			set_custom_element_data(zoo_input, "linkhref", "https://google.com");
+    			set_custom_element_data(zoo_input, "linktarget", "about:blank");
+    			set_custom_element_data(zoo_input, "valid", zoo_input_valid_value = true);
+    			set_custom_element_data(zoo_input, "infotext", "Additional helpful information for our users");
+    			add_location(zoo_input, file$d, 51, 3, 1662);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$d, 50, 2, 1631);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$d, 47, 1, 1541);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$d, 3, 0, 108);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul0);
+    			append_dev(ul0, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, b1);
+    			append_dev(li0, t4);
+    			append_dev(li0, b2);
+    			append_dev(li0, t6);
+    			append_dev(li0, b3);
+    			append_dev(ul0, t8);
+    			append_dev(ul0, li1);
+    			append_dev(li1, b4);
+    			append_dev(li1, t10);
+    			append_dev(ul0, t11);
+    			append_dev(ul0, li2);
+    			append_dev(li2, b5);
+    			append_dev(li2, t13);
+    			append_dev(ul0, t14);
+    			append_dev(ul0, li3);
+    			append_dev(li3, b6);
+    			append_dev(li3, t16);
+    			append_dev(ul0, t17);
+    			append_dev(ul0, li4);
+    			append_dev(li4, b7);
+    			append_dev(li4, t19);
+    			append_dev(li4, b8);
+    			append_dev(ul0, t21);
+    			append_dev(ul0, li5);
+    			append_dev(li5, b9);
+    			append_dev(li5, t23);
+    			append_dev(ul0, t24);
+    			append_dev(ul0, li6);
+    			append_dev(li6, b10);
+    			append_dev(li6, t26);
+    			append_dev(ul0, t27);
+    			append_dev(ul0, li7);
+    			append_dev(li7, b11);
+    			append_dev(li7, t29);
+    			append_dev(zoo_collapsable_list, t30);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t31);
+    			append_dev(zoo_collapsable_list_item1, ul1);
+    			append_dev(ul1, li8);
+    			append_dev(li8, b12);
+    			append_dev(li8, t33);
+    			append_dev(li8, b13);
+    			append_dev(li8, t35);
+    			append_dev(li8, br);
+    			append_dev(ul1, t36);
+    			append_dev(ul1, li9);
+    			append_dev(li9, b14);
+    			append_dev(li9, t38);
+    			append_dev(li9, b15);
+    			append_dev(li9, t40);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div3, t41);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t43);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_input);
+    			append_dev(zoo_input, input);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$d.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$d($$self, $$props, $$invalidate) {
+    	let list;
+    	let inputSlotExample = `<slot name="inputelement"></slot>`;
+    	let labelSlotExample = `<slot name="inputlabel"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-input labeltext="Input label"\n    linktext="Forgotten your password?"\n    linkhref="https://google.com"\n    linktarget="about:blank"\n    infotext="Additional helpful information for our users" >\n    <input slot="inputelement" placeholder="input"/>\n  </zoo-input>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-input> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-input", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		inputSlotExample,
+    		labelSlotExample,
+    		example
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("inputSlotExample" in $$props) $$invalidate(1, inputSlotExample = $$props.inputSlotExample);
+    		if ("labelSlotExample" in $$props) $$invalidate(2, labelSlotExample = $$props.labelSlotExample);
+    		if ("example" in $$props) $$invalidate(3, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		list,
+    		inputSlotExample,
+    		labelSlotExample,
+    		example,
+    		zoo_collapsable_list_binding
+    	];
+    }
+
+    class InputDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$d, create_fragment$d, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-input", InputDocs);
+
+    /* src/docs/LinkDocs.svelte generated by Svelte v3.22.3 */
+    const file$e = "src/docs/LinkDocs.svelte";
+
+    function create_fragment$e(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul1;
+    	let ul0;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let t6;
+    	let li2;
+    	let b2;
+    	let t8;
+    	let b3;
+    	let t10;
+    	let t11;
+    	let li3;
+    	let b4;
+    	let t13;
+    	let b5;
+    	let t15;
+    	let b6;
+    	let t17;
+    	let b7;
+    	let t19;
+    	let t20;
+    	let li4;
+    	let b8;
+    	let t22;
+    	let t23;
+    	let li5;
+    	let b9;
+    	let t25;
+    	let b10;
+    	let t27;
+    	let li6;
+    	let b11;
+    	let t29;
+    	let b12;
+    	let t31;
+    	let b13;
+    	let t33;
+    	let b14;
+    	let t35;
+    	let b15;
+    	let t37;
+    	let zoo_collapsable_list_item1;
+    	let t39;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t41;
+    	let div1;
+    	let zoo_link;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul1 = element("ul");
+    			ul0 = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "href";
+    			t2 = text(" - direct link");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "text";
+    			t5 = text(" - text to be displayed as link");
+    			t6 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "target";
+    			t8 = text(" - how the link should behave (default - ");
+    			b3 = element("b");
+    			b3.textContent = "about:blank";
+    			t10 = text(")");
+    			t11 = space();
+    			li3 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "type";
+    			t13 = text(" - currently supports 2 values: ");
+    			b5 = element("b");
+    			b5.textContent = "negative";
+    			t15 = text(" and ");
+    			b6 = element("b");
+    			b6.textContent = "primary";
+    			t17 = text(", default - ");
+    			b7 = element("b");
+    			b7.textContent = "negative";
+    			t19 = text(". Responsible for coloring of the links, negative is white");
+    			t20 = space();
+    			li4 = element("li");
+    			b8 = element("b");
+    			b8.textContent = "disabled";
+    			t22 = text(" - flag indicating whether the anchor link should be disabled");
+    			t23 = space();
+    			li5 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "textalign";
+    			t25 = text(" - standard css behaviour. Default value is ");
+    			b10 = element("b");
+    			b10.textContent = "center";
+    			t27 = space();
+    			li6 = element("li");
+    			b11 = element("b");
+    			b11.textContent = "size";
+    			t29 = text(" - size of the link text. Supports values: ");
+    			b12 = element("b");
+    			b12.textContent = "regular";
+    			t31 = text(", ");
+    			b13 = element("b");
+    			b13.textContent = "bold";
+    			t33 = text(", ");
+    			b14 = element("b");
+    			b14.textContent = "large";
+    			t35 = text(". Default value is ");
+    			b15 = element("b");
+    			b15.textContent = "regular";
+    			t37 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component does not accept slots.";
+    			t39 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[1]}`;
+    			t41 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_link = element("zoo-link");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Link component API.");
+    			add_location(app_context, file$e, 2, 0, 51);
+    			add_location(b0, file$e, 10, 7, 275);
+    			add_location(li0, file$e, 9, 6, 263);
+    			add_location(b1, file$e, 13, 7, 331);
+    			add_location(li1, file$e, 12, 6, 319);
+    			add_location(b2, file$e, 16, 7, 404);
+    			add_location(b3, file$e, 16, 61, 458);
+    			add_location(li2, file$e, 15, 6, 392);
+    			add_location(b4, file$e, 19, 7, 508);
+    			add_location(b5, file$e, 19, 50, 551);
+    			add_location(b6, file$e, 19, 70, 571);
+    			add_location(b7, file$e, 19, 96, 597);
+    			add_location(li3, file$e, 18, 6, 496);
+    			add_location(b8, file$e, 22, 7, 701);
+    			add_location(li4, file$e, 21, 6, 689);
+    			add_location(b9, file$e, 25, 7, 808);
+    			add_location(b10, file$e, 25, 67, 868);
+    			add_location(li5, file$e, 24, 6, 796);
+    			add_location(b11, file$e, 28, 7, 912);
+    			add_location(b12, file$e, 28, 61, 966);
+    			add_location(b13, file$e, 28, 77, 982);
+    			add_location(b14, file$e, 28, 90, 995);
+    			add_location(b15, file$e, 28, 121, 1026);
+    			add_location(li6, file$e, 27, 6, 900);
+    			add_location(ul0, file$e, 8, 5, 252);
+    			add_location(ul1, file$e, 7, 4, 242);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$e, 6, 3, 197);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$e, 33, 3, 1109);
+    			add_location(zoo_collapsable_list, file$e, 5, 2, 154);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$e, 4, 1, 133);
+    			add_location(pre, file$e, 39, 8, 1289);
+    			add_location(code, file$e, 39, 2, 1283);
+    			set_custom_element_data(zoo_link, "href", "https://google.com");
+    			set_custom_element_data(zoo_link, "text", "Link to google");
+    			set_custom_element_data(zoo_link, "type", "primary");
+    			add_location(zoo_link, file$e, 42, 3, 1380);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$e, 41, 2, 1349);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$e, 38, 1, 1259);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$e, 3, 0, 106);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul1);
+    			append_dev(ul1, ul0);
+    			append_dev(ul0, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul0, t3);
+    			append_dev(ul0, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(ul0, t6);
+    			append_dev(ul0, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t8);
+    			append_dev(li2, b3);
+    			append_dev(li2, t10);
+    			append_dev(ul0, t11);
+    			append_dev(ul0, li3);
+    			append_dev(li3, b4);
+    			append_dev(li3, t13);
+    			append_dev(li3, b5);
+    			append_dev(li3, t15);
+    			append_dev(li3, b6);
+    			append_dev(li3, t17);
+    			append_dev(li3, b7);
+    			append_dev(li3, t19);
+    			append_dev(ul0, t20);
+    			append_dev(ul0, li4);
+    			append_dev(li4, b8);
+    			append_dev(li4, t22);
+    			append_dev(ul0, t23);
+    			append_dev(ul0, li5);
+    			append_dev(li5, b9);
+    			append_dev(li5, t25);
+    			append_dev(li5, b10);
+    			append_dev(ul0, t27);
+    			append_dev(ul0, li6);
+    			append_dev(li6, b11);
+    			append_dev(li6, t29);
+    			append_dev(li6, b12);
+    			append_dev(li6, t31);
+    			append_dev(li6, b13);
+    			append_dev(li6, t33);
+    			append_dev(li6, b14);
+    			append_dev(li6, t35);
+    			append_dev(li6, b15);
+    			append_dev(zoo_collapsable_list, t37);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
+    			append_dev(div3, t39);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t41);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_link);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$e.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$e($$self, $$props, $$invalidate) {
+    	let list;
+    	let example = `<div style="width: 250px;">\n  <zoo-link href="https://google.com" text="Link to google" type="primary"></zoo-link>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-link> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-link", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, zoo_collapsable_list_binding];
+    }
+
+    class LinkDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$e, create_fragment$e, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-link", LinkDocs);
+
+    /* src/docs/ModalDocs.svelte generated by Svelte v3.22.3 */
+    const file$f = "src/docs/ModalDocs.svelte";
+
+    function create_fragment$f(ctx) {
+    	let app_context;
+    	let t0;
+    	let div2;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let t6;
+    	let li2;
+    	let b2;
+    	let t8;
+    	let t9;
+    	let zoo_collapsable_list_item1;
+    	let t11;
+    	let div1;
+    	let code;
+    	let pre;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div2 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "headertext";
+    			t2 = text(" - text to be displayed as modal's header");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "openModal()";
+    			t5 = text(" - function which can be called to open this particular modal window.");
+    			t6 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "closeModal()";
+    			t8 = text(" - function which can be called to close this particular modal window.");
+    			t9 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component accepts multiple unnamed slots.";
+    			t11 = space();
+    			div1 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[1]}`;
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Modal component API.");
+    			add_location(app_context, file$f, 2, 0, 52);
+    			add_location(b0, file$f, 9, 6, 265);
+    			add_location(li0, file$f, 8, 5, 254);
+    			add_location(b1, file$f, 12, 6, 351);
+    			add_location(li1, file$f, 11, 5, 340);
+    			add_location(b2, file$f, 15, 6, 466);
+    			add_location(li2, file$f, 14, 5, 455);
+    			add_location(ul, file$f, 7, 4, 244);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$f, 6, 3, 199);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$f, 19, 3, 612);
+    			add_location(zoo_collapsable_list, file$f, 5, 2, 156);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$f, 4, 1, 135);
+    			add_location(pre, file$f, 25, 8, 801);
+    			add_location(code, file$f, 25, 2, 795);
+    			attr_dev(div1, "class", "example");
+    			add_location(div1, file$f, 24, 1, 771);
+    			attr_dev(div2, "class", "doc-element");
+    			add_location(div2, file$f, 3, 0, 108);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(ul, t6);
+    			append_dev(ul, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t8);
+    			append_dev(zoo_collapsable_list, t9);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
+    			append_dev(div2, t11);
+    			append_dev(div2, div1);
+    			append_dev(div1, code);
+    			append_dev(code, pre);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div2);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$f.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$f($$self, $$props, $$invalidate) {
+    	let list;
+    	let example = `<zoo-modal headertext="Your basket contains licensed items">\n  <zoo-feedback text="This is an info message."></zoo-feedback>\n</zoo-modal>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-modal> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-modal", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, zoo_collapsable_list_binding];
+    }
+
+    class ModalDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$f, create_fragment$f, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-modal", ModalDocs);
+
+    /* src/docs/NavigationDocs.svelte generated by Svelte v3.22.3 */
+    const file$g = "src/docs/NavigationDocs.svelte";
+
+    function get_each_context$3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	return child_ctx;
+    }
+
+    // (17:5) {#each navlinks as link}
+    function create_each_block$3(ctx) {
+    	let zoo_link;
+    	let zoo_link_href_value;
+    	let zoo_link_text_value;
+
+    	const block = {
+    		c: function create() {
+    			zoo_link = element("zoo-link");
+    			set_style(zoo_link, "margin-left", "10px");
+    			set_custom_element_data(zoo_link, "href", zoo_link_href_value = /*link*/ ctx[4].href);
+    			set_custom_element_data(zoo_link, "text", zoo_link_text_value = /*link*/ ctx[4].text);
+    			add_location(zoo_link, file$g, 17, 6, 533);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, zoo_link, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(zoo_link);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$3.name,
+    		type: "each",
+    		source: "(17:5) {#each navlinks as link}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$g(ctx) {
+    	let app_context;
+    	let t0;
+    	let div4;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item;
+    	let t2;
+    	let div3;
+    	let code;
+    	let pre;
+    	let t4;
+    	let div2;
+    	let zoo_navigation;
+    	let div1;
+    	let each_value = /*navlinks*/ ctx[1];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$3(get_each_context$3(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div4 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item.textContent = "This component accepts multiple unnamed slots.";
+    			t2 = space();
+    			div3 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[2]}`;
+    			t4 = space();
+    			div2 = element("div");
+    			zoo_navigation = element("zoo-navigation");
+    			div1 = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Navigation component API.");
+    			add_location(app_context, file$g, 2, 0, 57);
+    			set_custom_element_data(zoo_collapsable_list_item, "slot", "item0");
+    			add_location(zoo_collapsable_list_item, file$g, 6, 3, 209);
+    			add_location(zoo_collapsable_list, file$g, 5, 2, 166);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$g, 4, 1, 145);
+    			add_location(pre, file$g, 12, 8, 398);
+    			add_location(code, file$g, 12, 2, 392);
+    			add_location(div1, file$g, 15, 4, 491);
+    			set_custom_element_data(zoo_navigation, "class", "nav");
+    			add_location(zoo_navigation, file$g, 14, 3, 458);
+    			set_style(div2, "width", "250px");
+    			add_location(div2, file$g, 13, 2, 428);
+    			attr_dev(div3, "class", "example");
+    			add_location(div3, file$g, 11, 1, 368);
+    			attr_dev(div4, "class", "doc-element");
+    			add_location(div4, file$g, 3, 0, 118);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item);
+    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			append_dev(div4, t2);
+    			append_dev(div4, div3);
+    			append_dev(div3, code);
+    			append_dev(code, pre);
+    			append_dev(div3, t4);
+    			append_dev(div3, div2);
+    			append_dev(div2, zoo_navigation);
+    			append_dev(zoo_navigation, div1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div1, null);
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*navlinks*/ 2) {
+    				each_value = /*navlinks*/ ctx[1];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$3(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$3(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div4);
+    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$g.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$g($$self, $$props, $$invalidate) {
+    	let list;
+
+    	let navlinks = [
+    		{
+    			href: "https://google.com",
+    			text: "Google"
+    		},
+    		{
+    			href: "https://svelte.technology/",
+    			text: "Svelte"
+    		}
+    	];
+
+    	let example = `<div style="width: 250px">\n  <zoo-navigation class="nav">\n    <div>\n      {#each navlinks as link}\n        <zoo-link style="margin-left: 10px;" href="{link.href}" text="{link.text}"></zoo-link>\n      {/each}\n    </div>\n  </zoo-navigation></div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-navigation> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-navigation", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, navlinks, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("navlinks" in $$props) $$invalidate(1, navlinks = $$props.navlinks);
+    		if ("example" in $$props) $$invalidate(2, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, navlinks, example, zoo_collapsable_list_binding];
+    }
+
+    class NavigationDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$g, create_fragment$g, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-navigation", NavigationDocs);
+
+    /* src/docs/RadioDocs.svelte generated by Svelte v3.22.3 */
+    const file$h = "src/docs/RadioDocs.svelte";
+
+    function create_fragment$h(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let t6;
+    	let li2;
+    	let b2;
+    	let t8;
+    	let t9;
+    	let zoo_collapsable_list_item1;
+    	let t11;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t13;
+    	let div1;
+    	let zoo_radio;
+    	let input0;
+    	let t14;
+    	let label0;
+    	let t16;
+    	let input1;
+    	let t17;
+    	let label1;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "errormsg";
+    			t2 = text(" - error message to be presented when input is in invalid state");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "infotext";
+    			t5 = text(" - text to be presented below the input");
+    			t6 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "valid";
+    			t8 = text(" - flag which indicates whether the input is valid or not");
+    			t9 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component accepts multiple unnamed slots.";
+    			t11 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[1]}`;
+    			t13 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_radio = element("zoo-radio");
+    			input0 = element("input");
+    			t14 = space();
+    			label0 = element("label");
+    			label0.textContent = "Email";
+    			t16 = space();
+    			input1 = element("input");
+    			t17 = space();
+    			label1 = element("label");
+    			label1.textContent = "Phone";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Radio component API.");
+    			add_location(app_context, file$h, 2, 0, 52);
+    			add_location(b0, file$h, 9, 6, 265);
+    			add_location(li0, file$h, 8, 5, 254);
+    			add_location(b1, file$h, 12, 6, 371);
+    			add_location(li1, file$h, 11, 5, 360);
+    			add_location(b2, file$h, 15, 6, 453);
+    			add_location(li2, file$h, 14, 5, 442);
+    			add_location(ul, file$h, 7, 4, 244);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$h, 6, 3, 199);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$h, 19, 3, 579);
+    			add_location(zoo_collapsable_list, file$h, 5, 2, 156);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$h, 4, 1, 135);
+    			add_location(pre, file$h, 25, 8, 768);
+    			add_location(code, file$h, 25, 2, 762);
+    			attr_dev(input0, "type", "radio");
+    			attr_dev(input0, "id", "contactChoice4");
+    			attr_dev(input0, "name", "contact");
+    			input0.value = "email";
+    			input0.disabled = true;
+    			add_location(input0, file$h, 29, 4, 918);
+    			attr_dev(label0, "for", "contactChoice4");
+    			add_location(label0, file$h, 30, 4, 1001);
+    			attr_dev(input1, "type", "radio");
+    			attr_dev(input1, "id", "contactChoice5");
+    			attr_dev(input1, "name", "contact");
+    			input1.value = "phone";
+    			add_location(input1, file$h, 31, 4, 1047);
+    			attr_dev(label1, "for", "contactChoice5");
+    			add_location(label1, file$h, 32, 4, 1121);
+    			set_custom_element_data(zoo_radio, "infotext", "infotext");
+    			set_custom_element_data(zoo_radio, "labeltext", "Label text");
+    			add_location(zoo_radio, file$h, 28, 3, 859);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$h, 27, 2, 828);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$h, 24, 1, 738);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$h, 3, 0, 108);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(ul, t6);
+    			append_dev(ul, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t8);
+    			append_dev(zoo_collapsable_list, t9);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
+    			append_dev(div3, t11);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t13);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_radio);
+    			append_dev(zoo_radio, input0);
+    			append_dev(zoo_radio, t14);
+    			append_dev(zoo_radio, label0);
+    			append_dev(zoo_radio, t16);
+    			append_dev(zoo_radio, input1);
+    			append_dev(zoo_radio, t17);
+    			append_dev(zoo_radio, label1);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$h.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$h($$self, $$props, $$invalidate) {
+    	let list;
+    	let example = `<div style="width: 250px;">\n  <zoo-radio infotext="infotext">\n    <input type="radio" id="contactChoice4" name="contact" value="email" disabled>\n    <label for="contactChoice4">Email</label>\n    <input type="radio" id="contactChoice5" name="contact" value="phone">\n    <label for="contactChoice5">Phone</label>\n  </zoo-radio>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-radio> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-radio", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, zoo_collapsable_list_binding];
+    }
+
+    class RadioDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$h, create_fragment$h, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-radio", RadioDocs);
+
+    /* src/docs/SearchableSelectDocs.svelte generated by Svelte v3.22.3 */
+    const file$i = "src/docs/SearchableSelectDocs.svelte";
+
+    function create_fragment$i(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let b1;
+    	let t4;
+    	let b2;
+    	let t6;
+    	let b3;
+    	let t8;
+    	let li1;
+    	let b4;
+    	let t10;
+    	let t11;
+    	let li2;
+    	let b5;
+    	let t13;
+    	let t14;
+    	let li3;
+    	let b6;
+    	let t16;
+    	let t17;
+    	let li4;
+    	let b7;
+    	let t19;
+    	let b8;
+    	let t21;
+    	let li5;
+    	let b9;
+    	let t23;
+    	let t24;
+    	let li6;
+    	let b10;
+    	let t26;
+    	let t27;
+    	let li7;
+    	let b11;
+    	let t29;
+    	let t30;
+    	let li8;
+    	let b12;
+    	let t32;
+    	let t33;
+    	let zoo_collapsable_list_item1;
+    	let t37;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t39;
+    	let div1;
+    	let zoo_searchable_select;
+    	let select;
+    	let option0;
+    	let option1;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "labelposition";
+    			t2 = text(" - accepts following values: ");
+    			b1 = element("b");
+    			b1.textContent = "top";
+    			t4 = text(", ");
+    			b2 = element("b");
+    			b2.textContent = "left";
+    			t6 = text(". Default is ");
+    			b3 = element("b");
+    			b3.textContent = "top";
+    			t8 = space();
+    			li1 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "labeltext";
+    			t10 = text(" - text to be presented as the label of the input");
+    			t11 = space();
+    			li2 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "linktext";
+    			t13 = text(" - text to be presented as a link text");
+    			t14 = space();
+    			li3 = element("li");
+    			b6 = element("b");
+    			b6.textContent = "linkhref";
+    			t16 = text(" - where the link should lead");
+    			t17 = space();
+    			li4 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "linktarget";
+    			t19 = text(" - target of the anchor link, default is ");
+    			b8 = element("b");
+    			b8.textContent = "about:blank";
+    			t21 = space();
+    			li5 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "inputerrormsg";
+    			t23 = text(" - error message to be presented when input is in invalid state");
+    			t24 = space();
+    			li6 = element("li");
+    			b10 = element("b");
+    			b10.textContent = "infotext";
+    			t26 = text(" - text to be presented below the input");
+    			t27 = space();
+    			li7 = element("li");
+    			b11 = element("b");
+    			b11.textContent = "valid";
+    			t29 = text(" - flag which indicates whether the input is valid or not");
+    			t30 = space();
+    			li8 = element("li");
+    			b12 = element("b");
+    			b12.textContent = "placeholder";
+    			t32 = text(" - text which should be displayed inside input used for searching");
+    			t33 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+
+    			zoo_collapsable_list_item1.textContent = `
+				This component accepts one slot ${/*inputSlotExample*/ ctx[1]}.
+			`;
+
+    			t37 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[2]}`;
+    			t39 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_searchable_select = element("zoo-searchable-select");
+    			select = element("select");
+    			option0 = element("option");
+    			option0.textContent = "1";
+    			option1 = element("option");
+    			option1.textContent = "2";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Searchable select component API.");
+    			add_location(app_context, file$i, 2, 0, 64);
+    			add_location(b0, file$i, 9, 6, 289);
+    			add_location(b1, file$i, 9, 55, 338);
+    			add_location(b2, file$i, 9, 67, 350);
+    			add_location(b3, file$i, 9, 91, 374);
+    			add_location(li0, file$i, 8, 5, 278);
+    			add_location(b4, file$i, 12, 6, 412);
+    			add_location(li1, file$i, 11, 5, 401);
+    			add_location(b5, file$i, 15, 6, 505);
+    			add_location(li2, file$i, 14, 5, 494);
+    			add_location(b6, file$i, 18, 6, 586);
+    			add_location(li3, file$i, 17, 5, 575);
+    			add_location(b7, file$i, 21, 6, 658);
+    			add_location(b8, file$i, 21, 64, 716);
+    			add_location(li4, file$i, 20, 5, 647);
+    			add_location(b9, file$i, 24, 6, 762);
+    			add_location(li5, file$i, 23, 5, 751);
+    			add_location(b10, file$i, 27, 6, 873);
+    			add_location(li6, file$i, 26, 5, 862);
+    			add_location(b11, file$i, 30, 6, 955);
+    			add_location(li7, file$i, 29, 5, 944);
+    			add_location(b12, file$i, 33, 6, 1052);
+    			add_location(li8, file$i, 32, 5, 1041);
+    			add_location(ul, file$i, 7, 4, 268);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$i, 6, 3, 223);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$i, 37, 3, 1192);
+    			add_location(zoo_collapsable_list, file$i, 5, 2, 180);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$i, 4, 1, 159);
+    			add_location(pre, file$i, 43, 8, 1386);
+    			add_location(code, file$i, 43, 2, 1380);
+    			option0.__value = "1";
+    			option0.value = option0.__value;
+    			add_location(option0, file$i, 48, 5, 1605);
+    			option1.__value = "2";
+    			option1.value = option1.__value;
+    			add_location(option1, file$i, 49, 5, 1639);
+    			select.multiple = true;
+    			attr_dev(select, "slot", "selectelement");
+    			add_location(select, file$i, 47, 4, 1561);
+    			set_custom_element_data(zoo_searchable_select, "labeltext", "Searchable select");
+    			set_custom_element_data(zoo_searchable_select, "placeholder", "Placeholder");
+    			add_location(zoo_searchable_select, file$i, 46, 3, 1477);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$i, 45, 2, 1446);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$i, 42, 1, 1356);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$i, 3, 0, 132);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, b1);
+    			append_dev(li0, t4);
+    			append_dev(li0, b2);
+    			append_dev(li0, t6);
+    			append_dev(li0, b3);
+    			append_dev(ul, t8);
+    			append_dev(ul, li1);
+    			append_dev(li1, b4);
+    			append_dev(li1, t10);
+    			append_dev(ul, t11);
+    			append_dev(ul, li2);
+    			append_dev(li2, b5);
+    			append_dev(li2, t13);
+    			append_dev(ul, t14);
+    			append_dev(ul, li3);
+    			append_dev(li3, b6);
+    			append_dev(li3, t16);
+    			append_dev(ul, t17);
+    			append_dev(ul, li4);
+    			append_dev(li4, b7);
+    			append_dev(li4, t19);
+    			append_dev(li4, b8);
+    			append_dev(ul, t21);
+    			append_dev(ul, li5);
+    			append_dev(li5, b9);
+    			append_dev(li5, t23);
+    			append_dev(ul, t24);
+    			append_dev(ul, li6);
+    			append_dev(li6, b10);
+    			append_dev(li6, t26);
+    			append_dev(ul, t27);
+    			append_dev(ul, li7);
+    			append_dev(li7, b11);
+    			append_dev(li7, t29);
+    			append_dev(ul, t30);
+    			append_dev(ul, li8);
+    			append_dev(li8, b12);
+    			append_dev(li8, t32);
+    			append_dev(zoo_collapsable_list, t33);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			append_dev(div3, t37);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t39);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_searchable_select);
+    			append_dev(zoo_searchable_select, select);
+    			append_dev(select, option0);
+    			append_dev(select, option1);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$i.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$i($$self, $$props, $$invalidate) {
+    	let list;
+    	let inputSlotExample = `<slot name="selectelement"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-searchable-select labeltext="Searchable select" placeholder="Placeholder">\n    <select multiple slot="selectelement">\n      <option value="1">1</option>\n      <option value="2">2</option>\n    </select>\n  </zoo-searchable-select>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-searchable-select> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-searchable-select", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, inputSlotExample, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("inputSlotExample" in $$props) $$invalidate(1, inputSlotExample = $$props.inputSlotExample);
+    		if ("example" in $$props) $$invalidate(2, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, inputSlotExample, example, zoo_collapsable_list_binding];
+    }
+
+    class SearchableSelectDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$i, create_fragment$i, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-searchable-select", SearchableSelectDocs);
+
+    /* src/docs/SelectDocs.svelte generated by Svelte v3.22.3 */
+    const file$j = "src/docs/SelectDocs.svelte";
+
+    function create_fragment$j(ctx) {
+    	let app_context;
+    	let t0;
+    	let div3;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul0;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let b1;
+    	let t4;
+    	let b2;
+    	let t6;
+    	let b3;
+    	let t8;
+    	let li1;
+    	let b4;
+    	let t10;
+    	let t11;
+    	let li2;
+    	let b5;
+    	let t13;
+    	let t14;
+    	let li3;
+    	let b6;
+    	let t16;
+    	let t17;
+    	let li4;
+    	let b7;
+    	let t19;
+    	let b8;
+    	let t21;
+    	let li5;
+    	let b9;
+    	let t23;
+    	let t24;
+    	let li6;
+    	let b10;
+    	let t26;
+    	let t27;
+    	let li7;
+    	let b11;
+    	let t29;
+    	let t30;
+    	let zoo_collapsable_list_item1;
+    	let t31;
+    	let ul1;
+    	let li8;
+    	let b12;
+    	let t33;
+    	let b13;
+    	let t35;
+    	let br;
+    	let t36;
+    	let li9;
+    	let b14;
+    	let t38;
+    	let b15;
+    	let t40;
+    	let t41;
+    	let div2;
+    	let code;
+    	let pre;
+    	let t43;
+    	let div1;
+    	let zoo_select;
+    	let select;
+    	let option0;
+    	let option1;
+    	let option2;
+    	let option3;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul0 = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "labelposition";
+    			t2 = text(" - accepts following values: ");
+    			b1 = element("b");
+    			b1.textContent = "top";
+    			t4 = text(", ");
+    			b2 = element("b");
+    			b2.textContent = "left";
+    			t6 = text(". Default is ");
+    			b3 = element("b");
+    			b3.textContent = "top";
+    			t8 = space();
+    			li1 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "labeltext";
+    			t10 = text(" - text to be presented as the label of the input");
+    			t11 = space();
+    			li2 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "linktext";
+    			t13 = text(" - text to be presented as a link text");
+    			t14 = space();
+    			li3 = element("li");
+    			b6 = element("b");
+    			b6.textContent = "linkhref";
+    			t16 = text(" - where the link should lead");
+    			t17 = space();
+    			li4 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "linktarget";
+    			t19 = text(" - target of the anchor link, default is ");
+    			b8 = element("b");
+    			b8.textContent = "about:blank";
+    			t21 = space();
+    			li5 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "inputerrormsg";
+    			t23 = text(" - error message to be presented when input is in invalid state");
+    			t24 = space();
+    			li6 = element("li");
+    			b10 = element("b");
+    			b10.textContent = "infotext";
+    			t26 = text(" - text to be presented below the input");
+    			t27 = space();
+    			li7 = element("li");
+    			b11 = element("b");
+    			b11.textContent = "valid";
+    			t29 = text(" - flag which indicates whether the input is valid or not");
+    			t30 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t31 = text("This component accepts the following slots:\n\t\t\t\t");
+    			ul1 = element("ul");
+    			li8 = element("li");
+    			b12 = element("b");
+    			b12.textContent = `${/*inputSlotExample*/ ctx[1]}`;
+    			t33 = text(" - replaced with provided ");
+    			b13 = element("b");
+    			b13.textContent = "select";
+    			t35 = text(" so that you can catch events/provide your css/attach framework specific directives from/to this element.");
+    			br = element("br");
+    			t36 = space();
+    			li9 = element("li");
+    			b14 = element("b");
+    			b14.textContent = `${/*labelSlotExample*/ ctx[2]}`;
+    			t38 = text(" - replaced with provided ");
+    			b15 = element("b");
+    			b15.textContent = "label";
+    			t40 = text(" for a11y reasons.");
+    			t41 = space();
+    			div2 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[3]}`;
+    			t43 = text("\n\t\twill produce the following:\n\t\t");
+    			div1 = element("div");
+    			zoo_select = element("zoo-select");
+    			select = element("select");
+    			option0 = element("option");
+    			option0.textContent = "Placeholder";
+    			option1 = element("option");
+    			option1.textContent = "1";
+    			option2 = element("option");
+    			option2.textContent = "2";
+    			option3 = element("option");
+    			option3.textContent = "3";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Select component API.");
+    			add_location(app_context, file$j, 2, 0, 53);
+    			add_location(b0, file$j, 9, 6, 267);
+    			add_location(b1, file$j, 9, 55, 316);
+    			add_location(b2, file$j, 9, 67, 328);
+    			add_location(b3, file$j, 9, 91, 352);
+    			add_location(li0, file$j, 8, 5, 256);
+    			add_location(b4, file$j, 12, 6, 390);
+    			add_location(li1, file$j, 11, 5, 379);
+    			add_location(b5, file$j, 15, 6, 483);
+    			add_location(li2, file$j, 14, 5, 472);
+    			add_location(b6, file$j, 18, 6, 564);
+    			add_location(li3, file$j, 17, 5, 553);
+    			add_location(b7, file$j, 21, 6, 636);
+    			add_location(b8, file$j, 21, 64, 694);
+    			add_location(li4, file$j, 20, 5, 625);
+    			add_location(b9, file$j, 24, 6, 740);
+    			add_location(li5, file$j, 23, 5, 729);
+    			add_location(b10, file$j, 27, 6, 851);
+    			add_location(li6, file$j, 26, 5, 840);
+    			add_location(b11, file$j, 30, 6, 933);
+    			add_location(li7, file$j, 29, 5, 922);
+    			add_location(ul0, file$j, 7, 4, 246);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$j, 6, 3, 201);
+    			add_location(b12, file$j, 38, 6, 1173);
+    			add_location(b13, file$j, 38, 57, 1224);
+    			add_location(br, file$j, 38, 175, 1342);
+    			add_location(li8, file$j, 37, 5, 1162);
+    			add_location(b14, file$j, 41, 6, 1374);
+    			add_location(b15, file$j, 41, 57, 1425);
+    			add_location(li9, file$j, 40, 5, 1363);
+    			add_location(ul1, file$j, 36, 4, 1152);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$j, 34, 3, 1059);
+    			add_location(zoo_collapsable_list, file$j, 5, 2, 158);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$j, 4, 1, 137);
+    			add_location(pre, file$j, 48, 8, 1574);
+    			add_location(code, file$j, 48, 2, 1568);
+    			attr_dev(option0, "class", "placeholder");
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			option0.disabled = true;
+    			option0.selected = true;
+    			add_location(option0, file$j, 53, 5, 1798);
+    			option1.__value = "1";
+    			option1.value = option1.__value;
+    			add_location(option1, file$j, 54, 5, 1879);
+    			option2.__value = "2";
+    			option2.value = option2.__value;
+    			add_location(option2, file$j, 55, 5, 1903);
+    			option3.__value = "3";
+    			option3.value = option3.__value;
+    			add_location(option3, file$j, 56, 5, 1927);
+    			attr_dev(select, "slot", "selectelement");
+    			add_location(select, file$j, 52, 4, 1763);
+    			set_custom_element_data(zoo_select, "labeltext", "Select label");
+    			set_custom_element_data(zoo_select, "infotext", "Additional helpful information for our users");
+    			add_location(zoo_select, file$j, 51, 3, 1665);
+    			set_style(div1, "width", "250px");
+    			add_location(div1, file$j, 50, 2, 1634);
+    			attr_dev(div2, "class", "example");
+    			add_location(div2, file$j, 47, 1, 1544);
+    			attr_dev(div3, "class", "doc-element");
+    			add_location(div3, file$j, 3, 0, 110);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul0);
+    			append_dev(ul0, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, b1);
+    			append_dev(li0, t4);
+    			append_dev(li0, b2);
+    			append_dev(li0, t6);
+    			append_dev(li0, b3);
+    			append_dev(ul0, t8);
+    			append_dev(ul0, li1);
+    			append_dev(li1, b4);
+    			append_dev(li1, t10);
+    			append_dev(ul0, t11);
+    			append_dev(ul0, li2);
+    			append_dev(li2, b5);
+    			append_dev(li2, t13);
+    			append_dev(ul0, t14);
+    			append_dev(ul0, li3);
+    			append_dev(li3, b6);
+    			append_dev(li3, t16);
+    			append_dev(ul0, t17);
+    			append_dev(ul0, li4);
+    			append_dev(li4, b7);
+    			append_dev(li4, t19);
+    			append_dev(li4, b8);
+    			append_dev(ul0, t21);
+    			append_dev(ul0, li5);
+    			append_dev(li5, b9);
+    			append_dev(li5, t23);
+    			append_dev(ul0, t24);
+    			append_dev(ul0, li6);
+    			append_dev(li6, b10);
+    			append_dev(li6, t26);
+    			append_dev(ul0, t27);
+    			append_dev(ul0, li7);
+    			append_dev(li7, b11);
+    			append_dev(li7, t29);
+    			append_dev(zoo_collapsable_list, t30);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t31);
+    			append_dev(zoo_collapsable_list_item1, ul1);
+    			append_dev(ul1, li8);
+    			append_dev(li8, b12);
+    			append_dev(li8, t33);
+    			append_dev(li8, b13);
+    			append_dev(li8, t35);
+    			append_dev(li8, br);
+    			append_dev(ul1, t36);
+    			append_dev(ul1, li9);
+    			append_dev(li9, b14);
+    			append_dev(li9, t38);
+    			append_dev(li9, b15);
+    			append_dev(li9, t40);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div3, t41);
+    			append_dev(div3, div2);
+    			append_dev(div2, code);
+    			append_dev(code, pre);
+    			append_dev(div2, t43);
+    			append_dev(div2, div1);
+    			append_dev(div1, zoo_select);
+    			append_dev(zoo_select, select);
+    			append_dev(select, option0);
+    			append_dev(select, option1);
+    			append_dev(select, option2);
+    			append_dev(select, option3);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div3);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$j.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$j($$self, $$props, $$invalidate) {
+    	let list;
+    	let inputSlotExample = `<slot name="selectelement"></slot>`;
+    	let labelSlotExample = `<slot name="selectlabel"></slot>`;
+    	let example = `<div style="width: 250px;">\n  <zoo-select labeltext="Select label" infotext="Additional helpful information for our users">\n    <select slot="selectelement">\n      <option class="placeholder" value="" disabled selected>Placeholder</option>\n      <option>1</option>\n      <option>2</option>\n      <option>3</option>\n    </select>\n  </zoo-select>\n</div>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-select> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-select", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		inputSlotExample,
+    		labelSlotExample,
+    		example
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("inputSlotExample" in $$props) $$invalidate(1, inputSlotExample = $$props.inputSlotExample);
+    		if ("labelSlotExample" in $$props) $$invalidate(2, labelSlotExample = $$props.labelSlotExample);
+    		if ("example" in $$props) $$invalidate(3, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		list,
+    		inputSlotExample,
+    		labelSlotExample,
+    		example,
+    		zoo_collapsable_list_binding
+    	];
+    }
+
+    class SelectDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$j, create_fragment$j, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-select", SelectDocs);
+
+    /* src/docs/ToastDocs.svelte generated by Svelte v3.22.3 */
+    const file$k = "src/docs/ToastDocs.svelte";
+
+    function create_fragment$k(ctx) {
+    	let app_context;
+    	let t0;
+    	let div2;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let b2;
+    	let t7;
+    	let b3;
+    	let t9;
+    	let b4;
+    	let t11;
+    	let b5;
+    	let t13;
+    	let li2;
+    	let b6;
+    	let t15;
+    	let t16;
+    	let li3;
+    	let b7;
+    	let t18;
+    	let b8;
+    	let t20;
+    	let t21;
+    	let li4;
+    	let b9;
+    	let t23;
+    	let b10;
+    	let t25;
+    	let t26;
+    	let zoo_collapsable_list_item1;
+    	let t28;
+    	let div1;
+    	let code;
+    	let pre;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div2 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "text";
+    			t2 = text(" - text to be presented in the toast box");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "type";
+    			t5 = text(" - type of the toast. Possible values are: ");
+    			b2 = element("b");
+    			b2.textContent = "error";
+    			t7 = text(", ");
+    			b3 = element("b");
+    			b3.textContent = "info";
+    			t9 = text(", ");
+    			b4 = element("b");
+    			b4.textContent = "success";
+    			t11 = text(". Default is ");
+    			b5 = element("b");
+    			b5.textContent = "info";
+    			t13 = space();
+    			li2 = element("li");
+    			b6 = element("b");
+    			b6.textContent = "timeout";
+    			t15 = text(" - how long the toast should be visible for (in seconds)");
+    			t16 = space();
+    			li3 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "show()";
+    			t18 = text(" - ");
+    			b8 = element("b");
+    			b8.textContent = "function";
+    			t20 = text(" to show the toast. Multiple calls to this functions until the toast is hidden will be ignored");
+    			t21 = space();
+    			li4 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "hide()";
+    			t23 = text(" - ");
+    			b10 = element("b");
+    			b10.textContent = "function";
+    			t25 = text(" to hide the toast. Multiple calls to this functions until the toast is shown will be ignored");
+    			t26 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component does not accept slots.";
+    			t28 = space();
+    			div1 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[1]}`;
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Toast component API.");
+    			add_location(app_context, file$k, 2, 0, 52);
+    			add_location(b0, file$k, 9, 6, 265);
+    			add_location(li0, file$k, 8, 5, 254);
+    			add_location(b1, file$k, 12, 6, 344);
+    			add_location(b2, file$k, 12, 60, 398);
+    			add_location(b3, file$k, 12, 74, 412);
+    			add_location(b4, file$k, 12, 87, 425);
+    			add_location(b5, file$k, 12, 114, 452);
+    			add_location(li1, file$k, 11, 5, 333);
+    			add_location(b6, file$k, 15, 6, 491);
+    			add_location(li2, file$k, 14, 5, 480);
+    			add_location(b7, file$k, 18, 6, 589);
+    			add_location(b8, file$k, 18, 22, 605);
+    			add_location(li3, file$k, 17, 5, 578);
+    			add_location(b9, file$k, 21, 6, 742);
+    			add_location(b10, file$k, 21, 22, 758);
+    			add_location(li4, file$k, 20, 5, 731);
+    			add_location(ul, file$k, 7, 4, 244);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$k, 6, 3, 199);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$k, 25, 3, 923);
+    			add_location(zoo_collapsable_list, file$k, 5, 2, 156);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$k, 4, 1, 135);
+    			add_location(pre, file$k, 31, 8, 1103);
+    			add_location(code, file$k, 31, 2, 1097);
+    			attr_dev(div1, "class", "example");
+    			add_location(div1, file$k, 30, 1, 1073);
+    			attr_dev(div2, "class", "doc-element");
+    			add_location(div2, file$k, 3, 0, 108);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(li1, b2);
+    			append_dev(li1, t7);
+    			append_dev(li1, b3);
+    			append_dev(li1, t9);
+    			append_dev(li1, b4);
+    			append_dev(li1, t11);
+    			append_dev(li1, b5);
+    			append_dev(ul, t13);
+    			append_dev(ul, li2);
+    			append_dev(li2, b6);
+    			append_dev(li2, t15);
+    			append_dev(ul, t16);
+    			append_dev(ul, li3);
+    			append_dev(li3, b7);
+    			append_dev(li3, t18);
+    			append_dev(li3, b8);
+    			append_dev(li3, t20);
+    			append_dev(ul, t21);
+    			append_dev(ul, li4);
+    			append_dev(li4, b9);
+    			append_dev(li4, t23);
+    			append_dev(li4, b10);
+    			append_dev(li4, t25);
+    			append_dev(zoo_collapsable_list, t26);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[2](zoo_collapsable_list);
+    			append_dev(div2, t28);
+    			append_dev(div2, div1);
+    			append_dev(div1, code);
+    			append_dev(code, pre);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div2);
+    			/*zoo_collapsable_list_binding*/ ctx[2](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$k.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$k($$self, $$props, $$invalidate) {
+    	let list;
+    	let example = `<zoo-toast type="info" text="This is an info message."></zoo-toast>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-toast> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-toast", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, example });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, zoo_collapsable_list_binding];
+    }
+
+    class ToastDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$k, create_fragment$k, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-toast", ToastDocs);
+
+    /* src/docs/TooltipDocs.svelte generated by Svelte v3.22.3 */
+    const file$l = "src/docs/TooltipDocs.svelte";
+
+    function create_fragment$l(ctx) {
+    	let app_context;
+    	let t0;
+    	let div4;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let t3;
+    	let li1;
+    	let b1;
+    	let t5;
+    	let b2;
+    	let t7;
+    	let b3;
+    	let t9;
+    	let b4;
+    	let t11;
+    	let b5;
+    	let t13;
+    	let b6;
+    	let t15;
+    	let li2;
+    	let b7;
+    	let t17;
+    	let code0;
+    	let pre0;
+    	let t19;
+    	let li3;
+    	let b8;
+    	let t21;
+    	let code1;
+    	let pre1;
+    	let t23;
+    	let zoo_collapsable_list_item1;
+    	let t25;
+    	let div3;
+    	let code2;
+    	let pre2;
+    	let t27;
+    	let div2;
+    	let zoo_button;
+    	let div1;
+    	let t28;
+    	let zoo_tooltip;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div4 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "text";
+    			t2 = text(" - text to be presented in the toast box");
+    			t3 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "position";
+    			t5 = text(" - Possible values are: ");
+    			b2 = element("b");
+    			b2.textContent = "top";
+    			t7 = text(", ");
+    			b3 = element("b");
+    			b3.textContent = "right";
+    			t9 = text(", ");
+    			b4 = element("b");
+    			b4.textContent = "bottom";
+    			t11 = text(" or ");
+    			b5 = element("b");
+    			b5.textContent = "left";
+    			t13 = text(". Default is ");
+    			b6 = element("b");
+    			b6.textContent = "top";
+    			t15 = space();
+    			li2 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "Showing the tooltip";
+    			t17 = text(" - to show the tooltip use the following snippet: ");
+    			code0 = element("code");
+    			pre0 = element("pre");
+    			pre0.textContent = `${/*snippet*/ ctx[3]}`;
+    			t19 = space();
+    			li3 = element("li");
+    			b8 = element("b");
+    			b8.textContent = "CSS keyframes";
+    			t21 = text(" - to enable animation use the following snippet: ");
+    			code1 = element("code");
+    			pre1 = element("pre");
+    			pre1.textContent = `${/*keyframesSnippet*/ ctx[2]}`;
+    			t23 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			zoo_collapsable_list_item1.textContent = "This component either renders a unnamed slot or presents text supplied as an attribute.";
+    			t25 = space();
+    			div3 = element("div");
+    			code2 = element("code");
+    			pre2 = element("pre");
+    			pre2.textContent = `${/*example*/ ctx[1]}`;
+    			t27 = text("\n\t\twill produce the following:\n\t\t");
+    			div2 = element("div");
+    			zoo_button = element("zoo-button");
+    			div1 = element("div");
+    			t28 = text("Button\n\t\t\t\t\t");
+    			zoo_tooltip = element("zoo-tooltip");
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Tooltip component API.");
+    			add_location(app_context, file$l, 2, 0, 54);
+    			add_location(b0, file$l, 9, 6, 269);
+    			add_location(li0, file$l, 8, 5, 258);
+    			add_location(b1, file$l, 12, 6, 348);
+    			add_location(b2, file$l, 12, 45, 387);
+    			add_location(b3, file$l, 12, 57, 399);
+    			add_location(b4, file$l, 12, 71, 413);
+    			add_location(b5, file$l, 12, 88, 430);
+    			add_location(b6, file$l, 12, 112, 454);
+    			add_location(li1, file$l, 11, 5, 337);
+    			add_location(b7, file$l, 15, 6, 492);
+    			add_location(pre0, file$l, 15, 88, 574);
+    			add_location(code0, file$l, 15, 82, 568);
+    			add_location(li2, file$l, 14, 5, 481);
+    			add_location(b8, file$l, 18, 6, 629);
+    			add_location(pre1, file$l, 18, 82, 705);
+    			add_location(code1, file$l, 18, 76, 699);
+    			add_location(li3, file$l, 17, 5, 618);
+    			add_location(ul, file$l, 7, 4, 248);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$l, 6, 3, 203);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$l, 22, 3, 798);
+    			add_location(zoo_collapsable_list, file$l, 5, 2, 160);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$l, 4, 1, 139);
+    			add_location(pre2, file$l, 28, 8, 1028);
+    			add_location(code2, file$l, 28, 2, 1022);
+    			set_custom_element_data(zoo_tooltip, "text", "Tooltip text");
+    			add_location(zoo_tooltip, file$l, 34, 5, 1220);
+    			attr_dev(div1, "slot", "buttoncontent");
+    			add_location(div1, file$l, 32, 4, 1176);
+    			set_custom_element_data(zoo_button, "class", "top-tooltip");
+    			add_location(zoo_button, file$l, 31, 3, 1139);
+    			set_style(div2, "width", "250px");
+    			set_style(div2, "margin-bottom", "2px");
+    			add_location(div2, file$l, 30, 2, 1088);
+    			attr_dev(div3, "class", "example");
+    			add_location(div3, file$l, 27, 1, 998);
+    			attr_dev(div4, "class", "doc-element");
+    			add_location(div4, file$l, 3, 0, 112);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t5);
+    			append_dev(li1, b2);
+    			append_dev(li1, t7);
+    			append_dev(li1, b3);
+    			append_dev(li1, t9);
+    			append_dev(li1, b4);
+    			append_dev(li1, t11);
+    			append_dev(li1, b5);
+    			append_dev(li1, t13);
+    			append_dev(li1, b6);
+    			append_dev(ul, t15);
+    			append_dev(ul, li2);
+    			append_dev(li2, b7);
+    			append_dev(li2, t17);
+    			append_dev(li2, code0);
+    			append_dev(code0, pre0);
+    			append_dev(ul, t19);
+    			append_dev(ul, li3);
+    			append_dev(li3, b8);
+    			append_dev(li3, t21);
+    			append_dev(li3, code1);
+    			append_dev(code1, pre1);
+    			append_dev(zoo_collapsable_list, t23);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div4, t25);
+    			append_dev(div4, div3);
+    			append_dev(div3, code2);
+    			append_dev(code2, pre2);
+    			append_dev(div3, t27);
+    			append_dev(div3, div2);
+    			append_dev(div2, zoo_button);
+    			append_dev(zoo_button, div1);
+    			append_dev(div1, t28);
+    			append_dev(div1, zoo_tooltip);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div4);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$l.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$l($$self, $$props, $$invalidate) {
+    	let list;
+    	let example = `<div style="width: 250px;">\n  <zoo-button>\n    <div slot="buttoncontent">\n      Button\n      <zoo-tooltip text="Tooltip text"></zoo-tooltip>\n    </div>\n  </zoo-button>\n</div>`;
+    	let keyframesSnippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n    animation: fadeTooltipIn 0.2s;\n  }\n}`;
+    	let snippet = `.class-name:hover {\n  zoo-tooltip {\n    display: block;\n  }\n}`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-tooltip> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-tooltip", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		example,
+    		keyframesSnippet,
+    		snippet
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("example" in $$props) $$invalidate(1, example = $$props.example);
+    		if ("keyframesSnippet" in $$props) $$invalidate(2, keyframesSnippet = $$props.keyframesSnippet);
+    		if ("snippet" in $$props) $$invalidate(3, snippet = $$props.snippet);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, example, keyframesSnippet, snippet, zoo_collapsable_list_binding];
+    }
+
+    class TooltipDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}zoo-tooltip{display:none}.top-tooltip:hover zoo-tooltip{display:block;animation:fadeTooltipIn 0.2s}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$l, create_fragment$l, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-tooltip", TooltipDocs);
+
+    /* src/docs/GridDocs.svelte generated by Svelte v3.22.3 */
+    const file$m = "src/docs/GridDocs.svelte";
+
+    function create_fragment$m(ctx) {
+    	let app_context;
+    	let t0;
+    	let div11;
+    	let div0;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item0;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t2;
+    	let br0;
+    	let t3;
+    	let t4;
+    	let li1;
+    	let b1;
+    	let t6;
+    	let t7;
+    	let li2;
+    	let b2;
+    	let t9;
+    	let t10;
+    	let li3;
+    	let b3;
+    	let t12;
+    	let t13;
+    	let li4;
+    	let b4;
+    	let t15;
+    	let t16;
+    	let li5;
+    	let b5;
+    	let t18;
+    	let br1;
+    	let t19;
+    	let br2;
+    	let t20;
+    	let b6;
+    	let br3;
+    	let t22;
+    	let b7;
+    	let t24;
+    	let br4;
+    	let t25;
+    	let br5;
+    	let t26;
+    	let b8;
+    	let t28;
+    	let t29;
+    	let li6;
+    	let b9;
+    	let t31;
+    	let br6;
+    	let t32;
+    	let br7;
+    	let t33;
+    	let b10;
+    	let br8;
+    	let t35;
+    	let b11;
+    	let t37;
+    	let t38;
+    	let li7;
+    	let b12;
+    	let t40;
+    	let t41;
+    	let zoo_collapsable_list_item1;
+    	let t42;
+    	let zoo_link;
+    	let t43;
+    	let t44;
+    	let div10;
+    	let code;
+    	let pre;
+    	let t46;
+    	let div9;
+    	let zoo_grid;
+    	let div1;
+    	let t48;
+    	let div2;
+    	let t50;
+    	let div5;
+    	let div3;
+    	let t52;
+    	let div4;
+    	let t54;
+    	let div8;
+    	let div6;
+    	let t56;
+    	let div7;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div11 = element("div");
+    			div0 = element("div");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item0 = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "loading";
+    			t2 = text(" - whether to show the loader on the grid ");
+    			br0 = element("br");
+    			t3 = text(" (for example, when waiting for backend to respond).");
+    			t4 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "stickyheader";
+    			t6 = text(" - whether the header of the grid should be sticky.");
+    			t7 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "paginator";
+    			t9 = text(" - whether the paginator for the grid should be shown.");
+    			t10 = space();
+    			li3 = element("li");
+    			b3 = element("b");
+    			b3.textContent = "currentpage";
+    			t12 = text(" - current page that the user is on.");
+    			t13 = space();
+    			li4 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "maxpages";
+    			t15 = text(" - maximum number of pages");
+    			t16 = space();
+    			li5 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "Event (sortChange)";
+    			t18 = text(" - whenever user changes sorting");
+    			br1 = element("br");
+    			t19 = text(" the following object will be dispatched in event:");
+    			br2 = element("br");
+    			t20 = space();
+    			b6 = element("b");
+    			b6.textContent = `${/*sortChangeExample*/ ctx[1]}`;
+    			br3 = element("br");
+    			t22 = space();
+    			b7 = element("b");
+    			b7.textContent = "$propertyName";
+    			t24 = text(" - is the name of property");
+    			br4 = element("br");
+    			t25 = text("passed to 'sortable' header cell via 'sortableproperty' property;");
+    			br5 = element("br");
+    			t26 = space();
+    			b8 = element("b");
+    			b8.textContent = "$direction";
+    			t28 = text(" - either desc, asc or undefined.");
+    			t29 = space();
+    			li6 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "Event (pageChange)";
+    			t31 = text(" - whenever user changes current page");
+    			br6 = element("br");
+    			t32 = text("the following object will be dispatched in event:");
+    			br7 = element("br");
+    			t33 = space();
+    			b10 = element("b");
+    			b10.textContent = `${/*pageChangeExample*/ ctx[2]}`;
+    			br8 = element("br");
+    			t35 = space();
+    			b11 = element("b");
+    			b11.textContent = "$pageNumber";
+    			t37 = text(" - number of the page user wants to go to.");
+    			t38 = space();
+    			li7 = element("li");
+    			b12 = element("b");
+    			b12.textContent = "resizable";
+    			t40 = text(" - whether columns should be resizable. To prevent resizing particular column set `min-width` and `max-width`;");
+    			t41 = space();
+    			zoo_collapsable_list_item1 = element("zoo-collapsable-list-item");
+    			t42 = text("More in depth documentation can be found ");
+    			zoo_link = element("zoo-link");
+    			t43 = text(".");
+    			t44 = space();
+    			div10 = element("div");
+    			code = element("code");
+    			pre = element("pre");
+    			pre.textContent = `${/*example*/ ctx[3]}`;
+    			t46 = text("\n\t\twill produce the following:\n\t\t");
+    			div9 = element("div");
+    			zoo_grid = element("zoo-grid");
+    			div1 = element("div");
+    			div1.textContent = "Title 1";
+    			t48 = space();
+    			div2 = element("div");
+    			div2.textContent = "Title 2";
+    			t50 = space();
+    			div5 = element("div");
+    			div3 = element("div");
+    			div3.textContent = "Cell 1";
+    			t52 = space();
+    			div4 = element("div");
+    			div4.textContent = "Cell 2";
+    			t54 = space();
+    			div8 = element("div");
+    			div6 = element("div");
+    			div6.textContent = "Cell 3";
+    			t56 = space();
+    			div7 = element("div");
+    			div7.textContent = "Cell 4";
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Grid component API.");
+    			add_location(app_context, file$m, 1, 0, 50);
+    			add_location(b0, file$m, 8, 6, 262);
+    			add_location(br0, file$m, 8, 62, 318);
+    			add_location(li0, file$m, 7, 5, 251);
+    			add_location(b1, file$m, 11, 6, 402);
+    			add_location(li1, file$m, 10, 5, 391);
+    			add_location(b2, file$m, 14, 6, 500);
+    			add_location(li2, file$m, 13, 5, 489);
+    			add_location(b3, file$m, 17, 6, 598);
+    			add_location(li3, file$m, 16, 5, 587);
+    			add_location(b4, file$m, 20, 6, 680);
+    			add_location(li4, file$m, 19, 5, 669);
+    			add_location(b5, file$m, 23, 6, 749);
+    			add_location(br1, file$m, 23, 63, 806);
+    			add_location(br2, file$m, 23, 117, 860);
+    			add_location(b6, file$m, 24, 6, 871);
+    			add_location(br3, file$m, 24, 32, 897);
+    			add_location(b7, file$m, 25, 6, 908);
+    			add_location(br4, file$m, 25, 52, 954);
+    			add_location(br5, file$m, 25, 121, 1023);
+    			add_location(b8, file$m, 26, 6, 1034);
+    			add_location(li5, file$m, 22, 5, 738);
+    			add_location(b9, file$m, 29, 6, 1112);
+    			add_location(br6, file$m, 29, 68, 1174);
+    			add_location(br7, file$m, 29, 121, 1227);
+    			add_location(b10, file$m, 30, 6, 1238);
+    			add_location(br8, file$m, 30, 32, 1264);
+    			add_location(b11, file$m, 31, 6, 1275);
+    			add_location(li6, file$m, 28, 5, 1101);
+    			add_location(b12, file$m, 34, 6, 1363);
+    			add_location(li7, file$m, 33, 5, 1352);
+    			add_location(ul, file$m, 6, 4, 241);
+    			set_custom_element_data(zoo_collapsable_list_item0, "slot", "item0");
+    			add_location(zoo_collapsable_list_item0, file$m, 5, 3, 196);
+    			set_custom_element_data(zoo_link, "class", "doc-link");
+    			set_custom_element_data(zoo_link, "href", "https://github.com/zooplus/zoo-web-components/tree/master/zoo-modules/grid-module");
+    			set_custom_element_data(zoo_link, "text", "here");
+    			set_custom_element_data(zoo_link, "type", "primary");
+    			add_location(zoo_link, file$m, 39, 45, 1632);
+    			set_custom_element_data(zoo_collapsable_list_item1, "slot", "item1");
+    			add_location(zoo_collapsable_list_item1, file$m, 38, 3, 1546);
+    			add_location(zoo_collapsable_list, file$m, 4, 2, 153);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$m, 3, 1, 132);
+    			add_location(pre, file$m, 44, 8, 1885);
+    			add_location(code, file$m, 44, 2, 1879);
+    			attr_dev(div1, "slot", "headercell");
+    			attr_dev(div1, "sortable", "");
+    			attr_dev(div1, "sortableproperty", "title1");
+    			add_location(div1, file$m, 48, 4, 2032);
+    			attr_dev(div2, "slot", "headercell");
+    			add_location(div2, file$m, 49, 4, 2108);
+    			add_location(div3, file$m, 51, 5, 2171);
+    			add_location(div4, file$m, 52, 5, 2194);
+    			attr_dev(div5, "slot", "row");
+    			add_location(div5, file$m, 50, 4, 2149);
+    			add_location(div6, file$m, 55, 5, 2249);
+    			add_location(div7, file$m, 56, 5, 2272);
+    			attr_dev(div8, "slot", "row");
+    			add_location(div8, file$m, 54, 4, 2227);
+    			set_custom_element_data(zoo_grid, "paginator", "");
+    			set_custom_element_data(zoo_grid, "currentpage", "1");
+    			set_custom_element_data(zoo_grid, "maxpages", "50");
+    			add_location(zoo_grid, file$m, 47, 3, 1977);
+    			set_style(div9, "padding", "10px");
+    			add_location(div9, file$m, 46, 2, 1945);
+    			attr_dev(div10, "class", "example");
+    			add_location(div10, file$m, 43, 1, 1855);
+    			attr_dev(div11, "class", "doc-element");
+    			add_location(div11, file$m, 2, 0, 105);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div11, anchor);
+    			append_dev(div11, div0);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item0);
+    			append_dev(zoo_collapsable_list_item0, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t2);
+    			append_dev(li0, br0);
+    			append_dev(li0, t3);
+    			append_dev(ul, t4);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t6);
+    			append_dev(ul, t7);
+    			append_dev(ul, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t9);
+    			append_dev(ul, t10);
+    			append_dev(ul, li3);
+    			append_dev(li3, b3);
+    			append_dev(li3, t12);
+    			append_dev(ul, t13);
+    			append_dev(ul, li4);
+    			append_dev(li4, b4);
+    			append_dev(li4, t15);
+    			append_dev(ul, t16);
+    			append_dev(ul, li5);
+    			append_dev(li5, b5);
+    			append_dev(li5, t18);
+    			append_dev(li5, br1);
+    			append_dev(li5, t19);
+    			append_dev(li5, br2);
+    			append_dev(li5, t20);
+    			append_dev(li5, b6);
+    			append_dev(li5, br3);
+    			append_dev(li5, t22);
+    			append_dev(li5, b7);
+    			append_dev(li5, t24);
+    			append_dev(li5, br4);
+    			append_dev(li5, t25);
+    			append_dev(li5, br5);
+    			append_dev(li5, t26);
+    			append_dev(li5, b8);
+    			append_dev(li5, t28);
+    			append_dev(ul, t29);
+    			append_dev(ul, li6);
+    			append_dev(li6, b9);
+    			append_dev(li6, t31);
+    			append_dev(li6, br6);
+    			append_dev(li6, t32);
+    			append_dev(li6, br7);
+    			append_dev(li6, t33);
+    			append_dev(li6, b10);
+    			append_dev(li6, br8);
+    			append_dev(li6, t35);
+    			append_dev(li6, b11);
+    			append_dev(li6, t37);
+    			append_dev(ul, t38);
+    			append_dev(ul, li7);
+    			append_dev(li7, b12);
+    			append_dev(li7, t40);
+    			append_dev(zoo_collapsable_list, t41);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item1);
+    			append_dev(zoo_collapsable_list_item1, t42);
+    			append_dev(zoo_collapsable_list_item1, zoo_link);
+    			append_dev(zoo_collapsable_list_item1, t43);
+    			/*zoo_collapsable_list_binding*/ ctx[4](zoo_collapsable_list);
+    			append_dev(div11, t44);
+    			append_dev(div11, div10);
+    			append_dev(div10, code);
+    			append_dev(code, pre);
+    			append_dev(div10, t46);
+    			append_dev(div10, div9);
+    			append_dev(div9, zoo_grid);
+    			append_dev(zoo_grid, div1);
+    			append_dev(zoo_grid, t48);
+    			append_dev(zoo_grid, div2);
+    			append_dev(zoo_grid, t50);
+    			append_dev(zoo_grid, div5);
+    			append_dev(div5, div3);
+    			append_dev(div5, t52);
+    			append_dev(div5, div4);
+    			append_dev(zoo_grid, t54);
+    			append_dev(zoo_grid, div8);
+    			append_dev(div8, div6);
+    			append_dev(div8, t56);
+    			append_dev(div8, div7);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div11);
+    			/*zoo_collapsable_list_binding*/ ctx[4](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$m.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$m($$self, $$props, $$invalidate) {
+    	let list;
+    	let sortChangeExample = `{detail: { property: $propertyName, direction: $direction }}`;
+    	let pageChangeExample = `{detail: { pageNumber: $pageNumber }}`;
+
+    	let example = `<zoo-grid paginator currentpage="1" maxpages="50">
+	<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
+	<div slot="headercell">Title 2</div>
+	<div slot="row">
+		<div>Cell 1</div>
+		<div>Cell 2</div>
+	</div>
+	<div slot="row">
+		<div>Cell 3</div>
+		<div>Cell 4</div>
+	</div>
+</zoo-grid>`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }, { header: "Slots" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-grid> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-grid", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		list,
+    		sortChangeExample,
+    		pageChangeExample,
+    		example
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("sortChangeExample" in $$props) $$invalidate(1, sortChangeExample = $$props.sortChangeExample);
+    		if ("pageChangeExample" in $$props) $$invalidate(2, pageChangeExample = $$props.pageChangeExample);
+    		if ("example" in $$props) $$invalidate(3, example = $$props.example);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		list,
+    		sortChangeExample,
+    		pageChangeExample,
+    		example,
+    		zoo_collapsable_list_binding
+    	];
+    }
+
+    class GridDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}.doc-link{display:inline-block;padding:5px 0 0 0}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$m, create_fragment$m, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-grid", GridDocs);
+
+    /* src/docs/ThemingDocs.svelte generated by Svelte v3.22.3 */
+    const file$n = "src/docs/ThemingDocs.svelte";
+
+    function create_fragment$n(ctx) {
+    	let app_context;
+    	let t0;
+    	let div2;
+    	let div0;
+    	let t1;
+    	let a;
+    	let t3;
+    	let zoo_collapsable_list;
+    	let zoo_collapsable_list_item;
+    	let ul;
+    	let li0;
+    	let b0;
+    	let t5;
+    	let t6;
+    	let li1;
+    	let b1;
+    	let t8;
+    	let t9;
+    	let li2;
+    	let b2;
+    	let t11;
+    	let t12;
+    	let li3;
+    	let b3;
+    	let t14;
+    	let t15;
+    	let li4;
+    	let b4;
+    	let t17;
+    	let t18;
+    	let li5;
+    	let b5;
+    	let t20;
+    	let t21;
+    	let li6;
+    	let b6;
+    	let t23;
+    	let t24;
+    	let li7;
+    	let b7;
+    	let t26;
+    	let t27;
+    	let li8;
+    	let b8;
+    	let t29;
+    	let t30;
+    	let li9;
+    	let b9;
+    	let t32;
+    	let t33;
+    	let li10;
+    	let b10;
+    	let t35;
+    	let t36;
+    	let li11;
+    	let b11;
+    	let t38;
+    	let t39;
+    	let li12;
+    	let b12;
+    	let t41;
+    	let t42;
+    	let li13;
+    	let b13;
+    	let t44;
+    	let t45;
+    	let li14;
+    	let b14;
+    	let t47;
+    	let t48;
+    	let div1;
+    	let t49;
+    	let code0;
+    	let pre0;
+    	let t51;
+    	let code1;
+    	let pre1;
+
+    	const block = {
+    		c: function create() {
+    			app_context = element("app-context");
+    			t0 = space();
+    			div2 = element("div");
+    			div0 = element("div");
+    			t1 = text("Theming can be achieved by using CSS Custom Properties ");
+    			a = element("a");
+    			a.textContent = "docs";
+    			t3 = text(".\n\t\tAPI describes possible variables which are understood by the library.\n\t\t");
+    			zoo_collapsable_list = element("zoo-collapsable-list");
+    			zoo_collapsable_list_item = element("zoo-collapsable-list-item");
+    			ul = element("ul");
+    			li0 = element("li");
+    			b0 = element("b");
+    			b0.textContent = "--primary-mid";
+    			t5 = text(" - default color #3C9700;");
+    			t6 = space();
+    			li1 = element("li");
+    			b1 = element("b");
+    			b1.textContent = "--primary-light";
+    			t8 = text(" - default color #66B100;");
+    			t9 = space();
+    			li2 = element("li");
+    			b2 = element("b");
+    			b2.textContent = "--primary-ultralight";
+    			t11 = text(" - default color #EBF4E5;");
+    			t12 = space();
+    			li3 = element("li");
+    			b3 = element("b");
+    			b3.textContent = "--primary-dark";
+    			t14 = text(" - default color #286400;");
+    			t15 = space();
+    			li4 = element("li");
+    			b4 = element("b");
+    			b4.textContent = "--secondary-mid";
+    			t17 = text(" - default color #FF6200;");
+    			t18 = space();
+    			li5 = element("li");
+    			b5 = element("b");
+    			b5.textContent = "--secondary-light";
+    			t20 = text(" - default color #FF8800;");
+    			t21 = space();
+    			li6 = element("li");
+    			b6 = element("b");
+    			b6.textContent = "--secondary-ultralight";
+    			t23 = text(" - default color #FFF0E7;");
+    			t24 = space();
+    			li7 = element("li");
+    			b7 = element("b");
+    			b7.textContent = "--secondary-dark";
+    			t26 = text(" - default color #CC4E00;");
+    			t27 = space();
+    			li8 = element("li");
+    			b8 = element("b");
+    			b8.textContent = "--warning-ultralight";
+    			t29 = text(" - default color #FDE8E9;");
+    			t30 = space();
+    			li9 = element("li");
+    			b9 = element("b");
+    			b9.textContent = "--warning-mid";
+    			t32 = text(" - default color #ED1C24;");
+    			t33 = space();
+    			li10 = element("li");
+    			b10 = element("b");
+    			b10.textContent = "--warning-dark";
+    			t35 = text(" - default color #BD161C;");
+    			t36 = space();
+    			li11 = element("li");
+    			b11 = element("b");
+    			b11.textContent = "--success-ultralight";
+    			t38 = text(" - default color #EBF4E5;");
+    			t39 = space();
+    			li12 = element("li");
+    			b12 = element("b");
+    			b12.textContent = "--success-mid";
+    			t41 = text(" - default color #3C9700;");
+    			t42 = space();
+    			li13 = element("li");
+    			b13 = element("b");
+    			b13.textContent = "--info-ultralight";
+    			t44 = text(" - default color #ECF5FA;");
+    			t45 = space();
+    			li14 = element("li");
+    			b14 = element("b");
+    			b14.textContent = "--info-mid";
+    			t47 = text(" - default color #459FD0;");
+    			t48 = space();
+    			div1 = element("div");
+    			t49 = text("Example with a preprocessor:\n\t\t");
+    			code0 = element("code");
+    			pre0 = element("pre");
+    			pre0.textContent = `${/*exampleScss*/ ctx[1]}`;
+    			t51 = text("\n\t\tExample with pure css:\n\t\t");
+    			code1 = element("code");
+    			pre1 = element("pre");
+    			pre1.textContent = `${/*exampleCss*/ ctx[2]}`;
+    			this.c = noop;
+    			set_custom_element_data(app_context, "text", "Theming API.");
+    			add_location(app_context, file$n, 2, 0, 54);
+    			attr_dev(a, "href", "https://developer.mozilla.org/en-US/docs/Web/CSS/--*");
+    			attr_dev(a, "target", "about:blank");
+    			add_location(a, file$n, 5, 57, 205);
+    			add_location(b0, file$n, 11, 6, 482);
+    			add_location(li0, file$n, 10, 5, 471);
+    			add_location(b1, file$n, 14, 6, 555);
+    			add_location(li1, file$n, 13, 5, 544);
+    			add_location(b2, file$n, 17, 6, 630);
+    			add_location(li2, file$n, 16, 5, 619);
+    			add_location(b3, file$n, 20, 6, 710);
+    			add_location(li3, file$n, 19, 5, 699);
+    			add_location(b4, file$n, 23, 6, 784);
+    			add_location(li4, file$n, 22, 5, 773);
+    			add_location(b5, file$n, 26, 6, 859);
+    			add_location(li5, file$n, 25, 5, 848);
+    			add_location(b6, file$n, 29, 6, 936);
+    			add_location(li6, file$n, 28, 5, 925);
+    			add_location(b7, file$n, 32, 6, 1018);
+    			add_location(li7, file$n, 31, 5, 1007);
+    			add_location(b8, file$n, 35, 6, 1094);
+    			add_location(li8, file$n, 34, 5, 1083);
+    			add_location(b9, file$n, 38, 6, 1174);
+    			add_location(li9, file$n, 37, 5, 1163);
+    			add_location(b10, file$n, 41, 6, 1247);
+    			add_location(li10, file$n, 40, 5, 1236);
+    			add_location(b11, file$n, 44, 6, 1321);
+    			add_location(li11, file$n, 43, 5, 1310);
+    			add_location(b12, file$n, 47, 6, 1401);
+    			add_location(li12, file$n, 46, 5, 1390);
+    			add_location(b13, file$n, 50, 6, 1474);
+    			add_location(li13, file$n, 49, 5, 1463);
+    			add_location(b14, file$n, 53, 6, 1551);
+    			add_location(li14, file$n, 52, 5, 1540);
+    			add_location(ul, file$n, 9, 4, 461);
+    			set_custom_element_data(zoo_collapsable_list_item, "slot", "item0");
+    			add_location(zoo_collapsable_list_item, file$n, 8, 3, 416);
+    			add_location(zoo_collapsable_list, file$n, 7, 2, 373);
+    			attr_dev(div0, "class", "list");
+    			add_location(div0, file$n, 4, 1, 129);
+    			add_location(pre0, file$n, 61, 8, 1743);
+    			add_location(code0, file$n, 61, 2, 1737);
+    			add_location(pre1, file$n, 63, 8, 1808);
+    			add_location(code1, file$n, 63, 2, 1802);
+    			attr_dev(div1, "class", "example");
+    			add_location(div1, file$n, 59, 1, 1682);
+    			attr_dev(div2, "class", "doc-element");
+    			add_location(div2, file$n, 3, 0, 102);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, app_context, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, t1);
+    			append_dev(div0, a);
+    			append_dev(div0, t3);
+    			append_dev(div0, zoo_collapsable_list);
+    			append_dev(zoo_collapsable_list, zoo_collapsable_list_item);
+    			append_dev(zoo_collapsable_list_item, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, b0);
+    			append_dev(li0, t5);
+    			append_dev(ul, t6);
+    			append_dev(ul, li1);
+    			append_dev(li1, b1);
+    			append_dev(li1, t8);
+    			append_dev(ul, t9);
+    			append_dev(ul, li2);
+    			append_dev(li2, b2);
+    			append_dev(li2, t11);
+    			append_dev(ul, t12);
+    			append_dev(ul, li3);
+    			append_dev(li3, b3);
+    			append_dev(li3, t14);
+    			append_dev(ul, t15);
+    			append_dev(ul, li4);
+    			append_dev(li4, b4);
+    			append_dev(li4, t17);
+    			append_dev(ul, t18);
+    			append_dev(ul, li5);
+    			append_dev(li5, b5);
+    			append_dev(li5, t20);
+    			append_dev(ul, t21);
+    			append_dev(ul, li6);
+    			append_dev(li6, b6);
+    			append_dev(li6, t23);
+    			append_dev(ul, t24);
+    			append_dev(ul, li7);
+    			append_dev(li7, b7);
+    			append_dev(li7, t26);
+    			append_dev(ul, t27);
+    			append_dev(ul, li8);
+    			append_dev(li8, b8);
+    			append_dev(li8, t29);
+    			append_dev(ul, t30);
+    			append_dev(ul, li9);
+    			append_dev(li9, b9);
+    			append_dev(li9, t32);
+    			append_dev(ul, t33);
+    			append_dev(ul, li10);
+    			append_dev(li10, b10);
+    			append_dev(li10, t35);
+    			append_dev(ul, t36);
+    			append_dev(ul, li11);
+    			append_dev(li11, b11);
+    			append_dev(li11, t38);
+    			append_dev(ul, t39);
+    			append_dev(ul, li12);
+    			append_dev(li12, b12);
+    			append_dev(li12, t41);
+    			append_dev(ul, t42);
+    			append_dev(ul, li13);
+    			append_dev(li13, b13);
+    			append_dev(li13, t44);
+    			append_dev(ul, t45);
+    			append_dev(ul, li14);
+    			append_dev(li14, b14);
+    			append_dev(li14, t47);
+    			/*zoo_collapsable_list_binding*/ ctx[3](zoo_collapsable_list);
+    			append_dev(div2, t48);
+    			append_dev(div2, div1);
+    			append_dev(div1, t49);
+    			append_dev(div1, code0);
+    			append_dev(code0, pre0);
+    			append_dev(div1, t51);
+    			append_dev(div1, code1);
+    			append_dev(code1, pre1);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(app_context);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div2);
+    			/*zoo_collapsable_list_binding*/ ctx[3](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$n.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$n($$self, $$props, $$invalidate) {
+    	let list;
+    	let exampleScss = `@import "variables";\n:root {\n  --primary-mid: #{$primary-mid};\n  --primary-light: #{$primary-light};\n  --primary-dark: #{$primary-dark};\n  --secondary-mid: #{$secondary-mid};\n  --secondary-light: #{$secondary-light};\n  --secondary-dark: #{$secondary-dark};\n}`;
+    	let exampleCss = `:root {\n  --primary-mid: #040C40;\n  --primary-light: #040C40;\n  --primary-dark: #020729;\n  --secondary-mid: #5D4200;\n  --secondary-light: #745300;\n  --secondary-dark: #3B2B00;\n}`;
+
+    	onMount(() => {
+    		$$invalidate(0, list.items = [{ header: "API" }], list);
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<docs-theming> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+    	validate_slots("docs-theming", $$slots, []);
+
+    	function zoo_collapsable_list_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, list = $$value);
+    		});
+    	}
+
+    	$$self.$capture_state = () => ({ onMount, list, exampleScss, exampleCss });
+
+    	$$self.$inject_state = $$props => {
+    		if ("list" in $$props) $$invalidate(0, list = $$props.list);
+    		if ("exampleScss" in $$props) $$invalidate(1, exampleScss = $$props.exampleScss);
+    		if ("exampleCss" in $$props) $$invalidate(2, exampleCss = $$props.exampleCss);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [list, exampleScss, exampleCss, zoo_collapsable_list_binding];
+    }
+
+    class ThemingDocs extends SvelteElement {
+    	constructor(options) {
+    		super();
+    		this.shadowRoot.innerHTML = `<style>.doc-element{display:flex;flex-direction:row}.list{width:35%;margin:0 20px}.example{overflow:auto}</style>`;
+    		init(this, { target: this.shadowRoot }, instance$n, create_fragment$n, safe_not_equal, {});
+
+    		if (options) {
+    			if (options.target) {
+    				insert_dev(options.target, this, options.anchor);
+    			}
+    		}
+    	}
+    }
+
+    customElements.define("docs-theming", ThemingDocs);
+
+}());

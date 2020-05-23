@@ -87,9 +87,10 @@
 	export let sortable = false;
 	export let zoodraggable = false;
 	let gridHeaderRoot;
+	let host;
 
 	onMount(() => {
-		const host = gridHeaderRoot.getRootNode().host;
+		host = gridHeaderRoot.getRootNode().host;
 		host.addEventListener('dragend', () => host.setAttribute('draggable', false));
 	});
 
@@ -101,12 +102,9 @@
 		} else if (sortState = 'asc') {
 			sortState = undefined;
 		}
-		gridHeaderRoot.getRootNode().host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: sortState}, bubbles: true}));
+		host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: sortState, header: host}, bubbles: true}));
 	}
 
-	const toggleHostDraggable = (e) => {
-		const host = gridHeaderRoot.getRootNode().host;
-		host.setAttribute('draggable', true);
-	}
+	const toggleHostDraggable = () => host.setAttribute('draggable', true);
 
 </script>

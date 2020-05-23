@@ -4,7 +4,7 @@
 		<div class="loading-shade"></div>
 		<zoo-spinner></zoo-spinner>
 	{/if}
-	<div class="header-row">
+	<div class="header-row" on:sortChange="{e => handleSortChange(e)}">
 		<slot name="headercell" bind:this={headerCellSlot}></slot>
 	</div>
 	<slot name="row" bind:this={rowSlot}></slot>
@@ -77,6 +77,7 @@
 		::slotted(*[slot="headercell"]) {
 			overflow: auto;
 			resize: horizontal;
+			height: inherit;
 		}
 	}
 
@@ -102,7 +103,6 @@
 	::slotted(*[slot="headercell"]) {
 		display: flex;
 		align-items: center;
-		padding-right: 5px;
 		flex-grow: 1;
 	}
 
@@ -140,6 +140,7 @@
 	let rowSlot;
 	let resizeObserver;
 	let prevSortedHeader;
+	let dragEventListenersInitialized = false;
 	// sortable grid -> set min-width to set width
 	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
@@ -148,81 +149,84 @@
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty('--grid-column-num', headers.length);
 			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
-			handleHeaders(headers, host, host.hasAttribute('resizable'), host.hasAttribute('draggable'));
+			handleHeaders(headers, host, host.hasAttribute('resizable'), host.hasAttribute('dragndrop'));
 		});
 
 		rowSlot.addEventListener("slotchange", () => {
-			const allRows = rowSlot.assignedNodes();
-			for (const row of allRows) {
-				let i = 1;
-				for (const child of row.children) {
-					child.setAttribute('column', i);
-					child.style.flexGrow = 1;
-					i++;
-				}
-			}
+			assignColumnNumberToRows();
 		});
 	});
 
-	const handleHeaders = (headers, host, applyResizeLogic, draggable) => {
-		if (applyResizeLogic) {
-			createResizeObserver(host);
+	const handleHeaders = (headers, host, resizable, draggable) => {
+		if (resizable) {
+			if (!resizeObserver) {
+				createResizeObserver(host);
+			} else {
+				resizeObserver.disconnect();
+			}
 		}
-		// setColumnNumbers(headers);
-		let i = 1;
-		for (let header of headers) {
-			const sortable = header.hasAttribute('sortable');
-			const draggable = host.hasAttribute('draggable');
-			if (sortable) header.addEventListener("sortChange", e => handleSortChange(e, header, host));
-			const gridHeader = document.createElement('zoo-grid-header');
-			if (sortable) gridHeader.setAttribute('sortable', true);
-			if (draggable) gridHeader.setAttribute('zoodraggable', true);
-			gridHeader.innerHTML = header.innerHTML;
-			gridHeader.setAttribute('column', i);
-			header.setAttribute('column', i);
-			i++;
-			header.innerHTML = '';
-			header.appendChild(gridHeader);
-			if (applyResizeLogic) resizeObserver.observe(header);
-			if (draggable) handleDraggableHeader(header, host);
-		}
-	}
-
-	const setColumnNumbers = (headers) => {
 		let i = 1;
 		for (let header of headers) {
 			header.setAttribute('column', i);
+			if (resizable) resizeObserver.observe(header);
+			if (!dragEventListenersInitialized && draggable) handleDraggableHeader(header, host);
 			i++;
 		}
+		dragEventListenersInitialized = true;
 	}
 
+	// todo currently it reverses the order from target column to source column
+	// make it inject column before target and leave the order of the rest intact.
 	const handleDraggableHeader = (header, host) => {
-		// header.setAttribute('draggable', true);
-		header.addEventListener('dragstart', e => {
-			e.dataTransfer.setData("text/plain", header.getAttribute('column'));
-		});
+		header.addEventListener('dragstart', e => e.dataTransfer.setData("text/plain", header.getAttribute('column')));
 		header.setAttribute('ondragover', 'event.preventDefault()');
 		header.setAttribute('ondrop', 'event.preventDefault()');
 		header.addEventListener('drop', e => {
-			console.log(headerCellSlot);
-			const source = host.querySelector('zoo-grid-header[column="' + e.dataTransfer.getData('text') + '"]');
-			// console.log(e.target.parentNode.parentNode);
-			// console.log(e.target.parentNode);
-			// console.log(source.parentNode);
-			e.target.parentNode.parentNode.insertBefore(e.target.parentNode, source.parentNode);
+			// replace headers
+			const sourceColumn = e.dataTransfer.getData('text');
+			const targetColumn = e.target.getAttribute('column');
+			const sourceHeader = host.querySelector('zoo-grid-header[column="' + sourceColumn + '"]');
+			if (targetColumn < sourceColumn) {
+				e.target.parentNode.insertBefore(sourceHeader, e.target);
+			} else if (targetColumn > sourceColumn) {
+				e.target.parentNode.insertBefore(e.target, sourceHeader);
+			}
+			// replace rows
+			const allRows = rowSlot.assignedNodes();
+			for (const row of allRows) {
+				const sourceRowColumn = row.querySelector('[column="' + sourceColumn + '"]');
+				const targetRowColumn = row.querySelector('[column="' + targetColumn + '"]');
+				if (targetColumn < sourceColumn) {
+					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
+				} else if (targetColumn > sourceColumn) {
+					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
+				}
+			}
+			assignColumnNumberToRows();
 		});
 	}
 
-	const handleSortChange = (e, header, host) => {
+	const assignColumnNumberToRows = () => {
+		const allRows = rowSlot.assignedNodes();
+		for (const row of allRows) {
+			let i = 1;
+			for (const child of row.children) {
+				child.setAttribute('column', i);
+				i++;
+			}
+		}
+	}
+
+	const handleSortChange = e => {
 		e.stopPropagation();
+		const header = e.detail.header;
 		const sortState = e.detail.sortState;
-		const gridHeader = header.children[0]
-		if (prevSortedHeader && !gridHeader.isEqualNode(prevSortedHeader)) {
+		if (prevSortedHeader && !header.isEqualNode(prevSortedHeader)) {
 			prevSortedHeader.sortState = undefined;
 		}
-		prevSortedHeader = gridHeader;
+		prevSortedHeader = header;
 		const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
-		host.dispatchEvent(new CustomEvent('sortChange', {
+		gridRoot.getRootNode().host.dispatchEvent(new CustomEvent('sortChange', {
 			detail: detail, bubbles: true
 		}));
 	}

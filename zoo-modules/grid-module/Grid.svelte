@@ -137,9 +137,9 @@
 	export let loading = false;
 	let gridRoot;
 	let headerCellSlot;
-	let sortableHeaders = [];
 	let rowSlot;
 	let resizeObserver;
+	let prevSortedHeader;
 	// sortable grid -> set min-width to set width
 	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
@@ -148,7 +148,7 @@
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty('--grid-column-num', headers.length);
 			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
-			handleHeaders(headers, host, host.hasAttribute('resizable'));
+			handleHeaders(headers, host, host.hasAttribute('resizable'), host.hasAttribute('draggable'));
 		});
 
 		rowSlot.addEventListener("slotchange", () => {
@@ -164,33 +164,67 @@
 		});
 	});
 
-	const handleHeaders = (headers, host, applyResizeLogic) => {
-		let i = 1;
+	const handleHeaders = (headers, host, applyResizeLogic, draggable) => {
 		if (applyResizeLogic) {
 			createResizeObserver(host);
 		}
+		// setColumnNumbers(headers);
+		let i = 1;
+		for (let header of headers) {
+			const sortable = header.hasAttribute('sortable');
+			const draggable = host.hasAttribute('draggable');
+			if (sortable) header.addEventListener("sortChange", e => handleSortChange(e, header, host));
+			const gridHeader = document.createElement('zoo-grid-header');
+			if (sortable) gridHeader.setAttribute('sortable', true);
+			if (draggable) gridHeader.setAttribute('zoodraggable', true);
+			gridHeader.innerHTML = header.innerHTML;
+			gridHeader.setAttribute('column', i);
+			header.setAttribute('column', i);
+			i++;
+			header.innerHTML = '';
+			header.appendChild(gridHeader);
+			if (applyResizeLogic) resizeObserver.observe(header);
+			if (draggable) handleDraggableHeader(header, host);
+		}
+	}
+
+	const setColumnNumbers = (headers) => {
+		let i = 1;
 		for (let header of headers) {
 			header.setAttribute('column', i);
-			if (header.hasAttribute('sortable')) handleSortableHeader(header, host);
-			if (applyResizeLogic) resizeObserver.observe(header);
 			i++;
 		}
 	}
 
-	const handleSortableHeader = (header, host) => {
-		header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
-		header.addEventListener("sortChange", (e) => {
-			e.stopPropagation();
-			const sortState = e.detail.sortState;
-			sortableHeaders.forEach(h => {
-				if (!h.isEqualNode(header.children[0])) h.sortState = undefined;
-			});
-			const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
-			host.dispatchEvent(new CustomEvent('sortChange', {
-				detail: detail, bubbles: true
-			}));
+	const handleDraggableHeader = (header, host) => {
+		// header.setAttribute('draggable', true);
+		header.addEventListener('dragstart', e => {
+			e.dataTransfer.setData("text/plain", header.getAttribute('column'));
 		});
-		sortableHeaders.push(header.children[0]);
+		header.setAttribute('ondragover', 'event.preventDefault()');
+		header.setAttribute('ondrop', 'event.preventDefault()');
+		header.addEventListener('drop', e => {
+			console.log(headerCellSlot);
+			const source = host.querySelector('zoo-grid-header[column="' + e.dataTransfer.getData('text') + '"]');
+			// console.log(e.target.parentNode.parentNode);
+			// console.log(e.target.parentNode);
+			// console.log(source.parentNode);
+			e.target.parentNode.parentNode.insertBefore(e.target.parentNode, source.parentNode);
+		});
+	}
+
+	const handleSortChange = (e, header, host) => {
+		e.stopPropagation();
+		const sortState = e.detail.sortState;
+		const gridHeader = header.children[0]
+		if (prevSortedHeader && !gridHeader.isEqualNode(prevSortedHeader)) {
+			prevSortedHeader.sortState = undefined;
+		}
+		prevSortedHeader = gridHeader;
+		const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
+		host.dispatchEvent(new CustomEvent('sortChange', {
+			detail: detail, bubbles: true
+		}));
 	}
 
 	const createResizeObserver = host => {

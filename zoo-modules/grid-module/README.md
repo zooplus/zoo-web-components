@@ -5,6 +5,7 @@
 - `currentpage` - current page that the user is on;
 - `maxpages` - maximum number of pages;
 - `resizable` - whether columns should be resizable. To prevent resizing particular column set `min-width` and `max-width`;
+- `reorderable` - whether columns can be reordered.
 - `--grid-column-sizes` - css custom property.      
 By default, grid will calculate number of headers supplied via slot, and apply `repeat(var(--grid-column-num), minmax(50px, 1fr))` css rule to header and each row; If you want to change some of widths of some columns you can set `--grid-column-sizes` css custom property on `zoo-grid` to change width of columns, for example: `--grid-column-sizes: 150px repeat(9, minmax(50px, 1fr)) !important;` to force first column to be 150px wide.      
 However, when `resizable` attribute is supplied, grid will set column widths automatically on element level, so `--grid-column-sizes` will not work, to force width of any column use the following css:
@@ -38,7 +39,7 @@ where:
 
 ### Slots
 This component accepts following slots:      
-- headers: <div slot="headercell"></div>, `headercell` accepts `sortable` attribute and `sortableproperty` attribute;
+- headers: <zoo-grid-header slot="headercell"></zoo-grid-header>, `headercell` accepts `sortable` attribute and `sortableproperty` attribute;
 - rows: <div slot="row"></div> ;
 - paginator (optional): <div slot="paginator"></div>, when not provided, default `<zoo-grid-paginator>` will be used;
 - page size selector (optional): <div slot="pagesizeselector"></div>;
@@ -49,7 +50,7 @@ This component accepts following slots:
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 	{#each headers as header}
-		<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+		<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 	{/each}
 	{#each data as row} 
 		<div slot="row">

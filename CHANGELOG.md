@@ -1,3 +1,9 @@
+# 5.3.0
+`zoo-grid` - added option `reorderable` for grid to allow columns reorder.       
+
+## Deprecation
+`zoo-grid` - `slot="headercell"` no longer accepts any element, to preserve backward compatibility slotted element will automatically be transformed to `zoo-grid-header`. Use `zoo-grid-header` as a wrapper container when injecting `headercell` slot.
+
 # 5.2.2
 remove containment of most of elements that might be used a lot of a single page.      
 `zoo-grid` - simplification of internal styles and making `zoo-paginator` a sticky container which sticks to the right side.

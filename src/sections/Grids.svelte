@@ -61,7 +61,7 @@
 		<zoo-grid class="limited-width grid-2" style="min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
 			currentpage="1" maxpages="4" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
-				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 			{/each}
 
 			{#each extendedData as row} 
@@ -104,7 +104,7 @@
 	<div class="grid-holder">
 		<zoo-grid class="limited-width" paginator>
 			{#each headers as header}
-				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 			{/each}
 			<div slot="norecords" class="example-row limited-width">
 				No records to show!
@@ -124,7 +124,7 @@
 						</zoo-button>
 					</zoo-grid-header>
 				{:else}
-					<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+					<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 				{/if}
 			{/each}
 		</zoo-grid>

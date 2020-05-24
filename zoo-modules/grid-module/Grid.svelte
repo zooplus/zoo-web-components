@@ -81,6 +81,15 @@
 		}
 	}
 
+	:host(.dragging) ::slotted(*[ondrop]) {
+		border-radius: 3px;
+		box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,.1);
+	}
+
+	:host(.dragging) ::slotted(.drag-over) {
+		box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,.4);
+	}
+
 	::slotted(*[slot="row"]) {
 		align-items: center;
 		box-sizing: border-box;
@@ -140,7 +149,7 @@
 	let rowSlot;
 	let resizeObserver;
 	let prevSortedHeader;
-	let dragEventListenersInitialized = false;
+	let draggedOverHeader;
 	// sortable grid -> set min-width to set width
 	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
@@ -149,53 +158,98 @@
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty('--grid-column-num', headers.length);
 			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
-			handleHeaders(headers, host, host.hasAttribute('resizable'), host.hasAttribute('dragndrop'));
+			handleHeaders(headers, host);
 		});
 
-		rowSlot.addEventListener("slotchange", () => {
-			assignColumnNumberToRows();
-		});
+		rowSlot.addEventListener("slotchange", assignColumnNumberToRows);
 	});
 
-	const handleHeaders = (headers, host, resizable, draggable) => {
-		if (resizable) {
-			if (!resizeObserver) {
-				createResizeObserver(host);
-			} else {
-				resizeObserver.disconnect();
-			}
-		}
+	const handleHeaders = (headers, host) => {
 		let i = 1;
 		for (let header of headers) {
+			// todo remove in v6
+			if (header.tagName != 'ZOO-GRID-HEADER') {
+				console.warn('Header cell element must be of type "zoo-grid-header"!');
+				const gridHeader = document.createElement('zoo-grid-header');
+				gridHeader.innerHTML = header.innerHTML;
+				for (const attr of header.attributes) {
+					gridHeader.setAttribute(attr.nodeName, attr.nodeValue)
+				}
+				header.parentNode.replaceChild(gridHeader, header);
+			}
 			header.setAttribute('column', i);
-			if (resizable) resizeObserver.observe(header);
-			if (!dragEventListenersInitialized && draggable) handleDraggableHeader(header, host);
 			i++;
 		}
-		dragEventListenersInitialized = true;
+		if (host.hasAttribute('resizable')) {
+			handleResizableHeaders(headers, host);	
+		}
+		if (host.hasAttribute('reorderable')) {
+			handleDraggableHeaders(headers, host);
+		}
 	}
 
-	// todo currently it reverses the order from target column to source column
-	// make it inject column before target and leave the order of the rest intact.
+	const handleResizableHeaders = (headers, host) => {
+		createResizeObserver(host);
+		resizeObserver.disconnect();
+		for (let header of headers) {
+			resizeObserver.observe(header);
+		}
+	}
+
+	const handleDraggableHeaders = (headers, host) => {
+		for (let header of headers) {
+			handleDraggableHeader(header, host);
+		}
+	}
+
 	const handleDraggableHeader = (header, host) => {
-		header.addEventListener('dragstart', e => e.dataTransfer.setData("text/plain", header.getAttribute('column')));
+		// avoid attaching multiple eventListeners to the same element
+		if (header.getAttribute('reorderable')) return;
+		header.setAttribute('reorderable', true);
 		header.setAttribute('ondragover', 'event.preventDefault()');
 		header.setAttribute('ondrop', 'event.preventDefault()');
+
+		header.addEventListener('dragstart', e => {
+			host.classList.add('dragging');
+			e.dataTransfer.setData("text/plain", header.getAttribute('column'));
+		});
+		header.addEventListener('dragend', e => {
+			host.classList.remove('dragging');
+			draggedOverHeader.classList.remove('drag-over');
+		});
+		header.addEventListener('dragenter', e => {
+			// header is present and drag target is not its child -> some sibling of header
+			if (draggedOverHeader && !draggedOverHeader.contains(e.target)) {
+				draggedOverHeader.classList.remove('drag-over');
+			}
+			// already marked
+			if (header.classList.contains('drag-over')) {
+				return;
+			}
+			// dragging over a valid drop target or its child
+			if (header == e.target || header.contains(e.target)) {
+				header.classList.add('drag-over');
+				draggedOverHeader = header;
+			}
+		});
 		header.addEventListener('drop', e => {
-			// replace headers
 			const sourceColumn = e.dataTransfer.getData('text');
 			const targetColumn = e.target.getAttribute('column');
-			const sourceHeader = host.querySelector('zoo-grid-header[column="' + sourceColumn + '"]');
+			if (targetColumn == sourceColumn) {
+				return;
+			}
+			// move headers
+			const sourceHeader = host.querySelector(':scope > zoo-grid-header[column="' + sourceColumn + '"]');
 			if (targetColumn < sourceColumn) {
 				e.target.parentNode.insertBefore(sourceHeader, e.target);
 			} else if (targetColumn > sourceColumn) {
 				e.target.parentNode.insertBefore(e.target, sourceHeader);
 			}
-			// replace rows
+			// move rows
 			const allRows = rowSlot.assignedNodes();
 			for (const row of allRows) {
-				const sourceRowColumn = row.querySelector('[column="' + sourceColumn + '"]');
-				const targetRowColumn = row.querySelector('[column="' + targetColumn + '"]');
+				const sourceRowColumn = row.querySelector(':scope > [column="' + sourceColumn + '"]');
+				const targetRowColumn = row.querySelector(':scope > [column="' + targetColumn + '"]');
 				if (targetColumn < sourceColumn) {
 					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
 				} else if (targetColumn > sourceColumn) {
@@ -232,17 +286,22 @@
 	}
 
 	const createResizeObserver = host => {
+		if (resizeObserver) return;
 		resizeObserver = new ResizeObserver(debounce(entries => {
-			for (const entry of entries) {
-				const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
-				const width = entry.contentRect.width;
-				requestAnimationFrame(() => {
-					for (const columnEl of columnElements) {
+			requestAnimationFrame(() => {
+				for (const entry of entries) {
+					const columnNum = entry.target.getAttribute('column');
+					const rowColumns = host.querySelectorAll(':scope > [slot="row"] > [column="' + columnNum + '"] ');
+					const headerColumn = host.querySelector(':scope > [column="' + columnNum + '"]');
+					const elements = [...rowColumns, headerColumn];
+					const width = entry.contentRect.width;
+					
+					for (const columnEl of elements) {
 						columnEl.style.width = width + 'px';
 					}
-				});
-			}
-		}, 250));
+				}
+			});
+		}, 0));
 	}
 
 	const debounce = (func, wait) => {

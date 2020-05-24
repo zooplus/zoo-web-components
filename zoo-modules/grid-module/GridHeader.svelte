@@ -4,7 +4,7 @@
 	<svg class="arrow" sortstate={sortState} on:click="{() => handleSortClick()}" width="24" height="24" viewBox="0 0 24 24">
 		<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
 	</svg>
-	<svg {zoodraggable} on:mousedown="{toggleHostDraggable}" class="swap" viewBox="0 0 24 24" width="18" height="18">
+	<svg {reorderable} on:mousedown="{toggleHostDraggable}" class="swap" viewBox="0 0 24 24" width="18" height="18">
 		<path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/>
 	</svg>
 </div>
@@ -36,7 +36,7 @@
 		}
 	}
 
-	.box.sortable .arrow, .swap[zoodraggable] {
+	.box.sortable .arrow, .swap[reorderable] {
 		display: flex;
 	}
 
@@ -85,7 +85,7 @@
 	import { onMount } from 'svelte';
 	export let sortState = undefined;
 	export let sortable = false;
-	export let zoodraggable = false;
+	export let reorderable = undefined;
 	let gridHeaderRoot;
 	let host;
 

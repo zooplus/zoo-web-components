@@ -3,14 +3,14 @@
 <app-context text="Forth section is a showcase of grids"></app-context>
 
 <div class="grids-holder" bind:this="{gridHolder}">
-	<h3>A grid with pagination, resizing and sorting.</h3>
+	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable dragndrop
+	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable reorderable
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 		{#each headers as header, idx}
-			<zoo-grid-header class="header-cell {idx == 0 ? 'min-width' : ''}" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
+			<zoo-grid-header class="header-cell" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
 		{#each data as row} 
 			<div class="example-row limited-width" slot="row">
@@ -132,10 +132,6 @@
 
 	h3 {
 		color: var(--primary-mid, #{$primary-mid});
-	}
-
-	.min-width { 
-		min-width: 200px;
 	}
 
 	.grids-holder {

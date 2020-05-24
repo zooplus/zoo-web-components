@@ -242,7 +242,7 @@
 			const sourceHeader = host.querySelector(':scope > zoo-grid-header[column="' + sourceColumn + '"]');
 			if (targetColumn < sourceColumn) {
 				e.target.parentNode.insertBefore(sourceHeader, e.target);
-			} else if (targetColumn > sourceColumn) {
+			} else {
 				e.target.parentNode.insertBefore(e.target, sourceHeader);
 			}
 			// move rows
@@ -252,7 +252,7 @@
 				const targetRowColumn = row.querySelector(':scope > [column="' + targetColumn + '"]');
 				if (targetColumn < sourceColumn) {
 					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
-				} else if (targetColumn > sourceColumn) {
+				} else {
 					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
 				}
 			}

@@ -112,12 +112,20 @@
 		</zoo-grid>
 	</div>
 
-	<h3>Grid which is loading indefinitely.</h3>
+	<h3>Grid with toggled loading.</h3>
 
 	<div class="grid-holder">
-		<zoo-grid class="limited-width" loading={true} paginator style="min-height: 200px;">
-			{#each headers as header}
-				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+		<zoo-grid class="limited-width" loading={loading} paginator style="min-height: 200px;">
+			{#each headers as header, i}
+				{#if i == 0}
+					<zoo-grid-header slot="headercell">
+						<zoo-button class="loading-toggler" type="hollow" on:click={() => loading = !loading}>
+							<span slot="buttoncontent">Toggle loading</span>
+						</zoo-button>
+					</zoo-grid-header>
+				{:else}
+					<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+				{/if}
 			{/each}
 		</zoo-grid>
 	</div>
@@ -166,6 +174,7 @@
 	.example-row {
 		& > div {
 			word-break: break-word;
+			flex-grow: 1;
 		}
 	}
 
@@ -180,12 +189,17 @@
 			}
 		}
 	}
+
+	.loading-toggler {
+		width: 80px;
+	}
 </style>
 
 <script>
 	let toast;
 	let possibleNumberOfItems = [5, 10, 25, 100];
 	let gridHolder;
+	let loading = false;
 	let headers = [
 		{
 			title: 'Valid'

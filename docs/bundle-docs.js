@@ -50,6 +50,9 @@
     function space() {
         return text(' ');
     }
+    function empty() {
+        return text('');
+    }
     function listen(node, event, handler, options) {
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
@@ -2176,66 +2179,67 @@
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
+    	child_ctx[18] = list[i];
+    	child_ctx[20] = i;
     	return child_ctx;
     }
 
     function get_each_context_1$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
-    	child_ctx[23] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
-    	child_ctx[28] = i;
+    	child_ctx[18] = list[i];
+    	child_ctx[20] = i;
     	return child_ctx;
     }
 
     function get_each_context_5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
-    	child_ctx[23] = i;
+    	child_ctx[23] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     function get_each_context_7(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[32] = list[i];
+    	child_ctx[33] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_6(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_8(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[16] = list[i];
-    	child_ctx[23] = i;
+    	child_ctx[18] = list[i];
+    	child_ctx[25] = i;
     	return child_ctx;
     }
 
     // (12:2) {#each headers as header, idx}
     function create_each_block_8(ctx) {
     	let zoo_grid_header;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let zoo_grid_header_sortable_value;
     	let zoo_grid_header_sortableproperty_value;
@@ -2246,8 +2250,8 @@
     			t = text(t_value);
     			set_custom_element_data(zoo_grid_header, "class", "header-cell");
     			set_custom_element_data(zoo_grid_header, "slot", "headercell");
-    			set_custom_element_data(zoo_grid_header, "sortable", zoo_grid_header_sortable_value = /*header*/ ctx[16].sortable);
-    			set_custom_element_data(zoo_grid_header, "sortableproperty", zoo_grid_header_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			set_custom_element_data(zoo_grid_header, "sortable", zoo_grid_header_sortable_value = /*header*/ ctx[18].sortable);
+    			set_custom_element_data(zoo_grid_header, "sortableproperty", zoo_grid_header_sortableproperty_value = /*header*/ ctx[18].sortProperty);
     			add_location(zoo_grid_header, file$4, 12, 3, 525);
     		},
     		m: function mount(target, anchor) {
@@ -2274,7 +2278,7 @@
     // (27:8) {#each statuses as status}
     function create_each_block_7(ctx) {
     	let option;
-    	let t_value = /*status*/ ctx[32] + "";
+    	let t_value = /*status*/ ctx[33] + "";
     	let t;
     	let option_selected_value;
     	let option_value_value;
@@ -2283,8 +2287,8 @@
     		c: function create() {
     			option = element("option");
     			t = text(t_value);
-    			option.selected = option_selected_value = /*status*/ ctx[32] == /*row*/ ctx[24].status;
-    			option.__value = option_value_value = /*status*/ ctx[32];
+    			option.selected = option_selected_value = /*status*/ ctx[33] == /*row*/ ctx[26].status;
+    			option.__value = option_value_value = /*status*/ ctx[33];
     			option.value = option.__value;
     			add_location(option, file$4, 27, 9, 1230);
     		},
@@ -2319,7 +2323,7 @@
     	let input0_checked_value;
     	let t0;
     	let div1;
-    	let t1_value = /*row*/ ctx[24].createdDate + "";
+    	let t1_value = /*row*/ ctx[26].createdDate + "";
     	let t1;
     	let t2;
     	let div3;
@@ -2329,11 +2333,11 @@
     	let select_disabled_value;
     	let t3;
     	let div4;
-    	let t4_value = /*row*/ ctx[24].minWeight + "";
+    	let t4_value = /*row*/ ctx[26].minWeight + "";
     	let t4;
     	let t5;
     	let div5;
-    	let t6_value = /*row*/ ctx[24].maxWeight + "";
+    	let t6_value = /*row*/ ctx[26].maxWeight + "";
     	let t6;
     	let t7;
     	let div6;
@@ -2343,13 +2347,13 @@
     	let input1_value_value;
     	let t8;
     	let div7;
-    	let t9_value = /*row*/ ctx[24].noOfPieces + "";
+    	let t9_value = /*row*/ ctx[26].noOfPieces + "";
     	let t9;
     	let t10;
     	let div8;
-    	let t11_value = /*row*/ ctx[24].price + "";
+    	let t11_value = /*row*/ ctx[26].price + "";
     	let t11;
-    	let each_value_7 = /*statuses*/ ctx[3];
+    	let each_value_7 = /*statuses*/ ctx[4];
     	validate_each_argument(each_value_7);
     	let each_blocks = [];
 
@@ -2392,8 +2396,8 @@
     			t10 = space();
     			div8 = element("div");
     			t11 = text(t11_value);
-    			input0.disabled = input0_disabled_value = /*row*/ ctx[24].status != "DELIVERED" ? null : true;
-    			input0.checked = input0_checked_value = /*row*/ ctx[24].valid;
+    			input0.disabled = input0_disabled_value = /*row*/ ctx[26].status != "DELIVERED" ? null : true;
+    			input0.checked = input0_checked_value = /*row*/ ctx[26].valid;
     			attr_dev(input0, "slot", "checkboxelement");
     			attr_dev(input0, "type", "checkbox");
     			add_location(input0, file$4, 18, 6, 822);
@@ -2401,7 +2405,7 @@
     			add_location(zoo_checkbox, file$4, 17, 5, 783);
     			add_location(div0, file$4, 16, 4, 772);
     			add_location(div1, file$4, 21, 4, 981);
-    			select.disabled = select_disabled_value = /*row*/ ctx[24].status == "DELIVERED" ? true : null;
+    			select.disabled = select_disabled_value = /*row*/ ctx[26].status == "DELIVERED" ? true : null;
     			attr_dev(select, "slot", "selectelement");
     			attr_dev(select, "class", "item-per-page-selector");
     			add_location(select, file$4, 25, 7, 1072);
@@ -2411,8 +2415,8 @@
     			add_location(div3, file$4, 22, 4, 1014);
     			add_location(div4, file$4, 33, 4, 1370);
     			add_location(div5, file$4, 34, 4, 1401);
-    			input1.disabled = input1_disabled_value = /*row*/ ctx[24].status == "DELIVERED" ? true : null;
-    			input1.value = input1_value_value = /*row*/ ctx[24].deliveryDate;
+    			input1.disabled = input1_disabled_value = /*row*/ ctx[26].status == "DELIVERED" ? true : null;
+    			input1.value = input1_value_value = /*row*/ ctx[26].deliveryDate;
     			attr_dev(input1, "slot", "inputelement");
     			attr_dev(input1, "type", "date");
     			attr_dev(input1, "placeholder", "Enter date");
@@ -2462,8 +2466,8 @@
     			append_dev(div8, t11);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*statuses, data*/ 40) {
-    				each_value_7 = /*statuses*/ ctx[3];
+    			if (dirty[0] & /*statuses, data*/ 80) {
+    				each_value_7 = /*statuses*/ ctx[4];
     				validate_each_argument(each_value_7);
     				let i;
 
@@ -2506,7 +2510,7 @@
     // (49:5) {#each possibleNumberOfItems as number, idx}
     function create_each_block_5(ctx) {
     	let option;
-    	let t_value = /*number*/ ctx[21] + "";
+    	let t_value = /*number*/ ctx[23] + "";
     	let t;
     	let option_selected_value;
     	let option_value_value;
@@ -2515,8 +2519,8 @@
     		c: function create() {
     			option = element("option");
     			t = text(t_value);
-    			option.selected = option_selected_value = /*idx*/ ctx[23] == 0;
-    			option.__value = option_value_value = /*number*/ ctx[21];
+    			option.selected = option_selected_value = /*idx*/ ctx[25] == 0;
+    			option.__value = option_value_value = /*number*/ ctx[23];
     			option.value = option.__value;
     			add_location(option, file$4, 49, 6, 1990);
     		},
@@ -2544,7 +2548,7 @@
     // (63:3) {#each extendedHeaders as header, i}
     function create_each_block_4(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2554,8 +2558,8 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
     			add_location(div, file$4, 63, 4, 2590);
     		},
     		m: function mount(target, anchor) {
@@ -2589,35 +2593,35 @@
     	let input0_checked_value;
     	let t0;
     	let div1;
-    	let t1_value = /*row*/ ctx[24].createdDate + "";
+    	let t1_value = /*row*/ ctx[26].createdDate + "";
     	let t1;
     	let t2;
     	let div2;
-    	let t3_value = /*row*/ ctx[24].status + "";
+    	let t3_value = /*row*/ ctx[26].status + "";
     	let t3;
     	let t4;
     	let div3;
-    	let t5_value = /*row*/ ctx[24].minWeight + "";
+    	let t5_value = /*row*/ ctx[26].minWeight + "";
     	let t5;
     	let t6;
     	let div4;
-    	let t7_value = /*row*/ ctx[24].maxWeight + "";
+    	let t7_value = /*row*/ ctx[26].maxWeight + "";
     	let t7;
     	let t8;
     	let div5;
-    	let t9_value = /*row*/ ctx[24].deliveryDate + "";
+    	let t9_value = /*row*/ ctx[26].deliveryDate + "";
     	let t9;
     	let t10;
     	let div6;
-    	let t11_value = /*row*/ ctx[24].noOfPieces + "";
+    	let t11_value = /*row*/ ctx[26].noOfPieces + "";
     	let t11;
     	let t12;
     	let div7;
-    	let t13_value = /*row*/ ctx[24].price + "";
+    	let t13_value = /*row*/ ctx[26].price + "";
     	let t13;
     	let t14;
     	let div8;
-    	let t15_value = /*row*/ ctx[24].rating + "";
+    	let t15_value = /*row*/ ctx[26].rating + "";
     	let t15;
     	let t16;
     	let div9;
@@ -2659,8 +2663,8 @@
     			div9 = element("div");
     			zoo_checkbox1 = element("zoo-checkbox");
     			input1 = element("input");
-    			input0.disabled = input0_disabled_value = /*row*/ ctx[24].status != "DELIVERED" ? null : true;
-    			input0.checked = input0_checked_value = /*row*/ ctx[24].valid;
+    			input0.disabled = input0_disabled_value = /*row*/ ctx[26].status != "DELIVERED" ? null : true;
+    			input0.checked = input0_checked_value = /*row*/ ctx[26].valid;
     			attr_dev(input0, "slot", "checkboxelement");
     			attr_dev(input0, "type", "checkbox");
     			add_location(input0, file$4, 70, 7, 2878);
@@ -2675,7 +2679,7 @@
     			add_location(div6, file$4, 78, 5, 3202);
     			add_location(div7, file$4, 79, 5, 3235);
     			add_location(div8, file$4, 80, 5, 3263);
-    			input1.checked = input1_checked_value = /*row*/ ctx[24].promotion;
+    			input1.checked = input1_checked_value = /*row*/ ctx[26].promotion;
     			attr_dev(input1, "slot", "checkboxelement");
     			attr_dev(input1, "type", "checkbox");
     			add_location(input1, file$4, 83, 7, 3347);
@@ -2740,7 +2744,7 @@
     // (93:6) {#each possibleNumberOfItems as number, idx}
     function create_each_block_2(ctx) {
     	let option;
-    	let t_value = /*number*/ ctx[21] + "";
+    	let t_value = /*number*/ ctx[23] + "";
     	let t;
     	let option_selected_value;
     	let option_value_value;
@@ -2749,8 +2753,8 @@
     		c: function create() {
     			option = element("option");
     			t = text(t_value);
-    			option.selected = option_selected_value = /*idx*/ ctx[23] == 0;
-    			option.__value = option_value_value = /*number*/ ctx[21];
+    			option.selected = option_selected_value = /*idx*/ ctx[25] == 0;
+    			option.__value = option_value_value = /*number*/ ctx[23];
     			option.value = option.__value;
     			add_location(option, file$4, 93, 7, 3734);
     		},
@@ -2778,7 +2782,7 @@
     // (106:3) {#each headers as header}
     function create_each_block_1$1(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2788,8 +2792,8 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
     			add_location(div, file$4, 106, 4, 4006);
     		},
     		m: function mount(target, anchor) {
@@ -2813,10 +2817,10 @@
     	return block;
     }
 
-    // (119:3) {#each headers as header}
-    function create_each_block$2(ctx) {
+    // (126:4) {:else}
+    function create_else_block(ctx) {
     	let div;
-    	let t_value = /*header*/ ctx[16].title + "";
+    	let t_value = /*header*/ ctx[18].title + "";
     	let t;
     	let div_sortable_value;
     	let div_sortableproperty_value;
@@ -2826,9 +2830,9 @@
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "slot", "headercell");
-    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[16].sortable ? "sortable" : null);
-    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[16].sortProperty);
-    			add_location(div, file$4, 119, 4, 4460);
+    			attr_dev(div, "sortable", div_sortable_value = /*header*/ ctx[18].sortable ? "sortable" : null);
+    			attr_dev(div, "sortableproperty", div_sortableproperty_value = /*header*/ ctx[18].sortProperty);
+    			add_location(div, file$4, 126, 5, 4721);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2842,9 +2846,99 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(126:4) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (120:4) {#if i == 0}
+    function create_if_block$1(ctx) {
+    	let zoo_grid_header;
+    	let zoo_button;
+    	let span;
+    	let t1;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			zoo_grid_header = element("zoo-grid-header");
+    			zoo_button = element("zoo-button");
+    			span = element("span");
+    			span.textContent = "Toggle loading";
+    			t1 = space();
+    			attr_dev(span, "slot", "buttoncontent");
+    			add_location(span, file$4, 122, 7, 4611);
+    			set_custom_element_data(zoo_button, "class", "loading-toggler");
+    			set_custom_element_data(zoo_button, "type", "hollow");
+    			add_location(zoo_button, file$4, 121, 6, 4517);
+    			set_custom_element_data(zoo_grid_header, "slot", "headercell");
+    			add_location(zoo_grid_header, file$4, 120, 5, 4475);
+    		},
+    		m: function mount(target, anchor, remount) {
+    			insert_dev(target, zoo_grid_header, anchor);
+    			append_dev(zoo_grid_header, zoo_button);
+    			append_dev(zoo_button, span);
+    			append_dev(zoo_grid_header, t1);
+    			if (remount) dispose();
+    			dispose = listen_dev(zoo_button, "click", /*click_handler*/ ctx[16], false, false, false);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(zoo_grid_header);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(120:4) {#if i == 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (119:3) {#each headers as header, i}
+    function create_each_block$2(ctx) {
+    	let if_block_anchor;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*i*/ ctx[20] == 0) return create_if_block$1;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if_block.p(ctx, dirty);
+    		},
+    		d: function destroy(detaching) {
+    			if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(119:3) {#each headers as header}",
+    		source: "(119:3) {#each headers as header, i}",
     		ctx
     	});
 
@@ -2886,9 +2980,8 @@
     	let t17;
     	let div6;
     	let zoo_grid3;
-    	let zoo_grid3_loading_value;
     	let dispose;
-    	let each_value_8 = /*headers*/ ctx[2];
+    	let each_value_8 = /*headers*/ ctx[3];
     	validate_each_argument(each_value_8);
     	let each_blocks_7 = [];
 
@@ -2896,7 +2989,7 @@
     		each_blocks_7[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
     	}
 
-    	let each_value_6 = /*data*/ ctx[5];
+    	let each_value_6 = /*data*/ ctx[6];
     	validate_each_argument(each_value_6);
     	let each_blocks_6 = [];
 
@@ -2904,7 +2997,7 @@
     		each_blocks_6[i] = create_each_block_6(get_each_context_6(ctx, each_value_6, i));
     	}
 
-    	let each_value_5 = /*possibleNumberOfItems*/ ctx[1];
+    	let each_value_5 = /*possibleNumberOfItems*/ ctx[2];
     	validate_each_argument(each_value_5);
     	let each_blocks_5 = [];
 
@@ -2912,7 +3005,7 @@
     		each_blocks_5[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
     	}
 
-    	let each_value_4 = /*extendedHeaders*/ ctx[4];
+    	let each_value_4 = /*extendedHeaders*/ ctx[5];
     	validate_each_argument(each_value_4);
     	let each_blocks_4 = [];
 
@@ -2920,7 +3013,7 @@
     		each_blocks_4[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
     	}
 
-    	let each_value_3 = /*extendedData*/ ctx[6];
+    	let each_value_3 = /*extendedData*/ ctx[7];
     	validate_each_argument(each_value_3);
     	let each_blocks_3 = [];
 
@@ -2928,7 +3021,7 @@
     		each_blocks_3[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
     	}
 
-    	let each_value_2 = /*possibleNumberOfItems*/ ctx[1];
+    	let each_value_2 = /*possibleNumberOfItems*/ ctx[2];
     	validate_each_argument(each_value_2);
     	let each_blocks_2 = [];
 
@@ -2936,7 +3029,7 @@
     		each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
     	}
 
-    	let each_value_1 = /*headers*/ ctx[2];
+    	let each_value_1 = /*headers*/ ctx[3];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -2944,7 +3037,7 @@
     		each_blocks_1[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
     	}
 
-    	let each_value = /*headers*/ ctx[2];
+    	let each_value = /*headers*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -3024,7 +3117,7 @@
     			div4.textContent = "No records to show!";
     			t15 = space();
     			h33 = element("h3");
-    			h33.textContent = "Grid which is loading indefinitely.";
+    			h33.textContent = "Grid with toggled loading.";
     			t17 = space();
     			div6 = element("div");
     			zoo_grid3 = element("zoo-grid");
@@ -3090,12 +3183,12 @@
     			add_location(div5, file$4, 103, 1, 3902);
     			add_location(h33, file$4, 114, 1, 4267);
     			set_custom_element_data(zoo_grid3, "class", "limited-width");
-    			set_custom_element_data(zoo_grid3, "loading", zoo_grid3_loading_value = true);
+    			set_custom_element_data(zoo_grid3, "loading", /*loading*/ ctx[1]);
     			set_custom_element_data(zoo_grid3, "paginator", "");
     			set_style(zoo_grid3, "min-height", "200px");
-    			add_location(zoo_grid3, file$4, 117, 2, 4342);
+    			add_location(zoo_grid3, file$4, 117, 2, 4333);
     			attr_dev(div6, "class", "grid-holder");
-    			add_location(div6, file$4, 116, 1, 4314);
+    			add_location(div6, file$4, 116, 1, 4305);
     			attr_dev(div7, "class", "grids-holder");
     			add_location(div7, file$4, 4, 0, 124);
     		},
@@ -3177,19 +3270,19 @@
     				each_blocks[i].m(zoo_grid3, null);
     			}
 
-    			/*div7_binding*/ ctx[15](div7);
+    			/*div7_binding*/ ctx[17](div7);
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(zoo_grid0, "sortChange", /*sortChange_handler*/ ctx[11], false, false, false),
-    				listen_dev(zoo_grid0, "pageChange", /*pageChange_handler*/ ctx[12], false, false, false),
-    				listen_dev(zoo_grid1, "sortChange", /*sortChange_handler_1*/ ctx[13], false, false, false),
-    				listen_dev(zoo_grid1, "pageChange", /*pageChange_handler_1*/ ctx[14], false, false, false)
+    				listen_dev(zoo_grid0, "sortChange", /*sortChange_handler*/ ctx[12], false, false, false),
+    				listen_dev(zoo_grid0, "pageChange", /*pageChange_handler*/ ctx[13], false, false, false),
+    				listen_dev(zoo_grid1, "sortChange", /*sortChange_handler_1*/ ctx[14], false, false, false),
+    				listen_dev(zoo_grid1, "pageChange", /*pageChange_handler_1*/ ctx[15], false, false, false)
     			];
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*headers*/ 4) {
-    				each_value_8 = /*headers*/ ctx[2];
+    			if (dirty[0] & /*headers*/ 8) {
+    				each_value_8 = /*headers*/ ctx[3];
     				validate_each_argument(each_value_8);
     				let i;
 
@@ -3212,8 +3305,8 @@
     				each_blocks_7.length = each_value_8.length;
     			}
 
-    			if (dirty[0] & /*data, statuses*/ 40) {
-    				each_value_6 = /*data*/ ctx[5];
+    			if (dirty[0] & /*data, statuses*/ 80) {
+    				each_value_6 = /*data*/ ctx[6];
     				validate_each_argument(each_value_6);
     				let i;
 
@@ -3236,8 +3329,8 @@
     				each_blocks_6.length = each_value_6.length;
     			}
 
-    			if (dirty[0] & /*possibleNumberOfItems*/ 2) {
-    				each_value_5 = /*possibleNumberOfItems*/ ctx[1];
+    			if (dirty[0] & /*possibleNumberOfItems*/ 4) {
+    				each_value_5 = /*possibleNumberOfItems*/ ctx[2];
     				validate_each_argument(each_value_5);
     				let i;
 
@@ -3260,8 +3353,8 @@
     				each_blocks_5.length = each_value_5.length;
     			}
 
-    			if (dirty[0] & /*extendedHeaders*/ 16) {
-    				each_value_4 = /*extendedHeaders*/ ctx[4];
+    			if (dirty[0] & /*extendedHeaders*/ 32) {
+    				each_value_4 = /*extendedHeaders*/ ctx[5];
     				validate_each_argument(each_value_4);
     				let i;
 
@@ -3284,8 +3377,8 @@
     				each_blocks_4.length = each_value_4.length;
     			}
 
-    			if (dirty[0] & /*extendedData*/ 64) {
-    				each_value_3 = /*extendedData*/ ctx[6];
+    			if (dirty[0] & /*extendedData*/ 128) {
+    				each_value_3 = /*extendedData*/ ctx[7];
     				validate_each_argument(each_value_3);
     				let i;
 
@@ -3308,8 +3401,8 @@
     				each_blocks_3.length = each_value_3.length;
     			}
 
-    			if (dirty[0] & /*possibleNumberOfItems*/ 2) {
-    				each_value_2 = /*possibleNumberOfItems*/ ctx[1];
+    			if (dirty[0] & /*possibleNumberOfItems*/ 4) {
+    				each_value_2 = /*possibleNumberOfItems*/ ctx[2];
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -3332,8 +3425,8 @@
     				each_blocks_2.length = each_value_2.length;
     			}
 
-    			if (dirty[0] & /*headers*/ 4) {
-    				each_value_1 = /*headers*/ ctx[2];
+    			if (dirty[0] & /*headers*/ 8) {
+    				each_value_1 = /*headers*/ ctx[3];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -3356,8 +3449,8 @@
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty[0] & /*headers*/ 4) {
-    				each_value = /*headers*/ ctx[2];
+    			if (dirty[0] & /*loading, headers*/ 10) {
+    				each_value = /*headers*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
 
@@ -3379,6 +3472,10 @@
 
     				each_blocks.length = each_value.length;
     			}
+
+    			if (dirty[0] & /*loading*/ 2) {
+    				set_custom_element_data(zoo_grid3, "loading", /*loading*/ ctx[1]);
+    			}
     		},
     		i: noop,
     		o: noop,
@@ -3394,7 +3491,7 @@
     			destroy_each(each_blocks_2, detaching);
     			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
-    			/*div7_binding*/ ctx[15](null);
+    			/*div7_binding*/ ctx[17](null);
     			run_all(dispose);
     		}
     	};
@@ -3414,6 +3511,7 @@
     	let toast;
     	let possibleNumberOfItems = [5, 10, 25, 100];
     	let gridHolder;
+    	let loading = false;
 
     	let headers = [
     		{ title: "Valid" },
@@ -3527,6 +3625,7 @@
     	const pageChange_handler = e => handlePageChange(e.detail);
     	const sortChange_handler_1 = e => handleSortChange(e.detail);
     	const pageChange_handler_1 = e => handlePageChange(e.detail);
+    	const click_handler = () => $$invalidate(1, loading = !loading);
 
     	function div7_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -3538,6 +3637,7 @@
     		toast,
     		possibleNumberOfItems,
     		gridHolder,
+    		loading,
     		headers,
     		statuses,
     		extendedHeaders,
@@ -3550,14 +3650,15 @@
 
     	$$self.$inject_state = $$props => {
     		if ("toast" in $$props) toast = $$props.toast;
-    		if ("possibleNumberOfItems" in $$props) $$invalidate(1, possibleNumberOfItems = $$props.possibleNumberOfItems);
+    		if ("possibleNumberOfItems" in $$props) $$invalidate(2, possibleNumberOfItems = $$props.possibleNumberOfItems);
     		if ("gridHolder" in $$props) $$invalidate(0, gridHolder = $$props.gridHolder);
-    		if ("headers" in $$props) $$invalidate(2, headers = $$props.headers);
-    		if ("statuses" in $$props) $$invalidate(3, statuses = $$props.statuses);
-    		if ("extendedHeaders" in $$props) $$invalidate(4, extendedHeaders = $$props.extendedHeaders);
+    		if ("loading" in $$props) $$invalidate(1, loading = $$props.loading);
+    		if ("headers" in $$props) $$invalidate(3, headers = $$props.headers);
+    		if ("statuses" in $$props) $$invalidate(4, statuses = $$props.statuses);
+    		if ("extendedHeaders" in $$props) $$invalidate(5, extendedHeaders = $$props.extendedHeaders);
     		if ("today" in $$props) today = $$props.today;
-    		if ("data" in $$props) $$invalidate(5, data = $$props.data);
-    		if ("extendedData" in $$props) $$invalidate(6, extendedData = $$props.extendedData);
+    		if ("data" in $$props) $$invalidate(6, data = $$props.data);
+    		if ("extendedData" in $$props) $$invalidate(7, extendedData = $$props.extendedData);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3566,6 +3667,7 @@
 
     	return [
     		gridHolder,
+    		loading,
     		possibleNumberOfItems,
     		headers,
     		statuses,
@@ -3580,6 +3682,7 @@
     		pageChange_handler,
     		sortChange_handler_1,
     		pageChange_handler_1,
+    		click_handler,
     		div7_binding
     	];
     }
@@ -3587,7 +3690,7 @@
     class Grids extends SvelteElement {
     	constructor(options) {
     		super();
-    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}h3{color:var(--primary-mid, #3C9700)}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-1{--grid-column-sizes:150px repeat(7, minmax(50px, 1fr)) !important}.grid-2{--grid-column-sizes:150px repeat(9, minmax(50px, 1fr)) !important}.grid-holder{max-width:1280px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}.item-per-page-selector-holder .item-per-page-selector:focus{border:2px solid #555555}</style>`;
+    		this.shadowRoot.innerHTML = `<style>:host{contain:layout}h3{color:var(--primary-mid, #3C9700)}.grids-holder{display:flex;flex-direction:column;align-items:center}.grid-1{--grid-column-sizes:150px repeat(7, minmax(50px, 1fr)) !important}.grid-2{--grid-column-sizes:150px repeat(9, minmax(50px, 1fr)) !important}.grid-holder{max-width:1280px;overflow:auto;box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);width:95%}.status,.delivery-date{margin-right:10px}.limited-width{min-width:1024px}.example-row>div{word-break:break-word;flex-grow:1}.item-per-page-selector-holder{max-width:150px}.item-per-page-selector-holder .item-per-page-selector{border:1px solid #E6E6E6}.item-per-page-selector-holder .item-per-page-selector:focus{border:2px solid #555555}.loading-toggler{width:80px}</style>`;
     		init(this, { target: this.shadowRoot }, instance$4, create_fragment$4, safe_not_equal, {}, [-1, -1]);
 
     		if (options) {

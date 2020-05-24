@@ -5701,7 +5701,7 @@
 
     			if (targetColumn < sourceColumn) {
     				e.target.parentNode.insertBefore(sourceHeader, e.target);
-    			} else if (targetColumn > sourceColumn) {
+    			} else {
     				e.target.parentNode.insertBefore(e.target, sourceHeader);
     			}
 
@@ -5714,7 +5714,7 @@
 
     				if (targetColumn < sourceColumn) {
     					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
-    				} else if (targetColumn > sourceColumn) {
+    				} else {
     					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
     				}
     			}

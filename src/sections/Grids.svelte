@@ -3,14 +3,14 @@
 <app-context text="Forth section is a showcase of grids"></app-context>
 
 <div class="grids-holder" bind:this="{gridHolder}">
-	<h3>A grid with pagination, resizing and sorting.</h3>
+	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable
+	<zoo-grid class="limited-width grid-1" stickyheader paginator currentpage="5" maxpages="20" resizable reorderable
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 		{#each headers as header, idx}
-			<div class="header-cell {idx == 0 ? 'min-width' : ''}" slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+			<zoo-grid-header class="header-cell" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
 		{#each data as row} 
 			<div class="example-row limited-width" slot="row">
@@ -61,7 +61,7 @@
 		<zoo-grid class="limited-width grid-2" style="min-width: 1024px; margin: 0 auto; display: block;" stickyheader paginator
 			currentpage="1" maxpages="4" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
-				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 			{/each}
 
 			{#each extendedData as row} 
@@ -104,7 +104,7 @@
 	<div class="grid-holder">
 		<zoo-grid class="limited-width" paginator>
 			{#each headers as header}
-				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 			{/each}
 			<div slot="norecords" class="example-row limited-width">
 				No records to show!
@@ -112,12 +112,20 @@
 		</zoo-grid>
 	</div>
 
-	<h3>Grid which is loading indefinitely.</h3>
+	<h3>Grid with toggled loading.</h3>
 
 	<div class="grid-holder">
-		<zoo-grid class="limited-width" loading={true} paginator style="min-height: 200px;">
-			{#each headers as header}
-				<div slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</div>
+		<zoo-grid class="limited-width" loading={loading} paginator style="min-height: 200px;">
+			{#each headers as header, i}
+				{#if i == 0}
+					<zoo-grid-header slot="headercell">
+						<zoo-button class="loading-toggler" type="hollow" on:click={() => loading = !loading}>
+							<span slot="buttoncontent">Toggle loading</span>
+						</zoo-button>
+					</zoo-grid-header>
+				{:else}
+					<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
+				{/if}
 			{/each}
 		</zoo-grid>
 	</div>
@@ -132,10 +140,6 @@
 
 	h3 {
 		color: var(--primary-mid, #{$primary-mid});
-	}
-
-	.min-width { 
-		min-width: 200px;
 	}
 
 	.grids-holder {
@@ -170,6 +174,7 @@
 	.example-row {
 		& > div {
 			word-break: break-word;
+			flex-grow: 1;
 		}
 	}
 
@@ -184,12 +189,17 @@
 			}
 		}
 	}
+
+	.loading-toggler {
+		width: 80px;
+	}
 </style>
 
 <script>
 	let toast;
 	let possibleNumberOfItems = [5, 10, 25, 100];
 	let gridHolder;
+	let loading = false;
 	let headers = [
 		{
 			title: 'Valid'

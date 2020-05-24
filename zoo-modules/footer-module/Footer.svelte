@@ -75,6 +75,7 @@
 </style>
 
 <script>
+	// todo in v6 remove this array in favor of slots
 	export let footerlinks = [];
 	export let copyright = '';
 	let currentYear = new Date().getFullYear();

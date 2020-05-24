@@ -4,7 +4,7 @@
 		<div class="loading-shade"></div>
 		<zoo-spinner></zoo-spinner>
 	{/if}
-	<div class="header-row">
+	<div class="header-row" on:sortChange="{e => handleSortChange(e)}">
 		<slot name="headercell" bind:this={headerCellSlot}></slot>
 	</div>
 	<slot name="row" bind:this={rowSlot}></slot>
@@ -77,7 +77,17 @@
 		::slotted(*[slot="headercell"]) {
 			overflow: auto;
 			resize: horizontal;
+			height: inherit;
 		}
+	}
+
+	:host(.dragging) ::slotted(*[ondrop]) {
+		border-radius: 3px;
+		box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,.1);
+	}
+
+	:host(.dragging) ::slotted(.drag-over) {
+		box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,.4);
 	}
 
 	::slotted(*[slot="row"]) {
@@ -102,7 +112,6 @@
 	::slotted(*[slot="headercell"]) {
 		display: flex;
 		align-items: center;
-		padding-right: 5px;
 		flex-grow: 1;
 	}
 
@@ -137,9 +146,10 @@
 	export let loading = false;
 	let gridRoot;
 	let headerCellSlot;
-	let sortableHeaders = [];
 	let rowSlot;
 	let resizeObserver;
+	let prevSortedHeader;
+	let draggedOverHeader;
 	// sortable grid -> set min-width to set width
 	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
@@ -148,63 +158,150 @@
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty('--grid-column-num', headers.length);
 			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
-			handleHeaders(headers, host, host.hasAttribute('resizable'));
+			handleHeaders(headers, host);
 		});
 
-		rowSlot.addEventListener("slotchange", () => {
-			const allRows = rowSlot.assignedNodes();
-			for (const row of allRows) {
-				let i = 1;
-				for (const child of row.children) {
-					child.setAttribute('column', i);
-					child.style.flexGrow = 1;
-					i++;
-				}
-			}
-		});
+		rowSlot.addEventListener("slotchange", assignColumnNumberToRows);
 	});
 
-	const handleHeaders = (headers, host, applyResizeLogic) => {
+	const handleHeaders = (headers, host) => {
 		let i = 1;
-		if (applyResizeLogic) {
-			createResizeObserver(host);
-		}
 		for (let header of headers) {
+			// todo remove in v6
+			if (header.tagName != 'ZOO-GRID-HEADER') {
+				console.warn('Header cell element must be of type "zoo-grid-header"!');
+				const gridHeader = document.createElement('zoo-grid-header');
+				gridHeader.innerHTML = header.innerHTML;
+				for (const attr of header.attributes) {
+					gridHeader.setAttribute(attr.nodeName, attr.nodeValue)
+				}
+				header.parentNode.replaceChild(gridHeader, header);
+			}
 			header.setAttribute('column', i);
-			if (header.hasAttribute('sortable')) handleSortableHeader(header, host);
-			if (applyResizeLogic) resizeObserver.observe(header);
 			i++;
+		}
+		if (host.hasAttribute('resizable')) {
+			handleResizableHeaders(headers, host);	
+		}
+		if (host.hasAttribute('reorderable')) {
+			handleDraggableHeaders(headers, host);
 		}
 	}
 
-	const handleSortableHeader = (header, host) => {
-		header.innerHTML = '<zoo-grid-header>' + header.innerHTML + '</zoo-grid-header>';
-		header.addEventListener("sortChange", (e) => {
-			e.stopPropagation();
-			const sortState = e.detail.sortState;
-			sortableHeaders.forEach(h => {
-				if (!h.isEqualNode(header.children[0])) h.sortState = undefined;
-			});
-			const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
-			host.dispatchEvent(new CustomEvent('sortChange', {
-				detail: detail, bubbles: true
-			}));
+	const handleResizableHeaders = (headers, host) => {
+		createResizeObserver(host);
+		resizeObserver.disconnect();
+		for (let header of headers) {
+			resizeObserver.observe(header);
+		}
+	}
+
+	const handleDraggableHeaders = (headers, host) => {
+		for (let header of headers) {
+			handleDraggableHeader(header, host);
+		}
+	}
+
+	const handleDraggableHeader = (header, host) => {
+		// avoid attaching multiple eventListeners to the same element
+		if (header.getAttribute('reorderable')) return;
+		header.setAttribute('reorderable', true);
+		header.setAttribute('ondragover', 'event.preventDefault()');
+		header.setAttribute('ondrop', 'event.preventDefault()');
+
+		header.addEventListener('dragstart', e => {
+			host.classList.add('dragging');
+			e.dataTransfer.setData("text/plain", header.getAttribute('column'));
 		});
-		sortableHeaders.push(header.children[0]);
+		header.addEventListener('dragend', e => {
+			host.classList.remove('dragging');
+			draggedOverHeader.classList.remove('drag-over');
+		});
+		header.addEventListener('dragenter', e => {
+			// header is present and drag target is not its child -> some sibling of header
+			if (draggedOverHeader && !draggedOverHeader.contains(e.target)) {
+				draggedOverHeader.classList.remove('drag-over');
+			}
+			// already marked
+			if (header.classList.contains('drag-over')) {
+				return;
+			}
+			// dragging over a valid drop target or its child
+			if (header == e.target || header.contains(e.target)) {
+				header.classList.add('drag-over');
+				draggedOverHeader = header;
+			}
+		});
+		header.addEventListener('drop', e => {
+			const sourceColumn = e.dataTransfer.getData('text');
+			const targetColumn = e.target.getAttribute('column');
+			if (targetColumn == sourceColumn) {
+				return;
+			}
+			// move headers
+			const sourceHeader = host.querySelector(':scope > zoo-grid-header[column="' + sourceColumn + '"]');
+			if (targetColumn < sourceColumn) {
+				e.target.parentNode.insertBefore(sourceHeader, e.target);
+			} else {
+				e.target.parentNode.insertBefore(e.target, sourceHeader);
+			}
+			// move rows
+			const allRows = rowSlot.assignedNodes();
+			for (const row of allRows) {
+				const sourceRowColumn = row.querySelector(':scope > [column="' + sourceColumn + '"]');
+				const targetRowColumn = row.querySelector(':scope > [column="' + targetColumn + '"]');
+				if (targetColumn < sourceColumn) {
+					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
+				} else {
+					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
+				}
+			}
+			assignColumnNumberToRows();
+		});
+	}
+
+	const assignColumnNumberToRows = () => {
+		const allRows = rowSlot.assignedNodes();
+		for (const row of allRows) {
+			let i = 1;
+			for (const child of row.children) {
+				child.setAttribute('column', i);
+				i++;
+			}
+		}
+	}
+
+	const handleSortChange = e => {
+		e.stopPropagation();
+		const header = e.detail.header;
+		const sortState = e.detail.sortState;
+		if (prevSortedHeader && !header.isEqualNode(prevSortedHeader)) {
+			prevSortedHeader.sortState = undefined;
+		}
+		prevSortedHeader = header;
+		const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
+		gridRoot.getRootNode().host.dispatchEvent(new CustomEvent('sortChange', {
+			detail: detail, bubbles: true
+		}));
 	}
 
 	const createResizeObserver = host => {
+		if (resizeObserver) return;
 		resizeObserver = new ResizeObserver(debounce(entries => {
-			for (const entry of entries) {
-				const columnElements =  host.querySelectorAll('[column="' + entry.target.getAttribute('column') + '"]');
-				const width = entry.contentRect.width;
-				requestAnimationFrame(() => {
-					for (const columnEl of columnElements) {
+			requestAnimationFrame(() => {
+				for (const entry of entries) {
+					const columnNum = entry.target.getAttribute('column');
+					const rowColumns = host.querySelectorAll(':scope > [slot="row"] > [column="' + columnNum + '"] ');
+					const headerColumn = host.querySelector(':scope > [column="' + columnNum + '"]');
+					const elements = [...rowColumns, headerColumn];
+					const width = entry.contentRect.width;
+					
+					for (const columnEl of elements) {
 						columnEl.style.width = width + 'px';
 					}
-				});
-			}
-		}, 250));
+				}
+			});
+		}, 0));
 	}
 
 	const debounce = (func, wait) => {

@@ -46,8 +46,8 @@
 		will produce the following:
 		<div style="padding: 10px;">
 			<zoo-grid paginator currentpage="1" maxpages="50">
-				<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
-				<div slot="headercell">Title 2</div>
+				<zoo-grid-header slot="headercell" sortable sortableproperty="title1">Title 1</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Title 2</zoo-grid-header>
 				<div slot="row">
 					<div>Cell 1</div>
 					<div>Cell 2</div>
@@ -76,8 +76,8 @@
 	let sortChangeExample = `{detail: { property: $propertyName, direction: $direction }}`;
 	let pageChangeExample = `{detail: { pageNumber: $pageNumber }}`;
 	let example = `<zoo-grid paginator currentpage="1" maxpages="50">
-	<div slot="headercell" sortable sortableproperty="title1">Title 1</div>
-	<div slot="headercell">Title 2</div>
+	<zoo-grid-header slot="headercell" sortable sortableproperty="title1">Title 1</zoo-grid-header>
+	<zoo-grid-header slot="headercell">Title 2</zoo-grid-header>
 	<div slot="row">
 		<div>Cell 1</div>
 		<div>Cell 2</div>

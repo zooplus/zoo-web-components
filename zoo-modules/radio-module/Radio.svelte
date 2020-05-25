@@ -17,60 +17,48 @@
 
 	.template-slot {
 		display: flex;
+		padding: 11px 0;
+		font-size: $p1-size;
+		line-height: $p1-line-height;
 	}
 
 	::slotted(input[type="radio"]) {
 		position: relative;
-		margin: 0;
+		border: $stroked-box-grey;
+		border-color: var(--primary-mid, #{$primary-mid});
+		min-width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		margin: 0 2px 0 0;
+		padding: 3px;
+		background-clip: content-box;
 		-webkit-appearance: none;
 		-moz-appearance: none;
+		appearance: none;
 		outline: none;
 		cursor: pointer;
 	}
 
-	::slotted(input[type="radio"]):focus::before {
-		border-color: $grey-dark;
+	::slotted(input[type="radio"]:focus) {
+		border-width: 2px;
 	}
 
-	::slotted(input[type="radio"])::before {
-		position: relative;
-		display: inline-block;
-		width: 16px;
-		height: 16px;
-		content: "";
-		border-radius: 50%;
-		border: 2px solid var(--primary-mid, #{$primary-mid});
-		background: white;
+	::slotted(input[type="radio"]:checked) {
+		background-color: var(--primary-mid, #{$primary-mid});
 	}
 
-	::slotted(input[type="radio"]:checked)::before {
-		background: white;
+	::slotted(input[type="radio"]:disabled) {
+		cursor: not-allowed;
+		border-color: $grey-mid;
+		background-color: $grey-light;
 	}
 
-	::slotted(input[type="radio"]:checked)::after, ::slotted(input[type="radio"]:focus)::after {
-		content: "";
-		position: absolute;
-		top: 5px;
-		left: 5px;
-		width: 6px;
-		height: 6px;
-		transform: rotate(40deg);
-		color: var(--primary-mid, #{$primary-mid});
-		border: 2px solid;
-		border-radius: 50%;
+	.error ::slotted(input[type="radio"]:checked) {
+		background-color: var(--warning-mid, #{$warning-mid});
 	}
 
-	::slotted(input[type="radio"]:checked)::after {
-		background: var(--primary-mid, #{$primary-mid});
-	}
-
-	::slotted(input[type="radio"]:focus)::after {
-		background: $grey-light;
-		color: $grey-light;
-	}
-
-	::slotted(input:focus)::before {
-		border-color: $grey-dark;
+	.error ::slotted(input[type="radio"]) {
+		border-color: var(--warning-mid, #{$warning-mid});
 	}
 
 	::slotted(label) {
@@ -79,23 +67,8 @@
 		align-self: center;
 	}
 
-	::slotted(input[type="radio"]:disabled) {
-		cursor: not-allowed;
-	}
-
-	::slotted(input[type="radio"]:disabled)::before {
-		border-color: $grey-mid;
-		background-color: $grey-light;
-	}
-
-	.template-slot.error {
-		::slotted(input[type="radio"])::before {
-			border-color: var(--warning-mid, #{$warning-mid});
-		}
-
-		::slotted(label) {
-			color: var(--warning-mid, #{$warning-mid});
-		}
+	.error ::slotted(label) {
+		color: var(--warning-mid, #{$warning-mid});
 	}
 </style>
 

@@ -1,3 +1,6 @@
+# 5.3.1
+`zoo-checkbox`, `zoo-radio` - simplified internal styles by styling input directly as pseudo-classes for ::slotted() do not work in safari.
+
 # 5.3.0
 `zoo-grid` - added option `reorderable` for grid to allow columns reorder.       
 

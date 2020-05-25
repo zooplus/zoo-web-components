@@ -2,6 +2,7 @@
 <div class="box" class:disabled="{_slottedInput && _slottedInput.disabled}" on:click="{e => handleClick(e)}">
 	<div class="checkbox" class:clicked="{_clicked}" class:highlighted="{highlighted}" class:error="{!valid}">
 		<slot name="checkboxelement" bind:this={_inputSlot}></slot>
+		<svg class="check" viewBox="0 0 24 24" width="22" height="22"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
 		<slot name="checkboxlabel" bind:this={_labelSlot}>
 			<span>{labeltext}</span>
 		</slot>
@@ -41,7 +42,7 @@
 	.highlighted {
 		border: $stroked-box-grey-light;
 		border-radius: $input-border-radius;
-		padding: 6px 15px;
+		padding: 11px 15px;
 
 		&.clicked {
 			border: $stroked-box-success-bold;
@@ -52,7 +53,7 @@
 		}
 
 		&.error, &.clicked {
-			padding: 5px 14px;
+			padding: 10px 14px;
 		}
 	}
 
@@ -70,62 +71,55 @@
 	::slotted(input[type="checkbox"]) {
 		position: relative;
 		display: flex;
+		min-width: 24px;
+		height: 24px;
+		border-radius: 3px;
+		border: $stroked-box-grey;
 		margin: 0 10px 0 0;
 		-webkit-appearance: none;
 		-moz-appearance: none;
+		appearance: none;
 		outline: none;
 		cursor: pointer;
 	}
 
-	::slotted(input[type="checkbox"]:checked), ::slotted(input[type="checkbox"]:focus) {
-		margin: 0 9px 0 0;
+	::slotted(input[type="checkbox"]:checked) {
+		border: $stroked-box-success;
 	}
 
-	::slotted(input[type="checkbox"])::before {
-		display: inline-block;
-		width: 24px;
-		height: 24px;
-		content: "";
-		border-radius: 3px;
-		border: $stroked-box-grey;
-		background: transparent;
-		margin: 1px;
-	}
-
-	::slotted(input[type="checkbox"]:focus)::before {
-		border: $stroked-box-grey-bold;
-		margin: 0 1px 0 0;
-	}
-
-	::slotted(input[type="checkbox"]:checked)::before {
-		border: $stroked-box-success-bold;
-		margin: 0 1px 0 0;
-	}
-
-	::slotted(input[type="checkbox"]:checked)::after {
-		content: "";
-		position: absolute;
-		top: 4px;
-		left: 10px;
-		width: 6px;
-		height: 14px;
-		border-bottom: 2px solid;
-		border-right: 2px solid;
-		transform: rotate(40deg);
-		color: var(--primary-mid, #{$primary-mid});
+	::slotted(input[type="checkbox"]:focus) {
+		border-width: 2px;
 	}
 
 	::slotted(input[type="checkbox"]:disabled) {
+		border-color: $grey-light;
+		background-color: $grey-ultralight;
 		cursor: not-allowed;
 	}
 
-	::slotted(input[type="checkbox"]:disabled)::before {
-		border-color: $grey-light;
-		background-color: $grey-ultralight;
+	.check {
+		display: none;
+		position: absolute;
+		margin: 1px;
 	}
 
-	::slotted(input[type="checkbox"]:disabled)::after {
-		color: $grey-mid;
+	.clicked .check {
+		display: flex;
+		fill: var(--primary-mid, #{$primary-mid});
+	}
+
+	.disabled .check {
+		fill: $grey-mid;
+	}
+
+	.error .check {
+		fill: var(--warning-mid, #{$warning-mid});
+	}
+
+	.error {
+		::slotted(input[type="checkbox"]), ::slotted(input[type="checkbox"]:checked) {
+			border-color: var(--warning-mid, #{$warning-mid});
+		}
 	}
 
 	::slotted(label) {
@@ -136,16 +130,6 @@
 
 	.disabled, .disabled ::slotted(label) {
 		cursor: not-allowed;
-	}
-
-	.error {
-		::slotted(input[type="checkbox"])::before {
-			border-color: var(--warning-mid, #{$warning-mid});
-		}
-
-		::slotted(input[type="checkbox"]:checked)::after {
-			color: var(--warning-mid, #{$warning-mid});
-		}
 	}
 </style>
 

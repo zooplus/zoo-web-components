@@ -1,42 +1,49 @@
 <svelte:options tag="app-form"></svelte:options>
 <app-context text="First section is a showcase of different form elements like `input`, `textarea`, `select`."></app-context>
 <form class="form">
-	<zoo-input labeltext="Input type text" linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
+	<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
 			   valid="{inputState}" inputerrormsg="invalid" infotext="Additional helpful information for our users">
-		<input slot="inputelement" type="text" placeholder="input" />
+		<input id="input-type-text" slot="inputelement" type="text" placeholder="input" />
+		<label for="input-type-text" slot="inputlabel">Input type text</label>
 	</zoo-input>
-	<zoo-input labeltext="Input type number" linkhref="https://google.com" linktarget="about:blank"
-			   infotext="Additional helpful information for our users">
-		<input slot="inputelement" type="number" placeholder="input" />
+	<zoo-input linkhref="https://google.com" linktarget="about:blank" infotext="Additional helpful information for our users">
+		<input id="input-type-number" slot="inputelement" type="number" placeholder="input" />
+		<label for="input-type-number" slot="inputlabel">Input type number</label>
 	</zoo-input>
-	<zoo-input labeltext="This input has type date" linktext="Native date picker -> click me" linkhref="https://github.com/jcgertig/date-input-polyfill"
+	<zoo-input linktext="Native date picker -> click me" linkhref="https://github.com/jcgertig/date-input-polyfill"
 			   linktarget="about:blank" infotext="Click on input to show context menu with date selection">
-		<input slot="inputelement" type="date" placeholder="Enter date" />
+		<input id="input-type-date" slot="inputelement" type="date" placeholder="Enter date" />
+		<label for="input-type-date" slot="inputlabel">Input type date</label>
 	</zoo-input>
-	<zoo-input labeltext="This input has type time" infotext="Select time">
-		<input slot="inputelement" type="time" placeholder="Enter time" />
+	<zoo-input infotext="Select time">
+		<input id="input-type-time" slot="inputelement" type="time" placeholder="Enter time" />
+		<label for="input-type-time" slot="inputlabel">Input type date</label>
 	</zoo-input>
-	<zoo-input labeltext="This input is disabled">
-		<input disabled slot="inputelement" type="text"/>
+	<zoo-input>
+		<input id="input-disabled" disabled slot="inputelement" type="text"/>
+		<label for="input-disabled" slot="inputlabel">Disabled input</label>
 	</zoo-input>
-	<zoo-input labeltext="Textarea example" valid="{inputState}">
-		<textarea slot="inputelement" placeholder="Textarea"></textarea>
+	<zoo-input valid="{inputState}">
+		<textarea id="textarea" slot="inputelement" placeholder="Textarea"></textarea>
+		<label for="textarea" slot="inputlabel">Textarea</label>
 	</zoo-input>
-	<zoo-select labeltext="Multiselect" linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
-		<select slot="selectelement" multiple>
+	<zoo-select linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
+		<select id="multiselect" slot="selectelement" multiple>
 			<option class="placeholder" value="" disabled selected>Placeholder</option>
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
 		</select>
+		<label for="multiselect" slot="selectlabel">Multiselect</label>
 	</zoo-select>
-	<zoo-select labeltext="Standard select" valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
-		<select slot="selectelement">
+	<zoo-select valid="{inputState}" inputerrormsg="Value is required" infotext="Additional helpful information for our users">
+		<select id="standard-select" slot="selectelement">
 			<option class="placeholder" value="" disabled selected>Placeholder</option>
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
 		</select>
+		<label for="standard-select" slot="selectlabel">Standard select</label>
 	</zoo-select>
 	<zoo-searchable-select valid="{inputState}" inputerrormsg="Value is invalid" labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
 		<select multiple slot="selectelement">
@@ -56,27 +63,32 @@
 			{/each}
 		</select>
 	</zoo-searchable-select>
-	<zoo-select labeltext="Disabled select">
-		<select disabled slot="selectelement">
+	<zoo-select>
+		<select id="disabled-select" disabled slot="selectelement">
 			<option class="placeholder" value="" disabled selected>Placeholder</option>
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
 		</select>
+		<label for="disabled-select" slot="selectlabel">Disabled select</label>
 	</zoo-select>
-	<zoo-select labeltext="Loading select" loading="{true}">
-		<select slot="selectelement">
+	<zoo-select loading="{true}">
+		<select id="loading-select" slot="selectelement">
 			<option value=""></option>
 		</select>
+		<label for="loading-select" slot="selectlabel">Loading select</label>
 	</zoo-select>
-	<zoo-checkbox highlighted="{true}" valid="{inputState}" inputerrormsg="error" labeltext="An example checkbox">
-		<input slot="checkboxelement" type="checkbox"/>
+	<zoo-checkbox highlighted="{true}" valid="{inputState}" inputerrormsg="error">
+		<input id="checkbox" slot="checkboxelement" type="checkbox"/>
+		<label for="checkbox" slot="checkboxlabel">An example checkbox</label>
 	</zoo-checkbox>
-	<zoo-checkbox highlighted="{true}" labeltext="Disabled checkbox">
-		<input disabled slot="checkboxelement" type="checkbox"/>
+	<zoo-checkbox highlighted="{true}">
+		<input id="disabled-checkbox" disabled slot="checkboxelement" type="checkbox"/>
+		<label for="disabled-checkbox" slot="checkboxlabel">Disabled checkbox</label>
 	</zoo-checkbox>
-	<zoo-checkbox labeltext="Not highlighted checkbox with a long label that short be wrapped around checkbox like this" valid="{inputState}" inputerrormsg="error">
-		<input slot="checkboxelement" type="checkbox"/>
+	<zoo-checkbox valid="{inputState}" inputerrormsg="error">
+		<input id="long-label-checkbox" slot="checkboxelement" type="checkbox"/>
+		<label for="long-label-checkbox" slot="checkboxlabel">Not highlighted checkbox with a long label that short be wrapped around checkbox like this</label>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
 		<template>

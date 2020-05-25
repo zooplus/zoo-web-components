@@ -124,7 +124,7 @@
 	}
 
 	::slotted(*[slot="norecords"]) {
-		color: var(--warning-mid, #{$warning-mid});
+		color: var(--warning-dark, #{$warning-dark});
 		grid-column: span var(--grid-column-num);
 		text-align: center;
 		padding: 10px 0;

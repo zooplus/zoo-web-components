@@ -49,13 +49,14 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-select labeltext="Select label" infotext="Additional helpful information for our users">
-				<select slot="selectelement">
+			<zoo-select infotext="Additional helpful information for our users">
+				<select id="select" slot="selectelement">
 					<option class="placeholder" value="" disabled selected>Placeholder</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</select>
+				<label for="select" slot="selectlabel">Select label</label>
 			</zoo-select>
 		</div>
 	</div>
@@ -70,7 +71,7 @@
 	let list;
 	let inputSlotExample = `<slot name="selectelement"></slot>`;
 	let labelSlotExample = `<slot name="selectlabel"></slot>`;
-	let example = `<div style="width: 250px;">\n  <zoo-select labeltext="Select label" infotext="Additional helpful information for our users">\n    <select slot="selectelement">\n      <option class="placeholder" value="" disabled selected>Placeholder</option>\n      <option>1</option>\n      <option>2</option>\n      <option>3</option>\n    </select>\n  </zoo-select>\n</div>`;
+	let example = `<div style="width: 250px;">\n  <zoo-select infotext="Additional helpful information for our users">\n    <select id="select" slot="selectelement">\n      <option class="placeholder" value="" disabled selected>Placeholder</option>\n      <option>1</option>\n      <option>2</option>\n      <option>3</option>\n    </select>\n    <label for="select" slot="selectlabel">Select label</label>\n  </zoo-select>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

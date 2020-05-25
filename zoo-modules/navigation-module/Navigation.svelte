@@ -1,7 +1,5 @@
 <svelte:options tag="zoo-navigation"></svelte:options>
-<div class="box">
-	<slot></slot>
-</div>
+<nav><slot></slot></nav>
 
 <style type='text/scss'>
 	@import "variables";
@@ -10,7 +8,7 @@
 		contain: layout;
 	}
 
-	.box {
+	nav {
 		height: 56px;
 		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));

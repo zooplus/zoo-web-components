@@ -1,5 +1,5 @@
 <svelte:options tag="app-context"></svelte:options>
-<div class="context">
+<section>
 	<h2>{text}</h2>
 	{#if backbtn}
 		<div class="back-btn">
@@ -9,10 +9,10 @@
 			</zoo-button>
 		</div>
 	{/if}
-</div>
+</section>
 
 <style>
-	.context {
+	section {
 		min-height: 80px;
 		display: flex;
 		align-items: center;

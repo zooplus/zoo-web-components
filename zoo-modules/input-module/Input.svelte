@@ -3,7 +3,7 @@
 	<slot name="inputlabel">
 		<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
 	</slot>
-	<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>
+	{#if linktext}<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>{/if}
 	<span class="input-slot {valid ? '' : 'error'}">
 		<slot name="inputelement"></slot>
 		<svg class="error-circle" width="18" height="18" viewBox="0 0 24 24">
@@ -31,21 +31,19 @@
 		}
 	}
 
-	.input-slot.error {
-		::slotted(input),
-		::slotted(textarea) {
+	.error .error-circle {
+		opacity: 1;
+	}
+
+	.error {
+		::slotted(input), ::slotted(textarea) {
 			transition: border-color 0.3s ease;
 			border: $stroked-box-warning-bold;
 			padding: 12px 14px;
 		}
-
-		.error-circle {
-			opacity: 1;
-		}
 	}
 
-	::slotted(input),
-	::slotted(textarea) {
+	::slotted(input), ::slotted(textarea) {
 		width: 100%;
 		font-size: $p1-size;
 		line-height: $p1-line-height;
@@ -61,38 +59,21 @@
 		-moz-appearance: textfield;
 	}
 
-	::slotted(input)::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-
-	::slotted(input)::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-
-	::slotted(input::placeholder),
-	::slotted(textarea::placeholder) {
+	::slotted(input::placeholder), ::slotted(textarea::placeholder) {
 		color: $grey-mid;
 		opacity: 1;
 	}
 
-	::slotted(input:disabled),
-	::slotted(textarea:disabled) {
+	::slotted(input:disabled), ::slotted(textarea:disabled) {
 		border: $stroked-box-grey-light;
 		background-color: $grey-ultralight;
 		color: $grey-mid;
 		cursor: not-allowed;
 	}
 
-	::slotted(input:focus),
-	::slotted(textarea:focus) {
+	::slotted(input:focus), ::slotted(textarea:focus) {
 		border: $stroked-box-grey-dark-bold;
 		padding: 12px 14px;
-	}
-
-	::slotted(input[type='date']), ::slotted(input[type='time']) {
-		-webkit-appearance: none;
 	}
 
 	::slotted(label) {

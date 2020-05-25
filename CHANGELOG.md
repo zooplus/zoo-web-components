@@ -1,3 +1,11 @@
+# 5.3.2
+`zoo-select`, `zoo-searchable-select` - change color of select arrow when select is in invalid state.
+`zoo-navigation` - use more a11y friendly `<nav>` element.
+`zoo-input` - do not render link when insufficient params are passed. Remove css that altered native browser behavior.
+`zoo-grid` - use darker color for `norecords` slot for bigger contrast.
+`zoo-checkbox` - make checkbox body react to click when external label is slotted.
+Various documentation improvements regarding a11y.
+
 # 5.3.1
 `zoo-checkbox`, `zoo-radio` - simplified internal styles by styling input directly as pseudo-classes for ::slotted() do not work in safari.
 

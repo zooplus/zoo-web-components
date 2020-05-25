@@ -3,7 +3,7 @@
 	<slot name="selectlabel">
 		<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
 	</slot>
-	<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>
+	{#if linktext}<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>{/if}
 	<div class="input-slot {valid ? '' : 'error'}">
 		<slot bind:this={selectSlot} name="selectelement"></slot>
 		{#if slottedSelect && !slottedSelect.hasAttribute('multiple')}
@@ -52,6 +52,10 @@
 		}
 	}
 
+	.error .arrows path {
+		fill: var(--warning-mid, #{$warning-mid});
+	}
+
 	::slotted(select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -85,7 +89,7 @@
 		padding: 12px 24px 12px 14px;
 	}
 
-	.input-slot.error ::slotted(select) {
+	.error ::slotted(select) {
 		border: $stroked-box-warning-bold;
 		padding: 12px 24px 12px 14px;
 	}

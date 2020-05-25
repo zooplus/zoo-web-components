@@ -80,6 +80,10 @@
 		padding: 13px 25px 13px 15px;
 	}
 
+	.box.error input {
+		padding: 12px 24px 12px 14px;
+	}
+
 	.box:focus-within ::slotted(select) {
 		border: $stroked-box-grey-dark-bold;
 		border-top: none;

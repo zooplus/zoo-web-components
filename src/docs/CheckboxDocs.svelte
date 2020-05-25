@@ -36,8 +36,9 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-checkbox highlighted="1" labeltext="Example label for this particular checkbox">
-				<input slot="checkboxelement" type="checkbox"/>
+			<zoo-checkbox highlighted="true">
+				<input id="checkbox" slot="checkboxelement" type="checkbox"/>
+				<label for="checkbox" slot="checkboxlabel">Example label for this particular checkbox</label>
 			</zoo-checkbox>
 		</div>
 	</div>
@@ -52,7 +53,7 @@
 	let list;
 	let inputSlotText = `<slot name="checkboxelement"></slot>`;
 	let labelSlotText = `<slot name="checkboxlabel"></slot>`;
-	let example = `<div style="width: 250px;">\n  <zoo-checkbox highlighted="1" labeltext="Example label for this particular checkbox">\n    <input slot="checkboxelement" type="checkbox"/>\n  </zoo-checkbox>\n</div>`;
+	let example = `<div style="width: 250px;">\n  <zoo-checkbox highlighted="true">\n    <input id="checkbox" slot="checkboxelement" type="checkbox"/>\n    <label for="checkbox" slot="checkboxlabel">Example label for this particular checkbox</label>\n  </zoo-checkbox>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

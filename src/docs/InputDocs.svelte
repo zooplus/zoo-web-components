@@ -49,13 +49,10 @@
 		<code><pre>{example}</pre></code>
 		will produce the following:
 		<div style="width: 250px;">
-			<zoo-input labeltext="Input label" 
-				linktext="Forgotten your password?"
-				linkhref="https://google.com"
-				linktarget="about:blank"
-				valid="{true}"
-				infotext="Additional helpful information for our users" >
-				<input slot="inputelement" placeholder="input"/>
+			<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
+				valid="{true}" infotext="Additional helpful information for our users" >
+				<input id="input" slot="inputelement" placeholder="input"/>
+				<label for="input" slot="inputlabel">Input label</label>
 			</zoo-input>
 		</div>
 	</div>
@@ -70,7 +67,7 @@
 	let list;
 	let inputSlotExample = `<slot name="inputelement"></slot>`;
 	let labelSlotExample = `<slot name="inputlabel"></slot>`;
-	let example = `<div style="width: 250px;">\n  <zoo-input labeltext="Input label"\n    linktext="Forgotten your password?"\n    linkhref="https://google.com"\n    linktarget="about:blank"\n    infotext="Additional helpful information for our users" >\n    <input slot="inputelement" placeholder="input"/>\n  </zoo-input>\n</div>`;
+	let example = `<div style="width: 250px;">\n  <zoo-input\n    linktext="Forgotten your password?"\n    linkhref="https://google.com"\n    linktarget="about:blank"\n    infotext="Additional helpful information for our users" >\n    <input id="input" slot="inputelement" placeholder="input"/>\n    <label for="input" slot="inputlabel">Input label</label>\n  </zoo-input>\n</div>`;
 	onMount(() => {
 		list.items = [
 			{

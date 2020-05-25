@@ -4,7 +4,7 @@
 		<slot name="checkboxelement" bind:this={_inputSlot}></slot>
 		<svg class="check" viewBox="0 0 24 24" width="22" height="22"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
 		<slot name="checkboxlabel" bind:this={_labelSlot}>
-			<span>{labeltext}</span>
+			<label>{labeltext}</label>
 		</slot>
 	</div>
 	<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
@@ -57,7 +57,7 @@
 		}
 	}
 
-	span {
+	label {
 		display: flex;
 		align-items: center;
 	}
@@ -145,11 +145,10 @@
 	let _slottedInput;
 	let _inputSlot;
 	let _labelSlot;
-	let labelPresent = false;
 
 	const handleClick = e => {
 		// browser should handle it
-		if (labelPresent) {
+		if (e.target == _labelSlot.assignedNodes()[0]) {
 			_clicked = _slottedInput.checked;
 			return;
 		}
@@ -170,7 +169,6 @@
 			_slottedInput = _inputSlot.assignedNodes()[0];
 			_clicked = _slottedInput.checked;
 		});
-		_labelSlot.addEventListener("slotchange", () => labelPresent = _labelSlot.assignedNodes()[0] ? true : false);
 		_inputSlot.addEventListener('keypress', e => {
 			if (e.keyCode === 13) {
 				_slottedInput.click();

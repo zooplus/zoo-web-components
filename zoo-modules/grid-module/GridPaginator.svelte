@@ -1,7 +1,7 @@
 <svelte:options tag="zoo-grid-paginator"></svelte:options>
 <div class="box" bind:this={gridPaginatorRoot} class:hidden="{!currentpage || !maxpages}">
 	<slot name="pagesizeselector"></slot>
-	<div class="paging">
+	<nav class="paging">
 		<div class="btn prev" class:hidden="{!currentpage || currentpage == 1}" on:click="{() => goToPrevPage()}"></div>
 		{#each pages as page, i}
 			<!-- first, previous, current, next or last page -->
@@ -20,7 +20,7 @@
 			</style>
 			<svg class="arrow" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
 		</template>
-	</div>
+	</nav>
 </div>
 
 <style type='text/scss'>

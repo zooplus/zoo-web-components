@@ -12,44 +12,38 @@
 		{#each headers as header, idx}
 			<zoo-grid-header class="header-cell" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
-		{#each data as row} 
+		{#each data as row, i} 
 			<div class="example-row limited-width" slot="row">
-				<div>
-					<zoo-checkbox labeltext="Valid">
-						<input disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
-					</zoo-checkbox>
-				</div>
+				<zoo-checkbox>
+					<input id="{i}-first-grid-checkbox" disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
+					<label for="{i}-first-grid-checkbox" slot="checkboxlabel">Valid</label>
+				</zoo-checkbox>
 				<div>{row.createdDate}</div>
-				<div>
-					<div class="status">
-						<zoo-select>
-							<select disabled="{row.status == 'DELIVERED' ? true : null}" slot="selectelement" class="item-per-page-selector">
-								{#each statuses as status}
-									<option selected="{status == row.status}">{status}</option>
-								{/each}
-							</select>
-						</zoo-select>
-					</div>
-				</div>
+				<zoo-select class="status">
+					<select title="Delivery Status" disabled="{row.status == 'DELIVERED' ? true : null}" slot="selectelement" class="item-per-page-selector">
+						{#each statuses as status}
+							<option selected="{status == row.status}">{status}</option>
+						{/each}
+					</select>
+				</zoo-select>
 				<div>{row.minWeight}</div>
 				<div>{row.maxWeight}</div>
-				<div class="delivery-date">
-					<zoo-input>
-						<input disabled="{row.status == 'DELIVERED' ? true : null}" value="{row.deliveryDate}" slot="inputelement" type="date" placeholder="Enter date" />
-					</zoo-input>
-				</div>
+				<zoo-input class="delivery-date">
+					<input title="Delivery Date" disabled="{row.status == 'DELIVERED' ? true : null}" value="{row.deliveryDate}" slot="inputelement" type="date" placeholder="Enter date" />
+				</zoo-input>
 				<div>{row.noOfPieces}</div>
 				<div>{row.price}</div>
 			</div>
 		{/each}
 
 		<div class="item-per-page-selector-holder" slot="pagesizeselector">
-			<zoo-select labeltext="Page size" labelposition="left" >
-				<select slot="selectelement" class="item-per-page-selector">
+			<zoo-select labelposition="left" >
+				<select id="first-grid-page-size" slot="selectelement" class="item-per-page-selector">
 					{#each possibleNumberOfItems as number, idx}
 						<option selected="{idx == 0}">{number}</option>
 					{/each}
 				</select>
+				<label for="first-grid-page-size" slot="selectlabel">Page size</label>
 			</zoo-select>
 		</div>
 	</zoo-grid>
@@ -64,13 +58,12 @@
 				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 			{/each}
 
-			{#each extendedData as row} 
+			{#each extendedData as row, i} 
 				<div class="example-row limited-width" slot="row">
-					<div>
-						<zoo-checkbox labeltext="Valid">
-							<input disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
-						</zoo-checkbox>
-					</div>
+					<zoo-checkbox labeltext="Valid">
+						<input id="{i}-second-grid-checkbox" disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
+						<label for="{i}-second-grid-checkbox" slot="checkboxlabel">Valid</label>
+					</zoo-checkbox>
 					<div>{row.createdDate}</div>
 					<div>{row.status}</div>
 					<div>{row.minWeight}</div>
@@ -79,21 +72,21 @@
 					<div>{row.noOfPieces}</div>
 					<div>{row.price}</div>
 					<div>{row.rating}</div>
-					<div style="width: 30px;">
-						<zoo-checkbox>
-							<input checked="{row.promotion}" slot="checkboxelement" type="checkbox"/>
-						</zoo-checkbox>
-					</div>
+					<zoo-checkbox>
+						<input id="{i}-second-grid-promo-checkbox" checked="{row.promotion}" slot="checkboxelement" type="checkbox"/>
+						<label for="{i}-second-grid-promo-checkbox" slot="checkboxlabel">Promotion</label>
+					</zoo-checkbox>
 				</div>
 			{/each}
 
 			<div class="item-per-page-selector-holder" slot="pagesizeselector">
-				<zoo-select labeltext="Page size" labelposition="left" >
-					<select slot="selectelement" class="item-per-page-selector">
+				<zoo-select labelposition="left" >
+					<select id="second-grid-page-size" slot="selectelement" class="item-per-page-selector">
 						{#each possibleNumberOfItems as number, idx}
 							<option selected="{idx == 0}">{number}</option>
 						{/each}
 					</select>
+					<label for="second-grid-page-size" slot="selectlabel">Page size</label>
 				</zoo-select>
 			</div>
 		</zoo-grid>
@@ -215,10 +208,10 @@
 			sortProperty: 'status'
 		},
 		{
-			title: 'Minimum weight'
+			title: 'Min weight'
 		},
 		{
-			title: 'Maximum weight'
+			title: 'Max weight'
 		},
 		{
 			title: 'Delivery date',

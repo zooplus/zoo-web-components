@@ -1,8 +1,10 @@
 <svelte:options tag="zoo-select"></svelte:options>
 <div class="box {labelposition} {linktext ? '' : 'link-absent'}">
-	<slot name="selectlabel">
-		<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
-	</slot>
+	<span class="input-label">
+		<slot name="selectlabel">
+			<zoo-input-label {labeltext}></zoo-input-label>
+		</slot>
+	</span>
 	{#if linktext}<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>{/if}
 	<div class="input-slot {valid ? '' : 'error'}">
 		<slot bind:this={selectSlot} name="selectelement"></slot>

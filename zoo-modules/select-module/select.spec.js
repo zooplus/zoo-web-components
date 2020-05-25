@@ -23,7 +23,7 @@ describe('Zoo select', function() {
 				select.valid = false;
 				document.body.appendChild(select);
 				const selectBox = select.shadowRoot.querySelector('.box');
-				const label = selectBox.querySelector('.input-label').shadowRoot;
+				const label = selectBox.querySelector('zoo-input-label').shadowRoot;
 				return {
 					labelText: label.querySelector('label').innerHTML
 				};

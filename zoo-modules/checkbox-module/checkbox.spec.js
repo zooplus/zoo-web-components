@@ -11,7 +11,7 @@ describe('Zoo checkbox', function() {
 				const checkboxInner = checkbox.shadowRoot.querySelector('.checkbox');
 
 				return {
-					inputLabelText: inputBox.querySelector('span').innerHTML,
+					inputLabelText: inputBox.querySelector('label').innerHTML,
 					errorClassPresent: checkboxInner.classList.contains('error'),
 					highlightedClassPresent: checkboxInner.classList.contains('highlighted')
 				};
@@ -108,7 +108,7 @@ describe('Zoo checkbox', function() {
 				input.slot = 'checkboxelement';
 				checkbox.appendChild(input);
 				document.body.appendChild(checkbox);
-				const labelText = checkbox.shadowRoot.querySelector('span');
+				const labelText = checkbox.shadowRoot.querySelector('label');
 
 				return labelText.innerHTML;
 			});

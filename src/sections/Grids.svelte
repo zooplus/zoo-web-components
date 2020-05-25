@@ -97,7 +97,7 @@
 	<div class="grid-holder">
 		<zoo-grid class="limited-width" paginator>
 			{#each headers as header}
-				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
+				<zoo-grid-header slot="headercell">{header.title}</zoo-grid-header>
 			{/each}
 			<div slot="norecords" class="example-row limited-width">
 				No records to show!
@@ -164,11 +164,9 @@
 		min-width: 1024px;
 	}
 
-	.example-row {
-		& > div {
-			word-break: break-word;
-			flex-grow: 1;
-		}
+	.example-row  > div {
+		word-break: break-word;
+		flex-grow: 1;
 	}
 
 	.item-per-page-selector-holder {

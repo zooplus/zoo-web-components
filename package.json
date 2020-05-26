@@ -30,7 +30,7 @@
     "build": "rollup -c 'rollup.release.config.js'",
     "postbuild": "npm run stylelint",
     "pretest": "rollup -c 'rollup.config.test.js'",
-    "test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve docs\"",
+    "test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
     "posttest": "node cat ./pika.txt",
     "prepublishOnly": "npm run build",
     "stylelint": "stylelint \"zoo-modules/**/*.svelte\""

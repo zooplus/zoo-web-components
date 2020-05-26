@@ -51,7 +51,7 @@
 				<div class="left-menu">
 					{#each doclinks as link}
 						<div class="link-wrapper">
-							<a href="{link.href}" target="{link.target}">{link.text}</a>
+							<a href="{link.href}">{link.text}</a>
 						</div>
 						<hr class="left-menu-separator">
 					{/each}
@@ -231,87 +231,70 @@
 	let doclinks = [
 		{
 			href: '#button-doc',
-			target: '',
 			text: 'Button'
 		},
 		{
 			href: '#checkbox-doc',
-			target: '',
 			text: 'Checkbox'
 		},
 		{
 			href: '#collapsable-list-doc',
-			target: '',
 			text: 'Collapsable List'
 		},
 		{
 			href: '#feedback-doc',
-			target: '',
 			text: 'Feedback'
 		},
 		{
 			href: '#footer-doc',
-			target: '',
 			text: 'Footer'
 		},
 		{
 			href: '#header-doc',
-			target: '',
 			text: 'Header'
 		},
 		{
 			href: '#input-doc',
-			target: '',
 			text: 'Input'
 		},
 		{
 			href: '#link-doc',
-			target: '',
 			text: 'Link'
 		},
 		{
 			href: '#modal-doc',
-			target: '',
 			text: 'Modal'
 		},
 		{
 			href: '#navigation-doc',
-			target: '',
 			text: 'Navigation'
 		},
 		{
 			href: '#radio-doc',
-			target: '',
 			text: 'Radio'
 		},
 		{
 			href: '#searchable-select-doc',
-			target: '',
 			text: 'Searchable select'
 		},
 		{
 			href: '#select-doc',
-			target: '',
 			text: 'Select'
 		},
 		{
 			href: '#toast-doc',
-			target: '',
 			text: 'Toast'
 		},
 		{
 			href: '#tooltip-doc',
-			target: '',
 			text: 'Tooltip'
 		},
 		{
 			href: '#grid-doc',
-			target: '',
 			text: 'Grid'
 		},
 		{
 			href: '#theming-doc',
-			target: '',
 			text: 'Theming'
 		}
 	];

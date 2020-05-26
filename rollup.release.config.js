@@ -3,12 +3,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import sass from 'node-sass';
 
-const production = !process.env.ROLLUP_WATCH;
 const shared = {
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
 			preprocess: {
 				style: ({ content, attributes }) => {
 					if (attributes.type !== 'text/scss') return;
@@ -33,7 +30,7 @@ const shared = {
 			customElement: true
 		}),
 		resolve(),
-		production && terser()
+		terser()
 	]
 }
 

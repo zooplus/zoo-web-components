@@ -103,11 +103,6 @@
 			right: 8px;
 		}
 	}
-	@keyframes fadeTooltipIn {
-		from { opacity: 0; }
-		
-		to { opacity: 1; }
-	}
 </style>
 
 <script>

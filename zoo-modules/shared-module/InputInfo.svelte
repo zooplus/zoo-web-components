@@ -27,21 +27,12 @@
 	}
 
 	.info svg path {
-		fill: $info-mid;
+		fill: var(--info-mid, #{$info-mid});
 	}
 
-	.error {
-		animation: hideshow 0.4s ease;
-
-		svg path {
-			fill: var(--warning-mid, #{$warning-mid});
-		}
+	.error svg path {
+		fill: var(--warning-mid, #{$warning-mid});
 	}
-	@keyframes hideshow {
-		0% { opacity: 0; }
-
-		100% { opacity: 1; }
-	} 
 </style>
 
 <script>

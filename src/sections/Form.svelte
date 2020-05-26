@@ -6,18 +6,26 @@
 		<input id="input-type-text" slot="inputelement" type="text" placeholder="input" />
 		<label for="input-type-text" slot="inputlabel">Input type text</label>
 	</zoo-input>
-	<zoo-input linkhref="https://google.com" linktarget="about:blank" infotext="Additional helpful information for our users">
-		<input id="input-type-number" slot="inputelement" type="number" placeholder="input" />
-		<label for="input-type-number" slot="inputlabel">Input type number</label>
+	<zoo-input linktext="Learn your HTML and don't overcomplicate" linktarget="about:blank"
+			   linkhref="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist">
+		<input id="input-type-number" slot="inputelement" placeholder="input" list="animals"/>
+		<label for="input-type-number" slot="inputlabel">Autocomplete</label>
 	</zoo-input>
-	<zoo-input linktext="Native date picker -> click me" linkhref="https://github.com/jcgertig/date-input-polyfill"
+	<datalist id="animals">
+		<option value="Dog">
+		<option value="Cat">
+		<option value="Small Pet">
+		<option value="Bird">
+		<option value="Aquatic">
+	</datalist>
+	<zoo-input linktext="Native date picker polyfill on Github" linkhref="https://github.com/jcgertig/date-input-polyfill"
 			   linktarget="about:blank" infotext="Click on input to show context menu with date selection">
 		<input id="input-type-date" slot="inputelement" type="date" placeholder="Enter date" />
 		<label for="input-type-date" slot="inputlabel">Input type date</label>
 	</zoo-input>
 	<zoo-input infotext="Select time">
 		<input id="input-type-time" slot="inputelement" type="time" placeholder="Enter time" />
-		<label for="input-type-time" slot="inputlabel">Input type date</label>
+		<label for="input-type-time" slot="inputlabel">Input type time</label>
 	</zoo-input>
 	<zoo-input>
 		<input id="input-disabled" disabled slot="inputelement" type="text"/>
@@ -91,14 +99,12 @@
 		<label for="long-label-checkbox" slot="checkboxlabel">Not highlighted checkbox with a long label that short be wrapped around checkbox like this</label>
 	</zoo-checkbox>
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext" labeltext="Label text">
-		<template>
-			<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
-			<label for="contactChoice1">Email</label>
-			<input type="radio" id="contactChoice2" name="contact" value="phone">
-			<label for="contactChoice2">Phone</label>
-			<input type="radio" id="contactChoice3" name="contact" value="mail">
-			<label for="contactChoice3">Mail</label>
-		</template>
+		<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
+		<label for="contactChoice1">Email</label>
+		<input type="radio" id="contactChoice2" name="contact" value="phone">
+		<label for="contactChoice2">Phone</label>
+		<input type="radio" id="contactChoice3" name="contact" value="mail">
+		<label for="contactChoice3">Mail</label>
 	</zoo-radio>
 
 	<zoo-radio valid="{inputState}" errormsg="errormsg" infotext="infotext">

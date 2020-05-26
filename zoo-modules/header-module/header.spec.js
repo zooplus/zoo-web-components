@@ -5,7 +5,7 @@ describe('Zoo header', function() {
 				let header = document.createElement('zoo-header');
 				header.headertext = 'header-text';
 				document.body.appendChild(header);
-				const text = header.shadowRoot.querySelector('.app-name');
+				const text = header.shadowRoot.querySelector('h2');
 				return text.innerHTML;
 			});
 			expect(headerText).equal('header-text');

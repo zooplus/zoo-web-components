@@ -1,11 +1,9 @@
 <svelte:options tag="zoo-radio"></svelte:options>
-<div class="box">
-	<zoo-input-label {labeltext}></zoo-input-label>
-	<span class="template-slot {valid ? '' : 'error'}">
-		<slot bind:this={_templateSlot}></slot>
-	</span>
-	<zoo-input-info {valid} inputerrormsg="{errormsg}" {infotext}></zoo-input-info>
+<zoo-input-label {labeltext}></zoo-input-label>
+<div class:error="{!valid}">
+	<slot></slot>
 </div>
+<zoo-input-info {valid} inputerrormsg="{errormsg}" {infotext}></zoo-input-info>
 
 <style type='text/scss'>
 	@import "variables";
@@ -15,7 +13,7 @@
 		flex-direction: column;
 	}
 
-	.template-slot {
+	div {
 		display: flex;
 		padding: 11px 0;
 		font-size: $p1-size;
@@ -73,26 +71,8 @@
 </style>
 
 <script>
-	import { onMount } from 'svelte';
-
 	export let valid = true;
 	export let errormsg = '';
 	export let infotext = '';
 	export let labeltext = '';
-	let _templateSlot;
-	let clone;
-	  
-	onMount(() => {
-		// todo support multiple slots
-		_templateSlot.addEventListener("slotchange", () => {
-			if (!clone) {
-				const template = _templateSlot.assignedNodes()[0];
-				if (template.content) {
-					clone = template.content.cloneNode(true);
-					_templateSlot.getRootNode().querySelector('slot').assignedNodes()[0].remove();
-					_templateSlot.getRootNode().host.appendChild(clone);
-				}
-			}
-		});
-	});
 </script>

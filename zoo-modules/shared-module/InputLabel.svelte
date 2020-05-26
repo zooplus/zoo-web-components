@@ -1,7 +1,5 @@
 <svelte:options tag="zoo-input-label"></svelte:options>
-{#if labeltext}
-	<label>{labeltext}</label>
-{/if}
+<label>{labeltext}</label>
 
 <style type='text/scss'>
 	@import "variables";

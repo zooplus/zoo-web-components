@@ -1,9 +1,9 @@
 <svelte:options tag="zoo-header"></svelte:options>
-<div class="box" bind:this={_headerRoot}>
-	<img importance="high" class="app-logo" src="{imgsrc}" alt="{imgalt}" bind:this={_img}/>
-	<span class="app-name">{headertext}</span>
+<header bind:this={_headerRoot}>
+	<img importance="high" src="{imgsrc}" alt="{imgalt}" bind:this={_img}/>
+	<h2>{headertext}</h2>
 	<slot></slot>
-</div>
+</header>
 
 <style type='text/scss'>
 	@import "variables";
@@ -12,7 +12,7 @@
 		contain: style;
 	}
 
-	.box {
+	header {
 		display: flex;
 		align-items: center;
 		background: $white;
@@ -20,7 +20,7 @@
 		height: 70px;
 	}
 
-	.app-logo {
+	img {
 		height: 46px;
 		display: inline-block;
 		padding: 5px 25px 5px 0;
@@ -30,12 +30,9 @@
 		}
 	}
 
-	.app-name {
+	h2 {
 		display: inline-block;
 		color: var(--primary-mid, #{$primary-mid});
-		font-size: $h2-size;
-		line-height: $h2-line-height;
-		padding: 0 25px 0 0;
 		@media only screen and (max-width: 544px) {
 			display: none;
 		}
@@ -49,10 +46,9 @@
 	export let imgalt = '';
 	let _headerRoot;
 	let _img;
-	let host;
 
 	onMount(() => {
-		host = _headerRoot.getRootNode().host;
+		const host = _headerRoot.getRootNode().host;
 		_img.addEventListener("click", () => host.dispatchEvent(new Event("logoClicked")));
 	});
 

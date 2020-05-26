@@ -12,7 +12,7 @@ const plugins = [
 		customElement: true
 	}),
 	resolve(),
-	production && terser()
+	terser()
 ];
 
 export default [

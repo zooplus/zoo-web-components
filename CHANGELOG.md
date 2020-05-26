@@ -1,3 +1,9 @@
+# 5.3.3
+`zoo-checkbox` - minor simplification of internal styles;      
+`zoo-header` - use more semantically correct HTML tags for elements;      
+`zoo-radio` - remove redundant code which accepted template as slotted element;      
+`zoo-input-info` - simplify internal css;      
+
 # 5.3.2
 `zoo-select`, `zoo-searchable-select` - change color of select arrow when select is in invalid state.
 `zoo-navigation` - use more a11y friendly `<nav>` element.

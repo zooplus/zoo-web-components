@@ -1,56 +1,56 @@
 {
-  "name": "@zooplus/zoo-web-components",
-  "version": "5.3.2",
-  "main": "dist/zoo-components-iife.js",
-  "files": [
-    "dist/zoo-components-esm.js",
-    "dist/zoo-components-iife.js"
-  ],
-  "module": "dist/zoo-components-esm.js",
-  "description": "Set of web-components implementing zoo+ style guide",
-  "person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "@types/mocha": "^7.0.2",
-    "chai": "^4.2.0",
-    "concurrently": "^5.2.0",
-    "mocha": "^7.2.0",
-    "node-sass": "^4.14.1",
-    "puppeteer": "^3.1.0",
-    "rollup": "^2.10.9",
-    "rollup-plugin-svelte": "^5.2.2",
-    "rollup-plugin-terser": "^6.1.0",
-    "serve": "^11.3.1",
-    "stylelint": "^13.5.0",
-    "svelte": "3.22.3"
-  },
-  "scripts": {
-    "start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
-    "prebuild": "npm test",
-    "build": "rollup -c 'rollup.release.config.js'",
-    "postbuild": "npm run stylelint",
-    "pretest": "rollup -c 'rollup.config.test.js'",
-    "test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve docs\"",
-    "posttest": "node cat ./pika.txt",
-    "prepublishOnly": "npm run build",
-    "stylelint": "stylelint \"zoo-modules/**/*.svelte\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zooplus/zoo-web-components.git"
-  },
-  "keywords": [
-    "web-components",
-    "shadow-dom",
-    "custom-elements",
-    "javascript",
-    "css",
-    "html"
-  ],
-  "author": "Yuriy Kravets",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zooplus/zoo-web-components/issues"
-  },
-  "homepage": "https://github.com/zooplus/zoo-web-components#readme"
+	"name": "@zooplus/zoo-web-components",
+	"version": "5.3.2",
+	"main": "dist/zoo-components-iife.js",
+	"files": [
+		"dist/zoo-components-esm.js",
+		"dist/zoo-components-iife.js"
+	],
+	"module": "dist/zoo-components-esm.js",
+	"description": "Set of web-components implementing zoo+ style guide",
+	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
+	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^8.0.0",
+		"rollup": "^2.10.9",
+		"rollup-plugin-svelte": "^5.2.2",
+		"rollup-plugin-terser": "^6.1.0",
+		"node-sass": "^4.14.1",
+		"@types/mocha": "^7.0.2",
+		"chai": "^4.2.0",
+		"mocha": "^7.2.0",
+		"stylelint": "^13.5.0",
+		"puppeteer": "^3.1.0",
+		"concurrently": "^5.2.0",
+		"serve": "^11.3.1",
+		"svelte": "3.22.3"
+	},
+	"scripts": {
+		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
+		"prebuild": "npm test",
+		"build": "rollup -c 'rollup.config.release.js'",
+		"postbuild": "npm run stylelint",
+		"pretest": "rollup -c 'rollup.config.test.js'",
+		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
+		"posttest": "node ./test/cat ./test/pika.txt",
+		"prepublishOnly": "npm run build",
+		"stylelint": "stylelint \"zoo-modules/**/*.svelte\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zooplus/zoo-web-components.git"
+	},
+	"keywords": [
+		"web-components",
+		"shadow-dom",
+		"custom-elements",
+		"javascript",
+		"css",
+		"html"
+	],
+	"author": "Yuriy Kravets",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/zooplus/zoo-web-components/issues"
+	},
+	"homepage": "https://github.com/zooplus/zoo-web-components#readme"
 }

@@ -3,19 +3,18 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from './svelte-preprocess';
 
-const shared = {
-	plugins: [
-		svelte({
-			preprocess: sveltePreprocess,
-			customElement: true
-		}),
-		resolve(),
-		terser()
-	]
-}
+const plugins = [
+	svelte({
+		preprocess: sveltePreprocess,
+		customElement: true
+	}),
+	resolve(),
+	terser()
+];
 
 export default [
-	Object.assign({}, shared, {
+	{
+		plugins: plugins,
 		input: 'src/components.js',
 		output: {
 			sourcemap: false,
@@ -23,8 +22,9 @@ export default [
 			file: 'dist/zoo-components-iife.js',
 			name: 'zooWebComponents'
 		}
-	}),
-	Object.assign({}, shared, {
+	},
+	{
+		plugins: plugins,
 		input: 'src/components.js',
 		output: {
 			sourcemap: false,
@@ -32,5 +32,5 @@ export default [
 			file: 'dist/zoo-components-esm.js',
 			name: 'zooWebComponents'
 		}
-	})
+	}
 ];

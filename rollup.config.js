@@ -4,18 +4,16 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from './svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
-const shared = {
-	plugins: [
-		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			preprocess: sveltePreprocess,
-			customElement: true
-		}),
-		resolve(),
-		terser()
-	]
-}
+const plugins = [
+	svelte({
+		// enable run-time checks when not in production
+		dev: !production,
+		preprocess: sveltePreprocess,
+		customElement: true
+	}),
+	resolve(),
+	production && terser()
+];
 
 export default [
 	{
@@ -25,7 +23,7 @@ export default [
 				dev: !production
 			}),
 			resolve(),
-			terser()
+			production && terser()
 		],
 		input: 'src/app.js',
 		output: {
@@ -35,7 +33,8 @@ export default [
 			name: 'app'
 		}
 	},
-	Object.assign({}, shared, {
+	{
+		plugins: plugins,
 		input: 'src/docs.js',
 		output: {
 			sourcemap: false,
@@ -43,8 +42,9 @@ export default [
 			file: 'docs/bundle-docs.js',
 			name: 'iife'
 		}
-	}),
-	Object.assign({}, shared, {
+	},
+	{
+		plugins: plugins,
 		input: 'src/components.js',
 		output: {
 			sourcemap: false,
@@ -52,5 +52,5 @@ export default [
 			file: 'docs/bundle-iife.js',
 			name: 'iife'
 		}
-	})
+	}
 ];

@@ -57,6 +57,12 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		-moz-appearance: textfield;
+		background: $white;
+	}
+
+	::slotted(input[type="date"]), ::slotted(input[type="time"]) {
+		-webkit-min-logical-height: 48px;
+		-webkit-appearance: textfield;
 	}
 
 	::slotted(input::placeholder), ::slotted(textarea::placeholder) {

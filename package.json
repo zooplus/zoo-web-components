@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "5.3.3",
+	"version": "5.3.4",
 	"main": "dist/zoo-components-iife.js",
 	"files": [
 		"dist/zoo-components-esm.js",
@@ -11,17 +11,17 @@
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^8.0.0",
+		"@types/mocha": "^7.0.2",
+		"chai": "^4.2.0",
+		"concurrently": "^5.2.0",
+		"mocha": "^7.2.0",
+		"node-sass": "^4.14.1",
+		"puppeteer": "^3.1.0",
 		"rollup": "^2.10.9",
 		"rollup-plugin-svelte": "^5.2.2",
 		"rollup-plugin-terser": "^6.1.0",
-		"node-sass": "^4.14.1",
-		"@types/mocha": "^7.0.2",
-		"chai": "^4.2.0",
-		"mocha": "^7.2.0",
-		"stylelint": "^13.5.0",
-		"puppeteer": "^3.1.0",
-		"concurrently": "^5.2.0",
 		"serve": "^11.3.1",
+		"stylelint": "^13.5.0",
 		"svelte": "3.22.3"
 	},
 	"scripts": {

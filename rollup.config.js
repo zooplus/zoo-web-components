@@ -23,7 +23,7 @@ export default [
 				dev: !production
 			}),
 			resolve(),
-			production && terser()
+			terser()
 		],
 		input: 'src/app.js',
 		output: {

@@ -1,7 +1,7 @@
 <svelte:options tag="zoo-searchable-select"></svelte:options>
-<div class="box {valid ? '' : 'error'} {hidden ? 'hidden' : ''}">
+<div class="box {valid ? '' : 'error'} {hidden ? 'hidden' : ''}" class:mobile="{_isMobile}">
 	{#if !_isMobile}
-		<zoo-input class:mobile="{_isMobile}" type="text" {valid} {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
+		<zoo-input type="text" {valid} {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
 			<label for="input" slot="inputlabel">{labeltext}</label>
 			<input id="input" disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
@@ -56,6 +56,13 @@
 		}
 	}
 
+	.mobile ::slotted(select) {
+		border-radius: 3px;
+		border: $stroked-box-grey;
+		position: relative;
+		top: 0;
+	}
+
 	::slotted(select) {
 		-webkit-appearance: none;
 		-moz-appearance: none;	
@@ -87,6 +94,11 @@
 	.box:focus-within ::slotted(select) {
 		border: $stroked-box-grey-dark-bold;
 		border-top: none;
+		padding: 12px 14px;
+	}
+
+	.box.mobile:focus-within ::slotted(select) {
+		border: $stroked-box-grey-dark-bold;
 		padding: 12px 14px;
 	}
 

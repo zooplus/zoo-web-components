@@ -1,3 +1,6 @@
+# 5.3.5
+`zoo-searchable-select` - fix `select` styles to behave as a regular select element.
+
 # 5.3.4
 `zoo-input` - fix grey background for input with `type="date"` or `type="time"` on android devices. Fixed appearance of `type="date"` and `type="time"` on iOS mobile devices.     
 `zoo-searchable-select` - fix showing `select` element when user is using mobile device.

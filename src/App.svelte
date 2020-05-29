@@ -95,7 +95,13 @@
 			</div>
 		</div>
 	</main>
-	<zoo-footer class="footer" bind:this={footer} copyright="zooplus AG"></zoo-footer> 
+	<zoo-footer class="footer" copyright="zooplus AG">
+		{#each footerlinks as footerlink}
+			<zoo-link href="{footerlink.href}" target="{footerlink.target}" type="{footerlink.type}"
+				disabled="{footerlink.disabled}" text="{footerlink.text}">
+			</zoo-link>
+		{/each}
+	</zoo-footer> 
 </div>
 
 <style type="text/scss">
@@ -226,8 +232,18 @@
 </style>
 
 <script>
-	import { onMount } from 'svelte';
-	let footer;
+	let footerlinks = [
+		{
+			href: 'https://github.com/zooplus/zoo-web-components',
+			text: 'Github',
+			type: 'negative'
+		},
+		{
+			href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
+			text: 'NPM',
+			type: 'negative'
+		}
+	];
 	let doclinks = [
 		{
 			href: '#button-doc',
@@ -298,18 +314,4 @@
 			text: 'Theming'
 		}
 	];
-	onMount(() => {
-		footer.footerlinks = [
-			{
-				href: 'https://github.com/zooplus/zoo-web-components',
-				text: 'Github',
-				type: 'negative'
-			},
-			{
-				href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
-				text: 'NPM',
-				type: 'negative'
-			}
-		];
-	});
 </script>

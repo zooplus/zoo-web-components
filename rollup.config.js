@@ -11,8 +11,7 @@ const plugins = [
 		preprocess: sveltePreprocess,
 		customElement: true
 	}),
-	resolve(),
-	terser()
+	resolve()
 ];
 
 export default [
@@ -48,9 +47,9 @@ export default [
 		input: 'src/components.js',
 		output: {
 			sourcemap: false,
-			format: 'iife',
-			file: 'docs/bundle-iife.js',
-			name: 'iife'
+			format: 'esm',
+			file: 'docs/components.js',
+			name: 'esm'
 		}
 	}
 ];

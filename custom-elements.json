@@ -1,0 +1,691 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "zoo-header",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "headertext"
+        }
+      ],
+      "properties": [
+        {
+          "name": "headertext",
+          "attribute": "headertext"
+        }
+      ]
+    },
+    {
+      "name": "zoo-modal",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "headertext"
+        },
+        {
+          "name": "openModal"
+        },
+        {
+          "name": "closeModal"
+        }
+      ],
+      "properties": [
+        {
+          "name": "headertext",
+          "attribute": "headertext"
+        },
+        {
+          "name": "openModal",
+          "attribute": "openModal"
+        },
+        {
+          "name": "closeModal",
+          "attribute": "closeModal"
+        }
+      ]
+    },
+    {
+      "name": "zoo-footer",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "copyright"
+        }
+      ],
+      "properties": [
+        {
+          "name": "copyright",
+          "attribute": "copyright"
+        }
+      ]
+    },
+    {
+      "name": "zoo-input",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "labelposition"
+        },
+        {
+          "name": "labeltext"
+        },
+        {
+          "name": "linktext"
+        },
+        {
+          "name": "linkhref"
+        },
+        {
+          "name": "linktarget"
+        },
+        {
+          "name": "inputerrormsg"
+        },
+        {
+          "name": "infotext"
+        },
+        {
+          "name": "valid"
+        }
+      ],
+      "properties": [
+        {
+          "name": "labelposition",
+          "attribute": "labelposition"
+        },
+        {
+          "name": "labeltext",
+          "attribute": "labeltext"
+        },
+        {
+          "name": "linktext",
+          "attribute": "linktext"
+        },
+        {
+          "name": "linkhref",
+          "attribute": "linkhref"
+        },
+        {
+          "name": "linktarget",
+          "attribute": "linktarget"
+        },
+        {
+          "name": "inputerrormsg",
+          "attribute": "inputerrormsg"
+        },
+        {
+          "name": "infotext",
+          "attribute": "infotext"
+        },
+        {
+          "name": "valid",
+          "attribute": "valid"
+        }
+      ]
+    },
+    {
+      "name": "zoo-button",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "size"
+        },
+        {
+          "name": "disabled"
+        }
+      ],
+      "properties": [
+        {
+          "name": "type",
+          "attribute": "type"
+        },
+        {
+          "name": "size",
+          "attribute": "size"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled"
+        }
+      ]
+    },
+    {
+      "name": "zoo-checkbox",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "labeltext"
+        },
+        {
+          "name": "valid"
+        },
+        {
+          "name": "highlighted"
+        },
+        {
+          "name": "inputerrormsg"
+        },
+        {
+          "name": "infotext"
+        }
+      ],
+      "properties": [
+        {
+          "name": "labeltext",
+          "attribute": "labeltext"
+        },
+        {
+          "name": "valid",
+          "attribute": "valid"
+        },
+        {
+          "name": "highlighted",
+          "attribute": "highlighted"
+        },
+        {
+          "name": "inputerrormsg",
+          "attribute": "inputerrormsg"
+        },
+        {
+          "name": "infotext",
+          "attribute": "infotext"
+        }
+      ]
+    },
+    {
+      "name": "zoo-radio",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "valid"
+        },
+        {
+          "name": "errormsg"
+        },
+        {
+          "name": "infotext"
+        },
+        {
+          "name": "labeltext"
+        }
+      ],
+      "properties": [
+        {
+          "name": "valid",
+          "attribute": "valid"
+        },
+        {
+          "name": "errormsg",
+          "attribute": "errormsg"
+        },
+        {
+          "name": "infotext",
+          "attribute": "infotext"
+        },
+        {
+          "name": "labeltext",
+          "attribute": "labeltext"
+        }
+      ]
+    },
+    {
+      "name": "zoo-feedback",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "text"
+        }
+      ],
+      "properties": [
+        {
+          "name": "type",
+          "attribute": "type"
+        },
+        {
+          "name": "text",
+          "attribute": "text"
+        }
+      ]
+    },
+    {
+      "name": "zoo-tooltip",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "text"
+        },
+        {
+          "name": "position"
+        }
+      ],
+      "properties": [
+        {
+          "name": "text",
+          "attribute": "text"
+        },
+        {
+          "name": "position",
+          "attribute": "position"
+        }
+      ]
+    },
+    {
+      "name": "zoo-select",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "labelposition"
+        },
+        {
+          "name": "labeltext"
+        },
+        {
+          "name": "linktext"
+        },
+        {
+          "name": "linkhref"
+        },
+        {
+          "name": "linktarget"
+        },
+        {
+          "name": "inputerrormsg"
+        },
+        {
+          "name": "infotext"
+        },
+        {
+          "name": "valid"
+        },
+        {
+          "name": "loading"
+        }
+      ],
+      "properties": [
+        {
+          "name": "labelposition",
+          "attribute": "labelposition"
+        },
+        {
+          "name": "labeltext",
+          "attribute": "labeltext"
+        },
+        {
+          "name": "linktext",
+          "attribute": "linktext"
+        },
+        {
+          "name": "linkhref",
+          "attribute": "linkhref"
+        },
+        {
+          "name": "linktarget",
+          "attribute": "linktarget"
+        },
+        {
+          "name": "inputerrormsg",
+          "attribute": "inputerrormsg"
+        },
+        {
+          "name": "infotext",
+          "attribute": "infotext"
+        },
+        {
+          "name": "valid",
+          "attribute": "valid"
+        },
+        {
+          "name": "loading",
+          "attribute": "loading"
+        }
+      ]
+    },
+    {
+      "name": "zoo-searchable-select",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "labelposition"
+        },
+        {
+          "name": "labeltext"
+        },
+        {
+          "name": "linktext"
+        },
+        {
+          "name": "linkhref"
+        },
+        {
+          "name": "linktarget"
+        },
+        {
+          "name": "inputerrormsg"
+        },
+        {
+          "name": "infotext"
+        },
+        {
+          "name": "valid"
+        },
+        {
+          "name": "placeholder"
+        },
+        {
+          "name": "loading"
+        },
+        {
+          "name": "handleOptionChange"
+        }
+      ],
+      "properties": [
+        {
+          "name": "labelposition",
+          "attribute": "labelposition"
+        },
+        {
+          "name": "labeltext",
+          "attribute": "labeltext"
+        },
+        {
+          "name": "linktext",
+          "attribute": "linktext"
+        },
+        {
+          "name": "linkhref",
+          "attribute": "linkhref"
+        },
+        {
+          "name": "linktarget",
+          "attribute": "linktarget"
+        },
+        {
+          "name": "inputerrormsg",
+          "attribute": "inputerrormsg"
+        },
+        {
+          "name": "infotext",
+          "attribute": "infotext"
+        },
+        {
+          "name": "valid",
+          "attribute": "valid"
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder"
+        },
+        {
+          "name": "loading",
+          "attribute": "loading"
+        },
+        {
+          "name": "handleOptionChange",
+          "attribute": "handleOptionChange"
+        }
+      ]
+    },
+    {
+      "name": "zoo-link",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "href"
+        },
+        {
+          "name": "text"
+        },
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "disabled"
+        },
+        {
+          "name": "textalign"
+        },
+        {
+          "name": "size"
+        }
+      ],
+      "properties": [
+        {
+          "name": "href",
+          "attribute": "href"
+        },
+        {
+          "name": "text",
+          "attribute": "text"
+        },
+        {
+          "name": "target",
+          "attribute": "target"
+        },
+        {
+          "name": "type",
+          "attribute": "type"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled"
+        },
+        {
+          "name": "textalign",
+          "attribute": "textalign"
+        },
+        {
+          "name": "size",
+          "attribute": "size"
+        }
+      ]
+    },
+    {
+      "name": "zoo-input-info",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "valid"
+        },
+        {
+          "name": "inputerrormsg"
+        },
+        {
+          "name": "infotext"
+        }
+      ],
+      "properties": [
+        {
+          "name": "valid",
+          "attribute": "valid"
+        },
+        {
+          "name": "inputerrormsg",
+          "attribute": "inputerrormsg"
+        },
+        {
+          "name": "infotext",
+          "attribute": "infotext"
+        }
+      ]
+    },
+    {
+      "name": "zoo-navigation",
+      "path": "./dist/zoo-components-esm.js"
+    },
+    {
+      "name": "zoo-input-label",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "labeltext"
+        }
+      ],
+      "properties": [
+        {
+          "name": "labeltext",
+          "attribute": "labeltext"
+        }
+      ]
+    },
+    {
+      "name": "zoo-toast",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "text"
+        },
+        {
+          "name": "timeout"
+        },
+        {
+          "name": "show"
+        },
+        {
+          "name": "close"
+        }
+      ],
+      "properties": [
+        {
+          "name": "type",
+          "attribute": "type"
+        },
+        {
+          "name": "text",
+          "attribute": "text"
+        },
+        {
+          "name": "timeout",
+          "attribute": "timeout"
+        },
+        {
+          "name": "show",
+          "attribute": "show"
+        },
+        {
+          "name": "close",
+          "attribute": "close"
+        }
+      ]
+    },
+    {
+      "name": "zoo-collapsable-list",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "items"
+        }
+      ],
+      "properties": [
+        {
+          "name": "items",
+          "attribute": "items"
+        }
+      ]
+    },
+    {
+      "name": "zoo-collapsable-list-item",
+      "path": "./dist/zoo-components-esm.js"
+    },
+    {
+      "name": "zoo-preloader",
+      "path": "./dist/zoo-components-esm.js"
+    },
+    {
+      "name": "zoo-spinner",
+      "path": "./dist/zoo-components-esm.js"
+    },
+    {
+      "name": "zoo-grid",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "currentpage"
+        },
+        {
+          "name": "maxpages"
+        },
+        {
+          "name": "loading"
+        }
+      ],
+      "properties": [
+        {
+          "name": "currentpage",
+          "attribute": "currentpage"
+        },
+        {
+          "name": "maxpages",
+          "attribute": "maxpages"
+        },
+        {
+          "name": "loading",
+          "attribute": "loading"
+        }
+      ]
+    },
+    {
+      "name": "zoo-grid-header",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "sortState"
+        },
+        {
+          "name": "sortable"
+        },
+        {
+          "name": "reorderable"
+        }
+      ],
+      "properties": [
+        {
+          "name": "sortState",
+          "attribute": "sortState"
+        },
+        {
+          "name": "sortable",
+          "attribute": "sortable"
+        },
+        {
+          "name": "reorderable",
+          "attribute": "reorderable"
+        }
+      ]
+    },
+    {
+      "name": "zoo-grid-paginator",
+      "path": "./dist/zoo-components-esm.js",
+      "attributes": [
+        {
+          "name": "maxpages"
+        },
+        {
+          "name": "currentpage"
+        }
+      ],
+      "properties": [
+        {
+          "name": "maxpages",
+          "attribute": "maxpages"
+        },
+        {
+          "name": "currentpage",
+          "attribute": "currentpage"
+        }
+      ]
+    }
+  ]
+}

@@ -10,10 +10,18 @@
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
+		"@babel/core": "^7.10.1",
 		"@rollup/plugin-node-resolve": "^8.0.0",
+		"@storybook/addon-docs": "^5.3.19",
+		"@storybook/addon-knobs": "^5.3.19",
+		"@storybook/addon-storysource": "^5.3.19",
+		"@storybook/theming": "^5.3.19",
+		"@storybook/web-components": "^5.3.19",
 		"@types/mocha": "^7.0.2",
+		"babel-loader": "^8.1.0",
 		"chai": "^4.2.0",
 		"concurrently": "^5.2.0",
+		"lit-html": "^1.2.1",
 		"mocha": "^7.2.0",
 		"node-sass": "^4.14.1",
 		"puppeteer": "^3.1.0",
@@ -22,7 +30,8 @@
 		"rollup-plugin-terser": "^6.1.0",
 		"serve": "^11.3.1",
 		"stylelint": "^13.5.0",
-		"svelte": "3.22.3"
+		"svelte": "3.22.3",
+		"web-component-analyzer": "^1.0.3"
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
@@ -33,7 +42,10 @@
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
 		"prepublishOnly": "npm run build",
-		"stylelint": "stylelint \"zoo-modules/**/*.svelte\""
+		"stylelint": "stylelint \"zoo-modules/**/*.svelte\"",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook",
+		"generate-wc-docs": "wca analyze dist/zoo-components-esm.js --format json --outFile custom-elements.json"
 	},
 	"repository": {
 		"type": "git",
@@ -52,5 +64,6 @@
 	"bugs": {
 		"url": "https://github.com/zooplus/zoo-web-components/issues"
 	},
-	"homepage": "https://github.com/zooplus/zoo-web-components#readme"
+	"homepage": "https://github.com/zooplus/zoo-web-components#readme",
+	"dependencies": {}
 }

@@ -1,0 +1,13 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as stories from './zoo-button.stories.js';
+import { Button } from '../docs/components';
+
+<Meta title="Demo/Button" component={Button} />
+
+# Button
+
+I can define a story with the function imported from CSF:
+
+<Story name="basic">{stories.zooButton()}</Story>
+
+And I can also embed arbitrary markdown & JSX in this file.

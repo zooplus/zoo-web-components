@@ -1,11 +1,17 @@
 import { withKnobs, select, text as textFn, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from './groups';
+import mdx from './zoo-feedback.mdx';
 import { html } from 'lit-html';
 
 export default {
-  title: 'zoo-feedback',
-  component: 'zoo-feedback',
-  decorators: [withKnobs]
+	title: 'Docs/Feedback',
+	component: 'zoo-feedback',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooFeedback = () => {

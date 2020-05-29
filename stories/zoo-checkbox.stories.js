@@ -5,7 +5,7 @@ import mdx from './zoo-checkbox.mdx';
 import '../docs/components';
 
 export default {
-	title: 'Docs/zoo-checkbox',
+	title: 'Docs/Checkbox',
 	component: 'zoo-checkbox',
 	decorators: [withKnobs],
 	parameters: {

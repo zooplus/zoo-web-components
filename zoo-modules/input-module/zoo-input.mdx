@@ -1,0 +1,55 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Input"/>
+
+# Input
+
+Input component which provides styles for slotted `input`.
+
+## Attributes
+- labelposition - accepts following values: `top`, `left`;
+- - `optional`
+- - default: `top`
+- - `type` - `text`
+- labeltext - text to be presented as a label;
+- - `optional`
+- - `deprecated` - use `<label slot="inputlabel">Label</label>`
+- - `type` - `text`
+- linktext - what text to present as a link text;
+- - `optional`
+- - `type` - `text`
+- linkhref - where the link should lead;
+- - `optional`
+- - `type` - `link`
+- linktarget - target of the anchor link;
+- - `optional`
+- - default: `about:blank`
+- - `type` - `text`
+- inputerrormsg - text that should be displayed when `valid` is set to `falsy` value;
+- - `optional`
+- - `type` - `text`
+- infotext - text that should be displayed as additional info below the checkbox;
+- - `optional`
+- - `type` - `text`
+- valid - flag which indicates whether the input is valid or not;
+- - `optional`
+- - default: `true`
+- - `type` - `truthy` or `falsy`
+
+## Slots
+This component accepts the following slots:
+- inputelement - `<input id="input-id" slot="inputelement" type="text/>`;
+- inputlabel - `<label for="input-id" slot="inputlabel">An example input</label>`.
+
+## Example usage:
+```
+<zoo-input linktext="Forgotten your password?" linkhref="https://zooplus.github.io/zoo-web-components/">
+	<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
+	<label for="input-type-text" slot="inputlabel">Input type text</label>
+</zoo-input>
+```
+### Rendered
+<zoo-input linktext="Forgotten your password?" linkhref="https://zooplus.github.io/zoo-web-components/">
+	<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
+	<label for="input-type-text" slot="inputlabel">Input type text</label>
+</zoo-input>

@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../stories/**/*.stories.(js|mdx)'],
+  stories: ['../zoo-modules/**/*.stories.(js|mdx)'],
   addons: [
 	'@storybook/addon-knobs',
 	'@storybook/addon-storysource',

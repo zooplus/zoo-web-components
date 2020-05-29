@@ -1,5 +1,5 @@
 <svelte:options tag="app-form"></svelte:options>
-<app-context text="First section is a showcase of different form elements like `input`, `textarea`, `select`."></app-context>
+<app-context text="Form elements"></app-context>
 <form class="form">
 	<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
 			   valid="{inputState}" inputerrormsg="invalid" infotext="Additional helpful information for our users">

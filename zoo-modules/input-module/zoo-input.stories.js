@@ -1,11 +1,18 @@
 import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from './groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
+import mdx from './zoo-input.mdx';
 import { html } from 'lit-html';
+import '../../docs/components';
 
 export default {
-  title: 'zoo-input',
+  title: 'Docs/Input',
   component: 'zoo-input',
-  decorators: [withKnobs]
+  decorators: [withKnobs],
+  parameters: {
+	  docs: {
+		  page: mdx,
+	  },
+  }
 };
 
 export const zooInput = () => {

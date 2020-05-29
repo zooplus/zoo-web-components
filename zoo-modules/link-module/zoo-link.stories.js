@@ -1,11 +1,18 @@
 import { withKnobs, boolean, select, text, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from './groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
+import mdx from './zoo-link.mdx';
 import { html } from 'lit-html';
+import '../../docs/components';
 
 export default {
-  title: 'zoo-link',
+  title: 'Docs/Link',
   component: 'zoo-link',
-  decorators: [withKnobs]
+  decorators: [withKnobs],
+  parameters: {
+	  docs: {
+		  page: mdx,
+	  },
+  }
 };
 
 export const zooLink = () => {

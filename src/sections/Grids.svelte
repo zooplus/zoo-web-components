@@ -1,7 +1,5 @@
 <svelte:options tag="app-grids"></svelte:options>
-
-<app-context text="Forth section is a showcase of grids"></app-context>
-
+<app-context text="Data grids"></app-context>
 <div class="grids-holder" bind:this="{gridHolder}">
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 

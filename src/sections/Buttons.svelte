@@ -1,7 +1,7 @@
 <svelte:options tag="app-buttons"></svelte:options>
 <zoo-toast text="Search for more than 8.000 products." bind:this={toast}></zoo-toast>
 <zoo-toast text="Added to cart!" bind:this={modalToast}></zoo-toast>
-<app-context text="Second section is a showcase of buttons and modals"></app-context>
+<app-context text="Buttons, tooltips, modal windows"></app-context>
 <div class="buttons">
 	<zoo-button size="small" on:click="{() => toast.show()}">
 		<span slot="buttoncontent">Summon toast!</span>

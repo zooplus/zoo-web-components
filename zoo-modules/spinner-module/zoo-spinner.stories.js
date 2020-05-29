@@ -1,5 +1,5 @@
 import { withKnobs, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../shared-module/groups';
 import mdx from './zoo-spinner.mdx';
 import { html } from 'lit-html';
 import '../../docs/components';

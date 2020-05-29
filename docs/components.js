@@ -1805,7 +1805,7 @@ function create_fragment$6(ctx) {
 			toggle_class(div, "error", !/*valid*/ ctx[0]);
 			add_location(div, file$6, 2, 0, 98);
 			set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[0]);
-			set_custom_element_data(zoo_input_info, "inputerrormsg", /*errormsg*/ ctx[1]);
+			set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[1]);
 			set_custom_element_data(zoo_input_info, "infotext", /*infotext*/ ctx[2]);
 			add_location(zoo_input_info, file$6, 5, 0, 149);
 		},
@@ -1833,8 +1833,8 @@ function create_fragment$6(ctx) {
 				set_custom_element_data(zoo_input_info, "valid", /*valid*/ ctx[0]);
 			}
 
-			if (dirty & /*errormsg*/ 2) {
-				set_custom_element_data(zoo_input_info, "inputerrormsg", /*errormsg*/ ctx[1]);
+			if (dirty & /*inputerrormsg*/ 2) {
+				set_custom_element_data(zoo_input_info, "inputerrormsg", /*inputerrormsg*/ ctx[1]);
 			}
 
 			if (dirty & /*infotext*/ 4) {
@@ -1865,10 +1865,10 @@ function create_fragment$6(ctx) {
 
 function instance$6($$self, $$props, $$invalidate) {
 	let { valid = true } = $$props;
-	let { errormsg = "" } = $$props;
+	let { inputerrormsg = "" } = $$props;
 	let { infotext = "" } = $$props;
 	let { labeltext = "" } = $$props;
-	const writable_props = ["valid", "errormsg", "infotext", "labeltext"];
+	const writable_props = ["valid", "inputerrormsg", "infotext", "labeltext"];
 
 	Object.keys($$props).forEach(key => {
 		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<zoo-radio> was created with unknown prop '${key}'`);
@@ -1879,16 +1879,21 @@ function instance$6($$self, $$props, $$invalidate) {
 
 	$$self.$set = $$props => {
 		if ("valid" in $$props) $$invalidate(0, valid = $$props.valid);
-		if ("errormsg" in $$props) $$invalidate(1, errormsg = $$props.errormsg);
+		if ("inputerrormsg" in $$props) $$invalidate(1, inputerrormsg = $$props.inputerrormsg);
 		if ("infotext" in $$props) $$invalidate(2, infotext = $$props.infotext);
 		if ("labeltext" in $$props) $$invalidate(3, labeltext = $$props.labeltext);
 	};
 
-	$$self.$capture_state = () => ({ valid, errormsg, infotext, labeltext });
+	$$self.$capture_state = () => ({
+		valid,
+		inputerrormsg,
+		infotext,
+		labeltext
+	});
 
 	$$self.$inject_state = $$props => {
 		if ("valid" in $$props) $$invalidate(0, valid = $$props.valid);
-		if ("errormsg" in $$props) $$invalidate(1, errormsg = $$props.errormsg);
+		if ("inputerrormsg" in $$props) $$invalidate(1, inputerrormsg = $$props.inputerrormsg);
 		if ("infotext" in $$props) $$invalidate(2, infotext = $$props.infotext);
 		if ("labeltext" in $$props) $$invalidate(3, labeltext = $$props.labeltext);
 	};
@@ -1897,7 +1902,7 @@ function instance$6($$self, $$props, $$invalidate) {
 		$$self.$inject_state($$props.$$inject);
 	}
 
-	return [valid, errormsg, infotext, labeltext];
+	return [valid, inputerrormsg, infotext, labeltext];
 }
 
 class Radio extends SvelteElement {
@@ -1907,7 +1912,7 @@ class Radio extends SvelteElement {
 
 		init(this, { target: this.shadowRoot }, instance$6, create_fragment$6, safe_not_equal, {
 			valid: 0,
-			errormsg: 1,
+			inputerrormsg: 1,
 			infotext: 2,
 			labeltext: 3
 		});
@@ -1925,7 +1930,7 @@ class Radio extends SvelteElement {
 	}
 
 	static get observedAttributes() {
-		return ["valid", "errormsg", "infotext", "labeltext"];
+		return ["valid", "inputerrormsg", "infotext", "labeltext"];
 	}
 
 	get valid() {
@@ -1937,12 +1942,12 @@ class Radio extends SvelteElement {
 		flush();
 	}
 
-	get errormsg() {
+	get inputerrormsg() {
 		return this.$$.ctx[1];
 	}
 
-	set errormsg(errormsg) {
-		this.$set({ errormsg });
+	set inputerrormsg(inputerrormsg) {
+		this.$set({ inputerrormsg });
 		flush();
 	}
 

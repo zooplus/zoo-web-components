@@ -89,37 +89,6 @@
 			</div>
 		</zoo-grid>
 	</div>
-
-	<h3>Grid with no rows provided.</h3>
-
-	<div class="grid-holder">
-		<zoo-grid class="limited-width" paginator>
-			{#each headers as header}
-				<zoo-grid-header slot="headercell">{header.title}</zoo-grid-header>
-			{/each}
-			<div slot="norecords" class="example-row limited-width">
-				No records to show!
-			</div>
-		</zoo-grid>
-	</div>
-
-	<h3>Grid with toggled loading.</h3>
-
-	<div class="grid-holder">
-		<zoo-grid class="limited-width" loading={loading} paginator style="min-height: 200px;">
-			{#each headers as header, i}
-				{#if i == 0}
-					<zoo-grid-header slot="headercell">
-						<zoo-button class="loading-toggler" type="hollow" on:click={() => loading = !loading}>
-							<span slot="buttoncontent">Toggle loading</span>
-						</zoo-button>
-					</zoo-grid-header>
-				{:else}
-					<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
-				{/if}
-			{/each}
-		</zoo-grid>
-	</div>
 </div>
 
 <style type='text/scss'>

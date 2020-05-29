@@ -2,7 +2,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { html } from 'lit-html';
 
 export default {
-  title: 'zoo-collapsable-list',
+  title: 'Docs/Collapsable list',
   component: 'zoo-collapsable-list',
   decorators: [withKnobs]
 };

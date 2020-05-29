@@ -34,11 +34,11 @@ export default [
 	},
 	{
 		plugins: plugins,
-		input: 'src/docs.js',
+		input: 'src/sections.js',
 		output: {
 			sourcemap: false,
 			format: 'iife',
-			file: 'docs/bundle-docs.js',
+			file: 'docs/sections.js',
 			name: 'iife'
 		}
 	},

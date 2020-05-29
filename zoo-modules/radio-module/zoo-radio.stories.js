@@ -1,5 +1,5 @@
 import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../shared-module/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-radio.mdx';
 import '../../docs/components';

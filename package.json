@@ -14,6 +14,7 @@
 		"@rollup/plugin-node-resolve": "^8.0.0",
 		"@storybook/addon-docs": "^5.3.19",
 		"@storybook/addon-knobs": "^5.3.19",
+		"@storybook/storybook-deployer": "^2.8.6",
 		"@storybook/theming": "^5.3.19",
 		"@storybook/web-components": "^5.3.19",
 		"@types/mocha": "^7.0.2",
@@ -42,8 +43,7 @@
 		"prepublishOnly": "npm run build",
 		"stylelint": "stylelint \"zoo-modules/**/*.svelte\"",
 		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook",
-		"generate-wc-docs": "wca analyze dist/zoo-components-esm.js --format json --outFile custom-elements.json"
+		"build-storybook": "build-storybook"
 	},
 	"repository": {
 		"type": "git",

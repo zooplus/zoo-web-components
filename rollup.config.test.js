@@ -9,7 +9,7 @@ export default [
 			sourcemap: false,
 			format: 'iife',
 			file: 'test/bundle.js',
-			name: 'iife'
+			name: 'bundle'
 		},
 		plugins: [
 			svelte({

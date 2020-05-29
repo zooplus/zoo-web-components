@@ -1,5 +1,6 @@
 /node_modules
 /test
+/storybook-static
 dist/
 .DS_Store
 /zoo-modules/*/dist/*.js

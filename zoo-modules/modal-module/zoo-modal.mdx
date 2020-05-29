@@ -1,0 +1,33 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Modal"/>
+
+# Modal
+
+Container component which provides styles for modal and slotted content.
+
+## Attributes
+- headertext - text that should be displayed as modal header;
+  - `type` - `text`
+
+## Slots
+This component accepts the following slots:
+- `<slot></slot>` - arbitrary content;
+
+## Example usage:
+```
+<zoo-modal style="display: none" headertext="Header">
+	<div>
+		<zoo-feedback text="This is an info message. Only one coupon can be accepted with each order."></zoo-feedback>
+		<br>
+		<zoo-checkbox highlighted="true">
+			<input id="chkbx" slot="checkboxelement" type="checkbox"/>
+			<label for="chkbx" slot="checkboxlabel">I understand and confirm that ALL of the above statements are true</label>
+		</zoo-checkbox>
+		<br>
+		<zoo-button style="margin: 0 auto" type="hollow">
+			<span slot="buttoncontent">Add to cart</span>
+		</zoo-button>
+	</div>
+</zoo-modal>
+```

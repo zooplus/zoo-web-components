@@ -167,16 +167,6 @@
 	const handleHeaders = (headers, host) => {
 		let i = 1;
 		for (let header of headers) {
-			// todo remove in v6
-			if (header.tagName != 'ZOO-GRID-HEADER') {
-				console.warn('Header cell element must be of type "zoo-grid-header"!');
-				const gridHeader = document.createElement('zoo-grid-header');
-				gridHeader.innerHTML = header.innerHTML;
-				for (const attr of header.attributes) {
-					gridHeader.setAttribute(attr.nodeName, attr.nodeValue)
-				}
-				header.parentNode.replaceChild(gridHeader, header);
-			}
 			header.setAttribute('column', i);
 			i++;
 		}
@@ -264,7 +254,8 @@
 		const allRows = rowSlot.assignedNodes();
 		for (const row of allRows) {
 			let i = 1;
-			for (const child of row.children) {
+			const rowChildren = row.children;
+			for (const child of rowChildren) {
 				child.setAttribute('column', i);
 				i++;
 			}

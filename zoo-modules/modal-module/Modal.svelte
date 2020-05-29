@@ -46,28 +46,6 @@
 		max-height: 95%;
 		border-radius: $input-border-radius;
 
-		.heading {
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-
-			.header-text {
-				font-size: $h2-size;
-				line-height: $h2-line-height;
-				font-weight: bold;
-				margin: 30px 0;
-			}
-
-			.close {
-				cursor: pointer;
-				margin: 30px 0 30px auto;
-
-				path {
-					fill: var(--primary-mid, #{$primary-mid});
-				}
-			}
-		}
-
 		@media only screen and (max-width: 544px) {
 			padding: 25px;
 		}
@@ -80,26 +58,42 @@
 		}
 	}
 
+	.heading {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+
+		.header-text {
+			font-size: $h2-size;
+			line-height: $h2-line-height;
+			font-weight: bold;
+			margin: 30px 0;
+		}
+
+		.close {
+			cursor: pointer;
+			margin: 30px 0 30px auto;
+
+			path {
+				fill: var(--primary-mid, #{$primary-mid});
+			}
+		}
+	}
+
 	.show {
 		opacity: 1;
 	}
 
-	.hide {
-		opacity: 0;
-	}
-
 	.dialog-content {
+		animation-name: anim-show;
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;
-	}
-
-	.show .dialog-content {
-		animation-name: anim-show;
 	}
 
 	.hide .dialog-content {
 		animation-name: anim-hide;
 	}
+	
 	@keyframes anim-show {
 		0% { 
 			opacity: 0;
@@ -111,6 +105,7 @@
 			transform: scale3d(1, 1, 1);
 		}
 	}
+
 	@keyframes anim-hide {
 		0% {
 			opacity: 1;

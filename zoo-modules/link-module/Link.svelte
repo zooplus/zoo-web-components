@@ -31,10 +31,30 @@
 		font-size: $p2-size;
 		line-height: $p2-line-height;
 		padding: 0 2px;
+		color: $white;
+
+		&:hover, &:focus, &:active {
+			color: $white;
+			cursor: pointer;
+		}
 	}
 
 	.hidden, .hidden a {
 		padding: 0;
+	}
+
+	.negative:hover .bottom-line {
+		width: 100%;
+	}
+
+	.bottom-line {
+		position: absolute;
+		bottom: -3px;
+		left: 0;
+		overflow: hidden;
+		width: 0;
+		border-bottom: 1px solid $white;
+		color: $white;
 	}
 
 	.disabled {
@@ -54,29 +74,6 @@
 
 		&:hover, &:focus, &:active {
 			color: var(--primary-dark, #{$primary-dark});
-		}
-	}
-
-	.negative {
-		color: $white;
-
-		&:hover, &:focus, &:active {
-			color: $white;
-			cursor: pointer;
-		}
-
-		.bottom-line {
-			position: absolute;
-			bottom: -3px;
-			left: 0;
-			overflow: hidden;
-			width: 0;
-			border-bottom: 1px solid $white;
-			color: $white;
-		}
-
-		&:hover .bottom-line {
-			width: 100%;
 		}
 	}
 
@@ -113,8 +110,6 @@
 </style>
 
 <script>
-	import { onMount, afterUpdate } from 'svelte';
-
 	export let href = '';
 	export let text = '';
 	export let target = 'about:blank';
@@ -122,24 +117,6 @@
 	export let disabled = false;
 	export let textalign = 'center';
 	export let size = 'regular'; // bold, large
-
-	onMount(() => checkTypes());
-	afterUpdate(() => checkTypes());
-
-	const checkTypes = () => {
-		if (type == 'standard') {
-			console.warn(getWarnString('standard', 'negative'));
-			type = 'negative';
-		}
-		if (type == 'green') {
-			console.warn(getWarnString('green', 'primary'));
-			type = 'primary';
-		}
-	}
-
-	const getWarnString = (prev, actual) => {
-		return 'type="' + prev + '" is not supported and will be removed from future version, use ' + actual + ' instead.';
-	}
 
 	const handleClick = e => {
 		if (disabled) e.preventDefault();

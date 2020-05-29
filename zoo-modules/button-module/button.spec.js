@@ -68,28 +68,6 @@ describe('Zoo button', function() {
 			expect(defaultAttrs.primaryType).to.be.true;
 		});
 
-		it('should fall back to primary type when deprecated cold is passed', async() => {
-			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-button');
-				button.type = 'cold';
-				document.body.appendChild(button);
-				const nestedButton = button.shadowRoot.querySelector('button');
-				return nestedButton.classList.contains('primary');
-			});
-			expect(result).to.be.true;
-		});
-
-		it('should fall back to secondary when deprecated hot is passed', async() => {
-			const result = await page.evaluate(() => {
-				let button = document.createElement('zoo-button');
-				button.type = 'hot';
-				document.body.appendChild(button);
-				const nestedButton = button.shadowRoot.querySelector('button');
-				return nestedButton.classList.contains('secondary');
-			});
-			expect(result).to.be.true;
-		});
-
 		it('should create hollow button', async () => {
 			const result = await page.evaluate(() => {
 				let button = document.createElement('zoo-button');

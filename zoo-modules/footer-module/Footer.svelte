@@ -1,17 +1,7 @@
 <svelte:options tag="zoo-footer"></svelte:options>
-<div class="footer-links">
-	<div class="list-holder">
-		<ul>
-			{#each footerlinks as footerlink}
-			<li>
-				<zoo-link href="{footerlink.href}" target="{footerlink.target}" type="{footerlink.type}"
-				disabled="{footerlink.disabled}" text="{footerlink.text}">
-				</zoo-link>
-			</li>
-			{/each}
-		</ul>
-	</div>
-</div>
+<nav>
+	<slot></slot>
+</nav>
 {#if copyright}
 	<div class="footer-copyright">
 		© {copyright} {currentYear}
@@ -25,39 +15,13 @@
 		contain: style;
 	}
 
-	.footer-links {
+	nav {
 		display: flex;
 		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 		justify-content: center;
 		padding: 10px 30px;
 		flex-wrap: wrap;
-	}
-
-	.list-holder {
-		position: relative;
-		overflow: hidden;
-	}
-
-	ul {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		list-style: none;
-		margin-left: -1px;
-		padding-left: 0;
-		margin-top: 0;
-		margin-bottom: 0;
-
-		li {
-			flex-grow: 1;
-			flex-basis: auto;
-			margin: 5px 0;
-			padding: 0 5px;
-			text-align: center;
-			border-left: 1px solid #e6e6e6;
-		}
 	}
 
 	.footer-copyright {
@@ -75,8 +39,6 @@
 </style>
 
 <script>
-	// todo in v6 remove this array in favor of slots
-	export let footerlinks = [];
 	export let copyright = '';
 	let currentYear = new Date().getFullYear();
 </script>

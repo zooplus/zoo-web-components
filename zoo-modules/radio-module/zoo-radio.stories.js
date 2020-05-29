@@ -5,7 +5,7 @@ import mdx from './zoo-radio.mdx';
 import '../../docs/components';
 
 export default {
-  title: 'zoo-radio',
+  title: 'Docs/Radio',
   component: 'zoo-radio',
   decorators: [withKnobs],
   parameters: {

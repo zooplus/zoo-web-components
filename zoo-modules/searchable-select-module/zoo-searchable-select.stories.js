@@ -1,9 +1,9 @@
 import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from './groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
 import { html } from 'lit-html';
 
 export default {
-  title: 'zoo-searchable-select',
+  title: 'Docs/Searchable select',
   component: 'zoo-searchable-select',
   decorators: [withKnobs]
 };

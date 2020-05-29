@@ -1,0 +1,69 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Searchable select"/>
+
+# Searchable Select
+
+Select component which provides styles for slotted `select`.
+
+## Attributes
+- labelposition - accepts following values: `top`, `left`;
+  - `optional`
+  - `default`: `top`
+  - `type` - `text`
+- labeltext - text to be presented as a label;
+  - `optional`
+  - `type` - `text`
+- linktext - what text to present as a link text;
+  - `optional`
+  - `type` - `text`
+- linkhref - where the link should lead;
+  - `optional`
+  - `type` - `link`
+- linktarget - target of the anchor link;
+  - `optional`
+  - `default`: `about:blank`
+  - `type` - `text`
+- inputerrormsg - text that should be displayed when `valid` is set to `falsy` value;
+  - `optional`
+  - `type` - `text`
+- infotext - text that should be displayed as additional info below the checkbox;
+  - `optional`
+  - `type` - `text`
+- valid - flag which indicates whether the input is valid or not;
+  - `optional`
+  - `default`: `true`
+  - `type` - `truthy` or `falsy`
+- loading - flag which indicates whether to show loader inside slotted `select` element;
+  - `optional`
+  - `default`: `null`
+  - `type` - `truthy` or `falsy`
+- placeholder - text that should be displayed as a placeholder;
+  - `optional`
+  - `type` - `text`
+
+## Slots
+This component accepts the following slots:
+- selectelement - `<select slot="selectelement">...</select>`;
+
+## Example usage:
+```
+<zoo-searchable-select labeltext="Label" infotext="Additional Information" 
+	linktext="Forgotten your password?" linkhref="https://zooplus.github.io/zoo-web-components/">
+	<select slot="selectelement">
+		<option value="value1">Dog</option>
+		<option value="value2">Cat</option>
+		<option value="value3">Small Pet</option>
+		<option value="value4">Aquatic</option>
+	</select>
+</zoo-searchable-select>
+```
+### Rendered
+<zoo-searchable-select infotext="Additional Information" linktext="Forgotten your password?" linkhref="https://zooplus.github.io/zoo-web-components/" labeltext="Label">
+	<select slot="selectelement">
+		<option value="value1">Dog</option>
+		<option value="value2">Cat</option>
+		<option value="value3">Small Pet</option>
+		<option value="value4">Aquatic</option>
+	</select>
+</zoo-searchable-select>

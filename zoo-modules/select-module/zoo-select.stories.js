@@ -1,11 +1,18 @@
 import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from './groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
+import mdx from './zoo-select.mdx';
 import { html } from 'lit-html';
+import '../../docs/components';
 
 export default {
-  title: 'zoo-select',
+  title: 'Docs/Select',
   component: 'zoo-select',
-  decorators: [withKnobs]
+  decorators: [withKnobs],
+  parameters: {
+	  docs: {
+		  page: mdx,
+	  },
+  }
 };
 
 export const zooSelect = () => {

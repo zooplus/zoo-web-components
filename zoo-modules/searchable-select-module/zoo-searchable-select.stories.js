@@ -1,11 +1,18 @@
 import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../stories/groups';
+import mdx from './zoo-searchable-select.mdx';
 import { html } from 'lit-html';
+import '../../docs/components';
 
 export default {
   title: 'Docs/Searchable select',
   component: 'zoo-searchable-select',
-  decorators: [withKnobs]
+  decorators: [withKnobs],
+  parameters: {
+	  docs: {
+		  page: mdx,
+	  },
+  }
 };
 
 export const zooSearchableSelect = () => {
@@ -34,4 +41,3 @@ export const zooSearchableSelect = () => {
 		</select>
 	</zoo-searchable-select>`
 };
-

@@ -1,7 +1,8 @@
 import { withKnobs, select, text as textFn, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from './groups';
-import mdx from './zoo-feedback.mdx';
+import { attributesGroupId, cssVariablesGroupId } from '../groups';
 import { html } from 'lit-html';
+import mdx from './zoo-feedback.mdx';
+import '../../docs/components';
 
 export default {
 	title: 'Docs/Feedback',

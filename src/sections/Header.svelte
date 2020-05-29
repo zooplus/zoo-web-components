@@ -1,6 +1,7 @@
 <svelte:options tag="app-header"></svelte:options>
 <header>
-	<zoo-header imgsrc="logo.png" headertext="Zooplus web components">
+	<zoo-header headertext="Zooplus web components">
+		<img slot="img" alt="Zooplus logo" src="logo.png"/>
 		<div class="buttons-holder">
 			<div class="header-button">
 				<zoo-button type="{theme === 'zoo' ? 'secondary' : 'primary'}" size="medium" on:click={() => changeTheme('zoo')}>

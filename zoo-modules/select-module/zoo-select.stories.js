@@ -1,5 +1,5 @@
 import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../shared-module/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import mdx from './zoo-select.mdx';
 import { html } from 'lit-html';
 import '../../docs/components';

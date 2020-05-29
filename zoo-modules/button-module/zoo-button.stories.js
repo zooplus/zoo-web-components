@@ -1,5 +1,5 @@
 import { withKnobs, boolean, select, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../shared-module/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-button.mdx';
 import '../../docs/components';
@@ -31,4 +31,3 @@ export const zooButton = () => {
 			<div slot="buttoncontent">Button</div>
 	</zoo-button>`
 };
-

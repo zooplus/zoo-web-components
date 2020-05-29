@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as stories from './zoo-checkbox.stories.js';
+
+<Meta title="Docs/Checkbox"/>
+
+# Checkbox
+
+Checkbox component which provides styles for `<input type="checkbox"/>`.
+
+## Attributes
+- labeltext - text to be presented on the right side of the checkbox;
+- - `optional`
+- - `deprecated` - use `<label slot="checkboxlabel">Label</label>`
+- valid - flag which indicates whether the input is valid or not;
+- - `optional`
+- - default: `true`
+- highlighted - flag indicating whether the outline around the input should be visible (border);
+- - `optional`
+- - default: `false`
+- inputerrormsg - text that should be displayed when `valid` is set to `falsy` value;
+- - `optional`
+- infotext - text that should be displayed as additional info below the checkbox;
+- - `optional`
+
+## Slots
+This component accepts the following slots:
+- checkboxelement - `<input id="checkbox-id" slot="checkboxelement" type="checkbox/>`;
+- checkboxlabel - `<label for="checkbox-id" slot="checkboxlabel">An example checkbox</label>`.
+
+## Example usage:
+```
+<zoo-checkbox highlighted="true">
+	<input id="checkbox-id" slot="checkboxelement" type="checkbox"/>
+	<label for="checkbox-id" slot="checkboxlabel">An example checkbox</label>
+</zoo-checkbox>
+```
+### Rendered
+<zoo-checkbox highlighted="true">
+	<input id="checkbox-id" slot="checkboxelement" type="checkbox"/>
+	<label htmlFor="checkbox-id" slot="checkboxlabel">An example checkbox</label>
+</zoo-checkbox>

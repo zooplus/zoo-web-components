@@ -1,11 +1,18 @@
 import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from './groups';
 import { html } from 'lit-html';
+import mdx from './zoo-checkbox.mdx';
+import '../docs/components';
 
 export default {
-  title: 'zoo-checkbox',
-  component: 'zoo-checkbox',
-  decorators: [withKnobs]
+	title: 'Docs/zoo-checkbox',
+	component: 'zoo-checkbox',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooCheckbox = () => {

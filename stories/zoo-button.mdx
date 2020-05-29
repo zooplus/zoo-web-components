@@ -1,0 +1,39 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as stories from './zoo-button.stories.js';
+
+<Meta title="Docs/Button"/>
+
+# Button
+
+Button component which provides a styled version of button, encapsulating native button inside shadow DOM.
+
+## Attributes
+- type - accepts following values: `primary`, `secondary`, `hollow`;
+- - `optional`
+- - default: `primary`
+- size - accepts following values: `small`, `medium`;
+- - `optional`
+- - default: `small`
+- disabled - whether the button should be disabled
+- - `optional`
+- - default: `false`
+
+## Slots
+This component accept one slot: `<span slot="buttoncontent">Shopping Cart</span>` so that you can catch events/provide your css/attach framework specific directives from/to this element.
+
+## Example usage:
+```
+<zoo-button disabled="true">
+	<div slot="buttoncontent">
+		Disabled :(
+		<zoo-tooltip position="bottom" text="Just set disabled attribute on `zoo-button`"></zoo-tooltip>
+	</div>
+</zoo-button>
+```
+### Rendered
+<zoo-button disabled="true">
+	<div slot="buttoncontent">
+		Disabled :(
+		<zoo-tooltip position="bottom" text="Just set disabled attribute on `zoo-button`"></zoo-tooltip>
+	</div>
+</zoo-button>

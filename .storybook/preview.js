@@ -1,10 +1,7 @@
 /* global window */
 
-import { configure, addParameters, setCustomElements, } from '@storybook/web-components';
-import customElements from '../custom-elements.json';
+import { configure, addParameters, } from '@storybook/web-components';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
-
-setCustomElements(customElements);
 
 addParameters({
   docs: {

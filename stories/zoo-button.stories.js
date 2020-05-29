@@ -1,13 +1,18 @@
 import { withKnobs, boolean, select, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from './groups';
 import { html } from 'lit-html';
+import mdx from './zoo-button.mdx';
 import '../docs/components';
 
 export default {
-  title: 'Demo/Button',
-  component: 'zoo-button',
-  decorators: [withKnobs],
-  includeStories: []
+	title: 'Docs/Button',
+	component: 'zoo-button',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooButton = () => {

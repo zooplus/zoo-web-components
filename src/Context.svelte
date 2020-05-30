@@ -30,7 +30,6 @@
 
 	h2 {
 		color: var(--primary-mid, #3C9700);
-		font-size: 23px;
 	}
 </style>
 

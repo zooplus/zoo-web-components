@@ -1,3 +1,6 @@
+# 6.0.1
+`zoo-navigation` - fix width when using bootstrap.
+
 # 6.0.0
 This release mainly concentrates on internal clean-up. Added storybook docs for better documentation.
 `zoo-checkbox` - Added storybook docs.

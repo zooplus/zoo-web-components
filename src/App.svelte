@@ -4,10 +4,10 @@
 		<Context id="what" text="What is this project?"/>
 		<ul class="what-list">
 			<li>
-				Set of web-components which can be used in any modern UI framework (or without any).
+				<h3>Set of web-components which can be used in any modern UI framework (or without any).</h3>
 			</li>
 			<li>
-				The web-component set implements Z+ shop style guide.
+				<h3>The web-component set implements Z+ shop style guide.</h3>
 			</li>
 		</ul>
 		<div class="page-content">
@@ -96,7 +96,6 @@
 
 	.what-list {
 		color: var(--primary-mid, #{$primary-mid});
-		font-size: 20px;
 	}
 
 	#when {

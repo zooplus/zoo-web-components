@@ -9,7 +9,8 @@ export default [
 		plugins: [
 			svelte({
 				preprocess: sveltePreprocess,
-				dev: !production
+				dev: !production,
+				css: css => css.write('docs/main.css')
 			}),
 			resolve(),
 			production && terser()

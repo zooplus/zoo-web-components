@@ -1,56 +1,39 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from './svelte-preprocess';
-
-const production = !process.env.ROLLUP_WATCH;
-const plugins = [
-	svelte({
-		// enable run-time checks when not in production
-		dev: !production,
-		preprocess: sveltePreprocess,
-		customElement: true
-	}),
-	resolve(),
-	terser()
-];
 
 export default [
 	{
 		plugins: [
 			svelte({
+				dev: true,
 				preprocess: sveltePreprocess,
-				dev: !production
+				css: css => css.write('docs-local/main.css')
 			}),
-			resolve(),
-			terser()
+			resolve()
 		],
 		input: 'src/app.js',
 		output: {
-			sourcemap: false,
+			sourcemap: true,
 			format: 'iife',
-			file: 'docs/app.js',
+			file: 'docs-local/app.js',
 			name: 'app'
 		}
 	},
 	{
-		plugins: plugins,
-		input: 'src/docs.js',
-		output: {
-			sourcemap: false,
-			format: 'iife',
-			file: 'docs/bundle-docs.js',
-			name: 'iife'
-		}
-	},
-	{
-		plugins: plugins,
+		plugins: [
+			svelte({
+				preprocess: sveltePreprocess,
+				customElement: true
+			}),
+			resolve()
+		],
 		input: 'src/components.js',
 		output: {
-			sourcemap: false,
-			format: 'iife',
-			file: 'docs/bundle-iife.js',
-			name: 'iife'
+			sourcemap: true,
+			format: 'esm',
+			file: 'docs-local/components.js',
+			name: 'esm'
 		}
 	}
 ];

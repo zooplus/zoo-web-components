@@ -1,0 +1,35 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Tooltip"/>
+
+# Tooltip
+
+Tooltip component.
+
+## Attributes
+- position - accepts following values: `top`, `right`, `bottom`, `left`;
+  - `optional`
+  - `default`: `top`
+  - `type` - `text`
+- text - text to be displayed inside tooltip;
+  - `type` - `text`
+
+## Slots
+- `<slot><span>{text}</span></slot>` - arbitrary content which will replace `text` attribute;
+
+## Example usage:
+```
+<zoo-button>
+	<div slot="buttoncontent">
+		Button
+		<zoo-tooltip text="Tooltip text"></zoo-tooltip>
+	</div>
+</zoo-button>
+```
+### Rendered
+<zoo-button>
+	<div slot="buttoncontent">
+		Button
+		<zoo-tooltip text="Tooltip text"></zoo-tooltip>
+	</div>
+</zoo-button>

@@ -3,7 +3,7 @@
 <div class:error="{!valid}">
 	<slot></slot>
 </div>
-<zoo-input-info {valid} inputerrormsg="{errormsg}" {infotext}></zoo-input-info>
+<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
 
 <style type='text/scss'>
 	@import "variables";
@@ -72,7 +72,7 @@
 
 <script>
 	export let valid = true;
-	export let errormsg = '';
+	export let inputerrormsg = '';
 	export let infotext = '';
 	export let labeltext = '';
 </script>

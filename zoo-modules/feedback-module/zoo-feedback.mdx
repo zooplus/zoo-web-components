@@ -1,0 +1,27 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Feedback"/>
+
+# Feedback
+
+Container component which provides a styled container with preset icon.
+
+## Attributes
+- type - accepts following values: `info`, `error`, `success`;
+  - `optional`
+  - `default`: `info`
+  - `type` - `text`
+- text - text to render inside container;
+  - `optional`
+  - `type` - `text`
+
+## Slots
+This component accept the following slots:
+- `<slot>{text}</slot>` - `text` attribute will be rendered if no slots are defined.
+
+## Example usage:
+```
+<zoo-feedback text="This is an info message."></zoo-feedback>
+```
+### Rendered
+<zoo-feedback text="This is an info message."></zoo-feedback>

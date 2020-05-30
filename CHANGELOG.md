@@ -1,3 +1,17 @@
+# 6.0.0
+This release mainly concentrates on internal clean-up. Added storybook docs for better documentation.
+`zoo-checkbox` - Added storybook docs.
+`zoo-feedback` - simplify internal css.
+`zoo-grid` - added MutationObserver to give possibility to dynamically change `resizable` and `reorderable` attributes.
+
+## BREAKING CHANGES
+`zoo-button` - drop support for deprecated `type` attribute values such as `cold`, `hot`.
+`zoo-collapsable-list` - migrated from accepting properties to slots. Consult documentation to see what changed.
+`zoo-footer` - migrated from accepting properties to slots. Consult documentation to see what changed.
+`zoo-header` - removed support for `imgsrc`, `imgalt` attributes in favor of `<slot name="img"></slot>`. Consult documentation for details.
+`zoo-link` - drop support for deprecated `type` attribute values such as `standard`, `green`.
+`zoo-radio` - change `errormsg` to `errormsg` as in `zoo-input` and `zoo-select` components.
+
 # 5.3.5
 `zoo-searchable-select` - fix `select` styles to behave as a regular select element.
 

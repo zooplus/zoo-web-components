@@ -14,10 +14,13 @@ describe('Zoo header', function() {
 		it('should create image', async() => {
 			const imageSrc = await page.evaluate(() => {
 				let header = document.createElement('zoo-header');
-				header.imgsrc = 'logo.png';
+				let img = document.createElement('img');
+				img.src = 'logo.png';
+				img.slot = 'img';
+				header.appendChild(img);
 				document.body.appendChild(header);
-				const image = header.shadowRoot.querySelector('img');
-				return image.getAttribute('src');
+				const imageSlot = header.shadowRoot.querySelector('slot[name="img"]');
+				return imageSlot.assignedNodes()[0].getAttribute('src');
 			});
 			expect(imageSrc).equal('logo.png');
 		});
@@ -28,7 +31,7 @@ describe('Zoo header', function() {
 				element.innerHTML = 'slotted';
 				header.appendChild(element);
 				document.body.appendChild(header);
-				const slot = header.shadowRoot.querySelector('slot');
+				const slot = header.shadowRoot.querySelectorAll('slot')[2];
 				return slot.assignedNodes()[0].innerHTML;
 			});
 			expect(slottedElement).equal('slotted');

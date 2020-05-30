@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Collapsable List"/>
+
+# Collapsable List
+
+Container component which provides styles for slotted content.
+
+## Attributes
+
+## Slots
+This component accepts the following slots:
+- `<slot></slot>` - injected element must be `zoo-collapsable-list-item`, which accepts the following slots:
+  - `<slot name="header"></slot>` - arbitrary content
+  - `<slot name="content"></slot>` - arbitrary content
+
+## Example usage:
+```
+<zoo-collapsable-list>
+	<zoo-collapsable-list-item slot="item">
+		<span slot="header">Header1</span>
+		<div slot="content">content</div>
+	</zoo-collapsable-list-item>
+	<zoo-collapsable-list-item slot="item">
+		<span slot="header">Header2</span>
+		<div slot="content">content</div>
+	</zoo-collapsable-list-item>
+</zoo-collapsable-list>
+```
+
+### Rendered
+<zoo-collapsable-list>
+	<zoo-collapsable-list-item slot="item">
+		<span slot="header">Header1</span>
+		<div slot="content">content</div>
+	</zoo-collapsable-list-item>
+	<zoo-collapsable-list-item slot="item">
+		<span slot="header">Header2</span>
+		<div slot="content">content</div>
+	</zoo-collapsable-list-item>
+</zoo-collapsable-list>

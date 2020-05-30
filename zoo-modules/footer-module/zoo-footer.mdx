@@ -1,0 +1,29 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Footer"/>
+
+# Footer
+
+Container footer component.
+
+## Attributes
+- copyright - arbitrary text in bottom left corner of container;
+  - `optional`
+  - `type` - `text`
+
+## Slots
+This component accept the following slots:
+- `<slot></slot>` - arbitrary content.
+
+## Example usage:
+```
+<zoo-footer copyright="zooplus AG">
+	<zoo-link href="https://github.com/zooplus/zoo-web-components" text="Github"></zoo-link>
+	<zoo-link href="https://www.npmjs.com/package/@zooplus/zoo-web-components" text="NPM"></zoo-link>
+</zoo-footer> 
+```
+### Rendered
+<zoo-footer copyright="zooplus AG">
+	<zoo-link href="https://github.com/zooplus/zoo-web-components" text="Github"></zoo-link>
+	<zoo-link href="https://www.npmjs.com/package/@zooplus/zoo-web-components" text="NPM"></zoo-link>
+</zoo-footer> 

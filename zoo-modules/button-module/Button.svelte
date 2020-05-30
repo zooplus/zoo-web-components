@@ -27,11 +27,23 @@
 		line-height: $p1-line-height;
 		font-weight: bold;
 		text-align: center;
+		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+
+		&:hover, &:focus {
+			background: var(--primary-mid, #{$primary-mid});
+		}
+
+		&:active {
+			background: var(--primary-dark, #{$primary-dark});
+			transform: translateY(1px);
+		}
 
 		&:disabled {
 			background: $grey-ultralight;
 			color: $grey-mid;
 			border: $stroked-box-grey-light;
+			cursor: not-allowed;
 
 			&:hover, &:focus, &:active {
 				cursor: not-allowed;
@@ -39,16 +51,6 @@
 				color: $grey-mid;
 			}
 		}
-
-		&:active {
-			transform: translateY(1px);
-		}
-	}
-
-	.hollow {
-		border: $stroked-box-primary-bold;
-		color: var(--primary-mid, #{$primary-mid});
-		background: transparent;
 	}
 
 	.secondary {
@@ -64,19 +66,12 @@
 		}
 	}
 
-	.primary {
-		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
-		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
-	}
+	.hollow {
+		border: $stroked-box-primary-bold;
+		color: var(--primary-mid, #{$primary-mid});
+		background: transparent;
 
-	.primary, .hollow {
-		&:hover, &:focus {
-			background: var(--primary-mid, #{$primary-mid});
-			color: $white;
-		}
-
-		&:active {
-			background: var(--primary-dark, #{$primary-dark});
+		&:hover, &:focus, &:active {
 			color: $white;
 		}
 	}
@@ -95,26 +90,7 @@
 </style>
 
 <script>
-	import { onMount, afterUpdate } from 'svelte';
 	export let type = "primary"; //'secondary', 'hollow'
 	export let size = "small"; //'medium'
 	export let disabled = false;
-
-	onMount(() => checkTypes());
-	afterUpdate(() => checkTypes());
-
-	const checkTypes = () => {
-		if (type == 'cold') {
-			console.warn(getWarnString('cold', 'primary'));
-			type = 'primary';
-		}
-		if (type == 'hot') {
-			console.warn(getWarnString('hot', 'secondary'));
-			type = 'secondary';
-		}
-	}
-
-	const getWarnString = (prev, actual) => {
-		return 'type="' + prev + '" is not supported and will be removed from future version, use ' + actual + ' instead.';
-	}
 </script>

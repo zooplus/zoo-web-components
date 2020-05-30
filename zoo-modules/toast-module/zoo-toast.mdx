@@ -1,0 +1,37 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Toast"/>
+
+# Toast
+
+Container component which has fly-in/out animations. It can be controlled via exported functions.
+
+## Attributes
+- type - accepts following values: `info`, `error`, `success`;
+  - `optional`
+  - `default`: `info`
+  - `type` - `text`
+- text - text to be rendered in the toast box;
+  - `type` - `text`
+- timeout - how long the toast should be visible for (in seconds);
+  - `type`: `number`
+  - `default`: `3`
+
+## Functions
+- `show` - `function` to show the toast. Multiple calls to this functions until the toast is hidden will be ignored;
+- `hide` - `function` to hide the toast. Multiple calls to this functions until the toast is shown will be ignored;
+
+## Example usage 
+```HTML
+<zoo-toast id="zoo-toast" text="This is an info message."></zoo-toast>
+```
+
+### Show toast
+```
+document.querySelector('#zoo-toast').show();
+```
+
+### Hide toast
+```
+document.querySelector('#zoo-toast').hide();
+```

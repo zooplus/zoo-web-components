@@ -36,12 +36,12 @@
 		display: flex;
 		width: 100%;
 		box-sizing: border-box;
-		padding: 11px 15px;
 	}
 
 	.highlighted {
 		border: $stroked-box-grey-light;
 		border-radius: $input-border-radius;
+		padding: 11px 15px;
 
 		&.clicked {
 			border: $stroked-box-success-bold;

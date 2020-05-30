@@ -1,0 +1,35 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Header"/>
+
+# Header
+
+Container header component.
+
+## Attributes
+- headertext - arbitrary text in bottom left corner of container;
+  - `optional`
+  - `type` - `text`
+
+## Slots
+This component accept the following slots:
+- `<slot name="img"></slot>` - logo image.
+- `<slot name="headertext"><h2>{headertext}</h2></slot>` - slot for header text, replaces `headertext` attribute is defined.
+- `<slot></slot>` - arbitrary content after first two slots.
+
+## Example usage:
+```
+<zoo-header headertext="Zooplus web components">
+	<img slot="img" alt="Zooplus logo" src="https://zooplus.github.io/zoo-web-components/logo.png"/>
+	<zoo-button size="medium" style="margin-left: 50px">
+		<span slot="buttoncontent">Zoo+ theme</span>
+	</zoo-button>
+</zoo-header>
+```
+### Rendered
+<zoo-header headertext="Zooplus web components">
+	<img slot="img" alt="Zooplus logo" src="https://zooplus.github.io/zoo-web-components/logo.png"/>
+	<zoo-button size="medium" style={{marginLeft: '50px'}}>
+		<span slot="buttoncontent">Zoo+ theme</span>
+	</zoo-button>
+</zoo-header>

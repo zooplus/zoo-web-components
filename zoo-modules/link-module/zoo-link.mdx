@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Link"/>
+
+# Link
+
+Checkbox component which provides styles for `<input type="checkbox"/>`.
+
+## Attributes
+- text - what text to present as a link text;
+  - `type` - `text`
+- href - where the link should lead;
+  - `type` - `link`
+- target - target of the anchor link;
+  - `optional`
+  - `default`: `about:blank`
+  - `type` - `text`
+- type - accepts following values: `negative`, `primary`, `grey`, `warning`;
+  - `optional`
+  - `default`: `negative`
+  - `type` - `text`
+- disabled - whether the link should be disabled
+  - `optional`
+  - `default`: `false`
+  - `type` - `truthy` or `falsy`
+- size - accepts following values: `regular`, `bold`, `large`;
+  - `optional`
+  - `default`: `regular`
+  - `type` - `text`
+
+## Slots
+This component accepts the following slots:
+- pre - will be rendered before link text, for example: `<svg slot="pre">...</svg>`;
+- post - will be rendered after link text, for example: `<svg slot="post">...</svg>`.
+
+## Example usage:
+```
+<zoo-link href="https://zooplus.github.io/zoo-web-components/" text="Zoo web components" type="primary"></zoo-link>
+```
+### Rendered
+<zoo-link href="https://zooplus.github.io/zoo-web-components/" text="Zoo web components" type="primary"></zoo-link>

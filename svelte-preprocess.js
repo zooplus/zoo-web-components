@@ -7,7 +7,7 @@ export default {
 		return new Promise((fulfil, reject) => {
 			sass.render({
 				data: content,
-				includePaths: ['zoo-modules/shared-module', 'src/common'],
+				includePaths: ['zoo-modules/theming-module'],
 				sourceMap: true,
 				outFile: 'x' // this is necessary, but is ignored
 			}, (err, result) => {

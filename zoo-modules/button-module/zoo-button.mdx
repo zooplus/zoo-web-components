@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Button"/>
+
+# Button
+
+Button component which provides a styled version of button, encapsulating native button inside shadow DOM.
+
+## Attributes
+- type - accepts following values: `primary`, `secondary`, `hollow`;
+  - `optional`
+  - `default`: `primary`
+  - `type` - `text`
+- size - accepts following values: `small`, `medium`;
+  - `optional`
+  - `default`: `small`
+  - `type` - `text`
+- disabled - whether the button should be disabled
+  - `optional`
+  - `default`: `false`
+  - `type` - `truthy` or `falsy`
+
+## Slots
+- `<slot></slot>` - arbitrary content;
+
+## Example usage:
+```
+<zoo-button disabled="true">
+	<div slot="buttoncontent">
+		Disabled :(
+		<zoo-tooltip position="bottom" text="Just set disabled attribute on `zoo-button`"></zoo-tooltip>
+	</div>
+</zoo-button>
+```
+### Rendered
+<zoo-button disabled="true">
+	<div slot="buttoncontent">
+		Disabled :(
+		<zoo-tooltip position="bottom" text="Just set disabled attribute on `zoo-button`"></zoo-tooltip>
+	</div>
+</zoo-button>

@@ -1,5 +1,8 @@
 /node_modules
 /test
+/docs-local
+/storybook-static
+/.out
 dist/
 .DS_Store
 /zoo-modules/*/dist/*.js

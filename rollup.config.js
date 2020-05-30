@@ -21,13 +21,12 @@ export default [
 				preprocess: sveltePreprocess,
 				dev: !production
 			}),
-			resolve(),
-			terser()
+			resolve()
 		],
 		input: 'src/app.js',
 		output: {
 			sourcemap: false,
-			format: 'iife',
+			format: 'esm',
 			file: 'docs/app.js',
 			name: 'app'
 		}
@@ -37,9 +36,9 @@ export default [
 		input: 'src/sections.js',
 		output: {
 			sourcemap: false,
-			format: 'iife',
+			format: 'esm',
 			file: 'docs/sections.js',
-			name: 'iife'
+			name: 'sections'
 		}
 	},
 	{

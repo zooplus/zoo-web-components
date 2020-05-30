@@ -1,5 +1,8 @@
 /node_modules
 /test
+/docs/*.js
+/docs/*.css
+/docs/*.map
 /storybook-static
 /.out
 dist/

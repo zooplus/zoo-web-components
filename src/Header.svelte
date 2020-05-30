@@ -1,42 +1,34 @@
-<header>
-	<zoo-header headertext="Zooplus web components">
-		<img slot="img" alt="Zooplus logo" src="logo.png"/>
-		<div class="buttons-holder">
-			<div class="header-button">
-				<zoo-button type="{theme === 'zoo' ? 'secondary' : 'primary'}" size="medium" on:click={() => changeTheme('zoo')}>
-					<span slot="buttoncontent" class="slotted-span">Zoo+ theme</span>
-				</zoo-button>
-			</div>
-			<div class="header-button">
-				<zoo-button type="{theme === 'grey' ? 'secondary' : 'primary'}" size="medium" on:click={() => changeTheme('grey')}>
-					<span slot="buttoncontent" class="slotted-span">Grey theme</span>
-				</zoo-button>
-			</div>
-			<div class="header-button">
-				<zoo-button type="{theme === 'random' ? 'secondary' : 'primary'}" size="medium" on:click={() => generateRandomTheme()}>
-					<span slot="buttoncontent" class="slotted-span">Random theme</span>
-				</zoo-button>
-			</div>
+<zoo-header headertext="Zooplus web components">
+	<img slot="img" alt="Zooplus logo" src="logo.png"/>
+	<div class="buttons-holder">
+		<div class="header-button">
+			<zoo-button type="{theme === 'zoo' ? 'secondary' : 'primary'}" on:click={() => changeTheme('zoo')}>
+				<span slot="buttoncontent">Zoo+ theme</span>
+			</zoo-button>
 		</div>
-	</zoo-header>
-	<zoo-navigation class="nav">
-		<div>
-			{#each navlinks as link}
-				<div class="nav-link">
-					<a href="{link.href}">{link.text}</a>
-				</div>
-			{/each}
+		<div class="header-button">
+			<zoo-button type="{theme === 'grey' ? 'secondary' : 'primary'}" on:click={() => changeTheme('grey')}>
+				<span slot="buttoncontent">Grey theme</span>
+			</zoo-button>
 		</div>
-	</zoo-navigation>
-</header>
+		<div class="header-button">
+			<zoo-button type="{theme === 'random' ? 'secondary' : 'primary'}" on:click={() => generateRandomTheme()}>
+				<span slot="buttoncontent">Random theme</span>
+			</zoo-button>
+		</div>
+	</div>
+</zoo-header>
+<zoo-navigation>
+	{#each navlinks as link}
+		<div class="nav-link">
+			<a href="{link.href}">{link.text}</a>
+		</div>
+	{/each}
+</zoo-navigation>
 
 <style type='text/scss'>
 	@import "variables";
 	
-	header {
-		position: relative;
-	}
-
 	.buttons-holder {
 		display: flex;
 		justify-content: flex-end;
@@ -67,10 +59,7 @@
 		}
 	}
 
-	.nav {
-		position: sticky;
-		top: 0;
-		color: white;
+	zoo-navigation {
 		font-size: $p1-size;
 		line-height: $p1-line-height;
 		font-weight: bold;
@@ -78,8 +67,9 @@
 
 		.nav-link {
 			cursor: pointer;
-			display: flex;
+			display: inline-flex;
 			align-items: center;
+			height: 100%;
 
 			&:hover {
 				background: rgba(255, 255, 255, 0.3);

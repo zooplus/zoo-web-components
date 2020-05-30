@@ -1,12 +1,14 @@
 <svelte:options tag="zoo-footer"></svelte:options>
-<nav>
-	<slot></slot>
-</nav>
-{#if copyright}
-	<div class="footer-copyright">
-		© {copyright} {currentYear}
-	</div>
-{/if}
+<footer>
+	<nav>
+		<slot></slot>
+	</nav>
+	{#if copyright}
+		<div class="footer-copyright">
+			© {copyright} {currentYear}
+		</div>
+	{/if}
+</footer>
 
 <style type='text/scss'>
 	@import "variables";

@@ -3,14 +3,14 @@
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid class="limited-width grid-1" stickyheader currentpage="5" maxpages="20" resizable reorderable
+	<zoo-grid class="grid-1" stickyheader currentpage="5" maxpages="20" resizable reorderable
 			on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 
 		{#each headers as header, idx}
 			<zoo-grid-header class="header-cell" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
 		{#each data as row, i} 
-			<div class="example-row limited-width" slot="row">
+			<div class="example-row" slot="row">
 				<zoo-checkbox>
 					<input id="{i}-first-grid-checkbox" disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
 					<label for="{i}-first-grid-checkbox" slot="checkboxlabel">Valid</label>
@@ -49,14 +49,13 @@
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-		<zoo-grid class="limited-width grid-2" style="min-width: 1024px; margin: 0 auto; display: block;" stickyheader
-			currentpage="1" maxpages="4" on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
+		<zoo-grid class="grid-2" stickyheader currentpage="1" maxpages="4" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
-				<zoo-grid-header slot="headercell" sortable={header.sortable ? 'sortable' : null} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
+				<zoo-grid-header slot="headercell">{header.title}</zoo-grid-header>
 			{/each}
 
 			{#each extendedData as row, i} 
-				<div class="example-row limited-width" slot="row">
+				<div class="example-row" slot="row">
 					<zoo-checkbox labeltext="Valid">
 						<input id="{i}-second-grid-checkbox" disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
 						<label for="{i}-second-grid-checkbox" slot="checkboxlabel">Valid</label>
@@ -109,6 +108,7 @@
 
 	.grid-2 {
 		--grid-column-sizes: 150px repeat(9, minmax(50px, 1fr)) !important;
+		min-width: 1024px;
 	}
 
 	.grid-holder {
@@ -120,10 +120,6 @@
 
 	.status, .delivery-date {
 		margin-right: 10px;
-	}
-
-	.limited-width {
-		min-width: 1024px;
 	}
 
 	.example-row  > div {
@@ -141,10 +137,6 @@
 				border: $stroked-box-grey-dark-bold;
 			}
 		}
-	}
-
-	.loading-toggler {
-		width: 80px;
 	}
 </style>
 

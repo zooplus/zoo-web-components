@@ -1,5 +1,5 @@
 <Context text="Form elements"/>
-<form class="form">
+<form>
 	<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
 			   infotext="Additional helpful information for our users">
 		<input id="input-type-text" slot="inputelement" type="text" placeholder="input" />
@@ -86,7 +86,7 @@
 </form>
 
 <style>
-	.form {
+	form {
 		flex: 1 0 auto;
 		margin: 20px auto;
 		display: grid;

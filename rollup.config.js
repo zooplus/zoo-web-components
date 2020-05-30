@@ -8,8 +8,8 @@ export default [
 	{
 		plugins: [
 			svelte({
+				dev: true,
 				preprocess: sveltePreprocess,
-				dev: !production,
 				css: css => css.write('docs/main.css')
 			}),
 			resolve(),
@@ -18,7 +18,7 @@ export default [
 		input: 'src/app.js',
 		output: {
 			sourcemap: true,
-			format: 'esm',
+			format: 'iife',
 			file: 'docs/app.js',
 			name: 'app'
 		}
@@ -26,8 +26,6 @@ export default [
 	{
 		plugins: [
 			svelte({
-				// enable run-time checks when not in production
-				dev: !production,
 				preprocess: sveltePreprocess,
 				customElement: true
 			}),

@@ -85,21 +85,13 @@
 	</zoo-radio>
 </form>
 
-<style type='text/scss'>
+<style>
 	.form {
 		flex: 1 0 auto;
 		margin: 20px auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		grid-template-rows: 120px 150px 150px 100px;
-		@media only screen and (max-width: 544px) {
-			width: 300px;
-			grid-template-columns: auto;
-		}
-		@media only screen and (max-width: 812px) {
-			grid-template-rows: 120px 150px 120px 120px;
-		}
-
 		grid-gap: 20px;
 	}
 </style>

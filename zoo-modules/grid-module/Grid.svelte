@@ -148,33 +148,46 @@
 	let headerCellSlot;
 	let rowSlot;
 	let resizeObserver;
+	let mutationObserver;
 	let prevSortedHeader;
 	let draggedOverHeader;
 	// sortable grid -> set min-width to set width
 	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
+		const host = gridRoot.getRootNode().host;
+		mutationObserver = new MutationObserver(mutationHandler);
+		mutationObserver.observe(host, { attributes: true, childList: false, subtree: false });
 		headerCellSlot.addEventListener("slotchange", () => {
-			const host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty('--grid-column-num', headers.length);
 			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
-			handleHeaders(headers, host);
+			handleHeaders(headers);
 		});
 
 		rowSlot.addEventListener("slotchange", assignColumnNumberToRows);
 	});
 
-	const handleHeaders = (headers, host) => {
+	const mutationHandler = mutationsList => {
+		for(let mutation of mutationsList) {
+			const attrName = mutation.attributeName;
+			if (attrName == 'resizable' || attrName == 'reorderable') {
+				const host = gridRoot.getRootNode().host;
+				const headers = headerCellSlot.assignedNodes();
+				if (host.hasAttribute('resizable')) {
+					handleResizableHeaders(headers, host);
+				}
+				if (host.hasAttribute('reorderable')) {
+					handleDraggableHeaders(headers, host);
+				}
+			}
+		}
+	};
+
+	const handleHeaders = headers => {
 		let i = 1;
 		for (let header of headers) {
 			header.setAttribute('column', i);
 			i++;
-		}
-		if (host.hasAttribute('resizable')) {
-			handleResizableHeaders(headers, host);	
-		}
-		if (host.hasAttribute('reorderable')) {
-			handleDraggableHeaders(headers, host);
 		}
 	}
 
@@ -318,7 +331,10 @@
 	onDestroy(() => {
 		if(resizeObserver) {
 			resizeObserver.disconnect();
+			resizeObserver = null;
 		}
+		mutationObserver.disconnect();
+		mutationObserver = null;
 	});
 	
 </script>

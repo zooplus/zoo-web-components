@@ -2148,7 +2148,7 @@
     			set_custom_element_data(zoo_grid_header, "slot", "headercell");
     			set_custom_element_data(zoo_grid_header, "sortable", zoo_grid_header_sortable_value = /*header*/ ctx[23].sortable);
     			set_custom_element_data(zoo_grid_header, "sortableproperty", zoo_grid_header_sortableproperty_value = /*header*/ ctx[23].sortProperty);
-    			add_location(zoo_grid_header, file$4, 10, 3, 497);
+    			add_location(zoo_grid_header, file$4, 10, 3, 487);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_grid_header, anchor);
@@ -2186,7 +2186,7 @@
     			option.selected = option_selected_value = /*status*/ ctx[27] == /*row*/ ctx[20].status;
     			option.__value = option_value_value = /*status*/ ctx[27];
     			option.value = option.__value;
-    			add_location(option, file$4, 22, 7, 1264);
+    			add_location(option, file$4, 22, 7, 1254);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -2296,35 +2296,35 @@
     			input0.checked = input0_checked_value = /*row*/ ctx[20].valid;
     			attr_dev(input0, "slot", "checkboxelement");
     			attr_dev(input0, "type", "checkbox");
-    			add_location(input0, file$4, 15, 5, 767);
+    			add_location(input0, file$4, 15, 5, 757);
     			attr_dev(label, "for", label_for_value = "" + (/*i*/ ctx[22] + "-first-grid-checkbox"));
     			attr_dev(label, "slot", "checkboxlabel");
-    			add_location(label, file$4, 16, 5, 924);
-    			add_location(zoo_checkbox, file$4, 14, 4, 747);
-    			add_location(div0, file$4, 18, 4, 1020);
+    			add_location(label, file$4, 16, 5, 914);
+    			add_location(zoo_checkbox, file$4, 14, 4, 737);
+    			add_location(div0, file$4, 18, 4, 1010);
     			attr_dev(select, "title", "Delivery Status");
     			select.disabled = select_disabled_value = /*row*/ ctx[20].status == "DELIVERED" ? true : null;
     			attr_dev(select, "slot", "selectelement");
     			attr_dev(select, "class", "item-per-page-selector");
-    			add_location(select, file$4, 20, 5, 1086);
+    			add_location(select, file$4, 20, 5, 1076);
     			set_custom_element_data(zoo_select, "class", "status");
-    			add_location(zoo_select, file$4, 19, 4, 1053);
-    			add_location(div1, file$4, 26, 4, 1375);
-    			add_location(div2, file$4, 27, 4, 1406);
+    			add_location(zoo_select, file$4, 19, 4, 1043);
+    			add_location(div1, file$4, 26, 4, 1365);
+    			add_location(div2, file$4, 27, 4, 1396);
     			attr_dev(input1, "title", "Delivery Date");
     			input1.disabled = input1_disabled_value = /*row*/ ctx[20].status == "DELIVERED" ? true : null;
     			input1.value = input1_value_value = /*row*/ ctx[20].deliveryDate;
     			attr_dev(input1, "slot", "inputelement");
     			attr_dev(input1, "type", "date");
     			attr_dev(input1, "placeholder", "Enter date");
-    			add_location(input1, file$4, 29, 5, 1476);
+    			add_location(input1, file$4, 29, 5, 1466);
     			set_custom_element_data(zoo_input, "class", "delivery-date");
-    			add_location(zoo_input, file$4, 28, 4, 1437);
-    			add_location(div3, file$4, 31, 4, 1666);
-    			add_location(div4, file$4, 32, 4, 1698);
+    			add_location(zoo_input, file$4, 28, 4, 1427);
+    			add_location(div3, file$4, 31, 4, 1656);
+    			add_location(div4, file$4, 32, 4, 1688);
     			attr_dev(div5, "class", "example-row limited-width");
     			attr_dev(div5, "slot", "row");
-    			add_location(div5, file$4, 13, 3, 692);
+    			add_location(div5, file$4, 13, 3, 682);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div5, anchor);
@@ -2416,7 +2416,7 @@
     			option.selected = option_selected_value = /*idx*/ ctx[19] == 0;
     			option.__value = option_value_value = /*number*/ ctx[17];
     			option.value = option.__value;
-    			add_location(option, file$4, 40, 6, 1997);
+    			add_location(option, file$4, 40, 6, 1987);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -2454,7 +2454,7 @@
     			set_custom_element_data(zoo_grid_header, "slot", "headercell");
     			set_custom_element_data(zoo_grid_header, "sortable", zoo_grid_header_sortable_value = /*header*/ ctx[23].sortable ? "sortable" : null);
     			set_custom_element_data(zoo_grid_header, "sortableproperty", zoo_grid_header_sortableproperty_value = /*header*/ ctx[23].sortProperty);
-    			add_location(zoo_grid_header, file$4, 55, 4, 2672);
+    			add_location(zoo_grid_header, file$4, 55, 4, 2652);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, zoo_grid_header, anchor);
@@ -2572,32 +2572,32 @@
     			input0.checked = input0_checked_value = /*row*/ ctx[20].valid;
     			attr_dev(input0, "slot", "checkboxelement");
     			attr_dev(input0, "type", "checkbox");
-    			add_location(input0, file$4, 61, 6, 2974);
+    			add_location(input0, file$4, 61, 6, 2954);
     			attr_dev(label0, "for", label0_for_value = "" + (/*i*/ ctx[22] + "-second-grid-checkbox"));
     			attr_dev(label0, "slot", "checkboxlabel");
-    			add_location(label0, file$4, 62, 6, 3133);
+    			add_location(label0, file$4, 62, 6, 3113);
     			set_custom_element_data(zoo_checkbox0, "labeltext", "Valid");
-    			add_location(zoo_checkbox0, file$4, 60, 5, 2935);
-    			add_location(div0, file$4, 64, 5, 3232);
-    			add_location(div1, file$4, 65, 5, 3266);
-    			add_location(div2, file$4, 66, 5, 3295);
-    			add_location(div3, file$4, 67, 5, 3327);
-    			add_location(div4, file$4, 68, 5, 3359);
-    			add_location(div5, file$4, 69, 5, 3394);
-    			add_location(div6, file$4, 70, 5, 3427);
-    			add_location(div7, file$4, 71, 5, 3455);
+    			add_location(zoo_checkbox0, file$4, 60, 5, 2915);
+    			add_location(div0, file$4, 64, 5, 3212);
+    			add_location(div1, file$4, 65, 5, 3246);
+    			add_location(div2, file$4, 66, 5, 3275);
+    			add_location(div3, file$4, 67, 5, 3307);
+    			add_location(div4, file$4, 68, 5, 3339);
+    			add_location(div5, file$4, 69, 5, 3374);
+    			add_location(div6, file$4, 70, 5, 3407);
+    			add_location(div7, file$4, 71, 5, 3435);
     			attr_dev(input1, "id", input1_id_value = "" + (/*i*/ ctx[22] + "-second-grid-promo-checkbox"));
     			input1.checked = input1_checked_value = /*row*/ ctx[20].promotion;
     			attr_dev(input1, "slot", "checkboxelement");
     			attr_dev(input1, "type", "checkbox");
-    			add_location(input1, file$4, 73, 6, 3505);
+    			add_location(input1, file$4, 73, 6, 3485);
     			attr_dev(label1, "for", label1_for_value = "" + (/*i*/ ctx[22] + "-second-grid-promo-checkbox"));
     			attr_dev(label1, "slot", "checkboxlabel");
-    			add_location(label1, file$4, 74, 6, 3621);
-    			add_location(zoo_checkbox1, file$4, 72, 5, 3484);
+    			add_location(label1, file$4, 74, 6, 3601);
+    			add_location(zoo_checkbox1, file$4, 72, 5, 3464);
     			attr_dev(div8, "class", "example-row limited-width");
     			attr_dev(div8, "slot", "row");
-    			add_location(div8, file$4, 59, 4, 2879);
+    			add_location(div8, file$4, 59, 4, 2859);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div8, anchor);
@@ -2667,7 +2667,7 @@
     			option.selected = option_selected_value = /*idx*/ ctx[19] == 0;
     			option.__value = option_value_value = /*number*/ ctx[17];
     			option.value = option.__value;
-    			add_location(option, file$4, 83, 7, 4009);
+    			add_location(option, file$4, 83, 7, 3989);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -2836,18 +2836,17 @@
     			attr_dev(select0, "id", "first-grid-page-size");
     			attr_dev(select0, "slot", "selectelement");
     			attr_dev(select0, "class", "item-per-page-selector");
-    			add_location(select0, file$4, 38, 4, 1854);
+    			add_location(select0, file$4, 38, 4, 1844);
     			attr_dev(label0, "for", "first-grid-page-size");
     			attr_dev(label0, "slot", "selectlabel");
-    			add_location(label0, file$4, 43, 4, 2076);
+    			add_location(label0, file$4, 43, 4, 2066);
     			set_custom_element_data(zoo_select0, "labelposition", "left");
-    			add_location(zoo_select0, file$4, 37, 3, 1815);
+    			add_location(zoo_select0, file$4, 37, 3, 1805);
     			attr_dev(div0, "class", "item-per-page-selector-holder");
     			attr_dev(div0, "slot", "pagesizeselector");
-    			add_location(div0, file$4, 36, 2, 1744);
+    			add_location(div0, file$4, 36, 2, 1734);
     			set_custom_element_data(zoo_grid0, "class", "limited-width grid-1");
     			set_custom_element_data(zoo_grid0, "stickyheader", "");
-    			set_custom_element_data(zoo_grid0, "paginator", "");
     			set_custom_element_data(zoo_grid0, "currentpage", "5");
     			set_custom_element_data(zoo_grid0, "maxpages", "20");
     			set_custom_element_data(zoo_grid0, "resizable", "");
@@ -2855,32 +2854,31 @@
     			add_location(zoo_grid0, file$4, 6, 1, 242);
     			attr_dev(div1, "class", "grid-holder");
     			add_location(div1, file$4, 5, 1, 215);
-    			add_location(h31, file$4, 49, 1, 2196);
+    			add_location(h31, file$4, 49, 1, 2186);
     			attr_dev(select1, "id", "second-grid-page-size");
     			attr_dev(select1, "slot", "selectelement");
     			attr_dev(select1, "class", "item-per-page-selector");
-    			add_location(select1, file$4, 81, 5, 3863);
+    			add_location(select1, file$4, 81, 5, 3843);
     			attr_dev(label1, "for", "second-grid-page-size");
     			attr_dev(label1, "slot", "selectlabel");
-    			add_location(label1, file$4, 86, 5, 4091);
+    			add_location(label1, file$4, 86, 5, 4071);
     			set_custom_element_data(zoo_select1, "labelposition", "left");
-    			add_location(zoo_select1, file$4, 80, 4, 3823);
+    			add_location(zoo_select1, file$4, 80, 4, 3803);
     			attr_dev(div2, "class", "item-per-page-selector-holder");
     			attr_dev(div2, "slot", "pagesizeselector");
-    			add_location(div2, file$4, 79, 3, 3751);
+    			add_location(div2, file$4, 79, 3, 3731);
     			set_custom_element_data(zoo_grid1, "class", "limited-width grid-2");
     			set_style(zoo_grid1, "min-width", "1024px");
     			set_style(zoo_grid1, "margin", "0 auto");
     			set_style(zoo_grid1, "display", "block");
     			set_custom_element_data(zoo_grid1, "stickyheader", "");
-    			set_custom_element_data(zoo_grid1, "paginator", "");
     			set_custom_element_data(zoo_grid1, "currentpage", "1");
     			set_custom_element_data(zoo_grid1, "maxpages", "4");
-    			add_location(zoo_grid1, file$4, 52, 2, 2374);
+    			add_location(zoo_grid1, file$4, 52, 2, 2364);
     			attr_dev(div3, "class", "grid-holder");
     			set_style(div3, "max-width", "850px");
     			set_style(div3, "max-height", "300px");
-    			add_location(div3, file$4, 51, 1, 2301);
+    			add_location(div3, file$4, 51, 1, 2291);
     			attr_dev(div4, "class", "grids-holder");
     			add_location(div4, file$4, 2, 0, 96);
     		},

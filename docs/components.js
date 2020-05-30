@@ -5315,22 +5315,22 @@ function create_fragment$k(ctx) {
 			append_dev(div1, t0);
 			append_dev(div1, div0);
 			append_dev(div0, slot0);
-			/*slot0_binding*/ ctx[18](slot0);
+			/*slot0_binding*/ ctx[20](slot0);
 			append_dev(div1, t1);
 			append_dev(div1, slot1);
-			/*slot1_binding*/ ctx[20](slot1);
+			/*slot1_binding*/ ctx[22](slot1);
 			append_dev(div1, t2);
 			append_dev(div1, slot2);
 			append_dev(div1, t3);
 			append_dev(div1, slot4);
 			append_dev(slot4, zoo_grid_paginator);
 			append_dev(zoo_grid_paginator, slot3);
-			/*div1_binding*/ ctx[22](div1);
+			/*div1_binding*/ ctx[24](div1);
 
 			if (!mounted) {
 				dispose = [
-					listen_dev(div0, "sortChange", /*sortChange_handler*/ ctx[19], false, false, false),
-					listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[21], false, false, false)
+					listen_dev(div0, "sortChange", /*sortChange_handler*/ ctx[21], false, false, false),
+					listen_dev(zoo_grid_paginator, "pageChange", /*pageChange_handler*/ ctx[23], false, false, false)
 				];
 
 				mounted = true;
@@ -5361,9 +5361,9 @@ function create_fragment$k(ctx) {
 		d: function destroy(detaching) {
 			if (detaching) detach_dev(div1);
 			if (if_block) if_block.d();
-			/*slot0_binding*/ ctx[18](null);
-			/*slot1_binding*/ ctx[20](null);
-			/*div1_binding*/ ctx[22](null);
+			/*slot0_binding*/ ctx[20](null);
+			/*slot1_binding*/ ctx[22](null);
+			/*div1_binding*/ ctx[24](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -5388,37 +5388,57 @@ function instance$k($$self, $$props, $$invalidate) {
 	let headerCellSlot;
 	let rowSlot;
 	let resizeObserver;
+	let mutationObserver;
 	let prevSortedHeader;
 	let draggedOverHeader;
 
 	// sortable grid -> set min-width to set width
 	// not sortable -> set --grid-column-sizes variable
 	onMount(() => {
+		const host = gridRoot.getRootNode().host;
+		mutationObserver = new MutationObserver(mutationHandler);
+
+		mutationObserver.observe(host, {
+			attributes: true,
+			childList: false,
+			subtree: false
+		});
+
 		headerCellSlot.addEventListener("slotchange", () => {
-			const host = gridRoot.getRootNode().host;
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty("--grid-column-num", headers.length);
 			host.style.setProperty("--grid-column-sizes", "repeat(var(--grid-column-num), minmax(50px, 1fr))");
-			handleHeaders(headers, host);
+			handleHeaders(headers);
 		});
 
 		rowSlot.addEventListener("slotchange", assignColumnNumberToRows);
 	});
 
-	const handleHeaders = (headers, host) => {
+	const mutationHandler = mutationsList => {
+		for (let mutation of mutationsList) {
+			const attrName = mutation.attributeName;
+			const host = gridRoot.getRootNode().host;
+
+			if (attrName == "resizable" || attrName == "reorderable") {
+				const headers = headerCellSlot.assignedNodes();
+
+				if (host.hasAttribute("resizable")) {
+					handleResizableHeaders(headers, host);
+				}
+
+				if (host.hasAttribute("reorderable")) {
+					handleDraggableHeaders(headers, host);
+				}
+			}
+		}
+	};
+
+	const handleHeaders = headers => {
 		let i = 1;
 
 		for (let header of headers) {
 			header.setAttribute("column", i);
 			i++;
-		}
-
-		if (host.hasAttribute("resizable")) {
-			handleResizableHeaders(headers, host);
-		}
-
-		if (host.hasAttribute("reorderable")) {
-			handleDraggableHeaders(headers, host);
 		}
 	};
 
@@ -5594,7 +5614,11 @@ function instance$k($$self, $$props, $$invalidate) {
 	onDestroy(() => {
 		if (resizeObserver) {
 			resizeObserver.disconnect();
+			resizeObserver = null;
 		}
+
+		mutationObserver.disconnect();
+		mutationObserver = null;
 	});
 
 	const writable_props = ["currentpage", "maxpages", "loading"];
@@ -5637,6 +5661,7 @@ function instance$k($$self, $$props, $$invalidate) {
 	$$self.$capture_state = () => ({
 		onMount,
 		onDestroy,
+		beforeUpdate,
 		currentpage,
 		maxpages,
 		loading,
@@ -5644,8 +5669,10 @@ function instance$k($$self, $$props, $$invalidate) {
 		headerCellSlot,
 		rowSlot,
 		resizeObserver,
+		mutationObserver,
 		prevSortedHeader,
 		draggedOverHeader,
+		mutationHandler,
 		handleHeaders,
 		handleResizableHeaders,
 		handleDraggableHeaders,
@@ -5665,6 +5692,7 @@ function instance$k($$self, $$props, $$invalidate) {
 		if ("headerCellSlot" in $$props) $$invalidate(4, headerCellSlot = $$props.headerCellSlot);
 		if ("rowSlot" in $$props) $$invalidate(5, rowSlot = $$props.rowSlot);
 		if ("resizeObserver" in $$props) resizeObserver = $$props.resizeObserver;
+		if ("mutationObserver" in $$props) mutationObserver = $$props.mutationObserver;
 		if ("prevSortedHeader" in $$props) prevSortedHeader = $$props.prevSortedHeader;
 		if ("draggedOverHeader" in $$props) draggedOverHeader = $$props.draggedOverHeader;
 	};
@@ -5683,8 +5711,10 @@ function instance$k($$self, $$props, $$invalidate) {
 		handleSortChange,
 		dispatchPageEvent,
 		resizeObserver,
+		mutationObserver,
 		prevSortedHeader,
 		draggedOverHeader,
+		mutationHandler,
 		handleHeaders,
 		handleResizableHeaders,
 		handleDraggableHeaders,

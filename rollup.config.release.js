@@ -17,7 +17,7 @@ export default [
 		plugins: plugins,
 		input: 'src/components.js',
 		output: {
-			sourcemap: false,
+			sourcemap: true,
 			format: 'iife',
 			file: 'dist/zoo-components-iife.js',
 			name: 'zooWebComponents'
@@ -27,7 +27,7 @@ export default [
 		plugins: plugins,
 		input: 'src/components.js',
 		output: {
-			sourcemap: false,
+			sourcemap: true,
 			format: 'esm',
 			file: 'dist/zoo-components-esm.js',
 			name: 'zooWebComponents'

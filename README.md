@@ -9,8 +9,14 @@
  - Built with [SvelteJS](https://github.com/sveltejs)
 
 ## Installation
-To use exported modules install this library as a dependency in your application by running       
-`npm i @zooplus/zoo-web-components --save`;      
+To use this library install it by running:
+```
+npm i @zooplus/zoo-web-components --save
+```
+and import the library in your main module/component:
+```
+import 'node_modules/@zooplus/zoo-web-components/dist/zoo-components-esm.js';
+```      
 Or add the following line to your `index.html`:      
 `<script src="https://cdn.jsdelivr.net/npm/@zooplus/zoo-web-components@latest/dist/zoo-components-iife.min.js"></script>`
 
@@ -20,13 +26,18 @@ Or add the following line to your `index.html`:
 + [React](https://github.com/GeorgeTailor/react-wc-integration)
 
 ## Documentation
-Head over to [online documentation](https://zooplus.github.io/zoo-web-components/) for more info regarding this library.
+Landing page is available here: https://zooplus.github.io/zoo-web-components/      
+Documentation page is here: https://zooplus.github.io/zoo-web-components-docs/index.html
 
 
 # Dev area
+
 ## Run
-Run `npm start`. That command will build all available modules, write them as `bundle.js` file and throw it into `/docs` folder.
+### Run landing page
+Run `npm start` and go to `localhost:5000`.
+### Run storybook
+Run `npm run storybook`, after compilation browser should automatically open `localhost:6006` page with storybook.
 
 ## Test
 This project uses `Mocha` and `Chai` for writing tests. The tests are run using `Puppeteer`.
-Run `npm test` to run the tests. Tests are automatically run before triying to publish new version to npm.
+Run `npm test` to run the tests.

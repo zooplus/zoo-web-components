@@ -1,3 +1,6 @@
+# 6.0.2
+Added a11y and animation performance stylelint rules and fixed existing problems in styles.
+
 # 6.0.1
 `zoo-navigation` - fix width when using bootstrap.
 

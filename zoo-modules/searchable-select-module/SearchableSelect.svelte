@@ -44,14 +44,14 @@
 		z-index: 1;
 	}
 
-	.box:hover .selected-options {
+	.box:hover .selected-options, .box:focus .selected-options {
 		display: block;
 	}
 
 	.selected-options {
 		display: none;
 
-		&:hover {
+		&:hover, &:focus {
 			display: block;
 		}
 	}
@@ -89,6 +89,7 @@
 
 	.box.error input {
 		padding: 12px 24px 12px 14px;
+		border: $stroked-box-warning-bold;
 	}
 
 	.box:focus-within ::slotted(select) {
@@ -113,17 +114,13 @@
 		padding: 12px 14px;
 	}
 
-	.box.error input {
-		border: $stroked-box-warning-bold;
-	}
-
 	::slotted(select:disabled) {
 		border: $stroked-box-grey-light;
 		background-color: $grey-ultralight;
 		color: $grey-mid;
 	}
 
-	::slotted(select:disabled:hover) {
+	::slotted(select:disabled:hover), ::slotted(select:disabled:focus) {
 		cursor: not-allowed;
 	}
 </style>

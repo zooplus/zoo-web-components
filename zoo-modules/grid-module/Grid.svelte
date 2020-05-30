@@ -46,10 +46,6 @@
 		pointer-events: none;
 	}
 
-	::slotted(*[slot="row"]) {
-		overflow: visible;
-	}
-
 	.header-row {
 		min-width: inherit;
 		font-size: $p2-size;
@@ -57,6 +53,7 @@
 		font-weight: 600;
 		color: $grey-dark;
 		box-sizing: border-box;
+		z-index: 1;
 	}
 
 	.header-row, ::slotted(*[slot="row"]) {
@@ -91,6 +88,7 @@
 	}
 
 	::slotted(*[slot="row"]) {
+		overflow: visible;
 		align-items: center;
 		box-sizing: border-box;
 	}
@@ -105,10 +103,6 @@
 		background: white;
 	}
 
-	.header-row {
-		z-index: 1;
-	}
-
 	::slotted(*[slot="headercell"]) {
 		display: flex;
 		align-items: center;
@@ -119,7 +113,7 @@
 		background: $grey-ultralight;
 	}
 
-	::slotted(*[slot="row"]:hover) {
+	::slotted(*[slot="row"]:hover), ::slotted(*[slot="row"]:focus) {
 		background: $grey-light;
 	}
 

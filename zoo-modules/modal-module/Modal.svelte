@@ -45,6 +45,9 @@
 		overflow-y: auto;
 		max-height: 95%;
 		border-radius: $input-border-radius;
+		animation-name: anim-show;
+		animation-duration: 0.3s;
+		animation-fill-mode: forwards;
 
 		@media only screen and (max-width: 544px) {
 			padding: 25px;
@@ -82,12 +85,6 @@
 
 	.show {
 		opacity: 1;
-	}
-
-	.dialog-content {
-		animation-name: anim-show;
-		animation-duration: 0.3s;
-		animation-fill-mode: forwards;
 	}
 
 	.hide .dialog-content {

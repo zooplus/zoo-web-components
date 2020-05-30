@@ -37,7 +37,6 @@
 
 	.error {
 		::slotted(input), ::slotted(textarea) {
-			transition: border-color 0.3s ease;
 			border: $stroked-box-warning-bold;
 			padding: 12px 14px;
 		}

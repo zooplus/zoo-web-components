@@ -43,7 +43,7 @@
 		padding: 0;
 	}
 
-	.negative:hover .bottom-line {
+	.negative:hover .bottom-line, .negative:focus .bottom-line {
 		width: 100%;
 	}
 
@@ -60,7 +60,7 @@
 	.disabled {
 		color: $grey-mid !important;
 
-		&:hover {
+		&:hover, &:focus {
 			cursor: not-allowed;
 		}
 	}

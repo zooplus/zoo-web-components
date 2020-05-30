@@ -82,7 +82,7 @@
 		color: $grey-mid;
 	}
 
-	::slotted(select:disabled:hover) {
+	::slotted(select:disabled:hover), ::slotted(select:disabled:focus) {
 		cursor: not-allowed;
 	}
 

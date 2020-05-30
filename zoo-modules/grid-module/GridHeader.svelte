@@ -25,7 +25,7 @@
 		width: 100%;
 		height: 100%;
 
-		&:hover {
+		&:hover, &:focus {
 			.arrow {
 				opacity: 1;
 			}

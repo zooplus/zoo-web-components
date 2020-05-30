@@ -88,7 +88,7 @@
 	.page-element {
 		cursor: pointer;
 
-		&:hover {
+		&:hover, &:focus {
 			background: $grey-ultralight;
 		}
 

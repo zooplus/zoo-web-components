@@ -20,6 +20,6 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: v6 # The branch the action should deploy to.
           FOLDER: docs # The folder the action should deploy.

@@ -182,11 +182,11 @@
 </style>
 
 <script>
-	import Header from './sections/Header.svelte';
-	import Buttons from './sections/Buttons.svelte';
-	import Form from './sections/Form.svelte';
-	import Grids from './sections/Grids.svelte';
-	import Context from './sections/Context.svelte';
+	import Header from './Header.svelte';
+	import Buttons from './Buttons.svelte';
+	import Form from './Form.svelte';
+	import Grids from './Grids.svelte';
+	import Context from './Context.svelte';
 	let footerlinks = [
 		{
 			href: 'https://github.com/zooplus/zoo-web-components',

@@ -4717,7 +4717,6 @@ function create_fragment$g(ctx) {
 		c: function create() {
 			slot = element("slot");
 			this.c = noop;
-			attr_dev(slot, "name", "item");
 			add_location(slot, file$g, 1, 0, 61);
 		},
 		l: function claim(nodes) {

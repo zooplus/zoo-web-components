@@ -20,6 +20,8 @@
 			</div>
 			<div id="when" class="caniuse">
 				<app-context text="When can I use it?" backbtn="{true}"></app-context>
+				<aside>Although safari is marked as partially supporting these features, this project does not use any features that do not work in Safari.</aside>
+				<br>
 				<div class="desktop">
 					<p class="ciu_embed" data-feature="shadowdomv1" data-periods="future_1,current,past_1,past_2" data-accessible-colours="false">
 						<a href="http://caniuse.com/#feat=shadowdomv1">Can I Use shadowdomv1?</a> Data on support for the shadowdomv1 feature across the major browsers from caniuse.com.
@@ -43,6 +45,10 @@
 			</div>
 			<div id="how" class="spec-docs">
 				<app-context text="How can I use it?" backbtn="{true}"></app-context>
+				<div class="external-docs">
+					Documentation for each component is available at
+					<zoo-link href="https://zooplus.github.io/zoo-web-components-docs/index.html" text="Docs page" size="large" type="primary"></zoo-link>
+				</div>
 			</div>
 		</div>
 	</main>
@@ -58,6 +64,13 @@
 <style type="text/scss">
 	@import "variables";
 
+	.external-docs {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.app {
 		margin: 0 auto;
 		height: 100%;
@@ -69,17 +82,13 @@
 	.page-content {
 		position: relative;
 		display: grid;
-		grid-template-columns: 340px 1fr;
+		grid-template-columns: 1fr;
 		grid-gap: 30px;
-		grid-template-areas: "overview overview"
-		"caniuse caniuse"
-		"spec-docs content";
+		grid-template-areas: "overview"
+		"caniuse"
+		"spec-docs";
 
 		@media only screen and (max-width: 850px) {
-			grid-template-areas: "overview"
-			"caniuse"
-			"spec-docs" 
-			"content";
 			grid-template-columns: minmax(320px, 90%);
 			justify-content: center;
 		}
@@ -91,6 +100,11 @@
 	}
 
 	#when {
+		aside {
+			color: var(--primary-dark, #{$primary-dark});
+			text-align: center;
+		}
+
 		.desktop {
 			@media only screen and (max-width: 850px) {
 				display: none;
@@ -153,13 +167,7 @@
 
 	.spec-docs {
 		grid-area: spec-docs;
-		position: sticky;
-		top: 0;
-		height: 200px;
-	}
-
-	.content {
-		grid-area: content;
+		margin-bottom: 50px;
 	}
 
 	hr {

@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "5.3.5",
+	"version": "6.0.0",
 	"main": "dist/zoo-components-iife.js",
 	"files": [
 		"dist/zoo-components-esm.js",
@@ -43,7 +43,7 @@
 		"prepublishOnly": "npm run build",
 		"stylelint": "stylelint \"zoo-modules/**/*.svelte\"",
 		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
+		"deploy-storybook": "storybook-to-ghpages --remote=docs -o .out"
 	},
 	"repository": {
 		"type": "git",

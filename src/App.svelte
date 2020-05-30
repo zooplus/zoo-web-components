@@ -1,7 +1,7 @@
 <div class="app">
-	<app-header></app-header>
+	<Header/>
 	<main>
-		<app-context id="what" text="What is this project?"></app-context>
+		<Context id="what" text="What is this project?"/>
 		<ul class="what-list">
 			<li>
 				Set of web-components which can be used in any modern UI framework (or without any).
@@ -12,14 +12,14 @@
 		</ul>
 		<div class="page-content">
 			<div class="overview">
-				<app-form></app-form>
+				<Form/>
 				<hr>
-				<app-buttons></app-buttons>
+				<Buttons/>
 				<hr>
-				<app-grids></app-grids>
+				<Grids/>
 			</div>
 			<div id="when" class="caniuse">
-				<app-context text="When can I use it?" backbtn="{true}"></app-context>
+				<Context text="When can I use it?" backbtn="{true}"/>
 				<aside>Although safari is marked as partially supporting these features, this project does not use any features that do not work in Safari.</aside>
 				<br>
 				<div class="desktop">
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div id="how" class="spec-docs">
-				<app-context text="How can I use it?" backbtn="{true}"></app-context>
+				<Context text="How can I use it?" backbtn="{true}"/>
 				<div class="external-docs">
 					Documentation for each component is available at
 					<zoo-link href="https://zooplus.github.io/zoo-web-components-docs/index.html" text="Docs page" size="large" type="primary"></zoo-link>
@@ -182,6 +182,11 @@
 </style>
 
 <script>
+	import Header from './sections/Header.svelte';
+	import Buttons from './sections/Buttons.svelte';
+	import Form from './sections/Form.svelte';
+	import Grids from './sections/Grids.svelte';
+	import Context from './sections/Context.svelte';
 	let footerlinks = [
 		{
 			href: 'https://github.com/zooplus/zoo-web-components',

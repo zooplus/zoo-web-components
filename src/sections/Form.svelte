@@ -1,5 +1,4 @@
-<svelte:options tag="app-form"></svelte:options>
-<app-context text="Form elements"></app-context>
+<Context text="Form elements"/>
 <form class="form">
 	<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
 			   infotext="Additional helpful information for our users">
@@ -87,10 +86,6 @@
 </form>
 
 <style type='text/scss'>
-	:host {
-		contain: layout;
-	}
-
 	.form {
 		flex: 1 0 auto;
 		margin: 20px auto;
@@ -110,6 +105,7 @@
 </style>
 
 <script>
+	import Context from './Context.svelte';
 	let options = [
 		{
 			text: 'text',

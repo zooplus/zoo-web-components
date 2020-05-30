@@ -1,4 +1,3 @@
-<svelte:options tag="app-header"></svelte:options>
 <header>
 	<zoo-header headertext="Zooplus web components">
 		<img slot="img" alt="Zooplus logo" src="logo.png"/>
@@ -33,10 +32,6 @@
 
 <style type='text/scss'>
 	@import "variables";
-
-	:host {
-		contain: layout;
-	}
 	
 	header {
 		position: relative;

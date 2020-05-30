@@ -1,7 +1,6 @@
-<svelte:options tag="app-buttons"></svelte:options>
 <zoo-toast text="Search for more than 8.000 products." bind:this={toast}></zoo-toast>
 <zoo-toast text="Added to cart!" bind:this={modalToast}></zoo-toast>
-<app-context text="Buttons, tooltips, modal windows"></app-context>
+<Context text="Buttons, tooltips, modal windows"/>
 <div class="buttons">
 	<zoo-button size="small" on:click="{() => toast.show()}">
 		<span slot="buttoncontent">Summon toast!</span>
@@ -52,22 +51,15 @@
 		</zoo-button>
 	</div>
 </zoo-modal>
-<style type='text/scss'>
-
-	:host {
-		contain: layout;
-	}
+<style>
 	.buttons {
 		max-width: 1280px;
 		margin: 20px auto;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
 		grid-gap: 15px;
 		width: 90%;
 		justify-content: center;
-		@media only screen and (max-width: 850px) {
-			grid-template-columns: auto;
-		}
 	}
 
 	zoo-tooltip {
@@ -77,13 +69,10 @@
 	.top-tooltip {
 		position: relative;
 		display: inline-block;
+	}
 
-		&:hover {
-			zoo-tooltip {
-				display: block;
-				animation: fadeTooltipIn 0.2s;
-			}
-		}
+	.top-tooltip:hover zoo-tooltip {
+		display: block;
 	}
 
 	.icon-btn {
@@ -92,13 +81,14 @@
 
 	.btn-svg {
 		padding: 0;
+	}
 
-		path {
-			fill: white;
-		}
+	.btn-svg path {
+		fill: white;
 	}
 </style>
 <script>
+	import Context from './Context.svelte';
 	let toast;
 	let modal;
 	let modalToast;

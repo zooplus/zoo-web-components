@@ -1,5 +1,4 @@
-<svelte:options tag="app-grids"></svelte:options>
-<app-context text="Data grids"></app-context>
+<Context text="Data grids"/>
 <div class="grids-holder" bind:this="{gridHolder}">
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
@@ -94,10 +93,6 @@
 <style type='text/scss'>
 	@import "variables";
 
-	:host {
-		contain: layout;
-	}
-
 	h3 {
 		color: var(--primary-mid, #{$primary-mid});
 	}
@@ -154,6 +149,7 @@
 </style>
 
 <script>
+	import Context from './Context.svelte';
 	let toast;
 	let possibleNumberOfItems = [5, 10, 25, 100];
 	let gridHolder;

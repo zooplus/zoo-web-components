@@ -1,4 +1,3 @@
-<svelte:options tag="app-context"></svelte:options>
 <section>
 	<h2>{text}</h2>
 	{#if backbtn}

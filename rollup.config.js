@@ -4,16 +4,6 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from './svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
-const plugins = [
-	svelte({
-		// enable run-time checks when not in production
-		dev: !production,
-		preprocess: sveltePreprocess,
-		customElement: true
-	}),
-	resolve()
-];
-
 export default [
 	{
 		plugins: [
@@ -21,31 +11,31 @@ export default [
 				preprocess: sveltePreprocess,
 				dev: !production
 			}),
-			resolve()
+			resolve(),
+			production && terser()
 		],
 		input: 'src/app.js',
 		output: {
-			sourcemap: false,
+			sourcemap: true,
 			format: 'esm',
 			file: 'docs/app.js',
 			name: 'app'
 		}
 	},
 	{
-		plugins: plugins,
-		input: 'src/sections.js',
-		output: {
-			sourcemap: false,
-			format: 'esm',
-			file: 'docs/sections.js',
-			name: 'sections'
-		}
-	},
-	{
-		plugins: plugins,
+		plugins: [
+			svelte({
+				// enable run-time checks when not in production
+				dev: !production,
+				preprocess: sveltePreprocess,
+				customElement: true
+			}),
+			resolve(),
+			production && terser()
+		],
 		input: 'src/components.js',
 		output: {
-			sourcemap: false,
+			sourcemap: true,
 			format: 'esm',
 			file: 'docs/components.js',
 			name: 'esm'

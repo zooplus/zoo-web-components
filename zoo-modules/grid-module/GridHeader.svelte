@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-grid-header"></svelte:options>
+<svelte:options tag="zoo-grid-header"/>
 <div class="box" bind:this={gridHeaderRoot} class:sortable={sortable}>
 	<slot></slot>
 	<svg class="arrow" sortstate={sortState} on:click="{() => handleSortClick()}" width="24" height="24" viewBox="0 0 24 24">

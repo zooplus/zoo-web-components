@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-modal"></svelte:options>
+<svelte:options tag="zoo-modal"/>
 <div class="box {hidden ? 'hide' : 'show'}" bind:this={_modalRoot}>
 	<div class="dialog-content">
 		<div class="heading">

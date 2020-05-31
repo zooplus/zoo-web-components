@@ -21,11 +21,11 @@ export const zooCollapsableList = () => {
 	let content2 = text('content2', 'Content 2', dataGroup);
 
 	return html`<zoo-collapsable-list>
-					<zoo-collapsable-list-item slot="item">
+					<zoo-collapsable-list-item>
 						<span slot="header">${header1}</span>
 						<div slot="content">${content1}</div>
 					</zoo-collapsable-list-item>
-					<zoo-collapsable-list-item slot="item">
+					<zoo-collapsable-list-item>
 						<span slot="header">${header2}</span>
 						<div slot="content">${content2}</div>
 					</zoo-collapsable-list-item>

@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-grid"></svelte:options>
+<svelte:options tag="zoo-grid"/>
 <div class="box" bind:this={gridRoot}>
 	{#if loading}
 		<div class="loading-shade"></div>

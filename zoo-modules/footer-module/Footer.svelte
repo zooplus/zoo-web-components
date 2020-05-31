@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-footer"></svelte:options>
+<svelte:options tag="zoo-footer"/>
 <footer>
 	<nav>
 		<slot></slot>

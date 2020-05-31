@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-input-label"></svelte:options>
+<svelte:options tag="zoo-input-label"/>
 <label>{labeltext}</label>
 
 <style type='text/scss'>

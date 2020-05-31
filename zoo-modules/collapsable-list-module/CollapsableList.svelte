@@ -1,7 +1,7 @@
-<svelte:options tag="zoo-collapsable-list"></svelte:options>
+<svelte:options tag="zoo-collapsable-list"/>
 <slot bind:this={itemSlot}></slot>
 
-<style type="text/scss">
+<style>
 	:host {
 		display: flex;
 		flex-direction: column;

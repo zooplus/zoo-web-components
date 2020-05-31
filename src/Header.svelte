@@ -20,8 +20,8 @@
 </zoo-header>
 <zoo-navigation>
 	{#each navlinks as link}
-		<div class="nav-link">
-			<a href="{link.href}">{link.text}</a>
+		<div on:click={() => {document.querySelector(link.href).scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})}}>
+			{link.text}
 		</div>
 	{/each}
 </zoo-navigation>
@@ -63,22 +63,17 @@
 		font-size: $p1-size;
 		line-height: $p1-line-height;
 		font-weight: bold;
-		cursor: pointer;
 
-		.nav-link {
+		div {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
 			height: 100%;
+			color: white;
+			padding: 0 15px;
 
 			&:hover {
 				background: rgba(255, 255, 255, 0.3);
-			}
-			
-			a {
-				color: white;
-				text-decoration: none;
-				padding: 0 15px;
 			}
 		}
 	}

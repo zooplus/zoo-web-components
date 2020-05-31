@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-preloader"></svelte:options>
+<svelte:options tag="zoo-preloader"/>
 <div class="bounce">
 	<div class="bounce1"></div>
 	<div class="bounce2"></div>

@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-button"></svelte:options>
+<svelte:options tag="zoo-button"/>
 <button {disabled} class="{type} {size}" type="button" on:click="{e => disabled ? e.preventDefault() : ''}">
 	<slot name="buttoncontent"></slot>
 </button>

@@ -1,5 +1,5 @@
 <Context text="Data grids"/>
-<div class="grids-holder" bind:this="{gridHolder}">
+<div class="grids-holder">
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
 	<div class="grid-holder">
@@ -12,8 +12,8 @@
 		{#each data as row, i} 
 			<div class="example-row" slot="row">
 				<zoo-checkbox>
-					<input id="{i}-first-grid-checkbox" disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
-					<label for="{i}-first-grid-checkbox" slot="checkboxlabel">Valid</label>
+					<input id="{i}-checkbox" disabled="{row.status != 'DELIVERED' ? null : true}" checked="{row.valid}" slot="checkboxelement" type="checkbox"/>
+					<label for="{i}-checkbox" slot="checkboxlabel">Valid</label>
 				</zoo-checkbox>
 				<div>{row.createdDate}</div>
 				<zoo-select class="status">
@@ -142,9 +142,7 @@
 
 <script>
 	import Context from './Context.svelte';
-	let toast;
 	let possibleNumberOfItems = [5, 10, 25, 100];
-	let gridHolder;
 	let loading = false;
 	let headers = [
 		{
@@ -196,18 +194,18 @@
 	let extendedData = [...data].map(el => Object.assign(el, {rating: 3, promotion: false}));
 
 	const handleSortChange = sortState => {
-		const toast = document.createElement('zoo-toast');
+		let toast = document.createElement('zoo-toast');
 		toast.text = sortState 
 			? 'Sort state was changed. Property: ' + sortState.property + ', direction: ' + sortState.direction
 			: 'Sort state was changed. Sort object is undefined.';
-		gridHolder.appendChild(toast);
+		document.body.appendChild(toast);
 		toast.show();
 	};
 
 	const handlePageChange = page => {
-		const toast = document.createElement('zoo-toast');
+		let toast = document.createElement('zoo-toast');
 		toast.text = 'Page was changed to: ' + page.pageNumber;
-		gridHolder.appendChild(toast);
+		document.body.appendChild(toast);
 		toast.show();
 	}
 </script>

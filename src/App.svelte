@@ -1,8 +1,8 @@
 <div class="app">
 	<Header/>
 	<main>
-		<Context id="what" text="What is this project?"/>
-		<ul class="what-list">
+		<Context text="What is this project?"/>
+		<ul id="what" class="what-list">
 			<li>
 				<h3>Set of web-components which can be used in any modern UI framework (or without any).</h3>
 			</li>
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="how" class="spec-docs">
+			<div class="spec-docs">
 				<Context text="How can I use it?" backbtn="{true}"/>
 				<div class="external-docs">
 					Documentation for each component is available at
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 	</main>
-	<zoo-footer class="footer" copyright="zooplus AG">
+	<zoo-footer id="how" class="footer" copyright="zooplus AG">
 		{#each footerlinks as footerlink}
 			<zoo-link href="{footerlink.href}" target="{footerlink.target}" type="{footerlink.type}"
 				disabled="{footerlink.disabled}" text="{footerlink.text}">
@@ -196,12 +196,6 @@
 			href: 'https://www.npmjs.com/package/@zooplus/zoo-web-components',
 			text: 'NPM',
 			type: 'negative'
-		}
-	];
-	let doclinks = [
-		{
-			href: '#theming-doc',
-			text: 'Theming'
 		}
 	];
 </script>

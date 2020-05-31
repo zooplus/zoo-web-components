@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-header"></svelte:options>
+<svelte:options tag="zoo-header"/>
 <header>
 	<slot name="img"></slot>
 	<slot name="headertext">

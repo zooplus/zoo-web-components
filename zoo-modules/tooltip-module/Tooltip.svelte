@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-tooltip"></svelte:options>
+<svelte:options tag="zoo-tooltip"/>
 <div class="box {position}">
 	<div class="tooltip-content">
 		<slot>

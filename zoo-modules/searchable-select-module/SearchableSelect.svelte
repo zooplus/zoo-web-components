@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-searchable-select"></svelte:options>
+<svelte:options tag="zoo-searchable-select"/>
 <div class="box {valid ? '' : 'error'} {hidden ? 'hidden' : ''}" class:mobile="{_isMobile}">
 	{#if !_isMobile}
 		<zoo-input type="text" {valid} {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>

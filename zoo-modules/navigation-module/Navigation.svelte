@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-navigation"></svelte:options>
+<svelte:options tag="zoo-navigation"/>
 <nav><slot></slot></nav>
 
 <style type='text/scss'>

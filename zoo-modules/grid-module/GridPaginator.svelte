@@ -1,13 +1,13 @@
-<svelte:options tag="zoo-grid-paginator"></svelte:options>
+<svelte:options tag="zoo-grid-paginator"/>
 <div class="box" bind:this={gridPaginatorRoot} class:hidden="{!currentpage || !maxpages}">
 	<slot name="pagesizeselector"></slot>
 	<nav class="paging">
 		<div class="btn prev" class:hidden="{!currentpage || currentpage == 1}" on:click="{() => goToPrevPage()}"></div>
-		{#each pages as page, i}
+		{#each Array(+maxpages).fill().map((_, i) => i+1) as page}
 			<!-- first, previous, current, next or last page -->
-			{#if page == 1 || page == currentpage || i == currentpage - 2 || i == currentpage || page == maxpages}
+			{#if page == 1 || page == +currentpage - 1 || page == +currentpage || page == +currentpage + 1 || page == maxpages}
 				<div class="page-element" on:click="{() => goToPage(page)}" class:active="{page == currentpage}">{page}</div>
-			{:else}
+			{:else if page == +currentpage-2 || +currentpage+2 == page}
 				<div class="page-element-dots">...</div>
 			{/if}
 		{/each}
@@ -108,72 +108,26 @@
 	}
 
 	.page-element-dots {
-		display: none;
-	}
-
-	.page-element + .page-element-dots {
 		display: flex;
 	}
 </style>
 
 <script>
-	import { afterUpdate, beforeUpdate, onMount } from 'svelte';
-	export let maxpages = '';
-	export let currentpage = '';
+	import { onMount } from 'svelte';
+	export let maxpages = 0;
+	export let currentpage = 0;
 	let gridPaginatorRoot;
-	let disablePrev = true;
-	let disableNext = true;
-	let host;
-	let pages = [];
 
 	onMount(() => {
-		host = gridPaginatorRoot.getRootNode().host;
 		const arrowTemplateContent = gridPaginatorRoot.querySelector('#arrow').content;
 		gridPaginatorRoot.querySelector('.btn.prev').appendChild(arrowTemplateContent.cloneNode(true));
 		gridPaginatorRoot.querySelector('.btn.next').appendChild(arrowTemplateContent.cloneNode(true));
 	});
-	afterUpdate(() => {
-		if (!currentpage || !maxpages) {
-			disablePrev = true;
-			disableNext = true;
-		} else if (currentpage == 1) {
-			disablePrev = true;
-			disableNext = false;
-		} else if (currentpage == maxpages) {
-			disableNext = true;
-			disablePrev = false;
-		} else {
-			disablePrev = false;
-			disableNext = false;
-		}
-		
-	});
-	beforeUpdate(() => {
-		if (pages.length != maxpages) {
-			let temp = 1;
-			pages = [];
-			while(temp <= +maxpages) {
-				pages.push(temp);
-				temp++;
-			}
-			pages = pages.slice();
-		}
-	});
-	const goToPrevPage = () => {
-		if (disablePrev || currentpage <= 1) {
-			return;
-		}
-		goToPage(+currentpage-1);
-	}
-	const goToNextPage = () => {
-		if (disableNext || currentpage == maxpages) {
-			return;
-		}
-		goToPage(+currentpage+1);
-	}
-	const goToPage = (pageNumber) => {
+	const goToPrevPage = () => goToPage(+currentpage-1)
+	const goToNextPage = () => goToPage(+currentpage+1)
+	const goToPage = pageNumber => {
 		currentpage = pageNumber;
-		host.dispatchEvent(new CustomEvent('pageChange', {
+		gridPaginatorRoot.getRootNode().host.dispatchEvent(new CustomEvent('pageChange', {
 			detail: {pageNumber: pageNumber}, bubbles: true, compose: true
 		}));
 	}

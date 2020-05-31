@@ -1,9 +1,11 @@
-<svelte:options tag="zoo-radio"></svelte:options>
+<svelte:options tag="zoo-radio"/>
 <zoo-input-label {labeltext}></zoo-input-label>
 <div class:error="{!valid}">
 	<slot></slot>
 </div>
-<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
+{#if infotext || !valid}
+	<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
+{/if}
 
 <style type='text/scss'>
 	@import "variables";

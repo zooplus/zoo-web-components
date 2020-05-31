@@ -1,5 +1,5 @@
-<svelte:options tag="zoo-link"></svelte:options>
-<div class="box" class:hidden="{!text || !href}">
+<svelte:options tag="zoo-link"/>
+<div class="box">
 	<slot name="pre"></slot>
 	<a style="text-align: {textalign}" href="{href}" target="{target}" class="{type} {size}" class:disabled="{disabled}" on:click="{e => handleClick(e)}">
 		<span>{text}</span>
@@ -37,10 +37,6 @@
 			color: $white;
 			cursor: pointer;
 		}
-	}
-
-	.hidden, .hidden a {
-		padding: 0;
 	}
 
 	.negative:hover .bottom-line, .negative:focus .bottom-line {

@@ -1,3 +1,9 @@
+# 6.0.3
+`zoo-checkbox` - fixed border style to use `primary` css variable.
+`zoo-input-info` - flatten internal DOM structure.
+`zoo-input`, `zoo-checkbox`, `zoo-radio`, `zoo-select` - do not render `zoo-input-info` when not needed.
+`zoo-grid-paginator` - remove rendering of all `...` in pagination, only max 1 on each side of active page.
+
 # 6.0.2
 Added a11y and animation performance stylelint rules and fixed existing problems in styles.
 

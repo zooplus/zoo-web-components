@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-checkbox"></svelte:options>
+<svelte:options tag="zoo-checkbox"/>
 <div class="box" class:disabled="{_slottedInput && _slottedInput.disabled}" on:click="{e => handleClick(e)}">
 	<div class="checkbox" class:clicked="{_clicked}" class:highlighted="{highlighted}" class:error="{!valid}">
 		<slot name="checkboxelement" bind:this={_inputSlot}></slot>
@@ -7,7 +7,9 @@
 			<label>{labeltext}</label>
 		</slot>
 	</div>
-	<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
+	{#if infotext || !valid}
+		<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
+	{/if}
 </div>
 
 <style type='text/scss'>
@@ -44,15 +46,11 @@
 		padding: 11px 15px;
 
 		&.clicked {
-			border: $stroked-box-success-bold;
+			border: $stroked-box-primary-bold;
 		}
 
 		&.error {
 			border: $stroked-box-warning-bold;
-		}
-
-		&.error, &.clicked {
-			padding: 10px 14px;
 		}
 	}
 
@@ -83,7 +81,7 @@
 	}
 
 	::slotted(input[type="checkbox"]:checked) {
-		border: $stroked-box-success;
+		border: $stroked-box-primary;
 	}
 
 	::slotted(input[type="checkbox"]:focus) {

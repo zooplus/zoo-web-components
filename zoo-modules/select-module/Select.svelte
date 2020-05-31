@@ -1,4 +1,4 @@
-<svelte:options tag="zoo-select"></svelte:options>
+<svelte:options tag="zoo-select"/>
 <div class="box {labelposition} {linktext ? '' : 'link-absent'}">
 	<span class="input-label">
 		<slot name="selectlabel">
@@ -23,7 +23,9 @@
 			{/if}
 		{/if}
 	</div>
-	<zoo-input-info class="input-info" {valid} {inputerrormsg} {infotext}></zoo-input-info>
+	{#if infotext || !valid}
+		<zoo-input-info class="input-info" {valid} {inputerrormsg} {infotext}></zoo-input-info>
+	{/if}
 </div>
 
 <style type='text/scss'>

@@ -21,9 +21,6 @@ $info-mid: #459FD0;
 $warning-ultralight: #FDE8E9;
 $warning-mid: #ED1C24;
 $warning-dark: #BD161C;
-// success
-$success-ultralight: #EBF4E5;
-$success-mid: #3C9700;
 
 // font-sizes
 $p1-size: 14px;
@@ -53,8 +50,6 @@ $stroked-box-grey: 1px solid $grey-mid;
 $stroked-box-grey-bold: 2px solid $grey-mid;
 $stroked-box-grey-light: 1px solid $grey-light;
 $stroked-box-grey-dark-bold: 2px solid $grey-dark;
-$stroked-box-success: 1px solid var(--success-mid, #{$success-mid});
-$stroked-box-success-bold: 2px solid var(--success-mid, #{$success-mid});
 $stroked-box-warning: 1px solid var(--warning-mid, #{$warning-mid});
 $stroked-box-warning-bold: 2px solid var(--warning-mid, #{$warning-mid});
 $stroked-box-primary: 1px solid var(--primary-mid, #{$primary-mid});

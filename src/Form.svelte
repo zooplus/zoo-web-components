@@ -67,7 +67,7 @@
 			{/each}
 		</select>
 	</zoo-searchable-select>
-	<zoo-checkbox highlighted="{true}" inputerrormsg="error">
+	<zoo-checkbox highlighted="{true}" infotext="Additional information">
 		<input id="checkbox" slot="checkboxelement" type="checkbox"/>
 		<label for="checkbox" slot="checkboxlabel">An example checkbox</label>
 	</zoo-checkbox>

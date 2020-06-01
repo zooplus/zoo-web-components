@@ -23,6 +23,7 @@
 	.box {
 		width: 100%;
 		display: flex;
+		flex-direction: column;
 		cursor: pointer;
 		font-size: $p1-size;
 		line-height: $p1-line-height;

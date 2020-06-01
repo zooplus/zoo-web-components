@@ -1,3 +1,6 @@
+# 6.1.1
+`zoo-checkbox` - fix infotext rendering below the checkbox.
+
 # 6.1.0
 `zoo-button` - added additional unnamed slot to avoid writing `slot="buttoncontent"` all the time.
 

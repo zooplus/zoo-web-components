@@ -24,7 +24,7 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		padding: 10px;

@@ -7,7 +7,7 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	.box {
 		box-sizing: border-box;

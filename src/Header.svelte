@@ -27,7 +27,7 @@
 </zoo-navigation>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 	
 	.buttons-holder {
 		display: flex;
@@ -107,15 +107,19 @@
 				setColorVar('--secondary-mid', '#FF6200');
 				setColorVar('--secondary-light', '#FF8800');
 				setColorVar('--secondary-dark', '#CC4E00');
+				setColorVar('--info-ultralight', '#ECF5FA');
+				setColorVar('--info-mid', '#459FD0');
 				break;
 			case 'grey':
 				setColorVar('--primary-mid', '#676778');
 				setColorVar('--primary-light', '#838399');
 				setColorVar('--primary-dark', '#565664');
-				setColorVar('--primary-ultralight', '#838399');
+				setColorVar('--primary-ultralight', '#d3d3e1');
 				setColorVar('--secondary-mid', '#ff3e00');
-				setColorVar('--secondary-light', '#ff794d');
+				setColorVar('--secondary-light', '#fb7044');
 				setColorVar('--secondary-dark', '#c53100');
+				setColorVar('--info-ultralight', '#d8eefd');
+				setColorVar('--info-mid', '#40b3ff');
 				break;
 			default:
 				break;

@@ -10,7 +10,7 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		display: flex;

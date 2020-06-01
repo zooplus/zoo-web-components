@@ -17,7 +17,7 @@
 					<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
 				</svg>
 			{:else}
-				<svg class="arrows {slottedSelect.disabled ? 'disabled' : ''}" width="24" height="24" viewBox="0 0 24 24">
+				<svg class="arrows" class:disabled="{slottedSelect.disabled}" width="24" height="24" viewBox="0 0 24 24">
 					<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
 				</svg>
 			{/if}
@@ -29,8 +29,8 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
-	@import "input";
+	@import 'variables';
+	@import 'input';
 
 	.close, .arrows {
 		position: absolute;
@@ -110,13 +110,13 @@
 <script>
 	import { onMount } from 'svelte';
 
-	export let labelposition = "top";
-	export let labeltext = "";
-	export let linktext = "";
-	export let linkhref = "";
-	export let linktarget = "about:blank";
-	export let inputerrormsg = "";
-	export let infotext = "";
+	export let labelposition = 'top';
+	export let labeltext = '';
+	export let linktext = '';
+	export let linkhref = '';
+	export let linktarget = 'about:blank';
+	export let inputerrormsg = '';
+	export let infotext = '';
 	export let valid = true;
 	export let loading = false;
 	let slottedSelect;
@@ -125,9 +125,9 @@
 
 	// todo support multiple slots
 	onMount(() => {
-		selectSlot.addEventListener("slotchange", () => {
+		selectSlot.addEventListener('slotchange', () => {
 			slottedSelect = selectSlot.assignedNodes()[0];
-			valueSelected = slottedSelect.value && !slottedSelect.disabled ? true : false;
+			valueSelected = slottedSelect.value && !slottedSelect.disabled;
 			slottedSelect.addEventListener('change', e => valueSelected = e.target.value ? true : false);
 		});
 	});

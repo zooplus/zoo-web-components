@@ -2,7 +2,7 @@
 <nav><slot></slot></nav>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		contain: layout;

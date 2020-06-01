@@ -6,7 +6,7 @@
 <slot name="content"></slot>
 
 <style type="text/scss">
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		padding: 0 10px;

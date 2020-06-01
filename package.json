@@ -10,7 +10,6 @@
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
-		"@babel/core": "^7.10.1",
 		"@rollup/plugin-node-resolve": "^8.0.0",
 		"@storybook/addon-docs": "^5.3.19",
 		"@storybook/addon-knobs": "^5.3.19",
@@ -25,7 +24,7 @@
 		"mocha": "^7.2.0",
 		"node-sass": "^4.14.1",
 		"puppeteer": "^3.2.0",
-		"rollup": "^2.11.2",
+		"rollup": "^2.12.0",
 		"rollup-plugin-svelte": "^5.2.2",
 		"rollup-plugin-terser": "^6.1.0",
 		"serve": "^11.3.1",

@@ -8,7 +8,7 @@
 </header>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		contain: style;

@@ -9,7 +9,7 @@
 </template>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	.info, .error {
 		padding: 0 2px 2px 0;

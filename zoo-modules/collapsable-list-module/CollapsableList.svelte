@@ -14,7 +14,7 @@
 	let prevActiveItem;
 
 	onMount(() => {
-		itemSlot.addEventListener("slotchange", () => {
+		itemSlot.addEventListener('slotchange', () => {
 			const items = itemSlot.assignedNodes();
 			items[0].setAttribute('active', true);
 			prevActiveItem = items[0];

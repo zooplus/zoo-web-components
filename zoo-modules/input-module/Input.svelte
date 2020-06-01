@@ -16,8 +16,8 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
-	@import "input";
+	@import 'variables';
+	@import 'input';
 
 	.error-circle {
 		position: absolute;
@@ -95,12 +95,12 @@
 </style>
 
 <script>
-	export let labelposition = "top";
-	export let labeltext = "";
-	export let linktext = "";
-	export let linkhref = "";
-	export let linktarget = "about:blank";
-	export let inputerrormsg = "";
-	export let infotext = "";
+	export let labelposition = 'top';
+	export let labeltext = '';
+	export let linktext = '';
+	export let linkhref = '';
+	export let linktarget = 'about:blank';
+	export let inputerrormsg = '';
+	export let infotext = '';
 	export let valid = true;
 </script>

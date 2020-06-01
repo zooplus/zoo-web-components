@@ -17,7 +17,7 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		contain: layout;
@@ -151,14 +151,14 @@
 		const host = gridRoot.getRootNode().host;
 		mutationObserver = new MutationObserver(mutationHandler);
 		mutationObserver.observe(host, { attributes: true, childList: false, subtree: false });
-		headerCellSlot.addEventListener("slotchange", () => {
+		headerCellSlot.addEventListener('slotchange', () => {
 			const headers = headerCellSlot.assignedNodes();
 			host.style.setProperty('--grid-column-num', headers.length);
 			host.style.setProperty('--grid-column-sizes', 'repeat(var(--grid-column-num), minmax(50px, 1fr))');
 			handleHeaders(headers);
 		});
 
-		rowSlot.addEventListener("slotchange", assignColumnNumberToRows);
+		rowSlot.addEventListener('slotchange', assignColumnNumberToRows);
 	});
 
 	const mutationHandler = mutationsList => {

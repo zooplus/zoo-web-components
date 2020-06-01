@@ -2,7 +2,7 @@
 <label>{labeltext}</label>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	label {
 		font-size: $p1-size;

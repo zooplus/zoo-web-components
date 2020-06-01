@@ -1,22 +1,19 @@
 <svelte:options tag="zoo-searchable-select"/>
-<div class="box {valid ? '' : 'error'} {hidden ? 'hidden' : ''}" class:mobile="{_isMobile}">
+<div class="box" class:error="{!valid}" class:hidden="{hidden}" class:mobile="{_isMobile}">
 	{#if !_isMobile}
 		<zoo-input type="text" {valid} {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
 			<label for="input" slot="inputlabel">{labeltext}</label>
 			<input id="input" disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
-			<div slot="inputelement" class="close" on:click="{e => handleCrossClick()}">
-				{#if _valueSelected}
-					<svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>
-				{/if}
-			</div>
-			<span slot="inputelement">
-				{#if loading}
-					<zoo-preloader></zoo-preloader>
-				{/if}
-			</span>
+			{#if _valueSelected}
+				<svg slot="inputelement" class="close" on:click="{e => handleCrossClick()}" width="20" height="20" viewBox="0 0 24 24">
+					<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
+				</svg>
+			{/if}
+			{#if loading}
+				<zoo-preloader slot="inputelement"></zoo-preloader>
+			{/if}
 			{#if tooltipText}
-				<zoo-tooltip slot="inputelement" class="selected-options" position="right" text="{tooltipText}">
-				</zoo-tooltip>
+				<zoo-tooltip slot="inputelement" position="right" text="{tooltipText}"></zoo-tooltip>
 			{/if}
 		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
@@ -28,7 +25,7 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host, .box {
 		position: relative;
@@ -44,11 +41,11 @@
 		z-index: 1;
 	}
 
-	.box:hover .selected-options, .box:focus .selected-options {
+	.box:hover zoo-tooltip, .box:focus zoo-tooltip {
 		display: block;
 	}
 
-	.selected-options {
+	zoo-tooltip {
 		display: none;
 
 		&:hover, &:focus {
@@ -128,13 +125,13 @@
 <script>
 	import { onMount } from 'svelte';
 
-	export let labelposition = "top";
-	export let labeltext = "";
-	export let linktext = "";
-	export let linkhref = "";
-	export let linktarget = "about:blank";
-	export let inputerrormsg = "";
-	export let infotext = "";
+	export let labelposition = 'top';
+	export let labeltext = '';
+	export let linktext = '';
+	export let linkhref = '';
+	export let linktarget = 'about:blank';
+	export let inputerrormsg = '';
+	export let infotext = '';
 	export let valid = true;
 	export let placeholder = '';
 	export let loading = false;
@@ -151,7 +148,7 @@
 		_isMobile = isMobile();
 		if (_isMobile) hidden = false;
 		// todo support multiple slots
-		_selectSlot.addEventListener("slotchange", () => {
+		_selectSlot.addEventListener('slotchange', () => {
 			let select = _selectSlot.assignedNodes()[0];
 			_selectElement = select;
 			options = select.options;

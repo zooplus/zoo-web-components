@@ -1,3 +1,6 @@
+# 6.1.0
+`zoo-button` - added additional unnamed slot to avoid writing `slot="buttoncontent"` all the time.
+
 # 6.0.3
 `zoo-checkbox` - fixed border style to use `primary` css variable.
 `zoo-input-info` - flatten internal DOM structure.

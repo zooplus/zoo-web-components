@@ -3,7 +3,7 @@
 	{#if backbtn}
 		<div class="back-btn">
 			<zoo-button on:click={() => {document.querySelector('zoo-header').scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})}}>
-				<span slot="buttoncontent">Go to top</span>
+				<span>Go to top</span>
 			</zoo-button>
 		</div>
 	{/if}

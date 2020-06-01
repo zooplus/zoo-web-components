@@ -28,6 +28,6 @@ export const zooButton = () => {
 	return html`<zoo-button style="--primary-light: ${primaryLight}; --primary-mid: ${primaryMid}; --primary-dark: ${primaryDark};
 									--secondary-light: ${secondaryLight}; --secondary-mid: ${secondaryMid}; --secondary-dark: ${secondaryDark};"
 		disabled="${disabled ? true : ''}" type="${type}" size="${size}">
-			<div slot="buttoncontent">Button</div>
+			<div>Button</div>
 	</zoo-button>`
 };

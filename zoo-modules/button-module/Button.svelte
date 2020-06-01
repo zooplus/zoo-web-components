@@ -1,10 +1,11 @@
 <svelte:options tag="zoo-button"/>
 <button {disabled} class="{type} {size}" type="button" on:click="{e => disabled ? e.preventDefault() : ''}">
 	<slot name="buttoncontent"></slot>
+	<slot></slot>
 </button>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 
 	:host {
 		display: block;
@@ -90,7 +91,7 @@
 </style>
 
 <script>
-	export let type = "primary"; //'secondary', 'hollow'
-	export let size = "small"; //'medium'
+	export let type = 'primary'; //'secondary', 'hollow'
+	export let size = 'small'; //'medium'
 	export let disabled = false;
 </script>

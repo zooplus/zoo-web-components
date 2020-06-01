@@ -19,7 +19,7 @@ export const zooTooltip = () => {
 	let position = select('position', ['top', 'right', 'bottom', 'left'], 'top', attributesGroupId);
 	let tooltipText = text('text', 'Tooltip text', attributesGroupId);
 	return html`<zoo-button style="margin: 100px">
-					<div slot="buttoncontent">Button<zoo-tooltip text="${tooltipText}" position=${position}></zoo-tooltip></div>
+					<div>Button<zoo-tooltip text="${tooltipText}" position=${position}></zoo-tooltip></div>
 				</zoo-button>`
 };
 

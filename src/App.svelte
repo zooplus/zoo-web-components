@@ -33,12 +33,12 @@
 				<div class="mobile">
 					<div class="back-btn">
 						<zoo-button>
-							<span slot="buttoncontent"><a href="http://caniuse.com/#feat=shadowdomv1" target="about:blank">Can I Use shadowdomv1?</a></span>
+							<span><a href="http://caniuse.com/#feat=shadowdomv1" target="about:blank">Can I Use shadowdomv1?</a></span>
 						</zoo-button>
 					</div>
 					<div class="back-btn">
 						<zoo-button>
-							<span slot="buttoncontent"><a href="http://caniuse.com/#feat=custom-elementsv1" target="about:blank">Can I Use custom-elementsv1?</a></span>
+							<span><a href="http://caniuse.com/#feat=custom-elementsv1" target="about:blank">Can I Use custom-elementsv1?</a></span>
 						</zoo-button>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 </div>
 
 <style type="text/scss">
-	@import "variables";
+	@import 'variables';
 
 	.external-docs {
 		width: 100%;

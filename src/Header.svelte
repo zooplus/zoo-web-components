@@ -3,17 +3,17 @@
 	<div class="buttons-holder">
 		<div class="header-button">
 			<zoo-button type="{theme === 'zoo' ? 'secondary' : 'primary'}" on:click={() => changeTheme('zoo')}>
-				<span slot="buttoncontent">Zoo+ theme</span>
+				<span>Zoo+ theme</span>
 			</zoo-button>
 		</div>
 		<div class="header-button">
 			<zoo-button type="{theme === 'grey' ? 'secondary' : 'primary'}" on:click={() => changeTheme('grey')}>
-				<span slot="buttoncontent">Grey theme</span>
+				<span>Grey theme</span>
 			</zoo-button>
 		</div>
 		<div class="header-button">
 			<zoo-button type="{theme === 'random' ? 'secondary' : 'primary'}" on:click={() => generateRandomTheme()}>
-				<span slot="buttoncontent">Random theme</span>
+				<span>Random theme</span>
 			</zoo-button>
 		</div>
 	</div>

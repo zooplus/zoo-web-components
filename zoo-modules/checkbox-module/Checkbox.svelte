@@ -13,22 +13,16 @@
 </div>
 
 <style type='text/scss'>
-	@import "variables";
+	@import 'variables';
 	
 	:host {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		height: 100%;
 	}
 
 	.box {
 		width: 100%;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		position: relative;
-		box-sizing: border-box;
 		cursor: pointer;
 		font-size: $p1-size;
 		line-height: $p1-line-height;
@@ -162,7 +156,7 @@
 	  
 	onMount(() => {
 		// todo support multiple slots
-		_inputSlot.addEventListener("slotchange", () => {
+		_inputSlot.addEventListener('slotchange', () => {
 			_slottedInput = _inputSlot.assignedNodes()[0];
 			_clicked = _slottedInput.checked;
 		});

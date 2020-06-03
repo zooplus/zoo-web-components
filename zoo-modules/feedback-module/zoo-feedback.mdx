@@ -7,17 +7,23 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Container component which provides a styled container with preset icon.
 
 ## Attributes
-- type - accepts following values: `info`, `error`, `success`;
-  - `optional`
-  - `default`: `info`
-  - `type` - `text`
-- text - text to render inside container;
-  - `optional`
-  - `type` - `text`
-
+|   **Name**  |           **Description**              | **Type** | **Default** | **Optional** |
+| :---------: | :-------------------------------------:|:--------:|:-----------:|:-----------:|
+| `type`      | `info`, `error`, `success`             | text     |   `info`    |   ✔
+| `text`      | text to render inside container        | text     |             |   ✔
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-ultralight` |    `#EBF4E5`   |
+| `--primary-mid`        |    `#3C9700`   |
+| `--info-ultralight`    |    `#ECF5FA`   |
+| `--info-mid`           |    `#459FD0`   |
+| `--warning-ultralight` |    `#FDE8E9`   |
+| `--warning-mid`        |    `#ED1C24`   |
 ## Slots
-This component accept the following slots:
-- `<slot>{text}</slot>` - `text` attribute will be rendered if no slots are defined.
+|     **Name**   |           **Description**          |
+| :------------: | :---------------------------------:|
+|                | arbitrary content, replaces `text` attribute  |
 
 ## Example usage:
 ```

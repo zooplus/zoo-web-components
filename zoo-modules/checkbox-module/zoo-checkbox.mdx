@@ -7,29 +7,23 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Checkbox component which provides styles for `<input type="checkbox"/>`.
 
 ## Attributes
-- labeltext - text to be presented on the right side of the checkbox;
-  - `optional`
-  - **`deprecated`** - use `<label slot="checkboxlabel">Label</label>`
-  - `type` - `text`
-- valid - flag which indicates whether the input is valid or not;
-  - `optional`
-  - `default`: `true`
-  - `type` - `truthy` or `falsy`
-- highlighted - flag indicating whether the outline around the input should be visible (border);
-  - `optional`
-  - `default`: `null`
-  - `type` - `truthy` or `falsy`
-- inputerrormsg - text that should be displayed when `valid` is set to `falsy` value;
-  - `optional`
-  - `type` - `text`
-- infotext - text that should be displayed as additional info below the checkbox;
-  - `optional`
-  - `type` - `text`
-
+|   **Name**    |           **Description**                                                      | **Type** | **Default** | **Optional** |
+| :-----------: | :-----------------------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `labeltext`   | text to be presented on the right side of the checkbox                         | text     |             |   ✔
+| `valid`       | flag which indicates whether the input is valid or not                         | boolean  |   `true`    |   ✔
+| `highlighted` |flag indicating whether the outline around the input should be visible (border) | boolean  |   `false`   |   ✔
+|`inputerrormsg`| text that should be displayed when `valid` is set to `falsy` value             | text     |             |   ✔
+|   `infotext`  | text that should be displayed as additional info below the checkbox            | text     |             |   ✔
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-mid`        |    `#3C9700`   |
+| `--warning-mid`        |    `#FF6200`   |
 ## Slots
-This component accepts the following slots:
-- checkboxelement - `<input id="checkbox-id" slot="checkboxelement" type="checkbox/>`;
-- checkboxlabel - `<label for="checkbox-id" slot="checkboxlabel">An example checkbox</label>`.
+|      **Name**    |           **Description**          |
+| :--------------: | :---------------------------------:|
+| `checkboxelement`| `<input id="checkbox-id" slot="checkboxelement" type="checkbox/>`|
+| `checkboxlabel`  | `<label for="checkbox-id" slot="checkboxlabel">An example checkbox</label>`|
 
 ## Example usage:
 ```

@@ -8,11 +8,17 @@ Container component which provides styles for slotted content.
 
 ## Attributes
 
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-mid`        |    `#3C9700`   |
+| `--primary-dark`       |    `#286400`   |
 ## Slots
-This component accepts the following slots:
-- `<slot></slot>` - injected element must be `zoo-collapsable-list-item`, which accepts the following slots:
-  - `<slot name="header"></slot>` - arbitrary content
-  - `<slot name="content"></slot>` - arbitrary content
+|  **Name** |           **Description**          |
+| :-------: | :---------------------------------:|
+|           | injected element must be `zoo-collapsable-list-item`, which accepts `header` and `content` slots|
+| `header`  | arbitrary content|
+| `content` | arbitrary content|
 
 ## Example usage:
 ```

@@ -7,16 +7,15 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Container header component.
 
 ## Attributes
-- headertext - arbitrary text in bottom left corner of container;
-  - `optional`
-  - `type` - `text`
-
+|   **Name**  |                 **Description**              | **Type** | **Default** | **Optional** |
+| :---------: | :-------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `headertext`| arbitrary text to show next to `img` slot    | text     |             |   ✔
 ## Slots
-This component accept the following slots:
-- `<slot name="img"></slot>` - logo image.
-- `<slot name="headertext"><h2>{headertext}</h2></slot>` - slot for header text, replaces `headertext` attribute is defined.
-- `<slot></slot>` - arbitrary content after first two slots.
-
+|     **Name**   |           **Description**          |
+| :------------: | :---------------------------------:|
+|  `img`         | logo image                  |
+|  `headertext`  | slot for header text, replaces `headertext` attribute is defined                  |
+|                | arbitrary content after first two slots                  |
 ## Example usage:
 ```
 <zoo-header headertext="Zooplus web components">

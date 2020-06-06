@@ -5,14 +5,20 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 # Modal
 
 Container component which provides styles for modal and slotted content.
+Modal visibility must be controlled by the client.
 
 ## Attributes
-- headertext - text that should be displayed as modal header;
-  - `type` - `text`
-
+|   **Name**    |           **Description**                          | **Type** | **Default** | **Optional** |
+| :-----------: | :-------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `headertext`  | text that should be displayed as modal header      | text     |             |   ✘
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-mid`        |    `#3C9700`   |
 ## Slots
-This component accepts the following slots:
-- `<slot></slot>` - arbitrary content;
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+|                  | arbitrary content                  | ✘
 
 ## Example usage:
 ```

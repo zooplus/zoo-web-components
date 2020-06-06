@@ -7,31 +7,26 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Checkbox component which provides styles for `<input type="checkbox"/>`.
 
 ## Attributes
-- text - what text to present as a link text;
-  - `type` - `text`
-- href - where the link should lead;
-  - `type` - `link`
-- target - target of the anchor link;
-  - `optional`
-  - `default`: `about:blank`
-  - `type` - `text`
-- type - accepts following values: `negative`, `primary`, `grey`, `warning`;
-  - `optional`
-  - `default`: `negative`
-  - `type` - `text`
-- disabled - whether the link should be disabled
-  - `optional`
-  - `default`: `false`
-  - `type` - `truthy` or `falsy`
-- size - accepts following values: `regular`, `bold`, `large`;
-  - `optional`
-  - `default`: `regular`
-  - `type` - `text`
-
+|   **Name**    |           **Description**                                                      | **Type** | **Default** | **Optional** |
+| :-----------: | :-----------------------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `text`        | what text to present as a link text                                            | text     |             |   ✘
+| `href`        | where the link should lead                                                     | link     |             |   ✘
+| `target`      | target of the anchor link                                                      | text     |`about:blank`|   ✔
+| `type`        | `negative`, `primary`, `grey`, `warning`                                       | text     | `negative`  |   ✔
+| `disabled`    | whether the link should be disabled                                            | boolean  |  `false`    |   ✔
+| `size`        | `regular`, `bold`, `large`                                                     | text     |  `regular`  |   ✔
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-light`      |    `#66B100`   |
+| `--primary-mid`        |    `#3C9700`   |
+| `--primary-dark`       |    `#286400`   |
+| `--warning-dark`       |    `#BD161C`   |
 ## Slots
-This component accepts the following slots:
-- pre - will be rendered before link text, for example: `<svg slot="pre">...</svg>`;
-- post - will be rendered after link text, for example: `<svg slot="post">...</svg>`.
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+| `pre`            | will be rendered before link text, for example: `<svg slot="pre">...</svg>`| ✔
+| `post`           | will be rendered after link text, for example: `<svg slot="post">...</svg>`| ✔
 
 ## Example usage:
 ```

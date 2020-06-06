@@ -10,12 +10,16 @@ Container header component.
 |   **Name**  |                 **Description**              | **Type** | **Default** | **Optional** |
 | :---------: | :-------------------------------------------:|:--------:|:-----------:|:-----------:|
 | `headertext`| arbitrary text to show next to `img` slot    | text     |             |   ✔
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-mid`        |    `#3C9700`   |
 ## Slots
-|     **Name**   |           **Description**          |
-| :------------: | :---------------------------------:|
-|  `img`         | logo image                  |
-|  `headertext`  | slot for header text, replaces `headertext` attribute is defined                  |
-|                | arbitrary content after first two slots                  |
+|     **Name**   |           **Description**          | **Optional** | 
+| :------------: | :---------------------------------:|:------------:|
+|  `img`         | logo image                  | ✔
+|  `headertext`  | slot for header text, replaces `headertext` attribute is defined | ✔
+|                | arbitrary content after first two slots                  | ✔
 ## Example usage:
 ```
 <zoo-header headertext="Zooplus web components">

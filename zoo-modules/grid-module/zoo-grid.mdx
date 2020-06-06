@@ -7,28 +7,22 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Grid component.
 
 ## Attributes
-- loading - flag which indicates whether to show loader inside grid;
-  - `optional`
-  - `default`: `null`
-  - `type` - `truthy` or `falsy`
-- stickyheader - flag which indicates whether grid's header should be sticky when scrolling;
-  - `optional`
-  - `type` - `present` or `absent`
-- resizable - flag which indicates whether grid columns should be resizable;
-  - `optional`
-  - `type` - `present` or `absent`
-- reorderable - flag which indicates whether grid's column should be reorderable;
-  - `optional`
-  - `type` - `present` or `absent`
-- currentpage - current page that the user is on, mandatory only when using paginator;
-  - `optional`
-  - `type` - `number`
-- maxpages - maximum number of pages, mandatory only when using paginator;
-  - `optional`
-  - `type` - `number`
+|   **Name**    |           **Description**                                                      | **Type** | **Default** | **Optional** |
+| :-----------: | :-----------------------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `loading`     | flag which indicates whether to show loader inside grid                        | boolean  |   `false`   |   ✔
+| `stickyheader`| flag which indicates whether grid's header should be sticky when scrolling     | boolean (`present` or `absent`)  | |   ✔
+| `resizable`   | flag which indicates whether grid columns should be resizable                  | boolean (`present` or `absent`)  | |   ✔
+| `reorderable` | flag which indicates whether grid's column should be reorderable               | boolean (`present` or `absent`)  | |   ✔
+| `currentpage` | current page that the user is on, mandatory only when using paginator          | number   |             |   ✔
+| `maxpages`    | maximum number of pages, mandatory only when using paginator                   | number   |             |   ✔
+
 
 ## CSS variables
-- `--grid-column-sizes` - specify value for `grid-template-columns`.      
+|        **Name**        |                        **Default**                       |
+| :--------------------: |:--------------------------------------------------------:|
+| `--warning-dark`       |    `#BD161C`  										    |
+| `--grid-column-sizes`  |    `repeat(var(--grid-column-num), minmax(50px, 1fr))`   |
+
 By default, grid will calculate number of headers supplied via slot, and apply `repeat(var(--grid-column-num), minmax(50px, 1fr))` css rule to header and each row; If you want to change some of widths of some columns you can set `--grid-column-sizes` css custom property on `zoo-grid` to change width of columns, for example: `--grid-column-sizes: 150px repeat(9, minmax(50px, 1fr)) !important;` to force first column to be 150px wide.      
 However, when `resizable` attribute is supplied, grid will set column widths automatically on element level, so `--grid-column-sizes` will not work, to force width of any column use the following css:
 ```
@@ -38,44 +32,32 @@ zoo-grid div[column="1"] {
 ```
 
 ## Slots
-This component accepts following slots:      
-- headers: `<zoo-grid-header slot="headercell"></zoo-grid-header>`;
-  - attribute `sortable`
-	  - `optional`
-	  - `type` - `truthy` or `falsy`
-  - attribute `sortableproperty`
-	  - `optional`
-	  - `type` - `text`
-- rows: `<div slot="row"></div>` - arbitrary content;
-- paginator: `<div slot="paginator"></div>`;
-  - `optional`
-  - `default` - `<zoo-grid-paginator><slot name="pagesizeselector"></slot></zoo-grid-paginator>`
-- page size selector: `<div slot="pagesizeselector"></div>`;
-  - `optional`, `mandatory` when `paginator` slot is defined;
+|      **Name**     |           **Description**          | **Optional** | 
+| :---------------: | :---------------------------------:|:-----------:|
+| `headercell`      | `<zoo-grid-header slot="headercell">Header</zoo-grid-header>`| ✘
+| `row`             | arbitrary content | ✔
+| `paginator`       | arbitrary content, default is: `<zoo-grid-paginator><slot name="pagesizeselector"></slot></zoo-grid-paginator>` | ✔
+| `pagesizeselector`| arbitrary content, mandatory when `paginator` slot is filled | ✔
+| `norecords`       | arbitrary content, whether to show it or not must be handled by the client | ✔
+
+### zoo-grid-header attributes
+|       **Name**     |           **Description**                      | **Type** | **Default** | **Optional** |
+| :----------------: | :---------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `sortable`         |                                                | boolean  |   `false`   |   ✔
+| `sortableproperty` |                                                | text     |             |   ✔ - when `sortable` is not set
 
 ## Events
-### sortChange
-`(sortChange)` - output event, whenever user changes sorting the following object will be dispatched on `zoo-grid`:      
-```
-{
-	detail: {
-		property: $propertyName,
-		direction: $direction
-	}
-}
-```
+
+|       **Name**     |           **Description**                      | **Event Content** | 
+| :----------------: | :---------------------------------------------:|:-----------------:|
+| `sortChange`       |  output event, whenever user changes sorting the following object will be dispatched on `zoo-grid` | `{ detail: { property: $propertyName, direction: $direction } }`
 - `propertyName` - name of property passed to header via `sortableproperty` attribute;      
-- `direction` - either `desc`, `asc` or `undefined`;      
-### pageChange
-- `(pageChange)` - output event, whenever user changes current page the following object will be dispatched on `zoo-grid`:
-```
-{
-	detail: {
-		pageNumber: $pageNumber
-	}
-}
-```
-  - `pageNumber` - number of the page user wants to go to;
+- `direction` - either `desc`, `asc` or `undefined`; 
+
+|       **Name**     |           **Description**                      | **Event Content** | 
+| :----------------: | :---------------------------------------------:|:-----------------:|
+| `pageChange`       |  output event, whenever user changes current page the following object will be dispatched on `zoo-grid` | `{ detail: { pageNumber: $pageNumber } }`
+- `pageNumber` - number of the page user wants to go to
 
 ## Example usage:
 ```

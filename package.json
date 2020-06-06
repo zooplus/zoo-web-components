@@ -10,7 +10,7 @@
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
-		"@rollup/plugin-node-resolve": "^8.0.0",
+		"@rollup/plugin-node-resolve": "^8.0.1",
 		"@storybook/addon-docs": "^5.3.19",
 		"@storybook/addon-knobs": "^5.3.19",
 		"@storybook/storybook-deployer": "^2.8.6",
@@ -24,11 +24,11 @@
 		"mocha": "^7.2.0",
 		"node-sass": "^4.14.1",
 		"puppeteer": "^3.3.0",
-		"rollup": "^2.12.1",
+		"rollup": "^2.13.1",
 		"rollup-plugin-svelte": "^5.2.2",
 		"rollup-plugin-terser": "^6.1.0",
-		"serve": "^11.3.1",
-		"stylelint": "^13.5.0",
+		"serve": "^11.3.2",
+		"stylelint": "^13.6.0",
 		"stylelint-a11y": "^1.2.3",
 		"stylelint-high-performance-animation": "^1.5.1",
 		"svelte": "3.23.0"

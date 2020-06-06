@@ -7,44 +7,24 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Select component which provides styles for slotted `select`.
 
 ## Attributes
-- labelposition - accepts following values: `top`, `left`;
-  - `optional`
-  - `default`: `top`
-  - `type` - `text`
-- labeltext - text to be presented as a label;
-  - `optional`
-  - `type` - `text`
-- linktext - what text to present as a link text;
-  - `optional`
-  - `type` - `text`
-- linkhref - where the link should lead;
-  - `optional`
-  - `type` - `link`
-- linktarget - target of the anchor link;
-  - `optional`
-  - `default`: `about:blank`
-  - `type` - `text`
-- inputerrormsg - text that should be displayed when `valid` is set to `falsy` value;
-  - `optional`
-  - `type` - `text`
-- infotext - text that should be displayed as additional info below the checkbox;
-  - `optional`
-  - `type` - `text`
-- valid - flag which indicates whether the input is valid or not;
-  - `optional`
-  - `default`: `true`
-  - `type` - `truthy` or `falsy`
-- loading - flag which indicates whether to show loader inside slotted `select` element;
-  - `optional`
-  - `default`: `null`
-  - `type` - `truthy` or `falsy`
-- placeholder - text that should be displayed as a placeholder;
-  - `optional`
-  - `type` - `text`
+|     **Name**    |           **Description**                                          | **Type** | **Default** | **Optional** | 
+| :-------------: | :-----------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `labelposition` | `top`, `left`                                                      | text     | `top`       |   ✔
+| `labeltext`     | text to be presented as a label                                    | text     |             |   ✔
+| `valid`         | flag which indicates whether the input is valid or not             | boolean  |   `true`    |   ✔
+|`inputerrormsg`  | text that should be displayed when `valid` is set to `falsy` value | text     |             |   ✔
+|   `infotext`    | text that should be displayed as additional info below the input   | text     |             |   ✔
+|   `linktext`    | what text to present as a link text                                | text     |             |   ✔
+|   `linkhref`    | where the link should lead                                         | link     |             |   ✔
+|   `linktarget`  | target of the anchor link                                          | text     |`about:blank`|   ✔
+|   `linktarget`  | target of the anchor link                                          | text     |`about:blank`|   ✔
+|   `loading`     | flag which indicates whether to show loader inside slotted `select` element    | boolean     | |   ✔
+| `placeholder`   | text that should be displayed as a placeholder                     | type     | |   ✔
 
 ## Slots
-This component accepts the following slots:
-- selectelement - `<select slot="selectelement">...</select>`;
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+| `selectelement`  | `<select slot="selectelement">...</select>`| ✘
 
 ## Example usage:
 ```

@@ -7,46 +7,30 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Select component which provides styles for slotted `select`.
 
 ## Attributes
-- labelposition - accepts following values: `top`, `left`;
-  - `optional`
-  - `default`: `top`
-  - `type` - `text`
-- labeltext - text to be presented as a label;
-  - `optional`
-  - **`deprecated`** - use `<label slot="inputlabel">Label</label>`
-  - `type` - `text`
-- linktext - what text to present as a link text;
-  - `optional`
-  - `type` - `text`
-- linkhref - where the link should lead;
-  - `optional`
-  - `type` - `link`
-- linktarget - target of the anchor link;
-  - `optional`
-  - `default`: `about:blank`
-  - `type` - `text`
-- inputerrormsg - text that should be displayed when `valid` is set to `falsy` value;
-  - `optional`
-  - `type` - `text`
-- infotext - text that should be displayed as additional info below the checkbox;
-  - `optional`
-  - `type` - `text`
-- valid - flag which indicates whether the input is valid or not;
-  - `optional`
-  - `default`: `true`
-  - `type` - `truthy` or `falsy`
-- loading - flag which indicates whether to show loader inside slotted `select` element;
-  - `optional`
-  - `default`: `null`
-  - `type` - `truthy` or `falsy`
-- placeholder - text that should be displayed as a placeholder;
-  - `optional`
-  - `type` - `text`
-
+|     **Name**    |           **Description**                                          | **Type** | **Default** | **Optional** | 
+| :-------------: | :-----------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `labelposition` | `top`, `left`                                                      | text     | `top`       |   ✔
+| `labeltext`     | text to be presented as a label                                    | text     |             |   ✔
+| `valid`         | flag which indicates whether the input is valid or not             | boolean  |   `true`    |   ✔
+|`inputerrormsg`  | text that should be displayed when `valid` is set to `falsy` value | text     |             |   ✔
+|   `infotext`    | text that should be displayed as additional info below the input   | text     |             |   ✔
+|   `linktext`    | what text to present as a link text                                | text     |             |   ✔
+|   `linkhref`    | where the link should lead                                         | link     |             |   ✔
+|   `linktarget`  | target of the anchor link                                          | text     |`about:blank`|   ✔
+|   `linktarget`  | target of the anchor link                                          | text     |`about:blank`|   ✔
+|   `loading`     | flag which indicates whether to show loader inside slotted `select` element    | boolean     | |   ✔
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-light`      |    `#66B100`   |
+| `--primary-mid`        |    `#3C9700`   |
+| `--primary-dark`       |    `#286400`   |
+| `--warning-mid`        |    `#ED1C24`   |
 ## Slots
-This component accepts the following slots:
-- selectelement - `<select id="zoo-select" slot="selectelement">...</select>`;
-- selectlabel - `<label for="zoo-select">Label</label>`
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+| `selectelement`  | `<select id="zoo-select" slot="selectelement">...</select>`| ✘
+| `selectlabel`    | `<label for="zoo-select">Label</label>`| ✔
 
 ## Example usage:
 ```

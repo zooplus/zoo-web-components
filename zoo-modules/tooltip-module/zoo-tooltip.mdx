@@ -7,15 +7,15 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 Tooltip component.
 
 ## Attributes
-- position - accepts following values: `top`, `right`, `bottom`, `left`;
-  - `optional`
-  - `default`: `top`
-  - `type` - `text`
-- text - text to be displayed inside tooltip;
-  - `type` - `text`
+|     **Name**    |           **Description**                                          | **Type** | **Default** | **Optional** | 
+| :-------------: | :-----------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `position`      | `top`, `right`, `bottom`, `left`                                   | text     | `top`       |   ✔
+| `text`          | text to be displayed inside tooltip                                | text     |             |   ✔
 
 ## Slots
-- `<slot><span>{text}</span></slot>` - arbitrary content which will replace `text` attribute;
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+|                  | arbitrary content which will replace `text` attribute| ✔
 
 ## Example usage:
 ```

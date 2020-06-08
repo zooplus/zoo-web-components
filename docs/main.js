@@ -8,18 +8,16 @@ document.getElementById('modal-closer').onclick = () => {
 	document.body.querySelector('#modal').closeModal();
 	document.body.querySelector('#modalToast').show();
 };
-let theme = 'zoo';
 let prevActiveBtn = document.getElementById('zoo-theme');
 
 document.getElementById('zoo-theme').onclick = () => changeTheme('zoo');
 document.getElementById('grey-theme').onclick = () => changeTheme('grey');
 document.getElementById('random-theme').onclick = () => changeTheme('random');
 
-const changeTheme = (pallete) => {
-	theme = pallete;
-	prevActiveBtn.type = 'primary';
+const changeTheme = pallete => {
+	prevActiveBtn.setAttribute('type', 'primary');
 	let activeBtn = document.getElementById(`${pallete}-theme`);
-	activeBtn.type = theme === pallete ? 'secondary' : 'primary';
+	activeBtn.setAttribute('type', 'secondary');
 	prevActiveBtn = activeBtn;
 	switch (pallete) {
 		case 'zoo':
@@ -79,7 +77,7 @@ const rgbToHex = (r, g, b) => {
 	return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
-const componentToHex = (c) => {
+const componentToHex = c => {
 	let hex = c.toString(16);
 	return hex.length == 1 ? "0" + hex : hex;
 }

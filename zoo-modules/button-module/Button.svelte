@@ -28,8 +28,7 @@
 		line-height: $p1-line-height;
 		font-weight: bold;
 		text-align: center;
-		background-image: linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
-		background-image: -webkit-linear-gradient(left, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
+		background: linear-gradient(to right, var(--primary-mid, #{$primary-mid}), var(--primary-light, #{$primary-light}));
 
 		&:hover, &:focus {
 			background: var(--primary-mid, #{$primary-mid});
@@ -45,18 +44,12 @@
 			color: $grey-mid;
 			border: $stroked-box-grey-light;
 			cursor: not-allowed;
-
-			&:hover, &:focus, &:active {
-				cursor: not-allowed;
-				background: $grey-ultralight;
-				color: $grey-mid;
-			}
+			transform: translateY(0);
 		}
 	}
 
 	.secondary {
-		background-image: linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
-		background-image: -webkit-linear-gradient(left, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
+		background: linear-gradient(to right, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
 
 		&:hover, &:focus {
 			background: var(--secondary-mid, #{$secondary-mid});

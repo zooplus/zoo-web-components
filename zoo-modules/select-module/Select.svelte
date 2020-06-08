@@ -2,7 +2,9 @@
 <div class="box {labelposition} {linktext ? '' : 'link-absent'}">
 	<span class="input-label">
 		<slot name="selectlabel">
-			<zoo-input-label {labeltext}></zoo-input-label>
+			{#if labeltext}
+				<zoo-input-label {labeltext}></zoo-input-label>
+			{/if}
 		</slot>
 	</span>
 	{#if linktext}<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>{/if}

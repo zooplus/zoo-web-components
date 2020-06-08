@@ -47,10 +47,10 @@ a {
 	text-decoration: none;
 	font-size: $p2-size;
 	line-height: $p2-line-height;
-	color: var(--primary-mid, #{$primary-mid});
+	color: var(--primary-dark, #{$primary-dark});
 
 	&:visited {
-		color: var(--primary-light, #{$primary-light});
+		color: var(--primary-mid, #{$primary-mid});
 	}
 
 	&:hover, &:focus, &:active {

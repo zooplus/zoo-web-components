@@ -5,14 +5,14 @@ import { html } from 'lit-html';
 import '../../docs/components';
 
 export default {
-  title: 'Docs/Input',
-  component: 'zoo-input',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Input',
+	component: 'zoo-input',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooInput = () => {

@@ -34,11 +34,10 @@
 		"svelte": "3.23.0"
 	},
 	"scripts": {
-		"start": "concurrently -k \"serve docs-local\"  \"rollup -c -w\"",
+		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
 		"prebuild": "npm test",
 		"build": "rollup -c 'rollup.config.release.js'",
 		"postbuild": "npm run stylelint",
-		"build-landing": "rollup -c 'rollup.config.landing.js'",
 		"pretest": "rollup -c 'rollup.config.test.js'",
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
@@ -65,5 +64,7 @@
 		"url": "https://github.com/zooplus/zoo-web-components/issues"
 	},
 	"homepage": "https://github.com/zooplus/zoo-web-components#readme",
-	"dependencies": {}
+	"dependencies": {
+		"construct-style-sheets-polyfill": "^2.3.5"
+	}
 }

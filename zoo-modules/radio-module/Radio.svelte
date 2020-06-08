@@ -1,5 +1,7 @@
 <svelte:options tag="zoo-radio"/>
-<zoo-input-label {labeltext}></zoo-input-label>
+{#if labeltext}
+	<zoo-input-label {labeltext}></zoo-input-label>
+{/if}
 <div class:error="{!valid}">
 	<slot></slot>
 </div>

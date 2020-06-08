@@ -1,9 +1,9 @@
-<Context text="Data grids"/>
+<h2>Data grids</h2>
 <div class="grids-holder">
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
+	<zoo-grid class="grid" stickyheader currentpage="5" maxpages="20" resizable reorderable on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 		{#each headers as header, idx}
 			<zoo-grid-header class="header-cell" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
@@ -21,7 +21,6 @@
 						{/each}
 					</select>
 				</zoo-select>
-				<div>{row.minWeight}</div>
 				<div>{row.maxWeight}</div>
 				<zoo-input class="delivery-date">
 					<input title="Delivery Date" disabled="{row.status == 'DELIVERED' ? true : null}" value="{row.deliveryDate}" slot="inputelement" type="date" placeholder="Enter date" />
@@ -47,7 +46,7 @@
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-		<zoo-grid class="grid-2" stickyheader currentpage="1" maxpages="4" on:pageChange="{e => handlePageChange(e.detail)}">
+		<zoo-grid class="grid" stickyheader currentpage="1" maxpages="4" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
 				<zoo-grid-header slot="headercell">{header.title}</zoo-grid-header>
 			{/each}
@@ -60,7 +59,6 @@
 					</zoo-checkbox>
 					<div>{row.createdDate}</div>
 					<div>{row.status}</div>
-					<div>{row.minWeight}</div>
 					<div>{row.maxWeight}</div>
 					<div>{row.deliveryDate}</div>
 					<div>{row.noOfPieces}</div>
@@ -100,7 +98,7 @@
 		align-items: center;
 	}
 
-	.grid-2 {
+	.grid {
 		min-width: 1024px;
 	}
 
@@ -134,7 +132,6 @@
 </style>
 
 <script>
-	import Context from './Context.svelte';
 	let possibleNumberOfItems = [5, 10, 25, 100];
 	let loading = false;
 	let headers = [
@@ -150,9 +147,6 @@
 			title: 'Status',
 			sortable: true,
 			sortProperty: 'status'
-		},
-		{
-			title: 'Min weight'
 		},
 		{
 			title: 'Max weight'
@@ -177,14 +171,14 @@
 	let today = new Date().toISOString().substr(0, 10);
 
 	let data = [
-		{valid: true, createdDate: today, status: 'READY', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'DELIVERED', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'READY', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'DELIVERED', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'READY', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'}
+		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'}
 	];
 
-	let extendedData = [...data].map(el => Object.assign(el, {rating: 3, promotion: false}));
+	let extendedData = data.map(el => Object.assign(el, {rating: 3, promotion: false}));
 
 	const handleSortChange = sortState => {
 		let toast = document.createElement('zoo-toast');

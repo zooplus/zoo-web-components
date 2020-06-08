@@ -37,13 +37,6 @@
 				]
 			}
 		],
-		"unit-whitelist": [
-			"px",
-			"deg",
-			"fr",
-			"%",
-			"s"
-		],
 		"declaration-block-no-redundant-longhand-properties": true,
 		"declaration-no-important": null,
 		"max-nesting-depth": 5,

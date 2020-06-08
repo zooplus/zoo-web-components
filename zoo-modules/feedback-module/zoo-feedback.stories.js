@@ -17,7 +17,6 @@ export default {
 
 export const zooFeedback = () => {
 	let type = select('type', ['info', 'error', 'success'], 'info', attributesGroupId);
-	// TODO wtf is wrong with this one
 	let text = textFn('text', 'Example info text', attributesGroupId);
 	let infoUltralight = color('--info-ultralight', '#ECF5FA', cssVariablesGroupId);
 	let infoMid = color('--info-mid', '#459FD0', cssVariablesGroupId);
@@ -26,9 +25,10 @@ export const zooFeedback = () => {
 	let warningUltralight = color('--warning-ultralight', '#FDE8E9', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 
-	return html`<zoo-feedback type="${type}" text="${text}" style="--primary-mid: ${primaryMid}; --primary-ultralight: ${primaryUltralight};
+	return html`<zoo-feedback type="${type}" style="--primary-mid: ${primaryMid}; --primary-ultralight: ${primaryUltralight};
 									 --warning-mid: ${warningMid}; --warning-ultralight: ${warningUltralight};
 									 --info-mid: ${infoMid}; --info-ultralight: ${infoUltralight};">
+									 ${text}
 				</zoo-feedback>`
 };
 

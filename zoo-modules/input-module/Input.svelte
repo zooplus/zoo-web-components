@@ -1,7 +1,9 @@
 <svelte:options tag="zoo-input"/>
 <div class="box {labelposition} {linktext ? '' : 'link-absent'}">
 	<slot name="inputlabel">
+	{#if labeltext}
 		<zoo-input-label class="input-label" {labeltext}></zoo-input-label>
+	{/if}
 	</slot>
 	{#if linktext}<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>{/if}
 	<span class="input-slot {valid ? '' : 'error'}">
@@ -57,13 +59,11 @@
 		box-sizing: border-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		-moz-appearance: textfield;
 		background: $white;
 	}
 
 	::slotted(input[type="date"]), ::slotted(input[type="time"]) {
 		-webkit-min-logical-height: 48px;
-		-webkit-appearance: textfield;
 	}
 
 	::slotted(input::placeholder), ::slotted(textarea::placeholder) {

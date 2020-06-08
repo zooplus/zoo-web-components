@@ -178,7 +178,7 @@
 		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'}
 	];
 
-	let extendedData = [...data].map(el => Object.assign(el, {rating: 3, promotion: false}));
+	let extendedData = data.map(el => Object.assign(el, {rating: 3, promotion: false}));
 
 	const handleSortChange = sortState => {
 		let toast = document.createElement('zoo-toast');

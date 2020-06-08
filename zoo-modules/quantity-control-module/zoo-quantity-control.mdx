@@ -1,0 +1,47 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Quantity Control"/>
+
+# Quantity Control
+
+Input component which provides styles for slotted `input`.
+## Note
+Webkit based browsers (Chrome/Safari) do not support hiding native number scroll on `input type="number"`, when supplying such input for this component remember to add:
+```
+input::-webkit-outer-spin-button, zoo-quantity-control input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+```
+
+## Attributes
+|      **Name**     |           **Description**                                          | **Type** | **Default** | **Optional** | 
+| :---------------: | :-----------------------------------------------------------------:|:--------:|:-----------:|:-----------:|
+| `labeltext`       | text to be presented as a label                                    | text     |             |   ✔
+| `valid`           | flag which indicates whether the input is valid or not             | boolean  |   `true`    |   ✔
+|`inputerrormsg`    | text that should be displayed when `valid` is set to `falsy` value | text     |             |   ✔
+|   `infotext`      | text that should be displayed as additional info below the input   | text     |             |   ✔
+| `decreasedisabled`| flag which indicates whether the increase should be disabled       | boolean  |   `false`   |   ✔
+| `increasedisabled`| flag which indicates whether the increase should be disabled       | boolean  |   `false`   |   ✔
+
+## CSS Variables
+|        **Name**        |   **Default**  |
+| :--------------------: |:--------------:|
+| `--primary-mid`        |    `#3C9700`   |
+## Slots
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+|                  | `<input id="number-input" readonly placeholder="0" type="number" step="50"/>`| ✘
+| `inputlabel`     | `<label for="input-id" slot="inputlabel">An example input</label>`| ✔
+
+## Example usage:
+```
+<zoo-quantity-control infotext="Additional helpful information for our users" >
+	<input id="number-input" readonly placeholder="0" type="number" step="50"/>
+	<label for="number-input" slot="inputlabel">Label</label>
+</zoo-quantity-control>
+```
+### Rendered
+<zoo-quantity-control infotext="Additional helpful information for our users" >
+	<input id="number-input" readonly placeholder="0" type="number" step="50"/>
+	<label for="number-input" slot="inputlabel">Label</label>
+</zoo-quantity-control>

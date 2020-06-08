@@ -15,8 +15,8 @@
 		<img slot="img" alt="Zooplus logo" src="logo.png"/>
 		<div class="buttons-holder">
 			<zoo-button id="zoo-theme" type="secondary">Zoo+ theme</zoo-button>
-			<zoo-button id="grey-theme" type="primary">Grey theme</zoo-button>
-			<zoo-button id="random-theme" type="primary">Random theme</zoo-button>
+			<zoo-button id="grey-theme">Grey theme</zoo-button>
+			<zoo-button id="random-theme">Random theme</zoo-button>
 		</div>
 	</zoo-header>
 	<zoo-navigation>
@@ -125,11 +125,8 @@
 		<zoo-button id="toast-summoner">
 			<span>Summon toast!</span>
 		</zoo-button>
-		<zoo-button disabled="disabled" type="primary" class="top-tooltip">
-			<div>
-				Disabled :(
-				<zoo-tooltip position="bottom" text="Just set disabled attribute on `zoo-button`"></zoo-tooltip>
-			</div>
+		<zoo-button disabled="disabled">
+			Disabled :(
 		</zoo-button>
 		<zoo-button id="modal-summoner" type="secondary">
 			<span>Show modal</span>
@@ -144,9 +141,10 @@
 			<svg title="Example title" class="btn-svg" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.324l1.036-1.035a6.423 6.423 0 019.094 9.071l-9.589 10.003a.75.75 0 01-1.082 0l-9.577-9.988A6.422 6.422 0 015.394 1.49a6.423 6.423 0 015.57 1.798L12 4.324z" fill="#555" fill-rule="evenodd"/></svg>
 		</zoo-button>
 	</div> 
-	<zoo-modal id="modal" style="display: none" headertext="Your basket contains licensed items">
+	<zoo-modal id="modal" headertext="Your basket contains licensed items">
 		<div>
-			<zoo-feedback text="This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.">
+			<zoo-feedback>
+				This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.
 			</zoo-feedback>
 			<br>
 			<zoo-select labeltext="This product is for">

@@ -1,16 +1,24 @@
 <svelte:options tag="zoo-button"/>
-<button {disabled} class="{type} {size}" type="button" on:click="{e => disabled ? e.preventDefault() : ''}">
-	<slot name="buttoncontent"></slot>
-	<slot></slot>
-</button>
+<div>
+	<button {disabled} type="button" on:click="{e => disabled ? e.preventDefault() : ''}">
+		<slot></slot>
+	</button>
+</div>
 
 <style type='text/scss'>
 	@import 'variables';
 
 	:host {
-		display: block;
+		display: flex;
 		max-width: 330px;
+		min-height: 36px;
 		position: relative;
+	}
+
+	div {
+		display: flex;
+		width: 100%;
+		min-height: 100%;
 	}
 
 	button {
@@ -23,7 +31,7 @@
 		border-radius: $input-border-radius;
 		cursor: pointer;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
 		font-size: $p1-size;
 		line-height: $p1-line-height;
 		font-weight: bold;
@@ -40,15 +48,15 @@
 		}
 
 		&:disabled {
-			background: $grey-ultralight;
-			color: $grey-mid;
-			border: $stroked-box-grey-light;
+			background: $grey-ultralight !important;
+			color: $grey-mid !important;
+			border: $stroked-box-grey-light !important;
 			cursor: not-allowed;
 			transform: translateY(0);
 		}
 	}
 
-	.secondary {
+	:host([type="secondary"]) button {
 		background: linear-gradient(to right, var(--secondary-mid, #{$secondary-mid}), var(--secondary-light, #{$secondary-light}));
 
 		&:hover, &:focus {
@@ -60,7 +68,7 @@
 		}
 	}
 
-	.hollow {
+	:host([type="hollow"]) button {
 		border: $stroked-box-primary-bold;
 		color: var(--primary-mid, #{$primary-mid});
 		background: transparent;
@@ -68,13 +76,17 @@
 		&:hover, &:focus, &:active {
 			color: $white;
 		}
+
+		&:hover, &:focus {
+			background: var(--primary-mid, #{$primary-mid});
+		}
+
+		&:active {
+			background: var(--primary-dark, #{$primary-dark});
+		}
 	}
 
-	.small {
-		min-height: 36px;
-	}
-
-	.medium {
+	:host([size="medium"]) {
 		min-height: 46px;
 	}
 
@@ -84,7 +96,5 @@
 </style>
 
 <script>
-	export let type = 'primary'; //'secondary', 'hollow'
-	export let size = 'small'; //'medium'
 	export let disabled = false;
 </script>

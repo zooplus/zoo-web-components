@@ -10,7 +10,6 @@ Container component which provides a styled container with preset icon.
 |   **Name**  |           **Description**              | **Type** | **Default** | **Optional** |
 | :---------: | :-------------------------------------:|:--------:|:-----------:|:-----------:|
 | `type`      | `info`, `error`, `success`             | text     |   `info`    |   ✔
-| `text`      | text to render inside container        | text     |             |   ✔
 ## CSS Variables
 |        **Name**        |   **Default**  |
 | :--------------------: |:--------------:|
@@ -23,11 +22,13 @@ Container component which provides a styled container with preset icon.
 ## Slots
 |     **Name**   |           **Description**          | **Optional** | 
 | :------------: | :---------------------------------:|:-----------:|
-|                | arbitrary content, replaces `text` attribute  | ✔
+|                | arbitrary content                  | ✔
 
 ## Example usage:
 ```
-<zoo-feedback text="This is an info message."></zoo-feedback>
+<zoo-feedback>
+	This is an info message.
+</zoo-feedback>
 ```
 ### Rendered
-<zoo-feedback text="This is an info message."></zoo-feedback>
+<zoo-feedback>This is an info message.</zoo-feedback>

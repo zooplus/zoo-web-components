@@ -3,7 +3,7 @@
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
 	<div class="grid-holder">
-	<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
+	<zoo-grid class="grid" stickyheader currentpage="5" maxpages="20" resizable reorderable on:sortChange="{e => handleSortChange(e.detail)}" on:pageChange="{e => handlePageChange(e.detail)}">
 		{#each headers as header, idx}
 			<zoo-grid-header class="header-cell" slot="headercell" sortable={header.sortable} sortableproperty='{header.sortProperty}'>{header.title}</zoo-grid-header>
 		{/each}
@@ -46,7 +46,7 @@
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-		<zoo-grid class="grid-2" stickyheader currentpage="1" maxpages="4" on:pageChange="{e => handlePageChange(e.detail)}">
+		<zoo-grid class="grid" stickyheader currentpage="1" maxpages="4" on:pageChange="{e => handlePageChange(e.detail)}">
 			{#each extendedHeaders as header, i}
 				<zoo-grid-header slot="headercell">{header.title}</zoo-grid-header>
 			{/each}
@@ -98,7 +98,7 @@
 		align-items: center;
 	}
 
-	.grid-2 {
+	.grid {
 		min-width: 1024px;
 	}
 

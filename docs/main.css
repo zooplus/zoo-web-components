@@ -57,20 +57,6 @@ hr {
 	justify-content: center;
 }
 
-zoo-tooltip {
-	display: none;
-}
-
-.top-tooltip {
-	position: relative;
-	display: inline-block;
-}
-
-.top-tooltip:hover zoo-tooltip,
-.top-tooltip:focus zoo-tooltip {
-	display: block;
-}
-
 .icon-btn {
 	width: 40px;
 }

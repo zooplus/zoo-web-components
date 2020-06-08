@@ -15,9 +15,12 @@
 
 	onMount(() => {
 		itemSlot.addEventListener('slotchange', () => {
-			const items = itemSlot.assignedNodes();
-			items[0].setAttribute('active', true);
-			prevActiveItem = items[0];
+			let items = itemSlot.assignedNodes();
+			items = items.filter(i => i.tagName == 'ZOO-COLLAPSABLE-LIST-ITEM');
+			if (items[0]) {
+				items[0].setAttribute('active', true);
+				prevActiveItem = items[0];
+			}
 
 			for (const item of items) {
 				item.addEventListener('click', () => {

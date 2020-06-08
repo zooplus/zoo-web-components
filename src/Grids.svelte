@@ -1,4 +1,4 @@
-<Context text="Data grids"/>
+<h2>Data grids</h2>
 <div class="grids-holder">
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 
@@ -21,7 +21,6 @@
 						{/each}
 					</select>
 				</zoo-select>
-				<div>{row.minWeight}</div>
 				<div>{row.maxWeight}</div>
 				<zoo-input class="delivery-date">
 					<input title="Delivery Date" disabled="{row.status == 'DELIVERED' ? true : null}" value="{row.deliveryDate}" slot="inputelement" type="date" placeholder="Enter date" />
@@ -60,7 +59,6 @@
 					</zoo-checkbox>
 					<div>{row.createdDate}</div>
 					<div>{row.status}</div>
-					<div>{row.minWeight}</div>
 					<div>{row.maxWeight}</div>
 					<div>{row.deliveryDate}</div>
 					<div>{row.noOfPieces}</div>
@@ -134,7 +132,6 @@
 </style>
 
 <script>
-	import Context from './Context.svelte';
 	let possibleNumberOfItems = [5, 10, 25, 100];
 	let loading = false;
 	let headers = [
@@ -150,9 +147,6 @@
 			title: 'Status',
 			sortable: true,
 			sortProperty: 'status'
-		},
-		{
-			title: 'Min weight'
 		},
 		{
 			title: 'Max weight'
@@ -177,11 +171,11 @@
 	let today = new Date().toISOString().substr(0, 10);
 
 	let data = [
-		{valid: true, createdDate: today, status: 'READY', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'DELIVERED', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'READY', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'DELIVERED', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-		{valid: true, createdDate: today, status: 'READY', minWeight: '1 kg', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'}
+		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+		{valid: true, createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: '', noOfPieces: 5, price: '12 EUR'}
 	];
 
 	let extendedData = [...data].map(el => Object.assign(el, {rating: 3, promotion: false}));

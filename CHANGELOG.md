@@ -1,3 +1,6 @@
+# 6.1.2
+`zoo-feedback` - no longer accepts `text` attribute. Use `slot` instead.
+
 # 6.1.1
 `zoo-checkbox` - fix infotext rendering below the checkbox.
 

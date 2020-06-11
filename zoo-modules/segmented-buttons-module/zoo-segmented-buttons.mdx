@@ -1,0 +1,27 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Segmented Buttons"/>
+
+# Segmented Buttons
+
+Container omponent which provides styles for box around multiple `zoo-button` components.
+
+## Slots
+|      **Name**    |           **Description**          | **Optional** | 
+| :--------------: | :---------------------------------:|:-----------:|
+|                  | `<zoo-button type="primary">Button 1</zoo-button>`| ✘
+
+## Example usage:
+```
+<zoo-segmented-buttons style="width: 600px">
+	<zoo-button type="primary">Button 1</zoo-button>
+	<zoo-button>Button 2</zoo-button>
+	<zoo-button>Button 3</zoo-button>
+</zoo-segmented-buttons>
+```
+### Rendered
+<zoo-segmented-buttons style={{width: '600px'}}>
+	<zoo-button type="primary">Button 1</zoo-button>
+	<zoo-button>Button 2</zoo-button>
+	<zoo-button>Button 3</zoo-button>
+</zoo-segmented-buttons>

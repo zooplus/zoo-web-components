@@ -121,3 +121,33 @@ zoo-header zoo-button {
 	margin-left: 15px;
 	align-self: center;
 }
+
+h3 {
+	color: var(--primary-mid);
+	text-align: center;
+}
+
+zoo-grid {
+	min-width: 1024px;
+}
+
+.grid-holder {
+	max-width: 1280px;
+	overflow: auto;
+	box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+	width: 95%;
+	margin: 20px auto;
+}
+
+div[slot="row"] > zoo-input, div[slot="row"] > zoo-select {
+	margin-right: 10px;
+}
+
+div[slot="row"] > div {
+	word-break: break-word;
+	flex-grow: 1;
+}
+
+zoo-select[slot="pagesizeselector"] {
+	max-width: 150px;
+}

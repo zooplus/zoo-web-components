@@ -94,7 +94,7 @@ zoo-navigation a {
 	line-height: 20px;
 }
 
-zoo-navigation a:hover, zoo-navigation a:focus {
+zoo-navigation a:hover {
 	background: rgba(255, 255, 255, 0.3);
 }
 

@@ -39,7 +39,7 @@
 		}
 	}
 
-	.negative:hover .bottom-line, .negative:focus .bottom-line {
+	.negative:hover .bottom-line {
 		width: 100%;
 	}
 

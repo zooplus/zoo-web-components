@@ -21,17 +21,17 @@
 		"chai": "^4.2.0",
 		"concurrently": "^5.2.0",
 		"lit-html": "^1.2.1",
-		"mocha": "^7.2.0",
+		"mocha": "^8.0.1",
 		"node-sass": "^4.14.1",
 		"puppeteer": "^3.3.0",
-		"rollup": "^2.13.1",
+		"rollup": "^2.15.0",
 		"rollup-plugin-svelte": "^5.2.2",
 		"rollup-plugin-terser": "^6.1.0",
 		"serve": "^11.3.2",
 		"stylelint": "^13.6.0",
 		"stylelint-a11y": "^1.2.3",
 		"stylelint-high-performance-animation": "^1.5.1",
-		"svelte": "3.23.0"
+		"svelte": "3.23.2"
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",

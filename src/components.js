@@ -23,3 +23,4 @@ import '../zoo-modules/grid-module/GridHeader.svelte';
 import '../zoo-modules/grid-module/GridPaginator.svelte';
 import '../zoo-modules/quantity-control-module/QuantityControl.svelte';
 import '../zoo-modules/toggle-switch-module/ToggleSwitch.svelte';
+import '../zoo-modules/segmented-buttons-module/SegmentedButtons.svelte';

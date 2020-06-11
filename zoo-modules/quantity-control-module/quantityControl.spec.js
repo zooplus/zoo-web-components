@@ -4,10 +4,11 @@ describe('Zoo quantity control', function() {
 			let input = document.createElement('zoo-quantity-control');
 			let element = document.createElement('input');
 			element.type = 'number';
+			element.slot = 'input';
 			input.appendChild(element);
 			document.body.appendChild(input);
 
-			const slottedInput = input.shadowRoot.querySelector('.control slot').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
 
 			return slottedInput.tagName;
 		});
@@ -51,13 +52,14 @@ describe('Zoo quantity control', function() {
 			let element = document.createElement('input');
 			element.type = 'number';
 			element.step = 50;
+			element.slot = 'input';
 			input.appendChild(element);
 			document.body.appendChild(input);
 
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[1];
-			const slottedInput = input.shadowRoot.querySelector('.control slot').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -72,13 +74,14 @@ describe('Zoo quantity control', function() {
 			let element = document.createElement('input');
 			element.type = 'number';
 			element.step = 50;
+			element.slot = 'input';
 			input.appendChild(element);
 			document.body.appendChild(input);
 
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[1];
-			const slottedInput = input.shadowRoot.querySelector('.control slot').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -92,13 +95,14 @@ describe('Zoo quantity control', function() {
 			let element = document.createElement('input');
 			element.type = 'number';
 			element.step = 50;
+			element.slot = 'input';
 			input.appendChild(element);
 			document.body.appendChild(input);
 
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[0];
-			const slottedInput = input.shadowRoot.querySelector('.control slot').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -113,13 +117,14 @@ describe('Zoo quantity control', function() {
 			let element = document.createElement('input');
 			element.type = 'number';
 			element.step = 50;
+			element.slot = 'input';
 			input.appendChild(element);
 			document.body.appendChild(input);
 
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[0];
-			const slottedInput = input.shadowRoot.querySelector('.control slot').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;

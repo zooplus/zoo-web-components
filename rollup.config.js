@@ -7,23 +7,6 @@ export default [
 	{
 		plugins: [
 			svelte({
-				dev: true,
-				preprocess: sveltePreprocess
-			}),
-			resolve(),
-			terser()
-		],
-		input: 'src/grids.js',
-		output: {
-			sourcemap: true,
-			format: 'esm',
-			file: 'docs/grids.js',
-			name: 'grids'
-		}
-	},
-	{
-		plugins: [
-			svelte({
 				preprocess: sveltePreprocess,
 				customElement: true
 			}),

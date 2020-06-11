@@ -7,7 +7,6 @@
 	<title>Zooplus components</title>
 	<script src='components.js'></script>
 	<link rel="stylesheet" href="main.css">
-	<script type="module" src='grids.js'></script>
 </head>
 
 <body>
@@ -162,12 +161,79 @@
 		</div>
 	</zoo-modal>
 	<hr>
-	<div id="grids"></div>
+	<h2>Data grids</h2>
+	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
+	<div class="grid-holder">
+		<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable>
+			<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
+			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date</zoo-grid-header>
+			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status'>Status</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
+			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate'>Delivery Date</zoo-grid-header>
+			<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Price</zoo-grid-header>
+			
+			<zoo-select labelposition="left" slot="pagesizeselector">
+				<select id="first-grid-page-size" slot="selectelement">
+					<option selected>5</option>
+					<option selected>10</option>
+					<option selected>25</option>
+					<option selected>100</option>
+				</select>
+				<label for="first-grid-page-size" slot="selectlabel">Page size</label>
+			</zoo-select>
+		</zoo-grid>
+	</div>
+
+	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
+
+	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
+		<zoo-grid stickyheader currentpage="5" maxpages="20">
+			<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Created Date</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Status</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Delivery Date</zoo-grid-header>
+			<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
+			<zoo-grid-header slot="headercell">Price</zoo-grid-header>
+			
+			<zoo-select labelposition="left" slot="pagesizeselector">
+				<select id="second-grid-page-size" slot="selectelement">
+					<option selected>5</option>
+					<option selected>10</option>
+					<option selected>25</option>
+					<option selected>100</option>
+				</select>
+				<label for="second-grid-page-size" slot="selectlabel">Page size</label>
+			</zoo-select>
+		</zoo-grid>
+	</div>
 	</main>
 	<zoo-footer id="how" copyright="zooplus AG">
 		<zoo-link href="https://github.com/zooplus/zoo-web-components" type="negative" text="Github"></zoo-link>
 		<zoo-link href="https://www.npmjs.com/package/@zooplus/zoo-web-components" type="negative" text="NPM"></zoo-link>
 	</zoo-footer> 
-	<script defer src='main.js'></script>
+
+	<template id="simple-row">
+		<div slot="row"></div>
+	</template>
+
+	<template id="valid-checkbox">
+		<zoo-checkbox>
+			<input checked slot="checkboxelement" type="checkbox"/>
+			<label slot="checkboxlabel">Valid</label>
+		</zoo-checkbox>
+	</template>
+
+	<template id="status-select">
+		<zoo-select>
+			<select title="Delivery Status" slot="selectelement">
+				<option>DELIVERED</option>
+				<option>READY</option>
+				<option>PACKING</option>
+			</select>
+		</zoo-select>
+	</template>
+	<script src='main.js'></script>
 </body>
 </html>

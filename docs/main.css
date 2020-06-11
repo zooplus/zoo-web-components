@@ -139,7 +139,7 @@ zoo-grid {
 	margin: 20px auto;
 }
 
-div[slot="row"] > zoo-input, div[slot="row"] > zoo-select {
+div[slot="row"] > zoo-select {
 	margin-right: 10px;
 }
 

@@ -109,5 +109,95 @@ const lightenDarkenColor = (col, amt) => {
 	else if (g < 0) g = 0;
 
 	return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-
 }
+
+const handleSortChange = sortState => {
+	let toast = document.createElement('zoo-toast');
+	toast.text = sortState 
+		? 'Sort state was changed. Property: ' + sortState.property + ', direction: ' + sortState.direction
+		: 'Sort state was changed. Sort object is undefined.';
+	document.body.appendChild(toast);
+	toast.show();
+};
+
+const handlePageChange = page => {
+	let toast = document.createElement('zoo-toast');
+	toast.text = 'Page was changed to: ' + page.pageNumber;
+	document.body.appendChild(toast);
+	toast.show();
+}
+
+document.querySelectorAll('zoo-grid').forEach(grid => {
+	grid.addEventListener('sortChange', e => handleSortChange(e.detail));
+	grid.addEventListener('pageChange', e => handlePageChange(e.detail));
+});
+
+let today = new Date().toISOString().substr(0, 10);
+let data = [
+	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+	{createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+	{createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
+	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'}
+];
+
+const getRow = (d, i, template) => {
+	const clone = template.cloneNode(true);
+	const row = clone.children[0];
+	// valid
+	const chkbx = document.querySelector('#valid-checkbox').content.cloneNode(true);
+	const input = chkbx.querySelector('input');
+	if (d.status !== 'DELIVERED') {
+		input.setAttribute('disabled', true);
+	}
+	input.setAttribute('id', `${i}-checkbox`);
+	chkbx.querySelector('label').setAttribute('for', `${i}-checkbox`);
+	row.appendChild(chkbx);
+
+	// created date
+	const createdDate = document.createElement('div');
+	createdDate.innerHTML = d.createdDate;
+	row.appendChild(createdDate);
+
+	// status
+	const selectTmpl = document.querySelector('#status-select').content.cloneNode(true);
+	const select = selectTmpl.querySelector('select');
+	if (d.status !== 'DELIVERED') {
+		select.setAttribute('disabled', true);
+	}
+	row.appendChild(selectTmpl);
+
+	// max weight
+	const maxWeight = document.createElement('div');
+	maxWeight.innerHTML = d.maxWeight;
+	row.appendChild(maxWeight);
+
+	// deliveryDate
+	const deliveryDate = document.createElement('div');
+	deliveryDate.innerHTML = d.deliveryDate;
+	row.appendChild(deliveryDate);
+
+	// noOfPieces
+	const noOfPieces = document.createElement('div');
+	noOfPieces.innerHTML = d.noOfPieces;
+	row.appendChild(noOfPieces);
+
+	// price
+	const price = document.createElement('div');
+	price.innerHTML = d.price;
+	row.appendChild(price);
+
+	return clone;
+}
+
+const grids = document.querySelectorAll('zoo-grid');
+data.forEach((d, i) => {
+	const simpleRow = document.querySelector('#simple-row').content;
+	let idx = 0;
+	for (const grid of grids) {
+		const clone = getRow(d, i, simpleRow);
+		grid.appendChild(clone);
+		if (idx == 0) grid.setAttribute('resizable', true)
+		idx++;
+	}
+});

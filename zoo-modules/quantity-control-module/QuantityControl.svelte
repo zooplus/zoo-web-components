@@ -1,5 +1,5 @@
 <svelte:options tag="zoo-quantity-control"/>
-<slot name="inputlabel">
+<slot name="label">
 	{#if labeltext}
 		<zoo-input-label {labeltext}></zoo-input-label>
 	{/if}
@@ -10,7 +10,7 @@
 			<line y1="9" x1="0" x2="18" y2="9"></line>
 		</svg>
 	</button>
-	<slot bind:this={inputSlot}></slot>
+	<slot name="input" bind:this={inputSlot}></slot>
 	<button class:disabled="{increasedisabled}" type="button" on:click="{() => handleClick('a', increasedisabled)}">
 		 <svg height="18" width="18">
 			<line y1="0" x1="9" x2="9" y2="18"></line>

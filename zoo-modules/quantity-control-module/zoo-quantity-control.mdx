@@ -30,18 +30,18 @@ input::-webkit-outer-spin-button, zoo-quantity-control input::-webkit-inner-spin
 ## Slots
 |      **Name**    |           **Description**          | **Optional** | 
 | :--------------: | :---------------------------------:|:-----------:|
-|                  | `<input id="number-input" readonly placeholder="0" type="number" step="50"/>`| ✘
-| `inputlabel`     | `<label for="input-id" slot="inputlabel">An example input</label>`| ✔
+| `input`          | `<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>`| ✘
+| `label`          | `<label for="input-id" slot="label">An example input</label>`| ✔
 
 ## Example usage:
 ```
 <zoo-quantity-control infotext="Additional helpful information for our users" >
-	<input id="number-input" readonly placeholder="0" type="number" step="50"/>
-	<label for="number-input" slot="inputlabel">Label</label>
+	<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>
+	<label for="number-input" slot="label">Label</label>
 </zoo-quantity-control>
 ```
 ### Rendered
 <zoo-quantity-control infotext="Additional helpful information for our users" >
-	<input id="number-input" readonly placeholder="0" type="number" step="50"/>
-	<label for="number-input" slot="inputlabel">Label</label>
+	<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>
+	<label for="number-input" slot="label">Label</label>
 </zoo-quantity-control>

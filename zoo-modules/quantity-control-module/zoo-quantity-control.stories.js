@@ -26,8 +26,8 @@ export const zooQuantityControl = () => {
 	let primaryMid = color('--primary-mid', '#3C9700', cssVariablesGroupId);
 	return html`<zoo-quantity-control style="--primary-mid: ${primaryMid};" increasedisabled="${increasedisabled ? true : ''}"
 		decreasedisabled="${decreasedisabled ? true : ''}" valid="${valid ? true : ''}" infotext="${infotext}" inputerrormsg="${inputerrormsg}">
-		<input id="number-input" readOnly placeholder="0" type="number" step="50"/>
-		<label for="number-input" slot="inputlabel">${label}</label>
+		<input id="number-input" slot="input" readOnly placeholder="0" type="number" step="50"/>
+		<label for="number-input" slot="label">${label}</label>
 	</zoo-quantity-control>`
 };
 

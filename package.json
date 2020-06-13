@@ -24,7 +24,7 @@
 		"mocha": "^8.0.1",
 		"node-sass": "^4.14.1",
 		"puppeteer": "^3.3.0",
-		"rollup": "^2.15.0",
+		"rollup": "^2.16.0",
 		"rollup-plugin-svelte": "^5.2.2",
 		"rollup-plugin-terser": "^6.1.0",
 		"serve": "^11.3.2",

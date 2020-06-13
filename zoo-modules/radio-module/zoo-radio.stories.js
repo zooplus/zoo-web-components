@@ -23,7 +23,7 @@ export const zooRadio = () => {
 	let primaryMid = color('--primary-mid', '#3C9700', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 	return html`<zoo-radio style="--primary-mid: ${primaryMid}; --warning-mid: ${warningMid};"
-				valid="${valid ? true : ''}" errormsg="${inputerrormsg}" infotext="${infotext}" labeltext="${labeltext}">
+				valid="${valid ? true : ''}" inputerrormsg="${inputerrormsg}" infotext="${infotext}" labeltext="${labeltext}">
 				<input type="radio" id="contactChoice1" name="contact" value="email">
 				<label for="contactChoice1">Email</label>
 				<input type="radio" id="contactChoice2" name="contact" value="phone">

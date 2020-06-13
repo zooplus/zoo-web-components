@@ -49,7 +49,7 @@
 		display: flex;
 		align-items: center;
 		border: $stroked-box-grey-light;
-		border-radius: $input-border-radius;
+		border-radius: $border-radius;
 		margin: 3px 0 3px 20px;
 		padding: 0 15px;
 	}
@@ -102,7 +102,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: $input-border-radius;
+		border-radius: $border-radius;
 		margin-right: 5px;
 		padding: 4px 8px;
 	}

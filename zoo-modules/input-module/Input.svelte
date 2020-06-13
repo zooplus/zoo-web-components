@@ -53,7 +53,7 @@
 		padding: 13px 15px;
 		margin: 0;
 		border: $stroked-box-grey;
-		border-radius: $input-border-radius;
+		border-radius: $border-radius;
 		color: $grey-dark;
 		outline: none;
 		box-sizing: border-box;

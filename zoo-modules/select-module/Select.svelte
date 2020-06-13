@@ -71,7 +71,7 @@
 		line-height: $p1-line-height;
 		padding: 13px 25px 13px 15px;
 		border: $stroked-box-grey;
-		border-radius: $input-border-radius;
+		border-radius: $border-radius;
 		color: $grey-dark;
 		outline: none;
 		box-sizing: border-box;

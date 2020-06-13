@@ -54,10 +54,14 @@ hr {
 	grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
 	grid-gap: 15px;
 	width: 90%;
-	justify-content: center;
+	justify-items: center;
 }
 
-.icon-btn {
+.buttons zoo-button {
+	width: 330px;
+}
+
+.buttons .icon-btn {
 	width: 40px;
 }
 
@@ -103,14 +107,13 @@ zoo-navigation a:hover {
 	justify-content: flex-end;
 	flex-direction: row;
 	flex-grow: 1;
-	padding: 0 25px 0 0;
+	padding: 0 25px;
 }
 
 @media only screen and (max-width: 900px) {
 	.buttons-holder {
 		justify-content: initial;
 		overflow: scroll;
-		max-width: 250px;
 	}
 }
 

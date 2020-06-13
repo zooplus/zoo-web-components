@@ -18,7 +18,7 @@
 		display: flex;
 		align-items: center;
 		background: $white;
-		padding: 0 25px;
+		padding: 0 0 0 25px;
 		height: 70px;
 	}
 

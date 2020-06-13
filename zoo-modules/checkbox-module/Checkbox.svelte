@@ -37,7 +37,7 @@
 
 	.highlighted {
 		border: $stroked-box-grey-light;
-		border-radius: $input-border-radius;
+		border-radius: $border-radius;
 		padding: 11px 15px;
 
 		&.clicked {

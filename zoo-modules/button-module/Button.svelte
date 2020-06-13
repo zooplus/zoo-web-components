@@ -28,7 +28,7 @@
 		justify-content: center;
 		color: $white;
 		border: 0;
-		border-radius: $input-border-radius;
+		border-radius: $border-radius;
 		cursor: pointer;
 		width: 100%;
 		min-height: 100%;

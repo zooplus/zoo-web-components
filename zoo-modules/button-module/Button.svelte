@@ -75,14 +75,20 @@
 
 		&:hover, &:focus, &:active {
 			color: $white;
-		}
-
-		&:hover, &:focus {
 			background: var(--primary-mid, #{$primary-mid});
 		}
 
 		&:active {
 			background: var(--primary-dark, #{$primary-dark});
+		}
+	}
+
+	:host([type="empty"]) button {
+		color: initial;
+		background: transparent;
+
+		&:hover, &:focus {
+			background: $grey-light;
 		}
 	}
 

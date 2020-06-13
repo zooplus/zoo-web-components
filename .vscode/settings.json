@@ -4,5 +4,7 @@
 	"mocha.options": "rollup src/test.js -c && serve docs",
 	"mocha.coverage": {
 		"enable": false
-	}
+	},
+	"editor.quickSuggestions": null,
+	"javascript.validate.enable": false
 }

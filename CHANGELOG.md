@@ -1,3 +1,9 @@
+# 6.2.0
+Three new components:
+`zoo-toggle-switch` - toggler component;
+`zoo-segmented-buttons` - container for `zoo-button`s that handles active/inactive state;
+`zoo-quantity-control` - component for quantity increase/decrease.
+
 # 6.1.2
 `zoo-feedback` - no longer accepts `text` attribute. Use `slot` instead.
 `zoo-button` - no longer accepts `buttoncontent` slot. Use unnamed `slot` instead.

@@ -8,5 +8,5 @@ export * from '../zoo-modules/searchable-select-module/SearchableSelect.svelte';
 export * from '../zoo-modules/preloader-module/Preloader.svelte';
 export * from '../zoo-modules/quantity-control-module/QuantityControl.svelte';
 export * from '../zoo-modules/toggle-switch-module/ToggleSwitch.svelte';
-export * from '../zoo-modules/button-module/Button.svelte';
+export * from '../zoo-modules/button-module/button.js';
 export * from '../zoo-modules/segmented-buttons-module/SegmentedButtons.svelte';

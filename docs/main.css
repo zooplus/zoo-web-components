@@ -65,11 +65,11 @@ hr {
 	width: 40px;
 }
 
-.btn-svg {
+.buttons .icon-btn button {
 	padding: 0;
 }
 
-.btn-svg path {
+.buttons .icon-btn button svg path {
 	fill: white;
 }
 

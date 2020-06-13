@@ -1,6 +1,4 @@
 class Button extends HTMLElement {
-
-	// Fires when an instance of the element is created or updated
 	constructor() {
 		super();
 		let shadowRoot = this.attachShadow({mode: 'open'});
@@ -19,15 +17,8 @@ class Button extends HTMLElement {
 			position: relative;
 		}
 		
-		div {
-			display: flex;
-			width: 100%;
-			min-height: 100%;
-		}
-		
 		::slotted(button) {
 			display: flex;
-			flex-direction: row;
 			align-items: center;
 			justify-content: center;
 			color: white;

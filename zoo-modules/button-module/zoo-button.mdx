@@ -9,7 +9,6 @@ Button component which provides a styled version of button, encapsulating native
 | :---------: | :-------------------------------------:|:--------:|:-----------:|:-----------:|
 | `type`      | `primary`, `secondary`, `hollow`       | text     |   `primary` |   ✔
 | `size`      | `small`, `medium`                      | text     |   `small`   |   ✔
-| `disabled`  | whether the button should be disabled  | boolean  |    `null`   |   ✔
 ## CSS Variables
 |        **Name**        |   **Default**  |
 | :--------------------: |:--------------:|
@@ -22,14 +21,14 @@ Button component which provides a styled version of button, encapsulating native
 ## Slots
 |     **Name**   |           **Description**          | **Optional** | 
 | :------------: | :---------------------------------:|:-----------:|
-|                | arbitrary content                  | ✘
+|                | `<button>` element with arbitrary content inside                  | ✘
 ## Example:
 ```
-<zoo-button disabled="true">
-	Disabled :(
+<zoo-button>
+	<button type="button" disabled>Disabled :(</button>
 </zoo-button>
 ```
 ### Rendered
-<zoo-button disabled="true">
-	Disabled :(
+<zoo-button>
+	<button type="button" disabled>Disabled :(</button>
 </zoo-button>

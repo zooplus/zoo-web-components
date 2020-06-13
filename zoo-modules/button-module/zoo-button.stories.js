@@ -2,7 +2,6 @@ import { withKnobs, boolean, select, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-button.mdx';
-import '../../docs/components';
 
 export default {
 	title: 'Docs/Button',
@@ -27,7 +26,7 @@ export const zooButton = () => {
 	let secondaryDark = color('--secondary-dark', '#CC4E00', cssVariablesGroupId);
 	return html`<zoo-button style="--primary-light: ${primaryLight}; --primary-mid: ${primaryMid}; --primary-dark: ${primaryDark};
 									--secondary-light: ${secondaryLight}; --secondary-mid: ${secondaryMid}; --secondary-dark: ${secondaryDark};"
-		disabled="${disabled ? true : ''}" type="${type}" size="${size}">
-			<div>Button</div>
+		 type="${type}" size="${size}">
+			<button ?disabled="${disabled}" type="button">Button</button>
 	</zoo-button>`
 };

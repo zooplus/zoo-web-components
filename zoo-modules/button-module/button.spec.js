@@ -2,10 +2,13 @@ describe('Zoo button', function() {
 	describe('Button', () => {
 		it('should create disabled button', async() => {
 			const disabledAttr = await page.evaluate(() => {
-				let button = document.createElement('zoo-button');
+				let zoobutton = document.createElement('zoo-button');
+				let button = document.createElement('button');
 				button.disabled = true;
-				document.body.appendChild(button);
-				const nestedButton = button.shadowRoot.querySelector('button');
+
+				zoobutton.appendChild(button);
+				document.body.appendChild(zoobutton);
+				const nestedButton = zoobutton.shadowRoot.querySelector('slot').assignedNodes()[0];
 				return nestedButton.getAttribute('disabled');
 			});
 			expect(disabledAttr).equal('');

@@ -25,7 +25,7 @@
 		position: relative;
 		height: 17px;
 		width: 40px;
-		background: $grey-light;
+		background: #E6E6E6;
 		border-radius: 10px;
 		border-width: 0px;
 		cursor: pointer;
@@ -38,7 +38,7 @@
 		transform: translateX(-30%);
 		width: 60%;
 		height: 24px;
-		background: $white;
+		background: #FFFFFF;
 		border: $stroked-box-grey-light;
 		border-radius: 50%;
 		display: flex;
@@ -61,16 +61,16 @@
 	}
 
 	::slotted(input[type="checkbox"]:disabled) {
-		background: $grey-ultralight;
+		background: #F2F3F4;
 		cursor: not-allowed;
 	}
 
 	::slotted(label) {
 		display: flex;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		font-weight: 800;
-		color: $grey-dark;
+		color: #555555;
 		text-align: left;
 		margin-bottom: 10px;
 	}

@@ -27,8 +27,8 @@
 	::slotted(*[slot="header"]) {
 		display: inline-flex;
 		color: var(--primary-mid, #{$primary-mid});
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		font-weight: bold;
 		align-items: center;
 		padding: 20px 0;

@@ -55,7 +55,7 @@ class Button extends HTMLElement {
 			background: linear-gradient(to right, var(--secondary-mid, --int-secondary-mid), var(--secondary-light, --int-secondary-light));
 		}
 		
-		:host([type="secondary"]) ::slotted(button:hover) :host([type="secondary"]) ::slotted(button:focus) {
+		:host([type="secondary"]) ::slotted(button:hover), :host([type="secondary"]) ::slotted(button:focus) {
 			background: var(--secondary-mid, --int-secondary-mid);
 		}
 		
@@ -89,10 +89,6 @@ class Button extends HTMLElement {
 		
 		:host([size="medium"]) {
 			min-height: 46px;
-		}
-		
-		::slotted(*) {
-			padding: 0 20px;
 		}
 		</style>
 		<slot></slot>`;

@@ -31,7 +31,7 @@
 
 	svg line {
 		stroke-width: 1.5;
-		stroke: $white;
+		stroke: #FFFFFF;
 	}
 
 	.control {
@@ -58,11 +58,11 @@
 		cursor: pointer;
 
 		&.disabled {
-			background: $grey-ultralight;
+			background: #F2F3F4;
 			cursor: not-allowed;
 
 			svg line {
-				stroke: $grey-mid;
+				stroke: #767676;
 			}
 		}
 	}
@@ -70,15 +70,15 @@
 	::slotted(input) {
 		width: var(--input-length);
 		min-width: 30px;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		margin: 0;
 		border: none;
-		color: $grey-dark;
+		color: #555555;
 		outline: none;
 		box-sizing: border-box;
 		-moz-appearance: textfield;
-		background: $white;
+		background: #FFFFFF;
 		text-align: center;
 	}
 
@@ -89,10 +89,10 @@
 
 	::slotted(label) {
 		align-self: self-start;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		font-weight: 800;
-		color: $grey-dark;
+		color: #555555;
 		text-align: left;
 	}
 </style>

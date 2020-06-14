@@ -48,10 +48,10 @@
 
 	.header-row {
 		min-width: inherit;
-		font-size: $p2-size;
-		line-height: $p2-line-height;
+		font-size: 12px;
+		line-height: 16px;
 		font-weight: 600;
-		color: $grey-dark;
+		color: #555555;
 		box-sizing: border-box;
 		z-index: 1;
 	}
@@ -62,8 +62,8 @@
 		padding: 5px 10px;
 		border-bottom: 1px solid rgba(0,0,0, 0.2);
 		min-height: 50px;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	:host([resizable]) {
@@ -110,11 +110,11 @@
 	}
 
 	::slotted(*[slot="row"]:nth-child(odd)) {
-		background: $grey-ultralight;
+		background: #F2F3F4;
 	}
 
 	::slotted(*[slot="row"]:hover), ::slotted(*[slot="row"]:focus) {
-		background: $grey-light;
+		background: #E6E6E6;
 	}
 
 	::slotted(*[slot="norecords"]) {
@@ -129,7 +129,7 @@
 		position: sticky;
 		grid-column: span var(--grid-column-num);
 		bottom: 0;
-		background: $white;
+		background: #FFFFFF;
 	}
 </style>
 

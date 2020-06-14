@@ -56,8 +56,8 @@
 
 	.tooltip-content {
 		padding: 10px;
-		font-size: $p2-size;
-		line-height: $p2-line-height;
+		font-size: 12px;
+		line-height: 16px;
 		font-weight: initial;
 		position: relative;
 		z-index: 1;

@@ -48,7 +48,7 @@
 		transition: opacity 0.1s;
 		margin-left: 5px;
 		border-radius: $border-radius;
-		background: $grey-ultralight;
+		background: #F2F3F4;
 	}
 
 	.arrow {
@@ -70,7 +70,7 @@
 
 	.arrow[sortstate='desc'], .arrow[sortstate='asc'] {
 		opacity: 1;
-		background: $grey-ultralight;
+		background: #F2F3F4;
 	}
 
 	.box .arrow, .arrow[sortstate='desc'], .arrow[sortstate='asc'] {

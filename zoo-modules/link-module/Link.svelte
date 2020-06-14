@@ -28,13 +28,13 @@
 
 	a {
 		text-decoration: none;
-		font-size: $p2-size;
-		line-height: $p2-line-height;
+		font-size: 12px;
+		line-height: 16px;
 		padding: 0 2px;
-		color: $white;
+		color: #FFFFFF;
 
 		&:hover, &:focus, &:active {
-			color: $white;
+			color: #FFFFFF;
 			cursor: pointer;
 		}
 	}
@@ -49,12 +49,12 @@
 		left: 0;
 		overflow: hidden;
 		width: 0;
-		border-bottom: 1px solid $white;
-		color: $white;
+		border-bottom: 1px solid #FFFFFF;
+		color: #FFFFFF;
 	}
 
 	.disabled {
-		color: $grey-mid !important;
+		color: #767676 !important;
 
 		&:hover, &:focus {
 			cursor: not-allowed;
@@ -74,7 +74,7 @@
 	}
 
 	.grey {
-		color: $grey-mid;
+		color: #767676;
 
 		&:hover, &:focus, &:active {
 			color: var(--primary-dark, #{$primary-dark});
@@ -99,7 +99,7 @@
 		font-weight: bold;
 
 		&:active {
-			background: $grey-light;
+			background: #E6E6E6;
 			border-radius: $border-radius;
 		}
 	}

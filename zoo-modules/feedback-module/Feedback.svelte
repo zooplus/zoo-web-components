@@ -12,8 +12,8 @@
 	:host {
 		display: flex;
 		box-sizing: border-box;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		border-left: 3px solid;
 		width: 100%;
 		height: 100%;

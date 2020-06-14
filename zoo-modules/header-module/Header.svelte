@@ -17,7 +17,7 @@
 	header {
 		display: flex;
 		align-items: center;
-		background: $white;
+		background: #FFFFFF;
 		padding: 0 0 0 25px;
 		height: 70px;
 	}

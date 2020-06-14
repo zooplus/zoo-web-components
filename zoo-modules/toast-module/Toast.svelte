@@ -29,8 +29,8 @@
 		display: flex;
 		align-items: center;
 		word-break: break-word;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		padding: 15px;
 		transition: transform 0.3s, opacity 0.4s;
 	}

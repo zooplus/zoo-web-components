@@ -20,8 +20,8 @@
 	div {
 		display: flex;
 		padding: 11px 0;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	::slotted(input[type="radio"]) {
@@ -51,8 +51,8 @@
 
 	::slotted(input[type="radio"]:disabled) {
 		cursor: not-allowed;
-		border-color: $grey-mid;
-		background-color: $grey-light;
+		border-color: #767676;
+		background-color: #E6E6E6;
 	}
 
 	.error ::slotted(input[type="radio"]:checked) {

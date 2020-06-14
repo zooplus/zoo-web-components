@@ -34,7 +34,7 @@
 
 	.box {
 		display: flex;
-		font-size: $p1-size;
+		font-size: 14px;
 		width: max-content;
 		right: 10px;
 		justify-self: flex-end;
@@ -78,7 +78,7 @@
 	}
 
 	svg {
-		fill: $grey-dark;
+		fill: #555555;
 	}
 
 	.arrow {
@@ -89,7 +89,7 @@
 		cursor: pointer;
 
 		&:hover, &:focus {
-			background: $grey-ultralight;
+			background: #F2F3F4;
 		}
 
 		&.active {

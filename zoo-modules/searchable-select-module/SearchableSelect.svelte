@@ -73,7 +73,7 @@
 		position: absolute;
 		z-index: 2;
 		top: 60px;
-		font-size: $p1-size;
+		font-size: 14px;
 	}
 
 	.box.hidden ::slotted(select) {
@@ -113,8 +113,8 @@
 
 	::slotted(select:disabled) {
 		border: $stroked-box-grey-light;
-		background-color: $grey-ultralight;
-		color: $grey-mid;
+		background-color: #F2F3F4;
+		color: #767676;
 	}
 
 	::slotted(select:disabled:hover) {

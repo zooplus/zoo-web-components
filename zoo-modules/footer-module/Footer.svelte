@@ -27,11 +27,11 @@
 	}
 
 	.footer-copyright {
-		font-size: $p2-size;
-		line-height: $p2-line-height;
+		font-size: 12px;
+		line-height: 16px;
 		text-align: left;
-		background: $white;
-		color: $grey-dark;
+		background: #FFFFFF;
+		color: #555555;
 		padding: 10px 0 10px 30px;
 		@media only screen and (max-width: 544px) {
 			text-align: center;

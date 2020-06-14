@@ -48,18 +48,18 @@
 
 	::slotted(input), ::slotted(textarea) {
 		width: 100%;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		padding: 13px 15px;
 		margin: 0;
 		border: $stroked-box-grey;
 		border-radius: $border-radius;
-		color: $grey-dark;
+		color: #555555;
 		outline: none;
 		box-sizing: border-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		background: $white;
+		background: #FFFFFF;
 	}
 
 	::slotted(input[type="date"]), ::slotted(input[type="time"]) {
@@ -67,14 +67,14 @@
 	}
 
 	::slotted(input::placeholder), ::slotted(textarea::placeholder) {
-		color: $grey-mid;
+		color: #767676;
 		opacity: 1;
 	}
 
 	::slotted(input:disabled), ::slotted(textarea:disabled) {
 		border: $stroked-box-grey-light;
-		background-color: $grey-ultralight;
-		color: $grey-mid;
+		background-color: #F2F3F4;
+		color: #767676;
 		cursor: not-allowed;
 	}
 
@@ -86,10 +86,10 @@
 	::slotted(label) {
 		grid-area: label;
 		align-self: self-start;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		font-weight: 800;
-		color: $grey-dark;
+		color: #555555;
 		text-align: left;
 	}
 </style>

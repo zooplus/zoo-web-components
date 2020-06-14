@@ -45,8 +45,8 @@
 a {
 	text-align: right;
 	text-decoration: none;
-	font-size: $p2-size;
-	line-height: $p2-line-height;
+	font-size: 12px;
+	line-height: 16px;
 	color: var(--primary-dark, #{$primary-dark});
 
 	&:visited {

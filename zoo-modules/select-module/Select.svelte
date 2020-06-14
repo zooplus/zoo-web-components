@@ -54,7 +54,7 @@
 		}
 
 		&.disabled path {
-			fill: $grey-light;
+			fill: #E6E6E6;
 		}
 	}
 
@@ -67,12 +67,12 @@
 		-moz-appearance: none;
 		width: 100%;
 		background: white;
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		padding: 13px 25px 13px 15px;
 		border: $stroked-box-grey;
 		border-radius: $border-radius;
-		color: $grey-dark;
+		color: #555555;
 		outline: none;
 		box-sizing: border-box;
 		overflow: hidden;
@@ -82,8 +82,8 @@
 
 	::slotted(select:disabled) {
 		border: $stroked-box-grey-light;
-		background-color: $grey-ultralight;
-		color: $grey-mid;
+		background-color: #F2F3F4;
+		color: #767676;
 	}
 
 	::slotted(select:disabled:hover) {
@@ -101,10 +101,10 @@
 	}
 
 	::slotted(label) {
-		font-size: $p1-size;
-		line-height: $p1-line-height;
+		font-size: 14px;
+		line-height: 20px;
 		font-weight: 800;
-		color: $grey-dark;
+		color: #555555;
 		text-align: left;
 	}
 </style>

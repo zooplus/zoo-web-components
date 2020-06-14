@@ -142,16 +142,16 @@ export default class AbstractControl extends HTMLElement {
 			text-decoration: none;
 			font-size: 12px;
 			line-height: 16px;
-			color: var(--primary-dark, var(--int-primary-dark));
+			color: var(--primary-dark, #286400);
 			justify-self: flex-end;
 			align-self: center;
 			grid-row: 1;
 		}
 		a:visited {
-			color: var(--primary-mid, var(--int-primary-mid));
+			color: var(--primary-mid, #3C9700);
 		}
 		a:hover, a:focus, a:active {
-			color: var(--primary-dark, var(--int-primary-dark));
+			color: var(--primary-dark, #286400);
 		}`;
 	}
 }

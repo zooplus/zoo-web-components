@@ -106,9 +106,6 @@ class Select extends AbstractControl {
 		return `
 		<style>
 		:host {
-			--int-primary-mid: #3C9700;
-			--int-primary-dark: #286400;
-			--int-warning-mid: #ED1C24;
 			display: grid;
 			grid-gap: 3px 0;
 			width: 100%;
@@ -131,10 +128,10 @@ class Select extends AbstractControl {
 			pointer-events: none;
 		}
 		.arrows path {
-			fill: var(--primary-mid, var(--int-primary-mid));
+			fill: var(--primary-mid, #3C9700);
 		}
 		:host([invalid]) .arrows path {
-			fill: var(--warning-mid, var(--int-warning-mid));
+			fill: var(--warning-mid, #ED1C24);
 		}
 		:host([disabled]) .arrows path {
 			fill: #E6E6E6;
@@ -180,7 +177,7 @@ class Select extends AbstractControl {
 		}
 	
 		:host([invalid]) ::slotted(select) {
-			border: 2px solid var(--warning-mid, var(--int-warning-mid));
+			border: 2px solid var(--warning-mid, #ED1C24);
 			padding: 12px 24px 12px 14px;
 		}
 	

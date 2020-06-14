@@ -5,8 +5,6 @@ class InputInfo extends HTMLElement {
 		shadowRoot.innerHTML = `
 		<style>
 		:host {
-			--int-info-mid: #459FD0;
-			--int-warning-mid: #ED1C24;
 			display: flex;
 			flex-direction: column;
 		}
@@ -28,11 +26,11 @@ class InputInfo extends HTMLElement {
 		}
 	
 		.info svg path {
-			fill: var(--info-mid, var(--int-info-mid));
+			fill: var(--info-mid, #459FD0);
 		}
 	
 		.error svg path {
-			fill: var(--warning-mid, var(--int-warning-mid));
+			fill: var(--warning-mid, #ED1C24);
 		}
 		</style>
 		<div class="info"><span></span></div>

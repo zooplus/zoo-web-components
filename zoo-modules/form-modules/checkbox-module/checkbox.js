@@ -7,8 +7,6 @@ class Checkbox extends AbstractControl {
 		shadowRoot.innerHTML = `
 		<style>
 		:host {
-			--int-primary-mid: #3C9700;
-			--int-warning-mid: #ED1C24;
 			display: flex;
 			flex-direction: column;
 			width: 100%;
@@ -27,10 +25,10 @@ class Checkbox extends AbstractControl {
 			padding: 11px 15px;
 		}
 		:host([highlighted]) .checkbox.clicked {
-			border: 2px solid var(--primary-mid, var(--int-primary-mid));
+			border: 2px solid var(--primary-mid, #3C9700);
 		}
 		:host([highlighted][invalid]) .checkbox {
-			border: 2px solid var(--warning-mid, var(--int-warning-mid));
+			border: 2px solid var(--warning-mid, #ED1C24);
 		}
 		label {
 			display: flex;
@@ -56,7 +54,7 @@ class Checkbox extends AbstractControl {
 			cursor: pointer;
 		}
 		::slotted(input[type="checkbox"]:checked) {
-			border: 1px solid var(--primary-mid, var(--int-primary-mid));
+			border: 1px solid var(--primary-mid, #3C9700);
 		}
 	
 		::slotted(input[type="checkbox"]:focus) {
@@ -76,17 +74,17 @@ class Checkbox extends AbstractControl {
 	
 		.clicked .check {
 			display: flex;
-			fill: var(--primary-mid, var(--int-primary-mid));
+			fill: var(--primary-mid, #3C9700;
 		}
 		:host([disabled]) .check {
 			fill: #767676;
 		}
 	
 		:host([invalid]) .check {
-			fill: var(--warning-mid, var(--int-warning-mid));
+			fill: var(--warning-mid, #ED1C24);
 		}
 		:host([invalid]) ::slotted(input[type="checkbox"]), :host([invalid]) ::slotted(input[type="checkbox"]:checked) {
-			border-color: var(--warning-mid, var(--int-warning-mid));
+			border-color: var(--warning-mid, #ED1C24);
 		}
 	
 		::slotted(label) {

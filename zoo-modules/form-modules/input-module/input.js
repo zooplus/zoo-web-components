@@ -7,9 +7,6 @@ class Input extends AbstractControl {
 		shadowRoot.innerHTML = `
 		<style>
 		:host {
-			--int-primary-mid: #3C9700;
-			--int-primary-dark: #286400;
-			--int-warning-mid: #ED1C24;
 			display: grid;
 			grid-gap: 3px 0;
 			width: 100%;
@@ -19,13 +16,13 @@ class Input extends AbstractControl {
 			position: absolute;
 			right: 15px;
 			top: 15px;
-			color: var(--warning-mid, var(--int-warning-mid));
+			color: var(--warning-mid, #ED1C24);
 			pointer-events: none;
 			opacity: 0;
 		}
 		
 		svg path {
-			fill: var(--warning-mid, var(--int-warning-mid));
+			fill: var(--warning-mid, #ED1C24);
 		}
 	
 		:host([invalid]) div svg {
@@ -33,7 +30,7 @@ class Input extends AbstractControl {
 		}
 	
 		:host([invalid]) div ::slotted(input), :host([invalid]) div ::slotted(textarea) {
-			border: 2px solid var(--warning-mid, var(--int-warning-mid));
+			border: 2px solid var(--warning-mid, #ED1C24);
 			padding: 12px 14px;
 		}
 	

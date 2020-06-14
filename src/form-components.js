@@ -10,4 +10,4 @@ export * from '../zoo-modules/form-modules/preloader-module/preloader.js';
 export * from '../zoo-modules/form-modules/quantity-control-module/QuantityControl.svelte';
 export * from '../zoo-modules/form-modules/toggle-switch-module/ToggleSwitch.svelte';
 export * from '../zoo-modules/form-modules/button-module/button.js';
-export * from '../zoo-modules/form-modules/segmented-buttons-module/SegmentedButtons.svelte';
+export * from '../zoo-modules/form-modules/segmented-buttons-module/segmentedButtons.js';

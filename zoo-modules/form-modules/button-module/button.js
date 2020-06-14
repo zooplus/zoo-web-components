@@ -5,12 +5,6 @@ class Button extends HTMLElement {
 		shadowRoot.innerHTML = `
 		<style>
 		:host {
-			--int-primary-mid: #3C9700;
-			--int-primary-light: #66B100;
-			--int-primary-dark: #286400;
-			--int-secondary-mid: #FF6200;
-			--int-secondary-light: #FF8800;
-			--int-secondary-dark: #CC4E00;
 			display: flex;
 			max-width: 330px;
 			min-height: 36px;
@@ -31,15 +25,15 @@ class Button extends HTMLElement {
 			line-height: 20px;
 			font-weight: bold;
 			text-align: center;
-			background: linear-gradient(to right, var(--primary-mid, --int-primary-mid), var(--primary-light, --int-primary-light));
+			background: linear-gradient(to right, var(--primary-mid, #3C9700), var(--primary-light, #66B100));
 		}
 		
 		::slotted(button:hover), ::slotted(button:focus) {
-			background: var(--primary-mid, --int-primary-mid);
+			background: var(--primary-mid, #3C9700);
 		}
 		
 		::slotted(button:active) {
-			background: var(--primary-dark, --int-primary-dark);
+			background: var(--primary-dark, #286400);
 			transform: translateY(1px);
 		}
 		
@@ -52,30 +46,30 @@ class Button extends HTMLElement {
 		}
 		
 		:host([type="secondary"]) ::slotted(button) {
-			background: linear-gradient(to right, var(--secondary-mid, --int-secondary-mid), var(--secondary-light, --int-secondary-light));
+			background: linear-gradient(to right, var(--secondary-mid, #FF6200), var(--secondary-light, --int-secondary-light));
 		}
 		
 		:host([type="secondary"]) ::slotted(button:hover), :host([type="secondary"]) ::slotted(button:focus) {
-			background: var(--secondary-mid, --int-secondary-mid);
+			background: var(--secondary-mid, #FF6200);
 		}
 		
 		:host([type="secondary"]) ::slotted(button:active) {
-			background: var(--secondary-dark, --int-secondary-dark);
+			background: var(--secondary-dark, #CC4E00);
 		}
 		
 		:host([type="hollow"]) ::slotted(button) {
-			border: 2px solid var(--primary-mid, --int-primary-mid);
-			color: var(--primary-mid, --int-primary-mid);
+			border: 2px solid var(--primary-mid, #3C9700);
+			color: var(--primary-mid, #3C9700;
 			background: transparent;
 		}
 		
 		:host([type="hollow"]) ::slotted(button:hover), :host([type="hollow"]) ::slotted(button:focus), :host([type="hollow"]) ::slotted(button:active) {
 			color: white;
-			background: var(--primary-mid, --int-primary-mid);
+			background: var(--primary-mid, #3C9700);
 		}
 		
 		:host([type="hollow"]) ::slotted(button:active) {
-			background: var(--primary-dark, --int-primary-dark);
+			background: var(--primary-dark, #286400);
 		}
 		
 		:host([type="empty"]) ::slotted(button) {
@@ -93,7 +87,22 @@ class Button extends HTMLElement {
 		</style>
 		<slot></slot>`;
 	}
-}
 
-// Registers custom element
+	static get observedAttributes() {
+		return ['type'];
+	}
+
+	get type() {
+		return this.getAttribute('type');
+	}
+
+	set type(type) {
+		this.setAttribute('type', type);
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (attrName == 'type') {
+		}
+	}
+}
 window.customElements.define('zoo-button', Button);

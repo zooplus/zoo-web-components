@@ -25,9 +25,6 @@ class Radio extends AbstractControl {
 		return `
 		<style>
 		:host {
-			--int-primary-mid: #3C9700;
-			--int-primary-dark: #286400;
-			--int-warning-mid: #ED1C24;
 			display: flex;
 			flex-direction: column;
 		}
@@ -42,7 +39,7 @@ class Radio extends AbstractControl {
 		::slotted(input[type="radio"]) {
 			position: relative;
 			border: 1px solid #767676;
-			border-color: var(--primary-mid, var(--int-primary-mid));
+			border-color: var(--primary-mid, #3C9700);
 			min-width: 24px;
 			height: 24px;
 			border-radius: 50%;
@@ -61,7 +58,7 @@ class Radio extends AbstractControl {
 		}
 	
 		::slotted(input[type="radio"]:checked) {
-			background-color: var(--primary-mid, var(--int-primary-mid));
+			background-color: var(--primary-mid, #3C9700);
 		}
 	
 		::slotted(input[type="radio"]:disabled) {
@@ -71,11 +68,11 @@ class Radio extends AbstractControl {
 		}
 	
 		:host([invalid]) ::slotted(input[type="radio"]:checked) {
-			background-color: var(--warning-mid, var(--int-warning-mid));
+			background-color: var(--warning-mid, #ED1C24);
 		}
 	
 		:host([invalid]) ::slotted(input[type="radio"]) {
-			border-color: var(--warning-mid, var(--int-warning-mid));
+			border-color: var(--warning-mid, #ED1C24);
 		}
 	
 		::slotted(label) {
@@ -85,7 +82,7 @@ class Radio extends AbstractControl {
 		}
 	
 		:host([invalid]) ::slotted(label) {
-			color: var(--warning-mid, var(--int-warning-mid));
+			color: var(--warning-mid, #ED1C24);
 		}
 		</style>`;
 	}

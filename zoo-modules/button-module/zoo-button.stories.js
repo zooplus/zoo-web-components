@@ -2,6 +2,7 @@ import { withKnobs, boolean, select, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-button.mdx';
+import './button';
 
 export default {
 	title: 'Docs/Button',

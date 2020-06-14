@@ -2,7 +2,6 @@ import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-radio.mdx';
-import '../../docs/components';
 
 export default {
   title: 'Docs/Radio',

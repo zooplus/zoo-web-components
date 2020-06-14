@@ -24,6 +24,9 @@ class Checkbox extends HTMLElement {
 			border-radius: 5px;
 			padding: 11px 15px;
 		}
+		:host([highlighted]) .checkbox.clicked {
+			border: 2px solid var(--primary-mid, var(--int-primary-mid));
+		}
 		:host([highlighted][invalid]) .checkbox {
 			border: 2px solid var(--warning-mid, var(--int-warning-mid));
 		}
@@ -176,6 +179,7 @@ class Checkbox extends HTMLElement {
 
 	handleErrorMsg(oldVal, newVal) {
 		const info = this.shadowRoot.querySelector('zoo-input-info');
+		console.log(newVal)
 		if (newVal) {
 			info.setAttribute('inputerrormsg', newVal);
 		} else {
@@ -192,6 +196,7 @@ class Checkbox extends HTMLElement {
 		this.handleErrorMsg(this.inputerrormsg, msg);
 	}
 
+	// todo maybe dispatch change event as well
 	handleCheckboxClick(checkbox, box) {
 		if (checkbox.checked) {
 			checkbox.setAttribute('checked', '');
@@ -221,6 +226,7 @@ class Checkbox extends HTMLElement {
 		Checkbox.observedAttributes.forEach(a => this.attributeChangedCallback(a, this[a], this[a]));
 		const checkboxSlot = this.shadowRoot.querySelector('slot[name="checkboxelement"]');
 		const box = this.shadowRoot.querySelector('.checkbox');
+		const label = this.shadowRoot.querySelector('slot[name="checkboxlabel"]').assignedNodes()[0];
 		let checkbox;
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = new MutationObserver(this.mutationCallback.bind(this));
@@ -231,7 +237,7 @@ class Checkbox extends HTMLElement {
 		});
 		box.addEventListener('click', e => {
 			// browser should handle it
-			if (e.target == checkbox) {
+			if (e.target == label) {
 				this.handleCheckboxClick(checkbox, box);
 				return;
 			}
@@ -258,12 +264,18 @@ class Checkbox extends HTMLElement {
 		switch(attrName) {
 			case 'labeltext':
 				this.handleLabel(oldVal, newVal);
+				break;
 			case 'infotext':
 				this.handleInfo(oldVal, newVal);
+				break;
 			case 'invalid':
 				this.handleInvalid(oldVal, newVal);
+				break;
 			case 'inputerrormsg':
 				this.handleErrorMsg(oldVal, newVal);
+				break;
+			default:
+				break;
 		}
 	}
 }

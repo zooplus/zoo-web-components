@@ -5,7 +5,7 @@ class InputInfo extends HTMLElement {
 		shadowRoot.innerHTML = `
 		<style>
 		:host {
-			--int-info-mid: #3C9700;
+			--int-info-mid: #459FD0;
 			--int-warning-mid: #ED1C24;
 			display: flex;
 			flex-direction: column;
@@ -90,8 +90,12 @@ class InputInfo extends HTMLElement {
 		switch(attrName) {
 			case 'infotext':
 				this.handleInfo(oldVal, newVal);
+				break;
 			case 'inputerrormsg':
 				this.handleErrorMsg(oldVal, newVal);
+				break;
+			default:
+				break;
 		}
 	}
 

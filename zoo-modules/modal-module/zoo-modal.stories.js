@@ -2,7 +2,6 @@ import { withKnobs, text, boolean, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-modal.mdx';
-import '../../docs/components';
 
 export default {
   title: 'Docs/Modal',

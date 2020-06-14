@@ -1,0 +1,141 @@
+<svelte:options tag="zoo-select"/>
+<div class="box {labelposition} {linktext ? '' : 'link-absent'}">
+	<span class="input-label">
+		<slot name="selectlabel">
+			{#if labeltext}
+				<zoo-input-label {labeltext}></zoo-input-label>
+			{/if}
+		</slot>
+	</span>
+	{#if linktext}<a class="input-link" href="{linkhref}" target="{linktarget}">{linktext}</a>{/if}
+	<div class="input-slot {valid ? '' : 'error'}">
+		<slot bind:this={selectSlot} name="selectelement"></slot>
+		{#if slottedSelect && !slottedSelect.hasAttribute('multiple')}
+			{#if loading}
+				<zoo-preloader></zoo-preloader>
+			{/if}
+			{#if valueSelected}
+				<svg class="close" on:click="{() => handleCrossClick()}" width="21" height="21" viewBox="0 0 24 24">
+					<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
+				</svg>
+			{:else}
+				<svg class="arrows" class:disabled="{slottedSelect.disabled}" width="24" height="24" viewBox="0 0 24 24">
+					<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+				</svg>
+			{/if}
+		{/if}
+	</div>
+	{#if infotext || !valid}
+		<zoo-input-info class="input-info" {valid} {inputerrormsg} {infotext}></zoo-input-info>
+	{/if}
+</div>
+
+<style type='text/scss'>
+	@import 'variables';
+	@import 'input';
+
+	.close, .arrows {
+		position: absolute;
+		right: 10px;
+		top: 12px;
+	}
+
+	.close {
+		cursor: pointer;
+		right: 11px;
+		top: 14px;
+	}
+
+	.arrows {
+		pointer-events: none;
+
+		path {
+			fill: var(--primary-mid, #{$primary-mid});
+		}
+
+		&.disabled path {
+			fill: #E6E6E6;
+		}
+	}
+
+	.error .arrows path {
+		fill: var(--warning-mid, #{$warning-mid});
+	}
+
+	::slotted(select) {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		width: 100%;
+		background: white;
+		font-size: 14px;
+		line-height: 20px;
+		padding: 13px 25px 13px 15px;
+		border: 1px solid #767676;
+		border-radius: 5px;
+		color: #555555;
+		outline: none;
+		box-sizing: border-box;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	::slotted(select:disabled) {
+		border: 1px solid #E6E6E6;
+		background-color: #F2F3F4;
+		color: #767676;
+	}
+
+	::slotted(select:disabled:hover) {
+		cursor: not-allowed;
+	}
+
+	::slotted(select:focus) {
+		border: 2px solid #555555;
+		padding: 12px 24px 12px 14px;
+	}
+
+	.error ::slotted(select) {
+		border: $stroked-box-warning-bold;
+		padding: 12px 24px 12px 14px;
+	}
+
+	::slotted(label) {
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: 800;
+		color: #555555;
+		text-align: left;
+	}
+</style>
+
+<script>
+	import { onMount } from 'svelte';
+
+	export let labelposition = 'top';
+	export let labeltext = '';
+	export let linktext = '';
+	export let linkhref = '';
+	export let linktarget = 'about:blank';
+	export let inputerrormsg = '';
+	export let infotext = '';
+	export let valid = true;
+	export let loading = false;
+	let slottedSelect;
+	let selectSlot;
+	let valueSelected;
+
+	// todo support multiple slots
+	onMount(() => {
+		selectSlot.addEventListener('slotchange', () => {
+			slottedSelect = selectSlot.assignedNodes()[0];
+			valueSelected = slottedSelect.value && !slottedSelect.disabled;
+			slottedSelect.addEventListener('change', e => valueSelected = e.target.value ? true : false);
+		});
+	});
+
+	const handleCrossClick = () => {
+		slottedSelect.value = null;
+		slottedSelect.dispatchEvent(new Event("change"));
+	}
+</script>

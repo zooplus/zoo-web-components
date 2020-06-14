@@ -47,7 +47,7 @@
 		opacity: 0;
 		transition: opacity 0.1s;
 		margin-left: 5px;
-		border-radius: $border-radius;
+		border-radius: 5px;
 		background: #F2F3F4;
 	}
 

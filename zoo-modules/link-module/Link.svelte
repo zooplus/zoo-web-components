@@ -100,7 +100,7 @@
 
 		&:active {
 			background: #E6E6E6;
-			border-radius: $border-radius;
+			border-radius: 5px;
 		}
 	}
 </style>

@@ -1,0 +1,82 @@
+<svelte:options tag="zoo-radio"/>
+{#if labeltext}
+	<zoo-input-label {labeltext}></zoo-input-label>
+{/if}
+<div class:error="{!valid}">
+	<slot></slot>
+</div>
+{#if infotext || !valid}
+	<zoo-input-info {valid} {inputerrormsg} {infotext}></zoo-input-info>
+{/if}
+
+<style type='text/scss'>
+	@import 'variables';
+
+	:host {
+		display: flex;
+		flex-direction: column;
+	}
+
+	div {
+		display: flex;
+		padding: 11px 0;
+		font-size: 14px;
+		line-height: 20px;
+	}
+
+	::slotted(input[type="radio"]) {
+		position: relative;
+		border: 1px solid #767676;
+		border-color: var(--primary-mid, #{$primary-mid});
+		min-width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		margin: 0 2px 0 0;
+		padding: 3px;
+		background-clip: content-box;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		outline: none;
+		cursor: pointer;
+	}
+
+	::slotted(input[type="radio"]:focus) {
+		border-width: 2px;
+	}
+
+	::slotted(input[type="radio"]:checked) {
+		background-color: var(--primary-mid, #{$primary-mid});
+	}
+
+	::slotted(input[type="radio"]:disabled) {
+		cursor: not-allowed;
+		border-color: #767676;
+		background-color: #E6E6E6;
+	}
+
+	.error ::slotted(input[type="radio"]:checked) {
+		background-color: var(--warning-mid, #{$warning-mid});
+	}
+
+	.error ::slotted(input[type="radio"]) {
+		border-color: var(--warning-mid, #{$warning-mid});
+	}
+
+	::slotted(label) {
+		cursor: pointer;
+		margin: 0 5px;
+		align-self: center;
+	}
+
+	.error ::slotted(label) {
+		color: var(--warning-mid, #{$warning-mid});
+	}
+</style>
+
+<script>
+	export let valid = true;
+	export let inputerrormsg = '';
+	export let infotext = '';
+	export let labeltext = '';
+</script>

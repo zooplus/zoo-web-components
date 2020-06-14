@@ -27,7 +27,7 @@
 	.box {
 		pointer-events: initial;
 		box-shadow: $box-shadow;
-		border-radius: $border-radius;
+		border-radius: 5px;
 		position: absolute;
 		transform: translate(0%, -50%);
 
@@ -62,7 +62,7 @@
 		position: relative;
 		z-index: 1;
 		background: white;
-		border-radius: $border-radius;
+		border-radius: 5px;
 
 		.text {
 			white-space: pre;

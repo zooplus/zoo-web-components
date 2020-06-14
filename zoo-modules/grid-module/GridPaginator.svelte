@@ -29,7 +29,7 @@
 	:host {
 		padding: 10px;
 		min-width: inherit;
-		border-top: $stroked-box-grey-light;
+		border-top: 1px solid #E6E6E6;
 	}
 
 	.box {
@@ -48,8 +48,8 @@
 	.paging {
 		display: flex;
 		align-items: center;
-		border: $stroked-box-grey-light;
-		border-radius: $border-radius;
+		border: 1px solid #E6E6E6;
+		border-radius: 5px;
 		margin: 3px 0 3px 20px;
 		padding: 0 15px;
 	}
@@ -102,7 +102,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: $border-radius;
+		border-radius: 5px;
 		margin-right: 5px;
 		padding: 4px 8px;
 	}

@@ -44,7 +44,7 @@
 		background: white;
 		overflow-y: auto;
 		max-height: 95%;
-		border-radius: $border-radius;
+		border-radius: 5px;
 		animation-name: anim-show;
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;

@@ -2,6 +2,7 @@ import { withKnobs, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-toggle-switch.mdx';
 import { html } from 'lit-html';
+import './toggleSwitch';
 
 export default {
 	title: 'Docs/Toggle Switch',

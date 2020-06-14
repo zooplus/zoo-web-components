@@ -8,7 +8,7 @@ describe('Zoo toggle switch', function() {
 			input.appendChild(element);
 			document.body.appendChild(input);
 
-			const slottedInput = input.shadowRoot.querySelector('.box slot[name="input"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 
 			return slottedInput.tagName;
 		});

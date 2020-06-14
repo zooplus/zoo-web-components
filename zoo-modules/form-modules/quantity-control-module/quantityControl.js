@@ -78,7 +78,7 @@ class QuantityControl extends AbstractControl {
 		<slot name="label">
 			<zoo-input-label></zoo-input-label>
 		</slot>
-		<div class="control">
+		<div>
 			<button type="button">
 				<svg height="18" width="18">
 					<line y1="9" x1="0" x2="18" y2="9"></line>

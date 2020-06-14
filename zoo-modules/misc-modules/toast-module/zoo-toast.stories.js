@@ -1,5 +1,5 @@
 import { withKnobs, text, number, select, button, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-toast.mdx';
 
 export default {

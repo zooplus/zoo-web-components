@@ -8,7 +8,7 @@ describe('Zoo quantity control', function() {
 			input.appendChild(element);
 			document.body.appendChild(input);
 
-			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 
 			return slottedInput.tagName;
 		});
@@ -59,7 +59,7 @@ describe('Zoo quantity control', function() {
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[1];
-			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -81,7 +81,7 @@ describe('Zoo quantity control', function() {
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[1];
-			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -102,7 +102,7 @@ describe('Zoo quantity control', function() {
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[0];
-			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -124,7 +124,7 @@ describe('Zoo quantity control', function() {
 			await new Promise(r => setTimeout(r, 10));
 
 			const increaseBtn = input.shadowRoot.querySelectorAll('button')[0];
-			const slottedInput = input.shadowRoot.querySelector('.control slot[name="input"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;

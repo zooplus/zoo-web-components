@@ -2,16 +2,17 @@ import { withKnobs, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-header.mdx';
+import './header';
 
 export default {
-  title: 'Docs/Header',
-  component: 'zoo-header',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Header',
+	component: 'zoo-header',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooHeader = () => {

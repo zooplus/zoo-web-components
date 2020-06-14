@@ -1,18 +1,18 @@
 import { withKnobs, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-navigation.mdx';
-
+import './navigation';
 
 export default {
-  title: 'Docs/Navigation',
-  component: 'zoo-navigation',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Navigation',
+	component: 'zoo-navigation',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooNavigation = () => {

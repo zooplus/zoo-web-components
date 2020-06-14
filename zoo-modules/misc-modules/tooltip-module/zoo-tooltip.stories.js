@@ -1,5 +1,5 @@
 import { withKnobs, select, text } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-tooltip.mdx';
 

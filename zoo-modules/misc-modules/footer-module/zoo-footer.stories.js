@@ -1,17 +1,18 @@
 import { withKnobs, text, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
+import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-footer.mdx';
+import './footer';
 
 export default {
-  title: 'Docs/Footer',
-  component: 'zoo-footer',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Footer',
+	component: 'zoo-footer',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooFooter = () => {

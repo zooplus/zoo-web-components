@@ -4,11 +4,10 @@ describe('Zoo select', function() {
 			const selectAttrs = await page.evaluate(() => {
 				let select = document.createElement('zoo-select');
 				document.body.appendChild(select);
-				const selectBox = select.shadowRoot.querySelector('.box');
 				return {
-					inputLabelPresent: selectBox.querySelector('.input-label') !== undefined,
-					inputLinkPresent: selectBox.querySelector('.input-link') !== undefined,
-					inputInfoPresent: selectBox.querySelector('.input-info') !== undefined
+					inputLabelPresent: select.shadowRoot.querySelector('zoo-input-label') !== undefined,
+					inputLinkPresent: select.shadowRoot.querySelector('a') !== undefined,
+					inputInfoPresent: select.shadowRoot.querySelector('zoo-input-info') !== undefined
 				};
 			});
 			expect(selectAttrs.inputLabelPresent).to.be.true;
@@ -22,8 +21,7 @@ describe('Zoo select', function() {
 				select.labeltext = 'label';
 				select.valid = false;
 				document.body.appendChild(select);
-				const selectBox = select.shadowRoot.querySelector('.box');
-				const label = selectBox.querySelector('zoo-input-label').shadowRoot;
+				const label = select.shadowRoot.querySelector('zoo-input-label').shadowRoot;
 				return {
 					labelText: label.querySelector('label').innerHTML
 				};
@@ -38,8 +36,7 @@ describe('Zoo select', function() {
 				select.linktarget = '#';
 				select.linktext = 'link-text';
 				document.body.appendChild(select);
-				const selectBox = select.shadowRoot.querySelector('.box');
-				const linkAnchor = selectBox.querySelector('a');
+				const linkAnchor = select.shadowRoot.querySelector('a');
 				return {
 					linkText: linkAnchor.innerHTML,
 					linkTarget: linkAnchor.getAttribute('target'),
@@ -58,8 +55,7 @@ describe('Zoo select', function() {
 				select.inputerrormsg = 'errormsg';
 				select.valid = false;
 				document.body.appendChild(select);
-				const selectBox = select.shadowRoot.querySelector('.box');
-				const info = selectBox.querySelector('.input-info').shadowRoot;
+				const info = select.shadowRoot.querySelector('zoo-input-info').shadowRoot;
 				return {
 					infoText: info.querySelector('.info').innerHTML,
 					errorMsg: info.querySelector('.error').innerHTML

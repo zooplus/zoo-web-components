@@ -1,6 +1,15 @@
 export default class AbstractControl extends HTMLElement {
+	
 	constructor() {
 		super();
+		this.handlersMap = new Map();
+		this.handlersMap.set('labeltext', this.handleLabel.bind(this));
+		this.handlersMap.set('linktext', this.handleLinkText.bind(this));
+		this.handlersMap.set('linkhref', this.handleLinkHref.bind(this));
+		this.handlersMap.set('linktarget', this.handleLinkTarget.bind(this));
+		this.handlersMap.set('infotext', this.handleInfo.bind(this));
+		this.handlersMap.set('invalid', this.handleInvalid.bind(this));
+		this.handlersMap.set('inputerrormsg', this.handleErrorMsg.bind(this));
 	}
 
 	handleLabel(oldVal, newVal) {
@@ -76,5 +85,73 @@ export default class AbstractControl extends HTMLElement {
 	set inputerrormsg(msg) {
 		this.setAttribute('inputerrormsg', msg);
 		this.handleErrorMsg(this.inputerrormsg, msg);
+	}
+
+	handleLinkText(oldVal, newVal) {
+		const a = this.shadowRoot.querySelector('a');
+		if (newVal) {
+			a.innerHTML = newVal;
+		} else {
+			a.innerHTML = '';
+		}
+	}
+	get linktext() {
+		return this.getAttribute('linktext');
+	}
+	set linktext(msg) {
+		this.setAttribute('linktext', msg);
+		this.handleLinkText(this.linktext, msg);
+	}
+
+	handleLinkHref(oldVal, newVal) {
+		const a = this.shadowRoot.querySelector('a');
+		if (newVal) {
+			a.href = newVal;
+		} else {
+			a.href = '';
+		}
+	}
+	get linkhref() {
+		return this.getAttribute('linkhref');
+	}
+	set linkhref(href) {
+		this.setAttribute('linkhref', href);
+		this.handleLinkHref(this.linkhref, href);
+	}
+
+	handleLinkTarget(oldVal, newVal) {
+		const a = this.shadowRoot.querySelector('a');
+		if (newVal) {
+			a.target = newVal;
+		} else {
+			a.target = 'about:blank';
+		}
+	}
+	get linktarget() {
+		return this.getAttribute('linktarget');
+	}
+	set linktarget(target) {
+		this.setAttribute('linktarget', target);
+		this.handleLinkTarget(this.linktarget, target);
+	}
+
+	getLinkStyles() {
+		return `
+		a {
+			text-align: right;
+			text-decoration: none;
+			font-size: 12px;
+			line-height: 16px;
+			color: var(--primary-dark, var(--int-primary-dark));
+			justify-self: flex-end;
+			align-self: center;
+			grid-row: 1;
+		}
+		a:visited {
+			color: var(--primary-mid, var(--int-primary-mid));
+		}
+		a:hover, a:focus, a:active {
+			color: var(--primary-dark, var(--int-primary-dark));
+		}`;
 	}
 }

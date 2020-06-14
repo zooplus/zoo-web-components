@@ -86,7 +86,7 @@
 
 	.box.error input {
 		padding: 12px 24px 12px 14px;
-		border: $stroked-box-warning-bold;
+		border: 2px solid var(--warning-mid, #{$warning-mid})
 	}
 
 	.box:focus-within ::slotted(select) {
@@ -106,7 +106,7 @@
 	}
 
 	.box.error ::slotted(select) {
-		border: $stroked-box-warning-bold;
+		border: 2px solid var(--warning-mid, #{$warning-mid});
 		border-top: none;
 		padding: 12px 14px;
 	}

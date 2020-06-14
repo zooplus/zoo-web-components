@@ -97,22 +97,7 @@ class Input extends AbstractControl {
 			grid-row: 3;
 			grid-column: span 2;
 		}
-		a {
-			text-align: right;
-			text-decoration: none;
-			font-size: 12px;
-			line-height: 16px;
-			color: var(--primary-dark, var(--int-primary-dark));
-			justify-self: flex-end;
-			align-self: center;
-			grid-row: 1;
-		}
-		a:visited {
-			color: var(--primary-mid, var(--int-primary-mid));
-		}
-		a:hover, a:focus, a:active {
-			color: var(--primary-dark, var(--int-primary-dark));
-		}
+		${this.getLinkStyles()}
 		</style>
 		<slot name="inputlabel">
 			<zoo-input-label></zoo-input-label>
@@ -135,80 +120,15 @@ class Input extends AbstractControl {
 	set labelposition(position) {
 		this.setAttribute('labelposition', position);
 	}
-
-	handleLinkText(oldVal, newVal) {
-		const a = this.shadowRoot.querySelector('a');
-		if (newVal) {
-			a.innerHTML = newVal;
-		} else {
-			a.innerHTML = '';
-		}
-	}
-	get linktext() {
-		return this.getAttribute('linktext');
-	}
-	set linktext(msg) {
-		this.setAttribute('linktext', msg);
-		this.handleErrorMsg(this.linktext, msg);
-	}
-
-	handleLinkHref(oldVal, newVal) {
-		const a = this.shadowRoot.querySelector('a');
-		if (newVal) {
-			a.href = newVal;
-		} else {
-			a.href = '';
-		}
-	}
-	get linkhref() {
-		return this.getAttribute('linkhref');
-	}
-	set linkhref(href) {
-		this.setAttribute('linkhref', href);
-		this.handleErrorMsg(this.linkhref, href);
-	}
-
-	handleLinkTarget(oldVal, newVal) {
-		const a = this.shadowRoot.querySelector('a');
-		if (newVal) {
-			a.target = newVal;
-		} else {
-			a.target = 'about:blank';
-		}
-	}
-	get linktarget() {
-		return this.getAttribute('linktarget');
-	}
-	set linktarget(target) {
-		this.setAttribute('linktarget', target);
-		this.handleErrorMsg(this.linktarget, target);
-	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		switch(attrName) {
-			case 'linktext': 
-				this.handleLinkText(oldVal, newVal);
-				break;
-			case 'linkhref': 
-				this.handleLinkHref(oldVal, newVal);
-				break;
-			case 'linktarget': 
-				this.handleLinkTarget(oldVal, newVal);
-				break;
-			case 'labeltext':
-				this.handleLabel(oldVal, newVal);
-				break;
-			case 'infotext':
-				this.handleInfo(oldVal, newVal);
-				break;
-			case 'invalid':
-				this.handleInvalid(oldVal, newVal);
-				break;
-			case 'inputerrormsg':
-				this.handleErrorMsg(oldVal, newVal);
-				break;
-			default:
-				break;
+		if (Input.observedAttributes.includes(attrName)) {
+			const fn = this.handlersMap.get(attrName);
+			if (fn) {
+				fn(oldVal, newVal);
+			} else {
+				console.warn('no handler for ' + attrName)
+			}
 		}
 	}
 }

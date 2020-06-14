@@ -2,20 +2,21 @@ import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs'
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-select.mdx';
 import { html } from 'lit-html';
+import './select';
 
 export default {
-  title: 'Docs/Select',
-  component: 'zoo-select',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Select',
+	component: 'zoo-select',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooSelect = () => {
-	let valid = boolean('valid', true, attributesGroupId);
+	let invalid = boolean('invalid', false, attributesGroupId);
 	let loading = boolean('loading', false, attributesGroupId);
 	let multiple = boolean('multiple', false, attributesGroupId);
 	let labeltext = text('labeltext', 'Label', attributesGroupId);
@@ -30,7 +31,7 @@ export const zooSelect = () => {
 	let primaryDark = color('--primary-dark', '#286400', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 	return html`<zoo-select style="--primary-mid: ${primaryMid}; --warning-mid: ${warningMid}; --primary-light: ${primaryLight}; --primary-dark: ${primaryDark}"
-			valid="${valid ? true : ''}" labelposition="${labelposition}" infotext="${infotext}" loading="${loading ? true : ''}"
+		?invalid="${invalid}" labelposition="${labelposition}" infotext="${infotext}" loading="${loading ? true : ''}"
 			linktext="${linktext}" linkhref="${linkhref}" linktarget="${linktarget}" inputerrormsg="${inputerrormsg}">
 		<select id="zoo-select" slot="selectelement" ?multiple="${multiple}">
 			<option value="value1">Dog</option>

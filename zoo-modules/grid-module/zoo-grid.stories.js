@@ -2,16 +2,19 @@ import { withKnobs, number, select, boolean, text, date } from '@storybook/addon
 import { attributesGroupId, cssVariablesGroupId } from '../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-grid.mdx';
+import './grid';
+import './gridHeader';
+import './gridPaginator';
 
 export default {
-  title: 'Docs/Grid',
-  component: 'zoo-grid',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Grid',
+	component: 'zoo-grid',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooGrid = () => {
@@ -47,9 +50,9 @@ export const zooGrid = () => {
 	let createdDate3 = customDateKnob('createdDate3', defaultDate);
 	let minWeight3 = text('minWeight3', '5 kg', dataGroup);
 	let price3 = text('price3', '20 EUR', dataGroup);
-	
+
 	let paginatorPageSizeLabel = text('paginatorPageSizeLabel', 'Page size', dataGroup);
-	
+
 	let gridColumnSizes = select('--grid-column-sizes', ['repeat(var(--grid-column-num), minmax(50px, 1fr))', '100px 100px repeat(1, minmax(50px, 1fr))'], 'repeat(var(--grid-column-num), minmax(50px, 1fr))', cssVariablesGroupId);
 
 	return html`<div style="margin: 30px; box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)">

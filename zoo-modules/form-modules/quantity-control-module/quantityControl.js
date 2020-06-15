@@ -171,7 +171,6 @@ class QuantityControl extends AbstractControl {
 						this.handleDecreaseDisabled(newVal);
 						break;
 					default:
-						console.warn('no handler for ' + attrName)
 						break;
 				}
 			}

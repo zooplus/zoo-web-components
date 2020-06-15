@@ -276,8 +276,6 @@ class SearchableSelect extends AbstractControl {
 				const fn = this.handlersMap.get(attrName);
 				if (fn) {
 					fn(newVal, this.target);
-				} else {
-					console.warn('no handler for ' + attrName)
 				}
 			}
 		}

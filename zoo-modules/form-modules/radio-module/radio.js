@@ -15,8 +15,6 @@ class Radio extends AbstractControl {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {
 				fn(newVal);
-			} else {
-				console.warn('no handler for ' + attrName)
 			}
 		}
 	}

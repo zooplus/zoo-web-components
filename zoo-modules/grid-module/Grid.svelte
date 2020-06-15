@@ -17,8 +17,6 @@
 </div>
 
 <style type='text/scss'>
-	@import 'variables';
-
 	:host {
 		contain: layout;
 	}
@@ -118,7 +116,7 @@
 	}
 
 	::slotted(*[slot="norecords"]) {
-		color: var(--warning-dark, #{$warning-dark});
+		color: var(--warning-dark, #BD161C);
 		grid-column: span var(--grid-column-num);
 		text-align: center;
 		padding: 10px 0;

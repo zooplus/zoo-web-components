@@ -46,7 +46,6 @@ class Select extends AbstractControl {
 					default:
 						break;
 				}
-				console.warn('no handler for ' + attrName)
 			}
 		}
 	}
@@ -98,8 +97,10 @@ class Select extends AbstractControl {
 	}
 
 	disconnectedCallback() {
-		this.observer.disconnect();
-		this.observer = null;
+		if (this.observer) {
+			this.observer.disconnect();
+			this.observer = null;
+		}
 	}
 
 	getStyle() {

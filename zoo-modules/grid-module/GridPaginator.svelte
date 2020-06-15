@@ -24,8 +24,6 @@
 </div>
 
 <style type='text/scss'>
-	@import 'variables';
-
 	:host {
 		padding: 10px;
 		min-width: inherit;
@@ -82,7 +80,7 @@
 	}
 
 	.arrow {
-		path { fill: var(--primary-mid, #{$primary-mid}); }
+		path { fill: var(--primary-mid, #3C9700); }
 	}
 
 	.page-element {
@@ -93,8 +91,8 @@
 		}
 
 		&.active {
-			background: var(--primary-ultralight, #{$primary-ultralight});
-			color: var(--primary-mid, #{$primary-mid});
+			background: var(--primary-ultralight, #EBF4E5);
+			color: var(--primary-mid, #3C9700);
 		}
 	}
 

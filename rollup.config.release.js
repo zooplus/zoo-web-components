@@ -1,16 +1,8 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 export default [
 	{
-		plugins: [
-			svelte({
-				customElement: true
-			}),
-			resolve(),
-			terser()
-		],
+		plugins: [terser()],
 		input: 'src/components.js',
 		output: {
 			sourcemap: true,

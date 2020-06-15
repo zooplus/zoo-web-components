@@ -3,7 +3,10 @@ import { terser } from 'rollup-plugin-terser';
 export default [
 	{
 		plugins: [
-			terser()
+			terser({
+				module: true,
+				keep_classnames: true
+			})
 		],
 		input: 'src/components.js',
 		output: {

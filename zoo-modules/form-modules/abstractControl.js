@@ -12,8 +12,9 @@ export default class AbstractControl extends HTMLElement {
 		this.handlersMap.set('inputerrormsg', this.handleErrorMsg.bind(this));
 	}
 
-	handleLabel(oldVal, newVal) {
-		const label = this.shadowRoot.querySelector('zoo-input-label');
+	handleLabel(newVal, target) {
+		target = target || 'zoo-input-label';
+		const label = this.shadowRoot.querySelector(target);
 		if (label) {
 			label.setAttribute('labeltext', newVal);
 		} else {
@@ -27,11 +28,12 @@ export default class AbstractControl extends HTMLElement {
 
 	set labeltext(text) {
 		this.setAttribute('labeltext', text);
-		this.handleLabel(this.labeltext, text);
+		this.handleLabel(text);
 	}
 
-	handleInfo(oldVal, newVal) {
-		const info = this.shadowRoot.querySelector('zoo-input-info');
+	handleInfo(newVal, target) {
+		target = target || 'zoo-input-info';
+		const info = this.shadowRoot.querySelector(target);
 		if (newVal) {
 			info.setAttribute('infotext', newVal);
 		} else {
@@ -45,36 +47,36 @@ export default class AbstractControl extends HTMLElement {
 
 	set infotext(text) {
 		this.setAttribute('infotext', text);
-		this.handleInfo(this.infotext, text);
+		this.handleInfo(text);
 	}
 
-	handleInvalid(oldVal, newVal) {
-		const info = this.shadowRoot.querySelector('zoo-input-info');
+	handleInvalid(newVal, target) {
+		target = target || 'zoo-input-info';
+		const el = this.shadowRoot.querySelector(target);
 		if (this.invalid) {
-			info.setAttribute('invalid', '');
+			el.setAttribute('invalid', '');
 		} else {
-			info.removeAttribute('invalid');
+			el.removeAttribute('invalid');
 		}
 	}
-
 	get invalid() {
 		return this.hasAttribute('invalid');
 	}
-
 	set invalid(invalid) {
 		if (invalid) {
 			this.setAttribute('invalid', '');
 		} else {
 			this.removeAttribute('invalid');
 		}
-		this.handleInvalid(this.invalid, invalid);
+		this.handleInvalid(invalid);
 	}
-	handleErrorMsg(oldVal, newVal) {
-		const info = this.shadowRoot.querySelector('zoo-input-info');
+	handleErrorMsg(newVal, target) {
+		target = target || 'zoo-input-info';
+		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
-			info.setAttribute('inputerrormsg', newVal);
+			el.setAttribute('inputerrormsg', newVal);
 		} else {
-			info.removeAttribute('inputerrormsg');
+			el.removeAttribute('inputerrormsg');
 		}
 	}
 
@@ -84,15 +86,17 @@ export default class AbstractControl extends HTMLElement {
 
 	set inputerrormsg(msg) {
 		this.setAttribute('inputerrormsg', msg);
-		this.handleErrorMsg(this.inputerrormsg, msg);
+		this.handleErrorMsg(msg);
 	}
 
-	handleLinkText(oldVal, newVal) {
-		const a = this.shadowRoot.querySelector('a');
+	handleLinkText(newVal, target) {
+		const prop = target ? 'linktext' : 'innerHTML';
+		target = target || 'a';
+		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
-			a.innerHTML = newVal;
+			el[prop] = newVal;
 		} else {
-			a.innerHTML = '';
+			el[prop] = '';
 		}
 	}
 	get linktext() {
@@ -100,15 +104,16 @@ export default class AbstractControl extends HTMLElement {
 	}
 	set linktext(msg) {
 		this.setAttribute('linktext', msg);
-		this.handleLinkText(this.linktext, msg);
+		this.handleLinkText(msg);
 	}
 
-	handleLinkHref(oldVal, newVal) {
-		const a = this.shadowRoot.querySelector('a');
+	handleLinkHref(newVal, target) {
+		target = target || 'a';
+		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
-			a.href = newVal;
+			el.setAttribute('href', newVal);
 		} else {
-			a.href = '';
+			el.removeAttribute('href');
 		}
 	}
 	get linkhref() {
@@ -116,15 +121,16 @@ export default class AbstractControl extends HTMLElement {
 	}
 	set linkhref(href) {
 		this.setAttribute('linkhref', href);
-		this.handleLinkHref(this.linkhref, href);
+		this.handleLinkHref(href);
 	}
 
-	handleLinkTarget(oldVal, newVal) {
-		const a = this.shadowRoot.querySelector('a');
+	handleLinkTarget(newVal, target) {
+		target = target || 'a';
+		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
-			a.target = newVal;
+			el.setAttribute('target', newVal);
 		} else {
-			a.target = 'about:blank';
+			el.target = 'about:blank';
 		}
 	}
 	get linktarget() {
@@ -132,7 +138,7 @@ export default class AbstractControl extends HTMLElement {
 	}
 	set linktarget(target) {
 		this.setAttribute('linktarget', target);
-		this.handleLinkTarget(this.linktarget, target);
+		this.handleLinkTarget(target);
 	}
 
 	getLinkStyles() {

@@ -53,11 +53,11 @@ export const zooGrid = () => {
 	let gridColumnSizes = select('--grid-column-sizes', ['repeat(var(--grid-column-num), minmax(50px, 1fr))', '100px 100px repeat(1, minmax(50px, 1fr))'], 'repeat(var(--grid-column-num), minmax(50px, 1fr))', cssVariablesGroupId);
 
 	return html`<div style="margin: 30px; box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)">
-	<zoo-grid style="--grid-column-sizes: ${gridColumnSizes};" ?stickyheader="${stickyheader}" loading=${loading ? true : ''}
+	<zoo-grid style="--grid-column-sizes: ${gridColumnSizes};" ?stickyheader="${stickyheader}" ?loading=${loading}
 		currentpage="${currentpage}" maxpages="${maxpages}" ?resizable="${resizable}" ?reorderable="${reorderable}">
-		<zoo-grid-header slot="headercell" sortable=${header1sortable ? true : ''}>${header1}</zoo-grid-header>
-		<zoo-grid-header slot="headercell" sortable=${header2sortable ? true : ''}>${header2}</zoo-grid-header>
-		<zoo-grid-header slot="headercell" sortable=${header3sortable ? true : ''}>${header3}</zoo-grid-header>
+		<zoo-grid-header slot="headercell" ?sortable=${header1sortable}>${header1}</zoo-grid-header>
+		<zoo-grid-header slot="headercell" ?sortable=${header2sortable}>${header2}</zoo-grid-header>
+		<zoo-grid-header slot="headercell" ?sortable=${header3sortable}>${header3}</zoo-grid-header>
 		<div slot="row">
 			<div>${createdDate1}</div>
 			<div>${minWeight1}</div>

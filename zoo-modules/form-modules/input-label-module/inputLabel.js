@@ -20,7 +20,7 @@ class InputLabel extends HTMLElement {
 		return ['labeltext'];
 	}
 
-	handleLabel(oldVal, newVal) {
+	handleLabel(newVal) {
 		const label = this.shadowRoot.querySelector('label');
 		if (newVal) {
 			label.innerHTML = newVal;
@@ -39,7 +39,7 @@ class InputLabel extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if(attrName == 'labeltext') this.handleLabel(oldVal, newVal);
+		if(attrName == 'labeltext') this.handleLabel(newVal);
 	}
 }
 window.customElements.define('zoo-input-label', InputLabel);

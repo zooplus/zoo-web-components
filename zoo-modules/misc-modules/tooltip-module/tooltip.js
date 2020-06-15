@@ -116,13 +116,11 @@ class Tooltip extends HTMLElement {
 		this.setAttribute('text', text);
 		this.handleText(this.text, text);
 	}
-	handleText(oldVal, newVal) {
+	handleText(newVal) {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'text') {
-			this.handleText(oldVal, newVal);
-		}
+		if (attrName == 'text') this.handleText(newVal);
 	}
 }
 

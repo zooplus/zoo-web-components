@@ -15,7 +15,7 @@ export default {
 };
 
 export const zooSearchableSelect = () => {
-	let valid = boolean('valid', true, attributesGroupId);
+	let invalid = boolean('invalid', false, attributesGroupId);
 	let loading = boolean('loading', false, attributesGroupId);
 	let multiple = boolean('multiple', false, attributesGroupId);
 	let labeltext = text('labeltext', 'Label', attributesGroupId);
@@ -29,7 +29,7 @@ export const zooSearchableSelect = () => {
 	let primaryDark = color('--primary-dark', '#286400', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 	return html`<zoo-searchable-select style="--primary-mid: ${primaryMid}; --warning-mid: ${warningMid}; --primary-light: ${primaryLight}; --primary-dark: ${primaryDark};"
-			valid="${valid ? true : ''}" infotext="${infotext}" loading="${loading ? true : ''}"
+			?invalid="${invalid}" infotext="${infotext}" ?loading="${loading}"
 			linktext="${linktext}" linkhref="${linkhref}" linktarget="${linktarget}" inputerrormsg="${inputerrormsg}" labeltext=${labeltext}>
 		<select id="zoo-select" slot="selectelement" ?multiple="${multiple}">
 			<option value="value1">Dog</option>

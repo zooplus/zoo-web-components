@@ -13,22 +13,22 @@ describe('Zoo searchable select', function() {
 				
 				document.body.appendChild(select);
 
-				const nestedInput = select.shadowRoot.querySelector('zoo-input').shadowRoot;
+				const nestedInput = select.shadowRoot.querySelector('zoo-input');
 
-				const linkAnchor = nestedInput.querySelector('a');
+				const linkAnchor = nestedInput.shadowRoot.querySelector('a');
 				const createdLink = {
 					linkText: linkAnchor.innerHTML,
-					linkTarget: linkAnchor.getAttribute('target'),
-					linkHref: linkAnchor.getAttribute('href')
+					linkTarget: nestedInput.getAttribute('target'),
+					linkHref: nestedInput.getAttribute('href')
 				};
 
-				const info = nestedInput.querySelector('zoo-input-info').shadowRoot;
+				const info = nestedInput.shadowRoot.querySelector('zoo-input-info').shadowRoot;
 				const createdInfo = {
 					infoText: info.querySelector('.info span').innerHTML,
 					errorMsg: info.querySelector('.error span').innerHTML
 				};
 
-				const label = nestedInput.querySelector('slot[name="inputlabel"]');
+				const label = nestedInput.shadowRoot.querySelector('slot[name="inputlabel"]');
 				const createdLabel = {
 					labelText: label.assignedNodes()[0].innerHTML
 				};
@@ -40,8 +40,8 @@ describe('Zoo searchable select', function() {
 			});
 			const link = createdElements.link;
 			expect(link.linkText).equal('link-text');
-			expect(link.linkHref).equal('https://google.com');
 			expect(link.linkTarget).equal('#');
+			expect(link.linkHref).equal('https://google.com');
 
 			const label = createdElements.label;
 			expect(label.labelText).equal('label-text');

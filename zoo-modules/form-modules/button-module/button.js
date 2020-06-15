@@ -97,11 +97,10 @@ class Button extends HTMLElement {
 	}
 
 	set type(type) {
-		this.setAttribute('type', type);
-	}
-
-	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'type') {
+		if (type) {
+			this.setAttribute('type', type);
+		} else {
+			this.removeAttribute('type');
 		}
 	}
 }

@@ -132,7 +132,7 @@ class QuantityControl extends AbstractControl {
 		this.setAttribute('decreasedisabled', disabled);
 		this.handleDecreaseDisabled(this.increasedisabled, disabled);
 	}
-	handleDecreaseDisabled(oldVal, newVal) {
+	handleDecreaseDisabled(newVal) {
 		const btn = this.shadowRoot.querySelector('button');
 		if (this.decreasedisabled) {
 			btn.disabled = true;
@@ -148,7 +148,7 @@ class QuantityControl extends AbstractControl {
 		this.setAttribute('increasedisabled', disabled);
 		this.handleIncreaseDisabled(this.increasedisabled, disabled);
 	}
-	handleIncreaseDisabled(oldVal, newVal) {
+	handleIncreaseDisabled(newVal) {
 		const btn = this.shadowRoot.querySelectorAll('button')[1];
 		if (this.increasedisabled) {
 			btn.disabled = true;
@@ -161,14 +161,14 @@ class QuantityControl extends AbstractControl {
 		if (QuantityControl.observedAttributes.includes(attrName)) {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {
-				fn(oldVal, newVal);
+				fn(newVal);
 			} else {
 				switch (attrName) {
 					case 'increasedisabled':
-						this.handleIncreaseDisabled(oldVal, newVal);
+						this.handleIncreaseDisabled(newVal);
 						break;
 					case 'decreasedisabled':
-						this.handleDecreaseDisabled(oldVal, newVal);
+						this.handleDecreaseDisabled(newVal);
 						break;
 					default:
 						console.warn('no handler for ' + attrName)

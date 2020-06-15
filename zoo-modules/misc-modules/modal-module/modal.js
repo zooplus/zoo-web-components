@@ -129,11 +129,9 @@ class Modal extends HTMLElement {
 		this.handleText(this.headertext, headertext);
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'headertext') {
-			this.handleText(oldVal, newVal);
-		}
+		if (attrName == 'headertext') this.handleText(newVal);
 	}
-	handleText(oldVal, newVal) {
+	handleText(newVal) {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;
 	}
 	connectedCallback() {

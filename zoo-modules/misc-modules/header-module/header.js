@@ -57,13 +57,11 @@ class Header extends HTMLElement {
 		this.setAttribute('headertext', text);
 		this.handleHeaderText(this.headertext, text);
 	}
-	handleHeaderText(oldVal, newVal) {
+	handleHeaderText(newVal) {
 		this.shadowRoot.querySelector('h2').innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'headertext') {
-			this.handleHeaderText(oldVal, newVal);
-		}
+		if (attrName == 'headertext') this.handleHeaderText(newVal);
 	}
 }
 

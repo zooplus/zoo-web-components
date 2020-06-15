@@ -31,7 +31,7 @@ export const zooSelect = () => {
 	let primaryDark = color('--primary-dark', '#286400', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 	return html`<zoo-select style="--primary-mid: ${primaryMid}; --warning-mid: ${warningMid}; --primary-light: ${primaryLight}; --primary-dark: ${primaryDark}"
-		?invalid="${invalid}" labelposition="${labelposition}" infotext="${infotext}" loading="${loading ? true : ''}"
+		?invalid="${invalid}" labelposition="${labelposition}" infotext="${infotext}" ?loading="${loading}"
 			linktext="${linktext}" linkhref="${linkhref}" linktarget="${linktarget}" inputerrormsg="${inputerrormsg}">
 		<select id="zoo-select" slot="selectelement" ?multiple="${multiple}">
 			<option value="value1">Dog</option>

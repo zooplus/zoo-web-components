@@ -46,7 +46,7 @@ class InputInfo extends HTMLElement {
 		return ['infotext', 'inputerrormsg'];
 	}
 
-	handleInfo(oldVal, newVal) {
+	handleInfo(newVal) {
 		if (newVal) this.shadowRoot.querySelector('.info span').innerHTML = newVal;
 	}
 
@@ -71,7 +71,7 @@ class InputInfo extends HTMLElement {
 		}
 	}
 
-	handleErrorMsg(oldVal, newVal) {
+	handleErrorMsg(newVal) {
 		const span = this.shadowRoot.querySelector('.error span');
 		if (newVal) {
 			span.innerHTML = newVal;
@@ -92,10 +92,10 @@ class InputInfo extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		switch(attrName) {
 			case 'infotext':
-				this.handleInfo(oldVal, newVal);
+				this.handleInfo(newVal);
 				break;
 			case 'inputerrormsg':
-				this.handleErrorMsg(oldVal, newVal);
+				this.handleErrorMsg(newVal);
 				break;
 			default:
 				break;

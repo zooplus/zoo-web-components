@@ -98,7 +98,7 @@ class Toast extends HTMLElement {
 		this.setAttribute('text', text);
 		this.handleText(this.text, text);
 	}
-	handleText(oldVal, newVal) {
+	handleText(newVal) {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;
 	}
 	get timeout() {
@@ -108,9 +108,7 @@ class Toast extends HTMLElement {
 		this.setAttribute('timeout', timeout);
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'text') {
-			this.handleText(oldVal, newVal);
-		}
+		if (attrName == 'text') this.handleText(newVal);
 	}
 	connectedCallback() {
 		this.hidden = true;

@@ -23,7 +23,7 @@ class Select extends AbstractControl {
 		this.setAttribute('loading', loading);
 		this.handleLoading(this.loading, loading);
 	}
-	handleLoading(oldVal, newVal) {
+	handleLoading(newVal) {
 		if (newVal) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
 			this.shadowRoot.querySelector('div').appendChild(this.loader);
@@ -37,11 +37,11 @@ class Select extends AbstractControl {
 		if (Select.observedAttributes.includes(attrName)) {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {
-				fn(oldVal, newVal);
+				fn(newVal);
 			} else {
 				switch (attrName) {
 					case 'loading': 
-						this.handleLoading(oldVal, newVal);
+						this.handleLoading(newVal);
 						break;
 					default:
 						break;
@@ -93,7 +93,7 @@ class Select extends AbstractControl {
 			this.shadowRoot.querySelector('.close').addEventListener('click', () => {
 				select.value = null;
 				select.dispatchEvent(new Event("change"));
-			})
+			});
 		});
 	}
 

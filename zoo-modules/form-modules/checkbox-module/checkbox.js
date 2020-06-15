@@ -123,7 +123,7 @@ class Checkbox extends AbstractControl {
 		}
 	}
 
-	handleLabel(oldVal, newVal) {
+	handleLabel(newVal) {
 		const label = this.shadowRoot.querySelector('label');
 		if (label) label.innerHTML = newVal;
 	}
@@ -205,16 +205,16 @@ class Checkbox extends AbstractControl {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		switch(attrName) {
 			case 'labeltext':
-				this.handleLabel(oldVal, newVal);
+				this.handleLabel(newVal);
 				break;
 			case 'infotext':
-				this.handleInfo(oldVal, newVal);
+				this.handleInfo(newVal);
 				break;
 			case 'invalid':
-				this.handleInvalid(oldVal, newVal);
+				this.handleInvalid(newVal);
 				break;
 			case 'inputerrormsg':
-				this.handleErrorMsg(oldVal, newVal);
+				this.handleErrorMsg(newVal);
 				break;
 			default:
 				break;

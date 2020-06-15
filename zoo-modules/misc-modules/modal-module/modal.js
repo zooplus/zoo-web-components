@@ -129,6 +129,7 @@ class Modal extends HTMLElement {
 		this.handleText(this.headertext, headertext);
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (attrName == 'headertext') this.handleText(newVal);
 	}
 	handleText(newVal) {

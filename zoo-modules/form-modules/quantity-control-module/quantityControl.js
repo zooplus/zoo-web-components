@@ -158,6 +158,7 @@ class QuantityControl extends AbstractControl {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (QuantityControl.observedAttributes.includes(attrName)) {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {

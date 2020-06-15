@@ -108,6 +108,7 @@ class Toast extends HTMLElement {
 		this.setAttribute('timeout', timeout);
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (attrName == 'text') this.handleText(newVal);
 	}
 	connectedCallback() {

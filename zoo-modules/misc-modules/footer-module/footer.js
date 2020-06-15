@@ -51,6 +51,7 @@ class Footer extends HTMLElement {
 		this.shadowRoot.querySelector('div').innerHTML = `© ${newVal} ${new Date().getFullYear()}`;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (attrName == 'copyright') this.handleCopyright(newVal);
 	}
 }

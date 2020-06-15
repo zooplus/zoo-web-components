@@ -113,6 +113,7 @@ class Input extends AbstractControl {
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (Input.observedAttributes.includes(attrName)) {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {

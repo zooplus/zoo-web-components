@@ -34,18 +34,13 @@ class Select extends AbstractControl {
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (Select.observedAttributes.includes(attrName)) {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {
 				fn(newVal);
-			} else {
-				switch (attrName) {
-					case 'loading': 
-						this.handleLoading(newVal);
-						break;
-					default:
-						break;
-				}
+			} else if (attrName == 'loading') {
+				this.handleLoading(newVal);
 			}
 		}
 	}

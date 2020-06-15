@@ -195,19 +195,20 @@ class Grid extends HTMLElement {
 		}
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'resizable' && oldVal !== newVal && this.hasAttribute('resizable')) {
+		if (oldVal == newVal) return;
+		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
 			this.handleResizableHeaders();
 		}
-		if (attrName == 'reorderable' && oldVal !== newVal && this.hasAttribute('reorderable')) {
+		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.handleDraggableHeaders();
 		}
-		if (attrName == 'maxpages' && oldVal !== newVal) {
+		if (attrName == 'maxpages') {
 			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
 			if (paginator) {
 				paginator.maxpages = newVal;
 			}
 		}
-		if (attrName == 'currentpage' && oldVal !== newVal) {
+		if (attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
 			if (paginator) {
 				paginator.currentpage = newVal;

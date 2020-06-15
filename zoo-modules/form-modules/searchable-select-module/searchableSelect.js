@@ -265,6 +265,7 @@ class SearchableSelect extends AbstractControl {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (SearchableSelect.observedAttributes.includes(attrName)) {
 			if (attrName == 'loading') {
 				this.handleLoading(newVal);

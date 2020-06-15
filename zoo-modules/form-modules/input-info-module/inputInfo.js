@@ -90,6 +90,7 @@ class InputInfo extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		switch(attrName) {
 			case 'infotext':
 				this.handleInfo(newVal);

@@ -71,7 +71,6 @@ class Checkbox extends AbstractControl {
 			position: absolute;
 			margin: 1px;
 		}
-	
 		.clicked .check {
 			display: flex;
 			fill: var(--primary-mid, #3C9700);
@@ -79,20 +78,17 @@ class Checkbox extends AbstractControl {
 		:host([disabled]) .check {
 			fill: #767676;
 		}
-	
 		:host([invalid]) .check {
 			fill: var(--warning-mid, #ED1C24);
 		}
 		:host([invalid]) ::slotted(input[type="checkbox"]), :host([invalid]) ::slotted(input[type="checkbox"]:checked) {
 			border-color: var(--warning-mid, #ED1C24);
 		}
-	
 		::slotted(label) {
 			display: flex;
 			align-items: center;
 			cursor: pointer;
 		}
-	
 		:host([disabled]) .checkbox, :host([disabled]) ::slotted(label) {
 			cursor: not-allowed;
 		}
@@ -203,21 +199,14 @@ class Checkbox extends AbstractControl {
 
 	// Fires when an attribute was added, removed, or updated
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		switch(attrName) {
-			case 'labeltext':
-				this.handleLabel(newVal);
-				break;
-			case 'infotext':
-				this.handleInfo(newVal);
-				break;
-			case 'invalid':
-				this.handleInvalid(newVal);
-				break;
-			case 'inputerrormsg':
-				this.handleErrorMsg(newVal);
-				break;
-			default:
-				break;
+		if (oldVal == newVal) return;
+		if (attrName == 'labeltext') {
+			this.handleLabel(newVal);
+		} else if (Checkbox.observedAttributes.includes(attrName)) {
+			const fn = this.handlersMap.get(attrName);
+			if (fn) {
+				fn(newVal);
+			}
 		}
 	}
 }

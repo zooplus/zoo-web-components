@@ -39,6 +39,7 @@ class InputLabel extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if(attrName == 'labeltext') this.handleLabel(newVal);
 	}
 }

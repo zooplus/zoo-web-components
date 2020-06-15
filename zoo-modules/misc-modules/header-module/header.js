@@ -61,6 +61,7 @@ class Header extends HTMLElement {
 		this.shadowRoot.querySelector('h2').innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (attrName == 'headertext') this.handleHeaderText(newVal);
 	}
 }

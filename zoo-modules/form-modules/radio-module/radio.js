@@ -11,6 +11,7 @@ class Radio extends AbstractControl {
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (Radio.observedAttributes.includes(attrName)) {
 			const fn = this.handlersMap.get(attrName);
 			if (fn) {

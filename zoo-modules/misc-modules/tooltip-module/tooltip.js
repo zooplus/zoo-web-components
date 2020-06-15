@@ -120,6 +120,7 @@ class Tooltip extends HTMLElement {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
 		if (attrName == 'text') this.handleText(newVal);
 	}
 }

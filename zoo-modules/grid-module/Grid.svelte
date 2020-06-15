@@ -16,7 +16,7 @@
 	</slot>
 </div>
 
-<style type='text/scss'>
+<style>
 	:host {
 		contain: layout;
 	}
@@ -64,16 +64,14 @@
 		line-height: 20px;
 	}
 
-	:host([resizable]) {
-		.header-row, ::slotted(*[slot="row"]) {
-			display: flex;
-		}
+	:host([resizable]) .header-row, ::slotted(*[slot="row"]) {
+		display: flex;
+	}
 
-		::slotted(*[slot="headercell"]) {
-			overflow: auto;
-			resize: horizontal;
-			height: inherit;
-		}
+	:host([resizable]) ::slotted(*[slot="headercell"]) {
+		overflow: auto;
+		resize: horizontal;
+		height: inherit;
 	}
 
 	:host(.dragging) ::slotted(*[ondrop]) {

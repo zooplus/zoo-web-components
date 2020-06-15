@@ -22,7 +22,6 @@
 		"concurrently": "^5.2.0",
 		"lit-html": "^1.2.1",
 		"mocha": "^8.0.1",
-		"node-sass": "^4.14.1",
 		"puppeteer": "^3.3.0",
 		"rollup": "^2.16.0",
 		"rollup-plugin-svelte": "^5.2.2",

@@ -1,13 +1,11 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
-import sveltePreprocess from './svelte-preprocess';
 import { terser } from 'rollup-plugin-terser';
 
 export default [
 	{
 		plugins: [
 			svelte({
-				preprocess: sveltePreprocess,
 				customElement: true
 			}),
 			resolve(),

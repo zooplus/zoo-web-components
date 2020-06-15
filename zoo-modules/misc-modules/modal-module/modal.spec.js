@@ -9,7 +9,7 @@ describe('Zoo modal', function() {
 				const modalBox = modal.shadowRoot.querySelector('.box');
 
 				return {
-					modalHeadingText: modalBox.querySelector('.header-text').innerHTML
+					modalHeadingText: modalBox.querySelector('span').innerHTML
 				};
 			});
 			expect(modalAttrs.modalHeadingText).equal('header-text');

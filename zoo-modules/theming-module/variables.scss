@@ -1,39 +1,9 @@
 // primary
 $primary-ultralight: #EBF4E5;
-$primary-light: #66B100;
 $primary-mid: #3C9700;
-$primary-dark: #286400;
-// secondary
-$secondary-ultralight: #FFF0E7;
-$secondary-light: #FF8800;
-$secondary-mid: #FF6200;
-$secondary-dark: #CC4E00;
-// info
-$info-ultralight: #ECF5FA;
-$info-mid: #459FD0;
 // warning
-$warning-ultralight: #FDE8E9;
 $warning-mid: #ED1C24;
 $warning-dark: #BD161C;
 
-// font-sizes
-$h1-size: 32px;
-$h2-size: 24px;
-$h3-size: 18px;
-$h4-size: 16px;
-$h1-line-height: 38px;
-$h2-line-height: 29px;
-$h3-line-height: 22px;
-$h4-line-height: 22px;
-
 // shadows
 $box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
-$box-shadow-strong: 0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
-
-// container boxes
-$stroked-box-warning: 1px solid var(--warning-mid, #{$warning-mid});
-$stroked-box-warning-bold: 2px solid var(--warning-mid, #{$warning-mid});
-$stroked-box-primary: 1px solid var(--primary-mid, #{$primary-mid});
-$stroked-box-primary-bold: 2px solid var(--primary-mid, #{$primary-mid});
-$stroked-box-secondary: 1px solid var(--secondary-mid, #{$secondary-mid});
-$stroked-box-secondary-bold: 2px solid var(--secondary-mid, #{$secondary-mid});

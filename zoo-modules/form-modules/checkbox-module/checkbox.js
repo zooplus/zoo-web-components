@@ -74,7 +74,7 @@ class Checkbox extends AbstractControl {
 	
 		.clicked .check {
 			display: flex;
-			fill: var(--primary-mid, #3C9700;
+			fill: var(--primary-mid, #3C9700);
 		}
 		:host([disabled]) .check {
 			fill: #767676;
@@ -172,6 +172,7 @@ class Checkbox extends AbstractControl {
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = new MutationObserver(this.mutationCallback.bind(this));
 			checkbox = checkboxSlot.assignedNodes()[0];
+			if (checkbox.disabled) this.shadowRoot.host.setAttribute('disabled', '');
 			this.observer.disconnect();
 			this.observer.observe(checkbox, config);
 			this.handleCheckboxClick(checkbox, box);

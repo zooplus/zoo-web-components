@@ -59,7 +59,7 @@ class Button extends HTMLElement {
 		
 		:host([type="hollow"]) ::slotted(button) {
 			border: 2px solid var(--primary-mid, #3C9700);
-			color: var(--primary-mid, #3C9700;
+			color: var(--primary-mid, #3C9700);
 			background: transparent;
 		}
 		

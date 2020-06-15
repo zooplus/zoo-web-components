@@ -18,7 +18,6 @@ export default {
 export const zooInput = () => {
 	let invalid = boolean('invalid', false, attributesGroupId);
 	let label = text('label', 'Label', attributesGroupId);
-	let labelposition = select('labelposition', ['top', 'left'], 'top', attributesGroupId);
 	let linktext = text('linktext', 'Components', attributesGroupId);
 	let linkhref = text('linkhref', 'https://zooplus.github.io/zoo-web-components/', attributesGroupId);
 	let linktarget = text('linktarget', 'about:blank', attributesGroupId);
@@ -30,7 +29,7 @@ export const zooInput = () => {
 	let primaryDark = color('--primary-dark', '#286400', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 	return html`<zoo-input style="--primary-mid: ${primaryMid}; --warning-mid: ${warningMid}; --primary-light: ${primaryLight}; --primary-dark: ${primaryDark}"
-			?invalid="${invalid}" labelposition="${labelposition}" infotext="${infotext}"
+			?invalid="${invalid}" infotext="${infotext}"
 			linktext="${linktext}" linkhref="${linkhref}" linktarget="${linktarget}" inputerrormsg="${inputerrormsg}">
 		<input id="text-input" type="text" slot="inputelement"/>
 		<label for="text-input" slot="inputlabel">${label}</label>

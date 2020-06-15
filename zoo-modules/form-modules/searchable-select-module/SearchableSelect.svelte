@@ -1,7 +1,7 @@
 <svelte:options tag="zoo-searchable-select"/>
 <div class="box" class:error="{!valid}" class:hidden="{hidden}" class:mobile="{_isMobile}">
 	{#if !_isMobile}
-		<zoo-input {labelposition} {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
+		<zoo-input {inputerrormsg} {linktext} {linkhref} {linktarget} {infotext}>
 			<label for="input" slot="inputlabel">{labeltext}</label>
 			<input id="input" disabled={_selectElement && _selectElement.disabled} slot="inputelement" type="text" {placeholder} bind:this={searchableInput} on:input="{() => handleSearchChange()}"/>
 			{#if _valueSelected}
@@ -18,7 +18,7 @@
 		</zoo-input>
 		<slot bind:this={_selectSlot} name="selectelement"></slot>
 	{:else}
-		<zoo-select {labelposition} {linktext} {linkhref} {linktarget} {labeltext} {inputerrormsg} {infotext} {valid}>
+		<zoo-select {linktext} {linkhref} {linktarget} {labeltext} {inputerrormsg} {infotext} {valid}>
 			<slot bind:this={_selectSlot} name="selectelement" slot="selectelement"></slot>
 		</zoo-select>
 	{/if}
@@ -124,8 +124,6 @@
 
 <script>
 	import { onMount } from 'svelte';
-
-	export let labelposition = 'top';
 	export let labeltext = '';
 	export let linktext = '';
 	export let linkhref = '';

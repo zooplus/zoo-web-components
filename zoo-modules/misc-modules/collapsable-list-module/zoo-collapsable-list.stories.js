@@ -1,6 +1,8 @@
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { html } from 'lit-html';
 import mdx from './zoo-collapsable-list.mdx';
+import './collapsableList';
+import './collapsableListItem';
 
 export default {
 	title: 'Docs/Collapsable list',

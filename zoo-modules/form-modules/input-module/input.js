@@ -109,13 +109,7 @@ class Input extends AbstractControl {
 		<zoo-input-info></zoo-input-info>`;
 	}
 	static get observedAttributes() {
-		return ['labelposition', 'labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid'];
-	}
-	get labelposition() {
-		return this.getAttribute('labelposition');
-	}
-	set labelposition(position) {
-		this.setAttribute('labelposition', position);
+		return ['labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid'];
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {

@@ -1,4 +1,3 @@
-export * from '../zoo-modules/form-modules/abstractControl.js';
 export * from '../zoo-modules/form-modules/input-info-module/inputInfo.js';
 export * from '../zoo-modules/form-modules/input-label-module/inputLabel.js';
 export * from '../zoo-modules/form-modules/input-module/input.js';

@@ -19,7 +19,6 @@ export const zooSearchableSelect = () => {
 	let loading = boolean('loading', false, attributesGroupId);
 	let multiple = boolean('multiple', false, attributesGroupId);
 	let labeltext = text('labeltext', 'Label', attributesGroupId);
-	let labelposition = select('labelposition', ['top', 'left'], 'top', attributesGroupId);
 	let linktext = text('linktext', 'Components', attributesGroupId);
 	let linkhref = text('linkhref', 'https://zooplus.github.io/zoo-web-components/', attributesGroupId);
 	let linktarget = text('linktarget', 'about:blank', attributesGroupId);
@@ -30,7 +29,7 @@ export const zooSearchableSelect = () => {
 	let primaryDark = color('--primary-dark', '#286400', cssVariablesGroupId);
 	let warningMid = color('--warning-mid', '#ED1C24', cssVariablesGroupId);
 	return html`<zoo-searchable-select style="--primary-mid: ${primaryMid}; --warning-mid: ${warningMid}; --primary-light: ${primaryLight}; --primary-dark: ${primaryDark};"
-			valid="${valid ? true : ''}" labelposition="${labelposition}" infotext="${infotext}" loading="${loading ? true : ''}"
+			valid="${valid ? true : ''}" infotext="${infotext}" loading="${loading ? true : ''}"
 			linktext="${linktext}" linkhref="${linkhref}" linktarget="${linktarget}" inputerrormsg="${inputerrormsg}" labeltext=${labeltext}>
 		<select id="zoo-select" slot="selectelement" ?multiple="${multiple}">
 			<option value="value1">Dog</option>

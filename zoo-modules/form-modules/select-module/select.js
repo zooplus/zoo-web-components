@@ -206,6 +206,9 @@ class Select extends AbstractControl {
 		:host([multiple]) svg {
 			display: none;
 		}
+		:host([labelposition="left"]) {
+			grid-gap: 0 3px;
+		}
 		:host([labelposition="left"]) slot[name="selectlabel"] {
 			grid-row: 1;
 			grid-column: 1;

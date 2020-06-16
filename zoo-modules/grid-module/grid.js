@@ -240,7 +240,7 @@ class Grid extends HTMLElement {
 					}
 				}
 			});
-		}, 0));
+		}, 10));
 	}
 	debounce(func, wait) {
 		let timeout;

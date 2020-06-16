@@ -82,14 +82,14 @@ class ToggleSwitch extends AbstractControl {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			this.shadowRoot.host.addEventListener('keypress', e => {
-				inputSlot.assignedSlot()[0].click();
+				inputSlot.assignedNodes()[0].click();
 			});
 		});
 		this.shadowRoot.querySelector('div').addEventListener('click', e => {
-			if (e.target !== input) {
+			if (e.target !== inputSlot.assignedNodes()[0]) {
 				e.preventDefault();
 				e.stopPropagation();
-				input.click();
+				inputSlot.assignedNodes()[0].click();
 			}
 		});
 	}

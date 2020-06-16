@@ -20,11 +20,15 @@ class Select extends AbstractControl {
 		return this.getAttribute('loading');
 	}
 	set loading(loading) {
-		this.setAttribute('loading', loading);
+		if (loading) {
+			this.setAttribute('loading', loading);
+		} else {
+			this.removeAttribute('loading');
+		}
 		this.handleLoading(this.loading, loading);
 	}
 	handleLoading(newVal) {
-		if (newVal) {
+		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
 			this.shadowRoot.querySelector('div').appendChild(this.loader);
 		} else {
@@ -205,7 +209,7 @@ class Select extends AbstractControl {
 			grid-gap: 0 3px;
 		}
 		:host([labelposition="left"]) slot[name="selectlabel"] {
-			grid-row: 1;
+			grid-row: 2;
 			grid-column: 1;
 			height: 100%;
 			display: flex;
@@ -213,7 +217,10 @@ class Select extends AbstractControl {
 		}
 		:host([labelposition="left"]) div {
 			grid-column: 2;
-			grid-row: 1;
+			grid-row: 2;
+		}
+		:host([labelposition="left"]) a {
+			grid-column: span 2;
 		}
 		${this.getLinkStyles()}
 		</style>`;

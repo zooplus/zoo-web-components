@@ -113,8 +113,8 @@ class Toast extends HTMLElement {
 	}
 	connectedCallback() {
 		this.hidden = true;
-		this.timeout = this.timeout || 3;
-		this.type = this.info || 'info';
+		this.timeout = this.getAttribute('timeout') || 3;
+		this.type = this.getAttribute('type') || 'info';
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.close());
 	}
 	show() {

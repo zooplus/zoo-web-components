@@ -53,7 +53,7 @@ export default class AbstractControl extends HTMLElement {
 	handleInvalid(newVal, target) {
 		target = target || 'zoo-input-info';
 		const el = this.shadowRoot.querySelector(target);
-		if (this.invalid) {
+		if (this.hasAttribute('invalid')) {
 			el.setAttribute('invalid', '');
 		} else {
 			el.removeAttribute('invalid');

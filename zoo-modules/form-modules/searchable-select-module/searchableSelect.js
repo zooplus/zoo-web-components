@@ -66,11 +66,15 @@ class SearchableSelect extends AbstractControl {
 		return this.getAttribute('loading');
 	}
 	set loading(loading) {
-		this.setAttribute('loading', loading);
+		if (loading) {
+			this.setAttribute('loading', loading);
+		} else {
+			this.removeAttribute('loading');
+		}
 		this.handleLoading(loading);
 	}
 	handleLoading(newVal) {
-		if (newVal) {
+		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
 			this.loader.slot = 'inputelement';
 			const input = this.shadowRoot.querySelector('zoo-input')

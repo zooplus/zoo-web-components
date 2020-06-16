@@ -2,16 +2,17 @@ import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs'
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-searchable-select.mdx';
 import { html } from 'lit-html';
+import './searchableSelect';
 
 export default {
-  title: 'Docs/Searchable select',
-  component: 'zoo-searchable-select',
-  decorators: [withKnobs],
-  parameters: {
-	  docs: {
-		  page: mdx,
-	  },
-  }
+	title: 'Docs/Searchable select',
+	component: 'zoo-searchable-select',
+	decorators: [withKnobs],
+	parameters: {
+		docs: {
+			page: mdx,
+		},
+	}
 };
 
 export const zooSearchableSelect = () => {

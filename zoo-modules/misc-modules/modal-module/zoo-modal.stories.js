@@ -37,7 +37,7 @@ export const zooModal = () => {
 				</zoo-checkbox>
 				<br>
 				<zoo-button style="margin: 0 auto" type="hollow">
-					<span>Add to cart</span>
+					<button type="button">Add to cart</button>
 				</zoo-button>
 			</div>
 		</zoo-modal>`

@@ -6,7 +6,7 @@
 # Intro
  - Set of web-components which can be used in any modern UI framework (or without any).
  - The web-component set implements Z+ shop style guide.
- - Built with [SvelteJS](https://github.com/sveltejs)
+ - Built with [Vanilla JS](http://vanilla-js.com/)
 
 ## Installation
 To use this library install it by running:
@@ -17,8 +17,6 @@ and import the library in your main module/component:
 ```
 import 'node_modules/@zooplus/zoo-web-components/dist/zoo-components-esm.js';
 ```      
-Or add the following line to your `index.html`:      
-`<script src="https://cdn.jsdelivr.net/npm/@zooplus/zoo-web-components@latest/dist/zoo-components-iife.min.js"></script>`
 
 ## Examples integrating with various frameworks
 + [VueJS](https://github.com/GeorgeTailor/vue-wc-integration)

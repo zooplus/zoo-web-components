@@ -1,3 +1,22 @@
+# 7.0.0
+
+This release concentrates on further performance improvements and alignment with current web standards.
+Additionally:
+- bundle size was reduced
+- initialization time was reduced
+- runtime performance improvements
+
+** BREAKING CHANGES **
+All components that relied on boolean properties now act according to HTML spec. Meaning that when attribute is set on an element its value is treated as true. For false value -> remove the attribute completely.
+
+`valid` attribute is no longer supported, use `invalid` instead.
+
+`zoo-button` - no longer encapsulates `<button>` element inside, instead the client should supply its own button via slot.
+`zoo-checkbox`, `zoo-input`, `zoo-quantity-control`, `zoo-radio`, `zoo-searchable-select`, `zoo-select` - replace `valid` attribute with `invalid`.
+`zoo-link` - no longer encapsulates `<a>` element inside, instead the client should supply its own anchor via slot.
+
+`IIFE` version of this package will no longer be released starting with version 7.
+
 # 6.2.0
 Three new components:
 `zoo-toggle-switch` - toggler component;

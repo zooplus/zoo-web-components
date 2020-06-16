@@ -1,16 +1,14 @@
 {
 	"name": "@zooplus/zoo-web-components",
 	"version": "6.2.0",
-	"main": "dist/zoo-components-iife.js",
+	"main": "dist/zoo-components-esm.js",
 	"files": [
-		"dist/zoo-components-esm.js",
-		"dist/zoo-components-iife.js"
+		"dist/zoo-components-esm.js"
 	],
 	"module": "dist/zoo-components-esm.js",
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
-		"@rollup/plugin-node-resolve": "^8.0.1",
 		"@storybook/addon-docs": "^5.3.19",
 		"@storybook/addon-knobs": "^5.3.19",
 		"@storybook/storybook-deployer": "^2.8.6",
@@ -22,16 +20,13 @@
 		"concurrently": "^5.2.0",
 		"lit-html": "^1.2.1",
 		"mocha": "^8.0.1",
-		"node-sass": "^4.14.1",
 		"puppeteer": "^3.3.0",
 		"rollup": "^2.16.0",
-		"rollup-plugin-svelte": "^5.2.2",
 		"rollup-plugin-terser": "^6.1.0",
 		"serve": "^11.3.2",
 		"stylelint": "^13.6.0",
 		"stylelint-a11y": "^1.2.3",
-		"stylelint-high-performance-animation": "^1.5.1",
-		"svelte": "3.23.2"
+		"stylelint-high-performance-animation": "^1.5.1"
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
@@ -63,8 +58,5 @@
 	"bugs": {
 		"url": "https://github.com/zooplus/zoo-web-components/issues"
 	},
-	"homepage": "https://github.com/zooplus/zoo-web-components#readme",
-	"dependencies": {
-		"construct-style-sheets-polyfill": "^2.3.5"
-	}
+	"homepage": "https://github.com/zooplus/zoo-web-components#readme"
 }

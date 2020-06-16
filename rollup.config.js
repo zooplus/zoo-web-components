@@ -1,17 +1,14 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import sveltePreprocess from './svelte-preprocess';
 import { terser } from 'rollup-plugin-terser';
+import removeLinebreaks from './removeLineBreaks';
 
 export default [
 	{
 		plugins: [
-			svelte({
-				preprocess: sveltePreprocess,
-				customElement: true
+			removeLinebreaks(),
+			terser({
+				module: true,
+				keep_classnames: true
 			}),
-			resolve(),
-			terser()
 		],
 		input: 'src/components.js',
 		output: {

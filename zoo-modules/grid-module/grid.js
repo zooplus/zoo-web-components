@@ -44,7 +44,7 @@ class Grid extends HTMLElement {
 			font-size: 14px;
 			line-height: 20px;
 		}
-		:host([resizable]) .header-row, :host([resizable]) ::slotted(*[slot="row"]) {
+		:host([resizable-ready]) .header-row, :host([resizable-ready]) ::slotted(*[slot="row"]) {
 			display: flex;
 		}
 		:host([resizable]) ::slotted(*[slot="headercell"]) {
@@ -162,6 +162,11 @@ class Grid extends HTMLElement {
 			this.handleHeaders(headers);
 			if (this.hasAttribute('resizable')) {
 				this.handleResizableHeaders();
+				setTimeout(() => {
+					this.shadowRoot.host.setAttribute('resizable-ready', true);
+				});
+			} else {
+				this.shadowRoot.host.removeAttribute('resizable-ready');
 			}
 			if (this.hasAttribute('reorderable')) {
 				this.handleDraggableHeaders();
@@ -197,7 +202,14 @@ class Grid extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-			this.handleResizableHeaders();
+			if (this.hasAttribute('resizable')) {
+				this.handleResizableHeaders();
+				setTimeout(() => {
+					this.shadowRoot.host.setAttribute('resizable-ready', true);
+				});
+			} else {
+				this.shadowRoot.host.removeAttribute('resizable-ready');
+			}
 		}
 		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.handleDraggableHeaders();

@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "7.0.0-beta1",
+	"version": "7.0.0-beta2",
 	"main": "dist/zoo-components-esm.js",
 	"files": [
 		"dist/zoo-components-esm.js"
@@ -23,21 +23,16 @@
 		"puppeteer": "^3.3.0",
 		"rollup": "^2.16.0",
 		"rollup-plugin-terser": "^6.1.0",
-		"serve": "^11.3.2",
-		"stylelint": "^13.6.0",
-		"stylelint-a11y": "^1.2.3",
-		"stylelint-high-performance-animation": "^1.5.1"
+		"serve": "^11.3.2"
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
 		"prebuild": "npm test",
 		"build": "rollup -c 'rollup.config.release.js'",
-		"postbuild": "npm run stylelint",
 		"pretest": "rollup -c 'rollup.config.test.js'",
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
 		"prepublishOnly": "npm run build",
-		"stylelint": "stylelint \"zoo-modules/**/*.svelte\"",
 		"storybook": "start-storybook -p 6006",
 		"deploy-storybook": "storybook-to-ghpages --remote=docs -o .out"
 	},

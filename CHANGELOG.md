@@ -14,6 +14,7 @@ All components that relied on boolean properties now act according to HTML spec.
 `zoo-button` - no longer encapsulates `<button>` element inside, instead the client should supply its own button via slot.
 `zoo-checkbox`, `zoo-input`, `zoo-quantity-control`, `zoo-radio`, `zoo-searchable-select`, `zoo-select` - replace `valid` attribute with `invalid`.
 `zoo-link` - no longer encapsulates `<a>` element inside, instead the client should supply its own anchor via slot.
+`zoo-grid` - `loading` attribute must follow HTML boolean attribute spec.
 
 `IIFE` version of this package will no longer be released starting with version 7.
 

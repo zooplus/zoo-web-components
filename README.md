@@ -1,7 +1,7 @@
 |                               **Dependencies**                            |               **Size**              | **Downloads**  |
 | :-----------------------------------------------------------------------: |:-----------------------------------:|:--:|
 | ![David](https://img.shields.io/david/dev/zooplus/zoo-web-components.svg) | ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@zooplus/zoo-web-components.svg)   | ![npm](https://img.shields.io/npm/dt/@zooplus/zoo-web-components.svg)
-| ![David](https://img.shields.io/david/zooplus/zoo-web-components.svg)     | ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@zooplus/zoo-web-components.svg)| [![](https://data.jsdelivr.com/v1/package/npm/@zooplus/zoo-web-components/badge)](https://www.jsdelivr.com/package/npm/@zooplus/zoo-web-components)
+| ![David](https://img.shields.io/david/zooplus/zoo-web-components.svg)     | ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@zooplus/zoo-web-components.svg)| 
 
 # Intro
  - Set of web-components which can be used in any modern UI framework (or without any).
@@ -13,7 +13,7 @@ To use this library install it by running:
 ```
 npm i @zooplus/zoo-web-components --save
 ```
-and import the library in your main module/component:
+and import the library in your main module/component/index.html:
 ```
 import 'node_modules/@zooplus/zoo-web-components/dist/zoo-components-esm.js';
 ```      

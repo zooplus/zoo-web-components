@@ -12,7 +12,7 @@ class Header extends HTMLElement {
 			display: flex;
 			align-items: center;
 			background: #FFFFFF;
-			padding: 0 0 0 25px;
+			padding: 0 25px;
 			height: 70px;
 		}
 	

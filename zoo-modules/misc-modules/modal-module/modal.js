@@ -66,6 +66,9 @@ class Modal extends HTMLElement {
 
 		.close {
 			cursor: pointer;
+			background: transparent;
+			border: 0;
+			padding: 0;
 			margin: 30px 0 30px auto;
 		}
 		.close path {
@@ -107,9 +110,9 @@ class Modal extends HTMLElement {
 			<div class="dialog-content">
 				<div class="heading">
 					<span></span>
-					<div class="close">
+					<button type="button" class="close">
 						<svg width="24" height="24" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>
-					</div>
+					</button>
 				</div>
 				<div class="content">
 					<slot></slot>

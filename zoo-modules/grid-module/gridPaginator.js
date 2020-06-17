@@ -11,7 +11,7 @@ class GridHeader extends HTMLElement {
 		}
 	
 		.box {
-			display: flex;
+			display: none;
 			font-size: 14px;
 			width: max-content;
 			right: 10px;
@@ -19,8 +19,8 @@ class GridHeader extends HTMLElement {
 			position: sticky;
 		}
 
-		:host(:not[currentpage]) .box {
-			display: none;
+		:host([currentpage]) .box {
+			display: flex;
 		}
 	
 		.paging {

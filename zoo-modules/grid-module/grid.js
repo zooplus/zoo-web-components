@@ -96,16 +96,14 @@ class Grid extends HTMLElement {
 			bottom: 0;
 			background: #FFFFFF;
 		}
-		zoo-spinner {
-			display: none;
-		}
-		:host([loading]) zoo-spinner, :host([loading]) .loading-shade {
-			disaply: flex;
+		:host([loading]) .loading-shade {
+			display: flex;
 		}
 		</style>
 		<div class="box">
-			<div class="loading-shade"></div>
-			<zoo-spinner></zoo-spinner>
+			<div class="loading-shade">
+				<zoo-spinner></zoo-spinner>
+			</div>
 			<div class="header-row">
 				<slot name="headercell"></slot>
 			</div>

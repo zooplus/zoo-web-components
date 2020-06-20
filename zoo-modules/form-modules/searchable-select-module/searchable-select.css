@@ -1,0 +1,98 @@
+:host, .box {
+	position: relative;
+}
+
+.close {
+	display: none;
+	position: absolute;
+	top: 15px;
+	right: 14px;
+	cursor: pointer;
+	background: white;
+	z-index: 1;
+}
+
+.box:hover zoo-tooltip, .box:focus zoo-tooltip {
+	display: block;
+}
+
+zoo-tooltip {
+	display: none;
+}
+zoo-tooltip:hover, zoo-tooltip:focus {
+	display: block;
+}
+
+::slotted(select) {
+	-webkit-appearance: none;
+	-moz-appearance: none;	
+	width: 100%;
+	background: white;
+	padding: 13px 15px;
+	border: 1px solid #767676;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top: none;
+	position: absolute;
+	z-index: 2;
+	top: 60px;
+	font-size: 14px;
+}
+
+.box.hidden ::slotted(select) {
+	display: none;
+}
+
+.box input {
+	padding: 13px 25px 13px 15px;
+}
+
+:host([invalid]) input {
+	padding: 12px 24px 12px 14px;
+	border: 2px solid var(--warning-mid, #ED1C24);
+}
+
+.box:focus-within ::slotted(select) {
+	border: 2px solid #555555;
+	border-top: none;
+	padding: 12px 14px;
+}
+
+.box:focus-within input {
+	border: 2px solid #555555;
+	padding: 12px 24px 12px 14px;
+}
+
+:host([invalid]) ::slotted(select) {
+	border: 2px solid var(--warning-mid, #ED1C24);
+	border-top: none;
+	padding: 12px 14px;
+}
+
+::slotted(select:disabled) {
+	border: 1px solid #E6E6E6;
+	background-color: #F2F3F4;
+	color: #767676;
+}
+
+::slotted(select:disabled:hover) {
+	cursor: not-allowed;
+}
+:host([valueselected]) .close {
+	display: flex;
+}
+
+zoo-input {
+	display: initial;
+}
+
+zoo-select {
+	display: none;
+}
+
+:host([mobile]) zoo-input {
+	display: none;
+}
+:host([mobile]) zoo-select {
+	display: initial;
+}

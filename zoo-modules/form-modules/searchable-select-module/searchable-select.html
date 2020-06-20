@@ -1,0 +1,13 @@
+<div class="box">
+	<zoo-input>
+		<label for="input" slot="inputlabel"></label>
+		<input id="input" slot="inputelement" type="text"/>
+		<svg slot="inputelement" class="close" width="20" height="20" viewBox="0 0 24 24">
+			<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
+		</svg>
+	</zoo-input>
+	<slot name="selectelement"></slot>
+	<zoo-select mobile>
+		<slot name="selectelement" slot="selectelement"></slot>
+	</zoo-select>
+</div>

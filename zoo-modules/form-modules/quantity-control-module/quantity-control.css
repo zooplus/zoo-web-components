@@ -1,0 +1,69 @@
+:host {
+	--input-length: 1ch;
+}
+
+svg line {
+	stroke-width: 1.5;
+	stroke: #FFFFFF;
+}
+
+div {
+	height: 36px;
+	display: flex;
+}
+
+button:first-child {
+	border-radius: 5px 0 0 5px;
+}
+
+button:last-child {
+	border-radius: 0 5px 5px 0;
+}
+
+button {
+	border-width: 0;
+	min-width: 30px;
+	background: var(--primary-mid, #3C9700);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
+	cursor: pointer;
+}
+
+button:disabled {
+	background: #F2F3F4;
+	cursor: not-allowed;
+}
+button:disabled svg line {
+	stroke: #767676;
+}
+
+::slotted(input) {
+	width: var(--input-length);
+	min-width: 30px;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0;
+	border: none;
+	color: #555555;
+	outline: none;
+	box-sizing: border-box;
+	-moz-appearance: textfield;
+	background: #FFFFFF;
+	text-align: center;
+}
+
+zoo-input-info {
+	display: block;
+	margin-top: 2px;
+}
+
+::slotted(label) {
+	align-self: self-start;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 800;
+	color: #555555;
+	text-align: left;
+}

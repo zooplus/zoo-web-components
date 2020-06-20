@@ -33,7 +33,7 @@
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
 		"prepublishOnly": "npm run build",
-		"storybook": "start-storybook -p 6006",
+		"storybook": "concurrently -k \"rollup -c -w\" \"start-storybook -p 6006\"",
 		"deploy-storybook": "storybook-to-ghpages --remote=docs -o .out"
 	},
 	"repository": {

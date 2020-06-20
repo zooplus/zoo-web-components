@@ -1,1 +1,1 @@
-import './preloader';
+import './dist/preloader.compiled';

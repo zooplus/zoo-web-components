@@ -1,10 +1,10 @@
 import { terser } from 'rollup-plugin-terser';
-import removeLinebreaks from './removeLineBreaks';
+import injectInnerHTML from './injectInnerHTML';
 
 export default [
 	{
 		plugins: [
-			removeLinebreaks(),
+			injectInnerHTML(),
 			terser({
 				module: true,
 				keep_classnames: true

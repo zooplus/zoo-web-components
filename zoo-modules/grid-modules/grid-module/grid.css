@@ -1,0 +1,95 @@
+:host {
+	contain: layout;
+}
+.box {
+	position: relative;
+	max-height: inherit;
+	max-width: inherit;
+	min-height: inherit;
+	min-width: inherit;
+}
+.loading-shade {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 56px;
+	z-index: 9998;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.15);
+	pointer-events: none;
+}
+.header-row {
+	min-width: inherit;
+	font-weight: 600;
+	color: #555555;
+	box-sizing: border-box;
+	z-index: 1;
+}
+.header-row, ::slotted(*[slot="row"]) {
+	display: grid;
+	grid-template-columns: var(--grid-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
+	padding: 5px 10px;
+	border-bottom: 1px solid rgba(0,0,0, 0.2);
+	min-height: 50px;
+	font-size: 14px;
+	line-height: 20px;
+}
+:host([resizable-ready]) .header-row, :host([resizable-ready]) ::slotted(*[slot="row"]) {
+	display: flex;
+}
+:host([resizable]) ::slotted(*[slot="headercell"]) {
+	overflow: auto;
+	resize: horizontal;
+	height: inherit;
+}
+:host(.dragging) ::slotted(*[ondrop]) {
+	border-radius: 3px;
+	box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,.1);
+}
+:host(.dragging) ::slotted(.drag-over) {
+	box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,.4);
+}
+::slotted(*[slot="row"]) {
+	overflow: visible;
+	align-items: center;
+	box-sizing: border-box;
+}
+::slotted(*[slot="row"] *[column]) {
+	align-items: center;
+}
+:host([stickyheader]) .header-row {
+	top: 0;
+	position: sticky;
+	background: white;
+}
+::slotted(*[slot="headercell"]) {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+}
+::slotted(*[slot="row"]:nth-child(odd)) {
+	background: #F2F3F4;
+}
+::slotted(*[slot="row"]:hover), ::slotted(*[slot="row"]:focus) {
+	background: #E6E6E6;
+}
+::slotted(*[slot="norecords"]) {
+	color: var(--warning-dark, #BD161C);
+	grid-column: span var(--grid-column-num);
+	text-align: center;
+	padding: 10px 0;
+}
+zoo-grid-paginator {
+	display: grid;
+	position: sticky;
+	grid-column: span var(--grid-column-num);
+	bottom: 0;
+	background: #FFFFFF;
+}
+:host([loading]) .loading-shade {
+	display: flex;
+}

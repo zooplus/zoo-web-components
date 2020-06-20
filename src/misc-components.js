@@ -6,6 +6,6 @@ export * from '../zoo-modules/misc-modules/tooltip-module/tooltip.js';
 export * from '../zoo-modules/misc-modules/link-module/link.js';
 export * from '../zoo-modules/misc-modules/navigation-module/navigation.js';
 export * from '../zoo-modules/misc-modules/toast-module/toast.js';
-export * from '../zoo-modules/misc-modules/collapsable-list-module/collapsableList.js';
-export * from '../zoo-modules/misc-modules/collapsable-list-module/collapsableListItem.js';
+export * from '../zoo-modules/misc-modules/collapsable-list-module/collapsable-list.js';
+export * from '../zoo-modules/misc-modules/collapsable-list-item-module/collapsable-list-item.js';
 export * from '../zoo-modules/misc-modules/spinner-module/spinner.js';

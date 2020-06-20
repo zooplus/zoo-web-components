@@ -1,1 +1,1 @@
-import './inputInfo';
+import './dist/input-info.compiled';

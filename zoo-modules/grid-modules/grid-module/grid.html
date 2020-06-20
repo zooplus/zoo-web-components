@@ -1,0 +1,15 @@
+<div class="box">
+	<div class="loading-shade">
+		<zoo-spinner></zoo-spinner>
+	</div>
+	<div class="header-row">
+		<slot name="headercell"></slot>
+	</div>
+	<slot name="row"></slot>
+	<slot name="norecords"></slot>
+	<slot name="paginator">
+		<zoo-grid-paginator>
+			<slot name="pagesizeselector" slot="pagesizeselector"></slot>
+		</zoo-grid-paginator>
+	</slot>
+</div>

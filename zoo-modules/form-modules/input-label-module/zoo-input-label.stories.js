@@ -1,1 +1,1 @@
-import './inputLabel';
+import './dist/input-label.compiled';

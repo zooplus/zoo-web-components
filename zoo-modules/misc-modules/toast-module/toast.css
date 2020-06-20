@@ -1,0 +1,72 @@
+:host {
+	display: none;
+	top: 20px;
+	right: 20px;
+	position: fixed;
+	z-index: 10001;
+	contain: layout;
+}
+
+div {
+	max-width: 330px;
+	min-height: 50px;
+	box-shadow: 0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+	border-left: 3px solid;
+	display: flex;
+	align-items: center;
+	word-break: break-word;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 15px;
+	transition: transform 0.3s, opacity 0.4s;
+	opacity: 0;
+	transform: translate3d(100%,0,0);
+}
+
+:host([type="info"]) div {
+	background: var(--info-ultralight, #ECF5FA);
+	border-color: var(--info-mid, #459FD0);
+}
+:host([type="info"]) div svg {
+	fill: var(--info-mid, #459FD0);
+}
+
+:host([type="error"]) div {
+	background: var(--warning-ultralight, #FDE8E9);
+	border-color: var(--warning-mid, #ED1C24);
+}
+:host([type="error"]) div svg {
+	fill: var(--warning-mid, #ED1C24);
+}
+
+:host([type="success"]) div {
+	background: var(--primary-ultralight, #EBF4E5);
+	border-color: var(--primary-mid, #3C9700);
+}
+:host([type="success"]) div svg {
+	fill: var(--primary-mid, #3C9700);
+}
+
+span {
+	flex-grow: 1;
+}
+
+svg {
+	padding-right: 10px;
+	min-width: 48px;
+}
+
+.show {
+	opacity: 1;
+	transform: translate3d(0,0,0);
+}
+button {
+	cursor: pointer;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	display: flex;
+}
+button svg {
+	padding: 0;
+}

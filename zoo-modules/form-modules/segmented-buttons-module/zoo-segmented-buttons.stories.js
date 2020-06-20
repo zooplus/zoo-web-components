@@ -1,7 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs';
 import mdx from './zoo-segmented-buttons.mdx';
 import { html } from 'lit-html';
-import './segmentedButtons';
+import './dist/segmented-buttons.compiled';
 
 export default {
 	title: 'Docs/Segmented Buttons',

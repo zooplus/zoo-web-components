@@ -1,0 +1,28 @@
+:host {
+	display: flex;
+	flex-direction: column;
+}
+:host([infotext]) .info, :host([invalid]) .error {
+	display: flex;
+}
+
+.info, .error {
+	padding: 0 2px 2px 0;
+	font-size: 12px;
+	line-height: 16px;
+	color: #555555;
+	display: none;
+	align-items: center;
+}
+
+svg {
+	padding-right: 5px;
+}
+
+.info svg path {
+	fill: var(--info-mid, #459FD0);
+}
+
+.error svg path {
+	fill: var(--warning-mid, #ED1C24);
+}

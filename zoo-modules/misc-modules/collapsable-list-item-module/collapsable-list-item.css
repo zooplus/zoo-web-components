@@ -1,0 +1,50 @@
+:host {
+	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+:host([active]) {
+	border: 1px solid var(--primary-mid, #3C9700);
+	border-radius: 3px;
+}
+
+.header {
+	display: flex;
+	cursor: pointer;
+}
+
+::slotted(*[slot="header"]) {
+	display: inline-flex;
+	color: var(--primary-mid, #3C9700);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: bold;
+	align-items: center;
+	padding: 20px 0;
+}
+
+:host([active]) ::slotted(*[slot="header"]) {
+	color: var(--primary-dark, #286400);
+}
+
+::slotted(*[slot="content"]) {
+	display: none;
+}
+
+:host([active]) ::slotted(*[slot="content"]) {
+	display: initial;
+}
+
+svg {
+	display: inline-flex;
+	margin-left: auto;
+	fill: var(--primary-mid, #3C9700);
+	transition: transform 0.3s;
+	padding: 20px 0;
+}
+
+:host([active]) svg {
+	fill: var(--primary-dark, #286400);
+	transform: rotateX(180deg);
+}

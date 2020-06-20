@@ -1,0 +1,23 @@
+:host {
+	display: flex;
+	height: 46px;
+}
+
+div {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	border: 1px solid;
+	border-radius: 5px;
+	padding: 2px;
+}
+
+::slotted(zoo-button) {
+	display: inline-flex;
+	flex-grow: 1;
+}
+
+::slotted(zoo-button[type="primary"]) {
+	padding: 0 2px;
+}

@@ -1,0 +1,24 @@
+:host {
+	contain: style;
+}
+nav {
+	display: flex;
+	background: linear-gradient(to right, var(--primary-mid, #3C9700), var(--primary-light, #66B100));
+	justify-content: center;
+	padding: 10px 30px;
+	flex-wrap: wrap;
+}
+div {
+	font-size: 12px;
+	line-height: 16px;
+	text-align: left;
+	background: #FFFFFF;
+	color: #555555;
+	padding: 10px 0 10px 30px;
+}
+@media only screen and (max-width: 544px) {
+	div {
+		text-align: center;
+		padding: 10px 0;
+	}
+}

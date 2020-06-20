@@ -2,7 +2,7 @@ import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-checkbox.mdx';
-import './checkbox';
+import './dist/checkbox.compiled';
 
 export default {
 	title: 'Docs/Checkbox',

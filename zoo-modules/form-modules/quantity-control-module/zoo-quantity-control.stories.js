@@ -2,7 +2,7 @@ import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-quantity-control.mdx';
 import { html } from 'lit-html';
-import './quantityControl';
+import './dist/quantity-control.compiled';
 
 export default {
 	title: 'Docs/Quantity Control',

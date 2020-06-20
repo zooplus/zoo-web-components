@@ -1,1 +1,1 @@
-import './dist/grid-paginator-compiled';
+import './dist/grid-paginator.compiled';

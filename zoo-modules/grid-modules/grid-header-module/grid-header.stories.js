@@ -1,1 +1,1 @@
-import './dist/grid-header-compiled';
+import './dist/grid-header.compiled';

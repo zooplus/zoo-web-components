@@ -1,3 +1,6 @@
+# 7.0.2
+`zoo-grid` - fix setting `resizable` and `reorderable` attributes not being reflected in behavior.
+
 # 7.0.1
 `zoo-footer` - fix displaying links according to their width and in line.
 

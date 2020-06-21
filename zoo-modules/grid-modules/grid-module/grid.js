@@ -6,7 +6,7 @@ class Grid extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'loading'];
+		return ['currentpage', 'maxpages', 'loading', 'resizable', 'reorderable'];
 	}
 	get maxpages() {
 		return this.getAttribute('maxpages');
@@ -87,7 +87,7 @@ class Grid extends HTMLElement {
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
-		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
+		if (attrName == 'resizable') {
 			if (this.hasAttribute('resizable')) {
 				this.handleResizableHeaders();
 				setTimeout(() => {

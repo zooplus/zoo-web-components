@@ -128,13 +128,13 @@ class Grid extends HTMLElement {
 				const host = this.shadowRoot.host;
 				for (const entry of entries) {
 					const columnNum = entry.target.getAttribute('column');
-					const rowColumns = host.querySelectorAll(':scope > [slot="row"] > [column="' + columnNum + '"] ');
-					const headerColumn = host.querySelector(':scope > [column="' + columnNum + '"]');
+					const rowColumns = host.querySelectorAll(`:scope > [slot="row"] > [column="${columnNum}"]`);
+					const headerColumn = host.querySelector(`:scope > [column="${columnNum}"]`);
 					const elements = [...rowColumns, headerColumn];
 					const width = entry.contentRect.width;
 					
 					for (const columnEl of elements) {
-						columnEl.style.width = width + 'px';
+						columnEl.style.width = `${width}px`;
 					}
 				}
 			});
@@ -198,7 +198,7 @@ class Grid extends HTMLElement {
 				return;
 			}
 			// move headers
-			const sourceHeader = this.querySelector(':scope > zoo-grid-header[column="' + sourceColumn + '"]');
+			const sourceHeader = this.querySelector(`:scope > zoo-grid-header[column="${sourceColumn}"]`);
 			if (targetColumn < sourceColumn) {
 				e.target.parentNode.insertBefore(sourceHeader, e.target);
 			} else {
@@ -207,8 +207,8 @@ class Grid extends HTMLElement {
 			// move rows
 			const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedNodes();
 			for (const row of allRows) {
-				const sourceRowColumn = row.querySelector(':scope > [column="' + sourceColumn + '"]');
-				const targetRowColumn = row.querySelector(':scope > [column="' + targetColumn + '"]');
+				const sourceRowColumn = row.querySelector(`:scope > [column="${sourceColumn}"]`);
+				const targetRowColumn = row.querySelector(`:scope > [column="${targetColumn}"]`);
 				if (targetColumn < sourceColumn) {
 					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
 				} else {

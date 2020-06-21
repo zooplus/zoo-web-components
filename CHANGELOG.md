@@ -1,3 +1,6 @@
+# 7.0.1
+`zoo-footer` - fix displaying links according to their width and in line.
+
 # 7.0.0
 
 This release concentrates on further performance improvements and alignment with current web standards.

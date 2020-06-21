@@ -2,7 +2,7 @@ import { withKnobs, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-spinner.mdx';
 import { html } from 'lit-html';
-import './spinner';
+import './dist/spinner.compiled';
 
 export default {
 	title: 'Docs/Spinner',

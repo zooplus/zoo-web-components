@@ -150,8 +150,3 @@ div[slot="row"] > div {
 zoo-select[slot="pagesizeselector"] {
 	max-width: 150px;
 }
-
-#how zoo-link {
-	width: max-content;
-	display: inline-flex;
-}

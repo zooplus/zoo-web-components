@@ -2,7 +2,7 @@ import { withKnobs, boolean, select, text, color } from '@storybook/addon-knobs'
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-link.mdx';
 import { html } from 'lit-html';
-import './link';
+import './dist/link.compiled';
 
 export default {
 	title: 'Docs/Link',

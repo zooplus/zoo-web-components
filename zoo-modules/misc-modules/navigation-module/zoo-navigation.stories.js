@@ -2,7 +2,7 @@ import { withKnobs, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-navigation.mdx';
-import './navigation';
+import './dist/navigation.compiled';
 
 export default {
 	title: 'Docs/Navigation',
@@ -20,8 +20,12 @@ export const zooNavigation = () => {
 	let primaryLight = color('--primary-light', '#66B100', cssVariablesGroupId);
 	return html`<zoo-navigation style="--primary-mid: ${primaryMid}; --primary-light: ${primaryLight};">
 				<div>
-					<zoo-link href="https://github.com/zooplus/zoo-web-components" text="Github"></zoo-link>
-					<zoo-link href="https://www.npmjs.com/package/@zooplus/zoo-web-components" text="NPM"></zoo-link>
+					<zoo-link>
+						<a slot="anchor" href="https://github.com/zooplus/zoo-web-components">Github</a>
+					</zoo-link>
+					<zoo-link>
+						<a slot="anchor" href="https://www.npmjs.com/package/@zooplus/zoo-web-components">NPM</a>
+					</zoo-link>
 				</div>
 			</zoo-navigation>`
 };

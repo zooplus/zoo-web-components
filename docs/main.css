@@ -58,7 +58,7 @@ hr {
 }
 
 .buttons zoo-button {
-	width: 330px;
+	width: 100%;
 }
 
 .buttons .icon-btn {
@@ -101,7 +101,6 @@ zoo-navigation a:hover {
 .buttons-holder {
 	display: flex;
 	justify-content: flex-end;
-	flex-direction: row;
 	flex-grow: 1;
 	padding: 0 0 0 25px;
 }
@@ -115,10 +114,8 @@ zoo-navigation a:hover {
 
 zoo-header zoo-button {
 	display: flex;
-	max-width: 250px;
 	min-width: 140px;
 	margin-left: 15px;
-	align-self: center;
 }
 
 h3 {
@@ -138,15 +135,6 @@ zoo-grid {
 	margin: 20px auto;
 }
 
-div[slot="row"] > zoo-select {
+zoo-select[column="3"] {
 	margin-right: 10px;
-}
-
-div[slot="row"] > div {
-	word-break: break-word;
-	flex-grow: 1;
-}
-
-zoo-select[slot="pagesizeselector"] {
-	max-width: 150px;
 }

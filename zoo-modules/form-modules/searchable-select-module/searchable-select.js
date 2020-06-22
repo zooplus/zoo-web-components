@@ -144,6 +144,9 @@ class SearchableSelect extends AbstractControl {
 			this.select.addEventListener('keydown', e => {
 				if (e.keyCode && e.keyCode === 13) handleOptionChange();
 			});
+			if (this.select.disabled && this.input) {
+				this.input.disabled = true;
+			}
 			if (!mobile) {
 				this.observer.disconnect();
 				this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });

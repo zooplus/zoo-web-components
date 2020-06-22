@@ -1,3 +1,6 @@
+# 7.0.4
+`zoo-searchable-select` - properly set disabled state in input element when injected select is disabled.
+
 # 7.0.3
 `zoo-select` - added `box-sizing: border-box` to include padding and margin in components width;
 `zoo-checkbox` - added change event dispatching when user clicks on a label, which is created based on `labeltext` attribute.

@@ -1,3 +1,7 @@
+# 7.0.3
+`zoo-select` - added `box-sizing: border-box` to include padding and margin in components width;
+`zoo-checkbox` - added change event dispatching when user clicks on a label, which is created based on `labeltext` attribute.
+
 # 7.0.2
 `zoo-grid` - fix setting `resizable` and `reorderable` attributes not being reflected in behavior.
 

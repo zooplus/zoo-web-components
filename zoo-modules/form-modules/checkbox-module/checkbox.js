@@ -37,7 +37,6 @@ class Checkbox extends AbstractControl {
 		this.handleLabel(this.labeltext, text);
 	}
 
-	// todo maybe dispatch change event as well
 	handleCheckboxClick(checkbox, box) {
 		if (checkbox.checked) {
 			checkbox.setAttribute('checked', '');
@@ -90,6 +89,7 @@ class Checkbox extends AbstractControl {
 			}
 			if (e.target != checkbox) {
 				checkbox.checked = !!!checkbox.checked;
+				checkbox.dispatchEvent(new Event('change'));
 			}
 			this.handleCheckboxClick(checkbox, box);
 		})

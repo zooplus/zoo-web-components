@@ -46,7 +46,9 @@ export default [
 			sourcemap: true,
 			format: 'esm',
 			file: 'docs/components.js',
-			name: 'components'
+			name: 'components',
+			// dir: 'docs',
+			// preserveModules: true
 		}
 	},
 	...components.map(cmp => {

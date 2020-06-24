@@ -1,7 +1,7 @@
 :host {
 	padding: 10px;
 	min-width: inherit;
-	border-top: 1px solid #e6e6e6;
+	border-top: 1px solid #E6E6E6;
 }
 
 .box {
@@ -20,7 +20,7 @@
 .paging {
 	display: flex;
 	align-items: center;
-	border: 1px solid #e6e6e6;
+	border: 1px solid #E6E6E6;
 	border-radius: 5px;
 	margin: 3px 0 3px 20px;
 	padding: 0 15px;
@@ -32,38 +32,35 @@
 	opacity: 1;
 	transition: opacity 0.1s;
 }
+
 .btn:active {
 	opacity: 0.5;
 }
+
 .btn.hidden {
 	display: none;
 }
+
 .btn.next {
 	margin-left: 5px;
 }
+
 .btn.prev {
 	margin-right: 10px;
 }
 
 svg {
-	fill: #555555;
+	fill: #555;
 }
 
 .arrow path {
-	fill: var(--primary-mid, #3c9700);
+	fill: var(--primary-mid, #3C9700);
 }
 
 .page-element {
 	cursor: pointer;
 }
-.page-element:hover,
-.page-element:focus {
-	background: #f2f3f4;
-}
-.page-element.active {
-	background: var(--primary-ultralight, #ebf4e5);
-	color: var(--primary-mid, #3c9700);
-}
+
 
 .page-element,
 .page-element-dots {
@@ -75,12 +72,24 @@ svg {
 	padding: 4px 8px;
 }
 
+.page-element:hover,
+.page-element:focus {
+	background: #F2F3F4;
+}
+
+.page-element.active {
+	background: var(--primary-ultralight, #EBF4E5);
+	color: var(--primary-mid, #3C9700);
+}
+
 .page-element-dots {
 	display: flex;
 }
+
 .btn.next svg {
 	transform: rotate(-90deg);
 }
+
 .btn.prev svg {
 	transform: rotate(90deg);
 }

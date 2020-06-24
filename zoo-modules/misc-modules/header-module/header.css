@@ -5,7 +5,7 @@
 header {
 	display: flex;
 	align-items: center;
-	background: #FFFFFF;
+	background: #FFF;
 	padding: 0 25px;
 	height: 70px;
 }
@@ -16,10 +16,13 @@ header {
 	padding: 5px 25px 5px 0;
 	cursor: pointer;
 }
-::slotted(*[slot="headertext"]), h2 {
+
+::slotted(*[slot="headertext"]),
+h2 {
 	display: inline-block;
 	color: var(--primary-mid, #3C9700);
 }
+
 @media only screen and (max-width: 544px) {
 	::slotted(img) {
 		height: 36px;
@@ -27,7 +30,9 @@ header {
 		padding: 5px 25px 5px 0;
 		cursor: pointer;
 	}
-	::slotted(*[slot="headertext"]), h2 {
+
+	::slotted(*[slot="headertext"]),
+	h2 {
 		display: none;
 	}
 }

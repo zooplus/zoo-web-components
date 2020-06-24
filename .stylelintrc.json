@@ -1,0 +1,43 @@
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"color-hex-case": "upper",
+		"block-no-empty": null,
+		"color-no-invalid-hex": true,
+		"comment-empty-line-before": [
+			"always",
+			{
+				"ignore": [
+					"stylelint-commands",
+					"after-comment"
+				]
+			}
+		],
+		"declaration-colon-space-after": "always",
+		"indentation": [
+			"tab",
+			{
+				"except": [
+					"value"
+				]
+			}
+		],
+		"max-empty-lines": 2,
+		"rule-empty-line-before": [
+			"always",
+			{
+				"except": [
+					"first-nested"
+				],
+				"ignore": [
+					"after-comment"
+				]
+			}
+		],
+		"declaration-block-no-redundant-longhand-properties": true,
+		"declaration-no-important": null,
+		"max-nesting-depth": 5,
+		"no-duplicate-selectors": true,
+		"selector-type-no-unknown": null
+	}
+}

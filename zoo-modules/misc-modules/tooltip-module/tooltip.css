@@ -29,6 +29,7 @@
 	background: white;
 	border-radius: 5px;
 }
+
 .tooltip-content span {
 	white-space: pre;
 	color: black;
@@ -37,7 +38,8 @@
 .tip {
 	position: absolute;
 }
-.tip:after {
+
+.tip::after {
 	content: "";
 	width: 16px;
 	height: 16px;
@@ -52,6 +54,7 @@
 :host([position="top"]) .tip {
 	right: calc(50% + 8px);
 }
+
 :host([position="top"]) .box {
 	bottom: calc(100% + 11px);
 	right: 50%;
@@ -62,6 +65,7 @@
 	bottom: 50%;
 	left: -8px;
 }
+
 :host([position="right"]) .box {
 	left: calc(100% + 10px);
 	top: 50%;
@@ -71,16 +75,18 @@
 	right: calc(50% + 8px);
 	top: 0;
 }
+
 :host([position="bottom"]) .box {
 	top: 100%;
 	right: 50%;
-	transform: translate3d(50%,20%,0);
+	transform: translate3d(50%, 20%, 0);
 }
 
 :host([position="left"]) .tip {
 	bottom: 50%;
 	right: 8px;
 }
+
 :host([position="left"]) .box {
 	right: calc(100% + 11px);
 	top: 50%;

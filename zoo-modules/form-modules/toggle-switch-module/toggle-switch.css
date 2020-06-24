@@ -9,7 +9,7 @@ div {
 	width: 40px;
 	background: #E6E6E6;
 	border-radius: 10px;
-	border-width: 0px;
+	border-width: 0;
 	cursor: pointer;
 }
 
@@ -20,7 +20,7 @@ div {
 	transform: translateX(-30%);
 	width: 60%;
 	height: 24px;
-	background: #FFFFFF;
+	background: #FFF;
 	border: 1px solid #E6E6E6;
 	border-radius: 50%;
 	display: flex;
@@ -52,7 +52,7 @@ div {
 	font-size: 14px;
 	line-height: 20px;
 	font-weight: 800;
-	color: #555555;
+	color: #555;
 	text-align: left;
 	margin-bottom: 10px;
 }

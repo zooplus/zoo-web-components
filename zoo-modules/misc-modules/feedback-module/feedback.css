@@ -32,6 +32,7 @@ svg {
 	background: var(--warning-ultralight, #FDE8E9);
 	border-color: var(--warning-mid, #ED1C24);
 }
+
 :host([type="error"]) svg {
 	fill: var(--warning-mid, #ED1C24);
 }
@@ -40,6 +41,7 @@ svg {
 	background: var(--primary-ultralight, #EBF4E5);
 	border-color: var(--primary-mid, #3C9700);
 }
+
 :host([type="success"]) svg {
 	fill: var(--primary-mid, #3C9700);
 }

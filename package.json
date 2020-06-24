@@ -22,21 +22,25 @@
 		"html-minifier": "^4.0.0",
 		"lit-html": "^1.2.1",
 		"mocha": "^8.0.1",
-		"puppeteer": "^4.0.0",
-		"rollup": "^2.17.1",
+		"puppeteer": "^4.0.1",
+		"rollup": "^2.18.0",
 		"rollup-plugin-terser": "^6.1.0",
-		"serve": "^11.3.2"
+		"serve": "^11.3.2",
+		"eslint": "^7.3.1",
+		"stylelint": "^13.6.1",
+		"stylelint-config-standard": "^20.0.0"
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
-		"prebuild": "npm test",
+		"prebuild": "npm lint && npm test",
 		"build": "rollup -c 'rollup.config.release.js'",
 		"pretest": "rollup -c 'rollup.config.test.js'",
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
 		"prepublishOnly": "npm run build",
 		"storybook": "concurrently -k \"rollup -c -w\" \"start-storybook -p 6006\"",
-		"deploy-storybook": "storybook-to-ghpages --remote=docs -o .out"
+		"deploy-storybook": "storybook-to-ghpages --remote=docs -o .out",
+		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css"
 	},
 	"repository": {
 		"type": "git",

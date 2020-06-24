@@ -1,23 +1,27 @@
 :host {
 	contain: style;
 }
+
 nav {
 	display: flex;
 	justify-content: center;
 	background: linear-gradient(to right, var(--primary-mid, #3C9700), var(--primary-light, #66B100));
 	padding: 10px 30px;
 }
+
 div {
 	font-size: 12px;
 	line-height: 16px;
 	text-align: left;
-	background: #FFFFFF;
-	color: #555555;
+	background: #FFF;
+	color: #555;
 	padding: 10px 0 10px 30px;
 }
+
 ::slotted(zoo-link) {
 	width: max-content;
 }
+
 @media only screen and (max-width: 544px) {
 	div {
 		text-align: center;

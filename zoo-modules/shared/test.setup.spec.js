@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 const puppeteer = require('puppeteer');
-const chai = require('chai')
+const chai = require('chai');
 const expect = chai.expect;
 
 before(async () => {
@@ -11,7 +13,4 @@ before(async () => {
 
 after(async () => {
 	await global.browser.close();
-});
-
-beforeEach(() => {
 });

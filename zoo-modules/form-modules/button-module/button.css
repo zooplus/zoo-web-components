@@ -22,7 +22,8 @@
 	background: linear-gradient(to right, var(--primary-mid, #3C9700), var(--primary-light, #66B100));
 }
 
-::slotted(button:hover), ::slotted(button:focus) {
+::slotted(button:hover),
+::slotted(button:focus) {
 	background: var(--primary-mid, #3C9700);
 }
 
@@ -43,7 +44,8 @@
 	background: linear-gradient(to right, var(--secondary-mid, #FF6200), var(--secondary-light, --int-secondary-light));
 }
 
-:host([type="secondary"]) ::slotted(button:hover), :host([type="secondary"]) ::slotted(button:focus) {
+:host([type="secondary"]) ::slotted(button:hover),
+:host([type="secondary"]) ::slotted(button:focus) {
 	background: var(--secondary-mid, #FF6200);
 }
 
@@ -57,7 +59,9 @@
 	background: transparent;
 }
 
-:host([type="hollow"]) ::slotted(button:hover), :host([type="hollow"]) ::slotted(button:focus), :host([type="hollow"]) ::slotted(button:active) {
+:host([type="hollow"]) ::slotted(button:hover),
+:host([type="hollow"]) ::slotted(button:focus),
+:host([type="hollow"]) ::slotted(button:active) {
 	color: white;
 	background: var(--primary-mid, #3C9700);
 }
@@ -71,7 +75,8 @@
 	background: transparent;
 }
 
-:host([type="empty"]) ::slotted(button:hover), :host([type="empty"]) ::slotted(button:focus) {
+:host([type="empty"]) ::slotted(button:hover),
+:host([type="empty"]) ::slotted(button:focus) {
 	background: #E6E6E6;
 }
 

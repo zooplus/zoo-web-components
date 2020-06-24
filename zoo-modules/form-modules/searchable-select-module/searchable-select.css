@@ -1,4 +1,5 @@
-:host, .box {
+:host,
+.box {
 	position: relative;
 }
 
@@ -12,20 +13,23 @@
 	z-index: 1;
 }
 
-.box:hover zoo-tooltip, .box:focus zoo-tooltip {
-	display: block;
-}
-
 zoo-tooltip {
 	display: none;
 }
-zoo-tooltip:hover, zoo-tooltip:focus {
+
+zoo-tooltip:hover,
+zoo-tooltip:focus {
+	display: block;
+}
+
+.box:hover zoo-tooltip,
+.box:focus zoo-tooltip {
 	display: block;
 }
 
 ::slotted(select) {
 	-webkit-appearance: none;
-	-moz-appearance: none;	
+	-moz-appearance: none;
 	width: 100%;
 	background: white;
 	padding: 13px 15px;
@@ -53,13 +57,13 @@ zoo-tooltip:hover, zoo-tooltip:focus {
 }
 
 .box:focus-within ::slotted(select) {
-	border: 2px solid #555555;
+	border: 2px solid #555;
 	border-top: none;
 	padding: 12px 14px;
 }
 
 .box:focus-within input {
-	border: 2px solid #555555;
+	border: 2px solid #555;
 	padding: 12px 24px 12px 14px;
 }
 
@@ -78,6 +82,7 @@ zoo-tooltip:hover, zoo-tooltip:focus {
 ::slotted(select:disabled:hover) {
 	cursor: not-allowed;
 }
+
 :host([valueselected]) .close {
 	display: flex;
 }
@@ -93,6 +98,7 @@ zoo-select {
 :host([mobile]) zoo-input {
 	display: none;
 }
+
 :host([mobile]) zoo-select {
 	display: initial;
 }

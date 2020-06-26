@@ -32,7 +32,7 @@
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
-		"prebuild": "npm lint && npm test",
+		"prebuild": "npm run lint && npm test",
 		"build": "rollup -c 'rollup.config.release.js'",
 		"pretest": "rollup -c 'rollup.config.test.js'",
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",

@@ -1,9 +1,10 @@
 import AbstractControl from '../abstractControl';
+/**
+ * @injectHTML
+ */
 class ToggleSwitch extends AbstractControl {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 	}
 
 	connectedCallback() {

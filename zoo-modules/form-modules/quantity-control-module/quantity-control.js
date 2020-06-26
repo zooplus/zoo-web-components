@@ -1,9 +1,10 @@
 import AbstractControl from '../abstractControl';
+/**
+ * @injectHTML
+ */
 class QuantityControl extends AbstractControl {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 	}
 
 	setInputWidth() {

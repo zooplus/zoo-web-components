@@ -1,10 +1,10 @@
 import AbstractControl from '../abstractControl';
-
+/**
+ * @injectHTML
+ */
 class Select extends AbstractControl {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 	}
 	static get observedAttributes() {
 		return ['labelposition', 'labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid', 'loading'];

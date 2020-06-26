@@ -1,3 +1,6 @@
+# 7.0.5
+`zoo-searchable-select` - fix showing and hiding 'x' sign when value is selected.
+
 # 7.0.4
 `zoo-searchable-select` - properly set disabled state in input element when injected select is disabled.
 

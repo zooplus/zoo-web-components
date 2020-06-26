@@ -1,10 +1,10 @@
 import AbstractControl from '../abstractControl';
-
+/**
+ * @injectHTML
+ */
 class SearchableSelect extends AbstractControl {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 		const index = navigator.appVersion.indexOf("Mobile");
 		if (index > -1) {
 			this.target = 'zoo-select';
@@ -140,7 +140,7 @@ class SearchableSelect extends AbstractControl {
 			this.select.size = 4;
 			this.select.addEventListener('blur', () => this.hideSelectOptions());
 			this.select.addEventListener('change', () => this.handleOptionChange());
-			this.select.addEventListener('change', e => this.valueSelected = e.target.value ? true : false);
+			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', true) : this.removeAttribute('valueSelected'));
 			this.select.addEventListener('keydown', e => {
 				if (e.keyCode && e.keyCode === 13) handleOptionChange();
 			});

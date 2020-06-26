@@ -1,8 +1,9 @@
+/**
+ * @injectHTML
+ */
 class CollapsableListItem extends HTMLElement {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 	}
 	static get observedAttributes() {
 		return ['active'];

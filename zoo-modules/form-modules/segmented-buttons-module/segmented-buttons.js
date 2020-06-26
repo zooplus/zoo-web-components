@@ -1,8 +1,9 @@
+/**
+ * @injectHTML
+ */
 class SegmentedButtons extends HTMLElement {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 	}
 
 	connectedCallback() {

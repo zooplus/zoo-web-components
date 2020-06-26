@@ -1,10 +1,11 @@
+/**
+ * @injectHTML
+ */
 class GridHeader extends HTMLElement {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
-		this.prev = shadowRoot.querySelector('.btn.prev');
-		this.next = shadowRoot.querySelector('.btn.next');
+		this.prev = this.shadowRoot.querySelector('.btn.prev');
+		this.next = this.shadowRoot.querySelector('.btn.next');
 	}
 
 	connectedCallback() {

@@ -1,10 +1,10 @@
 import AbstractControl from '../abstractControl';
-
+/**
+ * @injectHTML
+ */
 class Radio extends AbstractControl {
 	constructor() {
 		super();
-		let shadowRoot = this.attachShadow({mode: 'open'});
-		let replaceMe;
 	}
 	static get observedAttributes() {
 		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid'];

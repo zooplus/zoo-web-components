@@ -41,6 +41,11 @@ zoo-tooltip:focus {
 	z-index: 2;
 	top: 60px;
 	font-size: 14px;
+	display: none;
+}
+
+.box ::slotted(select) {
+	display: grid;
 }
 
 .box.hidden ::slotted(select) {
@@ -62,15 +67,15 @@ zoo-tooltip:focus {
 	padding: 12px 14px;
 }
 
-.box:focus-within input {
-	border: 2px solid #555;
-	padding: 12px 24px 12px 14px;
-}
-
 :host([invalid]) ::slotted(select) {
 	border: 2px solid var(--warning-mid, #ED1C24);
 	border-top: none;
 	padding: 12px 14px;
+}
+
+.box:focus-within input {
+	border: 2px solid #555;
+	padding: 12px 24px 12px 14px;
 }
 
 ::slotted(select:disabled) {
@@ -88,17 +93,5 @@ zoo-tooltip:focus {
 }
 
 zoo-input {
-	display: initial;
-}
-
-zoo-select {
-	display: none;
-}
-
-:host([mobile]) zoo-input {
-	display: none;
-}
-
-:host([mobile]) zoo-select {
-	display: initial;
+	display: grid;
 }

@@ -5,12 +5,7 @@ import AbstractControl from '../abstractControl';
 class SearchableSelect extends AbstractControl {
 	constructor() {
 		super();
-		const index = navigator.appVersion.indexOf("Mobile");
-		if (index > -1) {
-			this.target = 'zoo-select';
-		} else {
-			this.target = 'zoo-input';
-		}
+		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
 		return ['labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid', 'loading', 'placeholder'];
@@ -56,9 +51,8 @@ class SearchableSelect extends AbstractControl {
 	}
 
 	handlePlaceholder(newVal) {
-		if (!this.mobile()) {
-			this.shadowRoot.querySelector('input').placeholder = newVal;
-		}
+		const input = this.shadowRoot.querySelector('input');
+		if (input) input.placeholder = newVal;
 	}
 
 	get loading() {
@@ -85,24 +79,6 @@ class SearchableSelect extends AbstractControl {
 		}
 	}
 
-	handleLabelText(newVal) {
-		if (navigator.appVersion.indexOf("Mobile") > -1) {
-			const label = this.shadowRoot.querySelector('zoo-select');
-			if (label) {
-				label.setAttribute('labeltext', newVal);
-			} else {
-				label.removeAttribute('labeltext');
-			}
-		} else {
-			const label = this.shadowRoot.querySelector('label');
-			if (newVal) {
-				label.innerHTML = newVal;
-			} else {
-				label.innerHTML = '';
-			}
-		}
-	}
-	
 	mutationCallback(mutationsList, observer) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
@@ -115,65 +91,48 @@ class SearchableSelect extends AbstractControl {
 	}
 
 	connectedCallback() {
-		const mobile = this.mobile();
-		if (!mobile) {
-			this.input = this.shadowRoot.querySelector('input');
-			const box = this.shadowRoot.querySelector('.box');
-			box.classList.add('hidden');
-			this.input.addEventListener('focus', () => {
-				box.classList.remove('hidden');
-			});
-			this.input.addEventListener('blur', event => {
-				if (event.relatedTarget !== this.select) {
-					this.hideSelectOptions();
-				}
-			});
-			this.input.addEventListener('input', () => this.handleSearchChange());
-			this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
-			this.observer = new MutationObserver(this.mutationCallback.bind(this));
-		} else {
-			this.shadowRoot.host.setAttribute('mobile', '');
-		}
+		this.input = this.shadowRoot.querySelector('input');
+		const box = this.shadowRoot.querySelector('.box');
+		box.classList.add('hidden');
+		this.input.addEventListener('focus', () => box.classList.remove('hidden'));
+		this.input.addEventListener('blur', event => {
+			if (event.relatedTarget !== this.select) {
+				this.hideSelectOptions();
+			}
+		});
+		this.input.addEventListener('input', () => this.handleSearchChange());
+		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
+		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="selectelement"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedNodes()[0];
-			this.select.size = 4;
 			this.select.addEventListener('blur', () => this.hideSelectOptions());
 			this.select.addEventListener('change', () => this.handleOptionChange());
-			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', true) : this.removeAttribute('valueSelected'));
+			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', '') : this.removeAttribute('valueSelected'));
 			this.select.addEventListener('keydown', e => {
 				if (e.keyCode && e.keyCode === 13) handleOptionChange();
 			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
 			}
-			if (!mobile) {
-				this.observer.disconnect();
-				this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
-			}
+			this.select.size = 4;
+			this.observer.disconnect();
+			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
 		});
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
-		if (SearchableSelect.observedAttributes.includes(attrName)) {
-			if (attrName == 'loading') {
-				this.handleLoading(newVal);
-			} else if (attrName == 'labeltext') {
-				this.handleLabelText(newVal);
-			} else if (attrName == 'placeholder') {
-				this.handlePlaceholder(newVal);
-			} else {
-				const fn = this.handlersMap.get(attrName);
-				if (fn) {
-					fn(newVal, this.target);
-				}
+		if (attrName == 'loading') {
+			this.handleLoading(newVal);
+		} else if (attrName == 'placeholder') {
+			this.handlePlaceholder(newVal);
+		} else if (SearchableSelect.observedAttributes.includes(attrName)) {
+			const fn = this.handlersMap.get(attrName);
+			if (fn) {
+				fn(newVal, this.target);
 			}
 		}
-	}
-
-	mobile() {
-		return navigator.appVersion.indexOf("Mobile") > -1;
 	}
 
 	handleSearchChange() {
@@ -198,10 +157,6 @@ class SearchableSelect extends AbstractControl {
 		if (this.input) {
 			this.input.placeholder = showTooltip ? inputValString : this.placeholder;
 		}
-		const options = this.select.querySelectorAll('option');
-		for (const option of options) {
-			option.style.display = 'block';
-		}
 		if (showTooltip) {
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
 			this.tooltip.slot = 'inputelement';
@@ -218,6 +173,10 @@ class SearchableSelect extends AbstractControl {
 		this.shadowRoot.querySelector('.box').classList.add('hidden');
 		if (this.input) {
 			this.input.value = null;
+		}
+		const options = this.select.querySelectorAll('option');
+		for (const option of options) {
+			option.style.display = 'block';
 		}
 	}
 

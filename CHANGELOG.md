@@ -1,3 +1,6 @@
+# 7.0.6
+`zoo-searchable-select` - show initial version on mobile devices
+
 # 7.0.5
 `zoo-searchable-select` - fix showing and hiding 'x' sign when value is selected.
 

@@ -15,7 +15,7 @@ export default class AbstractControl extends HTMLElement {
 	handleLabel(newVal, target) {
 		target = target || 'zoo-input-label';
 		const label = this.shadowRoot.querySelector(target);
-		if (label) {
+		if (newVal) {
 			label.setAttribute('labeltext', newVal);
 		} else {
 			label.removeAttribute('labeltext');

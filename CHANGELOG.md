@@ -1,3 +1,6 @@
+# 7.0.7
+`zoo-grid` - reflect `resizable` and `reorderable` properties as attributes. Fix grid sometimes not applying widths to columns when `resizable` attribute is set. Avoid assigning column numbers to elements one by one when a lot of slots are inserted during a small time span (for example, during initialization).
+
 # 7.0.6
 `zoo-searchable-select` - show initial version on mobile devices
 

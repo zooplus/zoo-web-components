@@ -9,6 +9,26 @@ class Grid extends HTMLElement {
 	static get observedAttributes() {
 		return ['currentpage', 'maxpages', 'loading', 'resizable', 'reorderable'];
 	}
+	get resizable() {
+		return this.getAttribute('resizable');
+	}
+	set resizable(resizable) {
+		if (resizable) {
+			this.setAttribute('resizable', '');
+		} else {
+			this.removeAttribute('resizable');
+		}
+	}
+	get reorderable() {
+		return this.getAttribute('reorderable');
+	}
+	set reorderable(reorderable) {
+		if (reorderable) {
+			this.setAttribute('reorderable', '');
+		} else {
+			this.removeAttribute('reorderable');
+		}
+	}
 	get maxpages() {
 		return this.getAttribute('maxpages');
 	}
@@ -34,7 +54,7 @@ class Grid extends HTMLElement {
 	}
 	set loading(loading) {
 		if (loading) {
-			this.setAttribute('loading', loading);
+			this.setAttribute('loading', '');
 		} else {
 			this.removeAttribute('loading');
 		}
@@ -43,25 +63,19 @@ class Grid extends HTMLElement {
 	connectedCallback() {
 		const root = this.shadowRoot;
 		const headerSlot = root.querySelector('slot[name="headercell"]');
-		headerSlot.addEventListener('slotchange', () => {
+		headerSlot.addEventListener('slotchange', this.debounce(() => {
 			const headers = headerSlot.assignedNodes();
 			this.style.setProperty('--grid-column-num', headers.length);
 			this.handleHeaders(headers);
-			if (this.hasAttribute('resizable')) {
-				this.handleResizableHeaders();
-				setTimeout(() => {
-					this.shadowRoot.host.setAttribute('resizable-ready', true);
-				});
-			} else {
-				this.shadowRoot.host.removeAttribute('resizable-ready');
-			}
 			if (this.hasAttribute('reorderable')) {
 				this.handleDraggableHeaders();
 			}
-		});
-		root.querySelector('slot[name="row"]').addEventListener('slotchange', () => this.assignColumnNumberToRows());
+		}));
+		root.querySelector('slot[name="row"]').addEventListener('slotchange', this.debounce(() => {
+			this.assignColumnNumberToRows();
+		}));
 		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
-		const paginator = root.querySelector('zoo-grid-paginator')
+		const paginator = root.querySelector('zoo-grid-paginator');
 		if (paginator) {
 			paginator.addEventListener('pageChange', e => this.dispatchPageEvent(e));
 		}
@@ -91,11 +105,6 @@ class Grid extends HTMLElement {
 		if (attrName == 'resizable') {
 			if (this.hasAttribute('resizable')) {
 				this.handleResizableHeaders();
-				setTimeout(() => {
-					this.shadowRoot.host.setAttribute('resizable-ready', true);
-				});
-			} else {
-				this.shadowRoot.host.removeAttribute('resizable-ready');
 			}
 		}
 		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
@@ -125,22 +134,22 @@ class Grid extends HTMLElement {
 	createResizeObserver() {
 		if (this.resizeObserver) return;
 		this.resizeObserver = new ResizeObserver(this.debounce(entries => {
-			requestAnimationFrame(() => {
-				const host = this.shadowRoot.host;
-				for (const entry of entries) {
-					const columnNum = entry.target.getAttribute('column');
-					const rowColumns = host.querySelectorAll(`:scope > [slot="row"] > [column="${columnNum}"]`);
-					const headerColumn = host.querySelector(`:scope > [column="${columnNum}"]`);
-					const elements = [...rowColumns, headerColumn];
-					const width = entry.contentRect.width;
-					
-					for (const columnEl of elements) {
-						columnEl.style.width = `${width}px`;
-					}
+			const host = this.shadowRoot.host;
+			for (const entry of entries) {
+				const columnNum = entry.target.getAttribute('column');
+				const rowColumns = host.querySelectorAll(`:scope > [slot="row"] > [column="${columnNum}"]`);
+				const headerColumn = host.querySelector(`:scope > [column="${columnNum}"]`);
+				if (!headerColumn) return;
+				const elements = [...rowColumns, headerColumn];
+				const width = entry.contentRect.width;
+				
+				for (const columnEl of elements) {
+					columnEl.style.width = `${width}px`;
 				}
-			});
-		}, 10));
+			}
+		}));
 	}
+
 	debounce(func, wait) {
 		let timeout;
 		return function() {

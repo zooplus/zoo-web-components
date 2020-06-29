@@ -50,8 +50,8 @@
 	box-sizing: border-box;
 }
 
-:host([resizable-ready]) .header-row,
-:host([resizable-ready]) ::slotted(*[slot="row"]) {
+:host([resizable]) .header-row,
+:host([resizable]) ::slotted(*[slot="row"]) {
 	display: flex;
 }
 

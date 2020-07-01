@@ -59,9 +59,12 @@
 			<input id="input-type-date" slot="inputelement" type="date" placeholder="Enter date" />
 			<label for="input-type-date" slot="inputlabel">Input type date</label>
 		</zoo-input>
-		<zoo-input infotext="Select time">
-			<input id="input-type-time" slot="inputelement" type="time" placeholder="Enter time" />
-			<label for="input-type-time" slot="inputlabel">Input type time</label>
+		<zoo-input infotext="Additional helpful information for our users">
+			<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
+			<label for="input-type-text" slot="inputlabel">Composition of an input with a button</label>
+			<zoo-button slot="button">
+				<button type="button">Lorem ipsum</button>
+			</zoo-button>
 		</zoo-input>
 		<zoo-input>
 			<textarea id="textarea" slot="inputelement" placeholder="Textarea"></textarea>
@@ -78,12 +81,15 @@
 		</zoo-select>
 		<zoo-select infotext="Additional helpful information for our users">
 			<select id="standard-select" slot="selectelement">
-				<option class="placeholder" value="" disabled selected>Placeholder</option>
+				<option value="" disabled>Placeholder</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</select>
-			<label for="standard-select" slot="selectlabel">Standard select</label>
+			<label for="standard-select" slot="selectlabel">Composition of standard select with an input</label>
+			<zoo-input slot="input">
+				<input type="text" placeholder="Lorem ipsum" slot="inputelement"/>
+			</zoo-input>
 		</zoo-select>
 		<zoo-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
 			<select multiple slot="selectelement">
@@ -165,7 +171,7 @@
 				<input slot="checkboxelement" type="checkbox"/>
 			</zoo-checkbox>
 			<br>
-			<zoo-button style="margin: 0 auto" type="hollow" size="medium" id="modal-closer">
+			<zoo-button style="margin: 0 auto;" type="hollow" size="medium" id="modal-closer">
 				<button type="button">Add to cart</button>
 			</zoo-button>
 		</div>

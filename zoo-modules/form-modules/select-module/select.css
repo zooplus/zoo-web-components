@@ -96,10 +96,27 @@ slot[name="selectlabel"] {
 	display: flex;
 }
 
-div {
+.content {
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
 	position: relative;
 	grid-row: 2;
 	grid-column: span 2;
+}
+
+::slotted(zoo-input) {
+	display: flex;
+	margin-left: -5px;
+	flex: 1;
+
+	--zoo-input-border-radius: 0 5px 5px 0;
+	--additional-elements-display: none;
+}
+
+.select-wrap {
+	position: relative;
+	flex: 1;
 }
 
 zoo-input-info {
@@ -108,6 +125,10 @@ zoo-input-info {
 }
 
 :host([multiple]) svg {
+	display: none;
+}
+
+:host([multiple]) ::slotted(zoo-input) {
 	display: none;
 }
 
@@ -123,7 +144,7 @@ zoo-input-info {
 	align-items: center;
 }
 
-:host([labelposition="left"]) div {
+:host([labelposition="left"]) .content {
 	grid-column: 2;
 	grid-row: 2;
 }

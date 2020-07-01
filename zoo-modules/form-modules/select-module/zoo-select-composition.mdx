@@ -1,0 +1,34 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Select Composition"/>
+
+# Select Composition
+
+## Example usage:
+```
+<zoo-select labeltext="Label" infotext="Additional Information" 
+	linktext="Forgotten your password?" linkhref="https://zooplus.github.io/zoo-web-components/">
+	<select id="zoo-select" slot="selectelement">
+		<option value="value1">Dog</option>
+		<option value="value2">Cat</option>
+		<option value="value3">Small Pet</option>
+		<option value="value4">Aquatic</option>
+	</select>
+	<label for="zoo-select" slot="selectlabel">${labeltext}</label>
+	<zoo-input slot="input">
+		<input type="text" slot="inputelement"/>
+	</zoo-input>
+</zoo-select>
+```
+### Rendered
+<zoo-select infotext="Additional Information" linktext="Forgotten your password?" linkhref="https://zooplus.github.io/zoo-web-components/" labeltext="Label">
+	<select slot="selectelement">
+		<option value="value1">Dog</option>
+		<option value="value2">Cat</option>
+		<option value="value3">Small Pet</option>
+		<option value="value4">Aquatic</option>
+	</select>
+	<zoo-input slot="input">
+		<input type="text" slot="inputelement"/>
+	</zoo-input>
+</zoo-select>

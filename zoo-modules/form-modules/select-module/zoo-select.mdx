@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs/blocks';
 
-<Meta title="Docs/Searchable select"/>
+<Meta title="Docs/Select"/>
 
 # Select
 
@@ -31,6 +31,7 @@ Select component which provides styles for slotted `select`.
 | :--------------: | :---------------------------------:|:-----------:|
 | `selectelement`  | `<select id="zoo-select" slot="selectelement">...</select>`| ✘
 | `selectlabel`    | `<label for="zoo-select">Label</label>`| ✔
+| `input`          | `<slot name="input"></slot>` can be used for composition of select and input| ✔
 
 ## Example usage:
 ```

@@ -18,7 +18,7 @@ svg path {
 	fill: var(--warning-mid, #ED1C24);
 }
 
-:host([invalid]) div svg {
+:host([invalid]) .input-wrap svg {
 	opacity: 1;
 }
 
@@ -30,7 +30,7 @@ svg path {
 	padding: 13px 15px;
 	margin: 0;
 	border: 1px solid #767676;
-	border-radius: 5px;
+	border-radius: var(--zoo-input-border-radius, 5px);
 	color: #555;
 	outline: none;
 	box-sizing: border-box;
@@ -39,8 +39,8 @@ svg path {
 	background: #FFF;
 }
 
-:host([invalid]) div ::slotted(input),
-:host([invalid]) div ::slotted(textarea) {
+:host([invalid]) .input-wrap ::slotted(input),
+:host([invalid]) .input-wrap ::slotted(textarea) {
 	border: 2px solid var(--warning-mid, #ED1C24);
 	padding: 12px 14px;
 }
@@ -81,23 +81,39 @@ svg path {
 }
 
 slot[name="inputlabel"] {
+	display: var(--additional-elements-display, 'flex');
 	grid-row: 1;
 	align-self: flex-start;
-	display: flex;
 }
 
-div {
+.input-wrap {
+	flex: 1;
+	position: relative;
+}
+
+.content {
+	display: flex;
+	justify-content: stretch;
 	position: relative;
 	grid-row: 2;
 	grid-column: span 2;
+	flex: 1;
+}
+
+::slotted(zoo-button) {
+	margin-left: -5px;
+
+	--zoo-btn-border-radius: 0 5px 5px 0;
 }
 
 zoo-input-info {
+	display: var(--additional-elements-display, 'initial');
 	grid-row: 3;
 	grid-column: span 2;
 }
 
 a {
+	display: var(--additional-elements-display, 'initial');
 	text-align: right;
 	text-decoration: none;
 	font-size: 12px;

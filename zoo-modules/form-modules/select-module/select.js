@@ -30,21 +30,37 @@ class Select extends AbstractControl {
 	handleLoading(newVal) {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
-			this.shadowRoot.querySelector('div').appendChild(this.loader);
+			this.shadowRoot.querySelector('.select-wrap').appendChild(this.loader);
 		} else {
 			if (this.loader)
 			this.loader.remove();
+		}
+	}
+
+	handleInvalid(newVal, target) {
+		target = target || 'zoo-input-info';
+		const el = this.shadowRoot.querySelector(target);
+		if (this.hasAttribute('invalid')) {
+			el.setAttribute('invalid', '');
+			if (this.input) this.input.setAttribute('invalid', '');
+		} else {
+			el.removeAttribute('invalid');
+			if (this.input) this.input.removeAttribute('invalid');
 		}
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (Select.observedAttributes.includes(attrName)) {
-			const fn = this.handlersMap.get(attrName);
-			if (fn) {
-				fn(newVal);
-			} else if (attrName == 'loading') {
+			if (attrName == 'loading') {
 				this.handleLoading(newVal);
+			} else if (attrName == 'invalid') {
+				this.handleInvalid(newVal);
+			} else {
+				const fn = this.handlersMap.get(attrName);
+				if (fn) {
+					fn(newVal);
+				}
 			}
 		}
 	}
@@ -93,6 +109,10 @@ class Select extends AbstractControl {
 				select.value = null;
 				select.dispatchEvent(new Event("change"));
 			});
+		});
+		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
+		inputSlot.addEventListener('slotchange', () => {
+			this.input = inputSlot.assignedNodes()[0];
 		});
 	}
 

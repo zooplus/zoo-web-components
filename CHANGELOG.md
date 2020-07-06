@@ -1,3 +1,4 @@
+# 7.1.2
 # 7.1.1
 `zoo-checkbox` - toggle class on wrapper element when attribute `checked` was changed to show or hide tick inside the box.
 

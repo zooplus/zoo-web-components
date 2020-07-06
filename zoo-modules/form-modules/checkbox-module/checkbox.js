@@ -58,6 +58,14 @@ class Checkbox extends AbstractControl {
 						this.shadowRoot.host.removeAttribute('disabled')
 					}
 				}
+				if (mutation.attributeName == 'checked') {
+					const box = this.shadowRoot.querySelector('.checkbox');
+					if (mutation.target.checked) {
+						box.classList.add('clicked');
+					} else {
+						box.classList.remove('clicked');
+					}
+				}
 			}
 		}
 	}

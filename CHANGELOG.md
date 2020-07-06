@@ -1,3 +1,6 @@
+# 7.1.1
+`zoo-checkbox` - toggle class on wrapper element when attribute `checked` was changed to show or hide tick inside the box.
+
 # 7.1.0
 `zoo-select` - now accepts additional slot `input` for composition with `zoo-input` component;
 `zoo-input` - now accepts additional slot `button` for composition with `zoo-button` component;

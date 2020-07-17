@@ -64,10 +64,6 @@ zoo-input-info {
 	cursor: pointer;
 }
 
-::slotted(input[type="checkbox"]:checked) {
-	border: 1px solid var(--primary-mid, #3C9700);
-}
-
 ::slotted(input[type="checkbox"]:focus) {
 	border-width: 2px;
 }
@@ -87,6 +83,10 @@ zoo-input-info {
 .clicked .check {
 	display: flex;
 	fill: var(--primary-mid, #3C9700);
+}
+
+.clicked ::slotted(input[type="checkbox"]) {
+	border: 1px solid var(--primary-mid, #3C9700);
 }
 
 :host([disabled]) .check {

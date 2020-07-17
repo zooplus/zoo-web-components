@@ -1,4 +1,4 @@
-# 7.1.3
+# 7.1.4
 `zoo-checkbox` - fix checked border.
 
 # 7.1.2

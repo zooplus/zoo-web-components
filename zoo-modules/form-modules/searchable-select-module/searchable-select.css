@@ -39,7 +39,7 @@ zoo-tooltip:focus {
 	border-top: none;
 	position: absolute;
 	z-index: 2;
-	top: calc(100% - 30px);
+	top: 90%;
 	font-size: 14px;
 	display: none;
 }

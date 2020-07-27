@@ -20,6 +20,8 @@
 
 svg {
 	padding-right: 5px;
+	min-width: 18px;
+	align-self: flex-start;
 }
 
 .info svg path {

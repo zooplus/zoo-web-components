@@ -1,3 +1,6 @@
+# 7.1.5
+`zoo-searchable-select` - fix padding from top border to depend on the context.
+
 # 7.1.4
 `zoo-checkbox` - fix checked border.
 

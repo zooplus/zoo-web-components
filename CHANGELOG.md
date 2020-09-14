@@ -1,3 +1,6 @@
+# 7.1.7
+`zoo-select` - fix scrolling when a lot of options are supplied and `multiple` attribute is present.
+
 # 7.1.6
 `zoo-searchable-select` - move select slot inside zoo-input, so that the select is positioned relative to input and not zoo-input (with label, info, etc.)
 `zoo-input-info` - set min-width for icons so that they do not shrink when a lot of text is supplied to this element.

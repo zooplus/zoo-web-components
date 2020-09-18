@@ -18,7 +18,7 @@ export default function injectInnerHTML() {
 			}
 			return {
 				code: code,
-				map: { mappings: ''}
+				map: null
 			};
 		}
 	};

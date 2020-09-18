@@ -23,7 +23,7 @@
 		"lit-html": "^1.3.0",
 		"mocha": "^8.1.3",
 		"puppeteer": "^5.3.0",
-		"rollup": "^2.26.11",
+		"rollup": "^2.27.1",
 		"rollup-plugin-terser": "^7.0.2",
 		"serve": "^11.3.2",
 		"eslint": "^7.9.0",
@@ -31,14 +31,14 @@
 		"stylelint-config-standard": "^20.0.0"
 	},
 	"scripts": {
-		"start": "concurrently -k \"serve docs\"  \"rollup -c -w\"",
+		"start": "concurrently -k \"serve docs\"  \"rollup -c -w --watch.clearScreen\"",
 		"prebuild": "npm run lint && npm test",
 		"build": "rollup -c 'rollup.config.release.js'",
 		"pretest": "rollup -c 'rollup.config.test.js'",
 		"test": "concurrently -k -s first \"mocha './zoo-modules/**/*.spec.js' --recursive\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
 		"prepublishOnly": "npm run build",
-		"storybook": "concurrently -k \"rollup -c -w\" \"start-storybook -p 6006\"",
+		"storybook": "concurrently -k \"rollup -c 'rollup.config.storybook.js' -w\" \"start-storybook -p 6006\"",
 		"deploy-storybook": "storybook-to-ghpages --remote=docs -o .out",
 		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css"
 	},

@@ -1,9 +1,9 @@
-import glob from "glob";
-import path from "path";
+import glob from 'glob';
+import path from 'path';
 
 export default function watcher() {
 	return {
-		buildStart(options) {
+		buildStart() {
 			let include = ['zoo-modules/**/*.html', 'zoo-modules/**/*.css'];
 			for (const item of include) {
 				glob.sync(path.resolve(item)).forEach(filename => this.addWatchFile(filename));
@@ -13,5 +13,5 @@ export default function watcher() {
 			options.cache = {};
 			return options;
 		}
-	}
+	};
 }

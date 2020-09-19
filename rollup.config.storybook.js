@@ -43,6 +43,6 @@ export default [
 				file: `zoo-modules/${cmp.module}-modules/${cmp.name}-module/dist/${cmp.name}.compiled.js`,
 				name: `${cmp}`
 			}
-		}
+		};
 	})
 ];

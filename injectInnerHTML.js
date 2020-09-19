@@ -14,7 +14,7 @@ export default function injectInnerHTML() {
 				const minifiedHTML = minifyHTML(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
 				const css = fs.readFileSync(cssFile, 'utf8');
 				const minifiedCss = new CleanCSS({ level: { 2: { all: true } } }).minify(css);
-				code = code.replace('super();', `super(); let sr = this.attachShadow({mode: 'open'}).innerHTML = \`<style>${minifiedCss.styles}</style>${minifiedHTML}\`;`);
+				code = code.replace('super();', `super();this.attachShadow({mode:'open'}).innerHTML=\`<style>${minifiedCss.styles}</style>${minifiedHTML}\`;`);
 			}
 			return {
 				code: code,

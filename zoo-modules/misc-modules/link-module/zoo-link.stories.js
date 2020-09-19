@@ -1,4 +1,4 @@
-import { withKnobs, boolean, select, text, color } from '@storybook/addon-knobs';
+import { withKnobs, select, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-link.mdx';
 import { html } from 'lit-html';
@@ -30,6 +30,6 @@ export const zooLink = () => {
 	return html`<zoo-link style="--primary-mid: ${primaryMid}; --warning-dark: ${warningDark}; --primary-light: ${primaryLight}; --primary-dark: ${primaryDark}"
 					type="${type}" size="${size}">
 					<a slot="anchor" href="${href}" target="${target}">${textProp}</a>
-				</zoo-link>`
+				</zoo-link>`;
 };
 

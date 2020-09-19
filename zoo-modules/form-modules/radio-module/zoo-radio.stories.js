@@ -30,6 +30,6 @@ export const zooRadio = () => {
 				<label for="contactChoice2">Phone</label>
 				<input type="radio" id="contactChoice3" name="contact" value="mail">
 				<label for="contactChoice3">Mail</label>
-			</zoo-radio>`
+			</zoo-radio>`;
 };
 

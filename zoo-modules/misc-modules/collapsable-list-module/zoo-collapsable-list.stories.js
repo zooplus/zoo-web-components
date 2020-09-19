@@ -30,6 +30,6 @@ export const zooCollapsableList = () => {
 						<span slot="header">${header2}</span>
 						<div slot="content">${content2}</div>
 					</zoo-collapsable-list-item>
-				</zoo-collapsable-list>`
+				</zoo-collapsable-list>`;
 };
 

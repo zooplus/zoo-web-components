@@ -82,7 +82,7 @@ describe('Zoo select', function() {
 				return {
 					optVal: slot.assignedNodes()[0].options[0].value,
 					optText: slot.assignedNodes()[0].options[0].innerHTML
-				}
+				};
 			});
 			expect(slottedElement.optVal).equal('1');
 			expect(slottedElement.optText).equal('first');

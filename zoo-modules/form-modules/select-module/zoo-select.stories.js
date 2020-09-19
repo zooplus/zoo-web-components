@@ -40,6 +40,6 @@ export const zooSelect = () => {
 			<option value="value4">Aquatic</option>
 		</select>
 		<label for="zoo-select" slot="selectlabel">${labeltext}</label>
-	</zoo-select>`
+	</zoo-select>`;
 };
 

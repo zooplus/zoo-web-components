@@ -49,7 +49,7 @@ describe('Zoo checkbox', function() {
 				};
 			});
 			expect(ret.tagName).equal('INPUT');
-			expect(ret.type).equal('checkbox')
+			expect(ret.type).equal('checkbox');
 		});
 
 		it('should render labeltext when such attribute is passed', async() => {
@@ -69,7 +69,6 @@ describe('Zoo checkbox', function() {
 		});
 
 		it('should pass input info attributes to zoo-input-info when supplied', async() => {
-			const valid = true;
 			const inputerrormsg = 'error message';
 			const infotext = 'info text';
 			const ret = await page.evaluate(() => {

@@ -27,6 +27,6 @@ export const zooFooter = () => {
 					<zoo-link>
 						<a slot="anchor" href="https://www.npmjs.com/package/@zooplus/zoo-web-components">NPM</a>
 					</zoo-link>
-				</zoo-footer>`
+				</zoo-footer>`;
 };
 

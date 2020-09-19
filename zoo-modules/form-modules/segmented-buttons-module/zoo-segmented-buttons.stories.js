@@ -26,6 +26,6 @@ export const zooSegmentedButtons = () => {
 		<zoo-button>
 			<button type="button">Button 3</button>
 		</zoo-button>
-	</zoo-segmented-buttons>`
+	</zoo-segmented-buttons>`;
 };
 

@@ -1,4 +1,4 @@
-import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-input.mdx';
 import { html } from 'lit-html';
@@ -33,6 +33,6 @@ export const zooInput = () => {
 			linktext="${linktext}" linkhref="${linkhref}" linktarget="${linktarget}" inputerrormsg="${inputerrormsg}">
 		<input id="text-input" type="text" slot="inputelement"/>
 		<label for="text-input" slot="inputlabel">${label}</label>
-	</zoo-input>`
+	</zoo-input>`;
 };
 

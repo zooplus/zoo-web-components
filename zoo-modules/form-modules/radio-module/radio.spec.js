@@ -16,7 +16,7 @@ describe('Zoo radio', function() {
 				};
 			});
 			expect(ret.tagName).equal('INPUT');
-			expect(ret.type).equal('radio')
+			expect(ret.type).equal('radio');
 		});
 	});
 });

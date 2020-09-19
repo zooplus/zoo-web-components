@@ -43,6 +43,6 @@ export const zooSelect = () => {
 		<zoo-input slot="input">
 			<input type="text" slot="inputelement"/>
 		</zoo-input>
-	</zoo-select>`
+	</zoo-select>`;
 };
 

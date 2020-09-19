@@ -1,1 +1,1 @@
-import './dist/collapsable-list-item.compiled'
+import './dist/collapsable-list-item.compiled';

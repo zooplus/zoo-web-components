@@ -22,6 +22,6 @@ export const zooQuantityControl = () => {
 	<zoo-toggle-switch infotext="${infotext}" style="--primary-mid: ${primaryMid};">
 		<label for="input-toggle" slot="label">Toggle switch</label>
 		<input id="input-toggle" slot="input" type="checkbox"/>
-	</zoo-toggle-switch>`
+	</zoo-toggle-switch>`;
 };
 

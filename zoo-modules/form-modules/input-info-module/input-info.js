@@ -56,14 +56,14 @@ class InputInfo extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		switch(attrName) {
-			case 'infotext':
-				this.handleInfo(newVal);
-				break;
-			case 'inputerrormsg':
-				this.handleErrorMsg(newVal);
-				break;
-			default:
-				break;
+		case 'infotext':
+			this.handleInfo(newVal);
+			break;
+		case 'inputerrormsg':
+			this.handleErrorMsg(newVal);
+			break;
+		default:
+			break;
 		}
 	}
 

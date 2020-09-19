@@ -13,10 +13,6 @@ module.exports = {
 			'error',
 			'tab'
 		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
 		'quotes': [
 			'error',
 			'single'
@@ -30,7 +26,8 @@ module.exports = {
 		{
 			'files': ['*.spec.js'],
 			'rules': {
-				'no-unused-expressions': 'off'
+				'no-unused-expressions': 'off',
+				'no-undef': 'off'
 			}
 		}
 	]

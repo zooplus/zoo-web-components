@@ -1,6 +1,5 @@
-import { withKnobs, text, boolean, color, button } from '@storybook/addon-knobs';
+import { withKnobs, text, color, button } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
-import { html } from 'lit-html';
 import mdx from './zoo-modal.mdx';
 import './dist/modal.compiled';
 

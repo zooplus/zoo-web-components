@@ -29,6 +29,6 @@ export const zooFeedback = () => {
 									 --warning-mid: ${warningMid}; --warning-ultralight: ${warningUltralight};
 									 --info-mid: ${infoMid}; --info-ultralight: ${infoUltralight};">
 									 ${text}
-				</zoo-feedback>`
+				</zoo-feedback>`;
 };
 

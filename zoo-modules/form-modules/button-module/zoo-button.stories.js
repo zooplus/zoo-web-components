@@ -29,5 +29,5 @@ export const zooButton = () => {
 									--secondary-light: ${secondaryLight}; --secondary-mid: ${secondaryMid}; --secondary-dark: ${secondaryDark};"
 		 type="${type}" size="${size}">
 			<button ?disabled="${disabled}" type="button">Button</button>
-	</zoo-button>`
+	</zoo-button>`;
 };

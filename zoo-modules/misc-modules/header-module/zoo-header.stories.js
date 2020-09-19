@@ -21,6 +21,6 @@ export const zooHeader = () => {
 
 	return html`<zoo-header style="--primary-mid: ${primaryMid};" headertext="${headertext}">
 					<img slot="img" alt="Zooplus logo" src="https://zooplus.github.io/zoo-web-components/logo.png"/>
-				</zoo-header>`
+				</zoo-header>`;
 };
 

@@ -1,5 +1,5 @@
 import { withKnobs, select, text } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
+import { attributesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-tooltip.mdx';
 import './dist/tooltip.compiled';
@@ -20,6 +20,6 @@ export const zooTooltip = () => {
 	let tooltipText = text('text', 'Tooltip text', attributesGroupId);
 	return html`<zoo-button style="margin: 100px">
 					<button type="button">Button<zoo-tooltip text="${tooltipText}" position=${position}></zoo-tooltip></button>
-				</zoo-button>`
+				</zoo-button>`;
 };
 

@@ -1,4 +1,4 @@
-import { withKnobs, boolean, text, select, color } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, color } from '@storybook/addon-knobs';
 import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
 import mdx from './zoo-searchable-select.mdx';
 import { html } from 'lit-html';
@@ -38,5 +38,5 @@ export const zooSearchableSelect = () => {
 			<option value="value3">Small Pet</option>
 			<option value="value4">Aquatic</option>
 		</select>
-	</zoo-searchable-select>`
+	</zoo-searchable-select>`;
 };

@@ -33,7 +33,7 @@ export const zooGrid = () => {
 
 	let defaultDate = new Date();
 	const customDateKnob = (name, defaultValue) => {
-		const stringTimestamp = date(name, defaultValue, dataGroup)
+		const stringTimestamp = date(name, defaultValue, dataGroup);
 		return new Date(stringTimestamp).toISOString();
 	};
 
@@ -86,6 +86,6 @@ export const zooGrid = () => {
 			</zoo-select>
 		</div>
 	</zoo-grid>
-	</div>`
+	</div>`;
 };
 

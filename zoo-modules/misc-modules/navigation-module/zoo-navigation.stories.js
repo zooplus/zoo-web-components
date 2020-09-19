@@ -1,5 +1,5 @@
 import { withKnobs, color } from '@storybook/addon-knobs';
-import { attributesGroupId, cssVariablesGroupId } from '../../shared/groups';
+import { cssVariablesGroupId } from '../../shared/groups';
 import { html } from 'lit-html';
 import mdx from './zoo-navigation.mdx';
 import './dist/navigation.compiled';
@@ -27,6 +27,6 @@ export const zooNavigation = () => {
 						<a slot="anchor" href="https://www.npmjs.com/package/@zooplus/zoo-web-components">NPM</a>
 					</zoo-link>
 				</div>
-			</zoo-navigation>`
+			</zoo-navigation>`;
 };
 

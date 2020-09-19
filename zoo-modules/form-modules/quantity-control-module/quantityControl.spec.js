@@ -70,7 +70,7 @@ describe('Zoo quantity control', function() {
 	it('should not increase input value when plus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
 			let input = document.createElement('zoo-quantity-control');
-			input.increasedisabled = "true";
+			input.increasedisabled = 'true';
 			let element = document.createElement('input');
 			element.type = 'number';
 			element.step = 50;
@@ -113,7 +113,7 @@ describe('Zoo quantity control', function() {
 	it('should not decrease input value when minus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
 			let input = document.createElement('zoo-quantity-control');
-			input.decreasedisabled = "true";
+			input.decreasedisabled = 'true';
 			let element = document.createElement('input');
 			element.type = 'number';
 			element.step = 50;

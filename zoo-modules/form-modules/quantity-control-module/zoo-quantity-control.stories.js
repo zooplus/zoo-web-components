@@ -28,6 +28,6 @@ export const zooQuantityControl = () => {
 		?decreasedisabled="${decreasedisabled}" ?invalid="${invalid}" infotext="${infotext}" inputerrormsg="${inputerrormsg}">
 		<input id="number-input" slot="input" readOnly placeholder="0" type="number" step="50"/>
 		<label for="number-input" slot="label">${label}</label>
-	</zoo-quantity-control>`
+	</zoo-quantity-control>`;
 };
 

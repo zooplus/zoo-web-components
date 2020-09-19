@@ -27,6 +27,6 @@ export const zooCheckbox = () => {
 			?invalid="${invalid}" ?highlighted="${highlighted}" infotext="${infotext}" inputerrormsg="${inputerrormsg}">
 		<input type="checkbox" id="zoo-checkbox" slot="checkboxelement"/>
 		<label for="zoo-checkbox" slot="checkboxlabel">${label}</label>
-	</zoo-checkbox>`
+	</zoo-checkbox>`;
 };
 

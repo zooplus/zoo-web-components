@@ -20,37 +20,37 @@ const changeTheme = pallete => {
 	activeBtn.setAttribute('type', 'secondary');
 	prevActiveBtn = activeBtn;
 	switch (pallete) {
-		case 'zoo':
-			setColorVar('--primary-mid', '#3C9700');
-			setColorVar('--primary-light', '#66B100');
-			setColorVar('--primary-dark', '#286400');
-			setColorVar('--primary-ultralight', '#EBF4E5');
-			setColorVar('--secondary-mid', '#FF6200');
-			setColorVar('--secondary-light', '#FF8800');
-			setColorVar('--secondary-dark', '#CC4E00');
-			setColorVar('--info-ultralight', '#ECF5FA');
-			setColorVar('--info-mid', '#459FD0');
-			break;
-		case 'grey':
-			setColorVar('--primary-mid', '#676778');
-			setColorVar('--primary-light', '#838399');
-			setColorVar('--primary-dark', '#565664');
-			setColorVar('--primary-ultralight', '#d3d3e1');
-			setColorVar('--secondary-mid', '#ff3e00');
-			setColorVar('--secondary-light', '#fb7044');
-			setColorVar('--secondary-dark', '#c53100');
-			setColorVar('--info-ultralight', '#d8eefd');
-			setColorVar('--info-mid', '#40b3ff');
-			break;
-		default:
-			generateRandomTheme();
-			break;
+	case 'zoo':
+		setColorVar('--primary-mid', '#3C9700');
+		setColorVar('--primary-light', '#66B100');
+		setColorVar('--primary-dark', '#286400');
+		setColorVar('--primary-ultralight', '#EBF4E5');
+		setColorVar('--secondary-mid', '#FF6200');
+		setColorVar('--secondary-light', '#FF8800');
+		setColorVar('--secondary-dark', '#CC4E00');
+		setColorVar('--info-ultralight', '#ECF5FA');
+		setColorVar('--info-mid', '#459FD0');
+		break;
+	case 'grey':
+		setColorVar('--primary-mid', '#676778');
+		setColorVar('--primary-light', '#838399');
+		setColorVar('--primary-dark', '#565664');
+		setColorVar('--primary-ultralight', '#d3d3e1');
+		setColorVar('--secondary-mid', '#ff3e00');
+		setColorVar('--secondary-light', '#fb7044');
+		setColorVar('--secondary-dark', '#c53100');
+		setColorVar('--info-ultralight', '#d8eefd');
+		setColorVar('--info-mid', '#40b3ff');
+		break;
+	default:
+		generateRandomTheme();
+		break;
 	}
-}
+};
 
 const setColorVar = (name, value) => {
 	document.documentElement.style.setProperty(name, value);
-}
+};
 
 const generateRandomTheme = () => {
 	const main = randomRgbaString();
@@ -64,29 +64,29 @@ const generateRandomTheme = () => {
 	setColorVar('--secondary-mid', rgbToHex(second.r, second.g, second.b));
 	setColorVar('--secondary-light', lightenDarkenColor(secondHex, 30));
 	setColorVar('--secondary-dark', lightenDarkenColor(secondHex, -30));
-}
+};
 
 const randomRgbaString = () => {
 	let r = Math.floor(Math.random() * 255);
 	let g = Math.floor(Math.random() * 255);
 	let b = Math.floor(Math.random() * 255);
 	return {r: r, g: g, b: b};
-}
+};
 
 const rgbToHex = (r, g, b) => {
-	return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
+	return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
+};
 
 const componentToHex = c => {
 	let hex = c.toString(16);
-	return hex.length == 1 ? "0" + hex : hex;
-}
+	return hex.length == 1 ? '0' + hex : hex;
+};
 
 const lightenDarkenColor = (col, amt) => {
 
 	var usePound = false;
 
-	if (col[0] == "#") {
+	if (col[0] == '#') {
 		col = col.slice(1);
 		usePound = true;
 	}
@@ -108,8 +108,8 @@ const lightenDarkenColor = (col, amt) => {
 	if (g > 255) g = 255;
 	else if (g < 0) g = 0;
 
-	return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-}
+	return (usePound?'#':'') + (g | (b << 8) | (r << 16)).toString(16);
+};
 
 const handleSortChange = sortState => {
 	let toast = document.createElement('zoo-toast');
@@ -125,7 +125,7 @@ const handlePageChange = page => {
 	toast.text = 'Page was changed to: ' + page.pageNumber;
 	document.body.appendChild(toast);
 	toast.show();
-}
+};
 
 document.querySelectorAll('zoo-grid').forEach(grid => {
 	grid.addEventListener('sortChange', e => handleSortChange(e.detail));
@@ -188,7 +188,7 @@ const getRow = (d, i, template) => {
 	row.appendChild(price);
 
 	return clone;
-}
+};
 
 const grids = document.querySelectorAll('zoo-grid');
 data.forEach((d, i) => {
@@ -197,7 +197,7 @@ data.forEach((d, i) => {
 	for (const grid of grids) {
 		const clone = getRow(d, i, simpleRow);
 		grid.appendChild(clone);
-		if (idx == 0) grid.setAttribute('resizable', true)
+		if (idx == 0) grid.setAttribute('resizable', true);
 		idx++;
 	}
 });

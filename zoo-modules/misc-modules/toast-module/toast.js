@@ -51,7 +51,7 @@ class Toast extends HTMLElement {
 			this.timeoutVar = setTimeout(() => {
 				if (root && !this.hidden) {
 					this.hidden = !this.hidden;
-					this.timeoutVar = setTimeout(() => {root.style.display = 'none'}, 300);
+					this.timeoutVar = setTimeout(() => {root.style.display = 'none';}, 300);
 					this.toggleToastClass();
 				}
 			}, this.timeout * 1000);
@@ -64,7 +64,7 @@ class Toast extends HTMLElement {
 		setTimeout(() => {
 			if (root && !this.hidden) {
 				this.hidden = !this.hidden;
-				setTimeout(() => {root.style.display = 'none'}, 300);
+				setTimeout(() => {root.style.display = 'none';}, 300);
 				this.toggleToastClass();
 			}
 		}, 30);

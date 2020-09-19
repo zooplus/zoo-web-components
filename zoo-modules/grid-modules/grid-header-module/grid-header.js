@@ -19,7 +19,7 @@ class GridHeader extends HTMLElement {
 			this.sortState = 'desc';
 		} else if (this.sortState == 'desc') {
 			this.sortState = 'asc';
-		} else if (this.sortState = 'asc') {
+		} else if (this.sortState == 'asc') {
 			this.sortState = undefined;
 		}
 		this.shadowRoot.querySelector('.arrow').sortState = this.sortState;

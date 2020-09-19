@@ -14,7 +14,7 @@ class Footer extends HTMLElement {
 	}
 	set copyright(text) {
 		this.setAttribute('copyright', text);
-		handleCopyright(this.headertext, text);
+		this.handleCopyright(this.headertext, text);
 	}
 	handleCopyright(newVal) {
 		this.shadowRoot.querySelector('div').innerHTML = `© ${newVal} ${new Date().getFullYear()}`;

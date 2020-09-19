@@ -48,14 +48,14 @@ class Checkbox extends AbstractControl {
 		}
 	}
 
-	mutationCallback(mutationsList, observer) {
+	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
 				if (mutation.attributeName == 'disabled') {
 					if (mutation.target.disabled) {
-						this.shadowRoot.host.setAttribute('disabled', '')
+						this.shadowRoot.host.setAttribute('disabled', '');
 					} else {
-						this.shadowRoot.host.removeAttribute('disabled')
+						this.shadowRoot.host.removeAttribute('disabled');
 					}
 				}
 				if (mutation.attributeName == 'checked') {
@@ -97,11 +97,11 @@ class Checkbox extends AbstractControl {
 				return;
 			}
 			if (e.target != checkbox) {
-				checkbox.checked = !!!checkbox.checked;
+				checkbox.checked = !checkbox.checked;
 				checkbox.dispatchEvent(new Event('change'));
 			}
 			this.handleCheckboxClick(checkbox, box);
-		})
+		});
 	}
 
 	// Fires when an instance was removed from the document

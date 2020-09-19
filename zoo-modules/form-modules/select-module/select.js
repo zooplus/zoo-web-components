@@ -25,14 +25,13 @@ class Select extends AbstractControl {
 		} else {
 			this.removeAttribute('loading');
 		}
-		this.handleLoading(this.loading, loading);
+		this.handleLoading();
 	}
-	handleLoading(newVal) {
+	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
 			this.shadowRoot.querySelector('.select-wrap').appendChild(this.loader);
-		} else {
-			if (this.loader)
+		} else if (this.loader) {
 			this.loader.remove();
 		}
 	}
@@ -53,7 +52,7 @@ class Select extends AbstractControl {
 		if (oldVal == newVal) return;
 		if (Select.observedAttributes.includes(attrName)) {
 			if (attrName == 'loading') {
-				this.handleLoading(newVal);
+				this.handleLoading();
 			} else if (attrName == 'invalid') {
 				this.handleInvalid(newVal);
 			} else {
@@ -65,7 +64,7 @@ class Select extends AbstractControl {
 		}
 	}
 
-	mutationCallback(mutationsList, observer) {
+	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
 				if (mutation.attributeName == 'disabled') {
@@ -107,7 +106,7 @@ class Select extends AbstractControl {
 			this.observer.observe(select, config);
 			this.shadowRoot.querySelector('.close').addEventListener('click', () => {
 				select.value = null;
-				select.dispatchEvent(new Event("change"));
+				select.dispatchEvent(new Event('change'));
 			});
 		});
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');

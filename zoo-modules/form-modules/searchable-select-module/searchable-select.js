@@ -64,13 +64,13 @@ class SearchableSelect extends AbstractControl {
 		} else {
 			this.removeAttribute('loading');
 		}
-		this.handleLoading(loading);
+		this.handleLoading();
 	}
-	handleLoading(newVal) {
+	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
 			this.loader.slot = 'inputelement';
-			const input = this.shadowRoot.querySelector('zoo-input')
+			const input = this.shadowRoot.querySelector('zoo-input');
 			if (input){
 				input.appendChild(this.loader);
 			}
@@ -79,7 +79,7 @@ class SearchableSelect extends AbstractControl {
 		}
 	}
 
-	mutationCallback(mutationsList, observer) {
+	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
 				if (mutation.attributeName == 'disabled') {
@@ -110,7 +110,7 @@ class SearchableSelect extends AbstractControl {
 			this.select.addEventListener('change', () => this.handleOptionChange());
 			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', '') : this.removeAttribute('valueSelected'));
 			this.select.addEventListener('keydown', e => {
-				if (e.keyCode && e.keyCode === 13) handleOptionChange();
+				if (e.keyCode && e.keyCode === 13) this.handleOptionChange();
 			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
@@ -124,7 +124,7 @@ class SearchableSelect extends AbstractControl {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'loading') {
-			this.handleLoading(newVal);
+			this.handleLoading();
 		} else if (attrName == 'placeholder') {
 			this.handlePlaceholder(newVal);
 		} else if (SearchableSelect.observedAttributes.includes(attrName)) {
@@ -142,7 +142,7 @@ class SearchableSelect extends AbstractControl {
 			if (option.text.toLowerCase().indexOf(inputVal) > -1) option.style.display = 'block';
 			else option.style.display = 'none';
 		}
-	};
+	}
 
 	handleOptionChange() {
 		if (!this.select) {
@@ -182,7 +182,7 @@ class SearchableSelect extends AbstractControl {
 
 	handleCrossClick() {
 		this.select.value = null;
-		this.select.dispatchEvent(new Event("change"));
+		this.select.dispatchEvent(new Event('change'));
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);

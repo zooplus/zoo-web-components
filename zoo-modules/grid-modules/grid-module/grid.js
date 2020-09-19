@@ -165,13 +165,12 @@ class Grid extends HTMLElement {
 
 	handleDraggableHeaders() {
 		const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedNodes();
-		const host = this.shadowRoot.host;
 		for (let header of headers) {
-			this.handleDraggableHeader(header, host);
+			this.handleDraggableHeader(header);
 		}
 	}
 
-	handleDraggableHeader(header, host) {
+	handleDraggableHeader(header) {
 		// avoid attaching multiple eventListeners to the same element
 		if (header.getAttribute('reorderable')) return;
 		header.setAttribute('reorderable', true);
@@ -180,9 +179,9 @@ class Grid extends HTMLElement {
 
 		header.addEventListener('dragstart', e => {
 			this.classList.add('dragging');
-			e.dataTransfer.setData("text/plain", header.getAttribute('column'));
+			e.dataTransfer.setData('text/plain', header.getAttribute('column'));
 		});
-		header.addEventListener('dragend', e => {
+		header.addEventListener('dragend', () => {
 			this.classList.remove('dragging');
 			this.draggedOverHeader.classList.remove('drag-over');
 		});
@@ -233,7 +232,7 @@ class Grid extends HTMLElement {
 		this.shadowRoot.host.dispatchEvent(new CustomEvent('pageChange', {
 			detail: {pageNumber: e.detail.pageNumber}, bubbles: true
 		}));
-	};
+	}
 
 	handleSortChange(e) {
 		e.stopPropagation();

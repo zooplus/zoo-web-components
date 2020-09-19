@@ -27,7 +27,7 @@ class Modal extends HTMLElement {
 		this.hidden = true;
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
 		const box = this.shadowRoot.querySelector('.box');
-		box.addEventListener("click", e => {
+		box.addEventListener('click', e => {
 			if(e.target == box) this.closeModal();
 		});
 	}
@@ -41,7 +41,7 @@ class Modal extends HTMLElement {
 		this.toggleModalClass();
 		this.timeoutVar = setTimeout(() => {
 			this.style.display = 'none';
-			this.dispatchEvent(new Event("modalClosed"));
+			this.dispatchEvent(new Event('modalClosed'));
 			this.hidden = !this.hidden;
 			this.timeoutVar = undefined;
 		}, 300);

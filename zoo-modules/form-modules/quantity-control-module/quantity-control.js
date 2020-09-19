@@ -24,12 +24,12 @@ class QuantityControl extends AbstractControl {
 	connectedCallback() {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		this.shadowRoot.querySelectorAll('button').forEach((btn, i) => {
-			if (i == 0) btn.addEventListener('click', () => this.handleClick('s', this.decreasedisabled))
-			if (i == 1) btn.addEventListener('click', () => this.handleClick('a', this.increasedisabled))
-		})
+			if (i == 0) btn.addEventListener('click', () => this.handleClick('s', this.decreasedisabled));
+			if (i == 1) btn.addEventListener('click', () => this.handleClick('a', this.increasedisabled));
+		});
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = this.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
-			this.setInputWidth()
+			this.setInputWidth();
 		});
 	}
 
@@ -42,9 +42,9 @@ class QuantityControl extends AbstractControl {
 	}
 	set decreasedisabled(disabled) {
 		this.setAttribute('decreasedisabled', disabled);
-		this.handleDecreaseDisabled(this.increasedisabled, disabled);
+		this.handleDecreaseDisabled();
 	}
-	handleDecreaseDisabled(newVal) {
+	handleDecreaseDisabled() {
 		const btn = this.shadowRoot.querySelector('button');
 		if (this.decreasedisabled) {
 			btn.disabled = true;
@@ -58,9 +58,9 @@ class QuantityControl extends AbstractControl {
 	}
 	set increasedisabled(disabled) {
 		this.setAttribute('increasedisabled', disabled);
-		this.handleIncreaseDisabled(this.increasedisabled, disabled);
+		this.handleIncreaseDisabled();
 	}
-	handleIncreaseDisabled(newVal) {
+	handleIncreaseDisabled() {
 		const btn = this.shadowRoot.querySelectorAll('button')[1];
 		if (this.increasedisabled) {
 			btn.disabled = true;
@@ -77,14 +77,14 @@ class QuantityControl extends AbstractControl {
 				fn(newVal);
 			} else {
 				switch (attrName) {
-					case 'increasedisabled':
-						this.handleIncreaseDisabled(newVal);
-						break;
-					case 'decreasedisabled':
-						this.handleDecreaseDisabled(newVal);
-						break;
-					default:
-						break;
+				case 'increasedisabled':
+					this.handleIncreaseDisabled();
+					break;
+				case 'decreasedisabled':
+					this.handleDecreaseDisabled();
+					break;
+				default:
+					break;
 				}
 			}
 		}

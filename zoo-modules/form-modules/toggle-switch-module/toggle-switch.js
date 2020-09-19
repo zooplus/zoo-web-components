@@ -10,7 +10,7 @@ class ToggleSwitch extends AbstractControl {
 	connectedCallback() {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
-			this.shadowRoot.host.addEventListener('keypress', e => {
+			this.shadowRoot.host.addEventListener('keypress', () => {
 				inputSlot.assignedNodes()[0].click();
 			});
 		});

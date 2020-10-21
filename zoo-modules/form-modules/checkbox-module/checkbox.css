@@ -65,7 +65,7 @@ zoo-input-info {
 }
 
 ::slotted(input[type="checkbox"]:focus) {
-	border-width: 2px;
+	border-width: 2px !important;
 }
 
 ::slotted(input[type="checkbox"]:disabled) {

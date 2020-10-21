@@ -28,13 +28,24 @@ class Modal extends HTMLElement {
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
 		const box = this.shadowRoot.querySelector('.box');
 		box.addEventListener('click', e => {
-			if(e.target == box) this.closeModal();
+			if (e.target == box) this.closeModal();
 		});
 	}
 	openModal() {
 		this.style.display = 'block';
 		this.toggleModalClass();
+		// todo trap focus inside modal
+		this.shadowRoot.querySelector('button').focus();
+		document.addEventListener('keyup', this.handleEscape.bind(this));
 	}
+
+	handleEscape(e) {
+		const key = e.which || e.keyCode;
+		if (key === 27 && this.closeModal()) {
+			e.stopPropagation();
+		}
+	}
+
 	closeModal() {
 		if (this.timeoutVar) return;
 		this.hidden = !this.hidden;

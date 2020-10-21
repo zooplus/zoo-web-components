@@ -1,3 +1,7 @@
+# 7.1.8
+`zoo-checkbox` - always show user tabbed checkbox when using keyboard navigation;
+`zoo-modal` - added `esc` button handler which will close the modal window.
+
 # 7.1.7
 `zoo-select` - fix scrolling when a lot of options are supplied and `multiple` attribute is present.
 

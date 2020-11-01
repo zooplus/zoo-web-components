@@ -1,3 +1,6 @@
+# 7.1.9
+`zoo-checkbox` - fix grey border for disabled checkbox;
+
 # 7.1.8
 `zoo-checkbox` - always show user tabbed checkbox when using keyboard navigation;
 `zoo-modal` - added `esc` button handler which will close the modal window.

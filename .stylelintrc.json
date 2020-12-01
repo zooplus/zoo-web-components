@@ -1,5 +1,9 @@
 {
 	"extends": "stylelint-config-standard",
+	"plugins": [
+		"stylelint-a11y",
+		"stylelint-high-performance-animation"
+	],
 	"rules": {
 		"color-hex-case": "upper",
 		"block-no-empty": null,
@@ -38,6 +42,12 @@
 		"declaration-no-important": null,
 		"max-nesting-depth": 5,
 		"no-duplicate-selectors": true,
-		"selector-type-no-unknown": null
+		"selector-type-no-unknown": null,
+		"a11y/no-outline-none": true,
+		"a11y/content-property-no-static-value": true,
+		"a11y/no-obsolete-attribute": true,
+		"a11y/no-obsolete-element": true,
+		"a11y/no-spread-text": true,
+		"a11y/no-text-align-justify": true
 	}
 }

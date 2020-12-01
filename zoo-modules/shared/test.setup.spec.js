@@ -11,6 +11,12 @@ before(async () => {
 	await global.page.goto('http://localhost:5000');
 });
 
+afterEach(async () => {
+	await global.page.evaluate(() => {
+		document.body.innerHTML = '';
+	});
+});
+
 after(async () => {
 	await global.browser.close();
 });

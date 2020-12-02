@@ -4,6 +4,4 @@ storybook-static
 .out
 dist/
 .DS_Store
-zoo-modules/*/dist/*.js
-zoo-modules/*/dist/*.js.map
 .idea

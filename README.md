@@ -17,6 +17,10 @@ and import the library in your main module/component/index.html:
 ```
 import 'node_modules/@zooplus/zoo-web-components/dist/zoo-components-esm.js';
 ```      
+or import only the classes that you need:      
+```
+import Button, Input from '@zooplus/zoo-web-components';
+```
 
 ## Examples integrating with various frameworks
 + [VueJS](https://github.com/GeorgeTailor/vue-wc-integration)
@@ -33,8 +37,6 @@ Documentation page is here: https://zooplus.github.io/zoo-web-components-docs/in
 ## Run
 ### Run landing page
 Run `npm start` and go to `localhost:5000`.
-### Run storybook
-Run `npm run storybook`, after compilation browser should automatically open `localhost:6006` page with storybook.
 
 ## Test
 This project uses `Mocha` and `Chai` for writing tests. The tests are run using `Puppeteer`.

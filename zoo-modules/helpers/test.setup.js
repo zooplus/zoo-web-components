@@ -5,9 +5,9 @@ beforeAll(async () => {
 	global.browser = await puppeteer.launch({
 		headless: true,
 		args: [
-			`--no-sandbox`
-			`--disable-setuid-sandbox`
-		],
+			'--no-sandbox',
+			'--disable-setuid-sandbox'
+		]
 	});
 	global.page = await global.browser.newPage();
 	global.axe = axe;

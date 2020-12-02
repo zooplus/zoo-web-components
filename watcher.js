@@ -1,7 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 
-export default function watcher() {
+export function watcher() {
 	return {
 		buildStart() {
 			let include = ['zoo-modules/**/*.html', 'zoo-modules/**/*.css'];
@@ -11,6 +11,14 @@ export default function watcher() {
 		},
 		options(options) {
 			options.cache = {};
+			return options;
+		}
+	};
+}
+
+export function noOpWatcher() {
+	return {
+		options(options) {
 			return options;
 		}
 	};

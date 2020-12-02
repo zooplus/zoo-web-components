@@ -25,13 +25,13 @@
 		"stylelint-high-performance-animation": "^1.5.2"
 	},
 	"scripts": {
-		"start": "concurrently -k \"serve docs\"  \"rollup -c -w --watch.clearScreen\"",
-		"prebuild": "npm run lint && npm test",
-		"build": "rollup -c 'rollup.config.release.js'",
-		"pretest": "rollup -c 'rollup.config.test.js'",
+		"start": "concurrently -k \"serve docs\"  \"set NODE_ENV=local&& rollup -c -w --watch.clearScreen\"",
+		"prebuild": "npm run lint",
+		"build": "rollup -c 'rollup.config.js'",
+		"pretest": "npm run build",
 		"test": "concurrently -k -s first \"jasmine\" \"serve test\"",
 		"posttest": "node ./test/cat ./test/pika.txt",
-		"prepublishOnly": "npm run build",
+		"prepublishOnly": "npm test",
 		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css"
 	},
 	"repository": {

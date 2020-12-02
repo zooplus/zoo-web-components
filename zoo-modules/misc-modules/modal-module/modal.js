@@ -8,8 +8,18 @@ export default class Modal extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['headertext'];
+		return ['headertext', 'closelabel'];
 	}
+
+	get closelabel() {
+		return this.getAttribute('closelabel');
+	}
+
+	set closelabel(newLabel) {
+		this.setAttribute('closelabel', newLabel);
+		this.handleCloseLabel(newLabel);
+	}
+
 	get headertext() {
 		return this.getAttribute('headertext');
 	}
@@ -21,10 +31,15 @@ export default class Modal extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'headertext') this.handleText(newVal);
+		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
 	}
 	handleText(newVal) {
 		this.headertext = newVal;
 		this.header.innerHTML = newVal;
+	}
+	handleCloseLabel(newVal) {
+		const closeButton = this.shadowRoot.querySelector('.close');
+		closeButton.setAttribute('aria-label', newVal);
 	}
 	connectedCallback() {
 		this.hidden = true;

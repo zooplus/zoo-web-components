@@ -23,9 +23,8 @@ export default {
 function getTarget() {
 	switch(process.env.NODE_ENV) {
 	case 'local':
-		return 'docs/components.js';
 	case 'test': 
-		return 'test/bundle.js';
+		return 'docs/components.js';
 	default:
 		return 'dist/zoo-components-esm.js';
 	}

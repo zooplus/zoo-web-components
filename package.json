@@ -26,12 +26,10 @@
 	},
 	"scripts": {
 		"start": "concurrently -k \"serve docs\"  \"set NODE_ENV=local&& rollup -c -w --watch.clearScreen\"",
-		"prebuild": "npm run lint",
 		"build": "rollup -c",
 		"pretest": "set NODE_ENV=test&& npm run build",
-		"test": "concurrently -k -s first \"jasmine\" \"serve test\"",
-		"posttest": "node ./test/cat ./test/pika.txt",
-		"prepublishOnly": "npm build",
+		"test": "concurrently -k -s first \"jasmine\" \"serve docs\"",
+		"prepublishOnly": "npm run lint && npm test && npm run build",
 		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css"
 	},
 	"repository": {

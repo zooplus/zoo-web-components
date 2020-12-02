@@ -1,21 +1,22 @@
-describe('Zoo button', function () {
-	it('should pass accessibility tests', async () => {
+describe('Zoo checkbox', () => {
+	it('should be a11y', async () => {
 		await page.evaluate(() => {
 			document.body.innerHTML = `
-			<zoo-button>
-				<button type="button">Grey theme</button>
-			</zoo-button>`;
+			<zoo-checkbox>
+				<input id="checkbox" checked slot="checkboxelement" type="checkbox"/>
+				<label for="checkbox" slot="checkboxlabel">Valid</label>
+			</zoo-checkbox>`;
 		});
 		// Inject and run axe-core
 		const handle = await page.evaluateHandle(`
 			${axe.source}
-			axe.run('zoo-button')
+			axe.run('zoo-checkbox')
 		`);
 
 		// Get the results from `axe.run()`.
 		results = await handle.jsonValue();
 		if (results.violations.length) {
-			console.log('zoo-button a11y violations', results.violations);
+			console.log('zoo-checkbox a11y violations ', results.violations);
 			throw new Error('Accessibility issues found');
 		}
 		// Destroy the handle & return axe results.

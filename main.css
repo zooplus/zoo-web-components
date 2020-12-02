@@ -1,0 +1,140 @@
+:root {
+	--primary-mid: #3C9700;
+	--primary-light: #66B100;
+	--primary-dark: #286400;
+	--primary-ultralight: #EBF4E5;
+	--secondary-mid: #FF6200;
+	--secondary-light: #FF8800;
+	--secondary-dark: #CC4E00;
+	--info-ultralight: #ECF5FA;
+	--info-mid: #459FD0;
+}
+
+body {
+	color: #333;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	-moz-osx-font-smoothing: grayscale;
+	display: initial;
+}
+
+form {
+	flex: 1 0 auto;
+	margin: 20px auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	grid-gap: 20px;
+	padding: 0 10px;
+	max-width: 1280px;
+}
+
+h2, aside {
+	margin-left: 20px;
+}
+
+h2 {
+	color: var(--primary-mid);
+}
+
+aside {
+	color: var(--primary-dark);
+}
+
+hr {
+	border-color: var(--primary-mid);
+	margin: 45px 0;
+	opacity: 0.3;
+}
+
+.buttons {
+	max-width: 1280px;
+	margin: 20px auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+	grid-gap: 15px;
+	width: 90%;
+	justify-items: center;
+}
+
+.buttons zoo-button {
+	width: 100%;
+}
+
+.buttons .icon-btn {
+	width: 40px;
+}
+
+.icon-btn button svg path {
+	fill: white;
+}
+
+main {
+	max-width: 1280px;
+	width: 100%;
+	flex: 1 0 auto;
+	margin: 0 auto;
+}
+
+#what {
+	color: var(--primary-mid);
+	text-align: center;
+}
+
+zoo-navigation a {
+	cursor: pointer;
+	display: inline-flex;
+	text-decoration: none;
+	align-items: center;
+	height: 100%;
+	color: white;
+	padding: 0 15px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+zoo-navigation a:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.buttons-holder {
+	display: flex;
+	justify-content: flex-end;
+	flex-grow: 1;
+	padding: 0 0 0 25px;
+}
+
+@media only screen and (max-width: 900px) {
+	.buttons-holder {
+		justify-content: initial;
+		overflow: scroll;
+	}
+}
+
+zoo-header zoo-button {
+	display: flex;
+	min-width: 140px;
+	margin-left: 15px;
+}
+
+h3 {
+	color: var(--primary-mid);
+	text-align: center;
+}
+
+zoo-grid {
+	min-width: 1024px;
+}
+
+.grid-holder {
+	max-width: 1280px;
+	overflow: auto;
+	box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+	width: 95%;
+	margin: 20px auto;
+}
+
+zoo-select[column="3"] {
+	padding-right: 10px;
+}

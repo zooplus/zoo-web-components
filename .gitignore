@@ -5,3 +5,5 @@ storybook-static
 dist/
 .DS_Store
 .idea
+docs/components.js
+docs/components.js.map

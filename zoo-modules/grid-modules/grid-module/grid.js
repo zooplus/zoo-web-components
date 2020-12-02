@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class Grid extends HTMLElement {
+export default class Grid extends HTMLElement {
 	constructor() {
 		super();
 	}

@@ -10,7 +10,7 @@ describe('Zoo segmented buttons', function() {
 
 			return slottedBtn.tagName;
 		});
-		expect(ret).equal('ZOO-BUTTON');
+		expect(ret).toEqual('ZOO-BUTTON');
 	});
 
 	it('should set empty attribute when no attribute is present', async() => {
@@ -25,7 +25,7 @@ describe('Zoo segmented buttons', function() {
 			const slottedBtn = cmp.shadowRoot.querySelector('slot').assignedNodes()[0];
 			return slottedBtn.getAttribute('type');
 		});
-		expect(ret).equal('empty');
+		expect(ret).toEqual('empty');
 	});
 
 	it('should change type when button is clicked', async() => {
@@ -41,7 +41,7 @@ describe('Zoo segmented buttons', function() {
 
 			return slottedBtn.getAttribute('type');
 		});
-		expect(ret).equal('primary');
+		expect(ret).toEqual('primary');
 	});
 
 	it('should change types when button is clicked', async() => {
@@ -61,7 +61,7 @@ describe('Zoo segmented buttons', function() {
 			const allBtns = cmp.shadowRoot.querySelector('slot').assignedNodes();
 			return [allBtns[0].getAttribute('type'), allBtns[1].getAttribute('type')];
 		});
-		expect(ret[0]).equal('primary');
-		expect(ret[1]).equal('empty');
+		expect(ret[0]).toEqual('primary');
+		expect(ret[1]).toEqual('empty');
 	});
 });

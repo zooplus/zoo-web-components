@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class Navigation extends HTMLElement {
+export default class Navigation extends HTMLElement {
 	constructor() {
 		super();
 	}

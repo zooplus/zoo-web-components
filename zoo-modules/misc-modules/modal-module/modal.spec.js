@@ -12,7 +12,7 @@ describe('Zoo modal', function() {
 					modalHeadingText: modalBox.querySelector('span').innerHTML
 				};
 			});
-			expect(modalAttrs.modalHeadingText).equal('header-text');
+			expect(modalAttrs.modalHeadingText).toEqual('header-text');
 		});
 
 		it('should create opened modal and close it', async () => {
@@ -27,7 +27,7 @@ describe('Zoo modal', function() {
 				await new Promise(r => setTimeout(r, 400)); // waiting for animation to finish
 				return modal.shadowRoot.host.style.display;
 			});
-			expect(modalDisplay).equal('none');
+			expect(modalDisplay).toEqual('none');
 		});
 
 		it('should accept 1 slot', async() => {
@@ -48,7 +48,7 @@ describe('Zoo modal', function() {
 					slottedText: slottedContent.innerHTML
 				};
 			});
-			expect(ret.slottedText).equal('some test text');
+			expect(ret.slottedText).toEqual('some test text');
 		});
 	});
 });

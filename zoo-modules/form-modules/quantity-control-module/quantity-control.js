@@ -2,7 +2,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class QuantityControl extends AbstractControl {
+export default class QuantityControl extends AbstractControl {
 	constructor() {
 		super();
 	}

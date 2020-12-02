@@ -11,7 +11,7 @@ describe('Zoo tooltip', function() {
 				};
 				return tooltipAttrs;
 			});
-			expect(tooltipAttrs.tooltipText).equal('some-text');
+			expect(tooltipAttrs.tooltipText).toEqual('some-text');
 		});
 
 		it('should create tooltip with slot', async() => {
@@ -24,7 +24,7 @@ describe('Zoo tooltip', function() {
 				const slot = tooltip.shadowRoot.querySelector('slot');
 				return slot.assignedNodes()[0].innerHTML;
 			});
-			expect(slottedElement).equal('slotted');
+			expect(slottedElement).toEqual('slotted');
 		});
 	});
 });

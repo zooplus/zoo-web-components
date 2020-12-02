@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class InputInfo extends HTMLElement {
+export default class InputInfo extends HTMLElement {
 	constructor() {
 		super();
 	}

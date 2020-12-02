@@ -12,7 +12,7 @@ describe('Zoo toast', function() {
 				};
 				return toastAttrs;
 			});
-			expect(toastAttrs.toasttext).equal('some-text');
+			expect(toastAttrs.toasttext).toEqual('some-text');
 		});
 	});
 });

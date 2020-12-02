@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class Spinner extends HTMLElement {
+export default class Spinner extends HTMLElement {
 	constructor() {
 		super();
 	}

@@ -1,24 +1,23 @@
 /**
  * @injectHTML
  */
-class Link extends HTMLElement {
+export default class Link extends HTMLElement {
 	constructor() {
 		super();
 	}
 
-	static get observedAttributes() {
-		return ['type', 'size'];
-	}
 	get type() {
-		return this.getAttribute('active');
+		return this.getAttribute('type');
 	}
 	set type(type) {
+		if (this.type == type) return;
 		this.setAttribute('type', type);
 	}
 	get size() {
 		return this.getAttribute('size');
 	}
 	set size(size) {
+		if (this.size == size) return;
 		this.setAttribute('size', size);
 	}
 }

@@ -12,7 +12,7 @@ describe('Zoo toggle switch', function() {
 
 			return slottedInput.tagName;
 		});
-		expect(ret).equal('INPUT');
+		expect(ret).toEqual('INPUT');
 	});
 
 	it('should pass attributes to input info component', async() => {
@@ -25,7 +25,7 @@ describe('Zoo toggle switch', function() {
 				infoText: info.querySelector('.info').innerHTML
 			};
 		});
-		expect(infoAttrs.infoText.indexOf('info-text')).not.equal(-1);
+		expect(infoAttrs.infoText.indexOf('info-text')).not.toEqual(-1);
 	});
 
 	it('should pass attributes to input label component', async() => {
@@ -38,6 +38,6 @@ describe('Zoo toggle switch', function() {
 				labelText: label.querySelector('label').innerHTML
 			};
 		});
-		expect(labelAttrs.labelText).equal('label');
+		expect(labelAttrs.labelText).toEqual('label');
 	});
 });

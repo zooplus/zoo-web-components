@@ -1,3 +1,9 @@
+# 7.2.0
+Export all classes as default module exports;      
+Move documentation to a separate repo;       
+Use Jasmine (2 dependencies) instead of mocha + chai (110 dependencies);      
+Minor fixes and perfomance updates for components.
+
 # 7.1.9
 `zoo-checkbox` - fix grey border for disabled checkbox;
 

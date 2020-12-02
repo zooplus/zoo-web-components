@@ -11,7 +11,7 @@ describe('Zoo button', function() {
 				const nestedButton = zoobutton.shadowRoot.querySelector('slot').assignedNodes()[0];
 				return nestedButton.getAttribute('disabled');
 			});
-			expect(disabledAttr).equal('');
+			expect(disabledAttr).toEqual('');
 		});
 	});
 });

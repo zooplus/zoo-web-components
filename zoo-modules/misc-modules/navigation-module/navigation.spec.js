@@ -10,7 +10,7 @@ describe('Zoo navigation', function() {
 				const slot = nav.shadowRoot.querySelector('slot');
 				return slot.assignedNodes()[0].innerHTML;
 			});
-			expect(slottedElement).equal('slotted');
+			expect(slottedElement).toEqual('slotted');
 		});
 	});
 });

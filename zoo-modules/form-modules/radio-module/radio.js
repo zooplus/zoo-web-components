@@ -2,7 +2,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class Radio extends AbstractControl {
+export default class Radio extends AbstractControl {
 	constructor() {
 		super();
 	}

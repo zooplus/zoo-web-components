@@ -1,9 +1,10 @@
 /**
  * @injectHTML
  */
-class Header extends HTMLElement {
+export default class Header extends HTMLElement {
 	constructor() {
 		super();
+		this.header = this.shadowRoot.querySelector('h2');
 	}
 
 	static get observedAttributes() {
@@ -13,15 +14,17 @@ class Header extends HTMLElement {
 		return this.getAttribute('headertext');
 	}
 	set headertext(text) {
+		if (this.headertext == text) return;
 		this.setAttribute('headertext', text);
 		this.handleHeaderText(this.headertext, text);
 	}
 	handleHeaderText(newVal) {
-		this.shadowRoot.querySelector('h2').innerHTML = newVal;
+		this.headertext = newVal;
+		this.header.innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
-		if (attrName == 'headertext') this.handleHeaderText(newVal);
+		if (oldVal === newVal) return;
+		if (Header.observedAttributes.includes(attrName) && attrName === 'headertext') this.handleHeaderText(newVal);
 	}
 }
 

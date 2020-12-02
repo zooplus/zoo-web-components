@@ -2,7 +2,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class SearchableSelect extends AbstractControl {
+export default class SearchableSelect extends AbstractControl {
 	constructor() {
 		super();
 		this.target = 'zoo-input';

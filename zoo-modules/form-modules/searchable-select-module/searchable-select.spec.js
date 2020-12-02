@@ -39,16 +39,16 @@ describe('Zoo searchable select', function() {
 				};
 			});
 			const link = createdElements.link;
-			expect(link.linkText).equal('link-text');
-			expect(link.linkTarget).equal('#');
-			expect(link.linkHref).equal('https://google.com');
+			expect(link.linkText).toEqual('link-text');
+			expect(link.linkTarget).toEqual('#');
+			expect(link.linkHref).toEqual('https://google.com');
 
 			const label = createdElements.label;
-			expect(label.labelText).equal('label-text');
+			expect(label.labelText).toEqual('label-text');
 
 			const info = createdElements.info;
-			expect(info.infoText.indexOf('info-text')).not.equal(-1);
-			expect(info.errorMsg.indexOf('errormsg')).not.equal(-1);
+			expect(info.infoText.indexOf('info-text')).not.toEqual(-1);
+			expect(info.errorMsg.indexOf('errormsg')).not.toEqual(-1);
 		});
 
 		it('should accept 1 slot', async() => {
@@ -70,8 +70,8 @@ describe('Zoo searchable select', function() {
 					optText: slot.assignedNodes()[0].options[0].innerHTML
 				};
 			});
-			expect(slottedElement.optVal).equal('1');
-			expect(slottedElement.optText).equal('first');
+			expect(slottedElement.optVal).toEqual('1');
+			expect(slottedElement.optText).toEqual('first');
 		});
 
 		it('should handle input typing', async() => {
@@ -99,7 +99,7 @@ describe('Zoo searchable select', function() {
 				slottedInput.dispatchEvent(new Event('input', {bubbles: true}));
 				return option.style.display;
 			});
-			expect(optionDisplayProp).equal('none');
+			expect(optionDisplayProp).toEqual('none');
 		});
 	});
 });

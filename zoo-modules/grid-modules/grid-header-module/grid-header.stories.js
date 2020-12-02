@@ -1,1 +1,0 @@
-import './dist/grid-header.compiled';

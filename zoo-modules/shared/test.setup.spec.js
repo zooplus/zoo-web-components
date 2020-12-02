@@ -1,10 +1,6 @@
-/* eslint-disable */
-
 const puppeteer = require('puppeteer');
-const chai = require('chai');
-const expect = chai.expect;
 
-before(async () => {
+beforeAll(async () => {
 	global.expect = expect;
 	global.browser = await puppeteer.launch({headless: true});
 	global.page = await global.browser.newPage();
@@ -17,6 +13,6 @@ afterEach(async () => {
 	});
 });
 
-after(async () => {
+afterAll(async () => {
 	await global.browser.close();
 });

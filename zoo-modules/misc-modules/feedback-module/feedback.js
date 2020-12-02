@@ -1,18 +1,16 @@
 /**
  * @injectHTML
  */
-class Feedback extends HTMLElement {
+export default class Feedback extends HTMLElement {
 	constructor() {
 		super();
 	}
 
-	static get observedAttributes() {
-		return ['type'];
-	}
 	get type() {
 		return this.getAttribute('type');
 	}
 	set type(type) {
+		if (this.type == type) return;
 		this.setAttribute('type', type);
 	}
 }

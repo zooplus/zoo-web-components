@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class SegmentedButtons extends HTMLElement {
+export default class SegmentedButtons extends HTMLElement {
 	constructor() {
 		super();
 	}

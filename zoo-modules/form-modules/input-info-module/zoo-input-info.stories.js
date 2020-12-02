@@ -1,1 +1,0 @@
-import './dist/input-info.compiled';

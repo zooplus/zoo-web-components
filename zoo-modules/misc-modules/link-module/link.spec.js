@@ -10,7 +10,7 @@ describe('Zoo link', function() {
 				};
 				return linkAttrs;
 			});
-			expect(linkAttrs.linkBox).to.be.null;
+			expect(linkAttrs.linkBox).toBeNull();
 		});
 	});
 });

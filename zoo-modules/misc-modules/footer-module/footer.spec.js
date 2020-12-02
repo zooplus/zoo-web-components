@@ -15,7 +15,7 @@ describe('Zoo footer', function() {
 				const linkSlot = footer.shadowRoot.querySelector('slot');
 				return linkSlot.assignedNodes().length;
 			});
-			expect(linksLength).equal(2);
+			expect(linksLength).toEqual(2);
 		});
 	});
 });

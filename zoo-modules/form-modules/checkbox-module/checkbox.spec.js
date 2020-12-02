@@ -11,7 +11,7 @@ describe('Zoo checkbox', function() {
 					inputLabelText: checkbox.shadowRoot.querySelector('label').innerHTML
 				};
 			});
-			expect(inputAttrs.inputLabelText).equal('label-text');
+			expect(inputAttrs.inputLabelText).toEqual('label-text');
 		});
 
 		it('should handle checkbox label click', async() => {
@@ -29,7 +29,7 @@ describe('Zoo checkbox', function() {
 				inputSlot.click();
 				return slottedCheckbox.checked;
 			});
-			expect(checked).to.be.true;
+			expect(checked).toBeTrue();
 		});
 
 		it('should accept 1 slot', async() => {
@@ -48,8 +48,8 @@ describe('Zoo checkbox', function() {
 					type: slottedCheckbox.type
 				};
 			});
-			expect(ret.tagName).equal('INPUT');
-			expect(ret.type).equal('checkbox');
+			expect(ret.tagName).toEqual('INPUT');
+			expect(ret.type).toEqual('checkbox');
 		});
 
 		it('should render labeltext when such attribute is passed', async() => {
@@ -65,7 +65,7 @@ describe('Zoo checkbox', function() {
 
 				return labelText.innerHTML;
 			});
-			expect(label).equal('labeltext');
+			expect(label).toEqual('labeltext');
 		});
 
 		it('should pass input info attributes to zoo-input-info when supplied', async() => {
@@ -87,8 +87,8 @@ describe('Zoo checkbox', function() {
 					infotext: zooInputInfoEl.infotext
 				};
 			});
-			expect(ret.inputerrormsg).equal(inputerrormsg);
-			expect(ret.infotext).equal(infotext);
+			expect(ret.inputerrormsg).toEqual(inputerrormsg);
+			expect(ret.infotext).toEqual(infotext);
 		});
 	});
 });

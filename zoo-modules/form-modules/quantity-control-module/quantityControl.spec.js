@@ -12,7 +12,7 @@ describe('Zoo quantity control', function() {
 
 			return slottedInput.tagName;
 		});
-		expect(ret).equal('INPUT');
+		expect(ret).toEqual('INPUT');
 	});
 
 	it('should pass attributes to input info component', async() => {
@@ -28,8 +28,8 @@ describe('Zoo quantity control', function() {
 				errorMsg: info.querySelector('.error').innerHTML
 			};
 		});
-		expect(infoAttrs.infoText.indexOf('info-text')).not.equal(-1);
-		expect(infoAttrs.errorMsg.indexOf('errormsg')).not.equal(-1);
+		expect(infoAttrs.infoText.indexOf('info-text')).not.toEqual(-1);
+		expect(infoAttrs.errorMsg.indexOf('errormsg')).not.toEqual(-1);
 	});
 
 	it('should pass attributes to input label component', async() => {
@@ -43,7 +43,7 @@ describe('Zoo quantity control', function() {
 				labelText: label.querySelector('label').innerHTML
 			};
 		});
-		expect(labelAttrs.labelText).equal('label');
+		expect(labelAttrs.labelText).toEqual('label');
 	});
 
 	it('should increase input value when plus is clicked', async() => {
@@ -64,7 +64,7 @@ describe('Zoo quantity control', function() {
 			
 			return slottedInput.value;
 		});
-		expect(ret).equal('50');
+		expect(ret).toEqual('50');
 	});
 
 	it('should not increase input value when plus is clicked', async() => {
@@ -86,7 +86,7 @@ describe('Zoo quantity control', function() {
 			
 			return slottedInput.value;
 		});
-		expect(ret).equal('');
+		expect(ret).toEqual('');
 	});
 
 	it('should decrease input value when minus is clicked', async() => {
@@ -107,7 +107,7 @@ describe('Zoo quantity control', function() {
 			
 			return slottedInput.value;
 		});
-		expect(ret).equal('-50');
+		expect(ret).toEqual('-50');
 	});
 
 	it('should not decrease input value when minus is clicked', async() => {
@@ -129,6 +129,6 @@ describe('Zoo quantity control', function() {
 			
 			return slottedInput.value;
 		});
-		expect(ret).equal('');
+		expect(ret).toEqual('');
 	});
 });

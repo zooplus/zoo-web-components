@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class CollapsableListItem extends HTMLElement {
+export default class CollapsableListItem extends HTMLElement {
 	constructor() {
 		super();
 	}

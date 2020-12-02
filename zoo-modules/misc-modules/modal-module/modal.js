@@ -1,9 +1,10 @@
 /**
  * @injectHTML
  */
-class Modal extends HTMLElement {
+export default class Modal extends HTMLElement {
 	constructor() {
 		super();
+		this.header = this.shadowRoot.querySelector('span');
 	}
 
 	static get observedAttributes() {
@@ -13,6 +14,7 @@ class Modal extends HTMLElement {
 		return this.getAttribute('headertext');
 	}
 	set headertext(headertext) {
+		if (this.headertext == headertext) return;
 		this.setAttribute('headertext', headertext);
 		this.handleText(this.headertext, headertext);
 	}
@@ -21,7 +23,8 @@ class Modal extends HTMLElement {
 		if (attrName == 'headertext') this.handleText(newVal);
 	}
 	handleText(newVal) {
-		this.shadowRoot.querySelector('span').innerHTML = newVal;
+		this.headertext = newVal;
+		this.header.innerHTML = newVal;
 	}
 	connectedCallback() {
 		this.hidden = true;

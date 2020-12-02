@@ -2,7 +2,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class ToggleSwitch extends AbstractControl {
+export default class ToggleSwitch extends AbstractControl {
 	constructor() {
 		super();
 	}

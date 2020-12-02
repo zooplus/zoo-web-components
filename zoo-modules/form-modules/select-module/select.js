@@ -2,7 +2,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class Select extends AbstractControl {
+export default class Select extends AbstractControl {
 	constructor() {
 		super();
 	}

@@ -5,7 +5,7 @@ describe('Zoo button', function () {
 		it('should create disabled button', async () => {
 			await page.evaluate(() => {
 				let zoobutton = document.createElement('zoo-button');
-				zoobutton.id = 'button-id'
+				zoobutton.id = 'button-id';
 				let button = document.createElement('button');
 				button.innerHTML = 'button-text';
 				button.disabled = true;

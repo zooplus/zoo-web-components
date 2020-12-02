@@ -2,7 +2,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class Input extends AbstractControl {
+export default class Input extends AbstractControl {
 	constructor() {
 		super();
 	}

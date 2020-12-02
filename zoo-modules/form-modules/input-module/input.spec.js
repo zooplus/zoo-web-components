@@ -10,9 +10,9 @@ describe('Zoo input', function() {
 					inputInfoPresent: input.shadowRoot.querySelector('zoo-input-info') !== undefined
 				};
 			});
-			expect(inputAttrs.inputLabelPresent).to.be.true;
-			expect(inputAttrs.inputLinkPresent).to.be.true;
-			expect(inputAttrs.inputInfoPresent).to.be.true;
+			expect(inputAttrs.inputLabelPresent).toBeTrue();
+			expect(inputAttrs.inputLinkPresent).toBeTrue();
+			expect(inputAttrs.inputInfoPresent).toBeTrue();
 		});
 
 		it('should pass attributes to input label component', async() => {
@@ -25,7 +25,7 @@ describe('Zoo input', function() {
 					labelText: label.querySelector('label').innerHTML
 				};
 			});
-			expect(labelAttrs.labelText).equal('label');
+			expect(labelAttrs.labelText).toEqual('label');
 		});
 
 		it('should render input link', async() => {
@@ -42,9 +42,9 @@ describe('Zoo input', function() {
 					linkHref: linkAnchor.getAttribute('href')
 				};
 			});
-			expect(linkAttrs.linkText).equal('link-text');
-			expect(linkAttrs.linkHref).equal('https://google.com');
-			expect(linkAttrs.linkTarget).equal('#');
+			expect(linkAttrs.linkText).toEqual('link-text');
+			expect(linkAttrs.linkHref).toEqual('https://google.com');
+			expect(linkAttrs.linkTarget).toEqual('#');
 		});
 
 		it('should pass attributes to input info component', async() => {
@@ -60,8 +60,8 @@ describe('Zoo input', function() {
 					errorMsg: info.querySelector('.error').innerHTML
 				};
 			});
-			expect(infoAttrs.infoText.indexOf('info-text')).not.equal(-1);
-			expect(infoAttrs.errorMsg.indexOf('errormsg')).not.equal(-1);
+			expect(infoAttrs.infoText.indexOf('info-text')).not.toEqual(-1);
+			expect(infoAttrs.errorMsg.indexOf('errormsg')).not.toEqual(-1);
 		});
 
 		it('should accept 1 slot', async() => {
@@ -78,7 +78,7 @@ describe('Zoo input', function() {
 					tagName: slottedInput.tagName 
 				};
 			});
-			expect(ret.tagName).equal('INPUT');
+			expect(ret.tagName).toEqual('INPUT');
 		});
 	});
 });

@@ -15,8 +15,8 @@ describe('Zoo radio', function() {
 					type: slottedRadio.type
 				};
 			});
-			expect(ret.tagName).equal('INPUT');
-			expect(ret.type).equal('radio');
+			expect(ret.tagName).toEqual('INPUT');
+			expect(ret.type).toEqual('radio');
 		});
 	});
 });

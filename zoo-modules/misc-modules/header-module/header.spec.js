@@ -8,7 +8,7 @@ describe('Zoo header', function() {
 				const text = header.shadowRoot.querySelector('h2');
 				return text.innerHTML;
 			});
-			expect(headerText).equal('header-text');
+			expect(headerText).toEqual('header-text');
 		});
 
 		it('should create image', async() => {
@@ -22,7 +22,7 @@ describe('Zoo header', function() {
 				const imageSlot = header.shadowRoot.querySelector('slot[name="img"]');
 				return imageSlot.assignedNodes()[0].getAttribute('src');
 			});
-			expect(imageSrc).equal('logo.png');
+			expect(imageSrc).toEqual('logo.png');
 		});
 		it('should accept 1 slot', async() => {
 			const slottedElement = await page.evaluate(() => {
@@ -34,7 +34,7 @@ describe('Zoo header', function() {
 				const slot = header.shadowRoot.querySelectorAll('slot')[2];
 				return slot.assignedNodes()[0].innerHTML;
 			});
-			expect(slottedElement).equal('slotted');
+			expect(slottedElement).toEqual('slotted');
 		});
 		
 	});

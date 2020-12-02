@@ -3,7 +3,7 @@ import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-class Checkbox extends AbstractControl {
+export default class Checkbox extends AbstractControl {
 	constructor() {
 		super();
 	}

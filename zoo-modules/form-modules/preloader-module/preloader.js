@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-class Preloader extends HTMLElement {
+export default class Preloader extends HTMLElement {
 	constructor() {
 		super();
 	}

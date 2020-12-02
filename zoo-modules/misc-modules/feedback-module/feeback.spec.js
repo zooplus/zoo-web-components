@@ -10,7 +10,7 @@ describe('Zoo feedback', function() {
 				const text = feedback.shadowRoot.querySelector('slot').assignedNodes()[0].innerHTML;
 				return text;
 			});
-			expect(retText).equal('example');
+			expect(retText).toEqual('example');
 		});
 	});
 });

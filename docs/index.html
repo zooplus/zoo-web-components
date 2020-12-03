@@ -91,25 +91,27 @@
 				<input type="text" placeholder="Lorem ipsum" slot="inputelement"/>
 			</zoo-input>
 		</zoo-select>
-		<zoo-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
-			<select multiple slot="selectelement">
+		<zoo-searchable-select placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
+			<select id="searchable-select" multiple slot="selectelement">
 				<option value="text">text</option>
 				<option value="raNdOm">raNdOm</option>
 				<option value="random1">random1</option>
 				<option value="random2">random2</option>
 			</select>
+			<label for="standard-select" slot="selectlabel">Searchable multiple select</label>
 		</zoo-searchable-select>
-		<zoo-searchable-select labeltext="Searchable select" placeholder="Placeholder" infotext="Additional helpful information for our users.">
-			<select slot="selectelement">
+		<zoo-searchable-select placeholder="Placeholder" infotext="Additional helpful information for our users.">
+			<select id="searchable-select2" slot="selectelement">
 				<option value="text">text</option>
 				<option value="raNdOm">raNdOm</option>
 				<option value="random1">random1</option>
 				<option value="random2">random2</option>
 			</select>
+			<label for="standard-select2" slot="selectlabel">Searchable select</label>
 		</zoo-searchable-select>
 		<zoo-checkbox highlighted infotext="Additional information">
 			<input id="checkbox" slot="checkboxelement" type="checkbox"/>
-			<label for="checkbox" slot="checkboxlabel">An example checkbox</label>
+			<label for="checkbox" slot="checkboxlabel">An example checkboxAn example checkboxAn example checkboxAn example checkboxAn example checkbox</label>
 		</zoo-checkbox>
 		<zoo-checkbox highlighted>
 			<input id="disabled-checkbox" disabled slot="checkboxelement" type="checkbox"/>

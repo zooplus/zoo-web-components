@@ -32,16 +32,14 @@ slot {
 }
 
 ::slotted(input[type="radio"]:focus) {
-	--box-shadow-width: 2px;
 	--box-shadow-color: #3C9700;
 }
 
 ::slotted(input[type="radio"]:checked) {
 	background-color: var(--primary-mid, #3C9700);
 
-	--box-shadow-width: 2px;
 	--box-shadow-color: #3C9700;
-	--box-shadow-width2: 5px;
+	--box-shadow-width2: 4px;
 	--box-shadow-color2: white;
 }
 

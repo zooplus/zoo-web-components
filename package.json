@@ -13,6 +13,7 @@
 		"axe-core": "^4.1.1",
 		"clean-css": "^4.2.3",
 		"concurrently": "^5.3.0",
+		"cross-env": "^7.0.3",
 		"eslint": "^7.14.0",
 		"html-minifier": "^4.0.0",
 		"html-validate": "^4.0.2",
@@ -26,9 +27,9 @@
 		"stylelint-high-performance-animation": "^1.5.2"
 	},
 	"scripts": {
-		"start": "concurrently -k \"node server.js docs\"  \"NODE_ENV=local rollup -c -w --watch.clearScreen\"",
+		"start": "concurrently -k \"node server.js docs\"  \"cross-env NODE_ENV=local rollup -c -w --watch.clearScreen\"",
 		"build": "rollup -c",
-		"pretest": "NODE_ENV=test npm run build",
+		"pretest": "cross-env NODE_ENV=test npm run build",
 		"test": "concurrently -k -s first \"jasmine\" \"node server.js docs\"",
 		"prepublishOnly": "npm run lint && npm test && npm run build",
 		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css && html-validate zoo-modules/**/*.html"

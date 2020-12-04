@@ -7,14 +7,7 @@ export default class Toast extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['type', 'text', 'timeout', 'closelabel'];
-	}
-	get closelabel() {
-		return this.getAttribute('closelabel');
-	}
-	set closelabel(newLabel) {
-		this.setAttribute('closelabel', newLabel);
-		this.handleCloseLabel(newLabel);
+		return ['type', 'text', 'timeout'];
 	}
 	get type() {
 		return this.getAttribute('type');
@@ -41,11 +34,6 @@ export default class Toast extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'text') this.handleText(newVal);
-		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
-	}
-	handleCloseLabel(newVal) {
-		const closeButton = this.shadowRoot.querySelector('.close');
-		closeButton.setAttribute('aria-label', newVal);
 	}
 	connectedCallback() {
 		this.hidden = true;

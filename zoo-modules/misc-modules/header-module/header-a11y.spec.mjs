@@ -1,6 +1,6 @@
 describe('Zoo header', function() {
 	it('should pass accessibility tests', async() => {
-		await page.evaluate(() => {
+		const results = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-header headertext="Zooplus web components">
 				<img slot="img" alt="Zooplus logo" src="logo.png"/>
@@ -16,20 +16,11 @@ describe('Zoo header', function() {
 					</zoo-button>
 				</div>
 			</zoo-header>`;
+			return await axe.run('zoo-header');
 		});
-		// Inject and run axe-core
-		const handle = await page.evaluateHandle(`
-			${axe.source}
-			axe.run('zoo-header')
-		`);
-
-		// Get the results from `axe.run()`.
-		results = await handle.jsonValue();
 		if (results.violations.length) {
 			console.log('zoo-header a11y violations ', results.violations);
 			throw new Error('Accessibility issues found');
 		}
-		// Destroy the handle & return axe results.
-		await handle.dispose();
 	});
 });

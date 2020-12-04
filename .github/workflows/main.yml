@@ -30,6 +30,7 @@ jobs:
       - name: Test and build
         run: |
           npm install
+          npm run lint
           npm test
           npm run build
       - name: Deploy

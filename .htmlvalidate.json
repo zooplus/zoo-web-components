@@ -1,0 +1,15 @@
+{
+	"extends": [
+		"html-validate:recommended"
+	],
+	"rules": {
+		"close-order": "error",
+		"svg-focusable": "off",
+		"void-style": [
+			"error",
+			{
+				"style": "selfclosing"
+			}
+		]
+	}
+}

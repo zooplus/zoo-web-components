@@ -1,3 +1,9 @@
+# 7.4.1
+`zoo-toggle-switch` - make it play nice with bootstrap;
+
+# 7.4.0
+clean-up css to make them smaller.
+
 # 7.3.0
 
 Play nicely with css libraries like Bootstrap.

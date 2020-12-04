@@ -4,6 +4,8 @@
 }
 
 div {
+	display: flex;
+	align-items: center;
 	position: relative;
 	height: 17px;
 	width: 40px;
@@ -14,8 +16,6 @@ div {
 }
 
 ::slotted(input[type="checkbox"]) {
-	position: absolute;
-	top: -6px;
 	transition: transform 0.2s;
 	transform: translateX(-30%);
 	width: 60%;
@@ -33,7 +33,6 @@ div {
 
 ::slotted(input[type="checkbox"]:checked) {
 	transform: translateX(80%);
-	left: initial;
 	background: var(--primary-mid, #3C9700);
 }
 

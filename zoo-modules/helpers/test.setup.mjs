@@ -13,12 +13,14 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-	global.axeHandle = await page.evaluateHandle(`${axe.source}`);
+	global.axeHandle = await global.page.evaluateHandle(`${axe.source}`);
 });
 
 afterEach(async () => {
-	await global.axeHandle ? global.axeHandle.dispose() : new Promise(res => res());
 	await global.page.evaluate(() => document.body.innerHTML = '');
 });
 
-afterAll(async () => await global.browser.close());
+afterAll(async () => {
+	await global.axeHandle ? global.axeHandle.dispose() : new Promise(res => res());
+	await global.browser.close();
+});

@@ -4,7 +4,6 @@
 export default class Header extends HTMLElement {
 	constructor() {
 		super();
-		this.header = this.shadowRoot.querySelector('h2');
 	}
 
 	static get observedAttributes() {
@@ -20,6 +19,10 @@ export default class Header extends HTMLElement {
 	}
 	handleHeaderText(newVal) {
 		this.headertext = newVal;
+		if (!this.header) {
+			this.header = document.createElement('h2');
+			this.shadowRoot.querySelector('slot[name="headertext"').appendChild(this.header);
+		}
 		this.header.innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {

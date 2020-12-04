@@ -90,6 +90,7 @@ export default class AbstractControl extends HTMLElement {
 	}
 
 	handleLinkText(newVal, target) {
+		if (!target) this.makeSureAnchorExists();
 		const prop = target ? 'linktext' : 'innerHTML';
 		target = target || 'a';
 		const el = this.shadowRoot.querySelector(target);
@@ -108,6 +109,7 @@ export default class AbstractControl extends HTMLElement {
 	}
 
 	handleLinkHref(newVal, target) {
+		if (!target) this.makeSureAnchorExists();
 		target = target || 'a';
 		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
@@ -125,6 +127,7 @@ export default class AbstractControl extends HTMLElement {
 	}
 
 	handleLinkTarget(newVal, target) {
+		if (!target) this.makeSureAnchorExists();
 		target = target || 'a';
 		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
@@ -139,5 +142,12 @@ export default class AbstractControl extends HTMLElement {
 	set linktarget(target) {
 		this.setAttribute('linktarget', target);
 		this.handleLinkTarget(target);
+	}
+
+	makeSureAnchorExists() {
+		let anchor = this.shadowRoot.querySelector('a');
+		if (!anchor) {
+			this.shadowRoot.querySelector('.content').insertAdjacentHTML('beforebegin', '<a></a>');
+		}
 	}
 }

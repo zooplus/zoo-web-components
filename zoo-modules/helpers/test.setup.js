@@ -1,3 +1,4 @@
+/* eslint-disable */
 const puppeteer = require('puppeteer');
 const axe = require('axe-core');
 const jasmine = require('jasmine');

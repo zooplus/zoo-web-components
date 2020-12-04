@@ -5,6 +5,7 @@
 	"files": [
 		"dist/zoo-components-esm.js"
 	],
+	"type": "module",
 	"module": "dist/zoo-components-esm.js",
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
@@ -19,17 +20,16 @@
 		"puppeteer": "^5.5.0",
 		"rollup": "^2.34.0",
 		"rollup-plugin-terser": "^7.0.2",
-		"serve": "^11.3.2",
 		"stylelint": "^13.8.0",
 		"stylelint-a11y": "^1.2.3",
 		"stylelint-config-standard": "^20.0.0",
 		"stylelint-high-performance-animation": "^1.5.2"
 	},
 	"scripts": {
-		"start": "concurrently -k \"serve docs\"  \"NODE_ENV=local rollup -c -w --watch.clearScreen\"",
+		"start": "concurrently -k \"node server.js docs\"  \"NODE_ENV=local rollup -c -w --watch.clearScreen\"",
 		"build": "rollup -c",
 		"pretest": "NODE_ENV=test npm run build",
-		"test": "concurrently -k -s first \"jasmine\" \"serve docs\"",
+		"test": "concurrently -k -s first \"jasmine\" \"node server.js docs\"",
 		"prepublishOnly": "npm run lint && npm test && npm run build",
 		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css && html-validate zoo-modules/**/*.html"
 	},

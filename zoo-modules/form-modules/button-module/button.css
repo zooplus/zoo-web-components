@@ -3,15 +3,35 @@
 	max-width: 330px;
 	min-height: 36px;
 	position: relative;
+
+	--color-light: var(--primary-light);
+	--color-mid: var(--primary-mid);
+	--color-dark: var(--primary-dark);
+	--text-normal: white;
+	--text-active: white;
+	--background: linear-gradient(to right, var(--color-mid), var(--color-light));
+	--border: 0;
+}
+
+:host([type="secondary"]) {
+	--color-light: var(--secondary-light);
+	--color-mid: var(--secondary-mid);
+	--color-dark: var(--secondary-dark);
+}
+
+:host([type="hollow"]) {
+	--text-normal: var(--color-mid);
+	--background: transparent;
+	--border: 2px solid var(--color-mid);
 }
 
 ::slotted(button) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: white;
-	border: 0;
-	border-radius: var(--zoo-btn-border-radius, 5px);
+	color: var(--text-normal);
+	border: var(--border);
+	border-radius: 5px;
 	cursor: pointer;
 	width: 100%;
 	min-height: 100%;
@@ -19,65 +39,30 @@
 	line-height: 20px;
 	font-weight: bold;
 	text-align: center;
-	background: linear-gradient(to right, var(--primary-mid, #3C9700), var(--primary-light, #66B100));
+	background: var(--background);
 }
 
 ::slotted(button:hover),
 ::slotted(button:focus) {
-	background: var(--primary-mid, #3C9700);
+	background: var(--color-mid);
+	color: var(--text-active);
 }
 
 ::slotted(button:active) {
-	background: var(--primary-dark, #286400);
-	transform: translateY(1px);
+	background: var(--color-dark);
+	color: var(--text-active);
 }
 
 ::slotted(button:disabled) {
-	background: #F2F3F4 !important;
-	color: #767676 !important;
-	border: 1px solid #E6E6E6 !important;
 	cursor: not-allowed;
 	transform: translateY(0);
-}
 
-:host([type="secondary"]) ::slotted(button) {
-	background: linear-gradient(to right, var(--secondary-mid, #FF6200), var(--secondary-light, --int-secondary-light));
-}
-
-:host([type="secondary"]) ::slotted(button:hover),
-:host([type="secondary"]) ::slotted(button:focus) {
-	background: var(--secondary-mid, #FF6200);
-}
-
-:host([type="secondary"]) ::slotted(button:active) {
-	background: var(--secondary-dark, #CC4E00);
-}
-
-:host([type="hollow"]) ::slotted(button) {
-	border: 2px solid var(--primary-mid, #3C9700);
-	color: var(--primary-mid, #3C9700);
-	background: transparent;
-}
-
-:host([type="hollow"]) ::slotted(button:hover),
-:host([type="hollow"]) ::slotted(button:focus),
-:host([type="hollow"]) ::slotted(button:active) {
-	color: white;
-	background: var(--primary-mid, #3C9700);
-}
-
-:host([type="hollow"]) ::slotted(button:active) {
-	background: var(--primary-dark, #286400);
-}
-
-:host([type="empty"]) ::slotted(button) {
-	color: initial;
-	background: transparent;
-}
-
-:host([type="empty"]) ::slotted(button:hover),
-:host([type="empty"]) ::slotted(button:focus) {
-	background: #E6E6E6;
+	--background: #F2F3F4;
+	--color-mid: #F2F3F4;
+	--color-dark: #F2F3F4;
+	--text-normal: #767676;
+	--text-active: #767676;
+	--border: 1px solid #E6E6E6;
 }
 
 :host([size="medium"]) {

@@ -1,7 +1,7 @@
 /* eslint-disable */
-const puppeteer = require('puppeteer');
-const axe = require('axe-core');
-const jasmine = require('jasmine');
+import puppeteer from 'puppeteer';
+import axe from 'axe-core';
+import jasmine from 'jasmine';
 
 beforeAll(async () => {
 	jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
@@ -11,7 +11,7 @@ beforeAll(async () => {
 	});
 	global.page = await global.browser.newPage();
 	global.axe = axe;
-	await global.page.goto('http://localhost:5000');
+	await global.page.goto('http://localhost:9000');
 });
 
 afterEach(async () => await global.page.evaluate(() => document.body.innerHTML = ''));

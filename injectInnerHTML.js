@@ -1,6 +1,6 @@
-const fs = require('fs');
-var CleanCSS = require('clean-css');
-var minifyHTML = require('html-minifier').minify;
+import fs from 'fs';
+import CleanCSS from 'clean-css';
+import minifyHTML from 'html-minifier';
 
 export default function injectInnerHTML() {
 	return {
@@ -11,7 +11,7 @@ export default function injectInnerHTML() {
 				const htmlFile = id.replace('.js', '.html');
 				const cssFile = id.replace('.js', '.css');
 				const html = fs.readFileSync(htmlFile, 'utf8');
-				const minifiedHTML = minifyHTML(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
+				const minifiedHTML = minifyHTML.minify(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
 				const css = fs.readFileSync(cssFile, 'utf8');
 				const minifiedCss = new CleanCSS({ level: { 2: { all: true } } }).minify(css);
 				code = code.replace('super();', `super();this.attachShadow({mode:'open'}).innerHTML=\`<style>${minifiedCss.styles}</style>${minifiedHTML}\`;`);

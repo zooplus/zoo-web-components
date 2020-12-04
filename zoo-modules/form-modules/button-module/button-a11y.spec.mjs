@@ -15,7 +15,7 @@ describe('Zoo button', function () {
 		`);
 
 		// Get the results from `axe.run()`.
-		results = await handle.jsonValue();
+		let results = await handle.jsonValue();
 		if (results.violations.length) {
 			console.log(results.violations);
 			throw new Error('Accessibility issues found');

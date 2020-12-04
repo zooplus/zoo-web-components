@@ -12,7 +12,7 @@ export default class SearchableSelect extends AbstractControl {
 	}
 	set labeltext(text) {
 		this.setAttribute('labeltext', text);
-		this.handleLabel(text, this.target);
+		this.handleLabel(text);
 	}
 	set linktext(text) {
 		this.setAttribute('linktext', text);

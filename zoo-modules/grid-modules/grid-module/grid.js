@@ -103,6 +103,7 @@ export default class Grid extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'resizable') {
+			// TODO resizable attr is fucking up something
 			if (this.hasAttribute('resizable')) {
 				this.handleResizableHeaders();
 			}

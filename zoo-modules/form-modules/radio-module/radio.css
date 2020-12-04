@@ -1,6 +1,11 @@
 :host {
 	display: flex;
 	flex-direction: column;
+
+	--box-shadow-color: #767676;
+	--box-shadow-width: 1px;
+	--box-shadow-color2: transparent;
+	--box-shadow-width2: 1px;
 }
 
 slot {
@@ -12,8 +17,6 @@ slot {
 
 ::slotted(input[type="radio"]) {
 	position: relative;
-	border: 1px solid #767676;
-	border-color: var(--primary-mid, #3C9700);
 	min-width: 24px;
 	height: 24px;
 	border-radius: 50%;
@@ -25,20 +28,26 @@ slot {
 	appearance: none;
 	outline: none;
 	cursor: pointer;
+	box-shadow: inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color), inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2);
 }
 
 ::slotted(input[type="radio"]:focus) {
-	border-width: 2px;
+	--box-shadow-color: #3C9700;
 }
 
 ::slotted(input[type="radio"]:checked) {
 	background-color: var(--primary-mid, #3C9700);
+
+	--box-shadow-color: #3C9700;
+	--box-shadow-width2: 4px;
+	--box-shadow-color2: white;
 }
 
 ::slotted(input[type="radio"]:disabled) {
 	cursor: not-allowed;
-	border-color: #767676;
 	background-color: #E6E6E6;
+
+	--box-shadow-color: #767676;
 }
 
 :host([invalid]) ::slotted(input[type="radio"]:checked) {
@@ -46,7 +55,7 @@ slot {
 }
 
 :host([invalid]) ::slotted(input[type="radio"]) {
-	border-color: var(--warning-mid, #ED1C24);
+	--box-shadow-color: var(--warning-mid, #ED1C24);
 }
 
 ::slotted(label) {

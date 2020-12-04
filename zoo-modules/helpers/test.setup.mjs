@@ -9,7 +9,6 @@ beforeAll(async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox']
 	});
 	global.page = await global.browser.newPage();
-	global.axeHandle = '';
 	await global.page.goto('http://localhost:9000');
 });
 
@@ -18,7 +17,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-	await global.axeHandle.dispose();
+	await global.axeHandle ? global.axeHandle.dispose() : new Promise(res => res());
 	await global.page.evaluate(() => document.body.innerHTML = '');
 });
 

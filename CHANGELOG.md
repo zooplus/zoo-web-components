@@ -1,5 +1,10 @@
+# 7.3.0
+
+Play nicely with css libraries like Bootstrap.
+Internal pipeline improvement and test extension.
+
 # 7.2.0
-Export all classes as default module exports;      
+Export all classes as default module exports;
 Move documentation to a separate repo;       
 Use Jasmine (2 dependencies) instead of mocha + chai (110 dependencies);      
 Minor fixes and perfomance updates for components.

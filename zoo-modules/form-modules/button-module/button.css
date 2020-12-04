@@ -54,14 +54,15 @@
 }
 
 ::slotted(button:disabled) {
+	cursor: not-allowed;
+	transform: translateY(0);
+
 	--background: #F2F3F4;
 	--color-mid: #F2F3F4;
 	--color-dark: #F2F3F4;
 	--text-normal: #767676;
 	--text-active: #767676;
 	--border: 1px solid #E6E6E6;
-	cursor: not-allowed;
-	transform: translateY(0);
 }
 
 :host([size="medium"]) {

@@ -16,4 +16,11 @@ beforeAll(async () => {
 
 afterEach(async () => await global.page.evaluate(() => document.body.innerHTML = ''));
 
-afterAll(async () => await global.browser.close());
+afterEach(async () => {
+	await global.page.evaluate(() => document.body.innerHTML = '');
+	await global.axeHandle && global.axeHandle.dispose ? global.axeHandle.dispose() : new Promise(res => res());
+});
+
+afterAll(async () => {
+	await global.browser.close();
+});

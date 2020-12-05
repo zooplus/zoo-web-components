@@ -19,15 +19,6 @@ export default class InputLabel extends HTMLElement {
 		}
 	}
 
-	get labeltext() {
-		return this.getAttribute('labeltext');
-	}
-
-	set labeltext(text) {
-		this.setAttribute('labeltext', text);
-		this.handleLabel(this.labeltext, text);
-	}
-
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if(attrName == 'labeltext') this.handleLabel(newVal);

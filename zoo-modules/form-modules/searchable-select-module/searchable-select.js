@@ -101,8 +101,8 @@ export default class SearchableSelect extends HTMLElement {
 		if (showTooltip) {
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
 			this.tooltip.slot = 'inputelement';
-			this.tooltip.position = 'right';
-			this.tooltip.text = inputValString;
+			this.tooltip.setAttribute('position', 'right');
+			this.tooltip.setAttribute('text', inputValString);
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);
 		} else if (this.tooltip) {
 			this.tooltip.remove();

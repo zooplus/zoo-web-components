@@ -9,14 +9,6 @@ export default class Header extends HTMLElement {
 	static get observedAttributes() {
 		return ['headertext'];
 	}
-	get headertext() {
-		return this.getAttribute('headertext');
-	}
-	set headertext(text) {
-		if (this.headertext == text) return;
-		this.setAttribute('headertext', text);
-		this.handleHeaderText(this.headertext, text);
-	}
 	handleHeaderText(newVal) {
 		this.headertext = newVal;
 		if (!this.header) {

@@ -19,15 +19,6 @@ export default class Modal extends HTMLElement {
 		this.setAttribute('closelabel', newLabel);
 		this.handleCloseLabel(newLabel);
 	}
-
-	get headertext() {
-		return this.getAttribute('headertext');
-	}
-	set headertext(headertext) {
-		if (this.headertext == headertext) return;
-		this.setAttribute('headertext', headertext);
-		this.handleText(this.headertext, headertext);
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'headertext') this.handleText(newVal);

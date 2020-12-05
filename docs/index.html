@@ -167,8 +167,12 @@
 		</zoo-radio>
 	</form>
 	<hr>
-	<zoo-toast id="toast" text="Search for more than 8.000 products."></zoo-toast>
-	<zoo-toast id="modalToast" text="Added to cart!"></zoo-toast>
+	<zoo-toast id="toast">
+		<span slot="text">Search for more than 8.000 products.</span>
+	</zoo-toast>
+	<zoo-toast id="modalToast">
+		<span slot="text">Added to cart!</span>
+	</zoo-toast>
 	<h2>Buttons, modal windows</h2>
 	<div class="buttons">
 		<zoo-button id="toast-summoner">
@@ -210,8 +214,9 @@
 				<label for="product-for" slot="selectlabel">This product is for</label>
 			</zoo-select>
 			<br>
-			<zoo-checkbox highlighted labeltext="I understand and confirm that ALL of the above statements are true">
-				<input slot="checkboxelement" type="checkbox"/>
+			<zoo-checkbox highlighted>
+				<input id="modal-checkbox" slot="checkboxelement" type="checkbox"/>
+				<label for="modal-checkbox" slot="checkboxlabel">I understand and confirm that ALL of the above statements are true</label>
 			</zoo-checkbox>
 			<br>
 			<zoo-button style="margin: 0 auto;" type="hollow" size="medium" id="modal-closer">

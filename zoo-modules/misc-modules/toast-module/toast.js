@@ -5,42 +5,14 @@ export default class Toast extends HTMLElement {
 	constructor() {
 		super();
 	}
-
 	static get observedAttributes() {
-		return ['type', 'text', 'timeout', 'closelabel'];
-	}
-	get closelabel() {
-		return this.getAttribute('closelabel');
-	}
-	set closelabel(newLabel) {
-		this.setAttribute('closelabel', newLabel);
-		this.handleCloseLabel(newLabel);
-	}
-	get type() {
-		return this.getAttribute('type');
-	}
-	set type(type) {
-		this.setAttribute('type', type);
-	}
-	get text() {
-		return this.getAttribute('text');
-	}
-	set text(text) {
-		this.setAttribute('text', text);
-		this.handleText(this.text, text);
+		return ['closelabel'];
 	}
 	handleText(newVal) {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;
 	}
-	get timeout() {
-		return this.getAttribute('timeout');
-	}
-	set timeout(timeout) {
-		this.setAttribute('timeout', timeout);
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
-		if (attrName == 'text') this.handleText(newVal);
 		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
 	}
 	handleCloseLabel(newVal) {
@@ -50,7 +22,6 @@ export default class Toast extends HTMLElement {
 	connectedCallback() {
 		this.hidden = true;
 		this.timeout = this.getAttribute('timeout') || 3;
-		this.type = this.getAttribute('type') || 'info';
 		this.shadowRoot.querySelector('button').addEventListener('click', () => this.close());
 	}
 	show() {

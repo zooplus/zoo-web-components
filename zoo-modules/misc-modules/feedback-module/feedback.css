@@ -32,7 +32,7 @@ svg {
 	min-width: 30px;
 	min-height: 30px;
 	padding: 0 10px 0 15px;
-	fill: var(---svg-fill);
+	fill: var(--svg-fill);
 }
 
 ::slotted(*) {

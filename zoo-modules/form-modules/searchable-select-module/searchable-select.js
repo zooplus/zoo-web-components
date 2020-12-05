@@ -1,38 +1,13 @@
-import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-export default class SearchableSelect extends AbstractControl {
+export default class SearchableSelect extends HTMLElement {
 	constructor() {
 		super();
 		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
-		return ['labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid', 'loading', 'placeholder'];
-	}
-	set labeltext(text) {
-		this.setAttribute('labeltext', text);
-		this.handleLabel(text);
-	}
-	set linktext(text) {
-		this.setAttribute('linktext', text);
-		this.handleLinkText(text, this.target);
-	}
-	set linkhref(text) {
-		this.setAttribute('linkhref', text);
-		this.handleLinkHref(text, this.target);
-	}
-	set linktarget(text) {
-		this.setAttribute('linktarget', text);
-		this.handleLinkTarget(text, this.target);
-	}
-	set inputerrormsg(text) {
-		this.setAttribute('inputerrormsg', text);
-		this.handleErrorMsg(text, this.target);
-	}
-	set infotext(text) {
-		this.setAttribute('infotext', text);
-		this.handleInfo(text, this.target);
+		return ['invalid', 'loading', 'placeholder'];
 	}
 	set invalid(invalid) {
 		if (invalid) {
@@ -92,21 +67,12 @@ export default class SearchableSelect extends AbstractControl {
 
 	connectedCallback() {
 		this.input = this.shadowRoot.querySelector('input');
-		const box = this.shadowRoot.querySelector('.box');
-		box.classList.add('hidden');
-		this.input.addEventListener('focus', () => box.classList.remove('hidden'));
-		this.input.addEventListener('blur', event => {
-			if (event.relatedTarget !== this.select) {
-				this.hideSelectOptions();
-			}
-		});
 		this.input.addEventListener('input', () => this.handleSearchChange());
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="selectelement"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedNodes()[0];
-			this.select.addEventListener('blur', () => this.hideSelectOptions());
 			this.select.addEventListener('change', () => this.handleOptionChange());
 			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', '') : this.removeAttribute('valueSelected'));
 			this.select.addEventListener('keydown', e => {
@@ -127,11 +93,6 @@ export default class SearchableSelect extends AbstractControl {
 			this.handleLoading();
 		} else if (attrName == 'placeholder') {
 			this.handlePlaceholder(newVal);
-		} else if (SearchableSelect.observedAttributes.includes(attrName)) {
-			const fn = this.handlersMap.get(attrName);
-			if (fn) {
-				fn(newVal, this.target);
-			}
 		}
 	}
 
@@ -165,18 +126,6 @@ export default class SearchableSelect extends AbstractControl {
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);
 		} else if (this.tooltip) {
 			this.tooltip.remove();
-		}
-		if (!this.select.multiple) this.hideSelectOptions();
-	}
-
-	hideSelectOptions() {
-		this.shadowRoot.querySelector('.box').classList.add('hidden');
-		if (this.input) {
-			this.input.value = null;
-		}
-		const options = this.select.querySelectorAll('option');
-		for (const option of options) {
-			option.style.display = 'block';
 		}
 	}
 

@@ -1,5 +1,4 @@
-:host,
-.box {
+:host {
 	position: relative;
 }
 
@@ -19,12 +18,12 @@ zoo-tooltip {
 
 zoo-tooltip:hover,
 zoo-tooltip:focus {
-	display: block;
+	display: grid;
 }
 
-.box:hover zoo-tooltip,
-.box:focus zoo-tooltip {
-	display: block;
+:host(:hover) zoo-tooltip,
+:host(:focus) zoo-tooltip {
+	display: grid;
 }
 
 ::slotted(select) {
@@ -44,15 +43,15 @@ zoo-tooltip:focus {
 	display: none;
 }
 
-.box ::slotted(select) {
-	display: grid;
-}
-
-.box.hidden ::slotted(select) {
+::slotted(select) {
 	display: none;
 }
 
-.box input {
+zoo-input:focus-within ::slotted(select) {
+	display: grid;
+}
+
+input {
 	padding: 13px 25px 13px 15px;
 }
 
@@ -61,7 +60,7 @@ zoo-tooltip:focus {
 	border: 2px solid var(--warning-mid, #ED1C24);
 }
 
-.box:focus-within ::slotted(select) {
+:host:focus-within ::slotted(select) {
 	border: 2px solid #555;
 	border-top: none;
 	padding: 12px 14px;
@@ -73,7 +72,7 @@ zoo-tooltip:focus {
 	padding: 12px 14px;
 }
 
-.box:focus-within input {
+:host:focus-within input {
 	border: 2px solid #555;
 	padding: 12px 24px 12px 14px;
 }

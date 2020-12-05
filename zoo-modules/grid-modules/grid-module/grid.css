@@ -30,7 +30,7 @@
 	font-weight: 600;
 	color: #555;
 	box-sizing: border-box;
-	z-index: 1;
+	z-index: 2;
 }
 
 .header-row,
@@ -108,6 +108,7 @@ zoo-grid-paginator {
 	grid-column: span var(--grid-column-num);
 	bottom: 0;
 	background: #FFF;
+	z-index: 1;
 }
 
 :host([loading]) .loading-shade {

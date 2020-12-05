@@ -1,8 +1,7 @@
 :host {
 	display: grid;
 	position: absolute;
-	width: 100%;
-	height: 100%;
+	width: max-content;
 	z-index: 9997;
 	pointer-events: none;
 
@@ -19,7 +18,7 @@
 
 :host([position="right"]) {
 	justify-content: end;
-	left: 101%;
+	left: 102%;
 	bottom: 25%;
 
 	--tip-bottom: unset;

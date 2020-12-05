@@ -6,25 +6,7 @@ export default class Select extends HTMLElement {
 		super();
 	}
 	static get observedAttributes() {
-		return ['labelposition', 'invalid', 'loading'];
-	}
-	get labelposition() {
-		return this.getAttribute('labelposition');
-	}
-	set labelposition(position) {
-		this.setAttribute('labelposition', position);
-	}
-
-	get loading() {
-		return this.getAttribute('loading');
-	}
-	set loading(loading) {
-		if (loading) {
-			this.setAttribute('loading', loading);
-		} else {
-			this.removeAttribute('loading');
-		}
-		this.handleLoading();
+		return ['loading'];
 	}
 	handleLoading() {
 		if (this.hasAttribute('loading')) {

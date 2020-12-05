@@ -2,23 +2,21 @@
 	position: relative;
 }
 
+:host([valueselected]) .close {
+	display: flex;
+}
+
 .close {
 	display: none;
 	position: absolute;
 	top: 15px;
 	right: 14px;
 	cursor: pointer;
-	background: white;
 	z-index: 1;
 }
 
 zoo-tooltip {
 	display: none;
-}
-
-zoo-tooltip:hover,
-zoo-tooltip:focus {
-	display: grid;
 }
 
 :host(:hover) zoo-tooltip,
@@ -60,7 +58,7 @@ input {
 	border: 2px solid var(--warning-mid, #ED1C24);
 }
 
-:host:focus-within ::slotted(select) {
+:host(:focus-within) ::slotted(select) {
 	border: 2px solid #555;
 	border-top: none;
 	padding: 12px 14px;
@@ -72,7 +70,7 @@ input {
 	padding: 12px 14px;
 }
 
-:host:focus-within input {
+:host(:focus-within) input {
 	border: 2px solid #555;
 	padding: 12px 24px 12px 14px;
 }
@@ -81,14 +79,7 @@ input {
 	border: 1px solid #E6E6E6;
 	background-color: #F2F3F4;
 	color: #767676;
-}
-
-::slotted(select:disabled:hover) {
 	cursor: not-allowed;
-}
-
-:host([valueselected]) .close {
-	display: flex;
 }
 
 zoo-input {

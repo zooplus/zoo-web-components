@@ -1,12 +1,27 @@
+import AbstractControl from '../abstractControl';
+
 /**
  * @injectHTML
  */
-export default class Select extends HTMLElement {
+export default class Select extends AbstractControl {
 	constructor() {
 		super();
 	}
+
 	static get observedAttributes() {
-		return ['loading'];
+		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid', 'loading'];
+	}
+	
+	handleInvalid(newVal, target) {
+		target = target || 'zoo-input-info';
+		const el = this.shadowRoot.querySelector(target);
+		if (this.hasAttribute('invalid')) {
+			el.setAttribute('invalid', '');
+			if (this.input) this.input.setAttribute('invalid', '');
+		} else {
+			el.removeAttribute('invalid');
+			if (this.input) this.input.removeAttribute('invalid');
+		}
 	}
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
@@ -22,6 +37,13 @@ export default class Select extends HTMLElement {
 		if (Select.observedAttributes.includes(attrName)) {
 			if (attrName == 'loading') {
 				this.handleLoading();
+			} else if (attrName == 'invalid') {
+				this.handleInvalid(newVal);
+			} else {
+				const fn = this.handlersMap.get(attrName);
+				if (fn) {
+					fn(newVal);
+				}
 			}
 		}
 	}

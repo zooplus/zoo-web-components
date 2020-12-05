@@ -7,40 +7,13 @@ export default class SearchableSelect extends HTMLElement {
 		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
-		return ['invalid', 'loading', 'placeholder'];
+		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid', 'loading', 'placeholder'];
 	}
-	set invalid(invalid) {
-		if (invalid) {
-			this.setAttribute('invalid', '');
-		} else {
-			this.removeAttribute('invalid');
-		}
-		this.handleInvalid(invalid, this.target);
-	}
-	get placeholder() {
-		return this.getAttribute('placeholder');
-	}
-	set placeholder(placeholder) {
-		this.setAttribute('placeholder', placeholder);
-		this.handlePlaceholder(placeholder);
-	}
-
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
 		if (input) input.placeholder = newVal;
 	}
 
-	get loading() {
-		return this.getAttribute('loading');
-	}
-	set loading(loading) {
-		if (loading) {
-			this.setAttribute('loading', loading);
-		} else {
-			this.removeAttribute('loading');
-		}
-		this.handleLoading();
-	}
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
@@ -89,10 +62,17 @@ export default class SearchableSelect extends HTMLElement {
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
-		if (attrName == 'loading') {
-			this.handleLoading();
-		} else if (attrName == 'placeholder') {
-			this.handlePlaceholder(newVal);
+		if (SearchableSelect.observedAttributes.includes(attrName)) {
+			if (attrName == 'loading') {
+				this.handleLoading();
+			} else if (attrName == 'placeholder') {
+				this.handlePlaceholder(newVal);
+			} else {
+				const fn = this.handlersMap.get(attrName);
+				if (fn) {
+					fn(newVal);
+				}
+			}
 		}
 	}
 

@@ -7,18 +7,16 @@ export default class Checkbox extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['invalid'];
+		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid'];
 	}
-
-	get highlighted() {
-		return this.hasAttribute('highlighted');
-	}
-
-	set highlighted(highlighted) {
-		if (highlighted) {
-			this.setAttribute('highlighted', '');
-		} else {
-			this.removeAttribute('highlighted');
+	
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
+		if (Checkbox.observedAttributes.includes(attrName)) {
+			const fn = this.handlersMap.get(attrName);
+			if (fn) {
+				fn(newVal);
+			}
 		}
 	}
 

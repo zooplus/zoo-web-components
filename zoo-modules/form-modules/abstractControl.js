@@ -22,15 +22,6 @@ export default class AbstractControl extends HTMLElement {
 		}
 	}
 
-	get labeltext() {
-		return this.getAttribute('labeltext');
-	}
-
-	set labeltext(text) {
-		this.setAttribute('labeltext', text);
-		this.handleLabel(text);
-	}
-
 	handleInfo(newVal, target) {
 		target = target || 'zoo-input-info';
 		const info = this.shadowRoot.querySelector(target);
@@ -41,17 +32,8 @@ export default class AbstractControl extends HTMLElement {
 		}
 	}
 
-	get infotext() {
-		return this.getAttribute('infotext');
-	}
-
-	set infotext(text) {
-		this.setAttribute('infotext', text);
-		this.handleInfo(text);
-	}
-
 	handleInvalid(newVal, target) {
-		target = target || 'zoo-input-info';
+		target = target || 'zoo-input-error';
 		const el = this.shadowRoot.querySelector(target);
 		if (this.hasAttribute('invalid')) {
 			el.setAttribute('invalid', '');
@@ -59,34 +41,14 @@ export default class AbstractControl extends HTMLElement {
 			el.removeAttribute('invalid');
 		}
 	}
-	get invalid() {
-		return this.hasAttribute('invalid');
-	}
-	set invalid(invalid) {
-		if (invalid) {
-			this.setAttribute('invalid', '');
-		} else {
-			this.removeAttribute('invalid');
-		}
-		this.handleInvalid(invalid);
-	}
 	handleErrorMsg(newVal, target) {
-		target = target || 'zoo-input-info';
+		target = target || 'zoo-input-error';
 		const el = this.shadowRoot.querySelector(target);
 		if (newVal) {
 			el.setAttribute('inputerrormsg', newVal);
 		} else {
 			el.removeAttribute('inputerrormsg');
 		}
-	}
-
-	get inputerrormsg() {
-		return this.getAttribute('inputerrormsg');
-	}
-
-	set inputerrormsg(msg) {
-		this.setAttribute('inputerrormsg', msg);
-		this.handleErrorMsg(msg);
 	}
 
 	handleLinkText(newVal, target) {
@@ -100,13 +62,6 @@ export default class AbstractControl extends HTMLElement {
 			el[prop] = '';
 		}
 	}
-	get linktext() {
-		return this.getAttribute('linktext');
-	}
-	set linktext(msg) {
-		this.setAttribute('linktext', msg);
-		this.handleLinkText(msg);
-	}
 
 	handleLinkHref(newVal, target) {
 		if (!target) this.makeSureAnchorExists();
@@ -118,13 +73,6 @@ export default class AbstractControl extends HTMLElement {
 			el.removeAttribute('href');
 		}
 	}
-	get linkhref() {
-		return this.getAttribute('linkhref');
-	}
-	set linkhref(href) {
-		this.setAttribute('linkhref', href);
-		this.handleLinkHref(href);
-	}
 
 	handleLinkTarget(newVal, target) {
 		if (!target) this.makeSureAnchorExists();
@@ -135,13 +83,6 @@ export default class AbstractControl extends HTMLElement {
 		} else {
 			el.target = 'about:blank';
 		}
-	}
-	get linktarget() {
-		return this.getAttribute('linktarget');
-	}
-	set linktarget(target) {
-		this.setAttribute('linktarget', target);
-		this.handleLinkTarget(target);
 	}
 
 	makeSureAnchorExists() {

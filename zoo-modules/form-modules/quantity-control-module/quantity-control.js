@@ -1,8 +1,7 @@
-import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-export default class QuantityControl extends AbstractControl {
+export default class QuantityControl extends HTMLElement {
 	constructor() {
 		super();
 	}
@@ -34,41 +33,7 @@ export default class QuantityControl extends AbstractControl {
 	}
 
 	static get observedAttributes() {
-		return ['labeltext', 'infotext', 'inputerrormsg', 'invalid', 'decreasedisabled', 'increasedisabled', 'increaselabel', 'decreaselabel'];
-	}
-
-	get increaselabel() {
-		return this.getAttribute('increaselabel');
-	}
-
-	set increaselabel(newLabel) {
-		this.setAttribute('increaselabel', newLabel);
-		this.handleIncreaseLabel(newLabel);
-	}
-
-	get decreaselabel() {
-		return this.getAttribute('decreaselabel');
-	}
-
-	set decreaselabel(newLabel) {
-		this.setAttribute('decreaselabel', newLabel);
-		this.handleDecreaseLabel(newLabel);
-	}
-
-	get decreasedisabled() {
-		return this.hasAttribute('decreasedisabled');
-	}
-	set decreasedisabled(disabled) {
-		this.setAttribute('decreasedisabled', disabled);
-		this.handleDecreaseDisabled();
-	}
-
-	get increasedisabled() {
-		return this.hasAttribute('increasedisabled');
-	}
-	set increasedisabled(disabled) {
-		this.setAttribute('increasedisabled', disabled);
-		this.handleIncreaseDisabled();
+		return ['decreasedisabled', 'increasedisabled', 'increaselabel', 'decreaselabel'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {

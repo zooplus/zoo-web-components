@@ -10,18 +10,6 @@ export default class Checkbox extends HTMLElement {
 		return ['invalid'];
 	}
 
-	get highlighted() {
-		return this.hasAttribute('highlighted');
-	}
-
-	set highlighted(highlighted) {
-		if (highlighted) {
-			this.setAttribute('highlighted', '');
-		} else {
-			this.removeAttribute('highlighted');
-		}
-	}
-
 	// TODO think of a better way to handle disabled attribute change
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {

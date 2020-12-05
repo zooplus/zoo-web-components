@@ -4,38 +4,14 @@
 export default class Modal extends HTMLElement {
 	constructor() {
 		super();
-		this.header = this.shadowRoot.querySelector('span');
 	}
 
 	static get observedAttributes() {
-		return ['headertext', 'closelabel'];
-	}
-
-	get closelabel() {
-		return this.getAttribute('closelabel');
-	}
-
-	set closelabel(newLabel) {
-		this.setAttribute('closelabel', newLabel);
-		this.handleCloseLabel(newLabel);
-	}
-
-	get headertext() {
-		return this.getAttribute('headertext');
-	}
-	set headertext(headertext) {
-		if (this.headertext == headertext) return;
-		this.setAttribute('headertext', headertext);
-		this.handleText(this.headertext, headertext);
+		return ['closelabel'];
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
-		if (attrName == 'headertext') this.handleText(newVal);
 		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
-	}
-	handleText(newVal) {
-		this.headertext = newVal;
-		this.header.innerHTML = newVal;
 	}
 	handleCloseLabel(newVal) {
 		const closeButton = this.shadowRoot.querySelector('.close');

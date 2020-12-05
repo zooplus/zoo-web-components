@@ -45,7 +45,6 @@
 }
 
 ::slotted(input[type="checkbox"]:disabled), :host([disabled]) ::slotted(label) {
-	background-color: #F2F3F4;
 	cursor: not-allowed;
 }
 
@@ -65,6 +64,10 @@ svg path {
 
 :host([checked]) svg path {
 	display: flex;
+}
+
+:host([disabled]) svg {
+	background: #F2F3F4;
 }
 
 .checkbox {

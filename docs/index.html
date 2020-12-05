@@ -120,13 +120,30 @@
 			<input id="disabled-checkbox" disabled checked slot="checkboxelement" type="checkbox"/>
 			<label for="disabled-checkbox" slot="checkboxlabel">Disabled checkbox</label>
 		</zoo-checkbox>
-		<zoo-radio infotext="infotext" labeltext="Label text">
+		<zoo-radio>
+			<zoo-input-label slot="label">Radio group</zoo-input-label>
 			<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
 			<label for="contactChoice1">Email</label>
 			<input type="radio" id="contactChoice2" name="contact" value="phone">
 			<label for="contactChoice2">Phone</label>
 			<input type="radio" id="contactChoice3" name="contact" value="mail">
 			<label for="contactChoice3">Mail</label>
+			<zoo-input-info slot="info">
+				Additional information
+			</zoo-input-info>
+		</zoo-radio>
+
+		<zoo-radio invalid>
+			<zoo-input-label slot="label">Radio group</zoo-input-label>
+			<input type="radio" id="contactChoice11" name="contact1" value="email">
+			<label for="contactChoice11">Email</label>
+			<input type="radio" id="contactChoice22" name="contact1" value="phone">
+			<label for="contactChoice22">Phone</label>
+			<input type="radio" id="contactChoice33" name="contact1" value="mail">
+			<label for="contactChoice33">Mail</label>
+			<zoo-input-info slot="info">
+				Additional information
+			</zoo-input-info>
 		</zoo-radio>
 	</form>
 	<hr>

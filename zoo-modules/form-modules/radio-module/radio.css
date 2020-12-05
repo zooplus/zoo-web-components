@@ -1,6 +1,8 @@
 :host {
 	display: flex;
 	flex-direction: column;
+	font-size: 14px;
+	line-height: 20px;
 
 	--box-shadow-color: #767676;
 	--box-shadow-width: 1px;
@@ -8,11 +10,20 @@
 	--box-shadow-width2: 1px;
 }
 
-slot {
+.radio-group {
 	display: flex;
 	padding: 11px 0;
-	font-size: 14px;
-	line-height: 20px;
+}
+:host([invalid]) ::slotted(input[type="radio"]:checked) {
+	background-color: var(--warning-mid, #ED1C24);
+}
+
+:host([invalid]) ::slotted(input[type="radio"]) {
+	--box-shadow-color: var(--warning-mid, #ED1C24);
+}
+
+:host([invalid]) {
+	color: var(--warning-mid, #ED1C24);
 }
 
 ::slotted(input[type="radio"]) {
@@ -50,20 +61,8 @@ slot {
 	--box-shadow-color: #767676;
 }
 
-:host([invalid]) ::slotted(input[type="radio"]:checked) {
-	background-color: var(--warning-mid, #ED1C24);
-}
-
-:host([invalid]) ::slotted(input[type="radio"]) {
-	--box-shadow-color: var(--warning-mid, #ED1C24);
-}
-
 ::slotted(label) {
 	cursor: pointer;
 	margin: 0 5px;
 	align-self: center;
-}
-
-:host([invalid]) ::slotted(label) {
-	color: var(--warning-mid, #ED1C24);
 }

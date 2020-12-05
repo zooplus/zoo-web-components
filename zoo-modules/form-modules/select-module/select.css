@@ -118,7 +118,8 @@ slot[name="selectlabel"] {
 	flex: 1;
 }
 
-::slotted(*[slot="info"]), ::slotted(*[slot="error"]) {
+::slotted(*[slot="info"]),
+::slotted(*[slot="error"]) {
 	grid-row: 3;
 	grid-column: span 2;
 }

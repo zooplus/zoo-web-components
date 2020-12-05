@@ -5,6 +5,7 @@
 	font-size: 14px;
 	line-height: 20px;
 	position: relative;
+
 	--border: 0;
 	--check-color: var(--primary-mid);
 }
@@ -42,10 +43,6 @@
 
 ::slotted(input[type="checkbox"]:focus) {
 	border-width: 2px;
-}
-
-::slotted(input[type="checkbox"]:disabled), :host([disabled]) ::slotted(label) {
-	cursor: not-allowed;
 }
 
 svg {
@@ -89,4 +86,9 @@ svg path {
 	cursor: pointer;
 	margin-left: 5px;
 	z-index: 1;
+}
+
+::slotted(input[type="checkbox"]:disabled),
+:host([disabled]) ::slotted(label) {
+	cursor: not-allowed;
 }

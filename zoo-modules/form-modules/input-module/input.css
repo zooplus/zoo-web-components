@@ -106,12 +106,14 @@ slot[name="inputlabel"] {
 	--zoo-btn-border-radius: 0 5px 5px 0;
 }
 
-::slotted(*[slot="info"]), zoo-input-info {
+::slotted(*[slot="info"]),
+zoo-input-info {
 	grid-row: 3;
 	grid-column: span 2;
 }
 
-::slotted(*[slot="error"]), zoo-input-error {
+::slotted(*[slot="error"]),
+zoo-input-error {
 	grid-row: 4;
 	grid-column: span 2;
 }

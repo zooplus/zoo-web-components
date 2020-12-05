@@ -2,10 +2,6 @@
 	position: relative;
 }
 
-:host([valueselected]) .close {
-	display: flex;
-}
-
 .close {
 	display: none;
 	position: absolute;
@@ -13,6 +9,10 @@
 	right: 14px;
 	cursor: pointer;
 	z-index: 1;
+}
+
+:host([valueselected]) .close {
+	display: flex;
 }
 
 zoo-tooltip {
@@ -41,8 +41,11 @@ zoo-tooltip {
 	display: none;
 }
 
-::slotted(select) {
-	display: none;
+
+:host(:focus-within) ::slotted(select) {
+	border: 2px solid #555;
+	border-top: none;
+	padding: 12px 14px;
 }
 
 zoo-input:focus-within ::slotted(select) {
@@ -53,26 +56,21 @@ input {
 	padding: 13px 25px 13px 15px;
 }
 
+
+:host(:focus-within) input {
+	border: 2px solid #555;
+	padding: 12px 24px 12px 14px;
+}
+
 :host([invalid]) input {
 	padding: 12px 24px 12px 14px;
 	border: 2px solid var(--warning-mid, #ED1C24);
-}
-
-:host(:focus-within) ::slotted(select) {
-	border: 2px solid #555;
-	border-top: none;
-	padding: 12px 14px;
 }
 
 :host([invalid]) ::slotted(select) {
 	border: 2px solid var(--warning-mid, #ED1C24);
 	border-top: none;
 	padding: 12px 14px;
-}
-
-:host(:focus-within) input {
-	border: 2px solid #555;
-	padding: 12px 24px 12px 14px;
 }
 
 ::slotted(select:disabled) {

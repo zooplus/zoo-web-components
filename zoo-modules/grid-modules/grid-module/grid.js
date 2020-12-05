@@ -7,7 +7,57 @@ export default class Grid extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'resizable', 'reorderable'];
+		return ['currentpage', 'maxpages', 'loading', 'resizable', 'reorderable'];
+	}
+	get resizable() {
+		return this.getAttribute('resizable');
+	}
+	set resizable(resizable) {
+		if (resizable) {
+			this.setAttribute('resizable', '');
+		} else {
+			this.removeAttribute('resizable');
+		}
+	}
+	get reorderable() {
+		return this.getAttribute('reorderable');
+	}
+	set reorderable(reorderable) {
+		if (reorderable) {
+			this.setAttribute('reorderable', '');
+		} else {
+			this.removeAttribute('reorderable');
+		}
+	}
+	get maxpages() {
+		return this.getAttribute('maxpages');
+	}
+	set maxpages(maxpages) {
+		if (maxpages) {
+			this.setAttribute('maxpages', maxpages);
+		} else {
+			this.removeAttribute('maxpages');
+		}
+	}
+	get currentpage() {
+		return this.getAttribute('currentpage');
+	}
+	set currentpage(currentpage) {
+		if (currentpage) {
+			this.setAttribute('currentpage', currentpage);
+		} else {
+			this.removeAttribute('currentpage');
+		}
+	}
+	get loading() {
+		return this.hasAttribute('loading');
+	}
+	set loading(loading) {
+		if (loading) {
+			this.setAttribute('loading', '');
+		} else {
+			this.removeAttribute('loading');
+		}
 	}
 
 	connectedCallback() {
@@ -64,13 +114,13 @@ export default class Grid extends HTMLElement {
 		if (attrName == 'maxpages') {
 			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
 			if (paginator) {
-				paginator.setAttribute('maxpages', newVal);
+				paginator.maxpages = newVal;
 			}
 		}
 		if (attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
 			if (paginator) {
-				paginator.setAttribute('currentpage', newVal);
+				paginator.currentpage = newVal;
 			}
 		}
 	}

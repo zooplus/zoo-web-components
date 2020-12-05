@@ -30,6 +30,39 @@ export default class GridHeader extends HTMLElement {
 	toggleHostDraggable() {
 		this.shadowRoot.host.setAttribute('draggable', true);
 	}
+	static get observedAttributes() {
+		return ['sortState', 'sortable', 'reorderable'];
+	}
+	get sortState() {
+		return this.getAttribute('sortState');
+	}
+	set sortState(sortState) {
+		if (sortState) {
+			this.setAttribute('sortState', sortState);
+		} else {
+			this.removeAttribute('sortState');
+		}
+	}
+	get sortable() {
+		return this.getAttribute('sortable');
+	}
+	set sortable(sortable) {
+		if (sortable) {
+			this.setAttribute('sortable', sortable);
+		} else {
+			this.removeAttribute('sortable');
+		}
+	}
+	get reorderable() {
+		return this.getAttribute('reorderable');
+	}
+	set reorderable(reorderable) {
+		if (reorderable) {
+			this.setAttribute('reorderable', reorderable);
+		} else {
+			this.removeAttribute('reorderable');
+		}
+	}
 }
 
 window.customElements.define('zoo-grid-header', GridHeader);

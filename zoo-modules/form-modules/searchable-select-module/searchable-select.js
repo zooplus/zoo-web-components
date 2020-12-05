@@ -7,7 +7,22 @@ export default class SearchableSelect extends HTMLElement {
 		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
-		return ['loading', 'placeholder'];
+		return ['invalid', 'loading', 'placeholder'];
+	}
+	set invalid(invalid) {
+		if (invalid) {
+			this.setAttribute('invalid', '');
+		} else {
+			this.removeAttribute('invalid');
+		}
+		this.handleInvalid(invalid, this.target);
+	}
+	get placeholder() {
+		return this.getAttribute('placeholder');
+	}
+	set placeholder(placeholder) {
+		this.setAttribute('placeholder', placeholder);
+		this.handlePlaceholder(placeholder);
 	}
 
 	handlePlaceholder(newVal) {
@@ -15,6 +30,17 @@ export default class SearchableSelect extends HTMLElement {
 		if (input) input.placeholder = newVal;
 	}
 
+	get loading() {
+		return this.getAttribute('loading');
+	}
+	set loading(loading) {
+		if (loading) {
+			this.setAttribute('loading', loading);
+		} else {
+			this.removeAttribute('loading');
+		}
+		this.handleLoading();
+	}
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');

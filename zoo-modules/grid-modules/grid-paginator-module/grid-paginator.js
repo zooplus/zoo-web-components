@@ -32,6 +32,26 @@ export default class GridHeader extends HTMLElement {
 	static get observedAttributes() {
 		return ['maxpages', 'currentpage'];
 	}
+	get maxpages() {
+		return this.getAttribute('maxpages');
+	}
+	set maxpages(maxpages) {
+		if (maxpages) {
+			this.setAttribute('maxpages', maxpages);
+		} else {
+			this.removeAttribute('maxpages');
+		}
+	}
+	get currentpage() {
+		return this.getAttribute('currentpage');
+	}
+	set currentpage(currentpage) {
+		if (currentpage) {
+			this.setAttribute('currentpage', currentpage);
+		} else {
+			this.removeAttribute('currentpage');
+		}
+	}
 	handleHideShowArrows() {
 		if (this.currentpage == 1) {
 			this.prev.classList.add('hidden');
@@ -69,7 +89,7 @@ export default class GridHeader extends HTMLElement {
 		}
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal === newVal) return;
+		if (oldVal == newVal) return;
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
 			if (oldVal != newVal) {

@@ -22,6 +22,20 @@ export default class ToggleSwitch extends AbstractControl {
 			}
 		});
 	}
+
+	static get observedAttributes() {
+		return ['labeltext', 'infotext'];
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (oldVal == newVal) return;
+		if (ToggleSwitch.observedAttributes.includes(attrName)) {
+			const fn = this.handlersMap.get(attrName);
+			if (fn) {
+				fn(newVal);
+			}
+		}
+	}
 }
 
 window.customElements.define('zoo-toggle-switch', ToggleSwitch);

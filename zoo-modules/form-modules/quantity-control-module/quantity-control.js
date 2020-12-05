@@ -1,7 +1,8 @@
+import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-export default class QuantityControl extends HTMLElement {
+export default class QuantityControl extends AbstractControl {
 	constructor() {
 		super();
 	}
@@ -33,27 +34,66 @@ export default class QuantityControl extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['decreasedisabled', 'increasedisabled', 'increaselabel', 'decreaselabel'];
+		return ['labeltext', 'infotext', 'inputerrormsg', 'invalid', 'decreasedisabled', 'increasedisabled', 'increaselabel', 'decreaselabel'];
+	}
+
+	get increaselabel() {
+		return this.getAttribute('increaselabel');
+	}
+
+	set increaselabel(newLabel) {
+		this.setAttribute('increaselabel', newLabel);
+		this.handleIncreaseLabel(newLabel);
+	}
+
+	get decreaselabel() {
+		return this.getAttribute('decreaselabel');
+	}
+
+	set decreaselabel(newLabel) {
+		this.setAttribute('decreaselabel', newLabel);
+		this.handleDecreaseLabel(newLabel);
+	}
+
+	get decreasedisabled() {
+		return this.hasAttribute('decreasedisabled');
+	}
+	set decreasedisabled(disabled) {
+		this.setAttribute('decreasedisabled', disabled);
+		this.handleDecreaseDisabled();
+	}
+
+	get increasedisabled() {
+		return this.hasAttribute('increasedisabled');
+	}
+	set increasedisabled(disabled) {
+		this.setAttribute('increasedisabled', disabled);
+		this.handleIncreaseDisabled();
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal === newVal) return;
 		if (QuantityControl.observedAttributes.includes(attrName)) {
-			switch (attrName) {
-			case 'increasedisabled':
-				this.handleIncreaseDisabled();
-				break;
-			case 'decreasedisabled':
-				this.handleDecreaseDisabled();
-				break;
-			case 'decreaselabel':
-				this.handleDecreaseLabel(newVal);
-				break;
-			case 'increaselabel':
-				this.handleIncreaseLabel(newVal);
-				break;
-			default:
-				break;
+			const fn = this.handlersMap.get(attrName);
+			if (fn) {
+				fn(newVal);
+			} else {
+				switch (attrName) {
+				case 'increasedisabled':
+					this.handleIncreaseDisabled();
+					break;
+				case 'decreasedisabled':
+					this.handleDecreaseDisabled();
+					break;
+				case 'decreaselabel':
+					this.handleDecreaseLabel(newVal);
+					break;
+				case 'increaselabel':
+					this.handleIncreaseLabel(newVal);
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}

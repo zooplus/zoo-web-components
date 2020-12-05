@@ -119,8 +119,14 @@ slot[name="selectlabel"] {
 }
 
 ::slotted(*[slot="info"]),
-::slotted(*[slot="error"]) {
+zoo-input-info {
 	grid-row: 3;
+	grid-column: span 2;
+}
+
+::slotted(*[slot="error"]),
+zoo-input-error {
+	grid-row: 4;
 	grid-column: span 2;
 }
 

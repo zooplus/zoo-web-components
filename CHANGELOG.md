@@ -1,8 +1,18 @@
 # 8.0.0
 `zoo-checkbox` - rehaul internal css. Expose two new slots that accept content for 'info' and 'error' instead of consuming attribute.
 `zoo-radio` - Expose two new slots that accept content for 'info' and 'error' instead of consuming attribute.
-`zoo-toast` - drop support for properties.
-`zoo-modal` - drop support for properties and drop support for headertext attribute;
+`zoo-toast` - drop support for properties. Deprecated attribute `text`. Use slots instead.
+
+
+`zoo-modal` - deprecated attribute `headertext`. Use composition via slots;
+`zoo-header` - deprecated attribute `headertext`. Use composition to add `h2` element via slot.
+
+`zoo-input` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
+`zoo-input` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.
+`zoo-searchable-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
+`zoo-searchable-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.
+`zoo-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
+`zoo-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.
 
 # 7.4.1
 `zoo-toggle-switch` - make it play nice with bootstrap;

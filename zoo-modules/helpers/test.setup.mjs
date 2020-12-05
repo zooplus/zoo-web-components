@@ -9,7 +9,7 @@ beforeAll(async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox']
 	});
 	global.page = await global.browser.newPage();
-	await global.page.goto('http://localhost:9000');
+	await global.page.goto('http://localhost:5000');
 });
 
 beforeEach(async () => {

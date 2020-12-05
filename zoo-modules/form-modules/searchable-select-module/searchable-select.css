@@ -83,3 +83,15 @@ input {
 zoo-input {
 	display: grid;
 }
+
+::slotted(*[slot="info"]),
+zoo-input-info {
+	grid-row: 3;
+	grid-column: span 2;
+}
+
+::slotted(*[slot="error"]),
+zoo-input-error {
+	grid-row: 4;
+	grid-column: span 2;
+}

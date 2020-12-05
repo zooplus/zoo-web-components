@@ -77,3 +77,7 @@
 	white-space: pre;
 	color: black;
 }
+
+::slotted(*) {
+	color: black;
+}

@@ -169,10 +169,10 @@
 	</form>
 	<hr>
 	<zoo-toast id="toast">
-		<span slot="text">Search for more than 8.000 products.</span>
+		<span slot="content">Search for more than 8.000 products.</span>
 	</zoo-toast>
 	<zoo-toast id="modalToast">
-		<span slot="text">Added to cart!</span>
+		<span slot="content">Added to cart!</span>
 	</zoo-toast>
 	<h2>Buttons, modal windows</h2>
 	<div class="buttons">
@@ -199,7 +199,8 @@
 			</button>
 		</zoo-button>
 	</div> 
-	<zoo-modal id="modal" headertext="Your basket contains licensed items" closelabel="close modal">
+	<zoo-modal id="modal" closelabel="close modal">
+		<span slot="header">Your basket contains licensed items</span>
 		<div>
 			<zoo-feedback>
 				This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.

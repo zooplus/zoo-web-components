@@ -11,21 +11,12 @@ export default class Modal extends HTMLElement {
 		return ['headertext', 'closelabel'];
 	}
 
-	get closelabel() {
-		return this.getAttribute('closelabel');
-	}
-
-	set closelabel(newLabel) {
-		this.setAttribute('closelabel', newLabel);
-		this.handleCloseLabel(newLabel);
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (attrName == 'headertext') this.handleText(newVal);
 		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
 	}
 	handleText(newVal) {
-		this.headertext = newVal;
 		this.header.innerHTML = newVal;
 	}
 	handleCloseLabel(newVal) {

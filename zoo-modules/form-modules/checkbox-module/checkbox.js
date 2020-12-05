@@ -1,7 +1,9 @@
+import AbstractControl from '../abstractControl';
+
 /**
  * @injectHTML
  */
-export default class Checkbox extends HTMLElement {
+export default class Checkbox extends AbstractControl {
 	constructor() {
 		super();
 	}

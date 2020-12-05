@@ -4,6 +4,7 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name='viewport' content='width=device-width'>
 	<meta name="Description" content="Web components design system.">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Zooplus components</title>
 	<script src='components.js'></script>
 	<link rel="stylesheet" href="main.css">
@@ -36,16 +37,25 @@
 	<main>
 	<h2>Form elements</h2>
 	<form>
-		<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
-				   infotext="Additional helpful information for our users">
+		<zoo-input>
 			<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
 			<label for="input-type-text" slot="inputlabel">Input type text</label>
+			<zoo-input-info slot="info">
+				Additional helpful information for our users
+			</zoo-input-info>
+			<zoo-link slot="link">
+				<a slot="anchor" href="https://google.com" target="about:blank">Forgotten your password?</a>
+			</zoo-link>
 		</zoo-input>
-		<zoo-input linktext="Learn your HTML and don't overcomplicate" linktarget="about:blank"
-				   linkhref="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
-				   infotext="Possible values: Dog, Cat, Small Pet, Bird, Aquatic">
+		<zoo-input>
 			<input id="input-type-number" slot="inputelement" placeholder="input" list="animals"/>
 			<label for="input-type-number" slot="inputlabel">Autocomplete</label>
+			<zoo-input-info slot="info">
+				Possible values: Dog, Cat, Small Pet, Bird, Aquatic
+			</zoo-input-info>
+			<zoo-link slot="link">
+				<a slot="anchor" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
+			</zoo-link>
 		</zoo-input>
 		<datalist id="animals">
 			<option value="Dog">
@@ -54,23 +64,34 @@
 			<option value="Bird">
 			<option value="Aquatic">
 		</datalist>
-		<zoo-input linktext="Native date picker polyfill on Github" linkhref="https://github.com/jcgertig/date-input-polyfill"
-				   linktarget="about:blank" infotext="Click on input to show context menu with date selection">
+		<zoo-input>
 			<input id="input-type-date" slot="inputelement" type="date" placeholder="Enter date" />
 			<label for="input-type-date" slot="inputlabel">Input type date</label>
+			<zoo-input-info slot="info">
+				Click on input to show context menu with date selection
+			</zoo-input-info>
+			<zoo-link slot="link">
+				<a slot="anchor" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native date picker polyfill on Github</a>
+			</zoo-link>
 		</zoo-input>
-		<zoo-input infotext="Additional helpful information for our users">
+		<zoo-input>
 			<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
 			<label for="input-type-text" slot="inputlabel">Composition of an input with a button</label>
 			<zoo-button slot="button">
 				<button type="button">Lorem ipsum</button>
 			</zoo-button>
+			<zoo-input-info slot="info">
+				Additional helpful information for our users
+			</zoo-input-info>
 		</zoo-input>
 		<zoo-input>
 			<textarea id="textarea" slot="inputelement" placeholder="Textarea"></textarea>
 			<label for="textarea" slot="inputlabel">Textarea</label>
 		</zoo-input>
-		<zoo-select linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" infotext="Additional helpful information for our users">
+		<zoo-select>
+			<zoo-link slot="link">
+				<a slot="anchor" href="https://google.com" target="about:blank">Documentation link</a>
+			</zoo-link>
 			<select id="multiselect" slot="selectelement" multiple>
 				<option class="placeholder" value="" disabled selected>Placeholder</option>
 				<option>1</option>
@@ -78,8 +99,11 @@
 				<option>3</option>
 			</select>
 			<label for="multiselect" slot="selectlabel">Multiselect</label>
+			<zoo-input-info slot="info">
+				Additional information
+			</zoo-input-info>
 		</zoo-select>
-		<zoo-select infotext="Additional helpful information for our users">
+		<zoo-select>
 			<select id="standard-select" slot="selectelement">
 				<option value="" disabled>Placeholder</option>
 				<option>1</option>
@@ -90,17 +114,23 @@
 			<zoo-input slot="input">
 				<input type="text" placeholder="Lorem ipsum" slot="inputelement"/>
 			</zoo-input>
+			<zoo-input-info slot="info">
+				Additional information
+			</zoo-input-info>
 		</zoo-select>
-		<zoo-searchable-select placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
+		<zoo-searchable-select placeholder="Placeholder">
 			<select id="searchable-select" multiple slot="selectelement">
 				<option value="text">text</option>
 				<option value="raNdOm">raNdOm</option>
 				<option value="random1">random1</option>
 				<option value="random2">random2</option>
 			</select>
-			<label for="standard-select" slot="selectlabel">Searchable multiple select</label>
+			<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
+			<zoo-input-info slot="info">
+				Additional helpful information for our users which is a long text.
+			</zoo-input-info>
 		</zoo-searchable-select>
-		<zoo-searchable-select placeholder="Placeholder" infotext="Additional helpful information for our users.">
+		<zoo-searchable-select placeholder="Placeholder">
 			<select id="searchable-select2" slot="selectelement">
 				<option value="text">text</option>
 				<option value="raNdOm">raNdOm</option>
@@ -108,6 +138,9 @@
 				<option value="random2">random2</option>
 			</select>
 			<label for="standard-select2" slot="selectlabel">Searchable select</label>
+			<zoo-input-info slot="info">
+				Additional helpful information for our users.
+			</zoo-input-info>
 		</zoo-searchable-select>
 		<zoo-checkbox highlighted>
 			<input id="checkbox" slot="checkboxelement" type="checkbox"/>
@@ -117,7 +150,7 @@
 			</zoo-input-info>
 		</zoo-checkbox>
 		<zoo-checkbox highlighted>
-			<input id="disabled-checkbox" disabled checked slot="checkboxelement" type="checkbox"/>
+			<input id="disabled-checkbox" disabled slot="checkboxelement" type="checkbox"/>
 			<label for="disabled-checkbox" slot="checkboxlabel">Disabled checkbox</label>
 		</zoo-checkbox>
 		<zoo-radio>
@@ -128,19 +161,6 @@
 			<label for="contactChoice2">Phone</label>
 			<input type="radio" id="contactChoice3" name="contact" value="mail">
 			<label for="contactChoice3">Mail</label>
-			<zoo-input-info slot="info">
-				Additional information
-			</zoo-input-info>
-		</zoo-radio>
-
-		<zoo-radio invalid>
-			<zoo-input-label slot="label">Radio group</zoo-input-label>
-			<input type="radio" id="contactChoice11" name="contact1" value="email">
-			<label for="contactChoice11">Email</label>
-			<input type="radio" id="contactChoice22" name="contact1" value="phone">
-			<label for="contactChoice22">Phone</label>
-			<input type="radio" id="contactChoice33" name="contact1" value="mail">
-			<label for="contactChoice33">Mail</label>
 			<zoo-input-info slot="info">
 				Additional information
 			</zoo-input-info>
@@ -180,13 +200,14 @@
 				This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.
 			</zoo-feedback>
 			<br>
-			<zoo-select labeltext="This product is for">
-				<select slot="selectelement">
+			<zoo-select>
+				<select id="product-for" slot="selectelement">
 					<option class="placeholder" value="" disabled selected>Doge</option>
 					<option>Doge</option>
 					<option>Catz</option>
 					<option>Snek</option>
 				</select>
+				<label for="product-for" slot="selectlabel">This product is for</label>
 			</zoo-select>
 			<br>
 			<zoo-checkbox highlighted labeltext="I understand and confirm that ALL of the above statements are true">
@@ -264,9 +285,6 @@
 		<zoo-checkbox>
 			<input checked slot="checkboxelement" type="checkbox"/>
 			<label slot="checkboxlabel">Valid</label>
-			<zoo-input-info slot="info">
-				<span>Additional information</span>
-			</zoo-input-info>
 		</zoo-checkbox>
 	</template>
 

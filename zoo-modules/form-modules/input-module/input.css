@@ -106,30 +106,12 @@ slot[name="inputlabel"] {
 	--zoo-btn-border-radius: 0 5px 5px 0;
 }
 
-zoo-input-info {
-	display: var(--additional-elements-display, 'initial');
+::slotted(*[slot="info"]), ::slotted(*[slot="error"]) {
 	grid-row: 3;
 	grid-column: span 2;
 }
 
-a {
-	display: var(--additional-elements-display, 'initial');
-	text-align: right;
-	text-decoration: none;
-	font-size: 12px;
-	line-height: 16px;
-	color: var(--primary-dark, #286400);
-	justify-self: flex-end;
-	align-self: center;
-	grid-row: 1;
-}
-
-a:visited {
-	color: var(--primary-mid, #3C9700);
-}
-
-a:hover,
-a:focus,
-a:active {
-	color: var(--primary-dark, #286400);
+::slotted(zoo-link) {
+	width: max-content;
+	justify-self: end;
 }

@@ -15,37 +15,6 @@ describe('Zoo quantity control', function() {
 		expect(ret).toEqual('INPUT');
 	});
 
-	it('should pass attributes to input info component', async() => {
-		const infoAttrs = await page.evaluate(() => {
-			let input = document.createElement('zoo-quantity-control');
-			input.infotext = 'info-text';
-			input.inputerrormsg = 'errormsg';
-			input.valid = false;
-			document.body.appendChild(input);
-			const info = input.shadowRoot.querySelector('zoo-input-info').shadowRoot;
-			return {
-				infoText: info.querySelector('.info').innerHTML,
-				errorMsg: info.querySelector('.error').innerHTML
-			};
-		});
-		expect(infoAttrs.infoText.indexOf('info-text')).not.toEqual(-1);
-		expect(infoAttrs.errorMsg.indexOf('errormsg')).not.toEqual(-1);
-	});
-
-	it('should pass attributes to input label component', async() => {
-		const labelAttrs = await page.evaluate(() => {
-			let input = document.createElement('zoo-quantity-control');
-			input.labeltext = 'label';
-			input.valid = false;
-			document.body.appendChild(input);
-			const label = input.shadowRoot.querySelector('zoo-input-label').shadowRoot;
-			return {
-				labelText: label.querySelector('label').innerHTML
-			};
-		});
-		expect(labelAttrs.labelText).toEqual('label');
-	});
-
 	it('should increase input value when plus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
 			let input = document.createElement('zoo-quantity-control');

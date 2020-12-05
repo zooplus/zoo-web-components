@@ -1,30 +1,18 @@
-describe('Zoo tooltip', function() {
-	describe('Tooltip', () => {
-		it('should create default tooltip', async() => {
-			const tooltipAttrs = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-tooltip');
-				tooltip.text = 'some-text';
-				document.body.appendChild(tooltip);
-				const tooltiptext = tooltip.shadowRoot.querySelector('span');
-				const tooltipAttrs = {
-					tooltipText: tooltiptext.innerHTML
-				};
-				return tooltipAttrs;
-			});
-			expect(tooltipAttrs.tooltipText).toEqual('some-text');
+describe('Zoo tooltip', function () {
+	it('should create default tooltip', async () => {
+		const tooltipText = await page.evaluate(() => {
+			document.body.innerHTML = `
+				<zoo-button>
+					<button type="button">
+						Button
+						<zoo-tooltip position="bottom"><span>some-text</span></zoo-tooltip>
+					</button>
+				</zoo-button>
+				`;
+			let tooltip = document.querySelector('zoo-tooltip');
+			const tooltiptext = tooltip.shadowRoot.querySelector('slot').assignedNodes()[0];
+			return tooltiptext.innerHTML;
 		});
-
-		it('should create tooltip with slot', async() => {
-			const slottedElement = await page.evaluate(() => {
-				let tooltip = document.createElement('zoo-tooltip');
-				let element = document.createElement('span');
-				element.innerHTML = 'slotted';
-				tooltip.appendChild(element);
-				document.body.appendChild(tooltip);
-				const slot = tooltip.shadowRoot.querySelector('slot');
-				return slot.assignedNodes()[0].innerHTML;
-			});
-			expect(slottedElement).toEqual('slotted');
-		});
+		expect(tooltipText).toEqual('some-text');
 	});
 });

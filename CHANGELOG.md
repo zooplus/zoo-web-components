@@ -2,6 +2,7 @@
 `zoo-checkbox` - rehaul internal css. Expose two new slots that accept content for 'info' and 'error' instead of consuming attribute.
 `zoo-radio` - Expose two new slots that accept content for 'info' and 'error' instead of consuming attribute.
 `zoo-toast` - drop support for properties.
+`zoo-modal` - drop support for properties and drop support for headertext attribute;
 
 # 7.4.1
 `zoo-toggle-switch` - make it play nice with bootstrap;

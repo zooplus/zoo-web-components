@@ -39,26 +39,21 @@ export default class QuantityControl extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal === newVal) return;
 		if (QuantityControl.observedAttributes.includes(attrName)) {
-			const fn = this.handlersMap.get(attrName);
-			if (fn) {
-				fn(newVal);
-			} else {
-				switch (attrName) {
-				case 'increasedisabled':
-					this.handleIncreaseDisabled();
-					break;
-				case 'decreasedisabled':
-					this.handleDecreaseDisabled();
-					break;
-				case 'decreaselabel':
-					this.handleDecreaseLabel(newVal);
-					break;
-				case 'increaselabel':
-					this.handleIncreaseLabel(newVal);
-					break;
-				default:
-					break;
-				}
+			switch (attrName) {
+			case 'increasedisabled':
+				this.handleIncreaseDisabled();
+				break;
+			case 'decreasedisabled':
+				this.handleDecreaseDisabled();
+				break;
+			case 'decreaselabel':
+				this.handleDecreaseLabel(newVal);
+				break;
+			case 'increaselabel':
+				this.handleIncreaseLabel(newVal);
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -82,11 +77,11 @@ export default class QuantityControl extends HTMLElement {
 
 	handleIncreaseLabel(newLabel) {
 		const increaseButton = this.shadowRoot.querySelector('#increase');
-		increaseButton.setAttribute('aria-label', newLabel);
+		increaseButton.setAttribute('title', newLabel);
 	}
 	handleDecreaseLabel(newLabel) {
 		const decreaseButton = this.shadowRoot.querySelector('#decrease');
-		decreaseButton.setAttribute('aria-label', newLabel);
+		decreaseButton.setAttribute('title', newLabel);
 	}
 }
 

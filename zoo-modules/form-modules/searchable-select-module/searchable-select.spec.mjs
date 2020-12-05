@@ -1,105 +1,53 @@
-describe('Zoo searchable select', function() {
-	describe('Searchable Select', () => {
-		it('should create searchable select', async() => {
-			const createdElements = await page.evaluate(() => {
-				let select = document.createElement('zoo-searchable-select');
-				select.infotext = 'info-text';
-				select.invalid = true;
-				select.labeltext = 'label-text';
-				select.inputerrormsg = 'errormsg';
-				select.linktext = 'link-text';
-				select.linkhref = 'https://google.com';
-				select.linktarget = '#';
-				
-				document.body.appendChild(select);
+describe('Zoo searchable select', function () {
+	it('should create searchable select', async () => {
+		const label = await page.evaluate(() => {
+			document.body.innerHTML = `
+			<zoo-searchable-select placeholder="Placeholder">
+				<select id="searchable-select" multiple slot="selectelement">
+					<option value="text">text</option>
+					<option value="raNdOm">raNdOm</option>
+					<option value="random1">random1</option>
+					<option value="random2">random2</option>
+				</select>
+				<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
+			</zoo-searchable-select>
+			`;
+			let select = document.querySelector('zoo-searchable-select');
 
-				const nestedInput = select.shadowRoot.querySelector('zoo-input');
+			const nestedInput = select.shadowRoot.querySelector('zoo-input');
 
-				const linkAnchor = nestedInput.shadowRoot.querySelector('a');
-				const createdLink = {
-					linkText: linkAnchor.innerHTML,
-					linkTarget: nestedInput.getAttribute('target'),
-					linkHref: nestedInput.getAttribute('href')
-				};
-
-				const info = nestedInput.shadowRoot.querySelector('zoo-input-info').shadowRoot;
-				const createdInfo = {
-					infoText: info.querySelector('.info span').innerHTML,
-					errorMsg: info.querySelector('.error span').innerHTML
-				};
-
-				const label = nestedInput.shadowRoot.querySelector('zoo-input-label').shadowRoot;
-				const createdLabel = {
-					labelText: label.querySelector('label').innerHTML
-				};
-				return {
-					link: createdLink,
-					info: createdInfo,
-					label: createdLabel
-				};
-			});
-			const link = createdElements.link;
-			expect(link.linkText).toEqual('link-text');
-			expect(link.linkTarget).toEqual('#');
-			expect(link.linkHref).toEqual('https://google.com');
-
-			const label = createdElements.label;
-			expect(label.labelText).toEqual('label-text');
-
-			const info = createdElements.info;
-			expect(info.infoText.indexOf('info-text')).not.toEqual(-1);
-			expect(info.errorMsg.indexOf('errormsg')).not.toEqual(-1);
+			const label = nestedInput.shadowRoot.querySelector('slot[name="inputlabel"]').assignedNodes()[0].assignedNodes()[0];
+			return label.innerHTML;
 		});
 
-		it('should accept 1 slot', async() => {
-			const slottedElement = await page.evaluate(() => {
-				let select = document.createElement('zoo-searchable-select');
-				let element = document.createElement('select');
+		expect(label).toEqual('Searchable multiple select');
+	});
 
-				let option = document.createElement('option');
-				option.value = 1;
-				option.innerHTML = 'first';
-				element.appendChild(option);
-				element.slot = 'selectelement';
+	it('should handle input typing', async () => {
+		const optionDisplayProp = await page.evaluate(async () => {
+			let select = document.createElement('zoo-searchable-select');
+			let element = document.createElement('select');
+			element.multiple = true;
 
-				select.appendChild(element);
-				document.body.appendChild(select);
-				const slot = select.shadowRoot.querySelector('slot');
-				return {
-					optVal: slot.assignedNodes()[0].options[0].value,
-					optText: slot.assignedNodes()[0].options[0].innerHTML
-				};
-			});
-			expect(slottedElement.optVal).toEqual('1');
-			expect(slottedElement.optText).toEqual('first');
+			let option = document.createElement('option');
+			option.value = 1;
+			option.text = 'first';
+			element.appendChild(option);
+			element.slot = 'selectelement';
+
+			select.appendChild(element);
+			document.body.appendChild(select);
+
+			// so... here we let browser to do its work related to init of slots, custom element and so on.
+			// while browser is at it we schedule a micro-task with setTimeout to check what we need to check
+			// after all main tasks have finished.
+			await new Promise(r => setTimeout(r, 10));
+			const slottedInput = select.shadowRoot.querySelector('input');
+			slottedInput.focus();
+			slottedInput.value = 'sec';
+			slottedInput.dispatchEvent(new Event('input', { bubbles: true }));
+			return option.style.display;
 		});
-
-		it('should handle input typing', async() => {
-			const optionDisplayProp = await page.evaluate(async() => {
-				let select = document.createElement('zoo-searchable-select');
-				let element = document.createElement('select');
-				element.multiple = true;
-
-				let option = document.createElement('option');
-				option.value = 1;
-				option.text = 'first';
-				element.appendChild(option);
-				element.slot = 'selectelement';
-
-				select.appendChild(element);
-				document.body.appendChild(select);
-
-				// so... here we let browser to do its work related to init of slots, custom element and so on.
-				// while browser is at it we schedule a micro-task with setTimeout to check what we need to check
-				// after all main tasks have finished.
-				await new Promise(r => setTimeout(r, 10));
-				const slottedInput = select.shadowRoot.querySelector('input');
-				slottedInput.focus();
-				slottedInput.value = 'sec';
-				slottedInput.dispatchEvent(new Event('input', {bubbles: true}));
-				return option.style.display;
-			});
-			expect(optionDisplayProp).toEqual('none');
-		});
+		expect(optionDisplayProp).toEqual('none');
 	});
 });

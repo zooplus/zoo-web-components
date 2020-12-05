@@ -1,5 +1,6 @@
 export * from '../zoo-modules/form-modules/input-info-module/input-info.js';
 export * from '../zoo-modules/form-modules/input-label-module/input-label.js';
+export * from '../zoo-modules/form-modules/input-error-module/input-error.js';
 export * from '../zoo-modules/form-modules/input-module/input.js';
 export * from '../zoo-modules/form-modules/checkbox-module/checkbox.js';
 export * from '../zoo-modules/form-modules/radio-module/radio.js';

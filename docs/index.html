@@ -109,12 +109,15 @@
 			</select>
 			<label for="standard-select2" slot="selectlabel">Searchable select</label>
 		</zoo-searchable-select>
-		<zoo-checkbox highlighted infotext="Additional information">
+		<zoo-checkbox highlighted>
 			<input id="checkbox" slot="checkboxelement" type="checkbox"/>
-			<label for="checkbox" slot="checkboxlabel">An example checkboxAn example checkboxAn example checkboxAn example checkboxAn example checkbox</label>
+			<label for="checkbox" slot="checkboxlabel">An example checkbox with a long label message that wraps to a new line</label>
+			<zoo-input-info slot="info">
+				Additional information
+			</zoo-input-info>
 		</zoo-checkbox>
 		<zoo-checkbox highlighted>
-			<input id="disabled-checkbox" disabled slot="checkboxelement" type="checkbox"/>
+			<input id="disabled-checkbox" disabled checked slot="checkboxelement" type="checkbox"/>
 			<label for="disabled-checkbox" slot="checkboxlabel">Disabled checkbox</label>
 		</zoo-checkbox>
 		<zoo-radio infotext="infotext" labeltext="Label text">
@@ -244,6 +247,9 @@
 		<zoo-checkbox>
 			<input checked slot="checkboxelement" type="checkbox"/>
 			<label slot="checkboxlabel">Valid</label>
+			<zoo-input-info slot="info">
+				<span>Additional information</span>
+			</zoo-input-info>
 		</zoo-checkbox>
 	</template>
 

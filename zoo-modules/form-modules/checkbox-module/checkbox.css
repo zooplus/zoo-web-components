@@ -4,6 +4,67 @@
 	width: 100%;
 	font-size: 14px;
 	line-height: 20px;
+	position: relative;
+	--border: 0;
+	--check-color: var(--primary-mid);
+}
+
+:host([disabled]) {
+	--check-color: #767676;
+}
+
+:host([highlighted]) {
+	--border: 1px solid var(--check-color);
+}
+
+:host([invalid]) {
+	--check-color: var(--warning-mid);
+	--border: 1px solid var(--warning-mid);
+}
+
+::slotted(input[type="checkbox"]) {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	display: flex;
+	align-self: flex-start;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	cursor: pointer;
+	margin: 0;
+	border-radius: 3px;
+	border: var(--border);
+}
+
+::slotted(input[type="checkbox"]:focus) {
+	border-width: 2px;
+}
+
+::slotted(input[type="checkbox"]:disabled), :host([disabled]) ::slotted(label) {
+	background-color: #F2F3F4;
+	cursor: not-allowed;
+}
+
+svg {
+	border: 1px solid var(--check-color);
+	border-radius: 3px;
+	pointer-events: none;
+	min-width: 24px;
+	min-height: 24px;
+	z-index: 1;
+}
+
+svg path {
+	display: none;
+	fill: var(--check-color);
+}
+
+:host([checked]) svg path {
+	display: flex;
 }
 
 .checkbox {
@@ -12,6 +73,11 @@
 	box-sizing: border-box;
 	cursor: pointer;
 	align-items: baseline;
+	position: relative;
+}
+
+:host([highlighted]) .checkbox {
+	padding: 11px 15px;
 }
 
 ::slotted(label) {
@@ -19,87 +85,5 @@
 	align-self: center;
 	cursor: pointer;
 	margin-left: 5px;
-}
-
-:host([highlighted]) .checkbox {
-	border: 1px solid #E6E6E6;
-	border-radius: 5px;
-	padding: 11px 15px;
-}
-
-:host([disabled]) .checkbox,
-:host([disabled]) ::slotted(label) {
-	cursor: not-allowed;
-}
-
-:host([highlighted]) .checkbox.clicked {
-	border: 2px solid var(--primary-mid, #3C9700);
-}
-
-:host([highlighted][invalid]) .checkbox {
-	border: 2px solid var(--warning-mid, #ED1C24);
-}
-
-label {
-	display: flex;
-	align-items: center;
-}
-
-zoo-input-info {
-	display: flex;
-	align-self: flex-start;
-	margin-top: 2px;
-}
-
-::slotted(input[type="checkbox"]) {
-	position: relative;
-	display: flex;
-	align-self: flex-start;
-	min-width: 24px;
-	height: 24px;
-	border-radius: 3px;
-	border: 1px solid #767676;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	outline: none;
-	cursor: pointer;
-	margin: 0;
-}
-
-::slotted(input[type="checkbox"]:focus) {
-	border-width: 2px !important;
-}
-
-::slotted(input[type="checkbox"]:disabled) {
-	border-color: #E6E6E6 !important;
-	background-color: #F2F3F4;
-	cursor: not-allowed;
-}
-
-.check {
-	display: none;
-	position: absolute;
-}
-
-.clicked .check {
-	display: flex;
-	fill: var(--primary-mid, #3C9700);
-}
-
-.clicked ::slotted(input[type="checkbox"]) {
-	border: 1px solid var(--primary-mid, #3C9700);
-}
-
-:host([disabled]) .check {
-	fill: #767676;
-}
-
-:host([invalid]) .check {
-	fill: var(--warning-mid, #ED1C24);
-}
-
-:host([invalid]) ::slotted(input[type="checkbox"]),
-:host([invalid]) ::slotted(input[type="checkbox"]:checked) {
-	border-color: var(--warning-mid, #ED1C24);
+	z-index: 1;
 }

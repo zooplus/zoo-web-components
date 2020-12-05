@@ -1,3 +1,6 @@
+# 8.0.0
+`zoo-checkbox` - rehaul internal css. Expose two new slots that accept content for 'info' and 'error' instead of consuming attribute.
+
 # 7.4.1
 `zoo-toggle-switch` - make it play nice with bootstrap;
 

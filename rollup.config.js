@@ -13,7 +13,7 @@ export default {
 	plugins: [
 		injectInnerHTML(),
 		process.env.NODE_ENV == 'local' ? watcher() : noOpWatcher(),
-		terser({
+		process.env.NODE_ENV == 'local' ? noOpWatcher() : terser({
 			module: true,
 			keep_classnames: true
 		}),

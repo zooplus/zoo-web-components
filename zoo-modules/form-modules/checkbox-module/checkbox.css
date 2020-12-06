@@ -92,3 +92,15 @@ svg path {
 :host([disabled]) ::slotted(label) {
 	cursor: not-allowed;
 }
+
+::slotted(*[slot="error"]),
+zoo-input-error {
+	display: none;
+	grid-row: 4;
+	grid-column: span 2;
+}
+
+:host([invalid]) ::slotted(*[slot="error"]),
+:host([invalid]) zoo-input-error {
+	display: flex;
+}

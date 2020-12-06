@@ -71,7 +71,7 @@ span {
 }
 
 .close path {
-	fill: var(--primary-mid, #3C9700);
+	fill: var(--primary-mid);
 }
 
 .show {

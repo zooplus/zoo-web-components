@@ -5,7 +5,7 @@
 }
 
 :host([active]) {
-	border: 1px solid var(--primary-mid, #3C9700);
+	border: 1px solid var(--primary-mid);
 	border-radius: 3px;
 }
 
@@ -16,7 +16,7 @@
 
 ::slotted(*[slot="header"]) {
 	display: inline-flex;
-	color: var(--primary-mid, #3C9700);
+	color: var(--primary-mid);
 	font-size: 14px;
 	line-height: 20px;
 	font-weight: bold;
@@ -25,7 +25,7 @@
 }
 
 :host([active]) ::slotted(*[slot="header"]) {
-	color: var(--primary-dark, #286400);
+	color: var(--primary-dark);
 }
 
 ::slotted(*[slot="content"]) {
@@ -39,12 +39,12 @@
 svg {
 	display: inline-flex;
 	margin-left: auto;
-	fill: var(--primary-mid, #3C9700);
+	fill: var(--primary-mid);
 	transition: transform 0.3s;
 	padding: 20px 0;
 }
 
 :host([active]) svg {
-	fill: var(--primary-dark, #286400);
+	fill: var(--primary-dark);
 	transform: rotateX(180deg);
 }

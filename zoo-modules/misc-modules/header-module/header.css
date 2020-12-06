@@ -20,7 +20,7 @@ header {
 ::slotted(*[slot="headertext"]),
 h2 {
 	display: inline-block;
-	color: var(--primary-mid, #3C9700);
+	color: var(--primary-mid);
 }
 
 @media only screen and (max-width: 544px) {

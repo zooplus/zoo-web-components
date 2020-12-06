@@ -11,5 +11,5 @@ svg {
 	padding-right: 5px;
 	min-width: 18px;
 	align-self: flex-start;
-	fill: var(--warning-mid, #ED1C24);
+	fill: var(--warning-mid);
 }

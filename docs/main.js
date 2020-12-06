@@ -113,16 +113,22 @@ const lightenDarkenColor = (col, amt) => {
 
 const handleSortChange = sortState => {
 	let toast = document.createElement('zoo-toast');
-	toast.text = sortState 
+	const text = document.createElement('span');
+	text.innerHTML = sortState 
 		? 'Sort state was changed. Property: ' + sortState.property + ', direction: ' + sortState.direction
 		: 'Sort state was changed. Sort object is undefined.';
+	text.slot = 'content';
+	toast.appendChild(text);
 	document.body.appendChild(toast);
 	toast.show();
 };
 
 const handlePageChange = page => {
 	let toast = document.createElement('zoo-toast');
-	toast.text = 'Page was changed to: ' + page.pageNumber;
+	const text = document.createElement('span');
+	text.innerHTML = 'Page was changed to: ' + page.pageNumber;
+	text.slot = 'content';
+	toast.appendChild(text);
 	document.body.appendChild(toast);
 	toast.show();
 };
@@ -190,7 +196,7 @@ const getRow = (d, i, template) => {
 	return clone;
 };
 
-const grids = document.querySelectorAll('zoo-grid');
+const grids = document.querySelectorAll('zoo-grid.generate');
 data.forEach((d, i) => {
 	const simpleRow = document.querySelector('#simple-row').content;
 	let idx = 0;

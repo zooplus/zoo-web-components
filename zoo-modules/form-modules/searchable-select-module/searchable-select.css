@@ -64,11 +64,11 @@ input {
 
 :host([invalid]) input {
 	padding: 12px 24px 12px 14px;
-	border: 2px solid var(--warning-mid, #ED1C24);
+	border: 2px solid var(--warning-mid);
 }
 
 :host([invalid]) ::slotted(select) {
-	border: 2px solid var(--warning-mid, #ED1C24);
+	border: 2px solid var(--warning-mid);
 	border-top: none;
 	padding: 12px 14px;
 }
@@ -92,6 +92,12 @@ zoo-input-info {
 
 ::slotted(*[slot="error"]),
 zoo-input-error {
+	display: none;
 	grid-row: 4;
 	grid-column: span 2;
+}
+
+:host([invalid]) ::slotted(*[slot="error"]),
+:host([invalid]) zoo-input-error {
+	display: flex;
 }

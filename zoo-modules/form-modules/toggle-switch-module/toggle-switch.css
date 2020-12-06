@@ -33,7 +33,7 @@ div {
 
 ::slotted(input[type="checkbox"]:checked) {
 	transform: translateX(80%);
-	background: var(--primary-mid, #3C9700);
+	background: var(--primary-mid);
 }
 
 ::slotted(input[type="checkbox"]:focus) {

@@ -16,7 +16,7 @@
 }
 
 :host([invalid]) {
-	color: var(--warning-mid, #ED1C24);
+	color: var(--warning-mid);
 }
 
 ::slotted(input[type="radio"]) {
@@ -36,7 +36,7 @@
 }
 
 :host([invalid]) ::slotted(input[type="radio"]) {
-	--box-shadow-color: var(--warning-mid, #ED1C24);
+	--box-shadow-color: var(--warning-mid);
 }
 
 ::slotted(input[type="radio"]:focus) {
@@ -44,7 +44,7 @@
 }
 
 ::slotted(input[type="radio"]:checked) {
-	background-color: var(--primary-mid, #3C9700);
+	background-color: var(--primary-mid);
 
 	--box-shadow-color: #3C9700;
 	--box-shadow-width2: 4px;
@@ -53,7 +53,7 @@
 
 
 :host([invalid]) ::slotted(input[type="radio"]:checked) {
-	background-color: var(--warning-mid, #ED1C24);
+	background-color: var(--warning-mid);
 }
 
 ::slotted(input[type="radio"]:disabled) {
@@ -67,4 +67,16 @@
 	cursor: pointer;
 	margin: 0 5px;
 	align-self: center;
+}
+
+::slotted(*[slot="error"]),
+zoo-input-error {
+	display: none;
+	grid-row: 4;
+	grid-column: span 2;
+}
+
+:host([invalid]) ::slotted(*[slot="error"]),
+:host([invalid]) zoo-input-error {
+	display: flex;
 }

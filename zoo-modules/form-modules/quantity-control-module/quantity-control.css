@@ -15,7 +15,7 @@ div {
 button {
 	border-width: 0;
 	min-width: 30px;
-	background: var(--primary-mid, #3C9700);
+	background: var(--primary-mid);
 	display: flex;
 	align-items: center;
 	justify-content: center;

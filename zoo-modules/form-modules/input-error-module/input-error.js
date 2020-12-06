@@ -22,23 +22,7 @@ export default class InputError extends HTMLElement {
 	}
 
 	handleInfo(newVal) {
-		if (newVal) {
-			this.shadowRoot.querySelector('slot').innerHTML = newVal;
-			this.shadowRoot.host.style.display = 'flex';
-		}
-	}
-
-	connectedCallback() {
-		const slot = this.shadowRoot.querySelector('slot');
-		this.shadowRoot.host.style.display = 'none';
-		if(this.shadowRoot.host.getAttribute('inputerrormsg')) {
-			this.shadowRoot.host.style.display = 'flex';
-		}
-		slot.addEventListener('slotchange', () => {
-			if(slot.assignedNodes()[0]) {
-				this.shadowRoot.host.style.display = 'flex';
-			}
-		});
+		this.shadowRoot.querySelector('slot').innerHTML = newVal;
 	}
 }
 window.customElements.define('zoo-input-error', InputError);

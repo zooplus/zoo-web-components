@@ -230,7 +230,7 @@
 	<h2>Data grids</h2>
 	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 	<div class="grid-holder">
-		<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable>
+		<zoo-grid class="generate" stickyheader currentpage="5" maxpages="20" resizable reorderable>
 			<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
 			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date</zoo-grid-header>
 			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status'>Status</zoo-grid-header>
@@ -254,7 +254,7 @@
 	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-		<zoo-grid stickyheader currentpage="5" maxpages="20">
+		<zoo-grid class="generate" stickyheader currentpage="5" maxpages="20">
 			<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
 			<zoo-grid-header slot="headercell">Created Date</zoo-grid-header>
 			<zoo-grid-header slot="headercell">Status</zoo-grid-header>
@@ -274,12 +274,24 @@
 			</zoo-select>
 		</zoo-grid>
 	</div>
+
 	</main>
+	<div style="margin: 30px;box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)">
+		<zoo-grid>
+			<th slot="headercell">Created date</th>
+			<th slot="headercell">Min weight</th>
+			<th slot="headercell">Price</th>
+	
+			<tr slot="row"><td>2020-05-05</td><td>30 kg</td><td>20 EUR</td></tr>
+			<tr slot="row"><td>2020-05-10</td><td>23 kg</td><td>15 EUR</td></tr>
+			<tr slot="row"><td>2020-05-15</td><td>10 kg</td><td>5 EUR</td></tr>
+		</zoo-grid>
+	</div>
 	<zoo-footer id="how" copyright="zooplus AG">
-		<zoo-link>
+		<zoo-link type="negative">
 			<a slot="anchor" href="https://github.com/zooplus/zoo-web-components" target="about:blank">Github</a>
 		</zoo-link>
-		<zoo-link>
+		<zoo-link type="negative">
 			<a slot="anchor" href="https://www.npmjs.com/package/@zooplus/zoo-web-components">NPM</a>
 		</zoo-link>
 	</zoo-footer> 

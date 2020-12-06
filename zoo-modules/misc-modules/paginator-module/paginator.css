@@ -50,11 +50,7 @@
 }
 
 svg {
-	fill: #555;
-}
-
-.arrow path {
-	fill: var(--primary-mid, #3C9700);
+	fill: var(--primary-mid);
 }
 
 .page-element {
@@ -78,18 +74,18 @@ svg {
 }
 
 .page-element.active {
-	background: var(--primary-ultralight, #EBF4E5);
-	color: var(--primary-mid, #3C9700);
+	background: var(--primary-ultralight);
+	color: var(--primary-mid);
 }
 
 .page-element-dots {
 	display: flex;
 }
 
-.btn.next svg {
+.next svg {
 	transform: rotate(-90deg);
 }
 
-.btn.prev svg {
+.prev svg {
 	transform: rotate(90deg);
 }

@@ -25,7 +25,7 @@ export default class Grid extends HTMLElement {
 			this.assignColumnNumberToRows();
 		}));
 		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
-		const paginator = root.querySelector('zoo-grid-paginator');
+		const paginator = root.querySelector('zoo-paginator');
 		if (paginator) {
 			paginator.addEventListener('pageChange', e => this.dispatchPageEvent(e));
 		}
@@ -62,15 +62,15 @@ export default class Grid extends HTMLElement {
 			this.handleDraggableHeaders();
 		}
 		if (attrName == 'maxpages') {
-			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
+			const paginator = this.shadowRoot.querySelector('zoo-paginator');
 			if (paginator) {
-				paginator.maxpages = newVal;
+				paginator.setAttribute('maxpages', newVal);
 			}
 		}
 		if (attrName == 'currentpage') {
-			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
+			const paginator = this.shadowRoot.querySelector('zoo-paginator');
 			if (paginator) {
-				paginator.currentpage = newVal;
+				paginator.setAttribute('currentpage', newVal);
 			}
 		}
 	}

@@ -96,13 +96,13 @@
 }
 
 ::slotted(*[slot="norecords"]) {
-	color: var(--warning-dark, #BD161C);
+	color: var(--warning-dark);
 	grid-column: span var(--grid-column-num);
 	text-align: center;
 	padding: 10px 0;
 }
 
-zoo-grid-paginator {
+zoo-paginator {
 	display: grid;
 	position: sticky;
 	grid-column: span var(--grid-column-num);

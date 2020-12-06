@@ -25,11 +25,11 @@
 }
 
 .arrows path {
-	fill: var(--primary-mid, #3C9700);
+	fill: var(--primary-mid);
 }
 
 :host([invalid]) .arrows path {
-	fill: var(--warning-mid, #ED1C24);
+	fill: var(--warning-mid);
 }
 
 :host([disabled]) .arrows path {
@@ -77,7 +77,7 @@
 }
 
 :host([invalid]) ::slotted(select) {
-	border: 2px solid var(--warning-mid, #ED1C24);
+	border: 2px solid var(--warning-mid);
 	padding: 12px 24px 12px 14px;
 }
 
@@ -126,8 +126,14 @@ zoo-input-info {
 
 ::slotted(*[slot="error"]),
 zoo-input-error {
+	display: none;
 	grid-row: 4;
 	grid-column: span 2;
+}
+
+:host([invalid]) ::slotted(*[slot="error"]),
+:host([invalid]) zoo-input-error {
+	display: flex;
 }
 
 :host([multiple]) svg {

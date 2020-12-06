@@ -1,11 +1,11 @@
 <zoo-input>
-	<input slot="inputelement" type="text"/>
+	<input slot="input" type="text"/>
 	<slot name="link" slot="link"></slot>
-	<svg slot="inputelement" class="close" width="20" height="20" viewBox="0 0 24 24">
+	<svg slot="input" class="close" width="20" height="20" viewBox="0 0 24 24">
 		<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/>
 	</svg>
-	<slot slot="inputelement" name="selectelement"></slot>
-	<slot name="selectlabel" slot="inputlabel"><zoo-input-label></zoo-input-label></slot>
+	<slot slot="input" name="select"></slot>
+	<slot name="label" slot="label"><zoo-input-label></zoo-input-label></slot>
 	<slot slot="info" name="info"><zoo-input-info></zoo-input-info></slot>
 	<slot slot="error" name="error"><zoo-input-error></zoo-input-error></slot>
 </zoo-input>

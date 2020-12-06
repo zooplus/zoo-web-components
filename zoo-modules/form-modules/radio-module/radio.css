@@ -19,7 +19,7 @@
 	color: var(--warning-mid);
 }
 
-::slotted(input[type="radio"]) {
+::slotted(input) {
 	position: relative;
 	min-width: 24px;
 	height: 24px;
@@ -35,15 +35,15 @@
 	box-shadow: inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color), inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2);
 }
 
-:host([invalid]) ::slotted(input[type="radio"]) {
+:host([invalid]) ::slotted(input) {
 	--box-shadow-color: var(--warning-mid);
 }
 
-::slotted(input[type="radio"]:focus) {
+::slotted(input:focus) {
 	--box-shadow-color: #3C9700;
 }
 
-::slotted(input[type="radio"]:checked) {
+::slotted(input:checked) {
 	background-color: var(--primary-mid);
 
 	--box-shadow-color: #3C9700;
@@ -52,11 +52,11 @@
 }
 
 
-:host([invalid]) ::slotted(input[type="radio"]:checked) {
+:host([invalid]) ::slotted(input:checked) {
 	background-color: var(--warning-mid);
 }
 
-::slotted(input[type="radio"]:disabled) {
+::slotted(input:disabled) {
 	cursor: not-allowed;
 	background-color: #E6E6E6;
 

@@ -18,12 +18,12 @@ describe('Zoo input', function () {
 		const labelText = await page.evaluate(() => {
 			document.body.innerHTML = `
 					<zoo-input>
-						<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
-						<label for="input-type-text" slot="inputlabel">label</label>
+						<input id="input-type-text" slot="input" type="text" placeholder="input"/>
+						<label for="input-type-text" slot="label">label</label>
 					</zoo-input>
 				`;
 			let input = document.querySelector('zoo-input');
-			const label = input.shadowRoot.querySelector('slot[name="inputlabel"]').assignedNodes()[0];
+			const label = input.shadowRoot.querySelector('slot[name="label"]').assignedNodes()[0];
 			return label.innerHTML;
 		});
 		expect(labelText).toEqual('label');
@@ -33,8 +33,8 @@ describe('Zoo input', function () {
 		const linkAttrs = await page.evaluate(() => {
 			document.body.innerHTML = `
 				<zoo-input>
-					<input id="input-type-number" slot="inputelement" placeholder="input" list="animals"/>
-					<label for="input-type-number" slot="inputlabel">Autocomplete</label>
+					<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
+					<label for="input-type-number" slot="label">Autocomplete</label>
 					<zoo-input-info slot="info">
 						Possible values: Dog, Cat, Small Pet, Bird, Aquatic
 					</zoo-input-info>
@@ -60,8 +60,8 @@ describe('Zoo input', function () {
 		const ret = await page.evaluate(() => {
 			document.body.innerHTML = `
 				<zoo-input>
-					<input id="input-type-number" slot="inputelement" placeholder="input" list="animals"/>
-					<label for="input-type-number" slot="inputlabel">Autocomplete</label>
+					<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
+					<label for="input-type-number" slot="label">Autocomplete</label>
 					<zoo-input-info slot="info">
 						Possible values: Dog, Cat, Small Pet, Bird, Aquatic
 					</zoo-input-info>
@@ -72,7 +72,7 @@ describe('Zoo input', function () {
 				`;
 			let input = document.querySelector('zoo-input');
 
-			const slottedInput = input.shadowRoot.querySelector('slot[name="inputelement"]').assignedNodes()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
 
 			return {
 				tagName: slottedInput.tagName

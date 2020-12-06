@@ -3,17 +3,17 @@ describe('Zoo select', function () {
 		const label = await page.evaluate(() => {
 			document.body.innerHTML = `
 			<zoo-select>
-				<select id="multiselect" slot="selectelement" multiple>
+				<select id="multiselect" slot="select" multiple>
 					<option class="placeholder" value="" disabled selected>Placeholder</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</select>
-				<label for="multiselect" slot="selectlabel">Multiselect</label>
+				<label for="multiselect" slot="label">Multiselect</label>
 			</zoo-select>
 			`;
 			let select = document.querySelector('zoo-select');
-			return select.shadowRoot.querySelector('slot[name="selectlabel"').assignedNodes()[0].innerHTML;
+			return select.shadowRoot.querySelector('slot[name="label"').assignedNodes()[0].innerHTML;
 		});
 		expect(label).toEqual('Multiselect');
 	});

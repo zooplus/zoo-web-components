@@ -9,7 +9,7 @@ export default class Radio extends AbstractControl {
 	}
 
 	static get observedAttributes() {
-		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid'];
+		return ['labeltext', 'inputerrormsg', 'infotext'];
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {

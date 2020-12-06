@@ -7,6 +7,9 @@ export default class Footer extends HTMLElement {
 		super();
 		this.body = this.shadowRoot.querySelector('div');
 	}
+	static get observedAttributes() {
+		return ['copyright'];
+	}
 	handleCopyright(newVal) {
 		this.copyright = newVal;
 		this.body.innerHTML = `&#169; ${newVal} ${new Date().getFullYear()}`;

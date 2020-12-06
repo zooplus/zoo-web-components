@@ -3,13 +3,13 @@ describe('Zoo searchable select', function () {
 		const label = await page.evaluate(() => {
 			document.body.innerHTML = `
 			<zoo-searchable-select placeholder="Placeholder">
-				<select id="searchable-select" multiple slot="selectelement">
+				<select id="searchable-select" multiple slot="select">
 					<option value="text">text</option>
 					<option value="raNdOm">raNdOm</option>
 					<option value="random1">random1</option>
 					<option value="random2">random2</option>
 				</select>
-				<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
+				<label for="searchable-select" slot="label">Searchable multiple select</label>
 			</zoo-searchable-select>
 			`;
 			let select = document.querySelector('zoo-searchable-select');
@@ -33,7 +33,7 @@ describe('Zoo searchable select', function () {
 			option.value = 1;
 			option.text = 'first';
 			element.appendChild(option);
-			element.slot = 'selectelement';
+			element.slot = 'select';
 
 			select.appendChild(element);
 			document.body.appendChild(select);

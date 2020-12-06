@@ -3,13 +3,13 @@ describe('Zoo select', function() {
 		const results = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-select linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" infotext="Additional helpful information for our users">
-				<select id="multiselect" slot="selectelement" multiple>
+				<select id="multiselect" slot="select" multiple>
 					<option class="placeholder" value="" disabled selected>Placeholder</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</select>
-				<label for="multiselect" slot="selectlabel">Multiselect</label>
+				<label for="multiselect" slot="label">Multiselect</label>
 			</zoo-select>`;
 			return await axe.run('zoo-select');
 		});

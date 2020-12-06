@@ -3,8 +3,8 @@ describe('Zoo checkbox', () => {
 		const results = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-checkbox>
-				<input id="checkbox" checked slot="checkboxelement" type="checkbox"/>
-				<label for="checkbox" slot="checkboxlabel">Valid</label>
+				<input id="checkbox" checked slot="checkbox" type="checkbox"/>
+				<label for="checkbox" slot="label">Valid</label>
 			</zoo-checkbox>`;
 			return await axe.run('zoo-checkbox');
 		});

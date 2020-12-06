@@ -23,7 +23,7 @@
 	--border: 1px solid var(--warning-mid);
 }
 
-::slotted(input[type="checkbox"]) {
+::slotted(input) {
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -41,7 +41,7 @@
 	border: var(--border);
 }
 
-::slotted(input[type="checkbox"]:focus) {
+::slotted(input:focus) {
 	border-width: 2px;
 }
 
@@ -88,7 +88,7 @@ svg path {
 	z-index: 1;
 }
 
-::slotted(input[type="checkbox"]:disabled),
+::slotted(input:disabled),
 :host([disabled]) ::slotted(label) {
 	cursor: not-allowed;
 }

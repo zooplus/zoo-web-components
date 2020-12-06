@@ -15,7 +15,7 @@ div {
 	cursor: pointer;
 }
 
-::slotted(input[type="checkbox"]) {
+::slotted(input) {
 	transition: transform 0.2s;
 	transform: translateX(-30%);
 	width: 60%;
@@ -31,17 +31,17 @@ div {
 	cursor: pointer;
 }
 
-::slotted(input[type="checkbox"]:checked) {
+::slotted(input:checked) {
 	transform: translateX(80%);
 	background: var(--primary-mid);
 }
 
-::slotted(input[type="checkbox"]:focus) {
+::slotted(input:focus) {
 	border-width: 2px;
 	border: 1px solid #767676;
 }
 
-::slotted(input[type="checkbox"]:disabled) {
+::slotted(input:disabled) {
 	background: #F2F3F4;
 	cursor: not-allowed;
 }

@@ -89,7 +89,7 @@
 	text-align: left;
 }
 
-slot[name="selectlabel"] {
+slot[name="label"] {
 	grid-row: 1;
 	align-self: flex-start;
 	display: flex;
@@ -130,7 +130,7 @@ zoo-input-error {
 	grid-gap: 0 3px;
 }
 
-:host([labelposition="left"]) slot[name="selectlabel"] {
+:host([labelposition="left"]) slot[name="label"] {
 	grid-row: 2;
 	grid-column: 1;
 	height: 100%;

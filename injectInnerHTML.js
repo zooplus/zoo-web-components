@@ -7,7 +7,7 @@ export default function injectInnerHTML() {
 		name: 'injectInnerHTML',
 
 		transform(code, id) {
-			if (code.indexOf('@injectHTML') > -1) {
+			if (code.indexOf('@injectHTML') > -1) { 
 				const htmlFile = id.replace('.js', '.html');
 				const cssFile = id.replace('.js', '.css');
 				const html = fs.readFileSync(htmlFile, 'utf8');

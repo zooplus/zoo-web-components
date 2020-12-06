@@ -9,7 +9,7 @@ export default class Checkbox extends AbstractControl {
 	}
 
 	static get observedAttributes() {
-		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid'];
+		return ['labeltext', 'inputerrormsg', 'infotext'];
 	}
 	
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -38,19 +38,17 @@ export default class Checkbox extends AbstractControl {
 	}
 
 	connectedCallback() {
-		const config = { attributes: true, childList: false, subtree: false };
-		const checkboxSlot = this.shadowRoot.querySelector('slot[name="checkboxelement"]');
-		let checkbox;
+		const checkboxSlot = this.shadowRoot.querySelector('slot[name="checkbox"]');
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = new MutationObserver(this.mutationCallback.bind(this));
-			checkbox = checkboxSlot.assignedNodes()[0];
+			let checkbox = checkboxSlot.assignedNodes()[0];
 			checkbox.addEventListener('change', () => this.handleChange(checkbox));
+			this.shadowRoot.host.addEventListener('change', () => this.handleChange(checkbox));
 			if (checkbox.disabled) this.shadowRoot.host.setAttribute('disabled', '');
 			this.observer.disconnect();
-			this.observer.observe(checkbox, config);
+			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
 			this.handleChange(checkbox);
 		});
-		this.shadowRoot.host.addEventListener('change', () => this.handleChange(checkbox));
 	}
 
 	handleChange(checkbox) {

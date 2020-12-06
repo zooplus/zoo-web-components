@@ -8,7 +8,6 @@ export default class AbstractControl extends HTMLElement {
 		this.handlersMap.set('linkhref', this.handleLinkHref.bind(this));
 		this.handlersMap.set('linktarget', this.handleLinkTarget.bind(this));
 		this.handlersMap.set('infotext', this.handleInfo.bind(this));
-		this.handlersMap.set('invalid', this.handleInvalid.bind(this));
 		this.handlersMap.set('inputerrormsg', this.handleErrorMsg.bind(this));
 	}
 
@@ -32,15 +31,6 @@ export default class AbstractControl extends HTMLElement {
 		}
 	}
 
-	handleInvalid(newVal, target) {
-		target = target || 'zoo-input-error';
-		const el = this.shadowRoot.querySelector(target);
-		if (this.hasAttribute('invalid')) {
-			el.setAttribute('invalid', '');
-		} else {
-			el.removeAttribute('invalid');
-		}
-	}
 	handleErrorMsg(newVal, target) {
 		target = target || 'zoo-input-error';
 		const el = this.shadowRoot.querySelector(target);

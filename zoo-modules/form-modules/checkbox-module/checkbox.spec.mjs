@@ -3,13 +3,13 @@ describe('Zoo checkbox', function () {
 		const inputLabelText = await page.evaluate(() => {
 			document.body.innerHTML = `
 			<zoo-checkbox highlighted>
-				<input id="modal-checkbox" slot="checkboxelement" type="checkbox"/>
-				<label for="modal-checkbox" slot="checkboxlabel">label-text</label>
+				<input id="modal-checkbox" slot="checkbox" type="checkbox"/>
+				<label for="modal-checkbox" slot="label">label-text</label>
 			</zoo-checkbox>
 			`;
 			let checkbox = document.querySelector('zoo-checkbox');
 
-			return checkbox.shadowRoot.querySelector('slot[name="checkboxlabel"]').assignedNodes()[0].innerHTML;
+			return checkbox.shadowRoot.querySelector('slot[name="label"]').assignedNodes()[0].innerHTML;
 		});
 		expect(inputLabelText).toEqual('label-text');
 	});

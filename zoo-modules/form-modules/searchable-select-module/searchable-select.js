@@ -9,7 +9,7 @@ export default class SearchableSelect extends AbstractControl {
 		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
-		return ['labeltext', 'inputerrormsg', 'infotext', 'invalid', 'loading', 'placeholder'];
+		return ['labeltext', 'inputerrormsg', 'infotext', 'loading', 'placeholder'];
 	}
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
@@ -19,7 +19,7 @@ export default class SearchableSelect extends AbstractControl {
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
-			this.loader.slot = 'inputelement';
+			this.loader.slot = 'input';
 			const input = this.shadowRoot.querySelector('zoo-input');
 			if (input){
 				input.appendChild(this.loader);
@@ -45,7 +45,7 @@ export default class SearchableSelect extends AbstractControl {
 		this.input.addEventListener('input', () => this.handleSearchChange());
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
-		const selectSlot = this.shadowRoot.querySelector('slot[name="selectelement"]');
+		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedNodes()[0];
 			this.select.addEventListener('change', () => this.handleOptionChange());
@@ -102,7 +102,7 @@ export default class SearchableSelect extends AbstractControl {
 		}
 		if (showTooltip) {
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
-			this.tooltip.slot = 'inputelement';
+			this.tooltip.slot = 'input';
 			this.tooltip.setAttribute('position', 'right');
 			this.tooltip.setAttribute('text', inputValString);
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);

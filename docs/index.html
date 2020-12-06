@@ -75,11 +75,11 @@
 				<a slot="anchor" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native date picker polyfill on Github</a>
 			</zoo-link>
 		</zoo-input>
-		<zoo-input>
-			<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
-			<label for="input-type-text" slot="inputlabel">Composition of an input with a button</label>
+		<zoo-input class="input-composition">
+			<input id="input-composition" slot="inputelement" type="text" placeholder="input"/>
+			<label for="input-composition" slot="inputlabel">Composition of an input with a button</label>
 			<zoo-button slot="button">
-				<button type="button">Lorem ipsum</button>
+				<button type="button">Click me!</button>
 			</zoo-button>
 			<zoo-input-info slot="info">
 				Additional helpful information for our users
@@ -104,16 +104,16 @@
 				Additional information
 			</zoo-input-info>
 		</zoo-select>
-		<zoo-select>
-			<select id="standard-select" slot="selectelement">
+		<zoo-select class="select-composition">
+			<select id="select-composition" slot="selectelement">
 				<option value="" disabled>Placeholder</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</select>
-			<label for="standard-select" slot="selectlabel">Composition of standard select with an input</label>
+			<label for="select-composition" slot="selectlabel">Composition of standard select with an input</label>
 			<zoo-input slot="input">
-				<input type="text" placeholder="Lorem ipsum" slot="inputelement"/>
+				<input type="text" placeholder="Placeholder" slot="inputelement"/>
 			</zoo-input>
 			<zoo-input-info slot="info">
 				Additional information

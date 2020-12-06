@@ -104,20 +104,6 @@ slot[name="selectlabel"] {
 	grid-column: span 2;
 }
 
-::slotted(zoo-input) {
-	display: flex;
-	margin-left: -5px;
-	flex: 1;
-
-	--zoo-input-border-radius: 0 5px 5px 0;
-	--additional-elements-display: none;
-}
-
-.select-wrap {
-	position: relative;
-	flex: 1;
-}
-
 ::slotted(*[slot="info"]),
 zoo-input-info {
 	grid-row: 3;
@@ -137,10 +123,6 @@ zoo-input-error {
 }
 
 :host([multiple]) svg {
-	display: none;
-}
-
-:host([multiple]) ::slotted(zoo-input) {
 	display: none;
 }
 

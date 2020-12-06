@@ -4,6 +4,7 @@
 	width: max-content;
 	z-index: 9997;
 	pointer-events: none;
+	color: black;
 
 	--tip-bottom: 0;
 	--tip-right: unset;
@@ -75,9 +76,4 @@
 
 .tooltip-content span {
 	white-space: pre;
-	color: black;
-}
-
-::slotted(*) {
-	color: black;
 }

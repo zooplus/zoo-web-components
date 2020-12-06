@@ -1,6 +1,12 @@
-<slot name="label"></slot>
+<zoo-label>
+	<slot name="label"></slot>
+</zoo-label>
 <div>
 	<slot name="input"></slot>
 </div>
-<slot name="info"></slot>
-<slot name="error"></slot>
+<zoo-info class="info">
+	<slot name="info"></slot>
+</zoo-info>
+<zoo-info class="error">
+	<slot name="error"></slot>
+</zoo-info>

@@ -2,7 +2,7 @@ describe('Zoo select', function() {
 	it('should pass accessibility tests', async() => {
 		const results = await page.evaluate(async () => {
 			document.body.innerHTML = `
-			<zoo-select linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" infotext="Additional helpful information for our users">
+			<zoo-select>
 				<select id="multiselect" slot="select" multiple>
 					<option class="placeholder" value="" disabled selected>Placeholder</option>
 					<option>1</option>

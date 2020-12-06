@@ -19,7 +19,7 @@
 
 `zoo-grid-paginator` - renamed to `zoo-paginator`. Update your HTML.
 
-bundle size is now about 20% smaller.
+bundle size is now about 1/3 smaller.
 
 # 7.4.1
 `zoo-toggle-switch` - make it play nice with bootstrap;

@@ -1,15 +1,12 @@
-import AbstractControl from '../abstractControl';
-
 /**
  * @injectHTML
  */
-export default class SearchableSelect extends AbstractControl {
+export default class SearchableSelect extends HTMLElement {
 	constructor() {
 		super();
-		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
-		return ['labeltext', 'inputerrormsg', 'infotext', 'loading', 'placeholder'];
+		return ['invalid', 'loading', 'placeholder'];
 	}
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
@@ -69,10 +66,11 @@ export default class SearchableSelect extends AbstractControl {
 				this.handleLoading();
 			} else if (attrName == 'placeholder') {
 				this.handlePlaceholder(newVal);
-			} else {
-				const fn = this.handlersMap.get(attrName);
-				if (fn) {
-					fn(newVal);
+			} else if (attrName === 'invalid') {
+				if (this.hasAttribute('invalid')) {
+					this.shadowRoot.querySelector('zoo-input').setAttribute('invalid', '');
+				} else {
+					this.shadowRoot.querySelector('zoo-input').removeAttribute('invalid');
 				}
 			}
 		}

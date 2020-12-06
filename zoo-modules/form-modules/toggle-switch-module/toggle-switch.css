@@ -46,17 +46,18 @@ div {
 	cursor: not-allowed;
 }
 
-::slotted(label) {
-	display: flex;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 800;
-	color: #555;
-	text-align: left;
-	margin-bottom: 10px;
+.info {
+	grid-row: 3;
+	grid-column: span 2;
 }
 
-zoo-input-info {
+.error {
+	display: none;
+	grid-row: 4;
+	grid-column: span 2;
+	--icon-color: var(--warning-mid);
+}
+
+:host([invalid]) .error {
 	display: flex;
-	margin-top: 8px;
 }

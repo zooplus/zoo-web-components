@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Grid extends HTMLElement {
+export default class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
 	}
@@ -207,4 +207,4 @@ export default class Grid extends HTMLElement {
 	}
 }
 
-window.customElements.define('zoo-grid', Grid);
+window.customElements.define('zoo-grid', ZooGrid);

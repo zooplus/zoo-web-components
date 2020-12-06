@@ -1,15 +1,13 @@
-import AbstractControl from '../abstractControl';
-
 /**
  * @injectHTML
  */
-export default class Select extends AbstractControl {
+export default class Select extends HTMLElement {
 	constructor() {
 		super();
 	}
 
 	static get observedAttributes() {
-		return ['labeltext', 'inputerrormsg', 'infotext', 'loading'];
+		return ['loading'];
 	}
 
 	handleLoading() {
@@ -26,11 +24,6 @@ export default class Select extends AbstractControl {
 		if (Select.observedAttributes.includes(attrName)) {
 			if (attrName == 'loading') {
 				this.handleLoading();
-			} else {
-				const fn = this.handlersMap.get(attrName);
-				if (fn) {
-					fn(newVal);
-				}
 			}
 		}
 	}

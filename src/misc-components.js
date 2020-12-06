@@ -10,3 +10,5 @@ export * from '../zoo-modules/misc-modules/collapsable-list-module/collapsable-l
 export * from '../zoo-modules/misc-modules/collapsable-list-item-module/collapsable-list-item.js';
 export * from '../zoo-modules/misc-modules/spinner-module/spinner.js';
 export * from '../zoo-modules/misc-modules/paginator-module/paginator.js';
+export * from '../zoo-modules/misc-modules/preloader-module/preloader.js';
+export * from '../zoo-modules/misc-modules/attention-icon-module/attention-icon.js';

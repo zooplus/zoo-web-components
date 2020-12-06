@@ -81,18 +81,13 @@
 	padding: 12px 24px 12px 14px;
 }
 
-::slotted(label) {
+zoo-label {
 	font-size: 14px;
 	line-height: 20px;
 	font-weight: 800;
 	color: #555;
 	text-align: left;
-}
-
-slot[name="label"] {
 	grid-row: 1;
-	align-self: flex-start;
-	display: flex;
 }
 
 .content {
@@ -104,21 +99,19 @@ slot[name="label"] {
 	grid-column: span 2;
 }
 
-::slotted(*[slot="info"]),
-zoo-input-info {
+.info {
 	grid-row: 3;
 	grid-column: span 2;
 }
 
-::slotted(*[slot="error"]),
-zoo-input-error {
+.error {
 	display: none;
 	grid-row: 4;
 	grid-column: span 2;
+	--icon-color: var(--warning-mid);
 }
 
-:host([invalid]) ::slotted(*[slot="error"]),
-:host([invalid]) zoo-input-error {
+:host([invalid]) .error {
 	display: flex;
 }
 
@@ -143,7 +136,8 @@ zoo-input-error {
 	grid-row: 2;
 }
 
-::slotted(zoo-link) {
+zoo-link {
 	width: max-content;
 	justify-self: end;
+	padding: 0;
 }

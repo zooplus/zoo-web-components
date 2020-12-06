@@ -1,0 +1,10 @@
+:host {
+	display: flex;
+}
+
+svg {
+	padding-right: 5px;
+	min-width: 18px;
+	align-self: flex-start;
+	fill: var(--icon-color, var(--info-mid));
+}

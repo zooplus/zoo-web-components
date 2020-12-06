@@ -55,28 +55,18 @@ button:disabled svg line {
 	text-align: center;
 }
 
-zoo-input-info {
-	display: block;
-	margin-top: 2px;
-}
-
-::slotted(label) {
-	align-self: self-start;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 800;
-	color: #555;
-	text-align: left;
-}
-
-::slotted(*[slot="error"]),
-zoo-input-error {
-	display: none;
-	grid-row: 4;
+.info {
+	grid-row: 3;
 	grid-column: span 2;
 }
 
-:host([invalid]) ::slotted(*[slot="error"]),
-:host([invalid]) zoo-input-error {
+.error {
+	display: none;
+	grid-row: 4;
+	grid-column: span 2;
+	--icon-color: var(--warning-mid);
+}
+
+:host([invalid]) .error {
 	display: flex;
 }

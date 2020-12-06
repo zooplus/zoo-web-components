@@ -41,7 +41,6 @@ zoo-tooltip {
 	display: none;
 }
 
-
 :host(:focus-within) ::slotted(select) {
 	border: 2px solid #555;
 	border-top: none;
@@ -52,52 +51,8 @@ zoo-input:focus-within ::slotted(select) {
 	display: grid;
 }
 
-input {
-	padding: 13px 25px 13px 15px;
-}
-
-
-:host(:focus-within) input {
-	border: 2px solid #555;
-	padding: 12px 24px 12px 14px;
-}
-
-:host([invalid]) input {
-	padding: 12px 24px 12px 14px;
-	border: 2px solid var(--warning-mid);
-}
-
 :host([invalid]) ::slotted(select) {
 	border: 2px solid var(--warning-mid);
 	border-top: none;
 	padding: 12px 14px;
-}
-
-::slotted(select:disabled) {
-	border: 1px solid #E6E6E6;
-	background-color: #F2F3F4;
-	color: #767676;
-	cursor: not-allowed;
-}
-
-zoo-input {
-	display: grid;
-}
-
-::slotted(*[slot="info"]),
-zoo-input-info {
-	grid-row: 3;
-	grid-column: span 2;
-}
-
-::slotted(*[slot="error"]),
-zoo-input-error {
-	display: none;
-	grid-row: 4;
-	grid-column: span 2;
-}
-
-:host([invalid]) ::slotted(*[slot="error"]),
-:host([invalid]) zoo-input-error {
-	display: flex;
 }

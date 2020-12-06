@@ -5,20 +5,16 @@
 	height: max-content;
 }
 
-svg {
+zoo-attention-icon {
 	position: absolute;
 	right: 15px;
 	top: 15px;
-	color: var(--warning-mid);
 	pointer-events: none;
 	opacity: 0;
+	--icon-color: var(--warning-mid);
 }
 
-svg path {
-	fill: var(--warning-mid);
-}
-
-:host([invalid]) svg {
+:host([invalid]) zoo-attention-icon {
 	opacity: 1;
 }
 
@@ -69,7 +65,7 @@ svg path {
 	padding: 12px 14px;
 }
 
-::slotted(label) {
+zoo-label {
 	align-self: self-start;
 	font-size: 14px;
 	line-height: 20px;
@@ -88,25 +84,24 @@ svg path {
 	flex: 1;
 }
 
-::slotted(*[slot="info"]),
-zoo-input-info {
+.info {
 	grid-row: 3;
 	grid-column: span 2;
 }
 
-::slotted(*[slot="error"]),
-zoo-input-error {
+.error {
 	display: none;
 	grid-row: 4;
 	grid-column: span 2;
+	--icon-color: var(--warning-mid);
 }
 
-:host([invalid]) ::slotted(*[slot="error"]),
-:host([invalid]) zoo-input-error {
+:host([invalid]) .error {
 	display: flex;
 }
 
-::slotted(zoo-link) {
+zoo-link {
 	width: max-content;
 	justify-self: end;
+	padding: 0;
 }

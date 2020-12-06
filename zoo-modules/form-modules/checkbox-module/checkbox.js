@@ -1,25 +1,9 @@
-import AbstractControl from '../abstractControl';
-
 /**
  * @injectHTML
  */
-export default class Checkbox extends AbstractControl {
+export default class Checkbox extends HTMLElement {
 	constructor() {
 		super();
-	}
-
-	static get observedAttributes() {
-		return ['labeltext', 'inputerrormsg', 'infotext'];
-	}
-	
-	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
-		if (Checkbox.observedAttributes.includes(attrName)) {
-			const fn = this.handlersMap.get(attrName);
-			if (fn) {
-				fn(newVal);
-			}
-		}
 	}
 
 	// TODO think of a better way to handle disabled attribute change

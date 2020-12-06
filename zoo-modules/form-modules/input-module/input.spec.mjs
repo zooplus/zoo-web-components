@@ -4,9 +4,9 @@ describe('Zoo input', function () {
 			let input = document.createElement('zoo-input');
 			document.body.appendChild(input);
 			return {
-				inputLabelPresent: input.shadowRoot.querySelector('zoo-input-label') !== undefined,
+				inputLabelPresent: input.shadowRoot.querySelector('zoo-label') !== undefined,
 				inputLinkPresent: input.shadowRoot.querySelector('a') !== undefined,
-				inputInfoPresent: input.shadowRoot.querySelector('zoo-input-info') !== undefined
+				inputInfoPresent: input.shadowRoot.querySelector('zoo-info') !== undefined
 			};
 		});
 		expect(inputAttrs.inputLabelPresent).toBeTrue();
@@ -35,9 +35,9 @@ describe('Zoo input', function () {
 				<zoo-input>
 					<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
 					<label for="input-type-number" slot="label">Autocomplete</label>
-					<zoo-input-info slot="info">
+					<zoo-info slot="info">
 						Possible values: Dog, Cat, Small Pet, Bird, Aquatic
-					</zoo-input-info>
+					</zoo-info>
 					<zoo-link slot="link">
 						<a slot="anchor" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
 					</zoo-link>
@@ -62,9 +62,9 @@ describe('Zoo input', function () {
 				<zoo-input>
 					<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
 					<label for="input-type-number" slot="label">Autocomplete</label>
-					<zoo-input-info slot="info">
+					<zoo-info slot="info">
 						Possible values: Dog, Cat, Small Pet, Bird, Aquatic
-					</zoo-input-info>
+					</zoo-info>
 					<zoo-link slot="link">
 						<a slot="anchor" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
 					</zoo-link>

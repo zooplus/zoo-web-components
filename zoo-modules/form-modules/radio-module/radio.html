@@ -1,6 +1,12 @@
-<slot name="label"><zoo-input-label></zoo-input-label></slot>
+<zoo-label>
+    <slot name="label"></slot>
+</zoo-label>
 <div class="radio-group">
     <slot></slot>
 </div>
-<slot name="info"><zoo-input-info></zoo-input-info></slot>
-<slot name="error"><zoo-input-error></zoo-input-error></slot>
+<zoo-info class="info">
+	<slot name="info"></slot>
+</zoo-info>
+<zoo-info class="error">
+	<slot name="error"></slot>
+</zoo-info>

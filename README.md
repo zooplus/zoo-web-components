@@ -31,6 +31,9 @@ import Button, Input from '@zooplus/zoo-web-components';
 Landing page is available here: https://zooplus.github.io/zoo-web-components/      
 Documentation page is here: https://zooplus.github.io/zoo-web-components-docs/index.html
 
+## Note
+
+This library relies on attributes or slots. Usage of properties is not supported for simplicity.
 
 # Dev area
 

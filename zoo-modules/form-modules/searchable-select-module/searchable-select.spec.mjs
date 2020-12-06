@@ -16,7 +16,7 @@ describe('Zoo searchable select', function () {
 
 			const nestedInput = select.shadowRoot.querySelector('zoo-input');
 
-			const label = nestedInput.shadowRoot.querySelector('slot[name="inputlabel"]').assignedNodes()[0].assignedNodes()[0];
+			const label = nestedInput.shadowRoot.querySelector('slot[name="label"]').assignedNodes()[0].assignedNodes()[0];
 			return label.innerHTML;
 		});
 

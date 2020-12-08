@@ -124,7 +124,7 @@ zoo-label {
 	grid-gap: 0 3px;
 }
 
-:host([labelposition="left"]) slot[name="label"] {
+:host([labelposition="left"]) zoo-label {
 	grid-row: 2;
 	grid-column: 1;
 	height: 100%;

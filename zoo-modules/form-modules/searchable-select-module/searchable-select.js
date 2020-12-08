@@ -10,7 +10,7 @@ export default class SearchableSelect extends HTMLElement {
 	}
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
-		if (input) input.placeholder = newVal;
+		if (input && newVal) input.placeholder = newVal;
 	}
 
 	handleLoading() {
@@ -96,7 +96,7 @@ export default class SearchableSelect extends HTMLElement {
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		const showTooltip = inputValString && inputValString.length > 0;
 		if (this.input) {
-			this.input.placeholder = showTooltip ? inputValString : this.placeholder;
+			this.input.placeholder = showTooltip ? inputValString : this.getAttribute('placeholder');
 		}
 		if (showTooltip) {
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');

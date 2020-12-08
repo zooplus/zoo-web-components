@@ -102,6 +102,7 @@ svg path {
 	display: none;
 	grid-row: 4;
 	grid-column: span 2;
+
 	--icon-color: var(--warning-mid);
 }
 

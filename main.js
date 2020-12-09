@@ -147,7 +147,7 @@ let data = [
 	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'}
 ];
 
-const getRow = (d, i, template) => {
+const getRow = (d, i, template, idx) => {
 	const clone = template.cloneNode(true);
 	const row = clone.children[0];
 	// valid
@@ -156,8 +156,9 @@ const getRow = (d, i, template) => {
 	if (d.status !== 'DELIVERED') {
 		input.setAttribute('disabled', true);
 	}
-	input.setAttribute('id', `${i}-checkbox`);
-	chkbx.querySelector('label').setAttribute('for', `${i}-checkbox`);
+	const num = i + idx;
+	input.setAttribute('id', `${num}-checkbox`);
+	chkbx.querySelector('label').setAttribute('for', `${num}-checkbox`);
 	row.appendChild(chkbx);
 
 	// created date
@@ -197,13 +198,13 @@ const getRow = (d, i, template) => {
 };
 
 const grids = document.querySelectorAll('zoo-grid.generate');
-data.forEach((d, i) => {
-	const simpleRow = document.querySelector('#simple-row').content;
-	let idx = 0;
-	for (const grid of grids) {
-		const clone = getRow(d, i, simpleRow);
+let idx = 0;
+for (const grid of grids) {
+	data.forEach((d, i) => {
+		const simpleRow = document.querySelector('#simple-row').content;
+		const clone = getRow(d, i, simpleRow, idx * data.length);
 		grid.appendChild(clone);
-		if (idx == 0) grid.setAttribute('resizable', true);
-		idx++;
-	}
-});
+	});
+	if (idx == 0) grid.setAttribute('resizable', true);
+	idx+=1;
+}

@@ -140,3 +140,33 @@ zoo-grid {
 zoo-select[column="3"] {
 	padding-right: 10px;
 }
+
+zoo-select zoo-input input {
+	border-radius: 0 5px 5px 0;
+}
+
+zoo-select zoo-input {
+	display: flex;
+	margin-left: -5px;
+	flex: 1;
+}
+
+zoo-input zoo-button button {
+	border-radius: 0 5px 5px 0;
+}
+
+#input-composition {
+	border-radius: 5px 0 0 5px;
+}
+
+.input-composition::part(error-icon) {
+	right: 20%;
+}
+
+#select-composition {
+	width: 50%;
+}
+
+.select-composition::part(icon-arrows) {
+	right: 55%;
+}

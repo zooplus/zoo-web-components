@@ -2,7 +2,7 @@ import http from 'http';
 import url from'url';
 import fs from 'fs';
 import path from 'path';
-const port = 9000;
+const port = 5000;
 let directory = process.argv[2];
 
 http.createServer(function (req, res) {

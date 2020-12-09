@@ -1,0 +1,12 @@
+:host {
+	display: flex;
+	padding: 2px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #555;
+	align-items: center;
+}
+
+:host([hidden]) {
+	display: none;
+}

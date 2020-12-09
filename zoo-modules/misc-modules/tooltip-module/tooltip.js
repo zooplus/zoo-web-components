@@ -7,20 +7,7 @@ export default class Tooltip extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['text', 'position'];
-	}
-	get position() {
-		return this.getAttribute('position');
-	}
-	set position(position) {
-		this.setAttribute('position', position);
-	}
-	get text() {
-		return this.getAttribute('text');
-	}
-	set text(text) {
-		this.setAttribute('text', text);
-		this.handleText(this.text, text);
+		return ['text'];
 	}
 	handleText(newVal) {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;

@@ -1,63 +1,13 @@
 /**
  * @injectHTML
  */
-export default class Grid extends HTMLElement {
+export default class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
 	}
 
 	static get observedAttributes() {
 		return ['currentpage', 'maxpages', 'loading', 'resizable', 'reorderable'];
-	}
-	get resizable() {
-		return this.getAttribute('resizable');
-	}
-	set resizable(resizable) {
-		if (resizable) {
-			this.setAttribute('resizable', '');
-		} else {
-			this.removeAttribute('resizable');
-		}
-	}
-	get reorderable() {
-		return this.getAttribute('reorderable');
-	}
-	set reorderable(reorderable) {
-		if (reorderable) {
-			this.setAttribute('reorderable', '');
-		} else {
-			this.removeAttribute('reorderable');
-		}
-	}
-	get maxpages() {
-		return this.getAttribute('maxpages');
-	}
-	set maxpages(maxpages) {
-		if (maxpages) {
-			this.setAttribute('maxpages', maxpages);
-		} else {
-			this.removeAttribute('maxpages');
-		}
-	}
-	get currentpage() {
-		return this.getAttribute('currentpage');
-	}
-	set currentpage(currentpage) {
-		if (currentpage) {
-			this.setAttribute('currentpage', currentpage);
-		} else {
-			this.removeAttribute('currentpage');
-		}
-	}
-	get loading() {
-		return this.hasAttribute('loading');
-	}
-	set loading(loading) {
-		if (loading) {
-			this.setAttribute('loading', '');
-		} else {
-			this.removeAttribute('loading');
-		}
 	}
 
 	connectedCallback() {
@@ -75,7 +25,7 @@ export default class Grid extends HTMLElement {
 			this.assignColumnNumberToRows();
 		}));
 		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
-		const paginator = root.querySelector('zoo-grid-paginator');
+		const paginator = root.querySelector('zoo-paginator');
 		if (paginator) {
 			paginator.addEventListener('pageChange', e => this.dispatchPageEvent(e));
 		}
@@ -112,15 +62,15 @@ export default class Grid extends HTMLElement {
 			this.handleDraggableHeaders();
 		}
 		if (attrName == 'maxpages') {
-			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
+			const paginator = this.shadowRoot.querySelector('zoo-paginator');
 			if (paginator) {
-				paginator.maxpages = newVal;
+				paginator.setAttribute('maxpages', newVal);
 			}
 		}
 		if (attrName == 'currentpage') {
-			const paginator = this.shadowRoot.querySelector('zoo-grid-paginator');
+			const paginator = this.shadowRoot.querySelector('zoo-paginator');
 			if (paginator) {
-				paginator.currentpage = newVal;
+				paginator.setAttribute('currentpage', newVal);
 			}
 		}
 	}
@@ -257,4 +207,4 @@ export default class Grid extends HTMLElement {
 	}
 }
 
-window.customElements.define('zoo-grid', Grid);
+window.customElements.define('zoo-grid', ZooGrid);

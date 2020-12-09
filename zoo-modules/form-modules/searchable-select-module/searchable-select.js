@@ -1,75 +1,22 @@
-import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-export default class SearchableSelect extends AbstractControl {
+export default class SearchableSelect extends HTMLElement {
 	constructor() {
 		super();
-		this.target = 'zoo-input';
 	}
 	static get observedAttributes() {
-		return ['labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid', 'loading', 'placeholder'];
+		return ['invalid', 'loading', 'placeholder'];
 	}
-	set labeltext(text) {
-		this.setAttribute('labeltext', text);
-		this.handleLabel(text);
-	}
-	set linktext(text) {
-		this.setAttribute('linktext', text);
-		this.handleLinkText(text, this.target);
-	}
-	set linkhref(text) {
-		this.setAttribute('linkhref', text);
-		this.handleLinkHref(text, this.target);
-	}
-	set linktarget(text) {
-		this.setAttribute('linktarget', text);
-		this.handleLinkTarget(text, this.target);
-	}
-	set inputerrormsg(text) {
-		this.setAttribute('inputerrormsg', text);
-		this.handleErrorMsg(text, this.target);
-	}
-	set infotext(text) {
-		this.setAttribute('infotext', text);
-		this.handleInfo(text, this.target);
-	}
-	set invalid(invalid) {
-		if (invalid) {
-			this.setAttribute('invalid', '');
-		} else {
-			this.removeAttribute('invalid');
-		}
-		this.handleInvalid(invalid, this.target);
-	}
-	get placeholder() {
-		return this.getAttribute('placeholder');
-	}
-	set placeholder(placeholder) {
-		this.setAttribute('placeholder', placeholder);
-		this.handlePlaceholder(placeholder);
-	}
-
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
-		if (input) input.placeholder = newVal;
+		if (input && newVal) input.placeholder = newVal;
 	}
 
-	get loading() {
-		return this.getAttribute('loading');
-	}
-	set loading(loading) {
-		if (loading) {
-			this.setAttribute('loading', loading);
-		} else {
-			this.removeAttribute('loading');
-		}
-		this.handleLoading();
-	}
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
-			this.loader.slot = 'inputelement';
+			this.loader.slot = 'input';
 			const input = this.shadowRoot.querySelector('zoo-input');
 			if (input){
 				input.appendChild(this.loader);
@@ -92,21 +39,12 @@ export default class SearchableSelect extends AbstractControl {
 
 	connectedCallback() {
 		this.input = this.shadowRoot.querySelector('input');
-		const box = this.shadowRoot.querySelector('.box');
-		box.classList.add('hidden');
-		this.input.addEventListener('focus', () => box.classList.remove('hidden'));
-		this.input.addEventListener('blur', event => {
-			if (event.relatedTarget !== this.select) {
-				this.hideSelectOptions();
-			}
-		});
 		this.input.addEventListener('input', () => this.handleSearchChange());
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
-		const selectSlot = this.shadowRoot.querySelector('slot[name="selectelement"]');
+		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedNodes()[0];
-			this.select.addEventListener('blur', () => this.hideSelectOptions());
 			this.select.addEventListener('change', () => this.handleOptionChange());
 			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', '') : this.removeAttribute('valueSelected'));
 			this.select.addEventListener('keydown', e => {
@@ -123,14 +61,17 @@ export default class SearchableSelect extends AbstractControl {
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
-		if (attrName == 'loading') {
-			this.handleLoading();
-		} else if (attrName == 'placeholder') {
-			this.handlePlaceholder(newVal);
-		} else if (SearchableSelect.observedAttributes.includes(attrName)) {
-			const fn = this.handlersMap.get(attrName);
-			if (fn) {
-				fn(newVal, this.target);
+		if (SearchableSelect.observedAttributes.includes(attrName)) {
+			if (attrName == 'loading') {
+				this.handleLoading();
+			} else if (attrName == 'placeholder') {
+				this.handlePlaceholder(newVal);
+			} else if (attrName === 'invalid') {
+				if (this.hasAttribute('invalid')) {
+					this.shadowRoot.querySelector('zoo-input').setAttribute('invalid', '');
+				} else {
+					this.shadowRoot.querySelector('zoo-input').removeAttribute('invalid');
+				}
 			}
 		}
 	}
@@ -155,28 +96,16 @@ export default class SearchableSelect extends AbstractControl {
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		const showTooltip = inputValString && inputValString.length > 0;
 		if (this.input) {
-			this.input.placeholder = showTooltip ? inputValString : this.placeholder;
+			this.input.placeholder = showTooltip ? inputValString : this.getAttribute('placeholder');
 		}
 		if (showTooltip) {
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
-			this.tooltip.slot = 'inputelement';
-			this.tooltip.position = 'right';
-			this.tooltip.text = inputValString;
+			this.tooltip.slot = 'input';
+			this.tooltip.setAttribute('position', 'right');
+			this.tooltip.setAttribute('text', inputValString);
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);
 		} else if (this.tooltip) {
 			this.tooltip.remove();
-		}
-		if (!this.select.multiple) this.hideSelectOptions();
-	}
-
-	hideSelectOptions() {
-		this.shadowRoot.querySelector('.box').classList.add('hidden');
-		if (this.input) {
-			this.input.value = null;
-		}
-		const options = this.select.querySelectorAll('option');
-		for (const option of options) {
-			option.style.display = 'block';
 		}
 	}
 

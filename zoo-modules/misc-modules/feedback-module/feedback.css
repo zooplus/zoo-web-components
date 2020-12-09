@@ -8,31 +8,31 @@
 	width: 100%;
 	height: 100%;
 	padding: 5px 0;
-	background: var(--info-ultralight, #ECF5FA);
-	border-color: var(--info-mid, #459FD0);
+	background: var(--info-ultralight);
+	border-color: var(--info-mid);
 
-	--svg-fill: var(--info-mid, #459FD0);
+	--svg-fill: var(--info-mid);
 }
 
 :host([type="error"]) {
-	background: var(--warning-ultralight, #FDE8E9);
-	border-color: var(--warning-mid, #ED1C24);
+	background: var(--warning-ultralight);
+	border-color: var(--warning-mid);
 
-	--svg-fill: var(--warning-mid, #ED1C24);
+	--svg-fill: var(--warning-mid);
 }
 
 :host([type="success"]) {
-	background: var(--primary-ultralight, #EBF4E5);
-	border-color: var(--primary-mid, #3C9700);
+	background: var(--primary-ultralight);
+	border-color: var(--primary-mid);
 
-	--svg-fill: var(--primary-mid, #3C9700);
+	--svg-fill: var(--primary-mid);
 }
 
 svg {
 	min-width: 30px;
 	min-height: 30px;
 	padding: 0 10px 0 15px;
-	fill: var(---svg-fill);
+	fill: var(--svg-fill);
 }
 
 ::slotted(*) {

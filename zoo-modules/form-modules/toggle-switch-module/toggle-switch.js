@@ -1,8 +1,7 @@
-import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-export default class ToggleSwitch extends AbstractControl {
+export default class ToggleSwitch extends HTMLElement {
 	constructor() {
 		super();
 	}
@@ -21,20 +20,6 @@ export default class ToggleSwitch extends AbstractControl {
 				inputSlot.assignedNodes()[0].click();
 			}
 		});
-	}
-
-	static get observedAttributes() {
-		return ['labeltext', 'infotext'];
-	}
-
-	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
-		if (ToggleSwitch.observedAttributes.includes(attrName)) {
-			const fn = this.handlersMap.get(attrName);
-			if (fn) {
-				fn(newVal);
-			}
-		}
 	}
 }
 

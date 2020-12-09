@@ -15,6 +15,12 @@
 	--color-active: var(--primary-dark);
 }
 
+:host([type="negative"]) {
+	--color-normal: white;
+	--color-visited: white;
+	--color-active: var(--primary-dark);
+}
+
 :host([type="grey"]) {
 	--color-normal: #767676;
 	--color-visited: #767676;
@@ -37,6 +43,7 @@
 	text-decoration: none;
 	padding: 0 2px;
 	color: var(--color-normal);
+	width: 100%;
 }
 
 ::slotted(a:hover),

@@ -1,54 +1,36 @@
-describe('Zoo modal', function() {
-	describe('Modal', () => {
-		it('should create opened modal', async() => {
-			const modalAttrs = await page.evaluate(() => {
-				let modal = document.createElement('zoo-modal');
-				modal.headertext = 'header-text';
-				modal.style.display = 'block';
-				document.body.appendChild(modal);
-				const modalBox = modal.shadowRoot.querySelector('.box');
+describe('Zoo modal', function () {
+	it('should create opened modal', async () => {
+		const modalHeadingText = await page.evaluate(() => {
+			document.body.innerHTML = `
+				<zoo-modal id="modal" closelabel="close modal">
+					<span slot="header">header-text</span>
+					<div>content</div>
+				</zoo-modal>
+				`;
+			let modal = document.querySelector('zoo-modal');
+			modal.style.display = 'block';
 
-				return {
-					modalHeadingText: modalBox.querySelector('span').innerHTML
-				};
-			});
-			expect(modalAttrs.modalHeadingText).toEqual('header-text');
+			return modal.shadowRoot.querySelector('slot[name="header"]').assignedNodes()[0].innerHTML;
 		});
+		expect(modalHeadingText).toEqual('header-text');
+	});
 
-		it('should create opened modal and close it', async () => {
-			const modalDisplay = await page.evaluate(async () => {
-				let modal = document.createElement('zoo-modal');
-				modal.headertext = 'header-text';
-				modal.style.display = 'block';
-				document.body.appendChild(modal);
+	it('should create opened modal and close it', async () => {
+		const modalDisplay = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-modal id="modal" closelabel="close modal">
+					<span slot="header">header-text</span>
+					<div>content</div>
+				</zoo-modal>
+				`;
+			let modal = document.querySelector('zoo-modal');
+			modal.style.display = 'block';
 
-				const closeButton = modal.shadowRoot.querySelector('.close');
-				closeButton.click();
-				await new Promise(r => setTimeout(r, 400)); // waiting for animation to finish
-				return modal.shadowRoot.host.style.display;
-			});
-			expect(modalDisplay).toEqual('none');
+			const closeButton = modal.shadowRoot.querySelector('.close');
+			closeButton.click();
+			await new Promise(r => setTimeout(r, 400)); // waiting for animation to finish
+			return modal.shadowRoot.host.style.display;
 		});
-
-		it('should accept 1 slot', async() => {
-			const ret = await page.evaluate(() => {
-				let modal = document.createElement('zoo-modal');
-				let element = document.createElement('span');
-				element.innerHTML = 'some test text';
-				modal.appendChild(element);
-				document.body.appendChild(modal);
-
-				const slottedContent = modal.shadowRoot.querySelector('slot').assignedNodes()[0];
-
-				for (const element of document.getElementsByTagName('zoo-modal')) {
-					element.remove();
-				}
-
-				return {
-					slottedText: slottedContent.innerHTML
-				};
-			});
-			expect(ret.slottedText).toEqual('some test text');
-		});
+		expect(modalDisplay).toEqual('none');
 	});
 });

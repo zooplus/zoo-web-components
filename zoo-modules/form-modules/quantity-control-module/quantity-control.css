@@ -15,7 +15,7 @@ div {
 button {
 	border-width: 0;
 	min-width: 30px;
-	background: var(--primary-mid, #3C9700);
+	background: var(--primary-mid);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -55,16 +55,19 @@ button:disabled svg line {
 	text-align: center;
 }
 
-zoo-input-info {
-	display: block;
-	margin-top: 2px;
+.info {
+	grid-row: 3;
+	grid-column: span 2;
 }
 
-::slotted(label) {
-	align-self: self-start;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 800;
-	color: #555;
-	text-align: left;
+.error {
+	display: none;
+	grid-row: 4;
+	grid-column: span 2;
+
+	--icon-color: var(--warning-mid);
+}
+
+:host([invalid]) .error {
+	display: flex;
 }

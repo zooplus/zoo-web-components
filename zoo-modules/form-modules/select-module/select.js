@@ -1,32 +1,15 @@
-import AbstractControl from '../abstractControl';
 /**
  * @injectHTML
  */
-export default class Select extends AbstractControl {
+export default class Select extends HTMLElement {
 	constructor() {
 		super();
 	}
+
 	static get observedAttributes() {
-		return ['labelposition', 'labeltext', 'linktext', 'linkhref', 'linktarget', 'inputerrormsg', 'infotext', 'invalid', 'loading'];
-	}
-	get labelposition() {
-		return this.getAttribute('labelposition');
-	}
-	set labelposition(position) {
-		this.setAttribute('labelposition', position);
+		return ['loading'];
 	}
 
-	get loading() {
-		return this.getAttribute('loading');
-	}
-	set loading(loading) {
-		if (loading) {
-			this.setAttribute('loading', loading);
-		} else {
-			this.removeAttribute('loading');
-		}
-		this.handleLoading();
-	}
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
@@ -36,30 +19,11 @@ export default class Select extends AbstractControl {
 		}
 	}
 
-	handleInvalid(newVal, target) {
-		target = target || 'zoo-input-info';
-		const el = this.shadowRoot.querySelector(target);
-		if (this.hasAttribute('invalid')) {
-			el.setAttribute('invalid', '');
-			if (this.input) this.input.setAttribute('invalid', '');
-		} else {
-			el.removeAttribute('invalid');
-			if (this.input) this.input.removeAttribute('invalid');
-		}
-	}
-	
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (Select.observedAttributes.includes(attrName)) {
 			if (attrName == 'loading') {
 				this.handleLoading();
-			} else if (attrName == 'invalid') {
-				this.handleInvalid(newVal);
-			} else {
-				const fn = this.handlersMap.get(attrName);
-				if (fn) {
-					fn(newVal);
-				}
 			}
 		}
 	}
@@ -67,18 +31,11 @@ export default class Select extends AbstractControl {
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
-				if (mutation.attributeName == 'disabled') {
-					if (mutation.target.disabled) {
-						this.shadowRoot.host.setAttribute('disabled', '');
+				if (mutation.attributeName == 'disabled' || mutation.attributeName == 'multiple') {
+					if (mutation.target[mutation.attributeName]) {
+						this.shadowRoot.host.setAttribute(mutation.attributeName, '');
 					} else {
-						this.shadowRoot.host.removeAttribute('disabled');
-					}
-				}
-				if (mutation.attributeName == 'multiple') {
-					if (mutation.target.multiple) {
-						this.shadowRoot.host.setAttribute('multiple', '');
-					} else {
-						this.shadowRoot.host.removeAttribute('multiple');
+						this.shadowRoot.host.removeAttribute(mutation.attributeName);
 					}
 				}
 			}
@@ -87,7 +44,7 @@ export default class Select extends AbstractControl {
 
 	connectedCallback() {
 		const config = { attributes: true, childList: false, subtree: false };
-		const selectSlot = this.shadowRoot.querySelector('slot[name="selectelement"]');
+		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		let select;
 		selectSlot.addEventListener('slotchange', () => {
 			this.observer = new MutationObserver(this.mutationCallback.bind(this));
@@ -108,10 +65,6 @@ export default class Select extends AbstractControl {
 				select.value = null;
 				select.dispatchEvent(new Event('change'));
 			});
-		});
-		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
-		inputSlot.addEventListener('slotchange', () => {
-			this.input = inputSlot.assignedNodes()[0];
 		});
 	}
 

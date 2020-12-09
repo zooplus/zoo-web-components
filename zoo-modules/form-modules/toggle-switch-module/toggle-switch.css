@@ -15,7 +15,7 @@ div {
 	cursor: pointer;
 }
 
-::slotted(input[type="checkbox"]) {
+::slotted(input) {
 	transition: transform 0.2s;
 	transform: translateX(-30%);
 	width: 60%;
@@ -31,32 +31,34 @@ div {
 	cursor: pointer;
 }
 
-::slotted(input[type="checkbox"]:checked) {
+::slotted(input:checked) {
 	transform: translateX(80%);
-	background: var(--primary-mid, #3C9700);
+	background: var(--primary-mid);
 }
 
-::slotted(input[type="checkbox"]:focus) {
+::slotted(input:focus) {
 	border-width: 2px;
 	border: 1px solid #767676;
 }
 
-::slotted(input[type="checkbox"]:disabled) {
+::slotted(input:disabled) {
 	background: #F2F3F4;
 	cursor: not-allowed;
 }
 
-::slotted(label) {
-	display: flex;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 800;
-	color: #555;
-	text-align: left;
-	margin-bottom: 10px;
+.info {
+	grid-row: 3;
+	grid-column: span 2;
 }
 
-zoo-input-info {
+.error {
+	display: none;
+	grid-row: 4;
+	grid-column: span 2;
+
+	--icon-color: var(--warning-mid);
+}
+
+:host([invalid]) .error {
 	display: flex;
-	margin-top: 8px;
 }

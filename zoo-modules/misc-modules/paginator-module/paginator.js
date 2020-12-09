@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class GridHeader extends HTMLElement {
+export default class Paginator extends HTMLElement {
 	constructor() {
 		super();
 		this.prev = this.shadowRoot.querySelector('.btn.prev');
@@ -9,12 +9,8 @@ export default class GridHeader extends HTMLElement {
 	}
 
 	connectedCallback() {
-		const root = this.shadowRoot;
-		const arrowTemplateContent = root.querySelector('#arrow').content;
-		this.prev.appendChild(arrowTemplateContent.cloneNode(true));
-		this.next.appendChild(arrowTemplateContent.cloneNode(true));
-		this.prev.addEventListener('click', () => this.goToPage(+this.currentpage-1));
-		this.next.addEventListener('click', () => this.goToPage(+this.currentpage+1));
+		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
+		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
 		this.shadowRoot.querySelector('.paging').addEventListener('click', e => {
 			const target = e.target.getAttribute('page');
 			if (target) {
@@ -23,7 +19,7 @@ export default class GridHeader extends HTMLElement {
 		});
 	}
 	goToPage(pageNumber) {
-		this.currentpage = pageNumber;
+		this.setAttribute('currentpage', pageNumber);
 		this.shadowRoot.host.dispatchEvent(new CustomEvent('pageChange', {
 			detail: {pageNumber: pageNumber}, bubbles: true, compose: true
 		}));
@@ -32,33 +28,13 @@ export default class GridHeader extends HTMLElement {
 	static get observedAttributes() {
 		return ['maxpages', 'currentpage'];
 	}
-	get maxpages() {
-		return this.getAttribute('maxpages');
-	}
-	set maxpages(maxpages) {
-		if (maxpages) {
-			this.setAttribute('maxpages', maxpages);
-		} else {
-			this.removeAttribute('maxpages');
-		}
-	}
-	get currentpage() {
-		return this.getAttribute('currentpage');
-	}
-	set currentpage(currentpage) {
-		if (currentpage) {
-			this.setAttribute('currentpage', currentpage);
-		} else {
-			this.removeAttribute('currentpage');
-		}
-	}
 	handleHideShowArrows() {
-		if (this.currentpage == 1) {
+		if (this.getAttribute('currentpage') == 1) {
 			this.prev.classList.add('hidden');
 		} else {
 			this.prev.classList.remove('hidden');
 		}
-		if (+this.currentpage >= +this.maxpages) {
+		if (+this.getAttribute('currentpage') >= +this.getAttribute('maxpages')) {
 			this.next.classList.add('hidden');
 		} else {
 			this.next.classList.remove('hidden');
@@ -70,12 +46,13 @@ export default class GridHeader extends HTMLElement {
 		for (const node of oldNodes) {
 			node.remove();
 		}
-		const pageNum = +this.currentpage;
+		const pageNum = +this.getAttribute('currentpage');
 		const dots = root.querySelector('#dots').content;
 		const pages = root.querySelector('#pages').content;
-		for (let page=this.maxpages;page>0;page--) {
+		const maxPages = this.getAttribute('maxpages');
+		for (let page=maxPages;page>0;page--) {
 			//first, previous, current, next or last page
-			if (page == 1 || page == pageNum - 1 || page == pageNum || page == pageNum + 1 || page == this.maxpages) {
+			if (page == 1 || page == pageNum - 1 || page == pageNum || page == pageNum + 1 || page == maxPages) {
 				const pageNode = pages.cloneNode(true).firstElementChild;
 				pageNode.setAttribute('page', page);
 				if (pageNum == page) {
@@ -98,4 +75,4 @@ export default class GridHeader extends HTMLElement {
 		}
 	}
 }
-window.customElements.define('zoo-grid-paginator', GridHeader);
+window.customElements.define('zoo-paginator', Paginator);

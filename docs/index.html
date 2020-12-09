@@ -4,14 +4,16 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name='viewport' content='width=device-width'>
 	<meta name="Description" content="Web components design system.">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Zooplus components</title>
 	<script src='components.js'></script>
 	<link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-	<zoo-header headertext="Zooplus web components">
+	<zoo-header>
 		<img slot="img" alt="Zooplus logo" src="logo.png"/>
+		<h2 slot="headertext">Zooplus web components</h2>
 		<div class="buttons-holder">
 			<zoo-button id="zoo-theme" type="secondary">
 				<button type="button">Zoo+ theme</button>
@@ -34,228 +36,243 @@
 		<h3>The web-component set implements Z+ shop style guide.</h3>
 	</span>
 	<main>
-	<h2>Form elements</h2>
-	<form>
-		<zoo-input linktext="Forgotten your password?" linkhref="https://google.com" linktarget="about:blank"
-				   infotext="Additional helpful information for our users">
-			<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
-			<label for="input-type-text" slot="inputlabel">Input type text</label>
-		</zoo-input>
-		<zoo-input linktext="Learn your HTML and don't overcomplicate" linktarget="about:blank"
-				   linkhref="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
-				   infotext="Possible values: Dog, Cat, Small Pet, Bird, Aquatic">
-			<input id="input-type-number" slot="inputelement" placeholder="input" list="animals"/>
-			<label for="input-type-number" slot="inputlabel">Autocomplete</label>
-		</zoo-input>
-		<datalist id="animals">
-			<option value="Dog">
-			<option value="Cat">
-			<option value="Small Pet">
-			<option value="Bird">
-			<option value="Aquatic">
-		</datalist>
-		<zoo-input linktext="Native date picker polyfill on Github" linkhref="https://github.com/jcgertig/date-input-polyfill"
-				   linktarget="about:blank" infotext="Click on input to show context menu with date selection">
-			<input id="input-type-date" slot="inputelement" type="date" placeholder="Enter date" />
-			<label for="input-type-date" slot="inputlabel">Input type date</label>
-		</zoo-input>
-		<zoo-input infotext="Additional helpful information for our users">
-			<input id="input-type-text" slot="inputelement" type="text" placeholder="input"/>
-			<label for="input-type-text" slot="inputlabel">Composition of an input with a button</label>
-			<zoo-button slot="button">
-				<button type="button">Lorem ipsum</button>
-			</zoo-button>
-		</zoo-input>
-		<zoo-input>
-			<textarea id="textarea" slot="inputelement" placeholder="Textarea"></textarea>
-			<label for="textarea" slot="inputlabel">Textarea</label>
-		</zoo-input>
-		<zoo-select linktext="Documentation link" linkhref="https://google.com" linktarget="about:blank" infotext="Additional helpful information for our users">
-			<select id="multiselect" slot="selectelement" multiple>
-				<option class="placeholder" value="" disabled selected>Placeholder</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-			</select>
-			<label for="multiselect" slot="selectlabel">Multiselect</label>
-		</zoo-select>
-		<zoo-select infotext="Additional helpful information for our users">
-			<select id="standard-select" slot="selectelement">
-				<option value="" disabled>Placeholder</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-			</select>
-			<label for="standard-select" slot="selectlabel">Composition of standard select with an input</label>
-			<zoo-input slot="input">
-				<input type="text" placeholder="Lorem ipsum" slot="inputelement"/>
+		<h2>Form elements</h2>
+		<form>
+			<zoo-input>
+				<input id="input-type-text" slot="input" type="text" placeholder="input"/>
+				<label for="input-type-text" slot="label">Input type text</label>
+				<span slot="info">Additional helpful information for our users</span>
+				<a slot="link" href="https://google.com" target="about:blank">Forgotten your password?</a>
 			</zoo-input>
-		</zoo-select>
-		<zoo-searchable-select placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
-			<select id="searchable-select" multiple slot="selectelement">
-				<option value="text">text</option>
-				<option value="raNdOm">raNdOm</option>
-				<option value="random1">random1</option>
-				<option value="random2">random2</option>
-			</select>
-			<label for="standard-select" slot="selectlabel">Searchable multiple select</label>
-		</zoo-searchable-select>
-		<zoo-searchable-select placeholder="Placeholder" infotext="Additional helpful information for our users.">
-			<select id="searchable-select2" slot="selectelement">
-				<option value="text">text</option>
-				<option value="raNdOm">raNdOm</option>
-				<option value="random1">random1</option>
-				<option value="random2">random2</option>
-			</select>
-			<label for="standard-select2" slot="selectlabel">Searchable select</label>
-		</zoo-searchable-select>
-		<zoo-checkbox highlighted infotext="Additional information">
-			<input id="checkbox" slot="checkboxelement" type="checkbox"/>
-			<label for="checkbox" slot="checkboxlabel">An example checkboxAn example checkboxAn example checkboxAn example checkboxAn example checkbox</label>
-		</zoo-checkbox>
-		<zoo-checkbox highlighted>
-			<input id="disabled-checkbox" disabled slot="checkboxelement" type="checkbox"/>
-			<label for="disabled-checkbox" slot="checkboxlabel">Disabled checkbox</label>
-		</zoo-checkbox>
-		<zoo-radio infotext="infotext" labeltext="Label text">
-			<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
-			<label for="contactChoice1">Email</label>
-			<input type="radio" id="contactChoice2" name="contact" value="phone">
-			<label for="contactChoice2">Phone</label>
-			<input type="radio" id="contactChoice3" name="contact" value="mail">
-			<label for="contactChoice3">Mail</label>
-		</zoo-radio>
-	</form>
-	<hr>
-	<zoo-toast id="toast" text="Search for more than 8.000 products."></zoo-toast>
-	<zoo-toast id="modalToast" text="Added to cart!"></zoo-toast>
-	<h2>Buttons, modal windows</h2>
-	<div class="buttons">
-		<zoo-button id="toast-summoner">
-			<button type="button">Summon toast!</button>
-		</zoo-button>
-		<zoo-button>
-			<button disabled type="button">Disabled :(</button>
-		</zoo-button>
-		<zoo-button id="modal-summoner" type="secondary">
-			<button type="button">Show modal</button>
-		</zoo-button>
-		<zoo-button type="hollow">
-			<button type="button">Dummy button that does nothing</button>
-		</zoo-button>
-		<zoo-button class="icon-btn">
-			<button type="button">
-			<svg title="Example title" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g fill="#555" fill-rule="evenodd"><path d="M9 14.998a3 3 0 010 6v2.252a.75.75 0 11-1.5 0v-7.434a.75.75 0 01.747-.818h.753zm3.875-15c.597 0 1.17.238 1.591.66l5.871 5.87c.422.423.66.995.659 1.592v4.628a.75.75 0 11-1.5 0V8.12a.75.75 0 00-.22-.53l-5.87-5.872a.75.75 0 00-.531-.22H2.246a.75.75 0 00-.75.75v19.5c0 .414.336.75.75.75h3a.75.75 0 110 1.5h-3a2.25 2.25 0 01-2.25-2.25v-19.5a2.25 2.25 0 012.25-2.25h10.63zm10.371 15a.75.75 0 010 1.5h-1.5a.75.75 0 00-.75.75v2.251l1.504.001a.75.75 0 110 1.5l-1.504-.001v2.249a.75.75 0 11-1.5 0v-6a2.25 2.25 0 012.25-2.25h1.5zm-9 0a3.75 3.75 0 013.75 3.75v1.5a3.75 3.75 0 01-3.75 3.75.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75zm.75 1.628v5.744a2.25 2.25 0 001.5-2.122v-1.5a2.25 2.25 0 00-1.5-2.122zM9 16.498v3a1.5 1.5 0 000-3z"/><path d="M20.246 7.498a.75.75 0 110 1.5h-6a2.25 2.25 0 01-2.25-2.25v-6a.75.75 0 011.5 0v6c0 .414.336.75.75.75h6z"/></g></svg>
-			</button>
-		</zoo-button>
-		<zoo-button type="secondary" class="icon-btn">
-			<button type="button">
-			<svg title="Example title" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.324l1.036-1.035a6.423 6.423 0 019.094 9.071l-9.589 10.003a.75.75 0 01-1.082 0l-9.577-9.988A6.422 6.422 0 015.394 1.49a6.423 6.423 0 015.57 1.798L12 4.324z" fill="#555" fill-rule="evenodd"/></svg>
-			</button>
-		</zoo-button>
-	</div> 
-	<zoo-modal id="modal" headertext="Your basket contains licensed items" closelabel="close modal">
-		<div>
-			<zoo-feedback>
-				This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.
-			</zoo-feedback>
-			<br>
-			<zoo-select labeltext="This product is for">
-				<select slot="selectelement">
-					<option class="placeholder" value="" disabled selected>Doge</option>
-					<option>Doge</option>
-					<option>Catz</option>
-					<option>Snek</option>
+			<zoo-input>
+				<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
+				<label for="input-type-number" slot="label">Autocomplete</label>
+				<span slot="info">Possible values: Dog, Cat, Small Pet, Bird, Aquatic</span>
+				<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
+			</zoo-input>
+			<datalist id="animals">
+				<option value="Dog">
+				<option value="Cat">
+				<option value="Small Pet">
+				<option value="Bird">
+				<option value="Aquatic">
+			</datalist>
+			<zoo-input>
+				<input id="input-type-date" slot="input" type="date" placeholder="Enter date" />
+				<label for="input-type-date" slot="label">Input type date</label>
+				<span slot="info">Click on input to show context menu with date selection</span>
+				<a slot="link" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native date picker polyfill on Github</a>
+			</zoo-input>
+			<zoo-input class="input-composition">
+				<input id="input-composition" slot="input" type="text" placeholder="input"/>
+				<label for="input-composition" slot="label">Composition of an input with a button</label>
+				<zoo-button slot="input"><button type="button">Click me!</button></zoo-button>
+				<span slot="info">Additional helpful information for our users</span>
+			</zoo-input>
+			<zoo-input>
+				<textarea id="textarea" slot="input" placeholder="Textarea"></textarea>
+				<label for="textarea" slot="label">Textarea</label>
+			</zoo-input>
+			<zoo-select>
+				<a slot="link" href="https://google.com" target="about:blank">Documentation link</a>
+				<select id="multiselect" slot="select" multiple>
+					<option class="placeholder" value="" disabled selected>Placeholder</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
 				</select>
+				<label for="multiselect" slot="label">Multiselect</label>
+				<span slot="info">Additional information</span>
 			</zoo-select>
-			<br>
-			<zoo-checkbox highlighted labeltext="I understand and confirm that ALL of the above statements are true">
-				<input slot="checkboxelement" type="checkbox"/>
+			<zoo-select class="select-composition">
+				<select id="select-composition" slot="select">
+					<option value="" disabled>Placeholder</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>
+				<label for="select-composition" slot="label">Composition of standard select with an input</label>
+				<zoo-input slot="select">
+					<input type="text" placeholder="Placeholder" slot="input"/>
+				</zoo-input>
+				<span slot="info">Additional information</span>
+			</zoo-select>
+			<zoo-searchable-select placeholder="Placeholder">
+				<select id="searchable-select" multiple="" slot="select">
+					<option value="text">text</option>
+					<option value="raNdOm">raNdOm</option>
+					<option value="random1">random1</option>
+					<option value="random2">random2</option>
+				</select>
+				<label for="searchable-select" slot="label">Searchable multiple select</label>
+			</zoo-searchable-select>
+			<zoo-searchable-select placeholder="Placeholder">
+				<select id="searchable-select2" slot="select">
+					<option value="text">text</option>
+					<option value="raNdOm">raNdOm</option>
+					<option value="random1">random1</option>
+					<option value="random2">random2</option>
+				</select>
+				<label for="standard-select2" slot="label">Searchable select</label>
+				<span slot="info">Additional helpful information for our users.</span>
+			</zoo-searchable-select>
+			<zoo-checkbox highlighted>
+				<input id="checkbox" slot="checkbox" type="checkbox"/>
+				<label for="checkbox" slot="label">An example checkbox with a long label message that wraps to a new line</label>
+				<span slot="info">Additional information</span>
 			</zoo-checkbox>
-			<br>
-			<zoo-button style="margin: 0 auto;" type="hollow" size="medium" id="modal-closer">
-				<button type="button">Add to cart</button>
+			<zoo-checkbox highlighted>
+				<input id="disabled-checkbox" disabled slot="checkbox" type="checkbox"/>
+				<label for="disabled-checkbox" slot="label">Disabled checkbox</label>
+			</zoo-checkbox>
+			<zoo-radio>
+				<legend slot="label">Radio group</legend>
+				<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
+				<label for="contactChoice1">Email</label>
+				<input type="radio" id="contactChoice2" name="contact" value="phone">
+				<label for="contactChoice2">Phone</label>
+				<input type="radio" id="contactChoice3" name="contact" value="mail">
+				<label for="contactChoice3">Mail</label>
+				<span slot="info">Additional information</span>
+			</zoo-radio>
+		</form>
+		<hr>
+		<zoo-toast id="toast">
+			<span slot="content">Search for more than 8.000 products.</span>
+		</zoo-toast>
+		<zoo-toast id="modalToast">
+			<span slot="content">Added to cart!</span>
+		</zoo-toast>
+		<h2>Buttons, modal windows</h2>
+		<div class="buttons">
+			<zoo-button id="toast-summoner">
+				<button type="button">Summon toast!</button>
 			</zoo-button>
+			<zoo-button>
+				<button disabled type="button">Disabled :(</button>
+			</zoo-button>
+			<zoo-button id="modal-summoner" type="secondary">
+				<button type="button">Show modal</button>
+			</zoo-button>
+			<zoo-button type="hollow">
+				<button type="button">Dummy button that does nothing</button>
+			</zoo-button>
+			<zoo-button class="icon-btn">
+				<button type="button">
+				<svg title="Example title" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g fill="#555" fill-rule="evenodd"><path d="M9 14.998a3 3 0 010 6v2.252a.75.75 0 11-1.5 0v-7.434a.75.75 0 01.747-.818h.753zm3.875-15c.597 0 1.17.238 1.591.66l5.871 5.87c.422.423.66.995.659 1.592v4.628a.75.75 0 11-1.5 0V8.12a.75.75 0 00-.22-.53l-5.87-5.872a.75.75 0 00-.531-.22H2.246a.75.75 0 00-.75.75v19.5c0 .414.336.75.75.75h3a.75.75 0 110 1.5h-3a2.25 2.25 0 01-2.25-2.25v-19.5a2.25 2.25 0 012.25-2.25h10.63zm10.371 15a.75.75 0 010 1.5h-1.5a.75.75 0 00-.75.75v2.251l1.504.001a.75.75 0 110 1.5l-1.504-.001v2.249a.75.75 0 11-1.5 0v-6a2.25 2.25 0 012.25-2.25h1.5zm-9 0a3.75 3.75 0 013.75 3.75v1.5a3.75 3.75 0 01-3.75 3.75.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75zm.75 1.628v5.744a2.25 2.25 0 001.5-2.122v-1.5a2.25 2.25 0 00-1.5-2.122zM9 16.498v3a1.5 1.5 0 000-3z"/><path d="M20.246 7.498a.75.75 0 110 1.5h-6a2.25 2.25 0 01-2.25-2.25v-6a.75.75 0 011.5 0v6c0 .414.336.75.75.75h6z"/></g></svg>
+				</button>
+			</zoo-button>
+			<zoo-button type="secondary" class="icon-btn">
+				<button type="button">
+				<svg title="Example title" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.324l1.036-1.035a6.423 6.423 0 019.094 9.071l-9.589 10.003a.75.75 0 01-1.082 0l-9.577-9.988A6.422 6.422 0 015.394 1.49a6.423 6.423 0 015.57 1.798L12 4.324z" fill="#555" fill-rule="evenodd"/></svg>
+				</button>
+			</zoo-button>
+		</div> 
+		<zoo-modal id="modal" closelabel="close modal">
+			<span slot="header">Your basket contains licensed items</span>
+			<div>
+				<zoo-feedback>
+					This is an info message. Only one coupon can be accepted with each order. Please choose one coupon that you just entered.
+				</zoo-feedback>
+				<br>
+				<zoo-select>
+					<select id="product-for" slot="select">
+						<option class="placeholder" value="" disabled selected>Doge</option>
+						<option>Doge</option>
+						<option>Catz</option>
+						<option>Snek</option>
+					</select>
+					<label for="product-for" slot="label">This product is for</label>
+				</zoo-select>
+				<br>
+				<zoo-checkbox highlighted>
+					<input id="modal-checkbox" slot="checkbox" type="checkbox"/>
+					<label for="modal-checkbox" slot="label">I understand and confirm that ALL of the above statements are true</label>
+				</zoo-checkbox>
+				<br>
+				<zoo-button style="margin: 0 auto;" type="hollow" size="medium" id="modal-closer">
+					<button type="button">Add to cart</button>
+				</zoo-button>
+			</div>
+		</zoo-modal>
+		<hr>
+		<h2>Data grids</h2>
+		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
+		<div class="grid-holder">
+			<zoo-grid class="generate" stickyheader currentpage="5" maxpages="20" resizable reorderable>
+				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status'>Status</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate'>Delivery Date</zoo-grid-header>
+				<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
+				
+				<zoo-select labelposition="left" slot="pagesizeselector">
+					<select id="first-grid-page-size" slot="select">
+						<option selected>5</option>
+						<option selected>10</option>
+						<option selected>25</option>
+						<option selected>100</option>
+					</select>
+					<label for="first-grid-page-size" slot="label">Page size</label>
+				</zoo-select>
+			</zoo-grid>
 		</div>
-	</zoo-modal>
-	<hr>
-	<h2>Data grids</h2>
-	<h3>A grid with pagination, resizing, reorder and sorting.</h3>
-	<div class="grid-holder">
-		<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable>
-			<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
-			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date</zoo-grid-header>
-			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status'>Status</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
-			<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate'>Delivery Date</zoo-grid-header>
-			<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Price</zoo-grid-header>
-			
-			<zoo-select labelposition="left" slot="pagesizeselector">
-				<select id="first-grid-page-size" slot="selectelement">
-					<option selected>5</option>
-					<option selected>10</option>
-					<option selected>25</option>
-					<option selected>100</option>
-				</select>
-				<label for="first-grid-page-size" slot="selectlabel">Page size</label>
-			</zoo-select>
-		</zoo-grid>
-	</div>
 
-	<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
+		<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
-	<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-		<zoo-grid stickyheader currentpage="5" maxpages="20">
-			<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Created Date</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Status</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Delivery Date</zoo-grid-header>
-			<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
-			<zoo-grid-header slot="headercell">Price</zoo-grid-header>
-			
-			<zoo-select labelposition="left" slot="pagesizeselector">
-				<select id="second-grid-page-size" slot="selectelement">
-					<option selected>5</option>
-					<option selected>10</option>
-					<option selected>25</option>
-					<option selected>100</option>
+		<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
+			<zoo-grid class="generate" stickyheader currentpage="5" maxpages="20">
+				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Created Date</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Status</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Delivery Date</zoo-grid-header>
+				<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
+				
+				<zoo-select labelposition="left" slot="pagesizeselector">
+					<select id="second-grid-page-size" slot="select">
+						<option selected>5</option>
+						<option selected>10</option>
+						<option selected>25</option>
+						<option selected>100</option>
+					</select>
+					<label for="second-grid-page-size" slot="label">Page size</label>
+				</zoo-select>
+			</zoo-grid>
+		</div>
+
+		<template id="simple-row">
+			<div slot="row"></div>
+		</template>
+
+		<template id="valid-checkbox">
+			<zoo-checkbox>
+				<input checked slot="checkbox" type="checkbox"/>
+				<label slot="label">Valid</label>
+			</zoo-checkbox>
+		</template>
+
+		<template id="status-select">
+			<zoo-select>
+				<select title="Delivery Status" slot="select">
+					<option>DELIVERED</option>
+					<option>READY</option>
+					<option>PACKING</option>
 				</select>
-				<label for="second-grid-page-size" slot="selectlabel">Page size</label>
 			</zoo-select>
-		</zoo-grid>
-	</div>
+		</template>
+		<script src='main.js'></script>
 	</main>
 	<zoo-footer id="how" copyright="zooplus AG">
-		<zoo-link>
+		<zoo-link type="negative">
 			<a slot="anchor" href="https://github.com/zooplus/zoo-web-components" target="about:blank">Github</a>
 		</zoo-link>
-		<zoo-link>
+		<zoo-link type="negative">
 			<a slot="anchor" href="https://www.npmjs.com/package/@zooplus/zoo-web-components">NPM</a>
 		</zoo-link>
 	</zoo-footer> 
-
-	<template id="simple-row">
-		<div slot="row"></div>
-	</template>
-
-	<template id="valid-checkbox">
-		<zoo-checkbox>
-			<input checked slot="checkboxelement" type="checkbox"/>
-			<label slot="checkboxlabel">Valid</label>
-		</zoo-checkbox>
-	</template>
-
-	<template id="status-select">
-		<zoo-select>
-			<select title="Delivery Status" slot="selectelement">
-				<option>DELIVERED</option>
-				<option>READY</option>
-				<option>PACKING</option>
-			</select>
-		</zoo-select>
-	</template>
-	<script src='main.js'></script>
 </body>
 </html>

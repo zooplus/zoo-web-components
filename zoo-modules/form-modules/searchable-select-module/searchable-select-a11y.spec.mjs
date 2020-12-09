@@ -3,7 +3,7 @@ describe('Zoo searchable select', function() {
 		const results = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-searchable-select labeltext="Searchable multiple select" placeholder="Placeholder" infotext="Additional helpful information for our users which is a long text.">
-				<select multiple slot="selectelement">
+				<select multiple slot="select">
 					<option value="text">text</option>
 					<option value="raNdOm">raNdOm</option>
 					<option value="random1">random1</option>

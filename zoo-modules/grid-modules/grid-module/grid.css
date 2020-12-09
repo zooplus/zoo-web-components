@@ -30,7 +30,7 @@
 	font-weight: 600;
 	color: #555;
 	box-sizing: border-box;
-	z-index: 1;
+	z-index: 2;
 }
 
 .header-row,
@@ -96,18 +96,19 @@
 }
 
 ::slotted(*[slot="norecords"]) {
-	color: var(--warning-dark, #BD161C);
+	color: var(--warning-dark);
 	grid-column: span var(--grid-column-num);
 	text-align: center;
 	padding: 10px 0;
 }
 
-zoo-grid-paginator {
+zoo-paginator {
 	display: grid;
 	position: sticky;
 	grid-column: span var(--grid-column-num);
 	bottom: 0;
 	background: #FFF;
+	z-index: 1;
 }
 
 :host([loading]) .loading-shade {

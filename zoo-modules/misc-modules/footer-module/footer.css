@@ -5,7 +5,7 @@
 nav {
 	display: flex;
 	justify-content: center;
-	background: linear-gradient(to right, var(--primary-mid, #3C9700), var(--primary-light, #66B100));
+	background: linear-gradient(to right, var(--primary-mid), var(--primary-light));
 	padding: 10px 30px;
 }
 

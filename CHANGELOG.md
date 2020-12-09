@@ -8,25 +8,25 @@
 
 `zoo-toast` - drop support for properties. Deprecated attribute `text`. Use slots instead.
 
-`zoo-modal` - deprecated attribute `headertext`. Use composition via slots;
-`zoo-header` - deprecated attribute `headertext`. Use composition to add `h2` element via slot.
+`zoo-modal` - deprecated attribute `headertext`. Use composition via slots;      
+`zoo-header` - deprecated attribute `headertext`. Use composition to add `h2` element via slot.      
 
-`zoo-input` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
-`zoo-input` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.
-`zoo-input` - changed slot names to `input` and `label` instead of `inputelement` and `inputlabel`.
-`zoo-searchable-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
-`zoo-searchable-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.
-`zoo-searchable-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.
-`zoo-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
-`zoo-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.
-`zoo-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.
-`zoo-checkbox` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
-`zoo-checkbox` - changed slot names to `checkbox` and `label` instead of `checkboxelement` and `checkboxlabel`.
-`zoo-radio` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.
+`zoo-input` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.      
+`zoo-input` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.       
+`zoo-input` - changed slot names to `input` and `label` instead of `inputelement` and `inputlabel`.       
+`zoo-searchable-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
+`zoo-searchable-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.       
+`zoo-searchable-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.       
+`zoo-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
+`zoo-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.       
+`zoo-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.       
+`zoo-checkbox` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
+`zoo-checkbox` - changed slot names to `checkbox` and `label` instead of `checkboxelement` and `checkboxlabel`.       
+`zoo-radio` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
 
-`zoo-grid-paginator` - renamed to `zoo-paginator`. Update your HTML.
+`zoo-grid-paginator` - renamed to `zoo-paginator`. Update your HTML.       
 
-bundle size is now about 1/3 smaller.
+bundle size is now about 1/3 smaller.       
 
 removed default values for color theme. To have default z+ theme add the following to your main css file:
 ```CSS

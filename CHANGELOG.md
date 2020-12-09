@@ -21,6 +21,23 @@
 
 bundle size is now about 1/3 smaller.
 
+removed default values for color theme. To have default z+ theme add the following to your main css file:
+```CSS
+:root {
+	--primary-mid: #3C9700;
+	--primary-light: #66B100;
+	--primary-dark: #286400;
+	--primary-ultralight: #EBF4E5;
+	--secondary-mid: #FF6200;
+	--secondary-light: #F80;
+	--secondary-dark: #CC4E00;
+	--info-ultralight: #ECF5FA;
+	--info-mid: #459FD0;
+	--warning-ultralight: #FDE8E9;
+	--warning-mid: #ED1C24;
+}
+```
+
 # 7.4.1
 `zoo-toggle-switch` - make it play nice with bootstrap;
 

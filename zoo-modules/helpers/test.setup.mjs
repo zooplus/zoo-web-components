@@ -9,6 +9,19 @@ beforeAll(async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox']
 	});
 	global.page = await global.browser.newPage();
+	global.colors = {
+		primaryMid: '#3C9700',
+		primaryLight: '#66B100',
+		primaryDark: '#286400',
+		primaryUltralight: '#EBF4E5',
+		secondaryMid: '#FF6200',
+		secondaryLight: '#F80',
+		secondaryDark: '#CC4E00',
+		infoUltralight: '#ECF5FA',
+		infoMid: '#459FD0',
+		warningUltralight: '#FDE8E9',
+		warningMid: '#ED1C24'
+	};
 	await global.page.goto('http://localhost:5000');
 });
 

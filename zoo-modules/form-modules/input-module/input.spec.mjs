@@ -38,13 +38,11 @@ describe('Zoo input', function () {
 					<zoo-info slot="info">
 						Possible values: Dog, Cat, Small Pet, Bird, Aquatic
 					</zoo-info>
-					<zoo-link slot="link">
-						<a slot="anchor" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
-					</zoo-link>
+					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
 				</zoo-input>
 				`;
 			let input = document.querySelector('zoo-input');
-			const linkAnchor = input.shadowRoot.querySelector('slot[name="link"]').assignedNodes()[0].querySelector('a');
+			const linkAnchor = input.shadowRoot.querySelector('slot[name="link"]').assignedElements()[0];
 			return {
 				linkText: linkAnchor.innerHTML,
 				linkTarget: linkAnchor.getAttribute('target'),

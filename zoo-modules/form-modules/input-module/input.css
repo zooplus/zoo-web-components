@@ -67,12 +67,6 @@ zoo-attention-icon {
 }
 
 zoo-label {
-	align-self: self-start;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 800;
-	color: #555;
-	text-align: left;
 	grid-row: 1;
 }
 

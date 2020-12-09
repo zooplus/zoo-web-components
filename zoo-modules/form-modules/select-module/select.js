@@ -13,7 +13,7 @@ export default class Select extends HTMLElement {
 	handleLoading() {
 		if (this.hasAttribute('loading')) {
 			this.loader = this.loader || document.createElement('zoo-preloader');
-			this.shadowRoot.querySelector('.select-wrap').appendChild(this.loader);
+			this.shadowRoot.querySelector('.content').appendChild(this.loader);
 		} else if (this.loader) {
 			this.loader.remove();
 		}

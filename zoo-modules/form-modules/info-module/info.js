@@ -10,11 +10,13 @@ export default class InfoMessage extends HTMLElement {
 		this.setAttribute('hidden', '');
 		const slot = this.shadowRoot.querySelector('slot');
 		slot.addEventListener('slotchange', () => {
-			const innerSlot = slot.assignedNodes()[0];
-			const nodes = innerSlot.assignedNodes();
-			if (nodes && nodes.length > 0) {
-				this.removeAttribute('hidden');
-			}
+			const innerSlots = slot.assignedElements();
+			innerSlots.forEach(innerSlot => {
+				const nodes = innerSlot.assignedElements();
+				if (nodes && nodes.length > 0) {
+					this.removeAttribute('hidden');
+				}
+			});
 		});
 	}
 }

@@ -25,13 +25,15 @@ export default class Checkbox extends HTMLElement {
 		const checkboxSlot = this.shadowRoot.querySelector('slot[name="checkbox"]');
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = new MutationObserver(this.mutationCallback.bind(this));
-			let checkbox = checkboxSlot.assignedNodes()[0];
-			checkbox.addEventListener('change', () => this.handleChange(checkbox));
-			this.shadowRoot.host.addEventListener('change', () => this.handleChange(checkbox));
-			if (checkbox.disabled) this.shadowRoot.host.setAttribute('disabled', '');
-			this.observer.disconnect();
-			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
-			this.handleChange(checkbox);
+			let checkboxes = checkboxSlot.assignedElements();
+			checkboxes.forEach(checkbox => {
+				checkbox.addEventListener('change', () => this.handleChange(checkbox));
+				this.shadowRoot.host.addEventListener('change', () => this.handleChange(checkbox));
+				if (checkbox.disabled) this.shadowRoot.host.setAttribute('disabled', '');
+				this.observer.disconnect();
+				this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
+				this.handleChange(checkbox);
+			});
 		});
 	}
 

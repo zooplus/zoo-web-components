@@ -9,11 +9,12 @@ export default class Select extends HTMLElement {
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
-				if (mutation.attributeName == 'disabled' || mutation.attributeName == 'multiple') {
-					if (mutation.target[mutation.attributeName]) {
-						this.setAttribute(mutation.attributeName, '');
+				const attr = mutation.attributeName;
+				if (attr == 'disabled' || attr == 'multiple') {
+					if (mutation.target[attr]) {
+						this.setAttribute(attr, '');
 					} else {
-						this.removeAttribute(mutation.attributeName);
+						this.removeAttribute(attr);
 					}
 				}
 			}

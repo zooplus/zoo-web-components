@@ -38,7 +38,6 @@
 	font-size: 14px;
 	line-height: 20px;
 	font-weight: bold;
-	text-align: center;
 	background: var(--background);
 }
 
@@ -55,7 +54,6 @@
 
 ::slotted(button:disabled) {
 	cursor: not-allowed;
-	transform: translateY(0);
 
 	--background: #F2F3F4;
 	--color-mid: #F2F3F4;
@@ -63,8 +61,4 @@
 	--text-normal: #767676;
 	--text-active: #767676;
 	--border: 1px solid #E6E6E6;
-}
-
-:host([size="medium"]) {
-	min-height: 46px;
 }

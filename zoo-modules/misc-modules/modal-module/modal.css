@@ -50,7 +50,6 @@
 
 .heading {
 	display: flex;
-	flex-direction: row;
 	align-items: flex-start;
 }
 
@@ -68,9 +67,6 @@ span {
 	border: 0;
 	padding: 0;
 	margin: 30px 0 30px auto;
-}
-
-.close path {
 	fill: var(--primary-mid);
 }
 

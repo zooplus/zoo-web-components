@@ -7,6 +7,7 @@ export default class Footer extends HTMLElement {
 		super();
 		this.body = this.shadowRoot.querySelector('div');
 	}
+	// todo remove in v9
 	static get observedAttributes() {
 		return ['copyright'];
 	}

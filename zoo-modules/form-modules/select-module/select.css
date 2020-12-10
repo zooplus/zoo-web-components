@@ -81,28 +81,21 @@
 	padding: 12px 24px 12px 14px;
 }
 
-zoo-label {
-	grid-row: 1;
-}
-
 .content {
 	display: flex;
 	justify-content: stretch;
 	align-items: center;
 	position: relative;
-	grid-row: 2;
 	grid-column: span 2;
 }
 
-.info {
-	grid-row: 3;
+.info,
+.error {
 	grid-column: span 2;
 }
 
 .error {
 	display: none;
-	grid-row: 4;
-	grid-column: span 2;
 
 	--icon-color: var(--warning-mid);
 }
@@ -116,11 +109,11 @@ zoo-label {
 }
 
 :host([labelposition="left"]) {
+	display: flex;
 	grid-gap: 0 3px;
 }
 
 :host([labelposition="left"]) zoo-label {
-	grid-row: 2;
 	display: flex;
 	align-items: center;
 }

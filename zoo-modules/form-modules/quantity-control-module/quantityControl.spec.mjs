@@ -1,34 +1,26 @@
 describe('Zoo quantity control', function() {
-	it('should accept 1 slot', async() => {
-		const ret = await page.evaluate(() => {
-			let input = document.createElement('zoo-quantity-control');
-			let element = document.createElement('input');
-			element.type = 'number';
-			element.slot = 'input';
-			input.appendChild(element);
-			document.body.appendChild(input);
-
-			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
-
-			return slottedInput.tagName;
-		});
-		expect(ret).toEqual('INPUT');
-	});
-
 	it('should increase input value when plus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
-			let input = document.createElement('zoo-quantity-control');
-			let element = document.createElement('input');
-			element.type = 'number';
-			element.step = 50;
-			element.slot = 'input';
-			input.appendChild(element);
-			document.body.appendChild(input);
+			document.body.innerHTML = `
+			<zoo-quantity-control>
+				<button type="button" slot="decrease">
+					<svg height="18" width="18"><line y1="9" x1="0" x2="18" y2="9"></line></svg>
+				</button>
+				<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>
+				<label for="number-input" slot="label">Label</label>
+				<button type="button" slot="increase">
+					<svg height="18" width="18">
+						<line y1="0" x1="9" x2="9" y2="18"></line>
+						<line y1="9" x1="0" x2="18" y2="9"></line>
+					</svg>
+				</button>
+			</zoo-quantity-control>`;
 
 			await new Promise(r => setTimeout(r, 10));
 
-			const increaseBtn = input.shadowRoot.querySelectorAll('button')[1];
-			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
+			const input = document.querySelector('zoo-quantity-control');
+			const increaseBtn = input.shadowRoot.querySelector('slot[name="increase"]').assignedElements()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -38,19 +30,26 @@ describe('Zoo quantity control', function() {
 
 	it('should not increase input value when plus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
-			let input = document.createElement('zoo-quantity-control');
-			input.increasedisabled = 'true';
-			let element = document.createElement('input');
-			element.type = 'number';
-			element.step = 50;
-			element.slot = 'input';
-			input.appendChild(element);
-			document.body.appendChild(input);
+			document.body.innerHTML = `
+			<zoo-quantity-control>
+				<button type="button" slot="decrease">
+					<svg height="18" width="18"><line y1="9" x1="0" x2="18" y2="9"></line></svg>
+				</button>
+				<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>
+				<label for="number-input" slot="label">Label</label>
+				<button type="button" slot="increase" disabled>
+					<svg height="18" width="18">
+						<line y1="0" x1="9" x2="9" y2="18"></line>
+						<line y1="9" x1="0" x2="18" y2="9"></line>
+					</svg>
+				</button>
+			</zoo-quantity-control>`;
 
 			await new Promise(r => setTimeout(r, 10));
 
-			const increaseBtn = input.shadowRoot.querySelectorAll('button')[1];
-			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
+			const input = document.querySelector('zoo-quantity-control');
+			const increaseBtn = input.shadowRoot.querySelector('slot[name="increase"]').assignedElements()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
 			increaseBtn.click();
 			
 			return slottedInput.value;
@@ -60,19 +59,27 @@ describe('Zoo quantity control', function() {
 
 	it('should decrease input value when minus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
-			let input = document.createElement('zoo-quantity-control');
-			let element = document.createElement('input');
-			element.type = 'number';
-			element.step = 50;
-			element.slot = 'input';
-			input.appendChild(element);
-			document.body.appendChild(input);
+			document.body.innerHTML = `
+			<zoo-quantity-control>
+				<button type="button" slot="decrease">
+					<svg height="18" width="18"><line y1="9" x1="0" x2="18" y2="9"></line></svg>
+				</button>
+				<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>
+				<label for="number-input" slot="label">Label</label>
+				<button type="button" slot="increase">
+					<svg height="18" width="18">
+						<line y1="0" x1="9" x2="9" y2="18"></line>
+						<line y1="9" x1="0" x2="18" y2="9"></line>
+					</svg>
+				</button>
+			</zoo-quantity-control>`;
 
 			await new Promise(r => setTimeout(r, 10));
 
-			const increaseBtn = input.shadowRoot.querySelectorAll('button')[0];
-			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
-			increaseBtn.click();
+			const input = document.querySelector('zoo-quantity-control');
+			const decreaseBtn = input.shadowRoot.querySelector('slot[name="decrease"]').assignedElements()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
+			decreaseBtn.click();
 			
 			return slottedInput.value;
 		});
@@ -81,20 +88,27 @@ describe('Zoo quantity control', function() {
 
 	it('should not decrease input value when minus is clicked', async() => {
 		const ret = await page.evaluate(async () => {
-			let input = document.createElement('zoo-quantity-control');
-			input.decreasedisabled = 'true';
-			let element = document.createElement('input');
-			element.type = 'number';
-			element.step = 50;
-			element.slot = 'input';
-			input.appendChild(element);
-			document.body.appendChild(input);
+			document.body.innerHTML = `
+			<zoo-quantity-control>
+				<button type="button" slot="decrease" disabled>
+					<svg height="18" width="18"><line y1="9" x1="0" x2="18" y2="9"></line></svg>
+				</button>
+				<input id="number-input" slot="input" readonly placeholder="0" type="number" step="50"/>
+				<label for="number-input" slot="label">Label</label>
+				<button type="button" slot="increase">
+					<svg height="18" width="18">
+						<line y1="0" x1="9" x2="9" y2="18"></line>
+						<line y1="9" x1="0" x2="18" y2="9"></line>
+					</svg>
+				</button>
+			</zoo-quantity-control>`;
 
 			await new Promise(r => setTimeout(r, 10));
 
-			const increaseBtn = input.shadowRoot.querySelectorAll('button')[0];
-			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedNodes()[0];
-			increaseBtn.click();
+			const input = document.querySelector('zoo-quantity-control');
+			const decreaseBtn = input.shadowRoot.querySelector('slot[name="decrease"]').assignedElements()[0];
+			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
+			decreaseBtn.click();
 			
 			return slottedInput.value;
 		});

@@ -1,11 +1,26 @@
-<zoo-input>
-	<input slot="input" type="text" />
-	<slot name="link" slot="link"></slot>
-	<svg slot="input" class="close" width="20" height="20" viewBox="0 0 24 24">
-		<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z" />
-	</svg>
-	<slot slot="input" name="select"></slot>
-	<slot name="label" slot="label"></slot>
-	<slot slot="info" name="info"></slot>
-	<slot slot="error" name="error"></slot>
-</zoo-input>
+<fieldset>
+	<legend>
+		<zoo-label>
+			<slot name="legend">
+				<slot name="label"></slot>
+			</slot>
+		</zoo-label>
+	</legend>
+	<zoo-input>
+		<zoo-preloader slot="input"></zoo-preloader>
+		<slot slot="input" name="input">
+			<input type="text"/>
+		</slot>
+		<slot name="link" slot="link"></slot>
+		<svg slot="input" class="close" width="20" height="20" viewBox="0 0 24 24">
+			<path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z" />
+		</svg>
+		<slot slot="info" name="info"></slot>
+		<slot slot="error" name="error"></slot>
+		<slot name="inputlabel"></slot>
+		<zoo-select slot="input">
+			<slot name="select" slot="select"></slot>
+		</zoo-select>
+	</zoo-input>
+	<slot name="selectlabel"></slot>
+</fieldset>

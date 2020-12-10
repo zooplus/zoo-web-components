@@ -7,9 +7,8 @@ export default class GridHeader extends HTMLElement {
 	}
 
 	connectedCallback() {
-		const host = this.shadowRoot.host;
-		host.addEventListener('dragend', () => host.removeAttribute('draggable'));
-		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.toggleHostDraggable());
+		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
+		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
 		this.shadowRoot.querySelector('.arrow').addEventListener('click', () => this.handleSortClick());
 	}
 
@@ -21,12 +20,7 @@ export default class GridHeader extends HTMLElement {
 		} else if (this.getAttribute('sortstate') == 'asc') {
 			this.removeAttribute('sortstate');
 		}
-		const host = this.shadowRoot.host;
-		host.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: this.getAttribute('sortstate'), header: host}, bubbles: true}));
-	}
-
-	toggleHostDraggable() {
-		this.shadowRoot.host.setAttribute('draggable', true);
+		this.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: this.getAttribute('sortstate'), header: this}, bubbles: true}));
 	}
 }
 

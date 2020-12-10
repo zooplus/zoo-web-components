@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 8.0.2
+
+`zoo-searchable-select` - deprecated usage of internal input. User should supply an `input` with a separate `label`, a `select` with a separate `label` and a `legend` text element to be accessible.
+`zoo-quantity-control` - buttons are no longer provided internally, you should use `increase` and `decrease` slots to provide your buttons to have full control over states (for example, disabled) and a11y.
+
 ## 8.0.1
 
 `zoo-select` - fix showing loader when according attribute is present.

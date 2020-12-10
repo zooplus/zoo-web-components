@@ -85,11 +85,10 @@ export default class ZooGrid extends HTMLElement {
 	createResizeObserver() {
 		if (this.resizeObserver) return;
 		this.resizeObserver = new ResizeObserver(this.debounce(entries => {
-			const host = this.shadowRoot.host;
 			for (const entry of entries) {
 				const columnNum = entry.target.getAttribute('column');
-				const rowColumns = host.querySelectorAll(`:scope > [slot="row"] > [column="${columnNum}"]`);
-				const headerColumn = host.querySelector(`:scope > [column="${columnNum}"]`);
+				const rowColumns = this.querySelectorAll(`:scope > [slot="row"] > [column="${columnNum}"]`);
+				const headerColumn = this.querySelector(`:scope > [column="${columnNum}"]`);
 				if (!headerColumn) return;
 				const elements = [...rowColumns, headerColumn];
 				const width = entry.contentRect.width;
@@ -180,7 +179,7 @@ export default class ZooGrid extends HTMLElement {
 	}
 
 	dispatchPageEvent(e) {
-		this.shadowRoot.host.dispatchEvent(new CustomEvent('pageChange', {
+		this.dispatchEvent(new CustomEvent('pageChange', {
 			detail: {pageNumber: e.detail.pageNumber}, bubbles: true
 		}));
 	}
@@ -194,7 +193,7 @@ export default class ZooGrid extends HTMLElement {
 		}
 		this.prevSortedHeader = header;
 		const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
-		this.shadowRoot.host.dispatchEvent(new CustomEvent('sortChange', {
+		this.dispatchEvent(new CustomEvent('sortChange', {
 			detail: detail, bubbles: true
 		}));
 	}

@@ -24,35 +24,99 @@ zoo-tooltip {
 	display: grid;
 }
 
-::slotted(select) {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	width: 100%;
-	background: white;
-	padding: 13px 15px;
-	border: 1px solid #767676;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+zoo-select {
 	border-top: none;
 	position: absolute;
 	z-index: 2;
-	top: 90%;
-	font-size: 14px;
+	top: 85%;
 	display: none;
+
+	--icons-display: none;
 }
 
-:host(:focus-within) ::slotted(select) {
-	border: 2px solid #555;
-	border-top: none;
-	padding: 12px 14px;
-}
-
-zoo-input:focus-within ::slotted(select) {
+:host(:focus-within) zoo-select {
 	display: grid;
 }
 
-:host([invalid]) ::slotted(select) {
+:host(:focus-within) ::slotted(select) {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: 2px solid #555;
+	border-top: none;
+}
+
+:host([invalid]) zoo-select {
 	border: 2px solid var(--warning-mid);
 	border-top: none;
+}
+
+:host([invalid]) ::slotted(select) {
+	border: none;
+}
+
+zoo-preloader {
+	display: none;
+}
+
+:host([loading]) zoo-preloader {
+	display: flex;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+::slotted(*[slot="inputlabel"]),
+::slotted(*[slot="selectlabel"]) {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+/** todo in v9 remove styles for input leaving ::slotted(input) **/
+
+input {
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 13px 15px;
+	margin: 0;
+	border: 1px solid #767676;
+	border-radius: 5px;
+	color: #555;
+	outline: none;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+input:disabled {
+	border: 1px solid #E6E6E6;
+	background-color: #F2F3F4;
+	color: #767676;
+	cursor: not-allowed;
+}
+
+:host(:focus-within) input,
+:host(:focus-within) ::slotted(input) {
+	border: 2px solid #555;
 	padding: 12px 14px;
+}
+
+:host([invalid]) input,
+:host([invalid]) ::slotted(input) {
+	border: 2px solid var(--warning-mid);
+	padding: 12px 14px;
+}
+
+input::placeholder {
+	color: #767676;
 }

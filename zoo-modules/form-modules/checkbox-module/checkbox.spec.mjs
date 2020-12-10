@@ -90,4 +90,37 @@ describe('Zoo checkbox', function () {
 		expect(style.checkColor).toEqual(colors.warningMid);
 		expect(style.border).toEqual(`1px solid  ${colors.warningMid}`);
 	});
+
+	it('should set checked attribute on host when checkbox is checked', async () => {
+		const checked = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-checkbox>
+					<input id="modal-checkbox" slot="checkbox" type="checkbox"/>
+					<label for="modal-checkbox" slot="label">label-text</label>
+				</zoo-checkbox>
+			`;
+			const root = document.querySelector('zoo-checkbox');
+			root.shadowRoot.querySelector('slot[name="checkbox"]').assignedElements()[0].click();
+			await new Promise(r => setTimeout(r, 10));
+			return root.hasAttribute('checked');
+		});
+		expect(checked).toBeTrue();
+	});
+
+	it('should set disabled attribute on host when checkbox is disabled', async () => {
+		const disabled = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-checkbox>
+					<input id="modal-checkbox" slot="checkbox" type="checkbox"/>
+					<label for="modal-checkbox" slot="label">label-text</label>
+				</zoo-checkbox>
+			`;
+			const root = document.querySelector('zoo-checkbox');
+			root.shadowRoot.querySelector('slot[name="checkbox"]').assignedElements()[0].disabled = true;
+			await new Promise(r => setTimeout(r, 10));
+
+			return root.hasAttribute('disabled');
+		});
+		expect(disabled).toBeTrue();
+	});
 });

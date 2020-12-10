@@ -12,9 +12,9 @@ export default class Checkbox extends HTMLElement {
 			if (mutation.type === 'attributes') {
 				if (mutation.attributeName == 'disabled') {
 					if (mutation.target.disabled) {
-						this.shadowRoot.host.setAttribute('disabled', '');
+						this.setAttribute('disabled', '');
 					} else {
-						this.shadowRoot.host.removeAttribute('disabled');
+						this.removeAttribute('disabled');
 					}
 				}
 			}
@@ -24,12 +24,11 @@ export default class Checkbox extends HTMLElement {
 	connectedCallback() {
 		const checkboxSlot = this.shadowRoot.querySelector('slot[name="checkbox"]');
 		checkboxSlot.addEventListener('slotchange', () => {
-			this.observer = new MutationObserver(this.mutationCallback.bind(this));
+			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let checkboxes = checkboxSlot.assignedElements();
 			checkboxes.forEach(checkbox => {
 				checkbox.addEventListener('change', () => this.handleChange(checkbox));
-				this.shadowRoot.host.addEventListener('change', () => this.handleChange(checkbox));
-				if (checkbox.disabled) this.shadowRoot.host.setAttribute('disabled', '');
+				if (checkbox.disabled) this.setAttribute('disabled', '');
 				this.observer.disconnect();
 				this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
 				this.handleChange(checkbox);
@@ -40,14 +39,13 @@ export default class Checkbox extends HTMLElement {
 	handleChange(checkbox) {
 		if (checkbox.checked) {
 			checkbox.setAttribute('checked', '');
-			this.shadowRoot.host.setAttribute('checked', '');
+			this.setAttribute('checked', '');
 		} else {
 			checkbox.removeAttribute('checked');
-			this.shadowRoot.host.removeAttribute('checked');
+			this.removeAttribute('checked');
 		}
 	}
 
-	// Fires when an instance was removed from the document
 	disconnectedCallback() {
 		this.observer.disconnect();
 		this.observer = null;

@@ -162,11 +162,3 @@ zoo-input zoo-button button {
 .input-composition::part(error-icon) {
 	right: 20%;
 }
-
-#select-composition {
-	width: 50%;
-}
-
-.select-composition::part(icon-arrows) {
-	right: 55%;
-}

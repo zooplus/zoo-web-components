@@ -7,7 +7,7 @@ describe('Zoo toast', function () {
 			</zoo-toast>
 			`;
 			const toast = document.querySelector('zoo-toast');
-			const toastBox = toast.shadowRoot.querySelector('slot[name="content"]').assignedNodes()[0];
+			const toastBox = toast.shadowRoot.querySelector('slot[name="content"]').assignedElements()[0];
 			return toastBox.innerHTML;
 		});
 		expect(toasttext).toEqual('some-text');

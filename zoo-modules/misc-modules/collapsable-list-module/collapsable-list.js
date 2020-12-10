@@ -9,7 +9,7 @@ export default class CollapsableList extends HTMLElement {
 	connectedCallback() {
 		const slot = this.shadowRoot.querySelector('slot');
 		slot.addEventListener('slotchange', () => {
-			let items = slot.assignedNodes();
+			let items = slot.assignedElements();
 			items = items.filter(i => i.tagName == 'ZOO-COLLAPSABLE-LIST-ITEM');
 			if (items[0]) {
 				items[0].setAttribute('active', true);

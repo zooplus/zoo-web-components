@@ -26,15 +26,14 @@ export default class Toast extends HTMLElement {
 	}
 	show() {
 		if (!this.hidden) return;
-		const root = this.shadowRoot.host;
-		root.style.display = 'block';
+		this.style.display = 'block';
 		this.timeoutVar = setTimeout(() => {
 			this.hidden = !this.hidden;
 			this.toggleToastClass();
 			this.timeoutVar = setTimeout(() => {
-				if (root && !this.hidden) {
+				if (this && !this.hidden) {
 					this.hidden = !this.hidden;
-					this.timeoutVar = setTimeout(() => {root.style.display = 'none';}, 300);
+					this.timeoutVar = setTimeout(() => {this.style.display = 'none';}, 300);
 					this.toggleToastClass();
 				}
 			}, this.timeout * 1000);
@@ -43,11 +42,10 @@ export default class Toast extends HTMLElement {
 	close() {
 		if (this.hidden) return;
 		clearTimeout(this.timeoutVar);
-		const root = this.shadowRoot.host;
 		setTimeout(() => {
-			if (root && !this.hidden) {
+			if (this && !this.hidden) {
 				this.hidden = !this.hidden;
-				setTimeout(() => {root.style.display = 'none';}, 300);
+				setTimeout(() => {this.style.display = 'none';}, 300);
 				this.toggleToastClass();
 			}
 		}, 30);

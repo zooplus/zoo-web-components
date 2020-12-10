@@ -4,6 +4,8 @@
 	width: 100%;
 	height: max-content;
 	box-sizing: border-box;
+
+	--icons-display: flex;
 }
 
 .close,
@@ -21,6 +23,7 @@
 }
 
 .arrows {
+	display: var(--icons-display);
 	pointer-events: none;
 	fill: var(--primary-mid);
 }
@@ -34,7 +37,7 @@
 }
 
 :host([valueselected]) .close {
-	display: flex;
+	display: var(--icons-display);
 }
 
 :host([valueselected]) .arrows {
@@ -126,4 +129,12 @@ zoo-link {
 	width: max-content;
 	justify-self: end;
 	padding: 0;
+}
+
+zoo-preloader {
+	display: none;
+}
+
+:host([loading]) zoo-preloader {
+	display: flex;
 }

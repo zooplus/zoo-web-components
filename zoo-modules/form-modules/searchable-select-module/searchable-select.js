@@ -5,34 +5,20 @@ export default class SearchableSelect extends HTMLElement {
 	constructor() {
 		super();
 	}
+	// TODO in v9 drop nested default input and force user to define label for both select and input, while showing only legend
 	static get observedAttributes() {
-		return ['invalid', 'loading', 'placeholder'];
+		return ['invalid', 'placeholder'];
 	}
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
 		if (input && newVal) input.placeholder = newVal;
-	}
-
-	handleLoading() {
-		if (this.hasAttribute('loading')) {
-			this.loader = this.loader || document.createElement('zoo-preloader');
-			this.loader.slot = 'input';
-			const input = this.shadowRoot.querySelector('zoo-input');
-			if (input){
-				input.appendChild(this.loader);
-			}
-		} else {
-			if (this.loader) this.loader.remove();
-		}
+		this.inputPlaceholderFallback = newVal;
 	}
 
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
-			if (mutation.type === 'attributes') {
-				if (mutation.attributeName == 'disabled') {
-					const input = this.shadowRoot.querySelector('input');
-					input.disabled = mutation.target.disabled;
-				}
+			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
+				this.input.disabled = mutation.target.disabled;
 			}
 		}
 	}
@@ -44,9 +30,9 @@ export default class SearchableSelect extends HTMLElement {
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
-			this.select = selectSlot.assignedNodes()[0];
+			this.select = selectSlot.assignedElements()[0];
 			this.select.addEventListener('change', () => this.handleOptionChange());
-			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueSelected', '') : this.removeAttribute('valueSelected'));
+			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected'));
 			this.select.addEventListener('keydown', e => {
 				if (e.keyCode && e.keyCode === 13) this.handleOptionChange();
 			});
@@ -57,14 +43,19 @@ export default class SearchableSelect extends HTMLElement {
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
 		});
+
+		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
+		inputSlot.addEventListener('slotchange', () => {
+			this.input = inputSlot.assignedElements()[0];
+			this.inputPlaceholderFallback = this.input.placeholder;
+			this.input.addEventListener('input', () => this.handleSearchChange());
+		});
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (oldVal == newVal) return;
 		if (SearchableSelect.observedAttributes.includes(attrName)) {
-			if (attrName == 'loading') {
-				this.handleLoading();
-			} else if (attrName == 'placeholder') {
+			if (attrName == 'placeholder') {
 				this.handlePlaceholder(newVal);
 			} else if (attrName === 'invalid') {
 				if (this.hasAttribute('invalid')) {
@@ -96,7 +87,7 @@ export default class SearchableSelect extends HTMLElement {
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		const showTooltip = inputValString && inputValString.length > 0;
 		if (this.input) {
-			this.input.placeholder = showTooltip ? inputValString : this.getAttribute('placeholder');
+			this.input.placeholder = showTooltip ? inputValString : this.inputPlaceholderFallback;
 		}
 		if (showTooltip) {
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');

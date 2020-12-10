@@ -6,36 +6,14 @@ export default class Select extends HTMLElement {
 		super();
 	}
 
-	static get observedAttributes() {
-		return ['loading'];
-	}
-
-	handleLoading() {
-		if (this.hasAttribute('loading')) {
-			this.loader = this.loader || document.createElement('zoo-preloader');
-			this.shadowRoot.querySelector('.content').appendChild(this.loader);
-		} else if (this.loader) {
-			this.loader.remove();
-		}
-	}
-
-	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
-		if (Select.observedAttributes.includes(attrName)) {
-			if (attrName == 'loading') {
-				this.handleLoading();
-			}
-		}
-	}
-
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
 				if (mutation.attributeName == 'disabled' || mutation.attributeName == 'multiple') {
 					if (mutation.target[mutation.attributeName]) {
-						this.shadowRoot.host.setAttribute(mutation.attributeName, '');
+						this.setAttribute(mutation.attributeName, '');
 					} else {
-						this.shadowRoot.host.removeAttribute(mutation.attributeName);
+						this.removeAttribute(mutation.attributeName);
 					}
 				}
 			}
@@ -43,24 +21,22 @@ export default class Select extends HTMLElement {
 	}
 
 	connectedCallback() {
-		const config = { attributes: true, childList: false, subtree: false };
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
-		let select;
 		selectSlot.addEventListener('slotchange', () => {
-			this.observer = new MutationObserver(this.mutationCallback.bind(this));
-			select = selectSlot.assignedNodes()[0];
-			if (select.multiple) this.shadowRoot.host.setAttribute('multiple', '');
-			if (select.disabled) this.shadowRoot.host.setAttribute('disabled', '');
-			select.addEventListener('change', () => {
-				const valueSelected = select.value && !select.disabled;
+			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
+			let select = selectSlot.assignedElements()[0];
+			select.addEventListener('change', e => {
+				const valueSelected = e.target.value && !e.target.disabled;
 				if (valueSelected) {
-					this.shadowRoot.host.setAttribute('valueselected', '');
+					this.setAttribute('valueselected', '');
 				} else {
-					this.shadowRoot.host.removeAttribute('valueselected');
+					this.removeAttribute('valueselected');
 				}
 			});
+			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
+			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
 			this.observer.disconnect();
-			this.observer.observe(select, config);
+			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
 			this.shadowRoot.querySelector('.close').addEventListener('click', () => {
 				select.value = null;
 				select.dispatchEvent(new Event('change'));

@@ -2,17 +2,12 @@
 	--input-length: 1ch;
 }
 
-svg line {
-	stroke-width: 1.5;
-	stroke: #FFF;
-}
-
 div {
 	height: 36px;
 	display: flex;
 }
 
-button {
+::slotted(button) {
 	border-width: 0;
 	min-width: 30px;
 	background: var(--primary-mid);
@@ -21,23 +16,21 @@ button {
 	justify-content: center;
 	padding: 4px;
 	cursor: pointer;
+	stroke-width: 1.5;
+	stroke: #FFF;
 }
 
-button:first-child {
+::slotted(button[slot="decrease"]) {
 	border-radius: 5px 0 0 5px;
 }
 
-button:last-child {
+::slotted(button[slot="increase"]) {
 	border-radius: 0 5px 5px 0;
 }
 
-button:disabled {
+::slotted(button:disabled) {
 	background: #F2F3F4;
 	cursor: not-allowed;
-}
-
-button:disabled svg line {
-	stroke: #767676;
 }
 
 ::slotted(input) {

@@ -9,7 +9,7 @@ describe('Zoo toggle switch', function() {
 			`;
 			let control = document.querySelector('zoo-quantity-control');
 
-			return control.shadowRoot.querySelector('slot[name="label"]').assignedNodes()[0].innerHTML;
+			return control.shadowRoot.querySelector('slot[name="label"]').assignedElements()[0].innerHTML;
 		});
 		expect(inputLabelText).toEqual('Label');
 	});

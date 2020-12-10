@@ -16,8 +16,7 @@ export default class Footer extends HTMLElement {
 		this.body.innerHTML = `&#169; ${newVal} ${new Date().getFullYear()}`;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal === newVal) return;
-		if (Footer.observedAttributes.includes(attrName) && attrName == 'copyright') this.handleCopyright(newVal);
+		if (attrName == 'copyright') this.handleCopyright(newVal);
 	}
 }
 

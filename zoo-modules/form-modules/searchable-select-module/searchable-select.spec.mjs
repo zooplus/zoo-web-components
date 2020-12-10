@@ -2,7 +2,7 @@ describe('Zoo searchable select', function () {
 	it('should create searchable select', async () => {
 		const label = await page.evaluate(() => {
 			document.body.innerHTML = `
-			<zoo-searchable-select placeholder="Placeholder">
+			<zoo-searchable-select>
 				<span slot="label">Searchable multiple select legend</span>
 				<select id="searchable-select" multiple slot="select">
 					<option value="text">text</option>
@@ -23,7 +23,7 @@ describe('Zoo searchable select', function () {
 	it('should handle input typing', async () => {
 		const optionDisplayProp = await page.evaluate(async () => {
 			document.body.innerHTML = `
-			<zoo-searchable-select placeholder="Placeholder">
+			<zoo-searchable-select>
 				<span slot="label">Searchable multiple select legend</span>
 				<select id="searchable-select" multiple slot="select">
 					<option value="text">text</option>
@@ -51,7 +51,7 @@ describe('Zoo searchable select', function () {
 	it('should set disabled attribute on input when slotted select is disabled', async () => {
 		const disabled = await page.evaluate(async () => {
 			document.body.innerHTML = `
-			<zoo-searchable-select placeholder="Placeholder">
+			<zoo-searchable-select>
 				<span slot="label">Searchable multiple select legend</span>
 				<select id="searchable-select" multiple slot="select">
 					<option value="text">text</option>

@@ -116,6 +116,7 @@ describe('Zoo checkbox', function () {
 				</zoo-checkbox>
 			`;
 			const root = document.querySelector('zoo-checkbox');
+			await new Promise(r => setTimeout(r, 10));
 			root.shadowRoot.querySelector('slot[name="checkbox"]').assignedElements()[0].disabled = true;
 			await new Promise(r => setTimeout(r, 10));
 

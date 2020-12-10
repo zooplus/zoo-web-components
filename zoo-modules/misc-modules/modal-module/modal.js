@@ -12,7 +12,6 @@ export default class Modal extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
 		if (attrName == 'headertext') this.handleText(newVal);
 		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
 	}

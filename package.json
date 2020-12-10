@@ -32,7 +32,7 @@
 		"start": "concurrently -k \"node server.js docs\"  \"cross-env NODE_ENV=local rollup -c -w --watch.clearScreen\"",
 		"build": "rollup -c",
 		"pretest": "cross-env NODE_ENV=local npm run build",
-		"test": "concurrently -k -s first \"nyc --reporter=lcov jasmine\" \"node server.js docs\"",
+		"test": "concurrently -k -s first \"nyc --reporter=lcov --reporter=text-summary jasmine\" \"node server.js docs\"",
 		"prepublishOnly": "npm run lint && npm test && npm run build",
 		"lint": "eslint zoo-modules/**/*.js && stylelint zoo-modules/**/*.css && html-validate zoo-modules/**/*.html"
 	},

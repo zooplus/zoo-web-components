@@ -53,8 +53,8 @@ describe('Zoo select', function () {
 		expect(multiple).toBeTrue();
 	});
 
-	it('should set valueselected attribute on host when select option is selected', async () => {
-		const valueselected = await page.evaluate(async () => {
+	it('should set and then remove valueselected attribute on host when select option is selected/deselected', async () => {
+		let valueselected = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-select>
 				<select id="select" slot="select">
@@ -72,5 +72,16 @@ describe('Zoo select', function () {
 			return select.hasAttribute('valueselected');
 		});
 		expect(valueselected).toBeTrue();
+
+		valueselected = await page.evaluate(async () => {
+			let select = document.querySelector('zoo-select');
+			await new Promise(r => setTimeout(r(), 10));
+			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
+			slottedSelect.value = null;
+			slottedSelect.dispatchEvent(new Event('change'));
+
+			return select.hasAttribute('valueselected');
+		});
+		expect(valueselected).toBeFalse();
 	});
 });

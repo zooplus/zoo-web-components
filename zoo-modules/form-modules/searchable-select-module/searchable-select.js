@@ -53,7 +53,6 @@ export default class SearchableSelect extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
 		if (SearchableSelect.observedAttributes.includes(attrName)) {
 			if (attrName == 'placeholder') {
 				this.handlePlaceholder(newVal);

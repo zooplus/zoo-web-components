@@ -66,7 +66,6 @@ export default class Paginator extends HTMLElement {
 		}
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
 			if (oldVal != newVal) {

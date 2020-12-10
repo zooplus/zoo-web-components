@@ -8,9 +8,6 @@ export default class Toast extends HTMLElement {
 	static get observedAttributes() {
 		return ['closelabel'];
 	}
-	handleText(newVal) {
-		this.shadowRoot.querySelector('span').innerHTML = newVal;
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
 	}

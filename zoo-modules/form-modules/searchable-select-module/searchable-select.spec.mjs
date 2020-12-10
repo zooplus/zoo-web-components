@@ -42,7 +42,7 @@ describe('Zoo searchable select', function () {
 			const slottedInput = select.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
 			slottedInput.focus();
 			slottedInput.value = 'sec';
-			slottedInput.dispatchEvent(new Event('input', { bubbles: true }));
+			slottedInput.dispatchEvent(new Event('input'));
 			return document.querySelector('option').style.display;
 		});
 		expect(optionDisplayProp).toEqual('none');

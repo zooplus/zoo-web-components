@@ -124,4 +124,21 @@ describe('Zoo checkbox', function () {
 		});
 		expect(disabled).toBeTrue();
 	});
+
+	it('should set checked attribute when change event is dispatched on slotted checkbox', async () => {
+		const checked = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-checkbox>
+					<input id="modal-checkbox" slot="checkbox" type="checkbox" checked/>
+					<label for="modal-checkbox" slot="label">label-text</label>
+				</zoo-checkbox>
+			`;
+			const root = document.querySelector('zoo-checkbox');
+			await new Promise(r => setTimeout(r, 10));
+			root.shadowRoot.querySelector('slot[name="checkbox"]').assignedElements()[0].dispatchEvent(new Event('change'));
+			await new Promise(r => setTimeout(r, 10));
+			return root.hasAttribute('checked');
+		});
+		expect(checked).toBeTrue();
+	});
 });

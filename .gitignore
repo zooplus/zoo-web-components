@@ -1,9 +1,10 @@
 node_modules
 test
-storybook-static
 .out
 dist/
 .DS_Store
 .idea
 docs/components.js
 docs/components.js.map
+coverage
+.nyc_output

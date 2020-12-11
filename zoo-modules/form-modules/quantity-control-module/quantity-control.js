@@ -12,7 +12,6 @@ export default class QuantityControl extends HTMLElement {
 	}
 
 	handleClick(increment, e) {
-		if (e.target.disabled || !this.input || this.input.disabled) return;
 		const step = this.input.step || 1;
 		this.input.value = this.input.value || 0;
 		this.input.value -= increment ? -step : step;

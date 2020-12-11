@@ -15,6 +15,7 @@ export default class SearchableSelect extends HTMLElement {
 		this.inputPlaceholderFallback = newVal;
 	}
 
+	// TODO think of a way to reuse some logic from nested zoo-select, eg. valueselected, option change etc
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
@@ -76,9 +77,6 @@ export default class SearchableSelect extends HTMLElement {
 	}
 
 	handleOptionChange() {
-		if (!this.select) {
-			return;
-		}
 		let inputValString = '';
 		for (const selectedOpts of this.select.selectedOptions) {
 			inputValString += selectedOpts.text + ', \n';

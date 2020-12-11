@@ -7,61 +7,46 @@ export default class ZooGrid extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'loading', 'resizable', 'reorderable'];
+		return ['currentpage', 'maxpages', 'resizable', 'reorderable'];
 	}
 
 	connectedCallback() {
 		const root = this.shadowRoot;
 		const headerSlot = root.querySelector('slot[name="headercell"]');
 		headerSlot.addEventListener('slotchange', this.debounce(() => {
-			const headers = headerSlot.assignedNodes();
+			const headers = headerSlot.assignedElements();
 			this.style.setProperty('--grid-column-num', headers.length);
-			this.handleHeaders(headers);
+			headers.forEach((header, i) => header.setAttribute('column', i+1));
 			if (this.hasAttribute('reorderable')) {
-				this.handleDraggableHeaders();
+				headers.forEach(header => this.handleDraggableHeader(header));
 			}
 		}));
-		root.querySelector('slot[name="row"]').addEventListener('slotchange', this.debounce(() => {
-			this.assignColumnNumberToRows();
+		const rowSlot = root.querySelector('slot[name="row"]');
+		rowSlot.addEventListener('slotchange', this.debounce(() => {
+			rowSlot.assignedElements().forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
 		}));
 		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
 		const paginator = root.querySelector('zoo-paginator');
 		if (paginator) {
 			paginator.addEventListener('pageChange', e => {
 				this.setAttribute('currentpage', e.detail.pageNumber);
-				this.dispatchPageEvent(e)
+				this.dispatchEvent(new CustomEvent('pageChange', {
+					detail: {pageNumber: e.detail.pageNumber}, bubbles: true
+				}));
 			});
 		}
 	}
 
-	handleHeaders(headers) {
-		let i = 1;
-		for (let header of headers) {
-			header.setAttribute('column', i);
-			i++;
-		}
-	}
-
-	assignColumnNumberToRows() {
-		const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedNodes();
-		for (const row of allRows) {
-			let i = 1;
-			const rowChildren = row.children;
-			for (const child of rowChildren) {
-				child.setAttribute('column', i);
-				i++;
-			}
-		}
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'resizable') {
-			// TODO resizable attr is fucking up something
-			if (this.hasAttribute('resizable')) {
-				this.handleResizableHeaders();
-			}
+		// TODO resizable attr is fucking up something
+		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
+			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+			this.resizeObserver.disconnect();
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
 		}
 		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
-			this.handleDraggableHeaders();
+			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
+			headers.forEach(header => this.handleDraggableHeader(header));
 		}
 		if (attrName == 'maxpages' || attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-paginator');
@@ -70,30 +55,15 @@ export default class ZooGrid extends HTMLElement {
 			}
 		}
 	}
-	handleResizableHeaders() {
-		this.createResizeObserver();
-		this.resizeObserver.disconnect();
-		const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedNodes();
-		for (let header of headers) {
-			this.resizeObserver.observe(header);
-		}
-	}
-	createResizeObserver() {
-		if (this.resizeObserver) return;
-		this.resizeObserver = new ResizeObserver(this.debounce(entries => {
-			for (const entry of entries) {
-				const columnNum = entry.target.getAttribute('column');
-				const rowColumns = this.querySelectorAll(`:scope > [slot="row"] > [column="${columnNum}"]`);
-				const headerColumn = this.querySelector(`:scope > [column="${columnNum}"]`);
-				if (!headerColumn) return;
-				const elements = [...rowColumns, headerColumn];
-				const width = entry.contentRect.width;
-				
-				for (const columnEl of elements) {
-					columnEl.style.width = `${width}px`;
-				}
-			}
-		}));
+	resizeCallback(entries) {
+		entries.forEach(entry => {
+			const columnNum = entry.target.getAttribute('column');
+			const rowColumns = this.querySelectorAll(`[slot="row"] > [column="${columnNum}"]`);
+			const headerColumn = this.querySelector(`[column="${columnNum}"]`);
+			if (!headerColumn) return;
+			const width = entry.contentRect.width;
+			[...rowColumns, headerColumn].forEach(columnEl => columnEl.style.width = `${width}px`);
+		});
 	}
 
 	debounce(func, wait) {
@@ -107,13 +77,6 @@ export default class ZooGrid extends HTMLElement {
 			timeout = setTimeout(later, wait);
 			if (!timeout) func.apply(this, arguments);
 		};
-	}
-
-	handleDraggableHeaders() {
-		const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedNodes();
-		for (let header of headers) {
-			this.handleDraggableHeader(header);
-		}
 	}
 
 	handleDraggableHeader(header) {
@@ -153,31 +116,26 @@ export default class ZooGrid extends HTMLElement {
 				return;
 			}
 			// move headers
-			const sourceHeader = this.querySelector(`:scope > zoo-grid-header[column="${sourceColumn}"]`);
+			const sourceHeader = this.querySelector(`zoo-grid-header[column="${sourceColumn}"]`);
 			if (targetColumn < sourceColumn) {
 				e.target.parentNode.insertBefore(sourceHeader, e.target);
 			} else {
 				e.target.parentNode.insertBefore(e.target, sourceHeader);
 			}
 			// move rows
-			const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedNodes();
-			for (const row of allRows) {
-				const sourceRowColumn = row.querySelector(`:scope > [column="${sourceColumn}"]`);
-				const targetRowColumn = row.querySelector(`:scope > [column="${targetColumn}"]`);
+			const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedElements();
+			allRows.forEach(row => {
+				const sourceRowColumn = row.querySelector(`[column="${sourceColumn}"]`);
+				const targetRowColumn = row.querySelector(`[column="${targetColumn}"]`);
 				if (targetColumn < sourceColumn) {
 					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
 				} else {
 					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
 				}
-			}
-			this.assignColumnNumberToRows();
+				sourceRowColumn.setAttribute('column', targetColumn);
+				targetRowColumn.setAttribute('column', sourceColumn);
+			});
 		});
-	}
-
-	dispatchPageEvent(e) {
-		this.dispatchEvent(new CustomEvent('pageChange', {
-			detail: {pageNumber: e.detail.pageNumber}, bubbles: true
-		}));
 	}
 
 	handleSortChange(e) {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.0.4
+
+`zoo-checkbox` - fix removing disabled attribute from host element.
+
 ## 8.0.3
 
 maintanence release, update dependencies, added tests, removed unused code.

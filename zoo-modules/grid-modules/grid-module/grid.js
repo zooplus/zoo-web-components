@@ -27,7 +27,10 @@ export default class ZooGrid extends HTMLElement {
 		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
 		const paginator = root.querySelector('zoo-paginator');
 		if (paginator) {
-			paginator.addEventListener('pageChange', e => this.dispatchPageEvent(e));
+			paginator.addEventListener('pageChange', e => {
+				this.setAttribute('currentpage', e.detail.pageNumber);
+				this.dispatchPageEvent(e)
+			});
 		}
 	}
 
@@ -60,16 +63,10 @@ export default class ZooGrid extends HTMLElement {
 		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.handleDraggableHeaders();
 		}
-		if (attrName == 'maxpages') {
+		if (attrName == 'maxpages' || attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-paginator');
-			if (paginator) {
-				paginator.setAttribute('maxpages', newVal);
-			}
-		}
-		if (attrName == 'currentpage') {
-			const paginator = this.shadowRoot.querySelector('zoo-paginator');
-			if (paginator) {
-				paginator.setAttribute('currentpage', newVal);
+			if (paginator && !paginator.hasAttribute(attrName)) {
+				paginator.setAttribute(attrName, newVal);
 			}
 		}
 	}

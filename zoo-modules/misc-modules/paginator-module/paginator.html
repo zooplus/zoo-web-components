@@ -1,18 +1,17 @@
 <div class="box">
 	<slot name="pagesizeselector"></slot>
 	<nav class="paging">
-		<!-- TODO these should be buttons -->
-		<div class="btn prev">
-			<svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-		</div>
-		<div class="btn next">
-			<svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-		</div>
+		<button class="prev">
+			<svg width="24" height="24" viewBox="0 0 24 24"><path d="M14 18l-6-6 6-6 1.6 1.5L11 12l4.7 4.4z"/></svg>
+		</button>
+		<button class="next">
+			<svg width="24" height="24" viewBox="0 0 24 24"><path d="M8 17l4.6-4.6L8 8l1.6-1.6 6 6-6 6z"/></svg>
+		</button>
 	</nav>
 </div>
 <template id="dots">
-	<div class="temp page-element-dots">...</div>
+	<div class="page-element">...</div>
 </template>
 <template id="pages">
-	<div class="temp page-element"></div>
+	<button class="page-element"></button>
 </template>

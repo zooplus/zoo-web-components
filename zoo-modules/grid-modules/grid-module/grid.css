@@ -103,14 +103,19 @@
 }
 
 zoo-paginator {
-	display: grid;
-	position: sticky;
-	grid-column: span var(--grid-column-num);
-	bottom: 0;
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
 	background: #FFF;
-	z-index: 1;
+	justify-content: flex-end;
+	padding: 10px;
+	border-top: 1px solid #E6E6E6;
 }
 
 :host([loading]) .loading-shade {
 	display: flex;
+}
+
+::slotted(zoo-select) {
+	margin-right: 20px;
 }

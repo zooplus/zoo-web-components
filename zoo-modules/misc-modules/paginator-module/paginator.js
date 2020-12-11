@@ -4,8 +4,10 @@
 export default class Paginator extends HTMLElement {
 	constructor() {
 		super();
-		this.prev = this.shadowRoot.querySelector('.btn.prev');
-		this.next = this.shadowRoot.querySelector('.btn.next');
+		this.prev = this.shadowRoot.querySelector('.prev');
+		this.next = this.shadowRoot.querySelector('.next');
+		this.dots = this.shadowRoot.querySelector('#dots').content;
+		this.pages = this.shadowRoot.querySelector('#pages').content;
 	}
 
 	connectedCallback() {
@@ -41,19 +43,13 @@ export default class Paginator extends HTMLElement {
 		}
 	}
 	rerenderPageButtons() {
-		const root = this.shadowRoot;
-		const oldNodes = root.querySelectorAll('.temp');
-		for (const node of oldNodes) {
-			node.remove();
-		}
+		this.shadowRoot.querySelectorAll('*[class^="page-element"]').forEach(n => n.remove());
 		const pageNum = +this.getAttribute('currentpage');
-		const dots = root.querySelector('#dots').content;
-		const pages = root.querySelector('#pages').content;
 		const maxPages = this.getAttribute('maxpages');
 		for (let page=maxPages;page>0;page--) {
 			//first, previous, current, next or last page
 			if (page == 1 || page == pageNum - 1 || page == pageNum || page == pageNum + 1 || page == maxPages) {
-				const pageNode = pages.cloneNode(true).firstElementChild;
+				const pageNode = this.pages.cloneNode(true).firstElementChild;
 				pageNode.setAttribute('page', page);
 				if (pageNum == page) {
 					pageNode.classList.add('active');
@@ -61,16 +57,14 @@ export default class Paginator extends HTMLElement {
 				pageNode.innerHTML = page;
 				this.prev.parentNode.insertBefore(pageNode, this.prev.nextSibling);
 			} else if (page == pageNum-2 || pageNum+2 == page) {
-				this.prev.parentNode.insertBefore(dots.cloneNode(true), this.prev.nextSibling);
+				this.prev.parentNode.insertBefore(this.dots.cloneNode(true), this.prev.nextSibling);
 			}
 		}
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
-			if (oldVal != newVal) {
-				this.rerenderPageButtons();
-			}
+			this.rerenderPageButtons();
 		}
 	}
 }

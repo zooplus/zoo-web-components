@@ -52,10 +52,12 @@ class Checkbox extends HTMLElement {
 	mutationCallback(mutationsList) {
 		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
-				if (mutation.attributeName == 'disabled' && mutation.target.disabled) {
-					this.setAttribute('disabled', '');
-				} else {
-					this.removeAttribute('disabled');
+				if (mutation.attributeName == 'disabled') {
+					if (mutation.target.disabled) {
+						this.setAttribute('disabled', '');
+					} else {
+						this.removeAttribute('disabled');
+					}
 				}
 			}
 		}
@@ -67,7 +69,7 @@ class Checkbox extends HTMLElement {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let checkbox = checkboxSlot.assignedElements()[0];
 			checkbox.addEventListener('change', () => this.handleChange(checkbox));
-			if (checkbox.disabled) this.setAttribute('disabled', '');
+			if (checkbox.hasAttribute('disabled')) this.setAttribute('disabled', '');
 			this.observer.disconnect();
 			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
 			this.handleChange(checkbox);

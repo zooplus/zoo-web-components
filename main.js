@@ -154,7 +154,7 @@ const getRow = (d, i, template, idx) => {
 	const chkbx = document.querySelector('#valid-checkbox').content.cloneNode(true);
 	const input = chkbx.querySelector('input');
 	if (d.status !== 'DELIVERED') {
-		input.setAttribute('disabled', true);
+		input.setAttribute('disabled', '');
 	}
 	const num = i + idx;
 	input.setAttribute('id', `${num}-checkbox`);
@@ -170,7 +170,7 @@ const getRow = (d, i, template, idx) => {
 	const selectTmpl = document.querySelector('#status-select').content.cloneNode(true);
 	const select = selectTmpl.querySelector('select');
 	if (d.status !== 'DELIVERED') {
-		select.setAttribute('disabled', true);
+		select.setAttribute('disabled', '');
 	}
 	row.appendChild(selectTmpl);
 

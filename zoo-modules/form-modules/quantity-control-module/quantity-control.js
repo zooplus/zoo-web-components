@@ -11,7 +11,7 @@ export default class QuantityControl extends HTMLElement {
 		this.style.setProperty('--input-length', length + 1 + 'ch');
 	}
 
-	handleClick(increment, e) {
+	handleClick(increment) {
 		const step = this.input.step || 1;
 		this.input.value = this.input.value || 0;
 		this.input.value -= increment ? -step : step;
@@ -29,13 +29,13 @@ export default class QuantityControl extends HTMLElement {
 		const increaseSlot = this.shadowRoot.querySelector('slot[name="increase"]');
 		increaseSlot.addEventListener('slotchange', () => {
 			const btn = increaseSlot.assignedElements()[0];
-			btn.addEventListener('click', e => this.handleClick(true, e));
+			btn.addEventListener('click', () => this.handleClick(true));
 		});
 		
 		const decreaseSlot = this.shadowRoot.querySelector('slot[name="decrease"]');
 		decreaseSlot.addEventListener('slotchange', () => {
 			const btn = decreaseSlot.assignedElements()[0];
-			btn.addEventListener('click', e => this.handleClick(false, e));
+			btn.addEventListener('click', () => this.handleClick(false));
 		});
 	}
 }

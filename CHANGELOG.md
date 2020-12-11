@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.0.3
+
+maintanence release, update dependencies, added tests, removed unused code.
+
 ## 8.0.2
 
 `zoo-searchable-select` - deprecated usage of internal input. User should supply an `input` with a separate `label`, a `select` with a separate `label` and a `legend` text element to be accessible.

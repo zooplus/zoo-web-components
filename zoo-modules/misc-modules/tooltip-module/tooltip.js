@@ -6,6 +6,7 @@ export default class Tooltip extends HTMLElement {
 		super();
 	}
 
+	// TODO remove in v9
 	static get observedAttributes() {
 		return ['text'];
 	}
@@ -13,7 +14,6 @@ export default class Tooltip extends HTMLElement {
 		this.shadowRoot.querySelector('span').innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (oldVal == newVal) return;
 		if (attrName == 'text') this.handleText(newVal);
 	}
 }

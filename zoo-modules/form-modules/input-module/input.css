@@ -66,28 +66,20 @@ zoo-attention-icon {
 	padding: 12px 14px;
 }
 
-zoo-label {
-	grid-row: 1;
-}
-
 .content {
 	display: flex;
-	justify-content: stretch;
 	position: relative;
-	grid-row: 2;
 	grid-column: span 2;
 	flex: 1;
 }
 
-.info {
-	grid-row: 3;
+.info,
+.error {
 	grid-column: span 2;
 }
 
 .error {
 	display: none;
-	grid-row: 4;
-	grid-column: span 2;
 
 	--icon-color: var(--warning-mid);
 }

@@ -1,0 +1,6 @@
+{
+	"exclude": [
+		"**/main.js",
+		"**/main.css.js"
+	]
+}

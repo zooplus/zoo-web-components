@@ -47,16 +47,15 @@
 
 svg {
 	border: 1px solid var(--check-color);
+	fill: var(--check-color);
 	border-radius: 3px;
 	pointer-events: none;
 	min-width: 24px;
-	min-height: 24px;
 	z-index: 1;
 }
 
 svg path {
 	display: none;
-	fill: var(--check-color);
 }
 
 :host([checked]) svg path {
@@ -93,15 +92,13 @@ svg path {
 	cursor: not-allowed;
 }
 
-.info {
-	grid-row: 3;
+.info,
+.error {
 	grid-column: span 2;
 }
 
 .error {
 	display: none;
-	grid-row: 4;
-	grid-column: span 2;
 
 	--icon-color: var(--warning-mid);
 }

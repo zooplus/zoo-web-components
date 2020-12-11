@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer';
 import jasmine from 'jasmine';
 import axe from 'axe-core';
+import pti from 'puppeteer-to-istanbul';
 
 beforeAll(async () => {
 	jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
@@ -22,18 +23,25 @@ beforeAll(async () => {
 		warningUltralight: '#FDE8E9',
 		warningMid: '#ED1C24'
 	};
+	await Promise.all([
+		page.coverage.startJSCoverage(),
+		page.coverage.startCSSCoverage()
+	]);
+
 	await global.page.goto('http://localhost:5000');
 });
 
 beforeEach(async () => {
+	await global.page.evaluate(() => document.body.innerHTML = '');
 	global.axeHandle = await global.page.evaluateHandle(`${axe.source}`);
 });
 
-afterEach(async () => {
-	await global.page.evaluate(() => document.body.innerHTML = '');
-});
-
 afterAll(async () => {
+	const [jsCoverage, cssCoverage] = await Promise.all([
+		page.coverage.stopJSCoverage(),
+		page.coverage.stopCSSCoverage(),
+	]);
+	pti.write([...jsCoverage, ...cssCoverage], { includeHostname: true , storagePath: './.nyc_output' });
 	await global.axeHandle ? global.axeHandle.dispose() : new Promise(res => res());
 	await global.browser.close();
 });

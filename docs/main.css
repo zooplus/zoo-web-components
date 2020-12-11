@@ -31,16 +31,9 @@ form {
 	max-width: 1280px;
 }
 
-h2, aside {
-	margin-left: 20px;
-}
-
 h2 {
+	margin-left: 20px;
 	color: var(--primary-mid);
-}
-
-aside {
-	color: var(--primary-dark);
 }
 
 hr {
@@ -67,7 +60,7 @@ hr {
 	width: 40px;
 }
 
-.icon-btn button svg path {
+.icon-btn button svg {
 	fill: white;
 }
 
@@ -141,24 +134,10 @@ zoo-select[column="3"] {
 	padding-right: 10px;
 }
 
-zoo-select zoo-input input {
-	border-radius: 0 5px 5px 0;
-}
-
-zoo-select zoo-input {
-	display: flex;
-	margin-left: -5px;
-	flex: 1;
-}
-
 zoo-input zoo-button button {
 	border-radius: 0 5px 5px 0;
 }
 
 #input-composition {
 	border-radius: 5px 0 0 5px;
-}
-
-.input-composition::part(error-icon) {
-	right: 20%;
 }

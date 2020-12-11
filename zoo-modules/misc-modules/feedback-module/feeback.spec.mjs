@@ -6,7 +6,7 @@ describe('Zoo feedback', function () {
 			span.innerHTML = 'example';
 			feedback.appendChild(span);
 			document.body.appendChild(feedback);
-			const text = feedback.shadowRoot.querySelector('slot').assignedNodes()[0].innerHTML;
+			const text = feedback.shadowRoot.querySelector('slot').assignedElements()[0].innerHTML;
 			return text;
 		});
 		expect(retText).toEqual('example');

@@ -34,10 +34,10 @@
 		<a href="http://caniuse.com/#feat=custom-elementsv1" target="about:blank">Can I use custom-elementsv1?</a>
 		<a href="https://zooplus.github.io/zoo-web-components-docs/index.html" target="about:blank">Documentation</a>
 	</zoo-navigation>
-	<span id="what">
+	<div id="what">
 		<h3>Set of web-components which can be used in any modern UI framework (or without any).</h3>
 		<h3>The web-component set implements Z+ shop style guide.</h3>
-	</span>
+	</div>
 	<main>
 		<h2>Form elements</h2>
 		<form>
@@ -61,7 +61,7 @@
 				<option value="Aquatic">
 			</datalist>
 			<zoo-input>
-				<input id="input-type-date" slot="input" type="date" placeholder="Enter date" />
+				<input id="input-type-date" slot="input" type="date"/>
 				<label for="input-type-date" slot="label">Input type date</label>
 				<span slot="info">Click on input to show context menu with date selection</span>
 				<a slot="link" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native date picker polyfill on Github</a>
@@ -116,7 +116,7 @@
 					<option value="random1">random1</option>
 					<option value="random2">random2</option>
 				</select>
-				<label for="standard-select2" slot="selectlabel">Searchable select</label>
+				<label for="searchable-select2" slot="selectlabel">Searchable select</label>
 				<input id="inserted-input2" slot="input" type="text" placeholder="Select single option"/>
 				<label for="inserted-input2" slot="inputlabel">Searchable select input</label>
 				<span slot="legend">Searchable select legend</span>
@@ -217,9 +217,9 @@
 				<zoo-select labelposition="left" slot="pagesizeselector">
 					<select id="first-grid-page-size" slot="select">
 						<option selected>5</option>
-						<option selected>10</option>
-						<option selected>25</option>
-						<option selected>100</option>
+						<option>10</option>
+						<option>25</option>
+						<option>100</option>
 					</select>
 					<label for="first-grid-page-size" slot="label">Page size</label>
 				</zoo-select>
@@ -241,9 +241,9 @@
 				<zoo-select labelposition="left" slot="pagesizeselector">
 					<select id="second-grid-page-size" slot="select">
 						<option selected>5</option>
-						<option selected>10</option>
-						<option selected>25</option>
-						<option selected>100</option>
+						<option>10</option>
+						<option>25</option>
+						<option>100</option>
 					</select>
 					<label for="second-grid-page-size" slot="label">Page size</label>
 				</zoo-select>

@@ -7,6 +7,7 @@ export default class Checkbox extends HTMLElement {
 	}
 
 	// TODO think of a better way to handle disabled attribute change
+	// TODO move checkbox inside label so handle multiple checkboxes
 	mutationCallback(mutationsList) {
 		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {

@@ -4,12 +4,12 @@
 	box-sizing: border-box;
 	font-size: 14px;
 	line-height: 20px;
-	border-left: 3px solid;
+	border-left: 3px solid var(--info-mid);
 	width: 100%;
 	height: 100%;
 	padding: 5px 0;
 	background: var(--info-ultralight);
-	border-color: var(--info-mid);
+	border-radius: 5px;
 
 	--svg-fill: var(--info-mid);
 }
@@ -28,11 +28,12 @@
 	--svg-fill: var(--primary-mid);
 }
 
-svg {
-	min-width: 30px;
-	min-height: 30px;
+zoo-attention-icon {
 	padding: 0 10px 0 15px;
 	fill: var(--svg-fill);
+
+	--width: 30px;
+	--height: 30px;
 }
 
 ::slotted(*) {

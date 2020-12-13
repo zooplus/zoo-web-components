@@ -25,7 +25,7 @@ div {
 	max-width: 330px;
 	min-height: 50px;
 	box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-	border-left: 3px solid;
+	border-left: 3px solid var(--color-mid);
 	display: flex;
 	align-items: center;
 	word-break: break-word;
@@ -36,23 +36,12 @@ div {
 	opacity: 0;
 	transform: translate3d(100%, 0, 0);
 	background: var(--color-ultralight);
-	border-color: var(--color-mid);
-}
-
-button {
-	cursor: pointer;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	display: flex;
-}
-
-.icon {
-	padding-right: 10px;
-	min-width: 48px;
+	border-radius: 5px;
 }
 
 svg {
+	padding-right: 10px;
+	min-width: 48px;
 	fill: var(--color-mid);
 }
 

@@ -1,10 +1,7 @@
-:host {
-	display: flex;
-}
-
 svg {
+	display: flex;
 	padding-right: 5px;
-	min-width: 18px;
-	align-self: flex-start;
+	width: var(--width, 18px);
+	height: var(--height, 18px);
 	fill: var(--icon-color, var(--info-mid));
 }

@@ -132,7 +132,7 @@ describe('Zoo searchable select', function () {
 
 			await new Promise(r => setTimeout(r, 10));
 
-			select.shadowRoot.querySelector('.close').dispatchEvent(new Event('click'));
+			select.shadowRoot.querySelector('zoo-cross-icon').dispatchEvent(new Event('click'));
 			await new Promise(r => setTimeout(r, 10));
 
 			return slottedSelect.value;

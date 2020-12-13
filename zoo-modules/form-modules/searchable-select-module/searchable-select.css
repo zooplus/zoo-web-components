@@ -2,16 +2,15 @@
 	position: relative;
 }
 
-.close {
+zoo-cross-icon {
 	display: none;
 	position: absolute;
-	top: 15px;
+	top: 12px;
 	right: 14px;
 	cursor: pointer;
-	z-index: 1;
 }
 
-:host([valueselected]) .close {
+:host([valueselected]) zoo-cross-icon {
 	display: flex;
 }
 

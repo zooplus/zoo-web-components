@@ -1,0 +1,6 @@
+svg {
+	display: flex;
+	width: var(--width, 24px);
+	height: var(--height, 24px);
+	fill: var(--icon-color, var(--primary-mid));
+}

@@ -48,7 +48,7 @@ describe('Zoo toast', function () {
 			await new Promise(r => setTimeout(r, 35));
 			styles.push(window.getComputedStyle(toast).display);
 
-			toast.shadowRoot.querySelector('button').click();
+			toast.close();
 			await new Promise(r => setTimeout(r, 350));
 			styles.push(window.getComputedStyle(toast).display);
 			return styles;

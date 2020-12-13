@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 8.1.0
+
+`zoo-toast` - no longer provides close button as per https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/alertdialog.html. Use slot if this button is needed.  
+
+New components that encapsulate svg icons:
+
+- `zoo-arrow-icon`
+- `zoo-cross-icon`
+- `zoo-attention-icon`
+
 ## 8.0.5
 
 `zoo-radio` - wrap slotted elements into a fieldset for a11y.

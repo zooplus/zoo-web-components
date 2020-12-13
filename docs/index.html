@@ -48,7 +48,7 @@
 				<a slot="link" href="https://google.com" target="about:blank">Forgotten your password?</a>
 			</zoo-input>
 			<zoo-input>
-				<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
+				<input id="input-type-number" slot="input" placeholder="input" list="animals" required/>
 				<label for="input-type-number" slot="label">Autocomplete</label>
 				<span slot="info">Possible values: Dog, Cat, Small Pet, Bird, Aquatic</span>
 				<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
@@ -89,7 +89,7 @@
 			</zoo-select>
 			<zoo-select class="select">
 				<select id="normal-select" slot="select">
-					<option value="" disabled>Placeholder</option>
+					<option value="" disabled selected>Please select an option</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -108,9 +108,11 @@
 				<input id="inserted-input" slot="input" type="text" placeholder="Select multiple options"/>
 				<label for="inserted-input" slot="inputlabel">Searchable multiple input</label>
 				<span slot="legend">Searchable multiple select legend</span>
+				<span slot="info">Search is case insensitive.</span>
 			</zoo-searchable-select>
 			<zoo-searchable-select>
 				<select id="searchable-select2" slot="select">
+					<option value="" disabled selected>Please select an option</option>
 					<option value="text">text</option>
 					<option value="raNdOm">raNdOm</option>
 					<option value="random1">random1</option>
@@ -120,7 +122,7 @@
 				<input id="inserted-input2" slot="input" type="text" placeholder="Select single option"/>
 				<label for="inserted-input2" slot="inputlabel">Searchable select input</label>
 				<span slot="legend">Searchable select legend</span>
-				<span slot="info">Additional helpful information for our users.</span>
+				<span slot="info">Search is case insensitive. Prefer to use input with a datalist.</span>
 			</zoo-searchable-select>
 			<zoo-checkbox highlighted>
 				<input id="checkbox" slot="checkbox" type="checkbox"/>
@@ -183,7 +185,7 @@
 				<br>
 				<zoo-select>
 					<select id="product-for" slot="select">
-						<option class="placeholder" value="" disabled selected>Doge</option>
+						<option value="" disabled selected>Please select type of your pet</option>
 						<option>Doge</option>
 						<option>Catz</option>
 						<option>Snek</option>

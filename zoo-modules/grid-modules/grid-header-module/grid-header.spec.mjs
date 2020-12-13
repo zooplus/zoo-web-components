@@ -1,10 +1,10 @@
-describe('Zoo quantity control', function() {
+describe('Zoo grid header', function() {
 	it('should show sort arrow when sortable attribute is present', async() => {
 		const ret = await page.evaluate(async () => {
 			document.body.innerHTML = '<zoo-grid-header sortable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
-			const arrow = header.shadowRoot.querySelector('.arrow');
+			const arrow = header.shadowRoot.querySelector('zoo-arrow-icon');
 			
 			const style = window.getComputedStyle(arrow);
 			return style.display;
@@ -17,7 +17,7 @@ describe('Zoo quantity control', function() {
 			document.body.innerHTML = '<zoo-grid-header>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
-			const arrow = header.shadowRoot.querySelector('.arrow');
+			const arrow = header.shadowRoot.querySelector('zoo-arrow-icon');
 			
 			const style = window.getComputedStyle(arrow);
 			return style.display;
@@ -77,7 +77,7 @@ describe('Zoo quantity control', function() {
 			document.body.innerHTML = '<zoo-grid-header sortable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
-			const arrow = header.shadowRoot.querySelector('.arrow');
+			const arrow = header.shadowRoot.querySelector('zoo-arrow-icon');
 
 			const states = [];
 

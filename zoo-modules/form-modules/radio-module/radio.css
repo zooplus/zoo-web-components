@@ -10,6 +10,13 @@
 	--box-shadow-width2: 1px;
 }
 
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
 .radio-group {
 	display: flex;
 	padding: 11px 0;
@@ -25,7 +32,7 @@
 	height: 24px;
 	border-radius: 50%;
 	margin: 0 2px 0 0;
-	padding: 3px;
+	padding: 4px;
 	background-clip: content-box;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -47,6 +54,7 @@
 	background-color: var(--primary-mid);
 
 	--box-shadow-color: #3C9700;
+	--box-shadow-width: 2px;
 	--box-shadow-width2: 4px;
 	--box-shadow-color2: white;
 }
@@ -60,6 +68,8 @@
 	cursor: not-allowed;
 	background-color: #E6E6E6;
 
+	--box-shadow-width: 2px;
+	--box-shadow-width2: 5px;
 	--box-shadow-color: #767676;
 }
 

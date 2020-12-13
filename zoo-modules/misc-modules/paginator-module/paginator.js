@@ -23,7 +23,7 @@ export default class Paginator extends HTMLElement {
 	goToPage(pageNumber) {
 		this.setAttribute('currentpage', pageNumber);
 		this.dispatchEvent(new CustomEvent('pageChange', {
-			detail: {pageNumber: pageNumber}, bubbles: true, compose: true
+			detail: {pageNumber: pageNumber}, bubbles: true, composed: true
 		}));
 	}
 

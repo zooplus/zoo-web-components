@@ -79,7 +79,6 @@
 :host([stickyheader]) .header-row {
 	top: 0;
 	position: sticky;
-	background: white;
 }
 
 ::slotted(*[slot="row"]:nth-child(odd)) {

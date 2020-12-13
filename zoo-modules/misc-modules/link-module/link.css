@@ -7,29 +7,25 @@
 	align-items: center;
 	position: relative;
 	padding: 0 5px;
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 16px;
 
 	--color-normal: var(--primary-mid);
-	--color-visited: var(--primary-light);
 	--color-active: var(--primary-dark);
 }
 
 :host([type="negative"]) {
 	--color-normal: white;
-	--color-visited: white;
 	--color-active: var(--primary-dark);
 }
 
 :host([type="grey"]) {
 	--color-normal: #767676;
-	--color-visited: #767676;
 	--color-active: var(--primary-dark);
 }
 
 :host([type="warning"]) {
 	--color-normal: var(--warning-mid);
-	--color-visited: var(--warning-mid);
 	--color-active: var(--warning-dark);
 }
 
@@ -50,8 +46,4 @@
 ::slotted(a:focus),
 ::slotted(a:active) {
 	color: var(--color-active);
-}
-
-::slotted(a:visited) {
-	color: var(--color-visited);
 }

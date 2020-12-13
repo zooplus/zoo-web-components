@@ -7,6 +7,7 @@ export default class Modal extends HTMLElement {
 		this.header = this.shadowRoot.querySelector('span');
 	}
 
+	// todo remove in v9 headertext
 	static get observedAttributes() {
 		return ['headertext', 'closelabel'];
 	}
@@ -35,14 +36,9 @@ export default class Modal extends HTMLElement {
 		this.toggleModalClass();
 		// todo trap focus inside modal
 		this.shadowRoot.querySelector('button').focus();
-		document.addEventListener('keyup', this.handleEscape.bind(this));
-	}
-
-	handleEscape(e) {
-		const key = e.which || e.keyCode;
-		if (key === 27 && this.closeModal()) {
-			e.stopPropagation();
-		}
+		document.addEventListener('keyup', e => {
+			if (e.key === 'Escape') this.closeModal();
+		});
 	}
 
 	closeModal() {

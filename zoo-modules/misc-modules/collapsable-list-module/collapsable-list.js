@@ -12,7 +12,7 @@ export default class CollapsableList extends HTMLElement {
 			let items = slot.assignedElements();
 			items = items.filter(i => i.tagName == 'ZOO-COLLAPSABLE-LIST-ITEM');
 			if (items[0]) {
-				items[0].setAttribute('active', true);
+				items[0].setAttribute('active', '');
 				this.prevActiveItem = items[0];
 			}
 
@@ -21,7 +21,7 @@ export default class CollapsableList extends HTMLElement {
 					if (item.hasAttribute('active')) return;
 					this.prevActiveItem.removeAttribute('active');
 					this.prevActiveItem = item;
-					item.setAttribute('active', true);
+					item.setAttribute('active', '');
 				});
 			}
 		});

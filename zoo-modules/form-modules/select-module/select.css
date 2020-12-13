@@ -48,7 +48,6 @@
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	width: 100%;
-	background: white;
 	font-size: 14px;
 	line-height: 20px;
 	padding: 13px 25px 13px 15px;
@@ -63,7 +62,7 @@
 
 ::slotted(select:disabled) {
 	border: 1px solid #E6E6E6;
-	background-color: #F2F3F4;
+	background: #F2F3F4;
 	color: #767676;
 }
 

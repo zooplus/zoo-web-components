@@ -34,9 +34,6 @@ export default class SearchableSelect extends HTMLElement {
 			this.select = selectSlot.assignedElements()[0];
 			this.select.addEventListener('change', () => this.handleOptionChange());
 			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected'));
-			this.select.addEventListener('keydown', e => {
-				if (e.keyCode && e.keyCode === 13) this.handleOptionChange();
-			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
 			}

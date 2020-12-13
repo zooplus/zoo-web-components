@@ -33,7 +33,6 @@ zoo-attention-icon {
 	box-sizing: border-box;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	background: #FFF;
 }
 
 :host([invalid]) ::slotted(input),
@@ -55,7 +54,7 @@ zoo-attention-icon {
 ::slotted(input:disabled),
 ::slotted(textarea:disabled) {
 	border: 1px solid #E6E6E6;
-	background-color: #F2F3F4;
+	background: #F2F3F4;
 	color: #767676;
 	cursor: not-allowed;
 }

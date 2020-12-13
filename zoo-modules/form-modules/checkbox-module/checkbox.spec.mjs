@@ -125,6 +125,24 @@ describe('Zoo checkbox', function () {
 		expect(disabled).toBeTrue();
 	});
 
+	it('should remove disabled attribute on host when checkbox is no longer disabled', async () => {
+		const disabled = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-checkbox>
+					<input id="modal-checkbox" slot="checkbox" type="checkbox" disabled/>
+					<label for="modal-checkbox" slot="label">label-text</label>
+				</zoo-checkbox>
+			`;
+			const root = document.querySelector('zoo-checkbox');
+			await new Promise(r => setTimeout(r, 10));
+			root.shadowRoot.querySelector('slot[name="checkbox"]').assignedElements()[0].disabled = false;
+			await new Promise(r => setTimeout(r, 10));
+
+			return root.hasAttribute('disabled');
+		});
+		expect(disabled).toBeFalse();
+	});
+
 	it('should set checked attribute when change event is dispatched on slotted checkbox', async () => {
 		const checked = await page.evaluate(async () => {
 			document.body.innerHTML = `

@@ -49,11 +49,7 @@ export default class Toast extends HTMLElement {
 
 	toggleToastClass() {
 		const toast = this.shadowRoot.querySelector('div');
-		if (this.hidden) {
-			toast.classList.remove('show');
-		} else {
-			toast.classList.add('show');
-		}
+		toast.classList.toggle('show');
 	}
 }
 

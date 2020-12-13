@@ -19,14 +19,6 @@ zoo-attention-icon {
 	opacity: 1;
 }
 
-::slotted(input:optional) {
-	border-color: green !important;
-}
-
-::slotted(input:invalid) {
-	border-color: red;
-}
-
 ::slotted(input),
 ::slotted(textarea) {
 	width: 100%;

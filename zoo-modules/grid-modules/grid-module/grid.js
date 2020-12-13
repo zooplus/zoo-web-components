@@ -26,15 +26,6 @@ export default class ZooGrid extends HTMLElement {
 			rowSlot.assignedElements().forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
 		}));
 		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
-		const paginator = root.querySelector('zoo-paginator');
-		if (paginator) {
-			paginator.addEventListener('pageChange', e => {
-				this.setAttribute('currentpage', e.detail.pageNumber);
-				this.dispatchEvent(new CustomEvent('pageChange', {
-					detail: {pageNumber: e.detail.pageNumber}, bubbles: true
-				}));
-			});
-		}
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -58,10 +49,9 @@ export default class ZooGrid extends HTMLElement {
 	resizeCallback(entries) {
 		entries.forEach(entry => {
 			const columnNum = entry.target.getAttribute('column');
+			const width = entry.contentRect.width;
 			const rowColumns = this.querySelectorAll(`[slot="row"] > [column="${columnNum}"]`);
 			const headerColumn = this.querySelector(`[column="${columnNum}"]`);
-			if (!headerColumn) return;
-			const width = entry.contentRect.width;
 			[...rowColumns, headerColumn].forEach(columnEl => columnEl.style.width = `${width}px`);
 		});
 	}
@@ -81,8 +71,8 @@ export default class ZooGrid extends HTMLElement {
 
 	handleDraggableHeader(header) {
 		// avoid attaching multiple eventListeners to the same element
-		if (header.getAttribute('reorderable')) return;
-		header.setAttribute('reorderable', true);
+		if (header.hasAttribute('reorderable')) return;
+		header.setAttribute('reorderable', '');
 		header.setAttribute('ondragover', 'event.preventDefault()');
 		header.setAttribute('ondrop', 'event.preventDefault()');
 
@@ -139,17 +129,10 @@ export default class ZooGrid extends HTMLElement {
 	}
 
 	handleSortChange(e) {
-		e.stopPropagation();
-		const header = e.detail.header;
-		const sortState = e.detail.sortState;
-		if (this.prevSortedHeader && !header.isEqualNode(this.prevSortedHeader)) {
-			this.prevSortedHeader.sortState = undefined;
+		if (this.prevSortedHeader && !e.target.isEqualNode(this.prevSortedHeader)) {
+			this.prevSortedHeader.removeAttribute('sortstate');
 		}
-		this.prevSortedHeader = header;
-		const detail = sortState ? {property: header.getAttribute('sortableproperty'), direction: sortState} : undefined;
-		this.dispatchEvent(new CustomEvent('sortChange', {
-			detail: detail, bubbles: true
-		}));
+		this.prevSortedHeader = e.target;
 	}
 
 	disconnectedCallback() {

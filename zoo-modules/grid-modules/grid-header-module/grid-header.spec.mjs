@@ -1,7 +1,7 @@
 describe('Zoo quantity control', function() {
 	it('should show sort arrow when sortable attribute is present', async() => {
 		const ret = await page.evaluate(async () => {
-			document.body.innerHTML = `<zoo-grid-header sortable>Valid</zoo-grid-header>`;
+			document.body.innerHTML = '<zoo-grid-header sortable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
 			const arrow = header.shadowRoot.querySelector('.arrow');
@@ -14,7 +14,7 @@ describe('Zoo quantity control', function() {
 
 	it('should not show sort arrow when sortable attribute is absent', async() => {
 		const ret = await page.evaluate(async () => {
-			document.body.innerHTML = `<zoo-grid-header>Valid</zoo-grid-header>`;
+			document.body.innerHTML = '<zoo-grid-header>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
 			const arrow = header.shadowRoot.querySelector('.arrow');
@@ -27,7 +27,7 @@ describe('Zoo quantity control', function() {
 
 	it('should show reorder arrows when reorderable attribute is present', async() => {
 		const ret = await page.evaluate(async () => {
-			document.body.innerHTML = `<zoo-grid-header reorderable>Valid</zoo-grid-header>`;
+			document.body.innerHTML = '<zoo-grid-header reorderable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
 			const swap = header.shadowRoot.querySelector('.swap');
@@ -40,7 +40,7 @@ describe('Zoo quantity control', function() {
 
 	it('should not show reorder arrows when reorderable attribute is absent', async() => {
 		const ret = await page.evaluate(async () => {
-			document.body.innerHTML = `<zoo-grid-header>Valid</zoo-grid-header>`;
+			document.body.innerHTML = '<zoo-grid-header>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
 			const swap = header.shadowRoot.querySelector('.swap');
@@ -53,7 +53,7 @@ describe('Zoo quantity control', function() {
 
 	it('should add and then remove draggable attribute when on mousedown and draend events', async() => {
 		const ret = await page.evaluate(async () => {
-			document.body.innerHTML = `<zoo-grid-header reorderable>Valid</zoo-grid-header>`;
+			document.body.innerHTML = '<zoo-grid-header reorderable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
 			const swap = header.shadowRoot.querySelector('.swap');
@@ -74,7 +74,7 @@ describe('Zoo quantity control', function() {
 
 	it('should set sortstate attribute on click on arrow', async() => {
 		const sortState = await page.evaluate(async () => {
-			document.body.innerHTML = `<zoo-grid-header sortable>Valid</zoo-grid-header>`;
+			document.body.innerHTML = '<zoo-grid-header sortable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
 			const arrow = header.shadowRoot.querySelector('.arrow');

@@ -20,7 +20,10 @@ export default class GridHeader extends HTMLElement {
 		} else if (this.getAttribute('sortstate') == 'asc') {
 			this.removeAttribute('sortstate');
 		}
-		this.dispatchEvent(new CustomEvent('sortChange', {detail: {sortState: this.getAttribute('sortstate'), header: this}, bubbles: true}));
+		const detail = this.hasAttribute('sortstate')
+			? { property: this.getAttribute('sortableproperty'), direction: this.getAttribute('sortstate') }
+			: undefined; 
+		this.dispatchEvent(new CustomEvent('sortChange', {detail: detail, bubbles: true, composed: true }));
 	}
 }
 

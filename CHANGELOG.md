@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.0.5
+
+`zoo-radio` - wrap slotted elements into a fieldset for a11y.
+
 ## 8.0.4
 
 `zoo-checkbox` - fix removing disabled attribute from host element.

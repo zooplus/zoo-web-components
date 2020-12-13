@@ -5,9 +5,9 @@
 
 # Zoo Web Components
 
-- Set of web-components which can be used in any modern UI framework (or without any).
-- The web-component set implements Z+ shop style guide.
-- Built with [Vanilla JS](http://vanilla-js.com/)
+- Set of extendable, reusable web-components which can be used in any modern UI framework (or without any).
+- 0 dependencies, built with [Vanilla JS](http://vanilla-js.com/)
+- Doesn't hide native HTML elements behind multiple levels of abstraction but rather enhances them via composition.
 
 ## Installation
 

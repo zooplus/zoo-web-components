@@ -23,11 +23,11 @@ describe('Zoo toast', function () {
 			const styles = [];
 			const toast = document.querySelector('zoo-toast');
 			toast.show();
-			await new Promise(r => setTimeout(r, 35));
+			await new Promise(r => setTimeout(r, 45));
 			styles.push(window.getComputedStyle(toast).display);
 
 			toast.close();
-			await new Promise(r => setTimeout(r, 335));
+			await new Promise(r => setTimeout(r, 345));
 			styles.push(window.getComputedStyle(toast).display);
 			return styles;
 		});

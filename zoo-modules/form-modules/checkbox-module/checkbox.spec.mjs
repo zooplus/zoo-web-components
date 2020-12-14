@@ -88,7 +88,7 @@ describe('Zoo checkbox', function () {
 			};
 		});
 		expect(style.checkColor).toEqual(colors.warningMid);
-		expect(style.border).toEqual(`1px solid  ${colors.warningMid}`);
+		expect(style.border).toEqual(`2px solid  ${colors.warningMid}`);
 	});
 
 	it('should set checked attribute on host when checkbox is checked', async () => {
@@ -158,5 +158,30 @@ describe('Zoo checkbox', function () {
 			return root.hasAttribute('checked');
 		});
 		expect(checked).toBeTrue();
+	});
+
+	it('should set and then remove invalid attribute from host', async () => {
+		const result = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-checkbox>
+					<input id="modal-checkbox" slot="checkbox" type="checkbox" required/>
+					<label for="modal-checkbox" slot="label">label-text</label>
+				</zoo-checkbox>
+				`;
+			const result = [];
+			let input = document.querySelector('zoo-checkbox');
+			const slottedInput = input.shadowRoot.querySelector('slot[name="checkbox"]').assignedElements()[0];
+			slottedInput.click();
+			await new Promise(r => setTimeout(r, 10));
+			result.push(input.hasAttribute('invalid'));
+
+			slottedInput.click();
+			await new Promise(r => setTimeout(r, 10));
+			result.push(input.hasAttribute('invalid'));
+
+			return result;
+		});
+		expect(result[0]).toBeFalse();
+		expect(result[1]).toBeTrue();
 	});
 });

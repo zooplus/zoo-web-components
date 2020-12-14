@@ -17,7 +17,7 @@ export default class SearchableSelect extends HTMLElement {
 
 	// TODO think of a way to reuse some logic from nested zoo-select, eg. valueselected, option change etc
 	mutationCallback(mutationsList) {
-		for(let mutation of mutationsList) {
+		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
 				this.input.disabled = mutation.target.disabled;
 			}
@@ -32,17 +32,16 @@ export default class SearchableSelect extends HTMLElement {
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
-			this.select.addEventListener('change', () => this.handleOptionChange());
-			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected'));
+			this.select.addEventListener('change', e => {
+				this.handleOptionChange();
+				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
 			}
 			this.select.size = 4;
 			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
-			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			this.select.addEventListener('input', () => {
-				this.select.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
 			this.handleOptionChange();
@@ -52,11 +51,7 @@ export default class SearchableSelect extends HTMLElement {
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = inputSlot.assignedElements()[0];
 			this.inputPlaceholderFallback = this.input.placeholder;
-			this.input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			this.input.addEventListener('input', () => {
-				this.handleSearchChange();
-				this.select.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
+			this.input.addEventListener('input', () => this.handleSearchChange());
 			this.handleOptionChange();
 		});
 	}
@@ -106,7 +101,7 @@ export default class SearchableSelect extends HTMLElement {
 
 	handleCrossClick() {
 		this.select.value = null;
-		this.select.dispatchEvent(new Event('change'));
+		this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);

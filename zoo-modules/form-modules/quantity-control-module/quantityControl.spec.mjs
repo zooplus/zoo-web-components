@@ -146,4 +146,41 @@ describe('Zoo quantity control', function() {
 		});
 		expect(ret).toEqual('1');
 	});
+
+	it('should set and then remove invalid attribute from host', async () => {
+		const result = await page.evaluate(async () => {
+			document.body.innerHTML = `
+			<zoo-quantity-control>
+				<button type="button" slot="decrease">
+					<svg height="18" width="18"><line y1="9" x1="0" x2="18" y2="9"></line></svg>
+				</button>
+				<input id="number-input" slot="input" placeholder="0" type="number" required/>
+				<label for="number-input" slot="label">Label</label>
+				<button type="button" slot="increase">
+					<svg height="18" width="18">
+						<line y1="0" x1="9" x2="9" y2="18"></line>
+						<line y1="9" x1="0" x2="18" y2="9"></line>
+					</svg>
+				</button>
+			</zoo-quantity-control>
+				`;
+			const result = [];
+			let quantityControl = document.querySelector('zoo-quantity-control');
+			await new Promise(r => setTimeout(r, 10));
+			const slottedInput = quantityControl.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
+			slottedInput.value = '';
+			slottedInput.dispatchEvent(new Event('change'));
+			await new Promise(r => setTimeout(r, 10));
+			result.push(quantityControl.hasAttribute('invalid'));
+
+			slottedInput.value = 2;
+			slottedInput.dispatchEvent(new Event('change'));
+			await new Promise(r => setTimeout(r, 10));
+			result.push(quantityControl.hasAttribute('invalid'));
+
+			return result;
+		});
+		expect(result[0]).toBeTrue();
+		expect(result[1]).toBeFalse();
+	});
 });

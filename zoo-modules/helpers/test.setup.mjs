@@ -23,6 +23,7 @@ beforeAll(async () => {
 		warningUltralight: '#FDE8E9',
 		warningMid: '#ED1C24'
 	};
+	page.on('console', msg => console.log('PAGE LOG:', msg.text()));
 	await Promise.all([
 		page.coverage.startJSCoverage(),
 		page.coverage.startCSSCoverage()

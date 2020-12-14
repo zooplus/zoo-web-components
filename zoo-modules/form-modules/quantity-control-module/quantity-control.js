@@ -24,8 +24,8 @@ export default class QuantityControl extends HTMLElement {
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = inputSlot.assignedElements()[0];
 			this.input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			this.input.addEventListener('input', () => {
-				this.input.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			this.input.addEventListener('change', e => {
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
 			});
 			this.setInputWidth();
 		});

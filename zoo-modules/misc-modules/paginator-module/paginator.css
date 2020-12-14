@@ -13,7 +13,7 @@
 	display: flex;
 }
 
-.paging {
+nav {
 	display: flex;
 	align-items: center;
 	border: 1px solid #E6E6E6;
@@ -47,10 +47,6 @@ button.hidden {
 	display: none;
 }
 
-svg {
-	fill: var(--primary-mid);
-}
-
 .page-element {
 	padding: 4px 8px;
 }
@@ -58,4 +54,12 @@ svg {
 .page-element.active {
 	background: var(--primary-ultralight);
 	color: var(--primary-mid);
+}
+
+.prev zoo-arrow-icon {
+	transform: rotate(90deg);
+}
+
+.next zoo-arrow-icon {
+	transform: rotate(-90deg);
 }

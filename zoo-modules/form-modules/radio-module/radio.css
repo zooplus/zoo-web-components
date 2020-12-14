@@ -48,6 +48,7 @@ fieldset {
 
 ::slotted(input:focus) {
 	--box-shadow-color: #3C9700;
+	--box-shadow-width: 2px;
 }
 
 ::slotted(input:checked) {
@@ -66,11 +67,11 @@ fieldset {
 
 ::slotted(input:disabled) {
 	cursor: not-allowed;
-	background-color: #E6E6E6;
+	background-color: #555;
 
 	--box-shadow-width: 2px;
 	--box-shadow-width2: 5px;
-	--box-shadow-color: #767676;
+	--box-shadow-color: #555 !important;
 }
 
 ::slotted(label) {

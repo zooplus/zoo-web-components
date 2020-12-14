@@ -12,3 +12,5 @@ export * from '../zoo-modules/misc-modules/spinner-module/spinner.js';
 export * from '../zoo-modules/misc-modules/paginator-module/paginator.js';
 export * from '../zoo-modules/misc-modules/preloader-module/preloader.js';
 export * from '../zoo-modules/misc-modules/attention-icon-module/attention-icon.js';
+export * from '../zoo-modules/misc-modules/cross-icon-module/cross-icon.js';
+export * from '../zoo-modules/misc-modules/arrow-icon-module/arrow-icon.js';

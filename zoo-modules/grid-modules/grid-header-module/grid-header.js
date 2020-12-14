@@ -9,7 +9,7 @@ export default class GridHeader extends HTMLElement {
 	connectedCallback() {
 		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
 		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
-		this.shadowRoot.querySelector('.arrow').addEventListener('click', () => this.handleSortClick());
+		this.shadowRoot.querySelector('zoo-arrow-icon').addEventListener('click', () => this.handleSortClick());
 	}
 
 	handleSortClick() {

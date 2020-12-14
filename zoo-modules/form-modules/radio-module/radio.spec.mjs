@@ -54,4 +54,38 @@ describe('Zoo radio', function () {
 		});
 		expect(errorDisplay).toEqual('none');
 	});
+
+	it('should set and then remove invalid attribute from host', async () => {
+		const result = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-radio>
+					<input type="radio" id="contactChoice1" name="contact" value="email" required>
+					<label for="contactChoice1">Email</label>
+					<input type="radio" id="contactChoice2" name="contact" value="phone">
+					<label for="contactChoice2">Phone</label>
+					<label slot="label">label</label>
+					<span slot="error">error</span>
+				</zoo-radio>
+				`;
+			const result = [];
+			let input = document.querySelector('zoo-radio');
+			await new Promise(r => setTimeout(r, 10));
+			const slottedEls = input.shadowRoot.querySelector('.radio-group slot').assignedElements();
+			const inputs = [];
+			slottedEls.forEach(e => {
+				if (e.tagName === 'INPUT') inputs.push(e);
+			});
+			inputs[0].checkValidity();
+			await new Promise(r => setTimeout(r, 10));
+			result.push(input.hasAttribute('invalid'));
+
+			inputs[0].click();
+			await new Promise(r => setTimeout(r, 10));
+			result.push(input.hasAttribute('invalid'));
+
+			return result;
+		});
+		expect(result[0]).toBeTrue();
+		expect(result[1]).toBeFalse();
+	});
 });

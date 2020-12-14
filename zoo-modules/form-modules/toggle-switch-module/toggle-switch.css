@@ -12,6 +12,7 @@ div {
 	background: #E6E6E6;
 	border-radius: 10px;
 	border-width: 0;
+	margin: 5px 0;
 }
 
 ::slotted(input) {
@@ -27,6 +28,7 @@ div {
 	appearance: none;
 	outline: none;
 	cursor: pointer;
+	background: white;
 }
 
 ::slotted(input:checked) {

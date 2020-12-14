@@ -26,22 +26,14 @@ export default class Select extends HTMLElement {
 		selectSlot.addEventListener('slotchange', () => {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let select = selectSlot.assignedElements()[0];
-			select.addEventListener('change', e => {
-				const valueSelected = e.target.value && !e.target.disabled;
-				if (valueSelected) {
-					this.setAttribute('valueselected', '');
-				} else {
-					this.removeAttribute('valueselected');
-				}
-			});
 			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
 			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
+			select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			select.addEventListener('change', e => {
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			this.observer.disconnect();
 			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
-			this.shadowRoot.querySelector('.close').addEventListener('click', () => {
-				select.value = null;
-				select.dispatchEvent(new Event('change'));
-			});
 		});
 	}
 

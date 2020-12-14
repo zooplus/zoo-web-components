@@ -36,15 +36,14 @@
 	display: initial;
 }
 
-svg {
+zoo-arrow-icon {
 	display: inline-flex;
 	margin-left: auto;
-	fill: var(--primary-mid);
 	transition: transform 0.3s;
 	padding: 20px 0;
 }
 
-:host([active]) svg {
+:host([active]) zoo-arrow-icon {
 	fill: var(--primary-dark);
 	transform: rotateX(180deg);
 }

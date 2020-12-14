@@ -13,7 +13,7 @@ export default class Paginator extends HTMLElement {
 	connectedCallback() {
 		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
 		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
-		this.shadowRoot.querySelector('.paging').addEventListener('click', e => {
+		this.shadowRoot.querySelector('nav').addEventListener('click', e => {
 			const target = e.target.getAttribute('page');
 			if (target) {
 				this.goToPage(target);

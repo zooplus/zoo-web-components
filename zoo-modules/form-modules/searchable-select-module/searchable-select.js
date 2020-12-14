@@ -17,7 +17,7 @@ export default class SearchableSelect extends HTMLElement {
 
 	// TODO think of a way to reuse some logic from nested zoo-select, eg. valueselected, option change etc
 	mutationCallback(mutationsList) {
-		for(let mutation of mutationsList) {
+		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
 				this.input.disabled = mutation.target.disabled;
 			}
@@ -27,19 +27,25 @@ export default class SearchableSelect extends HTMLElement {
 	connectedCallback() {
 		this.input = this.shadowRoot.querySelector('input');
 		this.input.addEventListener('input', () => this.handleSearchChange());
-		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
+		this.shadowRoot.querySelector('zoo-cross-icon').addEventListener('click', () => this.handleCrossClick());
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
-			this.select.addEventListener('change', () => this.handleOptionChange());
-			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected'));
+			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.select.addEventListener('change', e => {
+				this.handleOptionChange();
+				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
 			}
 			this.select.size = 4;
+			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
+			this.handleOptionChange();
 		});
 
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
@@ -47,6 +53,7 @@ export default class SearchableSelect extends HTMLElement {
 			this.input = inputSlot.assignedElements()[0];
 			this.inputPlaceholderFallback = this.input.placeholder;
 			this.input.addEventListener('input', () => this.handleSearchChange());
+			this.handleOptionChange();
 		});
 	}
 
@@ -80,10 +87,9 @@ export default class SearchableSelect extends HTMLElement {
 		}
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		const showTooltip = inputValString && inputValString.length > 0;
-		if (this.input) {
-			this.input.placeholder = showTooltip ? inputValString : this.inputPlaceholderFallback;
-		}
+		this.input.placeholder = showTooltip ? inputValString : this.inputPlaceholderFallback;
 		if (showTooltip) {
+			this.input.value = null;
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
 			this.tooltip.slot = 'input';
 			this.tooltip.setAttribute('position', 'right');
@@ -96,7 +102,7 @@ export default class SearchableSelect extends HTMLElement {
 
 	handleCrossClick() {
 		this.select.value = null;
-		this.select.dispatchEvent(new Event('change'));
+		this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);

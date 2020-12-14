@@ -20,7 +20,7 @@
 
 :host([invalid]) {
 	--check-color: var(--warning-mid);
-	--border: 1px solid var(--warning-mid);
+	--border: 2px solid var(--warning-mid);
 }
 
 ::slotted(input) {
@@ -41,10 +41,6 @@
 	border: var(--border);
 }
 
-::slotted(input:focus) {
-	border-width: 2px;
-}
-
 svg {
 	border: 1px solid var(--check-color);
 	fill: var(--check-color);
@@ -52,6 +48,8 @@ svg {
 	pointer-events: none;
 	min-width: 24px;
 	z-index: 1;
+	padding: 1px;
+	box-sizing: border-box;
 }
 
 svg path {
@@ -60,6 +58,19 @@ svg path {
 
 :host([checked]) svg path {
 	display: flex;
+}
+
+:host(:focus-within) svg {
+	border-width: 2px;
+}
+
+:host([checked]) svg,
+:host([invalid]) svg {
+	border-width: 2px;
+}
+
+:host([checked]) ::slotted(input) {
+	border-width: 2px;
 }
 
 :host([disabled]) svg {

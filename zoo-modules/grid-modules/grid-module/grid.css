@@ -33,6 +33,7 @@
 	color: #555;
 	box-sizing: border-box;
 	z-index: 2;
+	background: white;
 }
 
 .header-row,

@@ -132,7 +132,7 @@ describe('Zoo searchable select', function () {
 
 			await new Promise(r => setTimeout(r, 10));
 
-			select.shadowRoot.querySelector('.close').dispatchEvent(new Event('click'));
+			select.shadowRoot.querySelector('zoo-cross-icon').dispatchEvent(new Event('click'));
 			await new Promise(r => setTimeout(r, 10));
 
 			return slottedSelect.value;
@@ -167,5 +167,39 @@ describe('Zoo searchable select', function () {
 			return tooltip.getAttribute('text');
 		});
 		expect(tooltipText).toEqual('first option');
+	});
+
+	it('should set and then remove invalid attribute from host', async () => {
+		const result = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-searchable-select>
+					<span slot="label">Searchable multiple select legend</span>
+					<select id="searchable-select" slot="select" required>
+						<option value="firstOption">first option</option>
+						<option value="secondOption">second option</option>
+					</select>
+					<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
+					<input id="searchable-input" slot="input"/>
+					<label for="searchable-input" slot="inputlabel">Searchable multiple input</label>
+				</zoo-searchable-select>
+				`;
+			const result = [];
+			let select = document.querySelector('zoo-searchable-select');
+			await new Promise(r => setTimeout(r, 10));
+			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
+			slottedSelect.value = '';
+			slottedSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+			await new Promise(r => setTimeout(r, 10));
+			result.push(select.hasAttribute('invalid'));
+
+			slottedSelect.value = 'secondOption';
+			slottedSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+			await new Promise(r => setTimeout(r, 10));
+			result.push(select.hasAttribute('invalid'));
+
+			return result;
+		});
+		expect(result[0]).toBeTrue();
+		expect(result[1]).toBeFalse();
 	});
 });

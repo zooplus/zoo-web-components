@@ -5,7 +5,8 @@
 	height: 100%;
 }
 
-svg {
+svg,
+zoo-arrow-icon {
 	display: none;
 	min-width: 20px;
 	width: 20px;
@@ -16,19 +17,19 @@ svg {
 	background: #F2F3F4;
 }
 
-:host(:hover) svg,
-:host(:focus) svg {
-	opacity: 1;
-}
-
-.arrow {
+zoo-arrow-icon {
 	cursor: pointer;
 	transform: rotate(0deg);
 }
 
-.arrow:active {
+zoo-arrow-icon:active {
 	opacity: 0.5;
 	transform: translateY(1px);
+}
+
+:host(:hover) svg,
+:host(:hover) zoo-arrow-icon {
+	opacity: 1;
 }
 
 .swap {
@@ -39,16 +40,16 @@ svg {
 	cursor: grabbing;
 }
 
-:host([sortable]) .arrow,
+:host([sortable]) zoo-arrow-icon,
 :host([reorderable]) .swap {
 	display: flex;
 }
 
-:host([sortstate='asc']) .arrow {
+:host([sortstate='asc']) zoo-arrow-icon {
 	transform: rotate(180deg);
 }
 
-:host([sortstate]) .arrow {
+:host([sortstate]) zoo-arrow-icon {
 	opacity: 1;
 	background: #F2F3F4;
 }

@@ -26,9 +26,9 @@ describe('Zoo select', function () {
 			</zoo-select>
 			`;
 			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 			select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0].disabled = true;
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 
 			return select.hasAttribute('disabled');
 		});
@@ -46,9 +46,9 @@ describe('Zoo select', function () {
 			</zoo-select>
 			`;
 			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 			select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0].disabled = false;
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 
 			return select.hasAttribute('disabled');
 		});
@@ -66,9 +66,9 @@ describe('Zoo select', function () {
 			</zoo-select>
 			`;
 			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 			select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0].multiple = true;
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 
 			return select.hasAttribute('multiple');
 		});
@@ -86,72 +86,43 @@ describe('Zoo select', function () {
 			</zoo-select>
 			`;
 			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 			select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0].multiple = false;
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 
 			return select.hasAttribute('multiple');
 		});
 		expect(multiple).toBeFalse();
 	});
 
-	it('should set and then remove valueselected attribute on host when select option is selected/deselected', async () => {
-		let valueselected = await page.evaluate(async () => {
+	it('should set and then remove invalid attribute from host', async () => {
+		const result = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-select>
-				<select id="select" slot="select">
-					<option>1</option>
+				<select id="multiselect" slot="select" required>
+					<option value="1">1</option>
+					<option value="2">2</option>
 				</select>
-				<label for="select" slot="label">some label</label>
+				<label for="multiselect" slot="label">select</label>
 			</zoo-select>
-			`;
+				`;
+			const result = [];
 			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
+			await new Promise(r => setTimeout(r, 10));
 			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
-			slottedSelect.value = 1;
+			slottedSelect.value = '';
 			slottedSelect.dispatchEvent(new Event('change'));
+			await new Promise(r => setTimeout(r, 10));
+			result.push(select.hasAttribute('invalid'));
 
-			return select.hasAttribute('valueselected');
-		});
-		expect(valueselected).toBeTrue();
-
-		valueselected = await page.evaluate(async () => {
-			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
-			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
-			slottedSelect.value = null;
+			slottedSelect.value = '2';
 			slottedSelect.dispatchEvent(new Event('change'));
+			await new Promise(r => setTimeout(r, 10));
+			result.push(select.hasAttribute('invalid'));
 
-			return select.hasAttribute('valueselected');
+			return result;
 		});
-		expect(valueselected).toBeFalse();
-	});
-
-	it('should remove valueselected attribute on host when cross is clicked', async () => {
-		let ret = await page.evaluate(async () => {
-			document.body.innerHTML = `
-			<zoo-select>
-				<select id="select" slot="select">
-					<option>1</option>
-				</select>
-				<label for="select" slot="label">some label</label>
-			</zoo-select>
-			`;
-			let select = document.querySelector('zoo-select');
-			await new Promise(r => setTimeout(r(), 10));
-			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
-			slottedSelect.value = 1;
-			slottedSelect.dispatchEvent(new Event('change'));
-
-			await new Promise(r => setTimeout(r(), 10));
-			select.shadowRoot.querySelector('.close').dispatchEvent(new Event('click'));
-
-			return {
-				value: slottedSelect.value,
-				valueselectedAttr: select.hasAttribute('valueselected')
-			};
-		});
-		expect(ret.value).toEqual('');
-		expect(ret.valueselectedAttr).toBeFalse();
+		expect(result[0]).toBeTrue();
+		expect(result[1]).toBeFalse();
 	});
 });

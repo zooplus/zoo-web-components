@@ -20,7 +20,7 @@
 
 :host([invalid]) {
 	--check-color: var(--warning-mid);
-	--border: 1px solid var(--warning-mid);
+	--border: 2px solid var(--warning-mid);
 }
 
 ::slotted(input) {
@@ -64,7 +64,8 @@ svg path {
 	border-width: 2px;
 }
 
-:host([checked]) svg {
+:host([checked]) svg,
+:host([invalid]) svg {
 	border-width: 2px;
 }
 

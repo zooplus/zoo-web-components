@@ -40,17 +40,19 @@
 	</div>
 	<main>
 		<h2>Form elements</h2>
-		<form>
+		<form novalidate>
 			<zoo-input>
-				<input id="input-type-text" slot="input" type="text" placeholder="input"/>
+				<input id="input-type-text" slot="input" type="text" placeholder="input" required pattern="[A-Za-z ]+"/>
 				<label for="input-type-text" slot="label">Input type text</label>
 				<span slot="info">Additional helpful information for our users</span>
+				<span slot="error">This input field should contain only letters and it is required!</span>
 				<a slot="link" href="https://google.com" target="about:blank">Forgotten your password?</a>
 			</zoo-input>
 			<zoo-input>
-				<input id="input-type-number" slot="input" placeholder="input" list="animals"/>
+				<input id="input-type-number" slot="input" placeholder="input" list="animals" required pattern="[Dd]og|[Cc]at|[Ss]mall [Pp]et|[Bb]ird|[Aa]quatic"/>
 				<label for="input-type-number" slot="label">Autocomplete</label>
 				<span slot="info">Possible values: Dog, Cat, Small Pet, Bird, Aquatic</span>
+				<span slot="error">This input field is required and should one of the possible values!</span>
 				<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist" target="about:blank">Learn your HTML and don't overcomplicate</a>
 			</zoo-input>
 			<datalist id="animals">
@@ -88,7 +90,7 @@
 				<span slot="info">Additional information</span>
 			</zoo-select>
 			<zoo-select class="select">
-				<select id="normal-select" slot="select">
+				<select id="normal-select" slot="select" required>
 					<option value="" disabled selected>Please select an option</option>
 					<option>1</option>
 					<option>2</option>
@@ -96,9 +98,10 @@
 				</select>
 				<label for="normal-select" slot="label">Standard select</label>
 				<span slot="info">Additional information</span>
+				<span slot="error">Please choose an option!</span>
 			</zoo-select>
 			<zoo-searchable-select>
-				<select id="searchable-select" multiple="" slot="select">
+				<select id="searchable-select" multiple="" slot="select" required>
 					<option value="text">text</option>
 					<option value="raNdOm">raNdOm</option>
 					<option value="random1">random1</option>
@@ -109,6 +112,7 @@
 				<label for="inserted-input" slot="inputlabel">Searchable multiple input</label>
 				<span slot="legend">Searchable multiple select legend</span>
 				<span slot="info">Search is case insensitive.</span>
+				<span slot="error">Please choose an option!</span>
 			</zoo-searchable-select>
 			<zoo-searchable-select>
 				<select id="searchable-select2" slot="select">
@@ -125,9 +129,10 @@
 				<span slot="info">Search is case insensitive. Prefer to use input with a datalist.</span>
 			</zoo-searchable-select>
 			<zoo-checkbox highlighted>
-				<input id="checkbox" slot="checkbox" type="checkbox"/>
+				<input id="checkbox" slot="checkbox" type="checkbox" required/>
 				<label for="checkbox" slot="label">An example checkbox with a long label message that wraps to a new line</label>
 				<span slot="info">Additional information</span>
+				<span slot="error">You should really check this checkbox.</span>
 			</zoo-checkbox>
 			<zoo-checkbox highlighted>
 				<input id="disabled-checkbox" disabled slot="checkbox" type="checkbox"/>
@@ -137,12 +142,16 @@
 				<span slot="label">Radio group</span>
 				<input type="radio" id="contactChoice1" name="contact" value="email" disabled>
 				<label for="contactChoice1">Email</label>
-				<input type="radio" id="contactChoice2" name="contact" value="phone">
+				<input type="radio" id="contactChoice2" name="contact" value="phone" required>
 				<label for="contactChoice2">Phone</label>
 				<input type="radio" id="contactChoice3" name="contact" value="mail">
 				<label for="contactChoice3">Mail</label>
 				<span slot="info">Additional information</span>
+				<span slot="error">Selecting an option is a must.</span>
 			</zoo-radio>
+			<zoo-button style="margin: 0 auto; grid-column: span 3;">
+				<button type="submit">Submit</button>
+			</zoo-button>
 		</form>
 		<hr>
 		<zoo-toast id="toast">
@@ -207,7 +216,7 @@
 		<h2>Data grids</h2>
 		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 		<div class="grid-holder">
-			<zoo-grid class="generate" stickyheader currentpage="5" maxpages="20" resizable reorderable>
+			<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable>
 				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
 				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date</zoo-grid-header>
 				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status'>Status</zoo-grid-header>
@@ -231,7 +240,7 @@
 		<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 		<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-			<zoo-grid class="generate" stickyheader currentpage="5" maxpages="20">
+			<zoo-grid stickyheader currentpage="5" maxpages="20">
 				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
 				<zoo-grid-header slot="headercell">Created Date</zoo-grid-header>
 				<zoo-grid-header slot="headercell">Status</zoo-grid-header>

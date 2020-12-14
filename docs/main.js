@@ -70,7 +70,7 @@ const randomRgbaString = () => {
 	let r = Math.floor(Math.random() * 255);
 	let g = Math.floor(Math.random() * 255);
 	let b = Math.floor(Math.random() * 255);
-	return {r: r, g: g, b: b};
+	return { r: r, g: g, b: b };
 };
 
 const rgbToHex = (r, g, b) => {
@@ -91,30 +91,30 @@ const lightenDarkenColor = (col, amt) => {
 		usePound = true;
 	}
 
-	var num = parseInt(col,16);
+	var num = parseInt(col, 16);
 
 	var r = (num >> 16) + amt;
 
 	if (r > 255) r = 255;
-	else if  (r < 0) r = 0;
+	else if (r < 0) r = 0;
 
 	var b = ((num >> 8) & 0x00FF) + amt;
 
 	if (b > 255) b = 255;
-	else if  (b < 0) b = 0;
+	else if (b < 0) b = 0;
 
 	var g = (num & 0x0000FF) + amt;
 
 	if (g > 255) g = 255;
 	else if (g < 0) g = 0;
 
-	return (usePound?'#':'') + (g | (b << 8) | (r << 16)).toString(16);
+	return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 };
 
 const handleSortChange = sortState => {
 	let toast = document.createElement('zoo-toast');
 	const text = document.createElement('span');
-	text.innerHTML = sortState 
+	text.innerHTML = sortState
 		? 'Sort state was changed. Property: ' + sortState.property + ', direction: ' + sortState.direction
 		: 'Sort state was changed. Sort object is undefined.';
 	text.slot = 'content';
@@ -140,11 +140,11 @@ document.querySelectorAll('zoo-grid').forEach(grid => {
 
 let today = new Date().toISOString().substr(0, 10);
 let data = [
-	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'}
+	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' }
 ];
 
 const getRow = (d, i, template, idx) => {
@@ -197,7 +197,7 @@ const getRow = (d, i, template, idx) => {
 	return clone;
 };
 
-const grids = document.querySelectorAll('zoo-grid.generate');
+const grids = document.querySelectorAll('zoo-grid');
 let idx = 0;
 for (const grid of grids) {
 	data.forEach((d, i) => {
@@ -206,5 +206,23 @@ for (const grid of grids) {
 		grid.appendChild(clone);
 	});
 	if (idx == 0) grid.setAttribute('resizable', true);
-	idx+=1;
+	idx += 1;
 }
+
+document.querySelector('form').addEventListener('submit', e => {
+	e.preventDefault();
+	const toast = document.createElement('zoo-toast');
+	const content = document.createElement('span');
+	content.slot = 'content';
+	if (e.target.checkValidity()) {
+		content.innerHTML = 'All form inputs are valid!';
+		toast.setAttribute('type', 'info');
+	} else {
+		content.innerHTML = 'Some inputs fail validation, fix them!';
+		toast.setAttribute('type', 'error');
+	}
+	toast.appendChild(content);
+	document.body.appendChild(toast);
+	toast.show();
+	setTimeout(() => toast.remove(), 3150);
+});

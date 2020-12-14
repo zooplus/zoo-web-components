@@ -28,6 +28,10 @@ export default class Select extends HTMLElement {
 			let select = selectSlot.assignedElements()[0];
 			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
 			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
+			select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			select.addEventListener('input', () => {
+				select.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			this.observer.disconnect();
 			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
 		});

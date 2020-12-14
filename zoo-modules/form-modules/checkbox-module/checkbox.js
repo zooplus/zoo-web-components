@@ -27,7 +27,11 @@ export default class Checkbox extends HTMLElement {
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let checkbox = checkboxSlot.assignedElements()[0];
-			checkbox.addEventListener('change', () => this.handleChange(checkbox));
+			checkbox.addEventListener('change', () => {
+				checkbox.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+				this.handleChange(checkbox);
+			});
+			checkbox.addEventListener('invalid', () => this.setAttribute('invalid', ''));
 			if (checkbox.hasAttribute('disabled')) this.setAttribute('disabled', '');
 			this.observer.disconnect();
 			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });

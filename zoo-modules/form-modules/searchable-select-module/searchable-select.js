@@ -39,6 +39,10 @@ export default class SearchableSelect extends HTMLElement {
 			}
 			this.select.size = 4;
 			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.select.addEventListener('input', () => {
+				this.select.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
 			this.handleOptionChange();
@@ -48,7 +52,11 @@ export default class SearchableSelect extends HTMLElement {
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = inputSlot.assignedElements()[0];
 			this.inputPlaceholderFallback = this.input.placeholder;
-			this.input.addEventListener('input', () => this.handleSearchChange());
+			this.input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.input.addEventListener('input', () => {
+				this.handleSearchChange();
+				this.select.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			this.handleOptionChange();
 		});
 	}

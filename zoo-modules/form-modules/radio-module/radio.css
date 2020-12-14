@@ -71,7 +71,7 @@ fieldset {
 
 	--box-shadow-width: 2px;
 	--box-shadow-width2: 5px;
-	--box-shadow-color: #555;
+	--box-shadow-color: #555 !important;
 }
 
 ::slotted(label) {

@@ -32,6 +32,7 @@ export default class SearchableSelect extends HTMLElement {
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
+			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
 			this.select.addEventListener('change', e => {
 				this.handleOptionChange();
 				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');

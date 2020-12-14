@@ -216,7 +216,7 @@ document.querySelector('form').addEventListener('submit', e => {
 	content.slot = 'content';
 	if (e.target.checkValidity()) {
 		content.innerHTML = 'All form inputs are valid!';
-		toast.setAttribute('type', 'info');
+		toast.setAttribute('type', 'success');
 	} else {
 		content.innerHTML = 'Some inputs fail validation, fix them!';
 		toast.setAttribute('type', 'error');

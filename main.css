@@ -22,7 +22,6 @@ body {
 }
 
 form {
-	flex: 1 0 auto;
 	margin: 20px auto;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

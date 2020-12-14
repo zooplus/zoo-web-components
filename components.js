@@ -25,7 +25,7 @@ window.customElements.define('zoo-info', InfoMessage);
  */
 class Label extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{font-size:14px;line-height:20px;font-weight:800;color:#555;text-align:left}</style><slot></slot>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{font-size:14px;line-height:20px;font-weight:700;color:#555;text-align:left}</style><slot></slot>`;
 	}
 }
 window.customElements.define('zoo-label', Label);
@@ -37,6 +37,17 @@ class Input extends HTMLElement {
 	constructor() {
 		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content}zoo-attention-icon{position:absolute;right:15px;top:15px;pointer-events:none;opacity:0;--icon-color:var(--warning-mid)}:host([invalid]) zoo-attention-icon{opacity:1}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}:host([invalid]) ::slotted(input),:host([invalid]) ::slotted(textarea){border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input[type=date]),::slotted(input[type=time]){-webkit-min-logical-height:48px}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555;padding:12px 14px}.content{display:flex;position:relative;flex:1}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}zoo-link{width:max-content;justify-self:end;padding:0}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><slot name="input"></slot><zoo-attention-icon></zoo-attention-icon></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
 	}
+
+	connectedCallback() {
+		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
+		inputSlot.addEventListener('slotchange', () => {
+			let input = inputSlot.assignedElements()[0];
+			input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			input.addEventListener('input', () => {
+				input.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
+		});
+	}
 }
 window.customElements.define('zoo-input', Input);
 
@@ -45,10 +56,11 @@ window.customElements.define('zoo-input', Input);
  */
 class Checkbox extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;width:100%;font-size:14px;line-height:20px;position:relative;--border:0;--check-color:var(--primary-mid)}:host([disabled]){--check-color:#767676}:host([highlighted]){--border:1px solid var(--check-color)}:host([invalid]){--check-color:var(--warning-mid);--border:1px solid var(--warning-mid)}::slotted(input){width:100%;height:100%;top:0;left:0;position:absolute;display:flex;align-self:flex-start;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;margin:0;border-radius:3px;border:var(--border)}::slotted(input:focus){border-width:2px}svg{border:1px solid var(--check-color);fill:var(--check-color);border-radius:3px;pointer-events:none;min-width:24px;z-index:1}svg path{display:none}:host([checked]) svg path{display:flex}:host([disabled]) svg{background:#f2f3f4}.checkbox{display:flex;width:100%;box-sizing:border-box;cursor:pointer;align-items:baseline;position:relative}:host([highlighted]) .checkbox{padding:11px 15px}::slotted(label){display:flex;align-self:center;cursor:pointer;margin-left:5px;z-index:1}::slotted(input:disabled),:host([disabled]) ::slotted(label){cursor:not-allowed}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><div class="checkbox"><slot name="checkbox"></slot><svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><slot name="label"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.checkbox,svg{box-sizing:border-box}:host{display:flex;flex-direction:column;width:100%;font-size:14px;line-height:20px;position:relative;--border:0;--check-color:var(--primary-mid)}:host([disabled]){--check-color:#767676}:host([highlighted]){--border:1px solid var(--check-color)}:host([invalid]){--check-color:var(--warning-mid);--border:2px solid var(--warning-mid)}::slotted(input){width:100%;height:100%;top:0;left:0;position:absolute;display:flex;align-self:flex-start;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;margin:0;border-radius:3px;border:var(--border)}svg{border:1px solid var(--check-color);fill:var(--check-color);border-radius:3px;pointer-events:none;min-width:24px;z-index:1;padding:1px}svg path{display:none}:host([checked]) svg path{display:flex}:host(:focus-within) svg{border-width:2px}:host([checked]) svg,:host([invalid]) svg{border-width:2px}:host([checked]) ::slotted(input){border-width:2px}:host([disabled]) svg{background:#f2f3f4}.checkbox{display:flex;width:100%;cursor:pointer;align-items:baseline;position:relative}:host([highlighted]) .checkbox{padding:11px 15px}::slotted(label){display:flex;align-self:center;cursor:pointer;margin-left:5px;z-index:1}::slotted(input:disabled),:host([disabled]) ::slotted(label){cursor:not-allowed}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><div class="checkbox"><slot name="checkbox"></slot><svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><slot name="label"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
 	}
 
 	// TODO think of a better way to handle disabled attribute change
+	// TODO move checkbox inside label so handle multiple checkboxes
 	mutationCallback(mutationsList) {
 		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
@@ -68,7 +80,11 @@ class Checkbox extends HTMLElement {
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let checkbox = checkboxSlot.assignedElements()[0];
-			checkbox.addEventListener('change', () => this.handleChange(checkbox));
+			checkbox.addEventListener('change', () => {
+				checkbox.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+				this.handleChange(checkbox);
+			});
+			checkbox.addEventListener('invalid', () => this.setAttribute('invalid', ''));
 			if (checkbox.hasAttribute('disabled')) this.setAttribute('disabled', '');
 			this.observer.disconnect();
 			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
@@ -98,7 +114,26 @@ window.customElements.define('zoo-checkbox', Checkbox);
  */
 class Radio extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;font-size:14px;line-height:20px;--box-shadow-color:#767676;--box-shadow-width:1px;--box-shadow-color2:transparent;--box-shadow-width2:1px}fieldset{border:0;padding:0;margin:0;position:relative}.radio-group{display:flex;padding:11px 0}:host([invalid]){color:var(--warning-mid)}::slotted(input){position:relative;min-width:24px;height:24px;border-radius:50%;margin:0 2px 0 0;padding:4px;background-clip:content-box;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;box-shadow:inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color),inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2)}:host([invalid]) ::slotted(input){--box-shadow-color:var(--warning-mid)}::slotted(input:focus){--box-shadow-color:#3C9700}::slotted(input:checked){background-color:var(--primary-mid);--box-shadow-color:#3C9700;--box-shadow-width:2px;--box-shadow-width2:4px;--box-shadow-color2:white}:host([invalid]) ::slotted(input:checked){background-color:var(--warning-mid)}::slotted(input:disabled){cursor:not-allowed;background-color:#e6e6e6;--box-shadow-width:2px;--box-shadow-width2:5px;--box-shadow-color:#767676}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="radio-group"><slot></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info></fieldset>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;font-size:14px;line-height:20px;--box-shadow-color:#767676;--box-shadow-width:1px;--box-shadow-color2:transparent;--box-shadow-width2:1px}fieldset{border:0;padding:0;margin:0;position:relative}.radio-group{display:flex;padding:11px 0}:host([invalid]){color:var(--warning-mid)}::slotted(input){position:relative;min-width:24px;height:24px;border-radius:50%;margin:0 2px 0 0;padding:4px;background-clip:content-box;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;box-shadow:inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color),inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2)}:host([invalid]) ::slotted(input){--box-shadow-color:var(--warning-mid)}::slotted(input:focus){--box-shadow-color:#3C9700;--box-shadow-width:2px}::slotted(input:checked){background-color:var(--primary-mid);--box-shadow-color:#3C9700;--box-shadow-width:2px;--box-shadow-width2:4px;--box-shadow-color2:white}:host([invalid]) ::slotted(input:checked){background-color:var(--warning-mid)}::slotted(input:disabled){cursor:not-allowed;background-color:#555;--box-shadow-width:2px;--box-shadow-width2:5px;--box-shadow-color:#555!important}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="radio-group"><slot></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info></fieldset>`;
+	}
+
+	connectedCallback() {
+		const fieldset = this.shadowRoot.querySelector('fieldset');
+		fieldset.addEventListener('change', () => {
+			fieldset.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+		});
+		const radioInputSlot = this.shadowRoot.querySelector('.radio-group slot');
+		radioInputSlot.addEventListener('slotchange', () => {
+			let slottedElements = radioInputSlot.assignedElements();
+			slottedElements.forEach(e => {
+				if (e.tagName === 'INPUT') {
+					e.addEventListener('invalid', () => {
+						this.setAttribute('invalid', '');
+					});
+				}
+			});
+		});
+		
 	}
 }
 window.customElements.define('zoo-radio', Radio);
@@ -108,7 +143,7 @@ window.customElements.define('zoo-radio', Radio);
  */
 class Select extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content;box-sizing:border-box;--icons-display:flex}.arrows,.close{position:absolute;right:10px;top:12px}.close{cursor:pointer;right:11px;top:14px;display:none}.arrows{display:var(--icons-display);pointer-events:none;fill:var(--primary-mid)}:host([invalid]) .arrows{fill:var(--warning-mid)}:host([disabled]) .arrows{fill:#e6e6e6}:host([valueselected]) .close{display:var(--icons-display)}:host([valueselected]) .arrows{display:none}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;font-size:14px;line-height:20px;padding:13px 25px 13px 15px;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;white-space:nowrap;text-overflow:ellipsis}::slotted(select:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555;padding:12px 24px 12px 14px}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid);padding:12px 24px 12px 14px}.content{display:flex;justify-content:stretch;align-items:center;position:relative}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}:host([multiple]) svg{display:none}:host([labelposition=left]){display:flex;grid-gap:0 3px}:host([labelposition=left]) zoo-label{display:flex;align-items:center}zoo-link{width:max-content;justify-self:end;padding:0}zoo-preloader{display:none}:host([loading]) zoo-preloader{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><zoo-preloader></zoo-preloader><slot name="select"></slot><svg class="close" width="21" height="21" viewBox="0 0 24 24" part="icon-close"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg> <svg class="arrows" width="24" height="24" viewBox="0 0 24 24" part="icon-arrows"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content;box-sizing:border-box;--icons-display:flex}zoo-arrow-icon{position:absolute;right:10px;top:12px;display:var(--icons-display);pointer-events:none}:host([invalid]) zoo-arrow-icon{--icon-color:var(--warning-mid)}:host([disabled]) zoo-arrow-icon{--icon-color:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;font-size:14px;line-height:20px;padding:13px 25px 13px 15px;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box}::slotted(select:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555;padding:12px 24px 12px 14px}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid);padding:12px 24px 12px 14px}.content{display:flex;justify-content:stretch;align-items:center;position:relative}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}:host([multiple]) zoo-arrow-icon{display:none}:host([labelposition=left]){display:flex;grid-gap:0 3px}:host([labelposition=left]) zoo-label{display:flex;align-items:center}zoo-link{width:max-content;justify-self:end;padding:0}zoo-preloader{display:none}:host([loading]) zoo-preloader{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><zoo-preloader></zoo-preloader><slot name="select"></slot><zoo-arrow-icon></zoo-arrow-icon></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
 	}
 
 	mutationCallback(mutationsList) {
@@ -131,22 +166,14 @@ class Select extends HTMLElement {
 		selectSlot.addEventListener('slotchange', () => {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let select = selectSlot.assignedElements()[0];
-			select.addEventListener('change', e => {
-				const valueSelected = e.target.value && !e.target.disabled;
-				if (valueSelected) {
-					this.setAttribute('valueselected', '');
-				} else {
-					this.removeAttribute('valueselected');
-				}
-			});
 			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
 			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
+			select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			select.addEventListener('change', e => {
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			this.observer.disconnect();
 			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
-			this.shadowRoot.querySelector('.close').addEventListener('click', () => {
-				select.value = null;
-				select.dispatchEvent(new Event('change'));
-			});
 		});
 	}
 
@@ -164,7 +191,7 @@ window.customElements.define('zoo-select', Select);
  */
 class SearchableSelect extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.close,zoo-select{display:none;position:absolute}:host{position:relative}.close{top:15px;right:14px;cursor:pointer;z-index:1}:host([valueselected]) .close{display:flex}zoo-preloader,zoo-tooltip{display:none}:host(:focus) zoo-tooltip,:host(:hover) zoo-tooltip{display:grid}zoo-select{border-top:none;z-index:2;top:85%;--icons-display:none}:host(:focus-within) zoo-select{display:grid}:host(:focus-within) ::slotted(select){border-top-left-radius:0;border-top-right-radius:0;border:2px solid #555;border-top:none!important}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid)}:host([loading]) zoo-preloader{display:flex}fieldset{border:0;padding:0;margin:0;position:relative}::slotted([slot=inputlabel]),::slotted([slot=selectlabel]){position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}input{width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}input:disabled{border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}:host(:focus-within) ::slotted(input),:host(:focus-within) input{border:2px solid #555;padding:12px 14px}:host([invalid]) ::slotted(input),:host([invalid]) input{border:2px solid var(--warning-mid);padding:12px 14px}input::placeholder{color:#767676}</style><fieldset><legend><zoo-label><slot name="legend"><slot name="label"></slot></slot></zoo-label></legend><zoo-input><zoo-preloader slot="input"></zoo-preloader><slot slot="input" name="input"><input type="text"></slot><slot name="link" slot="link"></slot><svg slot="input" class="close" width="20" height="20" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg><slot slot="info" name="info"></slot><slot slot="error" name="error"></slot><slot name="inputlabel"></slot><zoo-select slot="input"><slot name="select" slot="select"></slot></zoo-select></zoo-input><slot name="selectlabel"></slot></fieldset>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>zoo-cross-icon,zoo-select{display:none;position:absolute}:host{position:relative}zoo-cross-icon{top:12px;right:14px;cursor:pointer}:host([valueselected]) zoo-cross-icon{display:flex}zoo-preloader,zoo-tooltip{display:none}:host(:focus) zoo-tooltip,:host(:hover) zoo-tooltip{display:grid}zoo-select{border-top:none;z-index:2;top:85%;--icons-display:none}:host(:focus-within) zoo-select{display:grid}:host(:focus-within) ::slotted(select){border-top-left-radius:0;border-top-right-radius:0;border:2px solid #555;border-top:none!important}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid)}:host([loading]) zoo-preloader{display:flex}fieldset{border:0;padding:0;margin:0;position:relative}::slotted([slot=inputlabel]),::slotted([slot=selectlabel]){position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}input{width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}input:disabled{border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}:host(:focus-within) ::slotted(input),:host(:focus-within) input{border:2px solid #555;padding:12px 14px}:host([invalid]) ::slotted(input),:host([invalid]) input{border:2px solid var(--warning-mid);padding:12px 14px}input::placeholder{color:#767676}</style><fieldset><legend><zoo-label><slot name="legend"><slot name="label"></slot></slot></zoo-label></legend><zoo-input><zoo-preloader slot="input"></zoo-preloader><slot slot="input" name="input"><input type="text"></slot><slot name="link" slot="link"></slot><zoo-cross-icon slot="input"></zoo-cross-icon><slot slot="info" name="info"></slot><slot slot="error" name="error"></slot><slot name="inputlabel"></slot><zoo-select slot="input"><slot name="select" slot="select"></slot></zoo-select></zoo-input><slot name="selectlabel"></slot></fieldset>`;
 	}
 	// TODO in v9 drop nested default input and force user to define label for both select and input, while showing only legend
 	static get observedAttributes() {
@@ -178,7 +205,7 @@ class SearchableSelect extends HTMLElement {
 
 	// TODO think of a way to reuse some logic from nested zoo-select, eg. valueselected, option change etc
 	mutationCallback(mutationsList) {
-		for(let mutation of mutationsList) {
+		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
 				this.input.disabled = mutation.target.disabled;
 			}
@@ -188,19 +215,25 @@ class SearchableSelect extends HTMLElement {
 	connectedCallback() {
 		this.input = this.shadowRoot.querySelector('input');
 		this.input.addEventListener('input', () => this.handleSearchChange());
-		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.handleCrossClick());
+		this.shadowRoot.querySelector('zoo-cross-icon').addEventListener('click', () => this.handleCrossClick());
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
-			this.select.addEventListener('change', () => this.handleOptionChange());
-			this.select.addEventListener('change', e => e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected'));
+			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.select.addEventListener('change', e => {
+				this.handleOptionChange();
+				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
 			}
 			this.select.size = 4;
+			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
+			this.handleOptionChange();
 		});
 
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
@@ -208,6 +241,7 @@ class SearchableSelect extends HTMLElement {
 			this.input = inputSlot.assignedElements()[0];
 			this.inputPlaceholderFallback = this.input.placeholder;
 			this.input.addEventListener('input', () => this.handleSearchChange());
+			this.handleOptionChange();
 		});
 	}
 
@@ -241,10 +275,9 @@ class SearchableSelect extends HTMLElement {
 		}
 		inputValString = inputValString.substr(0, inputValString.length - 3);
 		const showTooltip = inputValString && inputValString.length > 0;
-		if (this.input) {
-			this.input.placeholder = showTooltip ? inputValString : this.inputPlaceholderFallback;
-		}
+		this.input.placeholder = showTooltip ? inputValString : this.inputPlaceholderFallback;
 		if (showTooltip) {
+			this.input.value = null;
 			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
 			this.tooltip.slot = 'input';
 			this.tooltip.setAttribute('position', 'right');
@@ -257,7 +290,7 @@ class SearchableSelect extends HTMLElement {
 
 	handleCrossClick() {
 		this.select.value = null;
-		this.select.dispatchEvent(new Event('change'));
+		this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);
@@ -287,6 +320,10 @@ class QuantityControl extends HTMLElement {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = inputSlot.assignedElements()[0];
+			this.input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.input.addEventListener('change', e => {
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
 			this.setInputWidth();
 		});
 
@@ -311,7 +348,19 @@ window.customElements.define('zoo-quantity-control', QuantityControl);
  */
 class ToggleSwitch extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.error,.info{grid-column:span 2}:host{height:100%;width:100%}div{display:flex;align-items:center;position:relative;height:17px;width:40px;background:#e6e6e6;border-radius:10px;border-width:0}::slotted(input){transition:transform .2s;transform:translateX(-30%);width:60%;height:24px;border:1px solid #e6e6e6;border-radius:50%;display:flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer}::slotted(input:checked){transform:translateX(80%);background:var(--primary-mid)}::slotted(input:focus){border:1px solid #767676}::slotted(input:disabled){background:#f2f3f4;cursor:not-allowed}.info{grid-row:3}.error{display:none;grid-row:4;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><div><slot name="input"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.error,.info{grid-column:span 2}:host{height:100%;width:100%}div{display:flex;align-items:center;position:relative;height:17px;width:40px;background:#e6e6e6;border-radius:10px;border-width:0;margin:5px 0}::slotted(input){transition:transform .2s;transform:translateX(-30%);width:60%;height:24px;border:1px solid #e6e6e6;border-radius:50%;display:flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;background:#fff}::slotted(input:checked){transform:translateX(80%);background:var(--primary-mid)}::slotted(input:focus){border:1px solid #767676}::slotted(input:disabled){background:#f2f3f4;cursor:not-allowed}.info{grid-row:3}.error{display:none;grid-row:4;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><div><slot name="input"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+	}
+
+	connectedCallback() {
+		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
+		inputSlot.addEventListener('slotchange', () => {
+			let input = inputSlot.assignedElements()[0];
+			input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			input.addEventListener('change', e => {
+				e.target.checked ? e.target.setAttribute('checked', '') : e.target.removeAttribute('checked');
+				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
+			});
+		});
 	}
 }
 
@@ -332,7 +381,7 @@ window.customElements.define('zoo-button', Button);
  */
 class ZooGrid extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.header-row{min-width:inherit}:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}:host([loading]) .loading-shade{display:flex}.header-row{font-weight:600;color:#555;box-sizing:border-box;z-index:2}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}:host(.dragging) ::slotted([ondrop]){border-radius:3px;box-shadow:inset 0 0 1px 1px rgba(0,0,0,.1)}:host(.dragging) ::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{display:flex;width:100%;box-sizing:border-box;background:#fff;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6}::slotted(zoo-select){margin-right:20px}</style><div class="box"><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row"><slot name="headercell"></slot></div><slot name="row"></slot><slot name="norecords"></slot><slot name="paginator"><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></slot></div>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.header-row{min-width:inherit}:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.header-row,zoo-paginator{box-sizing:border-box;background:#fff}:host([loading]) .loading-shade{display:flex}.header-row{font-weight:600;color:#555;z-index:2}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}:host(.dragging) ::slotted([ondrop]){border-radius:3px;box-shadow:inset 0 0 1px 1px rgba(0,0,0,.1)}:host(.dragging) ::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{display:flex;width:100%;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6}::slotted(zoo-select){margin-right:20px}</style><div class="box"><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row"><slot name="headercell"></slot></div><slot name="row"></slot><slot name="norecords"></slot><slot name="paginator"><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></slot></div>`;
 	}
 
 	static get observedAttributes() {
@@ -479,13 +528,13 @@ window.customElements.define('zoo-grid', ZooGrid);
  */
 class GridHeader extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;width:100%;height:100%}svg{display:none;min-width:20px;width:20px;opacity:0;transition:opacity .1s;margin-left:5px;border-radius:5px;background:#f2f3f4}:host(:focus) svg,:host(:hover) svg{opacity:1}.arrow{cursor:pointer;transform:rotate(0)}.arrow:active{opacity:.5;transform:translateY(1px)}.swap{cursor:grab}.swap:active{cursor:grabbing}:host([reorderable]) .swap,:host([sortable]) .arrow{display:flex}:host([sortstate=asc]) .arrow{transform:rotate(180deg)}:host([sortstate]) .arrow{opacity:1;background:#f2f3f4}</style><slot></slot><svg class="arrow" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg> <svg class="swap" viewBox="0 0 24 24" width="18" height="18"><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;width:100%;height:100%}svg,zoo-arrow-icon{display:none;min-width:20px;width:20px;opacity:0;transition:opacity .1s;margin-left:5px;border-radius:5px;background:#f2f3f4}zoo-arrow-icon{cursor:pointer;transform:rotate(0)}zoo-arrow-icon:active{opacity:.5;transform:translateY(1px)}:host(:hover) svg,:host(:hover) zoo-arrow-icon{opacity:1}.swap{cursor:grab}.swap:active{cursor:grabbing}:host([reorderable]) .swap,:host([sortable]) zoo-arrow-icon{display:flex}:host([sortstate=asc]) zoo-arrow-icon{transform:rotate(180deg)}:host([sortstate]) zoo-arrow-icon{opacity:1;background:#f2f3f4}</style><slot></slot><zoo-arrow-icon></zoo-arrow-icon><svg class="swap" viewBox="0 0 24 24" width="18" height="18"><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/></svg>`;
 	}
 
 	connectedCallback() {
 		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
 		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
-		this.shadowRoot.querySelector('.arrow').addEventListener('click', () => this.handleSortClick());
+		this.shadowRoot.querySelector('zoo-arrow-icon').addEventListener('click', () => this.handleSortClick());
 	}
 
 	handleSortClick() {
@@ -521,7 +570,7 @@ window.customElements.define('zoo-header', Header);
  */
 class Modal extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:none;contain:style}.box{position:fixed;width:100%;height:100%;background:rgba(0,0,0,.8);opacity:0;transition:opacity .3s;z-index:9999;left:0;top:0;display:flex;justify-content:center;align-items:center;will-change:opacity;transform:translateZ(0)}.dialog-content{padding:0 20px 20px;box-sizing:border-box;background:#fff;overflow-y:auto;max-height:95%;border-radius:5px;animation-name:anim-show;animation-duration:.3s;animation-fill-mode:forwards}@media only screen and (max-width:544px){.dialog-content{padding:25px}}@media only screen and (max-width:375px){.dialog-content{width:100%;height:100%;top:0;left:0;transform:none}}.heading{display:flex;align-items:flex-start}::slotted([slot=header]),span{font-size:24px;line-height:29px;font-weight:700;margin:30px 0}.close{cursor:pointer;background:0 0;border:0;padding:0;margin:30px 0 30px auto;fill:var(--primary-mid)}.show{opacity:1}.hide .dialog-content{animation-name:anim-hide}@keyframes anim-show{0%{opacity:0;transform:scale3d(.9,.9,1)}100%{opacity:1;transform:scale3d(1,1,1)}}@keyframes anim-hide{0%{opacity:1}100%{opacity:0;transform:scale3d(.9,.9,1)}}</style><div class="box"><div class="dialog-content"><div class="heading"><slot name="header"><span></span></slot><button type="button" class="close"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg></button></div><div class="content"><slot></slot></div></div></div>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:none;contain:style}.box{position:fixed;width:100%;height:100%;background:rgba(0,0,0,.8);opacity:0;transition:opacity .3s;z-index:9999;left:0;top:0;display:flex;justify-content:center;align-items:center;will-change:opacity;transform:translateZ(0)}.dialog-content{padding:0 20px 20px;box-sizing:border-box;background:#fff;overflow-y:auto;max-height:95%;border-radius:5px;animation-name:anim-show;animation-duration:.3s;animation-fill-mode:forwards}@media only screen and (max-width:544px){.dialog-content{padding:25px}}@media only screen and (max-width:375px){.dialog-content{width:100%;height:100%;top:0;left:0;transform:none}}.heading{display:flex;align-items:flex-start}::slotted([slot=header]),span{font-size:24px;line-height:29px;font-weight:700;margin:30px 0}.close{cursor:pointer;background:0 0;border:0;padding:0;margin:30px 0 30px auto;--icon-color:var(--primary-mid)}.show{opacity:1}.hide .dialog-content{animation-name:anim-hide}@keyframes anim-show{0%{opacity:0;transform:scale3d(.9,.9,1)}100%{opacity:1;transform:scale3d(1,1,1)}}@keyframes anim-hide{0%{opacity:1}100%{opacity:0;transform:scale3d(.9,.9,1)}}</style><div class="box"><div class="dialog-content"><div class="heading"><slot name="header"><span></span></slot><button type="button" class="close"><zoo-cross-icon></zoo-cross-icon></button></div><div class="content"><slot></slot></div></div></div>`;
 		this.header = this.shadowRoot.querySelector('span');
 	}
 
@@ -614,7 +663,7 @@ window.customElements.define('zoo-footer', Footer);
  */
 class Feedback extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid;width:100%;height:100%;padding:5px 0;background:var(--info-ultralight);border-color:var(--info-mid);--svg-fill:var(--info-mid)}:host([type=error]){background:var(--warning-ultralight);border-color:var(--warning-mid);--svg-fill:var(--warning-mid)}:host([type=success]){background:var(--primary-ultralight);border-color:var(--primary-mid);--svg-fill:var(--primary-mid)}svg{min-width:30px;min-height:30px;padding:0 10px 0 15px;fill:var(--svg-fill)}::slotted(*){display:flex;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 15.75a1.125 1.125 0 11.001 2.25A1.125 1.125 0 0112 15.75zm.75-2.25a.75.75 0 11-1.5 0V5.25a.75.75 0 111.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z"/></svg><slot></slot>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid var(--info-mid);width:100%;height:100%;padding:5px 0;background:var(--info-ultralight);border-radius:5px;--svg-fill:var(--info-mid)}:host([type=error]){background:var(--warning-ultralight);border-color:var(--warning-mid);--svg-fill:var(--warning-mid)}:host([type=success]){background:var(--primary-ultralight);border-color:var(--primary-mid);--svg-fill:var(--primary-mid)}zoo-attention-icon{padding:0 10px 0 15px;fill:var(--svg-fill);--width:30px;--height:30px}::slotted(*){display:flex;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style><zoo-attention-icon></zoo-attention-icon><slot></slot>`;
 	}
 }
 
@@ -667,22 +716,11 @@ window.customElements.define('zoo-navigation', Navigation);
  */
 class Toast extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>button,div{display:flex}:host{display:none;top:20px;right:20px;position:fixed;z-index:10001;contain:layout;--color-ultralight:var(--info-ultralight);--color-mid:var(--info-mid);--svg-padding:0}:host([type=error]){--color-ultralight:var(--warning-ultralight);--color-mid:var(--warning-mid)}:host([type=success]){--color-ultralight:var(--primary-ultralight);--color-mid:var(--primary-mid)}div{max-width:330px;min-height:50px;box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);border-left:3px solid;align-items:center;word-break:break-word;font-size:14px;line-height:20px;padding:15px;transition:transform .3s,opacity .4s;opacity:0;transform:translate3d(100%,0,0);background:var(--color-ultralight);border-color:var(--color-mid)}button{cursor:pointer;padding:0;border:0;background:0 0}.icon{padding-right:10px;min-width:48px}svg{fill:var(--color-mid)}.show{opacity:1;transform:translate3d(0,0,0)}</style><div><svg class="icon" width="30" height="30" viewBox="0 0 24 24"><path d="M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z"/></svg><slot name="content"></slot><button type="button" class="close"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg></button></div>`;
-	}
-	static get observedAttributes() {
-		return ['closelabel'];
-	}
-	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
-	}
-	handleCloseLabel(newVal) {
-		const closeButton = this.shadowRoot.querySelector('.close');
-		closeButton.setAttribute('aria-label', newVal);
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:none;top:20px;right:20px;position:fixed;z-index:10001;contain:layout;--color-ultralight:var(--info-ultralight);--color-mid:var(--info-mid);--svg-padding:0}:host([type=error]){--color-ultralight:var(--warning-ultralight);--color-mid:var(--warning-mid)}:host([type=success]){--color-ultralight:var(--primary-ultralight);--color-mid:var(--primary-mid)}div{max-width:330px;min-height:50px;box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);border-left:3px solid var(--color-mid);display:flex;align-items:center;word-break:break-word;font-size:14px;line-height:20px;padding:15px;transition:transform .3s,opacity .4s;opacity:0;transform:translate3d(100%,0,0);background:var(--color-ultralight);border-radius:5px}svg{padding-right:10px;min-width:48px;fill:var(--color-mid)}.show{opacity:1;transform:translate3d(0,0,0)}</style><div><svg width="30" height="30" viewBox="0 0 24 24"><path d="M14.2 21c.4.1.6.6.5 1a2.8 2.8 0 01-5.4 0 .7.7 0 111.4-.5 1.3 1.3 0 002.6 0c.1-.4.5-.6 1-.5zM12 0c.4 0 .8.3.8.8v1.5c4.2.4 7.4 3.9 7.4 8.2 0 3 .3 5.1.8 6.5l.4 1v.2c.6.4.3 1.3-.4 1.3H3c-.6 0-1-.7-.6-1.2.1-.2.4-.6.6-1.5.5-1.5.7-3.6.7-6.3 0-4.3 3.3-7.8 7.6-8.2V.8c0-.5.3-.8.7-.8zm0 3.8c-3.7 0-6.7 3-6.8 6.7a24.2 24.2 0 01-1 7.5h15.5l-.2-.5c-.5-1.6-.8-3.8-.8-7 0-3.7-3-6.8-6.7-6.8z"/></svg><slot name="content"></slot></div>`;
 	}
 	connectedCallback() {
 		this.hidden = true;
 		this.timeout = this.getAttribute('timeout') || 3;
-		this.shadowRoot.querySelector('button').addEventListener('click', () => this.close());
 	}
 	show() {
 		if (!this.hidden) return;
@@ -755,7 +793,7 @@ window.customElements.define('zoo-collapsable-list', CollapsableList);
  */
 class CollapsableListItem extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{padding:0 10px;display:flex;flex-direction:column}:host([active]){border:1px solid var(--primary-mid);border-radius:3px}.header{display:flex;cursor:pointer}::slotted([slot=header]){display:inline-flex;color:var(--primary-mid);font-size:14px;line-height:20px;font-weight:700;align-items:center;padding:20px 0}:host([active]) ::slotted([slot=header]){color:var(--primary-dark)}::slotted([slot=content]){display:none}:host([active]) ::slotted([slot=content]){display:initial}svg{display:inline-flex;margin-left:auto;fill:var(--primary-mid);transition:transform .3s;padding:20px 0}:host([active]) svg{fill:var(--primary-dark);transform:rotateX(180deg)}</style><div class="header"><slot name="header"></slot><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div><slot name="content"></slot>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{padding:0 10px;display:flex;flex-direction:column}:host([active]){border:1px solid var(--primary-mid);border-radius:3px}.header{display:flex;cursor:pointer}::slotted([slot=header]){display:inline-flex;color:var(--primary-mid);font-size:14px;line-height:20px;font-weight:700;align-items:center;padding:20px 0}:host([active]) ::slotted([slot=header]){color:var(--primary-dark)}::slotted([slot=content]){display:none}:host([active]) ::slotted([slot=content]){display:initial}zoo-arrow-icon{display:inline-flex;margin-left:auto;transition:transform .3s;padding:20px 0}:host([active]) zoo-arrow-icon{fill:var(--primary-dark);transform:rotateX(180deg)}</style><div class="header"><slot name="header"></slot><zoo-arrow-icon></zoo-arrow-icon></div><slot name="content"></slot>`;
 	}
 }
 window.customElements.define('zoo-collapsable-list-item', CollapsableListItem);
@@ -776,7 +814,7 @@ window.customElements.define('zoo-spinner', Spinner);
  */
 class Paginator extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.paging,button{display:flex}:host{min-width:inherit;display:none}.box{font-size:14px;width:max-content}:host([currentpage]){display:flex}.paging{align-items:center;border:1px solid #e6e6e6;border-radius:5px;padding:0 15px}button{cursor:pointer;opacity:1;transition:opacity .1s;background:0 0;border:0;padding:0;font-size:inherit;border-radius:5px;margin:0 2px}button:active{opacity:.5}button:focus,button:hover{background:#f2f3f4}button.hidden{display:none}svg{fill:var(--primary-mid)}.page-element{padding:4px 8px}.page-element.active{background:var(--primary-ultralight);color:var(--primary-mid)}</style><div class="box"><slot name="pagesizeselector"></slot><nav class="paging"><button type="button" class="prev"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M14 18l-6-6 6-6 1.6 1.5L11 12l4.7 4.4z"/></svg></button> <button type="button" class="next"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M8 17l4.6-4.6L8 8l1.6-1.6 6 6-6 6z"/></svg></button></nav></div><template id="dots"><div class="page-element">...</div></template><template id="pages"><button type="button" class="page-element"></button></template>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,button,nav{display:flex}:host{min-width:inherit;display:none}.box{font-size:14px;width:max-content}:host([currentpage]){display:flex}nav{align-items:center;border:1px solid #e6e6e6;border-radius:5px;padding:0 15px}button{cursor:pointer;opacity:1;transition:opacity .1s;background:0 0;border:0;padding:0;font-size:inherit;border-radius:5px;margin:0 2px}button:active{opacity:.5}button:focus,button:hover{background:#f2f3f4}button.hidden{display:none}.page-element{padding:4px 8px}.page-element.active{background:var(--primary-ultralight);color:var(--primary-mid)}.prev zoo-arrow-icon{transform:rotate(90deg)}.next zoo-arrow-icon{transform:rotate(-90deg)}</style><div class="box"><slot name="pagesizeselector"></slot><nav class="paging"><button type="button" class="prev"><zoo-arrow-icon></zoo-arrow-icon></button> <button type="button" class="next"><zoo-arrow-icon></zoo-arrow-icon></button></nav></div><template id="dots">...</template><template id="pages"><button type="button" class="page-element"></button></template>`;
 		this.prev = this.shadowRoot.querySelector('.prev');
 		this.next = this.shadowRoot.querySelector('.next');
 		this.dots = this.shadowRoot.querySelector('#dots').content;
@@ -786,7 +824,7 @@ class Paginator extends HTMLElement {
 	connectedCallback() {
 		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
 		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
-		this.shadowRoot.querySelector('.paging').addEventListener('click', e => {
+		this.shadowRoot.querySelector('nav').addEventListener('click', e => {
 			const target = e.target.getAttribute('page');
 			if (target) {
 				this.goToPage(target);
@@ -858,9 +896,31 @@ window.customElements.define('zoo-preloader', Preloader);
  */
 class AttentionIcon extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex}svg{padding-right:5px;min-width:18px;align-self:flex-start;fill:var(--icon-color,var(--info-mid))}</style><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 15.75a1.125 1.125 0 11.001 2.25A1.125 1.125 0 0112 15.75zm.75-2.25a.75.75 0 11-1.5 0V5.25a.75.75 0 111.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;padding-right:5px;width:var(--width,18px);height:var(--height,18px);fill:var(--icon-color,var(--info-mid))}</style><svg viewBox="0 0 24 24"><path d="M12 15.75a1.125 1.125 0 11.001 2.25A1.125 1.125 0 0112 15.75zm.75-2.25a.75.75 0 11-1.5 0V5.25a.75.75 0 111.5 0v8.25zm7.205-9.455l.53-.53c4.687 4.686 4.687 12.284 0 16.97-4.686 4.687-12.284 4.687-16.97 0-4.687-4.686-4.687-12.284 0-16.97 4.686-4.687 12.284-4.687 16.97 0l-.53.53zm0 0l-.53.53c-4.1-4.1-10.75-4.1-14.85 0s-4.1 10.75 0 14.85 10.75 4.1 14.85 0 4.1-10.75 0-14.85l.53-.53z"/></svg>`;
 	}
 }
 
 window.customElements.define('zoo-attention-icon', AttentionIcon);
+
+/**
+ * @injectHTML
+ */
+class CrossIcon extends HTMLElement {
+	constructor() {
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,#000)}</style><svg viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>`;
+	}
+}
+
+window.customElements.define('zoo-cross-icon', CrossIcon);
+
+/**
+ * @injectHTML
+ */
+class ArrowDownIcon extends HTMLElement {
+	constructor() {
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,var(--primary-mid))}</style><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13l4.59-4.58L18 10l-6 6l-6-6 z"/></svg>`;
+	}
+}
+
+window.customElements.define('zoo-arrow-icon', ArrowDownIcon);
 //# sourceMappingURL=components.js.map

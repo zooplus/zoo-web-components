@@ -96,8 +96,9 @@ zoo-arrow-icon {
 }
 
 zoo-link {
-	width: max-content;
-	justify-self: end;
+	text-align: right;
+	max-width: max-content;
+	justify-self: flex-end;
 	padding: 0;
 }
 

@@ -38,7 +38,7 @@ describe('Zoo input', function () {
 	});
 
 	it('should render input error', async () => {
-		const errorDisplay = await page.evaluate(() => {
+		const errorDisplay = await page.evaluate(async () => {
 			document.body.innerHTML = `
 				<zoo-input invalid>
 					<input id="input-type-number" slot="input" placeholder="input"/>
@@ -47,6 +47,7 @@ describe('Zoo input', function () {
 				</zoo-input>
 				`;
 			let input = document.querySelector('zoo-input');
+			await new Promise(r => setTimeout(r, 10));
 			const error = input.shadowRoot.querySelector('.error');
 			return window.getComputedStyle(error).display;
 		});
@@ -54,7 +55,7 @@ describe('Zoo input', function () {
 	});
 
 	it('should not render input error', async () => {
-		const errorDisplay = await page.evaluate(() => {
+		const errorDisplay = await page.evaluate(async () => {
 			document.body.innerHTML = `
 				<zoo-input>
 					<input id="input-type-number" slot="input" placeholder="input"/>
@@ -63,6 +64,7 @@ describe('Zoo input', function () {
 				</zoo-input>
 				`;
 			let input = document.querySelector('zoo-input');
+			await new Promise(r => setTimeout(r, 10));
 			const error = input.shadowRoot.querySelector('.error');
 			return window.getComputedStyle(error).display;
 		});

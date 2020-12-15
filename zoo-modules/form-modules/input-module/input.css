@@ -10,13 +10,13 @@ zoo-attention-icon {
 	right: 15px;
 	top: 15px;
 	pointer-events: none;
-	opacity: 0;
+	display: none;
 
 	--icon-color: var(--warning-mid);
 }
 
 :host([invalid]) zoo-attention-icon {
-	opacity: 1;
+	display: initial;
 }
 
 ::slotted(input),
@@ -88,7 +88,8 @@ zoo-attention-icon {
 }
 
 zoo-link {
-	width: max-content;
-	justify-self: end;
+	text-align: right;
+	max-width: max-content;
+	justify-self: flex-end;
 	padding: 0;
 }

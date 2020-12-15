@@ -706,7 +706,7 @@ window.customElements.define('zoo-link', Link);
  */
 class Navigation extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout}nav{width:100%;height:56px;background:linear-gradient(to right,var(--primary-mid),var(--primary-light))}::slotted(:first-child){display:flex;flex-direction:row;height:100%;overflow:auto;overflow-y:hidden;padding:0 20px}</style><nav><slot></slot></nav>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout}nav{display:flex;width:100%;height:56px;background:linear-gradient(to right,var(--primary-mid),var(--primary-light))}::slotted(:first-child){display:flex;flex-direction:row;height:100%;overflow:auto;overflow-y:hidden;padding:0 20px}</style><nav><slot></slot></nav>`;
 	}
 }
 window.customElements.define('zoo-navigation', Navigation);

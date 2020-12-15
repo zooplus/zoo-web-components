@@ -25,8 +25,8 @@ describe('Zoo collapsable list', function () {
 		expect(ret.content).toEqual('content');
 	});
 
-	it('should set active attribute on click', async () => {
-		const ret = await page.evaluate(async () => {
+	it('should close other items on toggle', async () => {
+		const result = await page.evaluate(async () => {
 			document.body.innerHTML = `
 			<zoo-collapsable-list>
 				<zoo-collapsable-list-item>
@@ -39,49 +39,22 @@ describe('Zoo collapsable list', function () {
 				</zoo-collapsable-list-item>
 			</zoo-collapsable-list>
 			`;
+			const result = [];
 			const listItems = [...document.querySelectorAll('zoo-collapsable-list-item')];
 			await new Promise(r => setTimeout(r, 10));
-			const prevState = listItems.map(item => item.hasAttribute('active'));
-			listItems[1].dispatchEvent(new Event('click'));
-			await new Promise(r => setTimeout(r, 10));
-			const currentState = listItems.map(item => item.hasAttribute('active'));
+			const details = listItems.map(item => item.shadowRoot.querySelector('details'));
 			
-			return {
-				prevState: prevState,
-				curreState: currentState
-			};
-		});
-		expect(ret.prevState).toEqual([true, false]);
-		expect(ret.curreState).toEqual([false, true]);
-	});
-
-	it('should not set active attribute on click when active element is clicked', async () => {
-		const ret = await page.evaluate(async () => {
-			document.body.innerHTML = `
-			<zoo-collapsable-list>
-				<zoo-collapsable-list-item>
-					<span slot="header">header1</span>
-					<div slot="content">content</div>
-				</zoo-collapsable-list-item>
-				<zoo-collapsable-list-item>
-					<span slot="header">header2</span>
-					<div slot="content">content</div>
-				</zoo-collapsable-list-item>
-			</zoo-collapsable-list>
-			`;
-			const listItems = [...document.querySelectorAll('zoo-collapsable-list-item')];
+			result.push(details.map(d => d.open));
+			details[0].open = true;
+			result.push(details.map(d => d.open));
 			await new Promise(r => setTimeout(r, 10));
-			const prevState = listItems.map(item => item.hasAttribute('active'));
-			listItems[0].dispatchEvent(new Event('click'));
+			details[1].open = true;
 			await new Promise(r => setTimeout(r, 10));
-			const currentState = listItems.map(item => item.hasAttribute('active'));
-			
-			return {
-				prevState: prevState,
-				curreState: currentState
-			};
+			result.push(details.map(d => d.open));
+			return result;
 		});
-		expect(ret.prevState).toEqual([true, false]);
-		expect(ret.curreState).toEqual([true, false]);
+		expect(result[0]).toEqual([false, false]);
+		expect(result[1]).toEqual([true, false]);
+		expect(result[2]).toEqual([false, true]);
 	});
 });

@@ -4,46 +4,18 @@
 	flex-direction: column;
 }
 
-:host([active]) {
+details[open] {
+	color: var(--primary-dark);
 	border: 1px solid var(--primary-mid);
 	border-radius: 3px;
 }
 
-.header {
-	display: flex;
+details {
+	padding: 10px;
+}
+
+summary {
 	cursor: pointer;
-}
-
-::slotted(*[slot="header"]) {
-	display: inline-flex;
 	color: var(--primary-mid);
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: bold;
-	align-items: center;
-	padding: 20px 0;
-}
-
-:host([active]) ::slotted(*[slot="header"]) {
-	color: var(--primary-dark);
-}
-
-::slotted(*[slot="content"]) {
-	display: none;
-}
-
-:host([active]) ::slotted(*[slot="content"]) {
-	display: initial;
-}
-
-zoo-arrow-icon {
-	display: inline-flex;
-	margin-left: auto;
-	transition: transform 0.3s;
-	padding: 20px 0;
-}
-
-:host([active]) zoo-arrow-icon {
-	fill: var(--primary-dark);
-	transform: rotateX(180deg);
+	font-weight: 700;
 }

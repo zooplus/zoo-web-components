@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.1.3
+
+`zoo-collapsable-list` - use native `details` underneath.
+
 ## 8.1.2
 
 `zoo-select` - fix showing select when labelposition=left is specified/

@@ -28,7 +28,7 @@ main {
 
 .form-content {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 	grid-gap: 20px;
 	margin: 20px auto;
 	padding: 0 10px;
@@ -101,6 +101,10 @@ zoo-navigation a:hover {
 	.buttons-holder {
 		justify-content: initial;
 		overflow: scroll;
+	}
+
+	.form-content {
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	}
 }
 

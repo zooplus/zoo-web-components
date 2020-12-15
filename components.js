@@ -771,20 +771,10 @@ class CollapsableList extends HTMLElement {
 		const slot = this.shadowRoot.querySelector('slot');
 		slot.addEventListener('slotchange', () => {
 			let items = slot.assignedElements();
-			items = items.filter(i => i.tagName == 'ZOO-COLLAPSABLE-LIST-ITEM');
-			if (items[0]) {
-				items[0].setAttribute('active', '');
-				this.prevActiveItem = items[0];
-			}
-
-			for (const item of items) {
-				item.addEventListener('click', () => {
-					if (item.hasAttribute('active')) return;
-					this.prevActiveItem.removeAttribute('active');
-					this.prevActiveItem = item;
-					item.setAttribute('active', '');
-				});
-			}
+			items.forEach(item => item.addEventListener('toggle', e => {
+				if (!e.detail) return;
+				items.forEach(i => !i.isEqualNode(item) && i.close());
+			}));
 		});
 	}
 }
@@ -795,7 +785,18 @@ window.customElements.define('zoo-collapsable-list', CollapsableList);
  */
 class CollapsableListItem extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{padding:0 10px;display:flex;flex-direction:column}:host([active]){border:1px solid var(--primary-mid);border-radius:3px}.header{display:flex;cursor:pointer}::slotted([slot=header]){display:inline-flex;color:var(--primary-mid);font-size:14px;line-height:20px;font-weight:700;align-items:center;padding:20px 0}:host([active]) ::slotted([slot=header]){color:var(--primary-dark)}::slotted([slot=content]){display:none}:host([active]) ::slotted([slot=content]){display:initial}zoo-arrow-icon{display:inline-flex;margin-left:auto;transition:transform .3s;padding:20px 0}:host([active]) zoo-arrow-icon{fill:var(--primary-dark);transform:rotateX(180deg)}</style><div class="header"><slot name="header"></slot><zoo-arrow-icon></zoo-arrow-icon></div><slot name="content"></slot>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{padding:0 10px;display:flex;flex-direction:column}details[open]{color:var(--primary-dark);border:1px solid var(--primary-mid);border-radius:3px}details{padding:10px}summary{cursor:pointer;color:var(--primary-mid);font-weight:700}</style><details><summary><slot name="header"></slot></summary><slot name="content"></slot></details>`;
+	}
+
+	connectedCallback() {
+		const details = this.shadowRoot.querySelector('details');
+		details.addEventListener('toggle', e => {
+			this.shadowRoot.host.dispatchEvent(new CustomEvent('toggle', {detail: e.target.open, composed: true}));
+		});
+	}
+
+	close() {
+		this.shadowRoot.querySelector('details').open = false;
 	}
 }
 window.customElements.define('zoo-collapsable-list-item', CollapsableListItem);

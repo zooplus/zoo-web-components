@@ -378,6 +378,8 @@ window.customElements.define('zoo-button', Button);
 
 /**
  * @injectHTML
+ * https://github.com/whatwg/html/issues/6226
+ * which leads to https://github.com/WICG/webcomponents/issues/59
  */
 class ZooGrid extends HTMLElement {
 	constructor() {

@@ -36,4 +36,4 @@ Documentation page is here: <https://zooplus.github.io/zoo-web-components-docs>
 
 ## Note
 
-This library relies on attributes or slots. Usage of properties is not supported for simplicity.
+This library relies on attributes and/or slots. Usage of properties is not supported for simplicity.

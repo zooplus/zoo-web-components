@@ -11,7 +11,7 @@ beforeAll(async () => {
 	});
 	global.page = await global.browser.newPage();
 	global.colors = {
-		primaryMid: '#3C9700',
+		primaryMid: '#368700',
 		primaryLight: '#66B100',
 		primaryDark: '#286400',
 		primaryUltralight: '#EBF4E5',

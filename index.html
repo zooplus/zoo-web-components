@@ -45,17 +45,17 @@
 		<form novalidate>
 			<div class="form-content">
 				<zoo-input>
+					<label for="input-type-text" slot="label">Input type text</label>
 					<input id="input-type-text" slot="input" type="text" placeholder="input" required
 						pattern="[A-Za-z ]+" />
-					<label for="input-type-text" slot="label">Input type text</label>
 					<span slot="info">Additional helpful information for our users</span>
 					<span slot="error">This input field should contain only letters and it is required!</span>
 					<a slot="link" href="https://google.com" target="about:blank">Forgotten your password?</a>
 				</zoo-input>
 				<zoo-input>
+					<label for="input-type-number" slot="label">Autocomplete</label>
 					<input id="input-type-number" slot="input" placeholder="input" list="animals" required
 						pattern="[Dd]og|[Cc]at|[Ss]mall [Pp]et|[Bb]ird|[Aa]quatic" />
-					<label for="input-type-number" slot="label">Autocomplete</label>
 					<span slot="info">Possible values: Dog, Cat, Small Pet, Bird, Aquatic</span>
 					<span slot="error">This input field is required and should one of the possible values!</span>
 					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
@@ -69,59 +69,60 @@
 					<option value="Aquatic">
 				</datalist>
 				<zoo-input>
-					<input id="input-type-date" slot="input" type="date" />
 					<label for="input-type-date" slot="label">Input type date</label>
+					<input id="input-type-date" slot="input" type="date" />
 					<span slot="info">Click on input to show context menu with date selection</span>
 					<a slot="link" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native
 						date picker polyfill on Github</a>
 				</zoo-input>
 				<zoo-input class="input-composition">
-					<input id="input-composition" slot="input" type="text" placeholder="input" />
 					<label for="input-composition" slot="label">Composition of an input with a button</label>
+					<input id="input-composition" slot="input" type="text" placeholder="input" />
 					<zoo-button slot="input"><button type="button">Click me!</button></zoo-button>
 					<span slot="info">Additional helpful information for our users</span>
 				</zoo-input>
 				<zoo-input>
-					<textarea id="textarea" slot="input" placeholder="Textarea"></textarea>
 					<label for="textarea" slot="label">Textarea</label>
+					<textarea id="textarea" slot="input" placeholder="Textarea"></textarea>
 				</zoo-input>
 				<zoo-select>
 					<a slot="link" href="https://google.com" target="about:blank">Documentation link</a>
+					<label for="multiselect" slot="label">Multiselect</label>
 					<select id="multiselect" slot="select" multiple>
 						<option class="placeholder" value="" disabled selected>Placeholder</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 					</select>
-					<label for="multiselect" slot="label">Multiselect</label>
 					<span slot="info">Additional information</span>
 				</zoo-select>
 				<zoo-select class="select">
+					<label for="normal-select" slot="label">Standard select</label>
 					<select id="normal-select" slot="select" required>
 						<option value="" disabled selected>Please select an option</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 					</select>
-					<label for="normal-select" slot="label">Standard select</label>
 					<span slot="info">Additional information</span>
 					<span slot="error">Please choose an option!</span>
 				</zoo-select>
 				<zoo-searchable-select>
+					<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
 					<select id="searchable-select" multiple="" slot="select" required>
 						<option value="text">text</option>
 						<option value="raNdOm">raNdOm</option>
 						<option value="random1">random1</option>
 						<option value="random2">random2</option>
 					</select>
-					<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
-					<input id="inserted-input" slot="input" type="text" placeholder="Select multiple options" />
 					<label for="inserted-input" slot="inputlabel">Searchable multiple input</label>
+					<input id="inserted-input" slot="input" type="text" placeholder="Select multiple options" />
 					<span slot="legend">Searchable multiple select legend</span>
 					<span slot="info">Search is case insensitive.</span>
 					<span slot="error">Please choose an option!</span>
 				</zoo-searchable-select>
 				<zoo-searchable-select>
+					<label for="searchable-select2" slot="selectlabel">Searchable select</label>
 					<select id="searchable-select2" slot="select">
 						<option value="" disabled selected>Please select an option</option>
 						<option value="text">text</option>
@@ -129,9 +130,8 @@
 						<option value="random1">random1</option>
 						<option value="random2">random2</option>
 					</select>
-					<label for="searchable-select2" slot="selectlabel">Searchable select</label>
-					<input id="inserted-input2" slot="input" type="text" placeholder="Select single option" />
 					<label for="inserted-input2" slot="inputlabel">Searchable select input</label>
+					<input id="inserted-input2" slot="input" type="text" placeholder="Select single option" />
 					<span slot="legend">Searchable select legend</span>
 					<span slot="info">Search is case insensitive. Prefer to use input with a datalist.</span>
 				</zoo-searchable-select>
@@ -211,13 +211,13 @@
 				</zoo-feedback>
 				<br>
 				<zoo-select>
+					<label for="product-for" slot="label">This product is for</label>
 					<select id="product-for" slot="select">
 						<option value="" disabled selected>Please select type of your pet</option>
 						<option>Doge</option>
 						<option>Catz</option>
 						<option>Snek</option>
 					</select>
-					<label for="product-for" slot="label">This product is for</label>
 				</zoo-select>
 				<br>
 				<zoo-checkbox highlighted>
@@ -235,7 +235,7 @@
 		<h2>Data grids</h2>
 		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 		<div class="grid-holder">
-			<zoo-grid stickyheader currentpage="5" maxpages="20" resizable reorderable>
+			<zoo-grid role="grid" stickyheader currentpage="5" maxpages="20" resizable reorderable>
 				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
 				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date
 				</zoo-grid-header>
@@ -247,13 +247,13 @@
 				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
 
 				<zoo-select labelposition="left" slot="pagesizeselector">
+					<label for="first-grid-page-size" slot="label">Page size</label>
 					<select id="first-grid-page-size" slot="select">
 						<option selected>5</option>
 						<option>10</option>
 						<option>25</option>
 						<option>100</option>
 					</select>
-					<label for="first-grid-page-size" slot="label">Page size</label>
 				</zoo-select>
 			</zoo-grid>
 		</div>
@@ -261,7 +261,7 @@
 		<h3>Grid with sticky header and pagination. Grid height and width are limited on the client side.</h3>
 
 		<div class="grid-holder" style="max-width: 850px; max-height: 300px;">
-			<zoo-grid stickyheader currentpage="5" maxpages="20">
+			<zoo-grid role="grid" stickyheader currentpage="5" maxpages="20">
 				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
 				<zoo-grid-header slot="headercell">Created Date</zoo-grid-header>
 				<zoo-grid-header slot="headercell">Status</zoo-grid-header>
@@ -271,13 +271,13 @@
 				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
 
 				<zoo-select labelposition="left" slot="pagesizeselector">
+					<label for="second-grid-page-size" slot="label">Page size</label>
 					<select id="second-grid-page-size" slot="select">
 						<option selected>5</option>
 						<option>10</option>
 						<option>25</option>
 						<option>100</option>
 					</select>
-					<label for="second-grid-page-size" slot="label">Page size</label>
 				</zoo-select>
 			</zoo-grid>
 		</div>

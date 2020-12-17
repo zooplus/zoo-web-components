@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 8.1.4
+
+`zoo-navigation` - provide default styles for slotted content;
+`zoo-header` - remove styles for small screens;
+`zoo-attention-icon` - fix display on windows OS;
+`grid-header` - fix sort button color.
+
 ## 8.1.3
 
 `zoo-collapsable-list` - use native `details` underneath.

@@ -18,16 +18,3 @@ header {
 ::slotted(*[slot="headertext"]) {
 	color: var(--primary-mid);
 }
-
-@media only screen and (max-width: 544px) {
-	::slotted(img) {
-		height: 36px;
-		display: inline-block;
-		padding: 5px 25px 5px 0;
-		cursor: pointer;
-	}
-
-	::slotted(*[slot="headertext"]) {
-		display: none;
-	}
-}

@@ -7,6 +7,8 @@
 	display: flex;
 	font-size: 14px;
 	width: max-content;
+	position: var(--paginator-position, 'initial');
+	right: var(--right, 'unset');
 }
 
 :host([currentpage]) {

@@ -2,9 +2,9 @@ describe('Zoo paginator', function () {
 	it('should create default grid', async () => {
 		const rowsLength = await page.evaluate(() => {
 			document.body.innerHTML = `
-			<zoo-grid currentpage="3" maxpages="20" reorderable stickyheader>
-				<zoo-grid-header slot="headercell" sortable="true" sortableproperty="createdDate">Created date</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable="true" sortableproperty="minWeight">Min weight</zoo-grid-header>
+			<zoo-grid currentpage="3" maxpages="20">
+				<zoo-grid-header slot="headercell">Created date</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Min weight</zoo-grid-header>
 				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
 		
 				<div slot="row"><div>2020-05-05</div><div>30 kg</div><div>20 EUR</div></div>
@@ -31,7 +31,7 @@ describe('Zoo paginator', function () {
 	it('should remove sort state from previously sorted header', async () => {
 		const ret = await page.evaluate(async () => {
 			document.body.innerHTML = `
-			<zoo-grid currentpage="3" maxpages="20" reorderable stickyheader>
+			<zoo-grid currentpage="3" maxpages="20">
 				<zoo-grid-header slot="headercell" sortable="true" sortableproperty="createdDate">Created date</zoo-grid-header>
 				<zoo-grid-header slot="headercell" sortable="true" sortableproperty="minWeight">Min weight</zoo-grid-header>
 		
@@ -64,5 +64,116 @@ describe('Zoo paginator', function () {
 		expect(ret.firstHeaderFirstSortState).toEqual('desc');
 		expect(ret.firstHeaderSecondSortState).toEqual(null);
 		expect(ret.secondHeaderSortState).toEqual('desc');
+	});
+
+	it('should switch columns on drop when dropping to column to right', async () => {
+		const ret = await page.evaluate(async () => {
+			document.body.innerHTML = `
+			<zoo-grid currentpage="3" maxpages="20" reorderable>
+				<zoo-grid-header slot="headercell" id="first">Created date</zoo-grid-header>
+				<zoo-grid-header slot="headercell" id="second">Min weight</zoo-grid-header>
+		
+				<div slot="row">
+					<div>2020-05-05</div>
+					<div>30 kg</div>
+				</div>
+			</zoo-grid>
+			`;
+			const grid = document.querySelector('zoo-grid');
+			await new Promise(r => setTimeout(r, 50));
+			
+			const headerOne = document.querySelector('zoo-grid-header[column="1"]');
+			const headerOneId = headerOne.getAttribute('id');
+			const headerTwo = document.querySelector('zoo-grid-header[column="2"]');
+			const headerTwoId = headerTwo.getAttribute('id');
+
+			grid.handleDrop({
+				target: headerTwo,
+				dataTransfer: { getData: () => 1 }
+			});
+			await new Promise(r => setTimeout(r, 50));
+
+			const headerIdsAfterDrop = [...document.querySelectorAll('zoo-grid-header')].map(h => h.getAttribute('id'));
+			return {
+				headerIds: [headerOneId, headerTwoId],
+				headerIdsAfterDrop: headerIdsAfterDrop
+			};
+		});
+		expect(ret.headerIds).toEqual(['first', 'second']);
+		expect(ret.headerIdsAfterDrop).toEqual(['second', 'first']);
+	});
+
+	it('should switch columns on drop when dropping to column to left', async () => {
+		const ret = await page.evaluate(async () => {
+			document.body.innerHTML = `
+			<zoo-grid currentpage="3" maxpages="20" reorderable>
+				<zoo-grid-header slot="headercell" id="first">Created date</zoo-grid-header>
+				<zoo-grid-header slot="headercell" id="second">Min weight</zoo-grid-header>
+		
+				<div slot="row">
+					<div>2020-05-05</div>
+					<div>30 kg</div>
+				</div>
+			</zoo-grid>
+			`;
+			const grid = document.querySelector('zoo-grid');
+			await new Promise(r => setTimeout(r, 50));
+			
+			const headerOne = document.querySelector('zoo-grid-header[column="1"]');
+			const headerOneId = headerOne.getAttribute('id');
+			const headerTwo = document.querySelector('zoo-grid-header[column="2"]');
+			const headerTwoId = headerTwo.getAttribute('id');
+
+			grid.handleDrop({
+				target: headerOne,
+				dataTransfer: { getData: () => 2 }
+			});
+			await new Promise(r => setTimeout(r, 50));
+
+			const headerIdsAfterDrop = [...document.querySelectorAll('zoo-grid-header')].map(h => h.getAttribute('id'));
+			return {
+				headerIds: [headerOneId, headerTwoId],
+				headerIdsAfterDrop: headerIdsAfterDrop
+			};
+		});
+		expect(ret.headerIds).toEqual(['first', 'second']);
+		expect(ret.headerIdsAfterDrop).toEqual(['second', 'first']);
+	});
+
+	it('should not switch columns when dropped on same column as start', async () => {
+		const ret = await page.evaluate(async () => {
+			document.body.innerHTML = `
+			<zoo-grid currentpage="3" maxpages="20" reorderable>
+				<zoo-grid-header slot="headercell" id="first">Created date</zoo-grid-header>
+				<zoo-grid-header slot="headercell" id="second">Min weight</zoo-grid-header>
+		
+				<div slot="row">
+					<div>2020-05-05</div>
+					<div>30 kg</div>
+				</div>
+			</zoo-grid>
+			`;
+			const grid = document.querySelector('zoo-grid');
+			await new Promise(r => setTimeout(r, 50));
+			
+			const headerOne = document.querySelector('zoo-grid-header[column="1"]');
+			const headerOneId = headerOne.getAttribute('id');
+			const headerTwo = document.querySelector('zoo-grid-header[column="2"]');
+			const headerTwoId = headerTwo.getAttribute('id');
+
+			grid.handleDrop({
+				target: headerOne,
+				dataTransfer: { getData: () => 1 }
+			});
+			await new Promise(r => setTimeout(r, 50));
+
+			const headerIdsAfterDrop = [...document.querySelectorAll('zoo-grid-header')].map(h => h.getAttribute('id'));
+			return {
+				headerIds: [headerOneId, headerTwoId],
+				headerIdsAfterDrop: headerIdsAfterDrop
+			};
+		});
+		expect(ret.headerIds).toEqual(['first', 'second']);
+		expect(ret.headerIdsAfterDrop).toEqual(['first', 'second']);
 	});
 });

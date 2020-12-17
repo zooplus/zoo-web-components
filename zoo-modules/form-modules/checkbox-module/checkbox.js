@@ -50,8 +50,10 @@ export default class Checkbox extends HTMLElement {
 	}
 
 	disconnectedCallback() {
-		this.observer.disconnect();
-		this.observer = null;
+		if (this.observer) {
+			this.observer.disconnect();
+			this.observer = null;
+		}
 	}
 }
 window.customElements.define('zoo-checkbox', Checkbox);

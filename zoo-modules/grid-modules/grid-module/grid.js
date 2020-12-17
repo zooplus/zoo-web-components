@@ -31,7 +31,6 @@ export default class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		// TODO resizable attr is fucking up something
 		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
 			this.resizeObserver.disconnect();
@@ -78,56 +77,26 @@ export default class ZooGrid extends HTMLElement {
 		header.setAttribute('ondragover', 'event.preventDefault()');
 		header.setAttribute('ondrop', 'event.preventDefault()');
 
-		header.addEventListener('dragstart', e => {
-			this.classList.add('dragging');
-			e.dataTransfer.setData('text/plain', header.getAttribute('column'));
+		header.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', header.getAttribute('column')));
+		// drag enter fires before dragleave, so stagger this function
+		header.addEventListener('dragenter', this.debounce(() => header.classList.add('drag-over')));
+		header.addEventListener('dragleave', () => header.classList.remove('drag-over'));
+		header.addEventListener('drop', e => this.handleDrop(e));
+	}
+
+	handleDrop(e) {
+		this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(h => h.classList.remove('drag-over'));
+		const sourceColumn = e.dataTransfer.getData('text');
+		const targetColumn = e.target.getAttribute('column');
+		if (targetColumn == sourceColumn) return;
+		// move columns
+		this.querySelectorAll(`[column="${sourceColumn}"]`).forEach(source => {
+			const target = source.parentElement.querySelector(`[column="${targetColumn}"]`);
+			targetColumn > sourceColumn ? target.after(source) : target.before(source);
 		});
-		header.addEventListener('dragend', () => {
-			this.classList.remove('dragging');
-			this.draggedOverHeader.classList.remove('drag-over');
-		});
-		header.addEventListener('dragenter', e => {
-			// header is present and drag target is not its child -> some sibling of header
-			if (this.draggedOverHeader && !this.draggedOverHeader.contains(e.target)) {
-				this.draggedOverHeader.classList.remove('drag-over');
-			}
-			// already marked
-			if (header.classList.contains('drag-over')) {
-				return;
-			}
-			// dragging over a valid drop target or its child
-			if (header == e.target || header.contains(e.target)) {
-				header.classList.add('drag-over');
-				this.draggedOverHeader = header;
-			}
-		});
-		header.addEventListener('drop', e => {
-			const sourceColumn = e.dataTransfer.getData('text');
-			const targetColumn = e.target.getAttribute('column');
-			if (targetColumn == sourceColumn) {
-				return;
-			}
-			// move headers
-			const sourceHeader = this.querySelector(`zoo-grid-header[column="${sourceColumn}"]`);
-			if (targetColumn < sourceColumn) {
-				e.target.parentNode.insertBefore(sourceHeader, e.target);
-			} else {
-				e.target.parentNode.insertBefore(e.target, sourceHeader);
-			}
-			// move rows
-			const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedElements();
-			allRows.forEach(row => {
-				const sourceRowColumn = row.querySelector(`[column="${sourceColumn}"]`);
-				const targetRowColumn = row.querySelector(`[column="${targetColumn}"]`);
-				if (targetColumn < sourceColumn) {
-					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
-				} else {
-					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
-				}
-				sourceRowColumn.setAttribute('column', targetColumn);
-				targetRowColumn.setAttribute('column', sourceColumn);
-			});
-		});
+		// reassign indexes for row cells
+		const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedElements();
+		allRows.forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
 	}
 
 	handleSortChange(e) {

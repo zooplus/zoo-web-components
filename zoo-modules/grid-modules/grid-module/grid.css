@@ -64,12 +64,7 @@
 	height: inherit;
 }
 
-:host(.dragging) ::slotted(*[ondrop]) {
-	border-radius: 3px;
-	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-:host(.dragging) ::slotted(.drag-over) {
+::slotted(.drag-over) {
 	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.4);
 }
 

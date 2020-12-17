@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.1.5
+
+`zoo-grid` - refactor and fix reordering columns when `reorderable` attribute is defined.
+
 ## 8.1.4
 
 `zoo-navigation` - provide default styles for slotted content;

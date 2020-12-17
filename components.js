@@ -103,8 +103,10 @@ class Checkbox extends HTMLElement {
 	}
 
 	disconnectedCallback() {
-		this.observer.disconnect();
-		this.observer = null;
+		if (this.observer) {
+			this.observer.disconnect();
+			this.observer = null;
+		}
 	}
 }
 window.customElements.define('zoo-checkbox', Checkbox);
@@ -383,7 +385,7 @@ window.customElements.define('zoo-button', Button);
  */
 class ZooGrid extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.header-row{min-width:inherit}:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.header-row,zoo-paginator{z-index:2;box-sizing:border-box;background:#fff}:host([loading]) .loading-shade{display:flex}.header-row{font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}:host(.dragging) ::slotted([ondrop]){border-radius:3px;box-shadow:inset 0 0 1px 1px rgba(0,0,0,.1)}:host(.dragging) ::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{display:flex;position:sticky;bottom:0;width:100%;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6;--paginator-position:sticky;--right:10px}::slotted(zoo-select){margin-right:20px}</style><div class="box"><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row"><slot name="headercell"></slot></div><slot name="row"></slot><slot name="norecords"></slot><slot name="paginator"><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></slot></div>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.header-row{min-width:inherit}:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.header-row,zoo-paginator{z-index:2;box-sizing:border-box;background:#fff}:host([loading]) .loading-shade{display:flex}.header-row{font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{display:flex;position:sticky;bottom:0;width:100%;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6;--paginator-position:sticky;--right:10px}::slotted(zoo-select){margin-right:20px}</style><div class="box"><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row"><slot name="headercell"></slot></div><slot name="row"></slot><slot name="norecords"></slot><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></div>`;
 	}
 
 	static get observedAttributes() {
@@ -409,7 +411,6 @@ class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		// TODO resizable attr is fucking up something
 		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
 			this.resizeObserver.disconnect();
@@ -456,56 +457,26 @@ class ZooGrid extends HTMLElement {
 		header.setAttribute('ondragover', 'event.preventDefault()');
 		header.setAttribute('ondrop', 'event.preventDefault()');
 
-		header.addEventListener('dragstart', e => {
-			this.classList.add('dragging');
-			e.dataTransfer.setData('text/plain', header.getAttribute('column'));
+		header.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', header.getAttribute('column')));
+		// drag enter fires before dragleave, so stagger this function
+		header.addEventListener('dragenter', this.debounce(() => header.classList.add('drag-over')));
+		header.addEventListener('dragleave', () => header.classList.remove('drag-over'));
+		header.addEventListener('drop', e => this.handleDrop(e));
+	}
+
+	handleDrop(e) {
+		this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(h => h.classList.remove('drag-over'));
+		const sourceColumn = e.dataTransfer.getData('text');
+		const targetColumn = e.target.getAttribute('column');
+		if (targetColumn == sourceColumn) return;
+		// move columns
+		this.querySelectorAll(`[column="${sourceColumn}"]`).forEach(source => {
+			const target = source.parentElement.querySelector(`[column="${targetColumn}"]`);
+			targetColumn > sourceColumn ? target.after(source) : target.before(source);
 		});
-		header.addEventListener('dragend', () => {
-			this.classList.remove('dragging');
-			this.draggedOverHeader.classList.remove('drag-over');
-		});
-		header.addEventListener('dragenter', e => {
-			// header is present and drag target is not its child -> some sibling of header
-			if (this.draggedOverHeader && !this.draggedOverHeader.contains(e.target)) {
-				this.draggedOverHeader.classList.remove('drag-over');
-			}
-			// already marked
-			if (header.classList.contains('drag-over')) {
-				return;
-			}
-			// dragging over a valid drop target or its child
-			if (header == e.target || header.contains(e.target)) {
-				header.classList.add('drag-over');
-				this.draggedOverHeader = header;
-			}
-		});
-		header.addEventListener('drop', e => {
-			const sourceColumn = e.dataTransfer.getData('text');
-			const targetColumn = e.target.getAttribute('column');
-			if (targetColumn == sourceColumn) {
-				return;
-			}
-			// move headers
-			const sourceHeader = this.querySelector(`zoo-grid-header[column="${sourceColumn}"]`);
-			if (targetColumn < sourceColumn) {
-				e.target.parentNode.insertBefore(sourceHeader, e.target);
-			} else {
-				e.target.parentNode.insertBefore(e.target, sourceHeader);
-			}
-			// move rows
-			const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedElements();
-			allRows.forEach(row => {
-				const sourceRowColumn = row.querySelector(`[column="${sourceColumn}"]`);
-				const targetRowColumn = row.querySelector(`[column="${targetColumn}"]`);
-				if (targetColumn < sourceColumn) {
-					targetRowColumn.parentNode.insertBefore(sourceRowColumn, targetRowColumn);
-				} else {
-					targetRowColumn.parentNode.insertBefore(targetRowColumn, sourceRowColumn);
-				}
-				sourceRowColumn.setAttribute('column', targetColumn);
-				targetRowColumn.setAttribute('column', sourceColumn);
-			});
-		});
+		// reassign indexes for row cells
+		const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedElements();
+		allRows.forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
 	}
 
 	handleSortChange(e) {

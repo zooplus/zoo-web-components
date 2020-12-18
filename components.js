@@ -30,22 +30,40 @@ class Label extends HTMLElement {
 }
 window.customElements.define('zoo-label', Label);
 
+class FormElement extends HTMLElement {
+	constructor() {
+		super();
+	}
+
+	registerElementForValidation(element) {
+		element.addEventListener('invalid', () => {
+			this.setAttribute('invalid', '');
+			this.setAttribute('aria-invalid', '');
+		});
+		element.addEventListener('change', () => {
+			if (element.checkValidity()) {
+				this.removeAttribute('invalid');
+			} else {
+				this.setAttribute('invalid', '');
+				this.setAttribute('aria-invalid', '');
+			}
+		});
+	}
+}
+
 /**
  * @injectHTML
  */
-class Input extends HTMLElement {
+class Input extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content}zoo-attention-icon{position:absolute;right:15px;top:15px;pointer-events:none;display:none;--icon-color:var(--warning-mid)}:host([invalid]) zoo-attention-icon{display:initial}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}:host([invalid]) ::slotted(input),:host([invalid]) ::slotted(textarea){border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input[type=date]),::slotted(input[type=time]){-webkit-min-logical-height:48px}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555;padding:12px 14px}.content{display:flex;position:relative;flex:1}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}zoo-link{text-align:right;max-width:max-content;justify-self:flex-end;padding:0}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><slot name="input"></slot><zoo-attention-icon></zoo-attention-icon></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content}zoo-attention-icon{position:absolute;right:15px;top:15px;pointer-events:none;display:none;--icon-color:var(--warning-mid)}:host([invalid]) zoo-attention-icon{display:initial}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}:host([invalid]) ::slotted(input),:host([invalid]) ::slotted(textarea){border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input[type=date]),::slotted(input[type=time]){-webkit-min-logical-height:48px}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555;padding:12px 14px}.content{display:flex;position:relative;flex:1}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}zoo-link{text-align:right;max-width:max-content;justify-self:flex-end;padding:0}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><slot name="input"></slot><zoo-attention-icon></zoo-attention-icon></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
 	}
 
 	connectedCallback() {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			let input = inputSlot.assignedElements()[0];
-			input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			input.addEventListener('input', () => {
-				input.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
+			this.registerElementForValidation(input);
 		});
 	}
 }
@@ -54,9 +72,9 @@ window.customElements.define('zoo-input', Input);
 /**
  * @injectHTML
  */
-class Checkbox extends HTMLElement {
+class Checkbox extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.checkbox,svg{box-sizing:border-box}:host{display:flex;flex-direction:column;width:100%;font-size:14px;line-height:20px;position:relative;--border:0;--check-color:var(--primary-mid)}:host([disabled]){--check-color:#767676}:host([highlighted]){--border:1px solid var(--check-color)}:host([invalid]){--check-color:var(--warning-mid);--border:2px solid var(--warning-mid)}::slotted(input){width:100%;height:100%;top:0;left:0;position:absolute;display:flex;align-self:flex-start;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;margin:0;border-radius:3px;border:var(--border)}svg{border:1px solid var(--check-color);fill:var(--check-color);border-radius:3px;pointer-events:none;min-width:24px;z-index:1;padding:1px}svg path{display:none}:host([checked]) svg path{display:flex}:host(:focus-within) svg{border-width:2px}:host([checked]) svg,:host([invalid]) svg{border-width:2px}:host([checked]) ::slotted(input){border-width:2px}:host([disabled]) svg{background:#f2f3f4}.checkbox{display:flex;width:100%;cursor:pointer;align-items:baseline;position:relative}:host([highlighted]) .checkbox{padding:11px 15px}::slotted(label){display:flex;align-self:center;cursor:pointer;margin-left:5px;z-index:1}::slotted(input:disabled),:host([disabled]) ::slotted(label){cursor:not-allowed}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><div class="checkbox"><slot name="checkbox"></slot><svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><slot name="label"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.checkbox,svg{box-sizing:border-box}:host{display:flex;flex-direction:column;width:100%;font-size:14px;line-height:20px;position:relative;--border:0;--check-color:var(--primary-mid)}:host([disabled]){--check-color:#767676}:host([highlighted]){--border:1px solid var(--check-color)}:host([invalid]){--check-color:var(--warning-mid);--border:2px solid var(--warning-mid)}::slotted(input){width:100%;height:100%;top:0;left:0;position:absolute;display:flex;align-self:flex-start;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;margin:0;border-radius:3px;border:var(--border)}svg{border:1px solid var(--check-color);fill:var(--check-color);border-radius:3px;pointer-events:none;min-width:24px;z-index:1;padding:1px}svg path{display:none}:host([checked]) svg path{display:flex}:host(:focus-within) svg{border-width:2px}:host([checked]) svg,:host([invalid]) svg{border-width:2px}:host([checked]) ::slotted(input){border-width:2px}:host([disabled]) svg{background:#f2f3f4}.checkbox{display:flex;width:100%;cursor:pointer;align-items:baseline;position:relative}:host([highlighted]) .checkbox{padding:11px 15px}::slotted(label){display:flex;align-self:center;cursor:pointer;margin-left:5px;z-index:1}::slotted(input:disabled),:host([disabled]) ::slotted(label){cursor:not-allowed}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><div class="checkbox"><slot name="checkbox"></slot><svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><slot name="label"></slot></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
 	}
 
 	// TODO think of a better way to handle disabled attribute change
@@ -80,11 +98,8 @@ class Checkbox extends HTMLElement {
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let checkbox = checkboxSlot.assignedElements()[0];
-			checkbox.addEventListener('change', () => {
-				checkbox.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-				this.handleChange(checkbox);
-			});
-			checkbox.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			checkbox.addEventListener('change', () => this.handleChange(checkbox));
+			this.registerElementForValidation(checkbox);
 			if (checkbox.hasAttribute('disabled')) this.setAttribute('disabled', '');
 			this.observer.disconnect();
 			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });
@@ -114,28 +129,21 @@ window.customElements.define('zoo-checkbox', Checkbox);
 /**
  * @injectHTML
  */
-class Radio extends HTMLElement {
+class Radio extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;font-size:14px;line-height:20px;--box-shadow-color:#767676;--box-shadow-width:1px;--box-shadow-color2:transparent;--box-shadow-width2:1px}fieldset{border:0;padding:0;margin:0;position:relative}.radio-group{display:flex;padding:11px 0}:host([invalid]){color:var(--warning-mid)}::slotted(input){position:relative;min-width:24px;height:24px;border-radius:50%;margin:0 2px 0 0;padding:4px;background-clip:content-box;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;box-shadow:inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color),inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2)}:host([invalid]) ::slotted(input){--box-shadow-color:var(--warning-mid)}::slotted(input:focus){--box-shadow-color:#3C9700;--box-shadow-width:2px}::slotted(input:checked){background-color:var(--primary-mid);--box-shadow-color:#3C9700;--box-shadow-width:2px;--box-shadow-width2:4px;--box-shadow-color2:white}:host([invalid]) ::slotted(input:checked){background-color:var(--warning-mid)}::slotted(input:disabled){cursor:not-allowed;background-color:#555;--box-shadow-width:2px;--box-shadow-width2:5px;--box-shadow-color:#555!important}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="radio-group"><slot></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info></fieldset>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;font-size:14px;line-height:20px;--box-shadow-color:#767676;--box-shadow-width:1px;--box-shadow-color2:transparent;--box-shadow-width2:1px}fieldset{border:0;padding:0;margin:0;position:relative}.radio-group{display:flex;padding:11px 0}:host([invalid]){color:var(--warning-mid)}::slotted(input){position:relative;min-width:24px;height:24px;border-radius:50%;margin:0 2px 0 0;padding:4px;background-clip:content-box;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;box-shadow:inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color),inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2)}:host([invalid]) ::slotted(input){--box-shadow-color:var(--warning-mid)}::slotted(input:focus){--box-shadow-color:#3C9700;--box-shadow-width:2px}::slotted(input:checked){background-color:var(--primary-mid);--box-shadow-color:#3C9700;--box-shadow-width:2px;--box-shadow-width2:4px;--box-shadow-color2:white}:host([invalid]) ::slotted(input:checked){background-color:var(--warning-mid)}::slotted(input:disabled){cursor:not-allowed;background-color:#555;--box-shadow-width:2px;--box-shadow-width2:5px;--box-shadow-color:#555!important}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="radio-group"><slot></slot></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info></fieldset>`;
 	}
 
 	connectedCallback() {
-		const fieldset = this.shadowRoot.querySelector('fieldset');
-		fieldset.addEventListener('change', () => {
-			fieldset.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-		});
 		const radioInputSlot = this.shadowRoot.querySelector('.radio-group slot');
 		radioInputSlot.addEventListener('slotchange', () => {
 			let slottedElements = radioInputSlot.assignedElements();
 			slottedElements.forEach(e => {
 				if (e.tagName === 'INPUT') {
-					e.addEventListener('invalid', () => {
-						this.setAttribute('invalid', '');
-					});
+					this.registerElementForValidation(e);
 				}
 			});
 		});
-		
 	}
 }
 window.customElements.define('zoo-radio', Radio);
@@ -143,9 +151,9 @@ window.customElements.define('zoo-radio', Radio);
 /**
  * @injectHTML
  */
-class Select extends HTMLElement {
+class Select extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content;box-sizing:border-box;--icons-display:flex}zoo-arrow-icon{position:absolute;right:10px;top:12px;display:var(--icons-display);pointer-events:none}:host([invalid]) zoo-arrow-icon{--icon-color:var(--warning-mid)}:host([disabled]) zoo-arrow-icon{--icon-color:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;font-size:14px;line-height:20px;padding:13px 25px 13px 15px;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box}::slotted(select:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555;padding:12px 24px 12px 14px}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid);padding:12px 24px 12px 14px}.content{display:flex;justify-content:stretch;align-items:center;position:relative}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}:host([multiple]) zoo-arrow-icon{display:none}:host([labelposition=left]){display:flex;grid-gap:0 3px}:host([labelposition=left]) zoo-label{display:flex;align-items:center}zoo-link{text-align:right;max-width:max-content;justify-self:flex-end;padding:0}zoo-preloader{display:none}:host([loading]) zoo-preloader{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><zoo-preloader></zoo-preloader><slot name="select"></slot><zoo-arrow-icon aria-hidden="true"></zoo-arrow-icon></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,.error,.info{grid-column:span 2}:host{display:grid;grid-gap:3px 0;width:100%;height:max-content;box-sizing:border-box;--icons-display:flex}zoo-arrow-icon{position:absolute;right:10px;top:12px;display:var(--icons-display);pointer-events:none}:host([invalid]) zoo-arrow-icon{--icon-color:var(--warning-mid)}:host([disabled]) zoo-arrow-icon{--icon-color:#E6E6E6}::slotted(select){-webkit-appearance:none;-moz-appearance:none;width:100%;font-size:14px;line-height:20px;padding:13px 25px 13px 15px;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box}::slotted(select:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676}::slotted(select:disabled:hover){cursor:not-allowed}::slotted(select:focus){border:2px solid #555;padding:12px 24px 12px 14px}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid);padding:12px 24px 12px 14px}.content{display:flex;justify-content:stretch;align-items:center;position:relative}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}:host([multiple]) zoo-arrow-icon{display:none}:host([labelposition=left]){display:flex;grid-gap:0 3px}:host([labelposition=left]) zoo-label{display:flex;align-items:center}zoo-link{text-align:right;max-width:max-content;justify-self:flex-end;padding:0}zoo-preloader{display:none}:host([loading]) zoo-preloader{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><zoo-preloader></zoo-preloader><slot name="select"></slot><zoo-arrow-icon aria-hidden="true"></zoo-arrow-icon></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
 	}
 
 	mutationCallback(mutationsList) {
@@ -170,10 +178,7 @@ class Select extends HTMLElement {
 			let select = selectSlot.assignedElements()[0];
 			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
 			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
-			select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			select.addEventListener('change', e => {
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
+			this.registerElementForValidation(select);
 			this.observer.disconnect();
 			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
 		});
@@ -191,9 +196,9 @@ window.customElements.define('zoo-select', Select);
 /**
  * @injectHTML
  */
-class SearchableSelect extends HTMLElement {
+class SearchableSelect extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>zoo-cross-icon,zoo-select{display:none;position:absolute}:host{position:relative}zoo-cross-icon{top:12px;right:14px;cursor:pointer}:host([valueselected]) zoo-cross-icon{display:flex}zoo-preloader,zoo-tooltip{display:none}:host(:focus) zoo-tooltip,:host(:hover) zoo-tooltip{display:grid}zoo-select{border-top:none;z-index:2;top:85%;--icons-display:none}:host(:focus-within) zoo-select{display:grid}:host(:focus-within) ::slotted(select){border-top-left-radius:0;border-top-right-radius:0;border:2px solid #555;border-top:none!important}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid)}:host([loading]) zoo-preloader{display:flex}fieldset{border:0;padding:0;margin:0;position:relative}::slotted([slot=inputlabel]),::slotted([slot=selectlabel]){position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}input{width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}input:disabled{border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}:host(:focus-within) ::slotted(input),:host(:focus-within) input{border:2px solid #555;padding:12px 14px}:host([invalid]) ::slotted(input),:host([invalid]) input{border:2px solid var(--warning-mid);padding:12px 14px}input::placeholder{color:#767676}</style><fieldset><legend><zoo-label><slot name="legend"><slot name="label"></slot></slot></zoo-label></legend><zoo-input><zoo-preloader slot="input"></zoo-preloader><slot slot="input" name="input"><input type="text"></slot><slot name="link" slot="link"></slot><zoo-cross-icon slot="input"></zoo-cross-icon><slot slot="info" name="info"></slot><slot slot="error" name="error"></slot><slot name="inputlabel"></slot><zoo-select slot="input"><slot name="select" slot="select"></slot></zoo-select></zoo-input><slot name="selectlabel"></slot></fieldset>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>zoo-cross-icon,zoo-select{display:none;position:absolute}:host{position:relative}zoo-cross-icon{top:12px;right:14px;cursor:pointer}:host([valueselected]) zoo-cross-icon{display:flex}zoo-preloader,zoo-tooltip{display:none}:host(:focus) zoo-tooltip,:host(:hover) zoo-tooltip{display:grid}zoo-select{border-top:none;z-index:2;top:85%;--icons-display:none}:host(:focus-within) zoo-select{display:grid}:host(:focus-within) ::slotted(select){border-top-left-radius:0;border-top-right-radius:0;border:2px solid #555;border-top:none!important}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid)}:host([loading]) zoo-preloader{display:flex}fieldset{border:0;padding:0;margin:0;position:relative}::slotted([slot=inputlabel]),::slotted([slot=selectlabel]){position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}input{width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}input:disabled{border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}:host(:focus-within) ::slotted(input),:host(:focus-within) input{border:2px solid #555;padding:12px 14px}:host([invalid]) ::slotted(input),:host([invalid]) input{border:2px solid var(--warning-mid);padding:12px 14px}input::placeholder{color:#767676}</style><fieldset><legend><zoo-label><slot name="legend"><slot name="label"></slot></slot></zoo-label></legend><zoo-input><zoo-preloader slot="input"></zoo-preloader><slot slot="input" name="input"><input type="text"></slot><slot name="link" slot="link"></slot><zoo-cross-icon slot="input"></zoo-cross-icon><slot slot="info" name="info" role="status"></slot><slot slot="error" name="error" role="alert"></slot><slot name="inputlabel"></slot><zoo-select slot="input"><slot name="select" slot="select"></slot></zoo-select></zoo-input><slot name="selectlabel"></slot></fieldset>`;
 	}
 	// TODO in v9 drop nested default input and force user to define label for both select and input, while showing only legend
 	static get observedAttributes() {
@@ -222,11 +227,10 @@ class SearchableSelect extends HTMLElement {
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
-			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.registerElementForValidation(this.select);
 			this.select.addEventListener('change', e => {
 				this.handleOptionChange();
 				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
 			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;
@@ -300,9 +304,9 @@ window.customElements.define('zoo-searchable-select', SearchableSelect);
 /**
  * @injectHTML
  */
-class QuantityControl extends HTMLElement {
+class QuantityControl extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{--input-length:1ch}div{height:36px;display:flex}::slotted(button){border-width:0;min-width:30px;background:var(--primary-mid);display:flex;align-items:center;justify-content:center;padding:4px;cursor:pointer;stroke-width:1.5;stroke:#fff}::slotted(button[slot=decrease]){border-radius:5px 0 0 5px}::slotted(button[slot=increase]){border-radius:0 5px 5px 0}::slotted(button:disabled){background:#f2f3f4;cursor:not-allowed}::slotted(input){width:var(--input-length);min-width:30px;font-size:14px;line-height:20px;margin:0;border:none;color:#555;outline:0;box-sizing:border-box;-moz-appearance:textfield;text-align:center}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><div><slot name="decrease"></slot><slot name="input"></slot><slot name="increase"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{--input-length:1ch}div{height:36px;display:flex}::slotted(button){border-width:0;min-width:30px;background:var(--primary-mid);display:flex;align-items:center;justify-content:center;padding:4px;cursor:pointer;stroke-width:1.5;stroke:#fff}::slotted(button[slot=decrease]){border-radius:5px 0 0 5px}::slotted(button[slot=increase]){border-radius:0 5px 5px 0}::slotted(button:disabled){background:#f2f3f4;cursor:not-allowed}::slotted(input){width:var(--input-length);min-width:30px;font-size:14px;line-height:20px;margin:0;border:none;color:#555;outline:0;box-sizing:border-box;-moz-appearance:textfield;text-align:center}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><div><slot name="decrease"></slot><slot name="input"></slot><slot name="increase"></slot></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
 	}
 
 	setInputWidth() {
@@ -322,10 +326,7 @@ class QuantityControl extends HTMLElement {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = inputSlot.assignedElements()[0];
-			this.input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			this.input.addEventListener('change', e => {
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
+			this.registerElementForValidation(this.input);
 			this.setInputWidth();
 		});
 
@@ -348,19 +349,18 @@ window.customElements.define('zoo-quantity-control', QuantityControl);
 /**
  * @injectHTML
  */
-class ToggleSwitch extends HTMLElement {
+class ToggleSwitch extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.error,.info{grid-column:span 2}:host{height:100%;width:100%}div{display:flex;align-items:center;position:relative;height:17px;width:40px;background:#e6e6e6;border-radius:10px;border-width:0;margin:5px 0}::slotted(input){transition:transform .2s;transform:translateX(-30%);width:60%;height:24px;border:1px solid #e6e6e6;border-radius:50%;display:flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;background:#fff}::slotted(input:checked){transform:translateX(80%);background:var(--primary-mid)}::slotted(input:focus){border:1px solid #767676}::slotted(input:disabled){background:#f2f3f4;cursor:not-allowed}.info{grid-row:3}.error{display:none;grid-row:4;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><div><slot name="input"></slot></div><zoo-info class="info"><slot name="info"></slot></zoo-info><zoo-info class="error"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.error,.info{grid-column:span 2}:host{height:100%;width:100%}div{display:flex;align-items:center;position:relative;height:17px;width:40px;background:#e6e6e6;border-radius:10px;border-width:0;margin:5px 0}::slotted(input){transition:transform .2s;transform:translateX(-30%);width:60%;height:24px;border:1px solid #e6e6e6;border-radius:50%;display:flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;background:#fff}::slotted(input:checked){transform:translateX(80%);background:var(--primary-mid)}::slotted(input:focus){border:1px solid #767676}::slotted(input:disabled){background:#f2f3f4;cursor:not-allowed}.info{grid-row:3}.error{display:none;grid-row:4;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><zoo-label><slot name="label"></slot></zoo-label><div><slot name="input"></slot></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
 	}
 
 	connectedCallback() {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			let input = inputSlot.assignedElements()[0];
-			input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.registerElementForValidation(input);
 			input.addEventListener('change', e => {
 				e.target.checked ? e.target.setAttribute('checked', '') : e.target.removeAttribute('checked');
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
 			});
 		});
 	}
@@ -694,6 +694,7 @@ class Toast extends HTMLElement {
 	connectedCallback() {
 		this.hidden = true;
 		this.timeout = this.getAttribute('timeout') || 3;
+		this.setAttribute('role', 'alert');
 	}
 	show() {
 		if (!this.hidden) return;

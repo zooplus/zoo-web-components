@@ -1,7 +1,9 @@
+import FormElement from '../common/FormElement';
+
 /**
  * @injectHTML
  */
-export default class Checkbox extends HTMLElement {
+export default class Checkbox extends FormElement {
 	constructor() {
 		super();
 	}
@@ -27,11 +29,8 @@ export default class Checkbox extends HTMLElement {
 		checkboxSlot.addEventListener('slotchange', () => {
 			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
 			let checkbox = checkboxSlot.assignedElements()[0];
-			checkbox.addEventListener('change', () => {
-				checkbox.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-				this.handleChange(checkbox);
-			});
-			checkbox.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			checkbox.addEventListener('change', () => this.handleChange(checkbox));
+			this.registerElementForValidation(checkbox);
 			if (checkbox.hasAttribute('disabled')) this.setAttribute('disabled', '');
 			this.observer.disconnect();
 			this.observer.observe(checkbox, { attributes: true, childList: false, subtree: false });

@@ -1,7 +1,9 @@
+import FormElement from '../common/FormElement';
+
 /**
  * @injectHTML
  */
-export default class ToggleSwitch extends HTMLElement {
+export default class ToggleSwitch extends FormElement {
 	constructor() {
 		super();
 	}
@@ -10,10 +12,9 @@ export default class ToggleSwitch extends HTMLElement {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			let input = inputSlot.assignedElements()[0];
-			input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.registerElementForValidation(input);
 			input.addEventListener('change', e => {
 				e.target.checked ? e.target.setAttribute('checked', '') : e.target.removeAttribute('checked');
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
 			});
 		});
 	}

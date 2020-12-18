@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.1.6
+
+All form components - moved form validation logic to abstract class. Added roles attributes for a11y.
+
 ## 8.1.5
 
 `zoo-grid` - refactor and fix reordering columns when `reorderable` attribute is defined.

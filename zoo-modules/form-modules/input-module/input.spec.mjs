@@ -85,12 +85,12 @@ describe('Zoo input', function () {
 			await new Promise(r => setTimeout(r, 10));
 			const slottedInput = input.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
 			slottedInput.value = 123;
-			slottedInput.dispatchEvent(new Event('input'));
+			slottedInput.dispatchEvent(new Event('change'));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(input.hasAttribute('invalid'));
 
 			slottedInput.value = 'asd';
-			slottedInput.dispatchEvent(new Event('input'));
+			slottedInput.dispatchEvent(new Event('change'));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(input.hasAttribute('invalid'));
 

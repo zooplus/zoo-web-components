@@ -1,7 +1,9 @@
+import FormElement from '../common/FormElement';
+
 /**
  * @injectHTML
  */
-export default class Select extends HTMLElement {
+export default class Select extends FormElement {
 	constructor() {
 		super();
 	}
@@ -28,10 +30,7 @@ export default class Select extends HTMLElement {
 			let select = selectSlot.assignedElements()[0];
 			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
 			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
-			select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			select.addEventListener('change', e => {
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
+			this.registerElementForValidation(select);
 			this.observer.disconnect();
 			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
 		});

@@ -1,7 +1,9 @@
+import FormElement from '../common/FormElement';
+
 /**
  * @injectHTML
  */
-export default class QuantityControl extends HTMLElement {
+export default class QuantityControl extends FormElement {
 	constructor() {
 		super();
 	}
@@ -23,10 +25,7 @@ export default class QuantityControl extends HTMLElement {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
 			this.input = inputSlot.assignedElements()[0];
-			this.input.addEventListener('invalid', () => this.setAttribute('invalid', ''));
-			this.input.addEventListener('change', e => {
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
-			});
+			this.registerElementForValidation(this.input);
 			this.setInputWidth();
 		});
 

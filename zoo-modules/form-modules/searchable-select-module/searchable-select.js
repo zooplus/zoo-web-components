@@ -1,7 +1,9 @@
+import FormElement from '../common/FormElement';
+
 /**
  * @injectHTML
  */
-export default class SearchableSelect extends HTMLElement {
+export default class SearchableSelect extends FormElement {
 	constructor() {
 		super();
 	}
@@ -32,11 +34,10 @@ export default class SearchableSelect extends HTMLElement {
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
-			this.select.addEventListener('invalid', () => this.setAttribute('invalid', ''));
+			this.registerElementForValidation(this.select);
 			this.select.addEventListener('change', e => {
 				this.handleOptionChange();
 				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
-				e.target.checkValidity() ? this.removeAttribute('invalid') : this.setAttribute('invalid', '');
 			});
 			if (this.select.disabled && this.input) {
 				this.input.disabled = true;

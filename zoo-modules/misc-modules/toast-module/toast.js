@@ -8,6 +8,7 @@ export default class Toast extends HTMLElement {
 	connectedCallback() {
 		this.hidden = true;
 		this.timeout = this.getAttribute('timeout') || 3;
+		this.setAttribute('role', 'alert');
 	}
 	show() {
 		if (!this.hidden) return;

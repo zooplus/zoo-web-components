@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.2.0
+
+`zoo-paw-icon` - added new loader icon which represents an animal's paw.
+
 ## 8.1.6
 
 All form components - moved form validation logic to abstract class. Added roles attributes for a11y.

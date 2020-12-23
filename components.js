@@ -388,6 +388,7 @@ class ZooGrid extends HTMLElement {
 		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.header-row{min-width:inherit}:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.header-row,zoo-paginator{z-index:2;box-sizing:border-box;background:#fff}:host([loading]) .loading-shade{display:flex}.header-row{font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{display:flex;position:sticky;bottom:0;width:100%;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6;--paginator-position:sticky;--right:10px}::slotted(zoo-select){margin-right:20px}</style><div class="box"><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row"><slot name="headercell"></slot></div><slot name="row"></slot><slot name="norecords"></slot><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></div>`;
 	}
 
+	// TODO in v9 remove currentpage and maxpages and use only paginator for that
 	static get observedAttributes() {
 		return ['currentpage', 'maxpages', 'resizable', 'reorderable'];
 	}
@@ -407,7 +408,7 @@ class ZooGrid extends HTMLElement {
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
 			rowSlot.assignedElements().forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
 		}));
-		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
+		this.addEventListener('sortChange', e => this.handleSortChange(e));
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -431,9 +432,8 @@ class ZooGrid extends HTMLElement {
 		entries.forEach(entry => {
 			const columnNum = entry.target.getAttribute('column');
 			const width = entry.contentRect.width;
-			const rowColumns = this.querySelectorAll(`[slot="row"] > [column="${columnNum}"]`);
-			const headerColumn = this.querySelector(`[column="${columnNum}"]`);
-			[...rowColumns, headerColumn].forEach(columnEl => columnEl.style.width = `${width}px`);
+			this.querySelectorAll(`[column="${columnNum}"]`)
+				.forEach(columnEl => columnEl.style.width = `${width}px`);
 		});
 	}
 
@@ -622,7 +622,7 @@ class Footer extends HTMLElement {
 	}
 	handleCopyright(newVal) {
 		this.copyright = newVal;
-		this.body.innerHTML = `&#169; ${newVal} ${new Date().getFullYear()}`;
+		this.body.innerHTML = newVal ? `&#169; ${newVal} ${new Date().getFullYear()}` : '';
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'copyright') this.handleCopyright(newVal);
@@ -636,7 +636,7 @@ window.customElements.define('zoo-footer', Footer);
  */
 class Feedback extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid var(--info-mid);width:100%;height:100%;padding:5px 0;background:var(--info-ultralight);border-radius:5px;--svg-fill:var(--info-mid)}:host([type=error]){background:var(--warning-ultralight);border-color:var(--warning-mid);--svg-fill:var(--warning-mid)}:host([type=success]){background:var(--primary-ultralight);border-color:var(--primary-mid);--svg-fill:var(--primary-mid)}zoo-attention-icon{padding:0 10px 0 15px;fill:var(--svg-fill);--width:30px;--height:30px}::slotted(*){display:flex;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style><zoo-attention-icon></zoo-attention-icon><slot></slot>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;box-sizing:border-box;font-size:14px;line-height:20px;border-left:3px solid var(--info-mid);width:100%;height:100%;padding:5px 0;background:var(--info-ultralight);border-radius:5px;--svg-fill:var(--info-mid)}:host([type=error]){background:var(--warning-ultralight);border-color:var(--warning-mid);--svg-fill:var(--warning-mid)}:host([type=success]){background:var(--primary-ultralight);border-color:var(--primary-mid);--svg-fill:var(--primary-mid)}zoo-attention-icon{padding:0 10px 0 15px;--icon-color:var(--svg-fill);--width:30px;--height:30px}::slotted(*){display:flex;align-items:center;height:100%;overflow:auto;box-sizing:border-box;padding:5px 5px 5px 0}</style><zoo-attention-icon></zoo-attention-icon><slot></slot>`;
 	}
 }
 

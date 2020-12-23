@@ -13,7 +13,7 @@ export default class Footer extends HTMLElement {
 	}
 	handleCopyright(newVal) {
 		this.copyright = newVal;
-		this.body.innerHTML = `&#169; ${newVal} ${new Date().getFullYear()}`;
+		this.body.innerHTML = newVal ? `&#169; ${newVal} ${new Date().getFullYear()}` : '';
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'copyright') this.handleCopyright(newVal);

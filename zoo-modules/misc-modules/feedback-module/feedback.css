@@ -30,8 +30,8 @@
 
 zoo-attention-icon {
 	padding: 0 10px 0 15px;
-	fill: var(--svg-fill);
 
+	--icon-color: var(--svg-fill);
 	--width: 30px;
 	--height: 30px;
 }

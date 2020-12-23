@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 8.2.1
+
+`zoo-footer` - do not show copyright when attribute not specified.
+`zoo-grid` - simplify selector used internally when reordering columns.
+`zoo-feedback` - fix icon not changing color according to type.
+
 ## 8.2.0
 
 `zoo-paw-icon` - added new loader icon which represents an animal's paw.

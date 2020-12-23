@@ -8,6 +8,7 @@ export default class ZooGrid extends HTMLElement {
 		super();
 	}
 
+	// TODO in v9 remove currentpage and maxpages and use only paginator for that
 	static get observedAttributes() {
 		return ['currentpage', 'maxpages', 'resizable', 'reorderable'];
 	}
@@ -27,7 +28,7 @@ export default class ZooGrid extends HTMLElement {
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
 			rowSlot.assignedElements().forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
 		}));
-		root.querySelector('.box').addEventListener('sortChange', e => this.handleSortChange(e));
+		this.addEventListener('sortChange', e => this.handleSortChange(e));
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -51,9 +52,8 @@ export default class ZooGrid extends HTMLElement {
 		entries.forEach(entry => {
 			const columnNum = entry.target.getAttribute('column');
 			const width = entry.contentRect.width;
-			const rowColumns = this.querySelectorAll(`[slot="row"] > [column="${columnNum}"]`);
-			const headerColumn = this.querySelector(`[column="${columnNum}"]`);
-			[...rowColumns, headerColumn].forEach(columnEl => columnEl.style.width = `${width}px`);
+			this.querySelectorAll(`[column="${columnNum}"]`)
+				.forEach(columnEl => columnEl.style.width = `${width}px`);
 		});
 	}
 

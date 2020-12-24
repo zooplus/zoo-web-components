@@ -1,5 +1,5 @@
 {
-  "spec_dir": "zoo-modules",
+  "spec_dir": "src/zoo-modules",
   "spec_files": [
     "**/*[sS]pec.mjs"
   ],

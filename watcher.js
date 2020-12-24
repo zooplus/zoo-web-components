@@ -4,7 +4,7 @@ import path from 'path';
 export function watcher() {
 	return {
 		buildStart() {
-			let include = ['zoo-modules/**/*.html', 'zoo-modules/**/*.css'];
+			let include = ['src/zoo-modules/**/*.html', 'src/zoo-modules/**/*.css'];
 			for (const item of include) {
 				glob.sync(path.resolve(item)).forEach(filename => this.addWatchFile(filename));
 			}

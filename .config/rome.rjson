@@ -1,9 +1,0 @@
-// For configuration documentation see http://romefrontend.dev/#project-configuration
-name: "zoo-web-components"
-lint: {
-	globals: []
-	ignore: [
-		"./node_modules"
-    ]
-}
-root: true

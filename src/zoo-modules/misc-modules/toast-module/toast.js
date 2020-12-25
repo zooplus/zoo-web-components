@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Toast extends HTMLElement {
+export class Toast extends HTMLElement {
 	constructor() {
 		super();
 	}

@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Paginator extends HTMLElement {
+export class Paginator extends HTMLElement {
 	constructor() {
 		super();
 		this.prev = this.shadowRoot.querySelector('.prev');

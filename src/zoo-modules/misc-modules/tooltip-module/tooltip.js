@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Tooltip extends HTMLElement {
+export class Tooltip extends HTMLElement {
 	constructor() {
 		super();
 	}

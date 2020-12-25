@@ -1,9 +1,9 @@
-import FormElement from '../common/FormElement';
+import FormElement from '../common/FormElement.js';
 
 /**
  * @injectHTML
  */
-export default class ToggleSwitch extends FormElement {
+export class ToggleSwitch extends FormElement {
 	constructor() {
 		super();
 	}

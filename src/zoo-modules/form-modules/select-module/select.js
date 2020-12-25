@@ -1,9 +1,9 @@
-import FormElement from '../common/FormElement';
+import FormElement from '../common/FormElement.js';
 
 /**
  * @injectHTML
  */
-export default class Select extends FormElement {
+export class Select extends FormElement {
 	constructor() {
 		super();
 	}

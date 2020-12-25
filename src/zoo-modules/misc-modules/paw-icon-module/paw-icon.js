@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class PawIcon extends HTMLElement {
+export class PawIcon extends HTMLElement {
 	constructor() {
 		super();
 	}

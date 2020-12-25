@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class CrossIcon extends HTMLElement {
+export class CrossIcon extends HTMLElement {
 	constructor() {
 		super();
 	}

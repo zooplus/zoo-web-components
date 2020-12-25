@@ -1,9 +1,9 @@
-import FormElement from '../common/FormElement';
+import FormElement from '../common/FormElement.js';
 
 /**
  * @injectHTML
  */
-export default class Radio extends FormElement {
+export class Radio extends FormElement {
 	constructor() {
 		super();
 	}

@@ -3,7 +3,7 @@
  * https://github.com/whatwg/html/issues/6226
  * which leads to https://github.com/WICG/webcomponents/issues/59
  */
-export default class ZooGrid extends HTMLElement {
+export class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
 	}

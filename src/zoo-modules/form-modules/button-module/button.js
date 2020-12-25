@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Button extends HTMLElement {
+export class Button extends HTMLElement {
 	constructor() {
 		super();
 	}

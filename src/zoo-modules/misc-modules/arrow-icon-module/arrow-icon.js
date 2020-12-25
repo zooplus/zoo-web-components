@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class ArrowDownIcon extends HTMLElement {
+export class ArrowDownIcon extends HTMLElement {
 	constructor() {
 		super();
 	}

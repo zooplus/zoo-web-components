@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class InfoMessage extends HTMLElement {
+export class InfoMessage extends HTMLElement {
 	constructor() {
 		super();
 	}

@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Footer extends HTMLElement {
+export class Footer extends HTMLElement {
 	
 	constructor() {
 		super();

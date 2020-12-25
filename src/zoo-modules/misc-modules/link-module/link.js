@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Link extends HTMLElement {
+export class Link extends HTMLElement {
 	constructor() {
 		super();
 	}

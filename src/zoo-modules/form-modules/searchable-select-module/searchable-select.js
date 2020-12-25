@@ -1,9 +1,9 @@
-import FormElement from '../common/FormElement';
+import FormElement from '../common/FormElement.js';
 
 /**
  * @injectHTML
  */
-export default class SearchableSelect extends FormElement {
+export class SearchableSelect extends FormElement {
 	constructor() {
 		super();
 	}
@@ -46,7 +46,7 @@ export default class SearchableSelect extends FormElement {
 			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
-			this.handleOptionChange();
+			this.slotChange();
 		});
 
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
@@ -54,8 +54,12 @@ export default class SearchableSelect extends FormElement {
 			this.input = inputSlot.assignedElements()[0];
 			this.inputPlaceholderFallback = this.input.placeholder;
 			this.input.addEventListener('input', () => this.handleSearchChange());
-			this.handleOptionChange();
+			this.slotChange();
 		});
+	}
+
+	slotChange() {
+		if (this.input && this.select) this.handleOptionChange();
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {

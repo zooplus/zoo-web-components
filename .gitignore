@@ -4,7 +4,6 @@ test
 dist/
 .DS_Store
 .idea
-docs/components.js
-docs/components.js.map
+docs/components
 coverage
 .nyc_output

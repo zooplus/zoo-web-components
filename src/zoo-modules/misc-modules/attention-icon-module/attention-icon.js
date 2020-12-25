@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class AttentionIcon extends HTMLElement {
+export class AttentionIcon extends HTMLElement {
 	constructor() {
 		super();
 	}

@@ -1,9 +1,9 @@
-import FormElement from '../common/FormElement';
+import FormElement from '../common/FormElement.js';
 
 /**
  * @injectHTML
  */
-export default class Checkbox extends FormElement {
+export class Checkbox extends FormElement {
 	constructor() {
 		super();
 	}

@@ -1,9 +1,9 @@
-import FormElement from '../common/FormElement';
+import FormElement from '../common/FormElement.js';
 
 /**
  * @injectHTML
  */
-export default class QuantityControl extends FormElement {
+export class QuantityControl extends FormElement {
 	constructor() {
 		super();
 	}

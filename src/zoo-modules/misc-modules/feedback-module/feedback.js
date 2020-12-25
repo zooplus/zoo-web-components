@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Feedback extends HTMLElement {
+export class Feedback extends HTMLElement {
 	constructor() {
 		super();
 	}

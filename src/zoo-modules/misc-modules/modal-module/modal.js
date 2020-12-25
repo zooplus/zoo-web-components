@@ -1,7 +1,7 @@
 /**
  * @injectHTML
  */
-export default class Modal extends HTMLElement {
+export class Modal extends HTMLElement {
 	constructor() {
 		super();
 		this.header = this.shadowRoot.querySelector('span');

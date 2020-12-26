@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.2.2
+
+Export each individual component along with main full bundle.
+
 ## 8.2.1
 
 `zoo-footer` - do not show copyright when attribute not specified.

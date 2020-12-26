@@ -202,4 +202,33 @@ describe('Zoo searchable select', function () {
 		expect(result[0]).toBeTrue();
 		expect(result[1]).toBeFalse();
 	});
+
+	it('should show cross icon when an option is already selected', async () => {
+		const result = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-searchable-select>
+					<span slot="label">Searchable multiple select legend</span>
+					<select id="searchable-select" slot="select" required>
+						<option value="firstOption">first option</option>
+						<option value="secondOption" selected>second option</option>
+					</select>
+					<input id="searchable-input" slot="input"/>
+				</zoo-searchable-select>
+				`;
+			let select = document.querySelector('zoo-searchable-select');
+			await new Promise(r => setTimeout(r, 30));
+			const slottedInput = select.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
+			const closeIcon = select.shadowRoot.querySelector('zoo-cross-icon');
+			const style = window.getComputedStyle(closeIcon);
+
+			return {
+				placeholder: slottedInput.placeholder,
+				valueselected: select.hasAttribute('valueselected'),
+				closeIconDisplay: style.display
+			};
+		});
+		expect(result.placeholder).toEqual('second option');
+		expect(result.valueselected).toBeTrue();
+		expect(result.closeIconDisplay).toEqual('flex');
+	});
 });

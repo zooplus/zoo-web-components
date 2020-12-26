@@ -5,6 +5,15 @@ import fs from 'fs';
 
 let dev = process.env.NODE_ENV == 'local';
 
+const plugins = [
+	injectInnerHTML(),
+	dev ? watcher() : noOpWatcher(),
+	dev ? noOpWatcher() : terser({
+		module: true,
+		keep_classnames: true
+	}),
+];
+
 const files = [];
 function getFiles(currPath) {
 	if (fs.existsSync(currPath) && fs.lstatSync(currPath).isDirectory()) {
@@ -27,14 +36,7 @@ const configs = files.map(file => {
 			file: dev ? `docs/components${cmpName}` : `dist${cmpName}`,
 			name: cmpName
 		},
-		plugins: [
-			injectInnerHTML(),
-			dev ? watcher() : noOpWatcher(),
-			dev ? noOpWatcher() : terser({
-				module: true,
-				keep_classnames: true
-			}),
-		]
+		plugins: plugins
 	};
 });
 
@@ -47,14 +49,7 @@ export default [
 			file: dev ? 'docs/components/components.js' : 'dist/zoo-components-esm.js',
 			name: 'zooWebComponents'
 		},
-		plugins: [
-			injectInnerHTML(),
-			dev ? watcher() : noOpWatcher(),
-			dev ? noOpWatcher() : terser({
-				module: true,
-				keep_classnames: true
-			}),
-		]
+		plugins: plugins
 	},
 	...configs
 ];

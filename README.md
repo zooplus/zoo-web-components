@@ -23,6 +23,11 @@ and import the library in your main module/component/index.html:
 import '@zooplus/zoo-web-components';
 ```
 
+it is also possible to import only the modules you need, for example:
+```JS
+import { Button, Input } from '@zooplus/zoo-web-components';
+```
+
 ## Examples integrating with various frameworks
 
 - [VueJS](https://github.com/GeorgeTailor/vue-wc-integration)

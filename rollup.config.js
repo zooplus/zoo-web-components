@@ -24,7 +24,7 @@ const configs = files.map(file => {
 		output: {
 			sourcemap: true,
 			format: 'esm',
-			file: dev ? `docs/components/${cmpName}` : `dist/${cmpName}`,
+			file: dev ? `docs/components${cmpName}` : `dist${cmpName}`,
 			name: cmpName
 		},
 		plugins: [

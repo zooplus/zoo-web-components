@@ -1,9 +1,9 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "8.2.2",
+	"version": "8.2.3",
 	"main": "dist/zoo-components-esm.js",
 	"files": [
-		"dist/zoo-components-esm.js"
+		"dist/*.js"
 	],
 	"type": "module",
 	"module": "dist/zoo-components-esm.js",

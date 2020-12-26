@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.2.3
+
+fix deplyoed files
+
 ## 8.2.2
 
 Export each individual component along with main full bundle.

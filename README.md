@@ -25,7 +25,7 @@ import '@zooplus/zoo-web-components';
 
 it is also possible to import only the modules you need, for example:
 ```JS
-import { Button, Input } from '@zooplus/zoo-web-components';
+import '@zooplus/zoo-web-components/dist/button';
 ```
 
 Remember to add CSS custom properties to your main styles file:

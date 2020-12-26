@@ -239,7 +239,7 @@ class SearchableSelect extends FormElement {
 			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
-			this.handleOptionChange();
+			this.slotChange();
 		});
 
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
@@ -247,8 +247,12 @@ class SearchableSelect extends FormElement {
 			this.input = inputSlot.assignedElements()[0];
 			this.inputPlaceholderFallback = this.input.placeholder;
 			this.input.addEventListener('input', () => this.handleSearchChange());
-			this.handleOptionChange();
+			this.slotChange();
 		});
+	}
+
+	slotChange() {
+		if (this.input && this.select) this.handleOptionChange();
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -909,4 +913,6 @@ class PawIcon extends HTMLElement {
 }
 
 window.customElements.define('zoo-paw-icon', PawIcon);
+
+export { ArrowDownIcon, AttentionIcon, Button, Checkbox, CollapsableList, CollapsableListItem, CrossIcon, Feedback, Footer, GridHeader, Header, InfoMessage, Input, Label, Link, Modal, Navigation, Paginator, PawIcon, Preloader, QuantityControl, Radio, SearchableSelect, Select, Spinner, Toast, ToggleSwitch, Tooltip, ZooGrid };
 //# sourceMappingURL=components.js.map

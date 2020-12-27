@@ -13,7 +13,7 @@ export class Paginator extends HTMLElement {
 	connectedCallback() {
 		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
 		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
-		this.shadowRoot.querySelector('nav').addEventListener('click', e => {
+		this.shadowRoot.addEventListener('click', e => {
 			const target = e.target.getAttribute('page');
 			if (target) {
 				this.goToPage(target);
@@ -28,7 +28,7 @@ export class Paginator extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['maxpages', 'currentpage'];
+		return ['maxpages', 'currentpage', 'prevpagetitle', 'nextpagetitle'];
 	}
 	handleHideShowArrows() {
 		if (this.getAttribute('currentpage') == 1) {
@@ -51,20 +51,25 @@ export class Paginator extends HTMLElement {
 			if (page == 1 || page == pageNum - 1 || page == pageNum || page == pageNum + 1 || page == maxPages) {
 				const pageNode = this.pages.cloneNode(true).firstElementChild;
 				pageNode.setAttribute('page', page);
+				pageNode.setAttribute('title', page);
 				if (pageNum == page) {
 					pageNode.classList.add('active');
 				}
 				pageNode.innerHTML = page;
-				this.prev.parentNode.insertBefore(pageNode, this.prev.nextSibling);
+				this.prev.nextSibling.before(pageNode);
 			} else if (page == pageNum-2 || pageNum+2 == page) {
-				this.prev.parentNode.insertBefore(this.dots.cloneNode(true), this.prev.nextSibling);
+				this.prev.nextSibling.before(this.dots.cloneNode(true));
 			}
 		}
 	}
-	attributeChangedCallback(attrName) {
+	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
 			this.rerenderPageButtons();
+		} else if (attrName === 'prevpagetitle') {
+			this.shadowRoot.querySelector('.prev zoo-arrow-icon').setAttribute('title', newVal);
+		} else if (attrName === 'nextpagetitle') {
+			this.shadowRoot.querySelector('.next zoo-arrow-icon').setAttribute('title', newVal);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import puppeteer from 'puppeteer';
 import jasmine from 'jasmine';
 import axe from 'axe-core';
@@ -9,7 +10,7 @@ beforeAll(async () => {
 		headless: true,
 		args: ['--no-sandbox', '--disable-setuid-sandbox']
 	});
-	global.page = await global.browser.newPage();
+	global.page = await browser.newPage();
 	global.colors = {
 		primaryMid: '#368700',
 		primaryLight: '#66B100',
@@ -24,17 +25,13 @@ beforeAll(async () => {
 		warningMid: '#ED1C24'
 	};
 	page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-	await Promise.all([
-		page.coverage.startJSCoverage(),
-		page.coverage.startCSSCoverage()
-	]);
-
-	await global.page.goto('http://localhost:5000');
-});
-
-beforeEach(async () => {
-	await global.page.evaluate(() => document.body.innerHTML = '');
-	global.axeHandle = await global.page.evaluateHandle(`${axe.source}`);
+	await Promise.all([page.coverage.startJSCoverage(), page.coverage.startCSSCoverage()]);
+	
+	await page.goto('http://localhost:5000');
+	await page.addScriptTag( {'url' : 'https://cdn.jsdelivr.net/npm/jasmine-core@3.6.0/lib/jasmine-core/jasmine.js'});
+	await page.addScriptTag( {'url' : 'https://cdn.jsdelivr.net/npm/jasmine-core@3.6.0/lib/jasmine-core/jasmine-html.js'});
+	await page.addScriptTag( {'url' : 'https://cdn.jsdelivr.net/npm/jasmine-core@3.6.0/lib/jasmine-core/boot.js'});
+	global.axeHandle = await page.evaluateHandle(`${axe.source}`);
 });
 
 afterAll(async () => {
@@ -42,7 +39,7 @@ afterAll(async () => {
 		page.coverage.stopJSCoverage(),
 		page.coverage.stopCSSCoverage(),
 	]);
-	pti.write([...jsCoverage, ...cssCoverage], { includeHostname: true , storagePath: './.nyc_output' });
+	pti.write([...jsCoverage, ...cssCoverage], { storagePath: './.nyc_output' });
 	await global.axeHandle ? global.axeHandle.dispose() : new Promise(res => res());
-	await global.browser.close();
+	await browser.close();
 });

@@ -17,7 +17,6 @@ export class SearchableSelect extends FormElement {
 		this.inputPlaceholderFallback = newVal;
 	}
 
-	// TODO think of a way to reuse some logic from nested zoo-select, eg. valueselected, option change etc
 	mutationCallback(mutationsList) {
 		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
@@ -29,23 +28,24 @@ export class SearchableSelect extends FormElement {
 	connectedCallback() {
 		this.input = this.shadowRoot.querySelector('input');
 		this.input.addEventListener('input', () => this.handleSearchChange());
-		this.shadowRoot.querySelector('zoo-cross-icon').addEventListener('click', () => this.handleCrossClick());
+		// TODO this is not accessible
+		this.shadowRoot.querySelector('zoo-cross-icon').addEventListener('click', () => {
+			this.select.value = null;
+			this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+		});
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
 			this.registerElementForValidation(this.select);
-			this.select.addEventListener('change', e => {
+			this.select.addEventListener('change', () => {
 				this.handleOptionChange();
-				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+				this.valueChange();
 			});
-			if (this.select.disabled && this.input) {
-				this.input.disabled = true;
-			}
 			this.select.size = 4;
-			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
+			this.valueChange();
 			this.slotChange();
 		});
 
@@ -59,7 +59,14 @@ export class SearchableSelect extends FormElement {
 	}
 
 	slotChange() {
-		if (this.input && this.select) this.handleOptionChange();
+		if (this.input && this.select) {
+			this.handleOptionChange();
+			this.input.disabled = this.select.disabled;
+		}
+	}
+
+	valueChange() {
+		this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -67,10 +74,13 @@ export class SearchableSelect extends FormElement {
 			if (attrName == 'placeholder') {
 				this.handlePlaceholder(newVal);
 			} else if (attrName === 'invalid') {
-				if (this.hasAttribute('invalid')) {
-					this.shadowRoot.querySelector('zoo-input').setAttribute('invalid', '');
-				} else {
-					this.shadowRoot.querySelector('zoo-input').removeAttribute('invalid');
+				const input = this.shadowRoot.querySelector('zoo-input');
+				if (input) {
+					if (this.hasAttribute('invalid')) {
+						input.setAttribute('invalid', '');
+					} else {
+						input.removeAttribute('invalid');
+					}
 				}
 			}
 		}
@@ -103,11 +113,6 @@ export class SearchableSelect extends FormElement {
 		} else if (this.tooltip) {
 			this.tooltip.remove();
 		}
-	}
-
-	handleCrossClick() {
-		this.select.value = null;
-		this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);

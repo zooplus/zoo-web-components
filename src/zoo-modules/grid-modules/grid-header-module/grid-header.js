@@ -6,10 +6,14 @@ export class GridHeader extends HTMLElement {
 		super();
 	}
 
+	static get observedAttributes() {
+		return ['sorttitle', 'swaptitle'];
+	}
+
 	connectedCallback() {
 		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
 		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
-		this.shadowRoot.querySelector('zoo-arrow-icon').addEventListener('click', () => this.handleSortClick());
+		this.shadowRoot.querySelector('.sort').addEventListener('click', () => this.handleSortClick());
 	}
 
 	handleSortClick() {
@@ -24,6 +28,16 @@ export class GridHeader extends HTMLElement {
 			? { property: this.getAttribute('sortableproperty'), direction: this.getAttribute('sortstate') }
 			: undefined; 
 		this.dispatchEvent(new CustomEvent('sortChange', {detail: detail, bubbles: true, composed: true }));
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (attrName === 'sorttitle') {
+			this.shadowRoot.querySelector('zoo-arrow-icon').setAttribute('title', newVal);
+			this.shadowRoot.querySelector('.sort').setAttribute('title', newVal);
+		} else if (attrName === 'swaptitle') {
+			this.shadowRoot.querySelector('.swap title').innerHTML = newVal;
+			this.shadowRoot.querySelector('.swap').setAttribute('title', newVal);
+		}
 	}
 }
 

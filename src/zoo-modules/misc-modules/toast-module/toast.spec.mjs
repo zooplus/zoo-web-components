@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
 describe('Zoo toast', function () {
+	beforeEach(async () => await page.evaluate(() => jasmine.clock().install()));
+	afterEach(async () => await page.evaluate(() => jasmine.clock().uninstall()));
 	it('should create default toast', async () => {
 		const toasttext = await page.evaluate(() => {
 			document.body.innerHTML = `
@@ -16,18 +19,18 @@ describe('Zoo toast', function () {
 	it('should show and then close toast after 330ms even when timeout is 5000ms', async () => {
 		const styles = await page.evaluate(async () => {
 			document.body.innerHTML = `
-			<zoo-toast timeout="5">
-				<span slot="content">some-text</span>
-			</zoo-toast>
+				<zoo-toast timeout="5">
+					<span slot="content">some-text</span>
+				</zoo-toast>
 			`;
 			const styles = [];
 			const toast = document.querySelector('zoo-toast');
 			toast.show();
-			await new Promise(r => setTimeout(r, 45));
+			jasmine.clock().tick(45);
 			styles.push(window.getComputedStyle(toast).display);
 
 			toast.close();
-			await new Promise(r => setTimeout(r, 345));
+			jasmine.clock().tick(345);
 			styles.push(window.getComputedStyle(toast).display);
 			return styles;
 		});
@@ -45,11 +48,11 @@ describe('Zoo toast', function () {
 			const styles = [];
 			const toast = document.querySelector('zoo-toast');
 			toast.show();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 			styles.push(window.getComputedStyle(toast).display);
 
 			toast.close();
-			await new Promise(r => setTimeout(r, 350));
+			jasmine.clock().tick(355);
 			styles.push(window.getComputedStyle(toast).display);
 			return styles;
 		});
@@ -67,10 +70,10 @@ describe('Zoo toast', function () {
 			const styles = [];
 			const toast = document.querySelector('zoo-toast');
 			toast.show();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 			styles.push(window.getComputedStyle(toast).display);
 
-			await new Promise(r => setTimeout(r, 1350));
+			jasmine.clock().tick(1350);
 			styles.push(window.getComputedStyle(toast).display);
 			return styles;
 		});
@@ -89,9 +92,9 @@ describe('Zoo toast', function () {
 			let calledTimes = 0;
 			toast.toggleToastClass = () => calledTimes += 1;
 			toast.show();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 			toast.show();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 
 			return calledTimes;
 		});
@@ -109,11 +112,11 @@ describe('Zoo toast', function () {
 			let calledTimes = 0;
 			toast.toggleToastClass = () => calledTimes += 1;
 			toast.show();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 			toast.close();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 			toast.close();
-			await new Promise(r => setTimeout(r, 35));
+			jasmine.clock().tick(45);
 
 			return calledTimes;
 		});

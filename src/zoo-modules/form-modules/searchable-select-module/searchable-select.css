@@ -37,6 +37,14 @@ zoo-select {
 	display: grid;
 }
 
+slot[name="selectlabel"] {
+	display: none;
+}
+
+:host(:focus-within) slot[name="selectlabel"] {
+	display: block;
+}
+
 :host(:focus-within) ::slotted(select) {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;

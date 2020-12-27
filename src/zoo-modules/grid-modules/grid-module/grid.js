@@ -10,7 +10,7 @@ export class ZooGrid extends HTMLElement {
 
 	// TODO in v9 remove currentpage and maxpages and use only paginator for that
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'resizable', 'reorderable'];
+		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prevpagetitle', 'nextpagetitle'];
 	}
 
 	connectedCallback() {
@@ -32,20 +32,20 @@ export class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
-			this.resizeObserver.disconnect();
-			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
-		}
-		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
-			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
-			headers.forEach(header => this.handleDraggableHeader(header));
-		}
 		if (attrName == 'maxpages' || attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-paginator');
 			if (paginator && !paginator.hasAttribute(attrName)) {
 				paginator.setAttribute(attrName, newVal);
 			}
+		} else if (attrName == 'resizable' && this.hasAttribute('resizable')) {
+			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+			this.resizeObserver.disconnect();
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
+			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
+			headers.forEach(header => this.handleDraggableHeader(header));
+		} else if (attrName === 'prevpagetitle' || attrName === 'nextpagetitle') {
+			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}
 	resizeCallback(entries) {

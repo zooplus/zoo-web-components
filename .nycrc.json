@@ -1,6 +1,7 @@
 {
 	"exclude": [
 		"**/main.js",
-		"**/main.css.js"
+		"**/main.css.js",
+		"**/npm"
 	]
 }

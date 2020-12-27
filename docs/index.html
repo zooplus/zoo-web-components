@@ -38,8 +38,8 @@
 		<a href="https://zooplus.github.io/zoo-web-components-docs/index.html" target="about:blank">Documentation</a>
 	</zoo-navigation>
 	<div id="what">
-		<h3>Set of web-components which can be used in any modern UI framework (or without any).</h3>
-		<h3>The web-component set implements Z+ shop style guide.</h3>
+		<h2>Set of web-components which can be used in any modern UI framework (or without any).</h2>
+		<h2>The web-component set implements Z+ shop style guide.</h2>
 	</div>
 	<main>
 		<h2>Form elements</h2>
@@ -187,16 +187,17 @@
 			<zoo-button class="icon-btn">
 				<button type="button" title="PDF icon">
 					<svg width="24" height="24">
+						<title>PDF icon</title>
 						<path
 							d="M9 14.998a3 3 0 010 6v2.252a.75.75 0 11-1.5 0v-7.434a.75.75 0 01.747-.818h.753zm3.875-15c.597 0 1.17.238 1.591.66l5.871 5.87c.422.423.66.995.659 1.592v4.628a.75.75 0 11-1.5 0V8.12a.75.75 0 00-.22-.53l-5.87-5.872a.75.75 0 00-.531-.22H2.246a.75.75 0 00-.75.75v19.5c0 .414.336.75.75.75h3a.75.75 0 110 1.5h-3a2.25 2.25 0 01-2.25-2.25v-19.5a2.25 2.25 0 012.25-2.25h10.63zm10.371 15a.75.75 0 010 1.5h-1.5a.75.75 0 00-.75.75v2.251l1.504.001a.75.75 0 110 1.5l-1.504-.001v2.249a.75.75 0 11-1.5 0v-6a2.25 2.25 0 012.25-2.25h1.5zm-9 0a3.75 3.75 0 013.75 3.75v1.5a3.75 3.75 0 01-3.75 3.75.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75zm.75 1.628v5.744a2.25 2.25 0 001.5-2.122v-1.5a2.25 2.25 0 00-1.5-2.122zM9 16.498v3a1.5 1.5 0 000-3z" />
 						<path
 							d="M20.246 7.498a.75.75 0 110 1.5h-6a2.25 2.25 0 01-2.25-2.25v-6a.75.75 0 011.5 0v6c0 .414.336.75.75.75h6z" />
-						</svg>
+					</svg>
 				</button>
 			</zoo-button>
 			<zoo-button type="secondary" class="icon-btn">
 				<button type="button" title="Loading paw icon">
-					<zoo-paw-icon></zoo-paw-icon>
+					<zoo-paw-icon title="loading paw icon"></zoo-paw-icon>
 				</button>
 			</zoo-button>
 		</div>
@@ -234,15 +235,15 @@
 		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 		<div class="grid-holder">
 			<zoo-grid role="grid" stickyheader currentpage="5" maxpages="20" resizable reorderable>
-				<zoo-grid-header slot="headercell">Valid</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate'>Created Date
+				<zoo-grid-header slot="headercell" swaptitle="swap icon">Valid</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate' sorttitle="sort icon" swaptitle="swap icon">Created Date
 				</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status'>Status</zoo-grid-header>
-				<zoo-grid-header slot="headercell">Max Weight</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate'>Delivery Date
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status' sorttitle="sort icon" swaptitle="swap icon">Status</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swaptitle="swap icon">Max Weight</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate' sorttitle="sort icon" swaptitle="swap icon">Delivery Date
 				</zoo-grid-header>
-				<zoo-grid-header slot="headercell"># of pieces</zoo-grid-header>
-				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swaptitle="swap icon"># of pieces</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swaptitle="swap icon">Price</zoo-grid-header>
 
 				<zoo-select labelposition="left" slot="pagesizeselector">
 					<label for="first-grid-page-size" slot="label">Page size</label>
@@ -298,6 +299,7 @@
 					<option>READY</option>
 					<option>PACKING</option>
 				</select>
+				<label slot="label" style="position: absolute; overflow: hidden; clip: rect(0 0 0 0); height: 1px;width: 1px;margin: -1px;padding: 0;border: 0;">Delivery status</label>
 			</zoo-select>
 		</template>
 		<script src='main.js'></script>

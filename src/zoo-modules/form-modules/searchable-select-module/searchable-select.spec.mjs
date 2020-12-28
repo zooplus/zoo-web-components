@@ -132,7 +132,7 @@ describe('Zoo searchable select', function () {
 
 			await new Promise(r => setTimeout(r, 10));
 
-			select.shadowRoot.querySelector('zoo-cross-icon').dispatchEvent(new Event('click'));
+			select.shadowRoot.querySelector('.cross').click();
 			await new Promise(r => setTimeout(r, 10));
 
 			return slottedSelect.value;
@@ -218,7 +218,7 @@ describe('Zoo searchable select', function () {
 			let select = document.querySelector('zoo-searchable-select');
 			await new Promise(r => setTimeout(r, 30));
 			const slottedInput = select.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
-			const closeIcon = select.shadowRoot.querySelector('zoo-cross-icon');
+			const closeIcon = select.shadowRoot.querySelector('.cross');
 			const style = window.getComputedStyle(closeIcon);
 
 			return {

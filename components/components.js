@@ -74,7 +74,7 @@ window.customElements.define('zoo-input', Input);
  */
 class Checkbox extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.checkbox,svg{box-sizing:border-box}:host{display:flex;flex-direction:column;width:100%;font-size:14px;line-height:20px;position:relative;--border:0;--check-color:var(--primary-mid)}:host([disabled]){--check-color:#767676}:host([highlighted]){--border:1px solid var(--check-color)}:host([invalid]){--check-color:var(--warning-mid);--border:2px solid var(--warning-mid)}::slotted(input){width:100%;height:100%;top:0;left:0;position:absolute;display:flex;align-self:flex-start;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;margin:0;border-radius:3px;border:var(--border)}svg{border:1px solid var(--check-color);fill:var(--check-color);border-radius:3px;pointer-events:none;min-width:24px;z-index:1;padding:1px}svg path{display:none}:host([checked]) svg path{display:flex}:host(:focus-within) svg{border-width:2px}:host([checked]) svg,:host([invalid]) svg{border-width:2px}:host([checked]) ::slotted(input){border-width:2px}:host([disabled]) svg{background:#f2f3f4}.checkbox{display:flex;width:100%;cursor:pointer;align-items:baseline;position:relative}:host([highlighted]) .checkbox{padding:11px 15px}::slotted(label){display:flex;align-self:center;cursor:pointer;margin-left:5px;z-index:1}::slotted(input:disabled),:host([disabled]) ::slotted(label){cursor:not-allowed}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><div class="checkbox"><slot name="checkbox"></slot><svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><slot name="label"></slot></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.checkbox,svg{box-sizing:border-box}:host{display:flex;flex-direction:column;width:100%;font-size:14px;line-height:20px;position:relative;--border:0;--check-color:var(--primary-mid)}:host([disabled]){--check-color:#767676}:host([highlighted]){--border:1px solid var(--check-color)}:host([invalid]){--check-color:var(--warning-mid);--border:2px solid var(--warning-mid)}::slotted(input){width:100%;height:100%;top:0;left:0;position:absolute;display:flex;align-self:flex-start;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;margin:0;border-radius:3px;border:var(--border)}svg{border:1px solid var(--check-color);fill:var(--check-color);border-radius:3px;pointer-events:none;min-width:24px;z-index:1;padding:1px}svg path{display:none}:host([checked]) svg path{display:flex}:host(:focus-within) svg{border-width:2px}::slotted(input:focus){border-width:2px}:host([checked]) ::slotted(input){border-width:2px}:host([disabled]) svg{background:#f2f3f4}.checkbox{display:flex;width:100%;cursor:pointer;align-items:baseline;position:relative}:host([highlighted]) .checkbox{padding:11px 15px}::slotted(label){display:flex;align-self:center;cursor:pointer;margin-left:5px;z-index:1}::slotted(input:disabled),:host([disabled]) ::slotted(label){cursor:not-allowed}.error,.info{grid-column:span 2}.error{display:none;--icon-color:var(--warning-mid)}:host([invalid]) .error{display:flex}</style><div class="checkbox"><slot name="checkbox"></slot><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><slot name="label"></slot></div><zoo-info class="info" role="status"><slot name="info"></slot></zoo-info><zoo-info class="error" role="alert"><slot name="error"></slot></zoo-info>`;
 	}
 
 	// TODO think of a better way to handle disabled attribute change
@@ -198,11 +198,11 @@ window.customElements.define('zoo-select', Select);
  */
 class SearchableSelect extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>zoo-cross-icon,zoo-select{display:none;position:absolute}:host{position:relative}zoo-cross-icon{top:12px;right:14px;cursor:pointer}:host([valueselected]) zoo-cross-icon{display:flex}zoo-preloader,zoo-tooltip{display:none}:host(:focus) zoo-tooltip,:host(:hover) zoo-tooltip{display:grid}zoo-select{border-top:none;z-index:2;top:85%;--icons-display:none}:host(:focus-within) zoo-select{display:grid}:host(:focus-within) ::slotted(select){border-top-left-radius:0;border-top-right-radius:0;border:2px solid #555;border-top:none!important}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid)}:host([loading]) zoo-preloader{display:flex}fieldset{border:0;padding:0;margin:0;position:relative}::slotted([slot=inputlabel]),::slotted([slot=selectlabel]){position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}input{width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}input:disabled{border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}:host(:focus-within) ::slotted(input),:host(:focus-within) input{border:2px solid #555;padding:12px 14px}:host([invalid]) ::slotted(input),:host([invalid]) input{border:2px solid var(--warning-mid);padding:12px 14px}input::placeholder{color:#767676}</style><fieldset><legend><zoo-label><slot name="legend"><slot name="label"></slot></slot></zoo-label></legend><zoo-input><zoo-preloader slot="input"></zoo-preloader><slot slot="input" name="input"><input type="text"></slot><slot name="link" slot="link"></slot><zoo-cross-icon slot="input"></zoo-cross-icon><slot slot="info" name="info" role="status"></slot><slot slot="error" name="error" role="alert"></slot><slot name="inputlabel"></slot><zoo-select slot="input"><slot name="select" slot="select"></slot></zoo-select></zoo-input><slot name="selectlabel"></slot></fieldset>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.cross,zoo-select{display:none;position:absolute}:host{position:relative}.cross{top:12px;right:14px;cursor:pointer;border:0;padding:0;background:0 0}:host([valueselected]) .cross{display:flex}slot[name=selectlabel],zoo-preloader,zoo-tooltip{display:none}:host(:focus) zoo-tooltip,:host(:hover) zoo-tooltip{display:grid}zoo-select{border-top:none;z-index:2;top:85%;--icons-display:none}:host(:focus-within) zoo-select{display:grid}:host(:focus-within) slot[name=selectlabel]{display:block}:host(:focus-within) ::slotted(select){border-top-left-radius:0;border-top-right-radius:0;border:2px solid #555;border-top:none!important}:host([invalid]) ::slotted(select){border:2px solid var(--warning-mid)}:host([loading]) zoo-preloader{display:flex}fieldset{border:0;padding:0;margin:0;position:relative}::slotted([slot=inputlabel]),::slotted([slot=selectlabel]){position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}input{width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}input:disabled{border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}:host(:focus-within) ::slotted(input),:host(:focus-within) input{border:2px solid #555;padding:12px 14px}:host([invalid]) ::slotted(input),:host([invalid]) input{border:2px solid var(--warning-mid);padding:12px 14px}input::placeholder{color:#767676}</style><fieldset><legend><zoo-label><slot name="legend"><slot name="label"></slot></slot></zoo-label></legend><zoo-input><zoo-preloader slot="input"></zoo-preloader><slot slot="input" name="input"><input type="text"></slot><slot name="link" slot="link"></slot><button slot="input" class="cross" type="button"><zoo-cross-icon></zoo-cross-icon></button><slot slot="info" name="info" role="status"></slot><slot slot="error" name="error" role="alert"></slot><slot name="inputlabel" slot="input"></slot><zoo-select slot="input"><slot name="select" slot="select"></slot></zoo-select></zoo-input><slot name="selectlabel"></slot></fieldset>`;
 	}
 	// TODO in v9 drop nested default input and force user to define label for both select and input, while showing only legend
 	static get observedAttributes() {
-		return ['invalid', 'placeholder'];
+		return ['invalid', 'placeholder', 'closeicontitle'];
 	}
 	handlePlaceholder(newVal) {
 		const input = this.shadowRoot.querySelector('input');
@@ -210,7 +210,6 @@ class SearchableSelect extends FormElement {
 		this.inputPlaceholderFallback = newVal;
 	}
 
-	// TODO think of a way to reuse some logic from nested zoo-select, eg. valueselected, option change etc
 	mutationCallback(mutationsList) {
 		for (let mutation of mutationsList) {
 			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
@@ -222,23 +221,23 @@ class SearchableSelect extends FormElement {
 	connectedCallback() {
 		this.input = this.shadowRoot.querySelector('input');
 		this.input.addEventListener('input', () => this.handleSearchChange());
-		this.shadowRoot.querySelector('zoo-cross-icon').addEventListener('click', () => this.handleCrossClick());
+		this.shadowRoot.querySelector('.cross').addEventListener('click', () => {
+			this.select.value = null;
+			this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+		});
 		this.observer = new MutationObserver(this.mutationCallback.bind(this));
 		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
 		selectSlot.addEventListener('slotchange', () => {
 			this.select = selectSlot.assignedElements()[0];
 			this.registerElementForValidation(this.select);
-			this.select.addEventListener('change', e => {
+			this.select.addEventListener('change', () => {
 				this.handleOptionChange();
-				e.target.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+				this.valueChange();
 			});
-			if (this.select.disabled && this.input) {
-				this.input.disabled = true;
-			}
 			this.select.size = 4;
-			this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 			this.observer.disconnect();
 			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
+			this.valueChange();
 			this.slotChange();
 		});
 
@@ -252,7 +251,14 @@ class SearchableSelect extends FormElement {
 	}
 
 	slotChange() {
-		if (this.input && this.select) this.handleOptionChange();
+		if (this.input && this.select) {
+			this.handleOptionChange();
+			this.input.disabled = this.select.disabled;
+		}
+	}
+
+	valueChange() {
+		this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -260,11 +266,16 @@ class SearchableSelect extends FormElement {
 			if (attrName == 'placeholder') {
 				this.handlePlaceholder(newVal);
 			} else if (attrName === 'invalid') {
-				if (this.hasAttribute('invalid')) {
-					this.shadowRoot.querySelector('zoo-input').setAttribute('invalid', '');
-				} else {
-					this.shadowRoot.querySelector('zoo-input').removeAttribute('invalid');
+				const input = this.shadowRoot.querySelector('zoo-input');
+				if (input) {
+					if (this.hasAttribute('invalid')) {
+						input.setAttribute('invalid', '');
+					} else {
+						input.removeAttribute('invalid');
+					}
 				}
+			} else if (attrName === 'closeicontitle') {
+				this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 			}
 		}
 	}
@@ -296,11 +307,6 @@ class SearchableSelect extends FormElement {
 		} else if (this.tooltip) {
 			this.tooltip.remove();
 		}
-	}
-
-	handleCrossClick() {
-		this.select.value = null;
-		this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);
@@ -394,7 +400,7 @@ class ZooGrid extends HTMLElement {
 
 	// TODO in v9 remove currentpage and maxpages and use only paginator for that
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'resizable', 'reorderable'];
+		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prevpagetitle', 'nextpagetitle'];
 	}
 
 	connectedCallback() {
@@ -416,20 +422,20 @@ class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
-			this.resizeObserver.disconnect();
-			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
-		}
-		if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
-			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
-			headers.forEach(header => this.handleDraggableHeader(header));
-		}
 		if (attrName == 'maxpages' || attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-paginator');
 			if (paginator && !paginator.hasAttribute(attrName)) {
 				paginator.setAttribute(attrName, newVal);
 			}
+		} else if (attrName == 'resizable' && this.hasAttribute('resizable')) {
+			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+			this.resizeObserver.disconnect();
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
+			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
+			headers.forEach(header => this.handleDraggableHeader(header));
+		} else if (attrName === 'prevpagetitle' || attrName === 'nextpagetitle') {
+			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}
 	resizeCallback(entries) {
@@ -505,13 +511,17 @@ window.customElements.define('zoo-grid', ZooGrid);
  */
 class GridHeader extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;width:100%;height:100%}svg,zoo-arrow-icon{display:none;min-width:20px;width:20px;opacity:0;transition:opacity .1s;margin-left:5px;border-radius:5px;background:#f2f3f4;--icon-color:black}zoo-arrow-icon{cursor:pointer;transform:rotate(0)}zoo-arrow-icon:active{opacity:.5;transform:translateY(1px)}:host(:hover) svg,:host(:hover) zoo-arrow-icon{opacity:1}.swap{cursor:grab}.swap:active{cursor:grabbing}:host([reorderable]) .swap,:host([sortable]) zoo-arrow-icon{display:flex}:host([sortstate=asc]) zoo-arrow-icon{transform:rotate(180deg)}:host([sortstate]) zoo-arrow-icon{opacity:1;background:#f2f3f4}</style><slot></slot><zoo-arrow-icon></zoo-arrow-icon><svg class="swap" viewBox="0 0 24 24" width="18" height="18"><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;width:100%;height:100%}.sort,.swap{display:none;width:22px;opacity:0;transition:opacity .1s;margin-left:5px;background:0 0;padding:0;border:0;cursor:pointer;--icon-color:black}.sort zoo-arrow-icon,.swap svg{border-radius:5px;background:#f2f3f4}.sort:active{opacity:.5;transform:translateY(1px)}.swap{cursor:grab}:host(:hover) .sort,:host(:hover) .swap{opacity:1}.sort:focus,.swap:focus{opacity:1}.swap:active{cursor:grabbing}:host([reorderable]) .swap,:host([sortable]) .sort{display:flex}:host([sortstate=asc]) .sort{transform:rotate(180deg)}:host([sortstate]) .sort{opacity:1;background:#f2f3f4}</style><slot></slot><button type="button" class="sort"><zoo-arrow-icon title="sort icon"></zoo-arrow-icon></button> <button type="button" class="swap"><svg viewBox="0 0 24 24" width="24" height="24"><title>swap icon</title><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/></svg></button>`;
+	}
+
+	static get observedAttributes() {
+		return ['sorttitle', 'swaptitle'];
 	}
 
 	connectedCallback() {
 		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
 		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
-		this.shadowRoot.querySelector('zoo-arrow-icon').addEventListener('click', () => this.handleSortClick());
+		this.shadowRoot.querySelector('.sort').addEventListener('click', () => this.handleSortClick());
 	}
 
 	handleSortClick() {
@@ -526,6 +536,15 @@ class GridHeader extends HTMLElement {
 			? { property: this.getAttribute('sortableproperty'), direction: this.getAttribute('sortstate') }
 			: undefined; 
 		this.dispatchEvent(new CustomEvent('sortChange', {detail: detail, bubbles: true, composed: true }));
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if (attrName === 'sorttitle') {
+			this.shadowRoot.querySelector('zoo-arrow-icon').setAttribute('title', newVal);
+		} else if (attrName === 'swaptitle') {
+			this.shadowRoot.querySelector('.swap title').innerHTML = newVal;
+			this.shadowRoot.querySelector('.swap').setAttribute('title', newVal);
+		}
 	}
 }
 
@@ -557,15 +576,8 @@ class Modal extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'headertext') this.handleText(newVal);
-		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
-	}
-	handleText(newVal) {
-		this.header.innerHTML = newVal;
-	}
-	handleCloseLabel(newVal) {
-		const closeButton = this.shadowRoot.querySelector('.close');
-		closeButton.setAttribute('aria-label', newVal);
+		if (attrName == 'headertext') this.header.innerHTML = newVal;
+		if (attrName == 'closelabel') this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 	}
 	connectedCallback() {
 		this.hidden = true;
@@ -793,7 +805,7 @@ window.customElements.define('zoo-spinner', Spinner);
  */
 class Paginator extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,button,nav{display:flex}:host{min-width:inherit;display:none}.box{font-size:14px;width:max-content;position:var(--paginator-position, 'initial');right:var(--right, 'unset')}:host([currentpage]){display:flex}nav{align-items:center;border:1px solid #e6e6e6;border-radius:5px;padding:0 15px}button{cursor:pointer;opacity:1;transition:opacity .1s;background:0 0;border:0;padding:0;font-size:inherit;border-radius:5px;margin:0 2px}button:active{opacity:.5}button:focus,button:hover{background:#f2f3f4}button.hidden{display:none}.page-element{padding:4px 8px}.page-element.active{background:var(--primary-ultralight);color:var(--primary-mid)}.prev zoo-arrow-icon{transform:rotate(90deg)}.next zoo-arrow-icon{transform:rotate(-90deg)}</style><div class="box"><slot name="pagesizeselector"></slot><nav class="paging"><button type="button" class="prev"><zoo-arrow-icon></zoo-arrow-icon></button> <button type="button" class="next"><zoo-arrow-icon></zoo-arrow-icon></button></nav></div><template id="dots"><div class="page-element-dots">...</div></template><template id="pages"><button type="button" class="page-element"></button></template>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,button,nav{display:flex}:host{min-width:inherit;display:none}.box{font-size:14px;width:max-content;position:var(--paginator-position, 'initial');right:var(--right, 'unset')}:host([currentpage]){display:flex}nav{align-items:center;border:1px solid #e6e6e6;border-radius:5px;padding:0 15px}button{cursor:pointer;opacity:1;transition:opacity .1s;background:0 0;border:0;padding:0;font-size:inherit;border-radius:5px;margin:0 2px}button:active{opacity:.5}button:focus,button:hover{background:#f2f3f4}button.hidden{display:none}.page-element{padding:4px 8px}.page-element.active{background:var(--primary-ultralight);color:var(--primary-mid)}.prev zoo-arrow-icon{transform:rotate(90deg)}.next zoo-arrow-icon{transform:rotate(-90deg)}</style><div class="box"><slot name="pagesizeselector"></slot><nav><button type="button" class="prev"><zoo-arrow-icon title="prev page"></zoo-arrow-icon></button> <button type="button" class="next"><zoo-arrow-icon title="next page"></zoo-arrow-icon></button></nav></div><template id="dots"><div class="page-element-dots">...</div></template><template id="pages"><button type="button" class="page-element"></button></template>`;
 		this.prev = this.shadowRoot.querySelector('.prev');
 		this.next = this.shadowRoot.querySelector('.next');
 		this.dots = this.shadowRoot.querySelector('#dots').content;
@@ -803,7 +815,7 @@ class Paginator extends HTMLElement {
 	connectedCallback() {
 		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
 		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
-		this.shadowRoot.querySelector('nav').addEventListener('click', e => {
+		this.shadowRoot.addEventListener('click', e => {
 			const target = e.target.getAttribute('page');
 			if (target) {
 				this.goToPage(target);
@@ -818,7 +830,7 @@ class Paginator extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['maxpages', 'currentpage'];
+		return ['maxpages', 'currentpage', 'prevpagetitle', 'nextpagetitle'];
 	}
 	handleHideShowArrows() {
 		if (this.getAttribute('currentpage') == 1) {
@@ -841,20 +853,25 @@ class Paginator extends HTMLElement {
 			if (page == 1 || page == pageNum - 1 || page == pageNum || page == pageNum + 1 || page == maxPages) {
 				const pageNode = this.pages.cloneNode(true).firstElementChild;
 				pageNode.setAttribute('page', page);
+				pageNode.setAttribute('title', page);
 				if (pageNum == page) {
 					pageNode.classList.add('active');
 				}
 				pageNode.innerHTML = page;
-				this.prev.parentNode.insertBefore(pageNode, this.prev.nextSibling);
+				this.prev.nextSibling.before(pageNode);
 			} else if (page == pageNum-2 || pageNum+2 == page) {
-				this.prev.parentNode.insertBefore(this.dots.cloneNode(true), this.prev.nextSibling);
+				this.prev.nextSibling.before(this.dots.cloneNode(true));
 			}
 		}
 	}
-	attributeChangedCallback(attrName) {
+	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
 			this.rerenderPageButtons();
+		} else if (attrName === 'prevpagetitle') {
+			this.shadowRoot.querySelector('.prev zoo-arrow-icon').setAttribute('title', newVal);
+		} else if (attrName === 'nextpagetitle') {
+			this.shadowRoot.querySelector('.next zoo-arrow-icon').setAttribute('title', newVal);
 		}
 	}
 }
@@ -886,7 +903,15 @@ window.customElements.define('zoo-attention-icon', AttentionIcon);
  */
 class CrossIcon extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,#000)}</style><svg viewBox="0 0 24 24"><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,#000)}</style><svg viewBox="0 0 24 24"><title></title><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>`;
+	}
+
+	static get observedAttributes() {
+		return ['title'];
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
 	}
 }
 
@@ -897,7 +922,15 @@ window.customElements.define('zoo-cross-icon', CrossIcon);
  */
 class ArrowDownIcon extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,var(--primary-mid))}</style><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13l4.59-4.58L18 10l-6 6l-6-6 z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,var(--primary-mid))}</style><svg viewBox="0 0 24 24"><title>Arrow icon</title><path d="M7.41 8.59L12 13l4.59-4.58L18 10l-6 6l-6-6 z"/></svg>`;
+	}
+
+	static get observedAttributes() {
+		return ['title'];
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
 	}
 }
 
@@ -908,7 +941,15 @@ window.customElements.define('zoo-arrow-icon', ArrowDownIcon);
  */
 class PawIcon extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,44px);height:var(--height,44px);fill:var(--icon-color,#fff)}.fade-in{opacity:0;animation:2.2s ease-in-out infinite toes-fade-in-animation}.fade-in--two{animation-delay:.4s}.fade-in--three{animation-delay:.7s}.fade-in--four{animation-delay:1s}@keyframes toes-fade-in-animation{0%,100%{opacity:0}50%{opacity:1}}</style><svg viewBox="0 -2 55 75"><path d="M30.7 53.3c-.8 3.7-1.4 5.6-2.6 7-2.5 2.4-5.6 1.8-8.1-.7a8.9 8.9 0 01-2.7-4.6s0-2.2-3-4.8c-2.6-3-4.8-3-4.8-3-2.7-.9-3.4-1.6-4.5-2.7-2.5-2.5-3.2-5.5-.7-8 1.3-1.3 3.2-1.8 7-2.7 0 0 7.2-1.8 11.8-1.5a10 10 0 015.7 2.6l.8.8s2.6 2.6 2.7 5.8c0 4.5-1.6 11.8-1.6 11.8z"/><path class="fade-in" d="M14.5 28.8c2.8 1 6.4-1.7 8-6s.6-8.9-2.2-10-6.4 1.8-8 6.1c-1.6 4.4-.7 8.8 2.2 9.9z"/><path class="fade-in fade-in--two" d="M26.1 26.2c2.7 2.6 8 1.4 12.2-2.7s5.2-9.5 2.6-12.1-8-1.4-12.1 2.6-5.3 9.6-2.7 12.2z"/><path class="fade-in fade-in--three" d="M37.2 37.2c2.6 2.6 8 1.4 12-2.7s5.3-9.5 2.7-12S44 21 39.8 25c-4 4-5.3 9.5-2.6 12z"/><path class="fade-in fade-in--four" d="M50.4 43c-1-2.8-5.4-3.8-9.8-2.2s-7 5.3-6 8c1 2.9 5.4 3.9 9.8 2.2s7-5.2 6-8z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,44px);height:var(--height,44px);fill:var(--icon-color,#fff)}.fade-in{opacity:0;animation:2.2s ease-in-out infinite toes-fade-in-animation}.fade-in--two{animation-delay:.4s}.fade-in--three{animation-delay:.7s}.fade-in--four{animation-delay:1s}@keyframes toes-fade-in-animation{0%,100%{opacity:0}50%{opacity:1}}</style><svg viewBox="0 -2 55 75"><title>Loading paw icon</title><path d="M30.7 53.3c-.8 3.7-1.4 5.6-2.6 7-2.5 2.4-5.6 1.8-8.1-.7a8.9 8.9 0 01-2.7-4.6s0-2.2-3-4.8c-2.6-3-4.8-3-4.8-3-2.7-.9-3.4-1.6-4.5-2.7-2.5-2.5-3.2-5.5-.7-8 1.3-1.3 3.2-1.8 7-2.7 0 0 7.2-1.8 11.8-1.5a10 10 0 015.7 2.6l.8.8s2.6 2.6 2.7 5.8c0 4.5-1.6 11.8-1.6 11.8z"/><path class="fade-in" d="M14.5 28.8c2.8 1 6.4-1.7 8-6s.6-8.9-2.2-10-6.4 1.8-8 6.1c-1.6 4.4-.7 8.8 2.2 9.9z"/><path class="fade-in fade-in--two" d="M26.1 26.2c2.7 2.6 8 1.4 12.2-2.7s5.2-9.5 2.6-12.1-8-1.4-12.1 2.6-5.3 9.6-2.7 12.2z"/><path class="fade-in fade-in--three" d="M37.2 37.2c2.6 2.6 8 1.4 12-2.7s5.3-9.5 2.7-12S44 21 39.8 25c-4 4-5.3 9.5-2.6 12z"/><path class="fade-in fade-in--four" d="M50.4 43c-1-2.8-5.4-3.8-9.8-2.2s-7 5.3-6 8c1 2.9 5.4 3.9 9.8 2.2s7-5.2 6-8z"/></svg>`;
+	}
+
+	static get observedAttributes() {
+		return ['title'];
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
 	}
 }
 

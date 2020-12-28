@@ -1,18 +1,18 @@
-document.getElementById('toast-summoner').onclick = () => {
+document.querySelector('#toast-summoner button').onclick = () => {
 	document.querySelector('#toast').show();
 };
-document.getElementById('modal-summoner').onclick = () => {
+document.querySelector('#modal-summoner button').onclick = () => {
 	document.querySelector('#modal').openModal();
 };
-document.getElementById('modal-closer').onclick = () => {
+document.querySelector('#modal-closer button').onclick = () => {
 	document.body.querySelector('#modal').closeModal();
 	document.body.querySelector('#modalToast').show();
 };
 let prevActiveBtn = document.getElementById('zoo-theme');
 
-document.getElementById('zoo-theme').onclick = () => changeTheme('zoo');
-document.getElementById('grey-theme').onclick = () => changeTheme('grey');
-document.getElementById('random-theme').onclick = () => changeTheme('random');
+document.querySelector('#zoo-theme button').onclick = () => changeTheme('zoo');
+document.querySelector('#grey-theme button').onclick = () => changeTheme('grey');
+document.querySelector('#random-theme button').onclick = () => changeTheme('random');
 
 const changeTheme = pallete => {
 	prevActiveBtn.setAttribute('type', 'primary');
@@ -169,6 +169,8 @@ const getRow = (d, i, template, idx) => {
 	// status
 	const selectTmpl = document.querySelector('#status-select').content.cloneNode(true);
 	const select = selectTmpl.querySelector('select');
+	select.setAttribute('id', `${num}-select`);
+	selectTmpl.querySelector('label').setAttribute('for', `${num}-select`);
 	if (d.status !== 'DELIVERED') {
 		select.setAttribute('disabled', '');
 	}

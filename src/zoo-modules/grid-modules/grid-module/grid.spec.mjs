@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('Zoo paginator', function () {
 	it('should create default grid', async () => {
 		const rowsLength = await page.evaluate(() => {
@@ -42,14 +43,14 @@ describe('Zoo paginator', function () {
 			</zoo-grid>
 			`;
 			const firstHeader = document.querySelector('zoo-grid-header');
-			const arrow = firstHeader.shadowRoot.querySelector('zoo-arrow-icon');
+			const arrow = firstHeader.shadowRoot.querySelector('.sort');
 			arrow.dispatchEvent(new Event('click'));
 			await new Promise(r => setTimeout(r, 10));
 
 			const firstHeaderFirstSortState = firstHeader.getAttribute('sortstate');
 
 			const secondHeader = document.querySelectorAll('zoo-grid-header')[1];
-			const secondArrow = secondHeader.shadowRoot.querySelector('zoo-arrow-icon');
+			const secondArrow = secondHeader.shadowRoot.querySelector('.sort');
 			secondArrow.dispatchEvent(new Event('click'));
 			await new Promise(r => setTimeout(r, 10));
 

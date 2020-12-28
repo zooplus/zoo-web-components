@@ -26,7 +26,7 @@ function getFiles(currPath) {
 	}
 }
 getFiles('./src/zoo-modules');
-const configs = files.map(file => {
+const configs = dev ? [] : files.map(file => {
 	const cmpName = `${file.substr(file.lastIndexOf('/'), file.length)}`;
 	return {
 		input: file,

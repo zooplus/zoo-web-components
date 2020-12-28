@@ -4,7 +4,7 @@ describe('Zoo grid header', function() {
 			document.body.innerHTML = '<zoo-grid-header sortable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
-			const arrow = header.shadowRoot.querySelector('zoo-arrow-icon');
+			const arrow = header.shadowRoot.querySelector('.sort');
 			
 			const style = window.getComputedStyle(arrow);
 			return style.display;
@@ -17,7 +17,7 @@ describe('Zoo grid header', function() {
 			document.body.innerHTML = '<zoo-grid-header>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
-			const arrow = header.shadowRoot.querySelector('zoo-arrow-icon');
+			const arrow = header.shadowRoot.querySelector('.sort');
 			
 			const style = window.getComputedStyle(arrow);
 			return style.display;
@@ -77,7 +77,7 @@ describe('Zoo grid header', function() {
 			document.body.innerHTML = '<zoo-grid-header sortable>Valid</zoo-grid-header>';
 
 			const header = document.querySelector('zoo-grid-header');
-			const arrow = header.shadowRoot.querySelector('zoo-arrow-icon');
+			const arrow = header.shadowRoot.querySelector('.sort');
 
 			const states = [];
 

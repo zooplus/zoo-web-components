@@ -5,53 +5,60 @@
 	height: 100%;
 }
 
-svg,
-zoo-arrow-icon {
+.sort,
+.swap {
 	display: none;
-	min-width: 20px;
-	width: 20px;
+	width: 22px;
 	opacity: 0;
 	transition: opacity 0.1s;
 	margin-left: 5px;
-	border-radius: 5px;
-	background: #F2F3F4;
+	background: transparent;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
 
 	--icon-color: black;
 }
 
-zoo-arrow-icon {
-	cursor: pointer;
-	transform: rotate(0deg);
+.sort zoo-arrow-icon,
+.swap svg {
+	border-radius: 5px;
+	background: #F2F3F4;
 }
 
-zoo-arrow-icon:active {
+.sort:active {
 	opacity: 0.5;
 	transform: translateY(1px);
-}
-
-:host(:hover) svg,
-:host(:hover) zoo-arrow-icon {
-	opacity: 1;
 }
 
 .swap {
 	cursor: grab;
 }
 
+:host(:hover) .swap,
+:host(:hover) .sort {
+	opacity: 1;
+}
+
+.sort:focus,
+.swap:focus {
+	opacity: 1;
+}
+
 .swap:active {
 	cursor: grabbing;
 }
 
-:host([sortable]) zoo-arrow-icon,
+:host([sortable]) .sort,
 :host([reorderable]) .swap {
 	display: flex;
 }
 
-:host([sortstate='asc']) zoo-arrow-icon {
+:host([sortstate='asc']) .sort {
 	transform: rotate(180deg);
 }
 
-:host([sortstate]) zoo-arrow-icon {
+:host([sortstate]) .sort {
 	opacity: 1;
 	background: #F2F3F4;
 }

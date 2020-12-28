@@ -2,15 +2,18 @@
 	position: relative;
 }
 
-zoo-cross-icon {
+.cross {
 	display: none;
 	position: absolute;
 	top: 12px;
 	right: 14px;
 	cursor: pointer;
+	border: 0;
+	padding: 0;
+	background: transparent;
 }
 
-:host([valueselected]) zoo-cross-icon {
+:host([valueselected]) .cross {
 	display: flex;
 }
 
@@ -35,6 +38,14 @@ zoo-select {
 
 :host(:focus-within) zoo-select {
 	display: grid;
+}
+
+slot[name="selectlabel"] {
+	display: none;
+}
+
+:host(:focus-within) slot[name="selectlabel"] {
+	display: block;
 }
 
 :host(:focus-within) ::slotted(select) {

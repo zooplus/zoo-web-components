@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
 describe('Zoo modal', function () {
+	beforeEach(async () => await page.evaluate(() => jasmine.clock().install()));
+	afterEach(async () => await page.evaluate(() => jasmine.clock().uninstall()));
 	it('should create opened modal', async () => {
 		const modalHeadingText = await page.evaluate(() => {
 			document.body.innerHTML = `
@@ -28,7 +31,7 @@ describe('Zoo modal', function () {
 
 			const closeButton = modal.shadowRoot.querySelector('.close');
 			closeButton.click();
-			await new Promise(r => setTimeout(r, 400)); // waiting for animation to finish
+			jasmine.clock().tick(400);
 			return modal.style.display;
 		});
 		expect(modalDisplay).toEqual('none');
@@ -47,7 +50,7 @@ describe('Zoo modal', function () {
 
 			const box = modal.shadowRoot.querySelector('.box');
 			box.dispatchEvent(new Event('click'));
-			await new Promise(r => setTimeout(r, 400)); // waiting for animation to finish
+			jasmine.clock().tick(400);
 			return modal.style.display;
 		});
 		expect(modalDisplay).toEqual('none');
@@ -63,11 +66,10 @@ describe('Zoo modal', function () {
 				`;
 			let modal = document.querySelector('zoo-modal');
 			modal.openModal();
-			await new Promise(r => setTimeout(r, 10));
 
 			const event = new KeyboardEvent('keyup', { key: 'Escape' });
 			document.dispatchEvent(event);
-			await new Promise(r => setTimeout(r, 400)); // waiting for animation to finish
+			jasmine.clock().tick(400);
 			return modal.style.display;
 		});
 		expect(modalDisplay).toEqual('none');
@@ -83,15 +85,14 @@ describe('Zoo modal', function () {
 				`;
 			let modal = document.querySelector('zoo-modal');
 			modal.openModal();
-			await new Promise(r => setTimeout(r, 310));
+			jasmine.clock().tick(310);
 
 			let called = 0;
 			modal.addEventListener('modalClosed', () => called += 1);
 
 			modal.closeModal();
-			await new Promise(r => setTimeout(r, 10));
 			modal.closeModal();
-			await new Promise(r => setTimeout(r, 620));
+			jasmine.clock().tick(620);
 			return called;
 		});
 		expect(calledTimes).toEqual(1);

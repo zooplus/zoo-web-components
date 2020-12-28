@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 8.2.5
+## 8.2.6
 
 `zoo-info` - fix showing info icon when no slot content is passed.
 

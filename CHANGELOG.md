@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.2.5
+
+`zoo-info` - fix showing info icon when no slot content is passed.
+
 ## 8.2.4
 
 `zoo-checkbox` - accessibility improvements - set hidden on svg icon, make it clear when checkbox is focused;  

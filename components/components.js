@@ -9,10 +9,13 @@ class InfoMessage extends HTMLElement {
 	connectedCallback() {
 		this.setAttribute('hidden', '');
 		const slot = this.shadowRoot.querySelector('slot');
+		const contentSlotted = nodes => {
+			return nodes && [...nodes].some(n => n.tagName !== 'SLOT' || contentSlotted(n.assignedElements()));
+		};
 		slot.addEventListener('slotchange', () => {
-			const innerSlot = slot.assignedElements()[0];
-			const nodes = innerSlot.assignedElements();
-			if (nodes && nodes.length > 0) {
+			const innerSlotNode = slot.assignedElements()[0];
+			const nodes = innerSlotNode.assignedElements();
+			if (contentSlotted(nodes)) {
 				this.removeAttribute('hidden');
 			}
 		});

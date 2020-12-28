@@ -2,15 +2,18 @@
 	position: relative;
 }
 
-zoo-cross-icon {
+.cross {
 	display: none;
 	position: absolute;
 	top: 12px;
 	right: 14px;
 	cursor: pointer;
+	border: 0;
+	padding: 0;
+	background: transparent;
 }
 
-:host([valueselected]) zoo-cross-icon {
+:host([valueselected]) .cross {
 	display: flex;
 }
 

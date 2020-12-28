@@ -13,15 +13,8 @@ export class Modal extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'headertext') this.handleText(newVal);
-		if (attrName == 'closelabel') this.handleCloseLabel(newVal);
-	}
-	handleText(newVal) {
-		this.header.innerHTML = newVal;
-	}
-	handleCloseLabel(newVal) {
-		const closeButton = this.shadowRoot.querySelector('.close');
-		closeButton.setAttribute('aria-label', newVal);
+		if (attrName == 'headertext') this.header.innerHTML = newVal;
+		if (attrName == 'closelabel') this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 	}
 	connectedCallback() {
 		this.hidden = true;

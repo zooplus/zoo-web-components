@@ -2,15 +2,15 @@
 
 ## 8.2.4
 
-`zoo-checkbox` - accessibility improvements - set hidden on svg icon, make it clear when checkbox is focused;
-`zoo-searchable-select` - expose internal label to screen readers only when input has focus;
-`zoo-grid-header` - wrap icons in buttons for better a11y, added new attributes: `sorttitle` and `swaptitle` for both icons;
-`zoo-grid` - added new attributes `prevpagetitle` and `nextpagetitle` for a11y;
-`zoo-paginator` - added new attributes `prevpagetitle` and `nextpagetitle` for a11y;
-`zoo-arrow-icon` - added new attribute `title` for svg a11y;
-`zoo-paw-icon` - added new attribute `title` for svg a11y;
+`zoo-checkbox` - accessibility improvements - set hidden on svg icon, make it clear when checkbox is focused;  
+`zoo-searchable-select` - expose internal label to screen readers only when input has focus;  
+`zoo-grid-header` - wrap icons in buttons for better a11y, added new attributes: `sorttitle` and `swaptitle` for both icons;  
+`zoo-grid` - added new attributes `prevpagetitle` and `nextpagetitle` for a11y;  
+`zoo-paginator` - added new attributes `prevpagetitle` and `nextpagetitle` for a11y;  
+`zoo-arrow-icon` - added new attribute `title` for svg a11y;  
+`zoo-paw-icon` - added new attribute `title` for svg a11y;  
 
-Integrated jasmine into puppeteer runtime to skip time with `jasmine.clock()`, tests should execute faster.
+Integrated jasmine into puppeteer runtime to skip time with `jasmine.clock()`, tests should execute faster.  
 
 ## 8.2.3
 

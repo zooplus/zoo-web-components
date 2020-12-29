@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 8.2.7
+
+`zoo-select` - make color darker when disabled for a11y;
+`zoo-navigation` - make container horizontally scrollable when there is a lot of slotted elements;
+`zoo-paginator` - added vertical padding.
+
 ## 8.2.6
 
 `zoo-info` - fix showing info icon when no slot content is passed.
@@ -96,27 +102,27 @@ maintanence release, update dependencies, added tests, removed unused code.
 
 `zoo-toast` - drop support for properties. Deprecated attribute `text`. Use slots instead.
 
-`zoo-modal` - deprecated attribute `headertext`. Use composition via slots;      
-`zoo-header` - deprecated attribute `headertext`. Use composition to add `h2` element via slot.      
+`zoo-modal` - deprecated attribute `headertext`. Use composition via slots;  
+`zoo-header` - deprecated attribute `headertext`. Use composition to add `h2` element via slot.  
 
-`zoo-input` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.      
-`zoo-input` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.       
-`zoo-input` - changed slot names to `input` and `label` instead of `inputelement` and `inputlabel`.       
-`zoo-searchable-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
-`zoo-searchable-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.       
-`zoo-searchable-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.       
-`zoo-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
-`zoo-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.       
-`zoo-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.       
-`zoo-checkbox` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
-`zoo-checkbox` - changed slot names to `checkbox` and `label` instead of `checkboxelement` and `checkboxlabel`.       
-`zoo-radio` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.       
+`zoo-input` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.  
+`zoo-input` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.  
+`zoo-input` - changed slot names to `input` and `label` instead of `inputelement` and `inputlabel`.  
+`zoo-searchable-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.  
+`zoo-searchable-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.  
+`zoo-searchable-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.  
+`zoo-select` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.  
+`zoo-select` - removed `linktext`, `linktarget` and `linkhref` attributes support. User slots instead.  
+`zoo-select` - changed slot names to `select` and `label` instead of `selectelement` and `selectlabel`.  
+`zoo-checkbox` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.  
+`zoo-checkbox` - changed slot names to `checkbox` and `label` instead of `checkboxelement` and `checkboxlabel`.  
+`zoo-radio` - deprecated `infotext`, `labeltext` and `inputerrormsg` attributes. User slots instead.  
+`zoo-grid-paginator` - renamed to `zoo-paginator`. Update your HTML.  
 
-`zoo-grid-paginator` - renamed to `zoo-paginator`. Update your HTML.       
-
-bundle size is now about 1/3 smaller.       
+bundle size is now about 1/3 smaller.  
 
 removed default values for color theme. To have default z+ theme add the following to your main css file:
+
 ```CSS
 :root {
 	--primary-mid: #3C9700;
@@ -149,8 +155,8 @@ Internal pipeline improvement and test extension.
 ## 7.2.0
 
 Export all classes as default module exports;
-Move documentation to a separate repo;       
-Use Jasmine (2 dependencies) instead of mocha + chai (110 dependencies);      
+Move documentation to a separate repo;  
+Use Jasmine (2 dependencies) instead of mocha + chai (110 dependencies);  
 Minor fixes and perfomance updates for components.
 
 ## 7.1.9
@@ -297,15 +303,15 @@ This release mainly concentrates on internal clean-up. Added storybook docs for 
 
 ## 5.3.4
 
-`zoo-input` - fix grey background for input with `type="date"` or `type="time"` on android devices. Fixed appearance of `type="date"` and `type="time"` on iOS mobile devices.     
+`zoo-input` - fix grey background for input with `type="date"` or `type="time"` on android devices. Fixed appearance of `type="date"` and `type="time"` on iOS mobile devices.  
 `zoo-searchable-select` - fix showing `select` element when user is using mobile device.
 
 ## 5.3.3
 
-`zoo-checkbox` - minor simplification of internal styles;      
-`zoo-header` - use more semantically correct HTML tags for elements;      
-`zoo-radio` - remove redundant code which accepted template as slotted element;      
-`zoo-input-info` - simplify internal css;      
+`zoo-checkbox` - minor simplification of internal styles;  
+`zoo-header` - use more semantically correct HTML tags for elements;  
+`zoo-radio` - remove redundant code which accepted template as slotted element;  
+`zoo-input-info` - simplify internal css;  
 
 ## 5.3.2
 
@@ -322,7 +328,7 @@ Various documentation improvements regarding a11y.
 
 ## 5.3.0
 
-`zoo-grid` - added option `reorderable` for grid to allow columns reorder.       
+`zoo-grid` - added option `reorderable` for grid to allow columns reorder.  
 
 ### Deprecation
 
@@ -330,17 +336,17 @@ Various documentation improvements regarding a11y.
 
 ## 5.2.2
 
-remove containment of most of elements that might be used a lot of a single page.      
+remove containment of most of elements that might be used a lot of a single page.  
 `zoo-grid` - simplification of internal styles and making `zoo-paginator` a sticky container which sticks to the right side.
 
 ## 5.2.1
 
-`zoo-searchable-select` - remove `contain: layout` to fix stacking context. Fix focus/error css borders conflict.       
+`zoo-searchable-select` - remove `contain: layout` to fix stacking context. Fix focus/error css borders conflict.  
 `zoo-input`, `zoo-select` - fix pixels for icons;
 
 ## 5.2.0
 
-`zoo-select`, `zoo-input` - added new `<slot name="selectlabel>` and `<slot name="inputlabel>` respectively for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y. Fixed link padding;      
+`zoo-select`, `zoo-input` - added new `<slot name="selectlabel>` and `<slot name="inputlabel>` respectively for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y. Fixed link padding;  
 `zoo-checkbox` - added new `<slot name="checkboxlabel>` for injecting `<label>` element for a11y; `labeltext` attribute is still accepted when you don't care about a11y.
 
 ## 5.1.2
@@ -349,38 +355,38 @@ remove containment of most of elements that might be used a lot of a single page
 
 ## 5.1.1
 
-`zoo-checkbox` - avoid checkbox jumping when it changes state from/to clicked. Fix setting clicked class on create;      
-`zoo-grid` - simplify communication with `zoo-grid-header`, performance improvements when changing column width;       
-`zoo-link` - fix padding in `zoo-footer`;      
+`zoo-checkbox` - avoid checkbox jumping when it changes state from/to clicked. Fix setting clicked class on create;  
+`zoo-grid` - simplify communication with `zoo-grid-header`, performance improvements when changing column width;  
+`zoo-link` - fix padding in `zoo-footer`;  
 `zoo-select` - show arrow/cross icons interchangeably when option is(not) selected.
 
 ## 5.1.0
 
-`zoo-tooltip` - remove unused css;      
-`zoo-toast` - simplify HTML structure;      
-`zoo-select` - remove unused variable;      
-`zoo-modal` - move element to a separate rendering layer;      
-`zoo-link` - remove unnecessary `if` for rendering, simplify css structure; Added new API param `size`      
-`zoo-header` - mark logo image with `importance="high"`;      
-`zoo-grid` - simplify debounce function, perform resize on next frame;      
-`zoo-collapsable-list` - simplify HTML structure;        
+`zoo-tooltip` - remove unused css;  
+`zoo-toast` - simplify HTML structure;  
+`zoo-select` - remove unused variable;  
+`zoo-modal` - move element to a separate rendering layer;  
+`zoo-link` - remove unnecessary `if` for rendering, simplify css structure; Added new API param `size`  
+`zoo-header` - mark logo image with `importance="high"`;  
+`zoo-grid` - simplify debounce function, perform resize on next frame;  
+`zoo-collapsable-list` - simplify HTML structure;  
 Various performance improvements for documentation page.
 
 ## 5.0.4
 
-`grid-paginator` - hide page size select when no rows supplied.      
+`grid-paginator` - hide page size select when no rows supplied.  
 `zoo-button` - simplify internal css structure.
 
 ## 5.0.3
 
-`zoo-input-label` - simplification of internal DOM tree.      
-`zoo-input-info` - simplification of internal DOM tree.      
-`zoo-radio` - simplification of internal DOM tree.      
+`zoo-input-label` - simplification of internal DOM tree.  
+`zoo-input-info` - simplification of internal DOM tree.  
+`zoo-radio` - simplification of internal DOM tree.  
 `zoo-checkbox` - fixed dynamic reflection of changing attributes and fixed `input-info` part to be outside of checkbox border.
 
 ## 5.0.2
 
-`zoo-searchable-select` - added `:focus-within` to show focus both on input and select elements;      
+`zoo-searchable-select` - added `:focus-within` to show focus both on input and select elements;  
 `zoo-button` - made API make more sense, new types are `primary`, `secondary` and `hollow`. Previous values `cold` and `hot` are still supported but will be removed in the major release. Showing warning in console when inappropriate type is passed.
 `zoo-link` - showing warning in console when inappropriate type is passed.
 
@@ -390,7 +396,7 @@ Various performance improvements for documentation page.
 
 ## 5.0.0
 
-This release mainly concentrates on internal performance and size improvements and alignment with newer version of the styleguide. The biggest change for library users is change of the names external css custom variables, read on to know more.      
+This release mainly concentrates on internal performance and size improvements and alignment with newer version of the styleguide. The biggest change for library users is change of the names external css custom variables, read on to know more.  
 
 `zoo-grid` - new component for data table presentation.
 `zoo-button` - simplify internal css structure, prevent emitting click event when button is disabled. Added new type `hollow`, address docs for example and usage; Aligned with newer version of style guide;
@@ -407,7 +413,6 @@ This release mainly concentrates on internal performance and size improvements a
 `zoo-toast` - optimize svgs; simplify internal css structure;
 `zoo-tooltip` - simplify internal css structure; align with newer version of style guide;
 
-
 ### Breaking changes
 
 `zoo-input` - no longer accepts `nopadding` attribute;
@@ -416,6 +421,7 @@ This release mainly concentrates on internal performance and size improvements a
 #### Theming breaking changes
 
 To override color pallete the following css custom properties can be used:
+
 - Primary color: `--primary-ultralight`, `--primary-light`, `--primary-mid`, `--primary-dark`;
 - Secondary color: `--secondary-ultralight`, `--secondary-light`, `--secondary-mid`, `--secondary-dark`;
 - Warning/error color: `--warning-ultralight`, `--warning-mid`, `--warning-dark`;
@@ -441,10 +447,10 @@ Fixed a typo in documentation.
 
 ## 4.4.25
 
-`zoo-feedback` - added padding for better presentation of one-line feedback text.      
-`zoo-modal` - prevent showing scrollbar when it is not needed on windows. Added small padding from bottom for large modal content.      
-`zoo-toast` - added breaking words for very long words.      
-Update dependencies.     
+`zoo-feedback` - added padding for better presentation of one-line feedback text.  
+`zoo-modal` - prevent showing scrollbar when it is not needed on windows. Added small padding from bottom for large modal content.  
+`zoo-toast` - added breaking words for very long words.  
+Update dependencies.  
 Update package.json to get rid of unix specific commands so that it can be run on windows.
 
 ## 4.4.24
@@ -486,7 +492,7 @@ Maintenance release for updating dependencies.
 ## 4.4.11
 
 `zoo-input`, `zoo-select` - longer label is not wrapped unnecessarily if there is space in same line (because of absent link)  
- 
+
 ## 4.4.10
 
 `zoo-checkbox` - changing highlighted border color when checkbox is checked from very start.
@@ -531,7 +537,8 @@ Update dependencies with security issues.
 ## 4.4.0
 
 `zoo-tooltip` - removed half of the code responsible for positioning and animation. Tooltip now has defined keyframes for fade in. To use is you can do the following:
-```
+
+```CSS
 .your-class:hover {
 	zoo-tooltip {
 		display: block;
@@ -699,11 +706,11 @@ Added `zoo-log-searchable-select` to component lists.
 
 ## 2.0.0
 
-BREAKING CHANGE: `zoo-log-header`, `zoo-log-modal` and `zoo-log-navigation` now doesn't accept named slots. Just define slotted content as regular HTMLElement, for example:      
+BREAKING CHANGE: `zoo-log-header`, `zoo-log-modal` and `zoo-log-navigation` now doesn't accept named slots. Just define slotted content as regular HTMLElement, for example:  
 
 ### Before
 
-```
+```HTML
 <zoo-log-navigation class="nav">
 	<div slot="content">
 		{#each navlinks as link}
@@ -717,7 +724,7 @@ BREAKING CHANGE: `zoo-log-header`, `zoo-log-modal` and `zoo-log-navigation` now 
 
 ### After
 
-```
+```HTML
 <zoo-log-navigation class="nav">
 	<div>
 		{#each navlinks as link}

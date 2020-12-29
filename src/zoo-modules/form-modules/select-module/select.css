@@ -21,7 +21,7 @@ zoo-arrow-icon {
 }
 
 :host([disabled]) zoo-arrow-icon {
-	--icon-color: #E6E6E6;
+	--icon-color: #666;
 }
 
 ::slotted(select) {
@@ -41,7 +41,7 @@ zoo-arrow-icon {
 ::slotted(select:disabled) {
 	border: 1px solid #E6E6E6;
 	background: #F2F3F4;
-	color: #767676;
+	color: #666;
 }
 
 ::slotted(select:disabled:hover) {

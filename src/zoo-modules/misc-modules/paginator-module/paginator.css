@@ -5,6 +5,7 @@
 
 .box {
 	display: flex;
+	align-items: center;
 	font-size: 14px;
 	width: max-content;
 	position: var(--paginator-position, 'initial');
@@ -20,7 +21,7 @@ nav {
 	align-items: center;
 	border: 1px solid #E6E6E6;
 	border-radius: 5px;
-	padding: 0 15px;
+	padding: 15px;
 }
 
 button {
@@ -55,7 +56,7 @@ button.hidden {
 
 .page-element.active {
 	background: var(--primary-ultralight);
-	color: var(--primary-mid);
+	color: var(--primary-dark);
 }
 
 .prev zoo-arrow-icon {

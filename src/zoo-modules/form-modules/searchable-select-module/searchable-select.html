@@ -15,8 +15,6 @@
 		<button slot="additional" class="cross" type="button">
 			<zoo-cross-icon></zoo-cross-icon>
 		</button>
-		<slot slot="info" name="info" role="status"></slot>
-		<slot slot="error" name="error" role="alert"></slot>
 		<slot name="inputlabel" slot="additional"></slot>
 		<zoo-select slot="additional">
 			<slot name="select" slot="select"></slot>
@@ -24,3 +22,9 @@
 	</zoo-input>
 	<slot name="selectlabel"></slot>
 </fieldset>
+<zoo-info role="status">
+	<slot name="info"></slot>
+</zoo-info>
+<zoo-info role="alert">
+	<slot name="error"></slot>
+</zoo-info>

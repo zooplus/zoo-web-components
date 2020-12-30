@@ -77,38 +77,6 @@ describe('Zoo searchable select', function () {
 		expect(disabled).toBeTrue();
 	});
 
-	it('should pass and then remove invalid attribute to zoo-input', async () => {
-		const invalid = await page.evaluate(async () => {
-			document.body.innerHTML = `
-			<zoo-searchable-select>
-				<span slot="label">Searchable multiple select legend</span>
-				<select id="searchable-select" multiple slot="select">
-					<option value="text">text</option>
-				</select>
-				<label for="searchable-select" slot="selectlabel">Searchable multiple select</label>
-				<input id="searchable-input" slot="input"/>
-				<label for="searchable-input" slot="inputlabel">Searchable multiple input</label>
-			</zoo-searchable-select>
-			`;
-			let select = document.querySelector('zoo-searchable-select');
-			await new Promise(r => setTimeout(r, 10));
-			const zooInput = select.shadowRoot.querySelector('zoo-input');
-			select.setAttribute('invalid', '');
-			await new Promise(r => setTimeout(r, 10));
-
-			const firstInvalid = zooInput.hasAttribute('invalid');
-
-			select.removeAttribute('invalid', '');
-			await new Promise(r => setTimeout(r, 10));
-
-			const secondInvalid = zooInput.hasAttribute('invalid');
-
-			return [firstInvalid, secondInvalid];
-		});
-		expect(invalid[0]).toBeTrue();
-		expect(invalid[1]).toBeFalse();
-	});
-
 	it('should handle cross click', async () => {
 		const value = await page.evaluate(async () => {
 			document.body.innerHTML = `
@@ -163,8 +131,7 @@ describe('Zoo searchable select', function () {
 
 			await new Promise(r => setTimeout(r, 10));
 
-			const tooltip = select.shadowRoot.querySelector('zoo-tooltip');
-			return tooltip.getAttribute('text');
+			return select.shadowRoot.querySelector('zoo-tooltip').textContent;
 		});
 		expect(tooltipText).toEqual('first option');
 	});

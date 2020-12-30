@@ -4,6 +4,9 @@
 export class Toast extends HTMLElement {
 	constructor() {
 		super();
+	}
+	
+	connectedCallback() {
 		this.hidden = true;
 		this.timeout = this.getAttribute('timeout') || 3;
 		this.setAttribute('role', 'alert');

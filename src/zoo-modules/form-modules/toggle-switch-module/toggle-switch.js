@@ -1,4 +1,4 @@
-import FormElement from '../common/FormElement.js';
+import { FormElement } from '../common/FormElement.js';
 
 /**
  * @injectHTML

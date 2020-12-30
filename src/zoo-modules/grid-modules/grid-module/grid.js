@@ -105,7 +105,6 @@ export class ZooGrid extends HTMLElement {
 	disconnectedCallback() {
 		if (this.resizeObserver) {
 			this.resizeObserver.disconnect();
-			this.resizeObserver = null;
 		}
 	}
 }

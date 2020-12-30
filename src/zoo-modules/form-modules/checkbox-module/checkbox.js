@@ -1,4 +1,4 @@
-import FormElement from '../common/FormElement.js';
+import { FormElement } from '../common/FormElement.js';
 
 /**
  * @injectHTML
@@ -6,40 +6,24 @@ import FormElement from '../common/FormElement.js';
 export class Checkbox extends FormElement {
 	constructor() {
 		super();
-		const observer = new MutationObserver(this.mutationCallback.bind(this));
-		const checkboxSlot = this.shadowRoot.querySelector('slot[name="checkbox"]');
-		checkboxSlot.addEventListener('slotchange', e => {
-			e.stopPropagation();
-			let checkbox = [...checkboxSlot.assignedElements()].find(el => el.tagName === 'INPUT');
-			if (checkbox) {
-				checkbox.addEventListener('change', () => this.handleChange(checkbox));
-				this.registerElementForValidation(checkbox);
-				if (checkbox.hasAttribute('disabled')) this.setAttribute('disabled', '');
-				observer.observe(checkbox, { attributes: true, attributeFilter: ['disabled'] });
-				this.handleChange(checkbox);
+		this.observer = new MutationObserver(mutationsList => {
+			for (let mutation of mutationsList) {
+				mutation.target.disabled ? this.setAttribute('disabled', '') : this.removeAttribute('disabled');
 			}
+		});
+		this.shadowRoot.querySelector('slot[name="checkbox"]').addEventListener('slotchange', e => {
+			let checkbox = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
+			if (!checkbox) return;
+			checkbox.addEventListener('change', () => this.toggleAttribute('checked'));
+			this.registerElementForValidation(checkbox);
+			if (checkbox.disabled) this.setAttribute('disabled', '');
+			if (checkbox.checked) this.setAttribute('checked', '');
+			this.observer.observe(checkbox, { attributes: true, attributeFilter: ['disabled'] });
 		});
 	}
 
-	// TODO think of a better way to handle disabled attribute change
-	mutationCallback(mutationsList) {
-		for (let mutation of mutationsList) {
-			if (mutation.target.disabled) {
-				this.setAttribute('disabled', '');
-			} else {
-				this.removeAttribute('disabled');
-			}
-		}
-	}
-
-	handleChange(checkbox) {
-		if (checkbox.checked) {
-			checkbox.setAttribute('checked', '');
-			this.setAttribute('checked', '');
-		} else {
-			checkbox.removeAttribute('checked');
-			this.removeAttribute('checked');
-		}
+	disconnectedCallback() {
+		this.observer.disconnect();
 	}
 }
 window.customElements.define('zoo-checkbox', Checkbox);

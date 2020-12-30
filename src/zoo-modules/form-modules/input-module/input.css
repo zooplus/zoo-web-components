@@ -72,18 +72,17 @@ zoo-attention-icon {
 	flex: 1;
 }
 
-.info,
-.error {
+zoo-info {
 	grid-column: span 2;
 }
 
-.error {
+zoo-info[role="alert"] {
 	display: none;
 
 	--icon-color: var(--warning-mid);
 }
 
-:host([invalid]) .error {
+:host([invalid]) zoo-info[role="alert"] {
 	display: flex;
 }
 

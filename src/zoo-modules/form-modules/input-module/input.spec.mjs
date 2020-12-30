@@ -48,7 +48,7 @@ describe('Zoo input', function () {
 				`;
 			let input = document.querySelector('zoo-input');
 			await new Promise(r => setTimeout(r, 10));
-			const error = input.shadowRoot.querySelector('.error');
+			const error = input.shadowRoot.querySelector('zoo-info[role="alert"]');
 			return window.getComputedStyle(error).display;
 		});
 		expect(errorDisplay).toEqual('flex');
@@ -65,7 +65,7 @@ describe('Zoo input', function () {
 				`;
 			let input = document.querySelector('zoo-input');
 			await new Promise(r => setTimeout(r, 10));
-			const error = input.shadowRoot.querySelector('.error');
+			const error = input.shadowRoot.querySelector('zoo-info[role="alert"]');
 			return window.getComputedStyle(error).display;
 		});
 		expect(errorDisplay).toEqual('none');

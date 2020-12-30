@@ -1,4 +1,4 @@
-export default class FormElement extends HTMLElement {
+export class FormElement extends HTMLElement {
 	constructor() {
 		super();
 	}
@@ -10,10 +10,11 @@ export default class FormElement extends HTMLElement {
 		});
 		element.addEventListener('change', () => {
 			if (element.checkValidity()) {
+				this.removeAttribute('aria-invalid');
 				this.removeAttribute('invalid');
 			} else {
-				this.setAttribute('invalid', '');
 				this.setAttribute('aria-invalid', '');
+				this.setAttribute('invalid', '');
 			}
 		});
 	}

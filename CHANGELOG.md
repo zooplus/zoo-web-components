@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 8.2.8
+
+Mutation observers performance updates and overall bundle size reduction.  
+
+`zoo-input` - added new slot `additional` for additional content.
+`zoo-navigation` - added background effect on slotted element focus.
+
 ## 8.2.7
 
 `zoo-select` - make color darker when disabled for a11y;

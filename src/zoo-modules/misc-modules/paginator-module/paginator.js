@@ -8,9 +8,7 @@ export class Paginator extends HTMLElement {
 		this.next = this.shadowRoot.querySelector('.next');
 		this.dots = this.shadowRoot.querySelector('#dots').content;
 		this.pages = this.shadowRoot.querySelector('#pages').content;
-	}
 
-	connectedCallback() {
 		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
 		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
 		this.shadowRoot.addEventListener('click', e => {
@@ -20,6 +18,7 @@ export class Paginator extends HTMLElement {
 			}
 		});
 	}
+
 	goToPage(pageNumber) {
 		this.setAttribute('currentpage', pageNumber);
 		this.dispatchEvent(new CustomEvent('pageChange', {

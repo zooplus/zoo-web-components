@@ -7,20 +7,24 @@
 		</zoo-label>
 	</legend>
 	<zoo-input>
-		<zoo-preloader slot="input"></zoo-preloader>
+		<zoo-preloader slot="additional"></zoo-preloader>
 		<slot slot="input" name="input">
 			<input type="text"/>
 		</slot>
 		<slot name="link" slot="link"></slot>
-		<button slot="input" class="cross" type="button">
+		<button slot="additional" class="cross" type="button">
 			<zoo-cross-icon></zoo-cross-icon>
 		</button>
-		<slot slot="info" name="info" role="status"></slot>
-		<slot slot="error" name="error" role="alert"></slot>
-		<slot name="inputlabel" slot="input"></slot>
-		<zoo-select slot="input">
+		<slot name="inputlabel" slot="additional"></slot>
+		<zoo-select slot="additional">
 			<slot name="select" slot="select"></slot>
 		</zoo-select>
 	</zoo-input>
 	<slot name="selectlabel"></slot>
 </fieldset>
+<zoo-info role="status">
+	<slot name="info"></slot>
+</zoo-info>
+<zoo-info role="alert">
+	<slot name="error"></slot>
+</zoo-info>

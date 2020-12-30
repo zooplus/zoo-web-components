@@ -4,9 +4,6 @@
 export class CollapsableList extends HTMLElement {
 	constructor() {
 		super();
-	}
-
-	connectedCallback() {
 		const slot = this.shadowRoot.querySelector('slot');
 		slot.addEventListener('slotchange', () => {
 			let items = slot.assignedElements();

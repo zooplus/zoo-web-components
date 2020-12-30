@@ -6,14 +6,6 @@
 export class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
-	}
-
-	// TODO in v9 remove currentpage and maxpages and use only paginator for that
-	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prevpagetitle', 'nextpagetitle'];
-	}
-
-	connectedCallback() {
 		const root = this.shadowRoot;
 		const headerSlot = root.querySelector('slot[name="headercell"]');
 		headerSlot.addEventListener('slotchange', this.debounce(() => {
@@ -31,6 +23,11 @@ export class ZooGrid extends HTMLElement {
 		this.addEventListener('sortChange', e => this.handleSortChange(e));
 	}
 
+	// TODO in v9 remove currentpage and maxpages and use only paginator for that
+	static get observedAttributes() {
+		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prevpagetitle', 'nextpagetitle'];
+	}
+
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'maxpages' || attrName == 'currentpage') {
 			const paginator = this.shadowRoot.querySelector('zoo-paginator');
@@ -39,7 +36,6 @@ export class ZooGrid extends HTMLElement {
 			}
 		} else if (attrName == 'resizable' && this.hasAttribute('resizable')) {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
-			this.resizeObserver.disconnect();
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
@@ -109,7 +105,6 @@ export class ZooGrid extends HTMLElement {
 	disconnectedCallback() {
 		if (this.resizeObserver) {
 			this.resizeObserver.disconnect();
-			this.resizeObserver = null;
 		}
 	}
 }

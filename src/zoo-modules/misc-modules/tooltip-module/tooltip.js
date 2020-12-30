@@ -11,7 +11,7 @@ export class Tooltip extends HTMLElement {
 		return ['text'];
 	}
 	handleText(newVal) {
-		this.shadowRoot.querySelector('span').innerHTML = newVal;
+		this.shadowRoot.querySelector('slot span').innerHTML = newVal;
 	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'text') this.handleText(newVal);

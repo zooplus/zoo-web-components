@@ -1,4 +1,4 @@
-import FormElement from '../common/FormElement.js';
+import { FormElement } from '../common/FormElement.js';
 
 /**
  * @injectHTML
@@ -6,6 +6,18 @@ import FormElement from '../common/FormElement.js';
 export class QuantityControl extends FormElement {
 	constructor() {
 		super();
+		this.shadowRoot.querySelector('slot[name="input"]').addEventListener('slotchange', e => {
+			this.input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
+			if (!this.input) return;
+			this.registerElementForValidation(this.input);
+			this.setInputWidth();
+		});
+
+		this.shadowRoot.querySelector('slot[name="increase"]')
+			.addEventListener('slotchange', e => this.handleClick(true, e.target.assignedElements()[0]));
+		
+		this.shadowRoot.querySelector('slot[name="decrease"]')
+			.addEventListener('slotchange', e => this.handleClick(false, e.target.assignedElements()[0]));
 	}
 
 	setInputWidth() {
@@ -13,32 +25,14 @@ export class QuantityControl extends FormElement {
 		this.style.setProperty('--input-length', length + 1 + 'ch');
 	}
 
-	handleClick(increment) {
-		const step = this.input.step || 1;
-		this.input.value = this.input.value || 0;
-		this.input.value -= increment ? -step : step;
-		this.input.dispatchEvent(new Event('change'));
-		this.setInputWidth();
-	}
-
-	connectedCallback() {
-		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
-		inputSlot.addEventListener('slotchange', () => {
-			this.input = inputSlot.assignedElements()[0];
-			this.registerElementForValidation(this.input);
+	handleClick(increment, el) {
+		if (!el) return;
+		el.addEventListener('click', () => {
+			const step = this.input.step || 1;
+			this.input.value = this.input.value || 0;
+			this.input.value -= increment ? -step : step;
+			this.input.dispatchEvent(new Event('change'));
 			this.setInputWidth();
-		});
-
-		const increaseSlot = this.shadowRoot.querySelector('slot[name="increase"]');
-		increaseSlot.addEventListener('slotchange', () => {
-			const btn = increaseSlot.assignedElements()[0];
-			btn.addEventListener('click', () => this.handleClick(true));
-		});
-		
-		const decreaseSlot = this.shadowRoot.querySelector('slot[name="decrease"]');
-		decreaseSlot.addEventListener('slotchange', () => {
-			const btn = decreaseSlot.assignedElements()[0];
-			btn.addEventListener('click', () => this.handleClick(false));
 		});
 	}
 }

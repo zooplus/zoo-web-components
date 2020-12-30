@@ -5,6 +5,12 @@ export class Modal extends HTMLElement {
 	constructor() {
 		super();
 		this.header = this.shadowRoot.querySelector('span');
+		this.hidden = true;
+		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
+		const box = this.shadowRoot.querySelector('.box');
+		box.addEventListener('click', e => {
+			if (e.target == box) this.closeModal();
+		});
 	}
 
 	// todo remove in v9 headertext
@@ -16,14 +22,7 @@ export class Modal extends HTMLElement {
 		if (attrName == 'headertext') this.header.innerHTML = newVal;
 		if (attrName == 'closelabel') this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 	}
-	connectedCallback() {
-		this.hidden = true;
-		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
-		const box = this.shadowRoot.querySelector('.box');
-		box.addEventListener('click', e => {
-			if (e.target == box) this.closeModal();
-		});
-	}
+
 	openModal() {
 		this.style.display = 'block';
 		this.toggleModalClass();

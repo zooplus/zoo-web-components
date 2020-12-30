@@ -31,7 +31,7 @@ describe('Zoo radio', function () {
 				`;
 			let input = document.querySelector('zoo-radio');
 			await new Promise(r => setTimeout(r, 10));
-			const error = input.shadowRoot.querySelector('.error');
+			const error = input.shadowRoot.querySelector('zoo-info[role="alert"]');
 			return window.getComputedStyle(error).display;
 		});
 		expect(errorDisplay).toEqual('flex');
@@ -50,7 +50,7 @@ describe('Zoo radio', function () {
 				</zoo-radio>
 				`;
 			let input = document.querySelector('zoo-radio');
-			const error = input.shadowRoot.querySelector('.error');
+			const error = input.shadowRoot.querySelector('zoo-info[role="alert"]');
 			return window.getComputedStyle(error).display;
 		});
 		expect(errorDisplay).toEqual('none');

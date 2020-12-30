@@ -13,7 +13,7 @@
 	background: transparent;
 }
 
-:host([valueselected]) .cross {
+:host([value-selected]) .cross {
 	display: flex;
 }
 

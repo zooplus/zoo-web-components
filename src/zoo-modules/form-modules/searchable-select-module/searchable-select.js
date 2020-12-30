@@ -6,6 +6,41 @@ import FormElement from '../common/FormElement.js';
 export class SearchableSelect extends FormElement {
 	constructor() {
 		super();
+		this.observer = new MutationObserver(this.mutationCallback.bind(this));
+		this.input = this.shadowRoot.querySelector('input');
+		this.input.addEventListener('input', () => this.handleSearchChange());
+		this.shadowRoot.querySelector('.cross').addEventListener('click', () => {
+			this.select.value = null;
+			this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+		});
+		
+		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
+		selectSlot.addEventListener('slotchange', e => {
+			e.stopPropagation();
+			this.select = [...selectSlot.assignedElements()].find(el => el.tagName === 'SELECT');
+			if (this.select) {
+				this.registerElementForValidation(this.select);
+				this.select.addEventListener('change', () => {
+					this.handleOptionChange();
+					this.valueChange();
+				});
+				this.select.size = 4;
+				this.observer.observe(this.select, { attributes: true, attributeFilter: ['disabled'] });
+				this.valueChange();
+				this.slotChange();
+			}
+		});
+
+		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
+		inputSlot.addEventListener('slotchange', e => {
+			e.stopPropagation();
+			this.input = [...inputSlot.assignedElements()].find(el => el.tagName === 'INPUT');
+			if (this.input) {
+				this.inputPlaceholderFallback = this.input.placeholder;
+				this.input.addEventListener('input', () => this.handleSearchChange());
+				this.slotChange();
+			}
+		});
 	}
 	// TODO in v9 drop nested default input and force user to define label for both select and input, while showing only legend
 	static get observedAttributes() {
@@ -19,42 +54,8 @@ export class SearchableSelect extends FormElement {
 
 	mutationCallback(mutationsList) {
 		for (let mutation of mutationsList) {
-			if (mutation.type === 'attributes' && mutation.attributeName == 'disabled') {
-				this.input.disabled = mutation.target.disabled;
-			}
+			this.input.disabled = mutation.target.disabled;
 		}
-	}
-
-	connectedCallback() {
-		this.input = this.shadowRoot.querySelector('input');
-		this.input.addEventListener('input', () => this.handleSearchChange());
-		this.shadowRoot.querySelector('.cross').addEventListener('click', () => {
-			this.select.value = null;
-			this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
-		});
-		this.observer = new MutationObserver(this.mutationCallback.bind(this));
-		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
-		selectSlot.addEventListener('slotchange', () => {
-			this.select = selectSlot.assignedElements()[0];
-			this.registerElementForValidation(this.select);
-			this.select.addEventListener('change', () => {
-				this.handleOptionChange();
-				this.valueChange();
-			});
-			this.select.size = 4;
-			this.observer.disconnect();
-			this.observer.observe(this.select, { attributes: true, childList: false, subtree: false });
-			this.valueChange();
-			this.slotChange();
-		});
-
-		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
-		inputSlot.addEventListener('slotchange', () => {
-			this.input = inputSlot.assignedElements()[0];
-			this.inputPlaceholderFallback = this.input.placeholder;
-			this.input.addEventListener('input', () => this.handleSearchChange());
-			this.slotChange();
-		});
 	}
 
 	slotChange() {
@@ -65,25 +66,23 @@ export class SearchableSelect extends FormElement {
 	}
 
 	valueChange() {
-		this.select.value ? this.setAttribute('valueselected', '') : this.removeAttribute('valueselected');
+		this.select.value ? this.setAttribute('value-selected', '') : this.removeAttribute('value-selected');
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (SearchableSelect.observedAttributes.includes(attrName)) {
-			if (attrName == 'placeholder') {
-				this.handlePlaceholder(newVal);
-			} else if (attrName === 'invalid') {
-				const input = this.shadowRoot.querySelector('zoo-input');
-				if (input) {
-					if (this.hasAttribute('invalid')) {
-						input.setAttribute('invalid', '');
-					} else {
-						input.removeAttribute('invalid');
-					}
+		if (attrName == 'placeholder') {
+			this.handlePlaceholder(newVal);
+		} else if (attrName === 'invalid') {
+			const input = this.shadowRoot.querySelector('zoo-input');
+			if (input) {
+				if (this.hasAttribute('invalid')) {
+					input.setAttribute('invalid', '');
+				} else {
+					input.removeAttribute('invalid');
 				}
-			} else if (attrName === 'closeicontitle') {
-				this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 			}
+		} else if (attrName === 'closeicontitle') {
+			this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 		}
 	}
 
@@ -106,14 +105,19 @@ export class SearchableSelect extends FormElement {
 		this.input.placeholder = showTooltip ? inputValString : this.inputPlaceholderFallback;
 		if (showTooltip) {
 			this.input.value = null;
-			this.tooltip = this.tooltip || document.createElement('zoo-tooltip');
-			this.tooltip.slot = 'input';
-			this.tooltip.setAttribute('position', 'right');
+			this.tooltip = this.tooltip || this.createTooltip();
 			this.tooltip.setAttribute('text', inputValString);
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);
 		} else if (this.tooltip) {
 			this.tooltip.remove();
 		}
+	}
+
+	createTooltip() {
+		const tooltip = document.createElement('zoo-tooltip');
+		tooltip.slot = 'additional';
+		tooltip.setAttribute('position', 'right');
+		return tooltip;
 	}
 }
 window.customElements.define('zoo-searchable-select', SearchableSelect);

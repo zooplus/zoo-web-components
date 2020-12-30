@@ -6,11 +6,12 @@
 </zoo-link>
 <div class="content">
 	<slot name="input"></slot>
+	<slot name="additional"></slot>
 	<zoo-attention-icon></zoo-attention-icon>
 </div>
-<zoo-info class="info" role="status">
+<zoo-info role="status">
 	<slot name="info"></slot>
 </zoo-info>
-<zoo-info class="error" role="alert">
+<zoo-info role="alert">
 	<slot name="error"></slot>
 </zoo-info>

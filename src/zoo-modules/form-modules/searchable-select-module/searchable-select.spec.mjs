@@ -223,7 +223,7 @@ describe('Zoo searchable select', function () {
 
 			return {
 				placeholder: slottedInput.placeholder,
-				valueselected: select.hasAttribute('valueselected'),
+				valueselected: select.hasAttribute('value-selected'),
 				closeIconDisplay: style.display
 			};
 		});

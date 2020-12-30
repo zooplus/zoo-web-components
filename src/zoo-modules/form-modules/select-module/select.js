@@ -6,40 +6,28 @@ import FormElement from '../common/FormElement.js';
 export class Select extends FormElement {
 	constructor() {
 		super();
+		const observer = new MutationObserver(this.mutationCallback.bind(this));
+		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
+		selectSlot.addEventListener('slotchange', e => {
+			e.stopPropagation();
+			let select = [...selectSlot.assignedElements()].find(el => el.tagName === 'SELECT');
+			if (select) {
+				if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
+				if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
+				this.registerElementForValidation(select);
+				observer.observe(select, { attributes: true, attributeFilter: ['disabled', 'multiple'] });
+			}
+		});
 	}
 
 	mutationCallback(mutationsList) {
 		for(let mutation of mutationsList) {
-			if (mutation.type === 'attributes') {
-				const attr = mutation.attributeName;
-				if (attr == 'disabled' || attr == 'multiple') {
-					if (mutation.target[attr]) {
-						this.setAttribute(attr, '');
-					} else {
-						this.removeAttribute(attr);
-					}
-				}
+			const attr = mutation.attributeName;
+			if (mutation.target[attr]) {
+				this.setAttribute(attr, '');
+			} else {
+				this.removeAttribute(attr);
 			}
-		}
-	}
-
-	connectedCallback() {
-		const selectSlot = this.shadowRoot.querySelector('slot[name="select"]');
-		selectSlot.addEventListener('slotchange', () => {
-			this.observer = this.observer || new MutationObserver(this.mutationCallback.bind(this));
-			let select = selectSlot.assignedElements()[0];
-			if (select.hasAttribute('multiple')) this.setAttribute('multiple', '');
-			if (select.hasAttribute('disabled')) this.setAttribute('disabled', '');
-			this.registerElementForValidation(select);
-			this.observer.disconnect();
-			this.observer.observe(select, { attributes: true, childList: false, subtree: false });
-		});
-	}
-
-	disconnectedCallback() {
-		if (this.observer) {
-			this.observer.disconnect();
-			this.observer = null;
 		}
 	}
 }

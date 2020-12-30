@@ -4,16 +4,13 @@
 export class GridHeader extends HTMLElement {
 	constructor() {
 		super();
+		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
+		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
+		this.shadowRoot.querySelector('.sort').addEventListener('click', () => this.handleSortClick());
 	}
 
 	static get observedAttributes() {
 		return ['sorttitle', 'swaptitle'];
-	}
-
-	connectedCallback() {
-		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
-		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
-		this.shadowRoot.querySelector('.sort').addEventListener('click', () => this.handleSortClick());
 	}
 
 	handleSortClick() {

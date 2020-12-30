@@ -6,16 +6,15 @@ import FormElement from '../common/FormElement.js';
 export class ToggleSwitch extends FormElement {
 	constructor() {
 		super();
-	}
-
-	connectedCallback() {
 		const inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		inputSlot.addEventListener('slotchange', () => {
-			let input = inputSlot.assignedElements()[0];
-			this.registerElementForValidation(input);
-			input.addEventListener('change', e => {
-				e.target.checked ? e.target.setAttribute('checked', '') : e.target.removeAttribute('checked');
-			});
+			let input = [...inputSlot.assignedElements()].find(el => el.tagName === 'INPUT');
+			if (input) {
+				this.registerElementForValidation(input);
+				input.addEventListener('change', e => {
+					e.target.checked ? e.target.setAttribute('checked', '') : e.target.removeAttribute('checked');
+				});
+			}
 		});
 	}
 }

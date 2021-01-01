@@ -1,7 +1,3 @@
-:host {
-	position: relative;
-}
-
 .cross {
 	display: none;
 	position: absolute;
@@ -86,10 +82,6 @@ fieldset {
 	border: 0;
 }
 
-zoo-info {
-	grid-column: span 2;
-}
-
 zoo-info[role="alert"] {
 	display: none;
 
@@ -98,6 +90,25 @@ zoo-info[role="alert"] {
 
 :host([invalid]) zoo-info[role="alert"] {
 	display: flex;
+}
+
+legend {
+	padding: 0;
+	width: 100%;
+}
+
+legend zoo-label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+legend zoo-link {
+	font-weight: initial;
+	text-align: right;
+	max-width: max-content;
+	justify-self: flex-end;
+	padding: 0;
 }
 
 /** todo in v9 remove styles for input leaving ::slotted(input) **/

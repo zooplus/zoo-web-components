@@ -80,10 +80,6 @@ fieldset {
 	align-self: center;
 }
 
-zoo-info {
-	grid-column: span 2;
-}
-
 zoo-info[role="alert"] {
 	display: none;
 

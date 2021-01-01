@@ -4,10 +4,8 @@
 export class InfoMessage extends HTMLElement {
 	constructor() {
 		super();
-		this.setAttribute('hidden', '');
 		this.shadowRoot.querySelector('slot').addEventListener('slotchange', e => {
-			const nodes = e.target.assignedElements();
-			[...nodes].some(n => n.tagName !== 'SLOT') && this.removeAttribute('hidden');
+			e.target.assignedElements({ flatten: true }).length > 0 ? this.setAttribute('shown', '') : this.removeAttribute('shown');
 		});
 	}
 }

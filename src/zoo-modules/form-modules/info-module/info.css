@@ -1,5 +1,5 @@
 :host {
-	display: flex;
+	display: none;
 	padding: 2px;
 	font-size: 12px;
 	line-height: 16px;
@@ -7,6 +7,6 @@
 	align-items: center;
 }
 
-:host([hidden]) {
-	display: none !important;
+:host([shown]) {
+	display: flex;
 }

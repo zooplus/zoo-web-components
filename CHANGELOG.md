@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.2.9
+
+`zoo-searchable-select` - fix placement of zoo-link when supplied.
+
 ## 8.2.8
 
 Mutation observers performance updates and overall bundle size reduction.  

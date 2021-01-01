@@ -4,6 +4,9 @@
 			<slot name="legend">
 				<slot name="label"></slot>
 			</slot>
+			<zoo-link>
+				<slot name="link" slot="anchor"></slot>
+			</zoo-link>
 		</zoo-label>
 	</legend>
 	<zoo-input>
@@ -11,15 +14,14 @@
 		<slot slot="input" name="input">
 			<input type="text"/>
 		</slot>
-		<slot name="link" slot="link"></slot>
 		<button slot="additional" class="cross" type="button">
 			<zoo-cross-icon></zoo-cross-icon>
 		</button>
 		<slot name="inputlabel" slot="additional"></slot>
-		<zoo-select slot="additional">
-			<slot name="select" slot="select"></slot>
-		</zoo-select>
 	</zoo-input>
+	<zoo-select>
+		<slot name="select" slot="select"></slot>
+	</zoo-select>
 	<slot name="selectlabel"></slot>
 </fieldset>
 <zoo-info role="status">

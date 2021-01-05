@@ -4,7 +4,6 @@
 export class Modal extends HTMLElement {
 	constructor() {
 		super();
-		this.header = this.shadowRoot.querySelector('span');
 		this.hidden = true;
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
 		const box = this.shadowRoot.querySelector('.box');
@@ -13,14 +12,12 @@ export class Modal extends HTMLElement {
 		});
 	}
 
-	// todo remove in v9 headertext
 	static get observedAttributes() {
-		return ['headertext', 'closelabel'];
+		return ['closelabel'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'headertext') this.header.innerHTML = newVal;
-		if (attrName == 'closelabel') this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
+		this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 	}
 
 	openModal() {

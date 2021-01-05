@@ -6,8 +6,7 @@
 export class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
-		const root = this.shadowRoot;
-		const headerSlot = root.querySelector('slot[name="headercell"]');
+		const headerSlot = this.shadowRoot.querySelector('slot[name="headercell"]');
 		headerSlot.addEventListener('slotchange', this.debounce(() => {
 			const headers = headerSlot.assignedElements();
 			this.style.setProperty('--grid-column-num', headers.length);
@@ -19,7 +18,7 @@ export class ZooGrid extends HTMLElement {
 				headers.forEach(header => this.handleDraggableHeader(header));
 			}
 		}));
-		const rowSlot = root.querySelector('slot[name="row"]');
+		const rowSlot = this.shadowRoot.querySelector('slot[name="row"]');
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
 			rowSlot.assignedElements().forEach(row => {
 				row.setAttribute('role', 'row');
@@ -29,7 +28,12 @@ export class ZooGrid extends HTMLElement {
 				});
 			});
 		}));
-		this.addEventListener('sortChange', e => this.handleSortChange(e));
+		this.addEventListener('sortChange', e => {
+			if (this.prevSortedHeader && !e.target.isEqualNode(this.prevSortedHeader)) {
+				this.prevSortedHeader.removeAttribute('sortstate');
+			}
+			this.prevSortedHeader = e.target;
+		});
 	}
 
 	static get observedAttributes() {
@@ -37,17 +41,12 @@ export class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'maxpages' || attrName == 'currentpage') {
-			const paginator = this.shadowRoot.querySelector('zoo-paginator');
-			if (paginator && !paginator.hasAttribute(attrName)) {
-				paginator.setAttribute(attrName, newVal);
-			}
-		} else if (attrName == 'resizable' && this.hasAttribute('resizable')) {
+		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
-		} else if (attrName === 'prev-page-title' || attrName === 'next-page-title') {
+		} else if (['maxpages', 'currentpage', 'prev-page-title', 'next-page-title'].includes(attrName)) {
 			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}
@@ -82,31 +81,25 @@ export class ZooGrid extends HTMLElement {
 
 		header.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', header.getAttribute('column')));
 		// drag enter fires before dragleave, so stagger this function
-		header.addEventListener('dragenter', this.debounce(() => header.classList.add('drag-over')));
+		header.addEventListener('dragenter', this.debounce(() => {
+			header.classList.add('drag-over');
+			this.prevDraggedOverHeader = header;
+		}));
 		header.addEventListener('dragleave', () => header.classList.remove('drag-over'));
-		header.addEventListener('drop', e => this.handleDrop(e));
-	}
-
-	handleDrop(e) {
-		this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(h => h.classList.remove('drag-over'));
-		const sourceColumn = e.dataTransfer.getData('text');
-		const targetColumn = e.target.getAttribute('column');
-		if (targetColumn == sourceColumn) return;
-		// move columns
-		this.querySelectorAll(`[column="${sourceColumn}"]`).forEach(source => {
-			const target = source.parentElement.querySelector(`[column="${targetColumn}"]`);
-			targetColumn > sourceColumn ? target.after(source) : target.before(source);
+		header.addEventListener('drop', e => {
+			this.prevDraggedOverHeader.classList.remove('drag-over');
+			const sourceColumn = e.dataTransfer.getData('text');
+			const targetColumn = e.target.getAttribute('column');
+			if (targetColumn == sourceColumn) return;
+			// move columns
+			this.querySelectorAll(`[column="${sourceColumn}"]`).forEach(source => {
+				const target = source.parentElement.querySelector(`[column="${targetColumn}"]`);
+				targetColumn > sourceColumn ? target.after(source) : target.before(source);
+			});
+			// reassign indexes for row cells
+			this.shadowRoot.querySelector('slot[name="row"]').assignedElements()
+				.forEach(row => [...row.children].forEach((child, i) => child.setAttribute('column', i+1)));
 		});
-		// reassign indexes for row cells
-		const allRows = this.shadowRoot.querySelector('slot[name="row"]').assignedElements();
-		allRows.forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
-	}
-
-	handleSortChange(e) {
-		if (this.prevSortedHeader && !e.target.isEqualNode(this.prevSortedHeader)) {
-			this.prevSortedHeader.removeAttribute('sortstate');
-		}
-		this.prevSortedHeader = e.target;
 	}
 
 	disconnectedCallback() {

@@ -11,10 +11,6 @@ export class SearchableSelect extends FormElement {
 				this.input.disabled = mutation.target.disabled;
 			}
 		});
-		// TODO remove in v9
-		this.input = this.shadowRoot.querySelector('input');
-		this.input.addEventListener('input', () => this.handleSearchChange());
-		//
 		this.shadowRoot.querySelector('.cross').addEventListener('click', () => {
 			this.select.value = null;
 			this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
@@ -42,14 +38,9 @@ export class SearchableSelect extends FormElement {
 			this.slotChange();
 		});
 	}
-	// TODO in v9 drop nested default input and force user to define label for both select and input, while showing only legend
+	
 	static get observedAttributes() {
-		return ['placeholder', 'closeicontitle'];
-	}
-	handlePlaceholder(newVal) {
-		const input = this.shadowRoot.querySelector('input');
-		if (input && newVal) input.placeholder = newVal;
-		this.inputPlaceholderFallback = newVal;
+		return ['closeicontitle'];
 	}
 
 	slotChange() {
@@ -64,11 +55,7 @@ export class SearchableSelect extends FormElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'placeholder') {
-			this.handlePlaceholder(newVal);
-		} else if (attrName === 'closeicontitle') {
-			this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
-		}
+		this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 	}
 
 	handleSearchChange() {

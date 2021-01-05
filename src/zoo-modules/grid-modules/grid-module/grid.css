@@ -1,13 +1,7 @@
 :host {
 	contain: layout;
-}
-
-.box {
 	position: relative;
-	max-height: inherit;
-	max-width: inherit;
-	min-height: inherit;
-	min-width: inherit;
+	display: block;
 }
 
 .loading-shade {
@@ -94,7 +88,6 @@
 }
 
 zoo-paginator {
-	display: flex;
 	position: sticky;
 	bottom: 0;
 	z-index: 2;
@@ -109,6 +102,7 @@ zoo-paginator {
 	--right: 10px;
 }
 
-::slotted(zoo-select) {
+slot[name="pagesizeselector"] {
+	display: block;
 	margin-right: 20px;
 }

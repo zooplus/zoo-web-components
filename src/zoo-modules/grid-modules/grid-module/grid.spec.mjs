@@ -177,4 +177,33 @@ describe('Zoo paginator', function () {
 		expect(ret.headerIds).toEqual(['first', 'second']);
 		expect(ret.headerIdsAfterDrop).toEqual(['first', 'second']);
 	});
+
+	it('should not show paginator when currentpage or maxpages is not defined and page size selector is supplied', async () => {
+		const ret = await page.evaluate(async () => {
+			document.body.innerHTML = `
+			<zoo-grid reorderable>
+				<zoo-grid-header slot="headercell" id="first">Created date</zoo-grid-header>
+				<zoo-grid-header slot="headercell" id="second">Min weight</zoo-grid-header>
+		
+				<div slot="row">
+					<div>2020-05-05</div>
+					<div>30 kg</div>
+				</div>
+				<zoo-select slot="pagesizeselector">
+					<select slot="select">
+						<option selected>5</option>
+					</select>
+				</zoo-select>
+			</zoo-grid>
+			`;
+			const grid = document.querySelector('zoo-grid');
+			await new Promise(r => setTimeout(r, 10));
+			
+			const paginator = grid.shadowRoot.querySelector('zoo-paginator');
+			await new Promise(r => setTimeout(r, 10));
+
+			return paginator.style.display;
+		});
+		expect(ret).toEqual('');
+	});
 });

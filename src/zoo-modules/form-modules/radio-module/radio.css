@@ -47,14 +47,14 @@ fieldset {
 }
 
 ::slotted(input:focus) {
-	--box-shadow-color: #3C9700;
+	--box-shadow-color: var(--primary-mid);
 	--box-shadow-width: 2px;
 }
 
 ::slotted(input:checked) {
 	background-color: var(--primary-mid);
 
-	--box-shadow-color: #3C9700;
+	--box-shadow-color: var(--primary-mid);
 	--box-shadow-width: 2px;
 	--box-shadow-width2: 4px;
 	--box-shadow-color2: white;

@@ -51,7 +51,6 @@
 						pattern="[A-Za-z ]+" />
 					<span slot="info">Additional helpful information for our users</span>
 					<span slot="error">This input field should contain only letters and it is required!</span>
-					<a slot="link" href="https://google.com" target="about:blank">Forgotten your password?</a>
 				</zoo-input>
 				<zoo-input>
 					<label for="input-type-number" slot="label">Autocomplete</label>
@@ -76,11 +75,11 @@
 					<a slot="link" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native
 						date picker polyfill on Github</a>
 				</zoo-input>
-				<zoo-input class="input-composition">
-					<label for="input-composition" slot="label">Composition of an input with a button</label>
-					<input id="input-composition" slot="input" type="text" placeholder="input" />
-					<zoo-button slot="additional"><button type="button">Click me!</button></zoo-button>
-					<span slot="info">Additional helpful information for our users</span>
+				<zoo-input>
+					<label for="input-type-email" slot="label">Input type email</label>
+					<input id="input-type-email" slot="input" type="email" placeholder="Enter your email" required/>
+					<span slot="error">This input field should contain a valid email address!</span>
+					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#Basic_validation" target="about:blank">Email validation</a>
 				</zoo-input>
 				<zoo-input>
 					<label for="textarea" slot="label">Textarea</label>

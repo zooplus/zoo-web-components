@@ -155,12 +155,12 @@ describe('Zoo searchable select', function () {
 			await new Promise(r => setTimeout(r, 10));
 			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
 			slottedSelect.value = '';
-			slottedSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+			slottedSelect.dispatchEvent(new Event('input', { bubbles: true, cancelable: false }));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(select.hasAttribute('invalid'));
 
 			slottedSelect.value = 'secondOption';
-			slottedSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+			slottedSelect.dispatchEvent(new Event('input', { bubbles: true, cancelable: false }));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(select.hasAttribute('invalid'));
 

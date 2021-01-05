@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.2.10
+
+`zoo-grid` - hide paginator when neither currentpage nor maxpages is defined. 
+
 ## 8.2.9
 
 `zoo-searchable-select` - fix placement of zoo-link when supplied.

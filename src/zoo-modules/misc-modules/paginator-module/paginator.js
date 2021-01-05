@@ -27,7 +27,7 @@ export class Paginator extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['maxpages', 'currentpage', 'prevpagetitle', 'nextpagetitle'];
+		return ['maxpages', 'currentpage', 'prev-page-title', 'next-page-title'];
 	}
 	handleHideShowArrows() {
 		if (this.getAttribute('currentpage') == 1) {
@@ -65,9 +65,9 @@ export class Paginator extends HTMLElement {
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
 			this.rerenderPageButtons();
-		} else if (attrName === 'prevpagetitle') {
+		} else if (attrName === 'prev-page-title') {
 			this.shadowRoot.querySelector('.prev zoo-arrow-icon').setAttribute('title', newVal);
-		} else if (attrName === 'nextpagetitle') {
+		} else if (attrName === 'next-page-title') {
 			this.shadowRoot.querySelector('.next zoo-arrow-icon').setAttribute('title', newVal);
 		}
 	}

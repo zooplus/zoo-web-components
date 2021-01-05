@@ -5,44 +5,36 @@
 	height: 100%;
 }
 
-.sort,
-.swap {
+button {
 	display: none;
 	width: 22px;
 	opacity: 0;
 	transition: opacity 0.1s;
 	margin-left: 5px;
-	background: transparent;
 	padding: 0;
 	border: 0;
 	cursor: pointer;
+	border-radius: 5px;
+	background: #F2F3F4;
 
 	--icon-color: black;
 }
 
-.sort zoo-arrow-icon,
-.swap svg {
-	border-radius: 5px;
-	background: #F2F3F4;
-}
-
-.sort:active {
+button:active {
 	opacity: 0.5;
 	transform: translateY(1px);
 }
 
+button:focus {
+	opacity: 1;
+}
+
+:host(:hover) button {
+	opacity: 1;
+}
+
 .swap {
 	cursor: grab;
-}
-
-:host(:hover) .swap,
-:host(:hover) .sort {
-	opacity: 1;
-}
-
-.sort:focus,
-.swap:focus {
-	opacity: 1;
 }
 
 .swap:active {

@@ -2,7 +2,7 @@
 	contain: layout;
 }
 
-.spinner {
+svg {
 	position: absolute;
 	left: calc(50% - 60px);
 	top: calc(50% - 60px);
@@ -15,7 +15,7 @@
 	z-index: 10002;
 }
 
-.spinner circle {
+svg circle {
 	animation: dash 1.5s ease-in-out infinite;
 	stroke: var(--primary-mid);
 	stroke-dasharray: 1, 200;

@@ -111,12 +111,12 @@ describe('Zoo select', function () {
 			await new Promise(r => setTimeout(r, 10));
 			const slottedSelect = select.shadowRoot.querySelector('slot[name="select"]').assignedElements()[0];
 			slottedSelect.value = '';
-			slottedSelect.dispatchEvent(new Event('change'));
+			slottedSelect.dispatchEvent(new Event('input'));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(select.hasAttribute('invalid'));
 
 			slottedSelect.value = '2';
-			slottedSelect.dispatchEvent(new Event('change'));
+			slottedSelect.dispatchEvent(new Event('input'));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(select.hasAttribute('invalid'));
 

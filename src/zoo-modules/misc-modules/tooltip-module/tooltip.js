@@ -10,11 +10,8 @@ export class Tooltip extends HTMLElement {
 	static get observedAttributes() {
 		return ['text'];
 	}
-	handleText(newVal) {
-		this.shadowRoot.querySelector('slot span').innerHTML = newVal;
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'text') this.handleText(newVal);
+		this.shadowRoot.querySelector('slot span').innerHTML = newVal;
 	}
 }
 

@@ -10,7 +10,7 @@ export class GridHeader extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['sorttitle', 'swaptitle'];
+		return ['sort-title', 'swap-title'];
 	}
 
 	handleSortClick() {
@@ -28,9 +28,9 @@ export class GridHeader extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName === 'sorttitle') {
+		if (attrName === 'sort-title') {
 			this.shadowRoot.querySelector('zoo-arrow-icon').setAttribute('title', newVal);
-		} else if (attrName === 'swaptitle') {
+		} else if (attrName === 'swap-title') {
 			this.shadowRoot.querySelector('.swap title').innerHTML = newVal;
 			this.shadowRoot.querySelector('.swap').setAttribute('title', newVal);
 		}

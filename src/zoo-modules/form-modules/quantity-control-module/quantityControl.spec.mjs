@@ -169,12 +169,12 @@ describe('Zoo quantity control', function() {
 			await new Promise(r => setTimeout(r, 10));
 			const slottedInput = quantityControl.shadowRoot.querySelector('slot[name="input"]').assignedElements()[0];
 			slottedInput.value = '';
-			slottedInput.dispatchEvent(new Event('change'));
+			slottedInput.dispatchEvent(new Event('input'));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(quantityControl.hasAttribute('invalid'));
 
 			slottedInput.value = 2;
-			slottedInput.dispatchEvent(new Event('change'));
+			slottedInput.dispatchEvent(new Event('input'));
 			await new Promise(r => setTimeout(r, 10));
 			result.push(quantityControl.hasAttribute('invalid'));
 

@@ -8,7 +8,7 @@ export class FormElement extends HTMLElement {
 			this.setAttribute('invalid', '');
 			this.setAttribute('aria-invalid', '');
 		});
-		element.addEventListener('change', () => {
+		element.addEventListener('input', () => {
 			if (element.checkValidity()) {
 				this.removeAttribute('aria-invalid');
 				this.removeAttribute('invalid');

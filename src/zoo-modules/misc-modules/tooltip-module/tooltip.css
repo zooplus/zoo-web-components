@@ -43,12 +43,6 @@
 	--tip-right: -8px;
 }
 
-.box {
-	pointer-events: initial;
-	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
-}
-
 .tip {
 	justify-self: var(--tip-justify);
 	align-self: center;
@@ -72,6 +66,8 @@
 	position: relative;
 	background: white;
 	border-radius: 5px;
+	pointer-events: initial;
+	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
 }
 
 .tooltip-content span {

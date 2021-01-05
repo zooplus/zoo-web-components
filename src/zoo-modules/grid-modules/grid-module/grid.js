@@ -11,21 +11,29 @@ export class ZooGrid extends HTMLElement {
 		headerSlot.addEventListener('slotchange', this.debounce(() => {
 			const headers = headerSlot.assignedElements();
 			this.style.setProperty('--grid-column-num', headers.length);
-			headers.forEach((header, i) => header.setAttribute('column', i+1));
+			headers.forEach((header, i) => {
+				header.setAttribute('column', i+1);
+				header.setAttribute('role', 'columnheader');
+			});
 			if (this.hasAttribute('reorderable')) {
 				headers.forEach(header => this.handleDraggableHeader(header));
 			}
 		}));
 		const rowSlot = root.querySelector('slot[name="row"]');
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
-			rowSlot.assignedElements().forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
+			rowSlot.assignedElements().forEach(row => {
+				row.setAttribute('role', 'row');
+				[...row.children].forEach((child, i) => {
+					child.setAttribute('column', i+1);
+					child.setAttribute('role', 'cell');
+				});
+			});
 		}));
 		this.addEventListener('sortChange', e => this.handleSortChange(e));
 	}
 
-	// TODO in v9 remove currentpage and maxpages and use only paginator for that
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prevpagetitle', 'nextpagetitle'];
+		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prev-page-title', 'next-page-title'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -38,9 +46,8 @@ export class ZooGrid extends HTMLElement {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
-			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
-			headers.forEach(header => this.handleDraggableHeader(header));
-		} else if (attrName === 'prevpagetitle' || attrName === 'nextpagetitle') {
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
+		} else if (attrName === 'prev-page-title' || attrName === 'next-page-title') {
 			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}

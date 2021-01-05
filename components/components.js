@@ -31,7 +31,7 @@ class FormElement extends HTMLElement {
 			this.setAttribute('invalid', '');
 			this.setAttribute('aria-invalid', '');
 		});
-		element.addEventListener('change', () => {
+		element.addEventListener('input', () => {
 			if (element.checkValidity()) {
 				this.removeAttribute('aria-invalid');
 				this.removeAttribute('invalid');
@@ -90,7 +90,7 @@ window.customElements.define('zoo-checkbox', Checkbox);
  */
 class Radio extends FormElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;font-size:14px;line-height:20px;--box-shadow-color:#767676;--box-shadow-width:1px;--box-shadow-color2:transparent;--box-shadow-width2:1px}fieldset{border:0;padding:0;margin:0;position:relative}.radio-group{display:flex;padding:11px 0}:host([invalid]){color:var(--warning-mid)}::slotted(input){position:relative;min-width:24px;height:24px;border-radius:50%;margin:0 2px 0 0;padding:4px;background-clip:content-box;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;box-shadow:inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color),inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2)}:host([invalid]) ::slotted(input){--box-shadow-color:var(--warning-mid)}::slotted(input:focus){--box-shadow-color:#3C9700;--box-shadow-width:2px}::slotted(input:checked){background-color:var(--primary-mid);--box-shadow-color:#3C9700;--box-shadow-width:2px;--box-shadow-width2:4px;--box-shadow-color2:white}:host([invalid]) ::slotted(input:checked){background-color:var(--warning-mid)}::slotted(input:disabled){cursor:not-allowed;background-color:#555;--box-shadow-width:2px;--box-shadow-width2:5px;--box-shadow-color:#555!important}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}zoo-info[role=alert]{display:none;--icon-color:var(--warning-mid)}:host([invalid]) zoo-info[role=alert]{display:flex}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="radio-group"><slot></slot></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info></fieldset>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;flex-direction:column;font-size:14px;line-height:20px;--box-shadow-color:#767676;--box-shadow-width:1px;--box-shadow-color2:transparent;--box-shadow-width2:1px}fieldset{border:0;padding:0;margin:0;position:relative}.radio-group{display:flex;padding:11px 0}:host([invalid]){color:var(--warning-mid)}::slotted(input){position:relative;min-width:24px;height:24px;border-radius:50%;margin:0 2px 0 0;padding:4px;background-clip:content-box;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;box-shadow:inset 0 0 0 var(--box-shadow-width) var(--box-shadow-color),inset 0 0 0 var(--box-shadow-width2) var(--box-shadow-color2)}:host([invalid]) ::slotted(input){--box-shadow-color:var(--warning-mid)}::slotted(input:focus){--box-shadow-color:var(--primary-mid);--box-shadow-width:2px}::slotted(input:checked){background-color:var(--primary-mid);--box-shadow-color:var(--primary-mid);--box-shadow-width:2px;--box-shadow-width2:4px;--box-shadow-color2:white}:host([invalid]) ::slotted(input:checked){background-color:var(--warning-mid)}::slotted(input:disabled){cursor:not-allowed;background-color:#555;--box-shadow-width:2px;--box-shadow-width2:5px;--box-shadow-color:#555!important}::slotted(label){cursor:pointer;margin:0 5px;align-self:center}zoo-info[role=alert]{display:none;--icon-color:var(--warning-mid)}:host([invalid]) zoo-info[role=alert]{display:flex}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="radio-group"><slot></slot></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info></fieldset>`;
 		this.shadowRoot.querySelector('.radio-group slot').addEventListener('slotchange', e => {
 			e.target.assignedElements().forEach(e => e.tagName === 'INPUT' && this.registerElementForValidation(e));
 		});
@@ -303,27 +303,35 @@ window.customElements.define('zoo-button', Button);
  */
 class ZooGrid extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.header-row{min-width:inherit}:host{contain:layout}.box{position:relative;max-height:inherit;max-width:inherit;min-height:inherit}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.header-row,zoo-paginator{z-index:2;box-sizing:border-box;background:#fff}:host([loading]) .loading-shade{display:flex}.header-row{font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{display:flex;position:sticky;bottom:0;width:100%;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6;--paginator-position:sticky;--right:10px}::slotted(zoo-select){margin-right:20px}</style><div class="box"><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row"><slot name="headercell"></slot></div><slot name="row"></slot><slot name="norecords"></slot><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></div>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout;position:relative;display:block}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.header-row,zoo-paginator{z-index:2;box-sizing:border-box;background:#fff}:host([loading]) .loading-shade{display:flex}.header-row{min-width:inherit;font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row][column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}zoo-paginator{position:sticky;bottom:0;width:100%;justify-content:flex-end;padding:10px;border-top:1px solid #e6e6e6;--paginator-position:sticky;--right:10px}slot[name=pagesizeselector]{display:block;margin-right:20px}</style><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row" role="row"><slot name="headercell"></slot></div><slot name="row" role="rowgroup"></slot><slot name="norecords"></slot><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator>`;
 		const root = this.shadowRoot;
 		const headerSlot = root.querySelector('slot[name="headercell"]');
 		headerSlot.addEventListener('slotchange', this.debounce(() => {
 			const headers = headerSlot.assignedElements();
 			this.style.setProperty('--grid-column-num', headers.length);
-			headers.forEach((header, i) => header.setAttribute('column', i+1));
+			headers.forEach((header, i) => {
+				header.setAttribute('column', i+1);
+				header.setAttribute('role', 'columnheader');
+			});
 			if (this.hasAttribute('reorderable')) {
 				headers.forEach(header => this.handleDraggableHeader(header));
 			}
 		}));
 		const rowSlot = root.querySelector('slot[name="row"]');
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
-			rowSlot.assignedElements().forEach(row => [].forEach.call(row.children, (child, i) => child.setAttribute('column', i+1)));
+			rowSlot.assignedElements().forEach(row => {
+				row.setAttribute('role', 'row');
+				[...row.children].forEach((child, i) => {
+					child.setAttribute('column', i+1);
+					child.setAttribute('role', 'cell');
+				});
+			});
 		}));
 		this.addEventListener('sortChange', e => this.handleSortChange(e));
 	}
 
-	// TODO in v9 remove currentpage and maxpages and use only paginator for that
 	static get observedAttributes() {
-		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prevpagetitle', 'nextpagetitle'];
+		return ['currentpage', 'maxpages', 'resizable', 'reorderable', 'prev-page-title', 'next-page-title'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -336,9 +344,8 @@ class ZooGrid extends HTMLElement {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
-			const headers = this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements();
-			headers.forEach(header => this.handleDraggableHeader(header));
-		} else if (attrName === 'prevpagetitle' || attrName === 'nextpagetitle') {
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
+		} else if (attrName === 'prev-page-title' || attrName === 'next-page-title') {
 			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}
@@ -414,14 +421,14 @@ window.customElements.define('zoo-grid', ZooGrid);
  */
 class GridHeader extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;width:100%;height:100%}.sort,.swap{display:none;width:22px;opacity:0;transition:opacity .1s;margin-left:5px;background:0 0;padding:0;border:0;cursor:pointer;--icon-color:black}.sort zoo-arrow-icon,.swap svg{border-radius:5px;background:#f2f3f4}.sort:active{opacity:.5;transform:translateY(1px)}.swap{cursor:grab}:host(:hover) .sort,:host(:hover) .swap{opacity:1}.sort:focus,.swap:focus{opacity:1}.swap:active{cursor:grabbing}:host([reorderable]) .swap,:host([sortable]) .sort{display:flex}:host([sortstate=asc]) .sort{transform:rotate(180deg)}:host([sortstate]) .sort{opacity:1;background:#f2f3f4}</style><slot></slot><button type="button" class="sort"><zoo-arrow-icon title="sort icon"></zoo-arrow-icon></button> <button type="button" class="swap"><svg viewBox="0 0 24 24" width="24" height="24"><title>swap icon</title><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/></svg></button>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;align-items:center;width:100%;height:100%}button{display:none;width:22px;opacity:0;transition:opacity .1s;margin-left:5px;padding:0;border:0;cursor:pointer;border-radius:5px;background:#f2f3f4;--icon-color:black}button:active{opacity:.5;transform:translateY(1px)}button:focus{opacity:1}:host(:hover) button{opacity:1}.swap{cursor:grab}.swap:active{cursor:grabbing}:host([reorderable]) .swap,:host([sortable]) .sort{display:flex}:host([sortstate=asc]) .sort{transform:rotate(180deg)}:host([sortstate]) .sort{opacity:1;background:#f2f3f4}</style><slot></slot><button type="button" class="sort"><zoo-arrow-icon title="sort icon"></zoo-arrow-icon></button> <button type="button" class="swap"><svg viewBox="0 0 24 24" width="24" height="24"><title>swap icon</title><path d="M7 11l-4 4 4 4v-3h7v-2H7v-3zm14-2l-4-4v3h-7v2h7v3l4-4z"/></svg></button>`;
 		this.addEventListener('dragend', () => this.removeAttribute('draggable'));
 		this.shadowRoot.querySelector('.swap').addEventListener('mousedown', () => this.setAttribute('draggable', true));
 		this.shadowRoot.querySelector('.sort').addEventListener('click', () => this.handleSortClick());
 	}
 
 	static get observedAttributes() {
-		return ['sorttitle', 'swaptitle'];
+		return ['sort-title', 'swap-title'];
 	}
 
 	handleSortClick() {
@@ -439,9 +446,9 @@ class GridHeader extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName === 'sorttitle') {
+		if (attrName === 'sort-title') {
 			this.shadowRoot.querySelector('zoo-arrow-icon').setAttribute('title', newVal);
-		} else if (attrName === 'swaptitle') {
+		} else if (attrName === 'swap-title') {
 			this.shadowRoot.querySelector('.swap title').innerHTML = newVal;
 			this.shadowRoot.querySelector('.swap').setAttribute('title', newVal);
 		}
@@ -562,18 +569,15 @@ window.customElements.define('zoo-feedback', Feedback);
  */
 class Tooltip extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.box,.tip{box-shadow:0 4px 15px 0 rgba(0,0,0,.1)}:host{display:grid;position:absolute;width:max-content;z-index:9997;pointer-events:none;color:#000;--tip-bottom:0;--tip-right:unset;--tip-justify:center}:host([position=top]){bottom:170%;--tip-bottom:calc(0% - 8px)}:host([position=right]){justify-content:end;left:102%;bottom:25%;--tip-bottom:unset;--tip-justify:start;--tip-right:calc(100% - 8px)}:host([position=bottom]){bottom:-130%;--tip-bottom:calc(100% - 8px)}:host([position=left]){justify-content:start;left:-101%;bottom:25%;--tip-bottom:unset;--tip-justify:end;--tip-right:-8px}.box{pointer-events:initial;border-radius:5px}.tip{justify-self:var(--tip-justify);align-self:center;position:absolute;width:16px;height:16px;transform:rotate(45deg);z-index:-1;background:#fff;right:var(--tip-right);bottom:var(--tip-bottom)}.tooltip-content{display:grid;padding:10px;font-size:12px;line-height:16px;font-weight:initial;position:relative;background:#fff;border-radius:5px}.tooltip-content span{white-space:pre}</style><div class="box"><div class="tooltip-content"><span><slot><span></span></slot></span><div class="tip"></div></div></div>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>.tip,.tooltip-content{background:#fff;box-shadow:0 4px 15px 0 rgba(0,0,0,.1)}:host{display:grid;position:absolute;width:max-content;z-index:9997;pointer-events:none;color:#000;--tip-bottom:0;--tip-right:unset;--tip-justify:center}:host([position=top]){bottom:170%;--tip-bottom:calc(0% - 8px)}:host([position=right]){justify-content:end;left:102%;bottom:25%;--tip-bottom:unset;--tip-justify:start;--tip-right:calc(100% - 8px)}:host([position=bottom]){bottom:-130%;--tip-bottom:calc(100% - 8px)}:host([position=left]){justify-content:start;left:-101%;bottom:25%;--tip-bottom:unset;--tip-justify:end;--tip-right:-8px}.tip{justify-self:var(--tip-justify);align-self:center;position:absolute;width:16px;height:16px;transform:rotate(45deg);z-index:-1;right:var(--tip-right);bottom:var(--tip-bottom)}.tooltip-content{display:grid;padding:10px;font-size:12px;line-height:16px;font-weight:initial;position:relative;border-radius:5px;pointer-events:initial}.tooltip-content span{white-space:pre}</style><div class="tooltip-content"><span><slot><span></span></slot></span><div class="tip"></div></div>`;
 	}
 
 	// TODO remove in v9
 	static get observedAttributes() {
 		return ['text'];
 	}
-	handleText(newVal) {
-		this.shadowRoot.querySelector('slot span').innerHTML = newVal;
-	}
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'text') this.handleText(newVal);
+		this.shadowRoot.querySelector('slot span').innerHTML = newVal;
 	}
 }
 
@@ -689,7 +693,7 @@ window.customElements.define('zoo-collapsable-list-item', CollapsableListItem);
  */
 class Spinner extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout}.spinner{position:absolute;left:calc(50% - 60px);top:calc(50% - 60px);right:0;bottom:0;height:120px;width:120px;transform-origin:center center;animation:2s linear infinite rotate;z-index:10002}.spinner circle{animation:1.5s ease-in-out infinite dash;stroke:var(--primary-mid);stroke-dasharray:1,200;stroke-dashoffset:0;stroke-linecap:round}@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:89,200;stroke-dashoffset:-35px}100%{stroke-dasharray:89,200;stroke-dashoffset:-124px}}</style><svg class="spinner" viewBox="25 25 50 50"><circle cx="50" cy="50" r="20" fill="none" stroke-width="2.5" stroke-miterlimit="10"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout}svg{position:absolute;left:calc(50% - 60px);top:calc(50% - 60px);right:0;bottom:0;height:120px;width:120px;transform-origin:center center;animation:2s linear infinite rotate;z-index:10002}svg circle{animation:1.5s ease-in-out infinite dash;stroke:var(--primary-mid);stroke-dasharray:1,200;stroke-dashoffset:0;stroke-linecap:round}@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:89,200;stroke-dashoffset:-35px}100%{stroke-dasharray:89,200;stroke-dashoffset:-124px}}</style><svg viewBox="25 25 50 50"><circle cx="50" cy="50" r="20" fill="none" stroke-width="2.5" stroke-miterlimit="10"/></svg>`;
 	}
 }
 
@@ -724,7 +728,7 @@ class Paginator extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['maxpages', 'currentpage', 'prevpagetitle', 'nextpagetitle'];
+		return ['maxpages', 'currentpage', 'prev-page-title', 'next-page-title'];
 	}
 	handleHideShowArrows() {
 		if (this.getAttribute('currentpage') == 1) {
@@ -762,9 +766,9 @@ class Paginator extends HTMLElement {
 		if (attrName == 'currentpage' || attrName == 'maxpages') {
 			this.handleHideShowArrows();
 			this.rerenderPageButtons();
-		} else if (attrName === 'prevpagetitle') {
+		} else if (attrName === 'prev-page-title') {
 			this.shadowRoot.querySelector('.prev zoo-arrow-icon').setAttribute('title', newVal);
-		} else if (attrName === 'nextpagetitle') {
+		} else if (attrName === 'next-page-title') {
 			this.shadowRoot.querySelector('.next zoo-arrow-icon').setAttribute('title', newVal);
 		}
 	}

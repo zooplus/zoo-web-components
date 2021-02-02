@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 8.2.11
+
+`zoo-select` - fix arrow icon to always be centered vertically (for example when user changes padding for the slotted select).
+
 ## 8.2.10
 
-`zoo-grid` - hide paginator when neither currentpage nor maxpages is defined. 
+`zoo-grid` - hide paginator when neither currentpage nor maxpages is defined.
 
 ## 8.2.9
 

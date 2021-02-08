@@ -23,12 +23,13 @@ and import the library in your main module/component/index.html:
 import '@zooplus/zoo-web-components';
 ```
 
-it is also possible to import only the modules you need, for example:
-```JS
-import '@zooplus/zoo-web-components/dist/button';
-```
+The final package includes two types of bundles:
+
+- ESM version (might trigger FOUC) - `zoo-web-components-esm.js`
+- IIFE version which will block HTML rendering until bundle finishes loading (since size is small this should not be a problem) - `zoo-web-components.js`
 
 Remember to add CSS custom properties to your main styles file:
+
 ```CSS
 :root {
 	--primary-mid: #3C9700;

@@ -14,42 +14,25 @@ const plugins = [
 	}),
 ];
 
-const files = [];
-function getFiles(currPath) {
-	if (fs.existsSync(currPath) && fs.lstatSync(currPath).isDirectory()) {
-		const currDirPath = fs.readdirSync(currPath);
-		currDirPath.forEach(nextPath => getFiles(`${currPath}/${nextPath}`));
-	} else {
-		if (currPath.indexOf('.js') > -1) {
-			files.push(currPath);
-		}
-	}
-}
-getFiles('./src/zoo-modules');
-const configs = dev ? [] : files.map(file => {
-	const cmpName = `${file.substr(file.lastIndexOf('/'), file.length)}`;
-	return {
-		input: file,
-		output: {
-			sourcemap: true,
-			format: 'esm',
-			file: dev ? `docs/components${cmpName}` : `dist${cmpName}`,
-			name: cmpName
-		},
-		plugins: plugins
-	};
-});
-
 export default [
 	{
 		input: 'src/components.js',
 		output: {
 			sourcemap: true,
-			format: 'esm',
-			file: dev ? 'docs/components/components.js' : 'dist/zoo-components-esm.js',
+			format: 'iife',
+			file: dev ? 'docs/components/components.js' : 'dist/zoo-web-components.js',
 			name: 'zooWebComponents'
 		},
 		plugins: plugins
 	},
-	...configs
+	{
+		input: 'src/components.js',
+		output: {
+			sourcemap: true,
+			format: 'esm',
+			file: dev ? 'docs/components/components-esm.js' : 'dist/zoo-web-components-esm.js',
+			name: 'zooWebComponents'
+		},
+		plugins: plugins
+	}
 ];

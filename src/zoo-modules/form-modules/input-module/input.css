@@ -44,6 +44,7 @@ zoo-attention-icon {
 ::slotted(input[type="date"]),
 ::slotted(input[type="time"]) {
 	-webkit-min-logical-height: 48px;
+	height: 48px;
 }
 
 ::slotted(input::placeholder),

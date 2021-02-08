@@ -4,13 +4,16 @@
 export class Modal extends HTMLElement {
 	constructor() {
 		super();
-		this.header = this.shadowRoot.querySelector('span');
-		this.hidden = true;
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
 		const box = this.shadowRoot.querySelector('.box');
 		box.addEventListener('click', e => {
 			if (e.target == box) this.closeModal();
 		});
+	}
+	
+	connectedCallback() {
+		this.header = this.shadowRoot.querySelector('span');
+		this.hidden = true;
 	}
 
 	// todo remove in v9 headertext

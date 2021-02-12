@@ -3,20 +3,7 @@
 	grid-gap: 3px 0;
 	width: 100%;
 	height: max-content;
-}
-
-zoo-attention-icon {
-	position: absolute;
-	right: 15px;
-	top: 15px;
-	pointer-events: none;
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-attention-icon {
-	display: initial;
+	box-sizing: border-box;
 }
 
 ::slotted(input),
@@ -43,8 +30,8 @@ zoo-attention-icon {
 
 ::slotted(input[type="date"]),
 ::slotted(input[type="time"]) {
-	-webkit-min-logical-height: 48px;
-	height: 48px;
+	-webkit-logical-height: 48px;
+	max-height: 48px;
 }
 
 ::slotted(input::placeholder),
@@ -75,16 +62,6 @@ zoo-attention-icon {
 
 zoo-info {
 	grid-column: span 2;
-}
-
-zoo-info[role="alert"] {
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-info[role="alert"] {
-	display: flex;
 }
 
 zoo-link {

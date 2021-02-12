@@ -69,16 +69,6 @@ zoo-info {
 	grid-column: span 2;
 }
 
-zoo-info[role="alert"] {
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-info[role="alert"] {
-	display: flex;
-}
-
 :host([multiple]) zoo-arrow-icon {
 	display: none;
 }

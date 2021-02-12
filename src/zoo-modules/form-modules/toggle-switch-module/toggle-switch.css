@@ -45,13 +45,3 @@ div {
 	background: #F2F3F4;
 	cursor: not-allowed;
 }
-
-zoo-info[role="alert"] {
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-info[role="alert"] {
-	display: flex;
-}

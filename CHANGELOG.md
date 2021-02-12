@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 8.3.3
+
+All form elements (`zoo-input`, `zoo-select` etc) - refactored and fixed appearing error icon when error message was not defined.
+
+## 8.3.2
+
+`zoo-input` - fix not being able to adjust height of `input type="date"` and setting padding for the `zoo-input` box-sizing.
+
 ## 8.3.1
 
 `zoo-input` - align height when `type="date"` or `type="time"` attribute is supplied;

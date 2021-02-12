@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "8.3.1",
+	"version": "8.3.3",
 	"main": "dist/zoo-web-components.js",
 	"files": [
 		"*.js"

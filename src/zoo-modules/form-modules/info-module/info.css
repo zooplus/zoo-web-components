@@ -10,3 +10,13 @@
 :host([shown]) {
 	display: flex;
 }
+
+:host([role="alert"][shown]:not([invalid])) {
+	display: none;
+}
+
+:host([role="alert"][invalid][shown]) {
+	display: flex;
+
+	--icon-color: var(--warning-mid);
+}

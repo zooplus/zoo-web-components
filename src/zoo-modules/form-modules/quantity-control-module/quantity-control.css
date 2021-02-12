@@ -46,13 +46,3 @@ div {
 	-moz-appearance: textfield;
 	text-align: center;
 }
-
-zoo-info[role="alert"] {
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-info[role="alert"] {
-	display: flex;
-}

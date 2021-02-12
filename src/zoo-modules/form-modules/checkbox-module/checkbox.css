@@ -100,13 +100,3 @@ svg path {
 :host([disabled]) ::slotted(label) {
 	cursor: not-allowed;
 }
-
-zoo-info[role="alert"] {
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-info[role="alert"] {
-	display: flex;
-}

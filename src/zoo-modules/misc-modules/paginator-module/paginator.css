@@ -59,6 +59,10 @@ button.hidden {
 	color: var(--primary-dark);
 }
 
+zoo-arrow-icon {
+	pointer-events: none;
+}
+
 .prev zoo-arrow-icon {
 	transform: rotate(90deg);
 }

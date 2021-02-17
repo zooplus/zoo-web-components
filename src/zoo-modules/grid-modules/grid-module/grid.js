@@ -86,20 +86,22 @@ export class ZooGrid extends HTMLElement {
 			this.prevDraggedOverHeader = header;
 		}));
 		header.addEventListener('dragleave', () => header.classList.remove('drag-over'));
-		header.addEventListener('drop', e => {
-			this.prevDraggedOverHeader.classList.remove('drag-over');
-			const sourceColumn = e.dataTransfer.getData('text');
-			const targetColumn = e.target.getAttribute('column');
-			if (targetColumn == sourceColumn) return;
-			// move columns
-			this.querySelectorAll(`[column="${sourceColumn}"]`).forEach(source => {
-				const target = source.parentElement.querySelector(`[column="${targetColumn}"]`);
-				targetColumn > sourceColumn ? target.after(source) : target.before(source);
-			});
-			// reassign indexes for row cells
-			this.shadowRoot.querySelector('slot[name="row"]').assignedElements()
-				.forEach(row => [...row.children].forEach((child, i) => child.setAttribute('column', i+1)));
+		header.addEventListener('drop', e => this.handleDrop(e));
+	}
+
+	handleDrop(e) {
+		this.prevDraggedOverHeader && this.prevDraggedOverHeader.classList.remove('drag-over');
+		const sourceColumn = e.dataTransfer.getData('text');
+		const targetColumn = e.target.getAttribute('column');
+		if (targetColumn == sourceColumn) return;
+		// move columns
+		this.querySelectorAll(`[column="${sourceColumn}"]`).forEach(source => {
+			const target = source.parentElement.querySelector(`[column="${targetColumn}"]`);
+			targetColumn > sourceColumn ? target.after(source) : target.before(source);
 		});
+		// reassign indexes for row cells
+		this.shadowRoot.querySelector('slot[name="row"]').assignedElements()
+			.forEach(row => [...row.children].forEach((child, i) => child.setAttribute('column', i+1)));
 	}
 
 	disconnectedCallback() {

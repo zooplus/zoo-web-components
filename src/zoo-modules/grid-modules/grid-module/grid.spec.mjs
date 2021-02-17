@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe('Zoo paginator', function () {
+describe('Zoo grid', function () {
 	it('should create default grid', async () => {
 		const rowsLength = await page.evaluate(() => {
 			document.body.innerHTML = `

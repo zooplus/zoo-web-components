@@ -29,3 +29,4 @@ export { AttentionIcon } from './zoo-modules/misc-modules/attention-icon-module/
 export { CrossIcon } from './zoo-modules/misc-modules/cross-icon-module/cross-icon.js';
 export { ArrowDownIcon } from './zoo-modules/misc-modules/arrow-icon-module/arrow-icon.js';
 export { PawIcon } from './zoo-modules/misc-modules/paw-icon-module/paw-icon.js';
+export { Tag } from './zoo-modules/misc-modules/tag-module/tag.js';

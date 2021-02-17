@@ -17,6 +17,7 @@
   - `zoo-footer` - `copyright` attribute is not supported anymore, use according slot `additional-content` for that.
   - `zoo-modal` - `headertext` attribute is not supported anymore, use according slot `header` for that.
   - `zoo-tooltip` - `text` attribute is not supported anymore, use default slot for that.
+  - `zoo-searchable-select` - user should provide an input element for this component, input is not provided internally anymore.
 
 ## 8.3.3
 

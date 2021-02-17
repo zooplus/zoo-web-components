@@ -1,6 +1,6 @@
 :host {
 	display: grid;
-	grid-gap: 3px 0;
+	grid-gap: 3px;
 	width: 100%;
 	height: max-content;
 	box-sizing: border-box;
@@ -25,7 +25,6 @@ zoo-arrow-icon {
 
 ::slotted(select) {
 	-webkit-appearance: none;
-	-moz-appearance: none;
 	width: 100%;
 	font-size: 14px;
 	line-height: 20px;

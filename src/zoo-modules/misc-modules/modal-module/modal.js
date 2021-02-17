@@ -12,7 +12,6 @@ export class Modal extends HTMLElement {
 	}
 	
 	connectedCallback() {
-		this.header = this.shadowRoot.querySelector('span');
 		this.hidden = true;
 	}
 

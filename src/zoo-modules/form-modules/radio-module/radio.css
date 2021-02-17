@@ -35,7 +35,6 @@ fieldset {
 	padding: 4px;
 	background-clip: content-box;
 	-webkit-appearance: none;
-	-moz-appearance: none;
 	appearance: none;
 	outline: none;
 	cursor: pointer;

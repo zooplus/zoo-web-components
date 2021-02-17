@@ -24,7 +24,6 @@ div {
 	border-radius: 50%;
 	display: flex;
 	-webkit-appearance: none;
-	-moz-appearance: none;
 	appearance: none;
 	outline: none;
 	cursor: pointer;

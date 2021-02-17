@@ -1,5 +1,4 @@
 :host {
-	position: relative;
 	display: grid;
 	grid-gap: 3px;
 	width: 100%;
@@ -84,18 +83,20 @@ zoo-preloader {
 	border: 0;
 }
 
-zoo-label {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
 zoo-link {
-	font-weight: initial;
 	text-align: right;
 	max-width: max-content;
 	justify-self: flex-end;
 	padding: 0;
+}
+
+zoo-label,
+zoo-link {
+	grid-row: 1;
+}
+
+zoo-input {
+	grid-column: span 2;
 }
 
 :host(:focus-within) ::slotted(input) {

@@ -13,6 +13,13 @@ nav {
 	overflow-x: auto;
 }
 
+:host([direction="vertical"]) nav {
+	flex-direction: column;
+	height: auto;
+	width: max-content;
+	background: transparent;
+}
+
 ::slotted(*) {
 	cursor: pointer;
 	display: inline-flex;
@@ -29,4 +36,15 @@ nav {
 ::slotted(*:hover),
 ::slotted(*:focus) {
 	background: rgba(255, 255, 255, 0.2);
+}
+
+:host([direction="vertical"]) ::slotted(*) {
+	padding: 10px 5px;
+	color: initial;
+	box-sizing: border-box;
+}
+
+:host([direction="vertical"]) ::slotted(*:hover),
+:host([direction="vertical"]) ::slotted(*:focus) {
+	background: rgba(0, 0, 0, 0.07);
 }

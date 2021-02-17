@@ -79,13 +79,3 @@ fieldset {
 	margin: 0 5px;
 	align-self: center;
 }
-
-zoo-info[role="alert"] {
-	display: none;
-
-	--icon-color: var(--warning-mid);
-}
-
-:host([invalid]) zoo-info[role="alert"] {
-	display: flex;
-}

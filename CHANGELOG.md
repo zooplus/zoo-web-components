@@ -1,8 +1,29 @@
 # CHANGELOG
 
+## 8.3.3
+
+All form elements (`zoo-input`, `zoo-select` etc) - refactored and fixed appearing error icon when error message was not defined.
+
+## 8.3.2
+
+`zoo-input` - fix not being able to adjust height of `input type="date"` and setting padding for the `zoo-input` box-sizing.
+
+## 8.3.1
+
+`zoo-input` - align height when `type="date"` or `type="time"` attribute is supplied;
+
+Since 8.3.0 two main bundles are released:
+
+- ESM - for using this library as a module - `zoo-web-components-esm.js`;
+- IIFE - for using this library as a standard script - `zoo-web-components.js`.
+
+## 8.2.11
+
+`zoo-select` - fix arrow icon to always be centered vertically (for example when user changes padding for the slotted select).
+
 ## 8.2.10
 
-`zoo-grid` - hide paginator when neither currentpage nor maxpages is defined. 
+`zoo-grid` - hide paginator when neither currentpage nor maxpages is defined.
 
 ## 8.2.9
 

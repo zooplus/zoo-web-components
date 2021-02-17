@@ -10,6 +10,7 @@ div {
 ::slotted(button) {
 	border-width: 0;
 	min-width: 30px;
+	min-height: 30px;
 	background: var(--primary-mid);
 	display: flex;
 	align-items: center;
@@ -45,4 +46,31 @@ div {
 	box-sizing: border-box;
 	-moz-appearance: textfield;
 	text-align: center;
+}
+
+:host([labelposition="left"]) {
+	display: grid;
+	grid-gap: 3px;
+	height: max-content;
+}
+
+:host([labelposition="left"]) zoo-link {
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-label,
+:host([labelposition="left"]) div {
+	display: flex;
+	align-items: center;
+	grid-row: 1;
+}
+
+:host([labelposition="left"]) zoo-info[role="status"] {
+	grid-row: 2;
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="alert"] {
+	grid-row: 3;
+	grid-column: 2;
 }

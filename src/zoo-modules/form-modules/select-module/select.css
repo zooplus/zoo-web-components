@@ -72,16 +72,6 @@ zoo-info {
 	display: none;
 }
 
-:host([labelposition="left"]) {
-	display: flex;
-	grid-gap: 0 3px;
-}
-
-:host([labelposition="left"]) zoo-label {
-	display: flex;
-	align-items: center;
-}
-
 zoo-link {
 	text-align: right;
 	max-width: max-content;
@@ -95,4 +85,25 @@ zoo-preloader {
 
 :host([loading]) zoo-preloader {
 	display: flex;
+}
+
+:host([labelposition="left"]) zoo-link {
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-label,
+:host([labelposition="left"]) .content {
+	display: flex;
+	align-items: center;
+	grid-row: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="status"] {
+	grid-row: 3;
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="alert"] {
+	grid-row: 4;
+	grid-column: 2;
 }

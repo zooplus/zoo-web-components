@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 9.0.0
+
+- Additions:
+  - new component `zoo-tag`
+
+- Enhancements:
+  - Form components (`zoo-input`, `zoo-select`, `zoo-quantity-control`, `zoo-radio`, `zoo-searchable-select`, `zoo-toggle-switch`) now support new attribute `labelposition` switch accepts one of two values:
+
+    - top (or empty string), default value;
+    - left.
+  
+  - `zoo-navigation` - new attribute `direction` which will make the component horizontal or a vertical navigation menu. API stays the same.
+
+- Breaking changes:
+  - `zoo-footer` - `copyright` attribute is not supported anymore, use according slot `additional-content` for that.
+  - `zoo-modal` - `headertext` attribute is not supported anymore, use according slot `header` for that.
+  - `zoo-tooltip` - `text` attribute is not supported anymore, use default slot for that.
+
 ## 8.3.3
 
 All form elements (`zoo-input`, `zoo-select` etc) - refactored and fixed appearing error icon when error message was not defined.

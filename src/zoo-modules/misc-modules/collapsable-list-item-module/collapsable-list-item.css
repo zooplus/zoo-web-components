@@ -1,0 +1,21 @@
+:host {
+	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+details[open] {
+	color: var(--primary-dark);
+	border: 1px solid var(--primary-mid);
+	border-radius: 3px;
+}
+
+details {
+	padding: 10px;
+}
+
+summary {
+	cursor: pointer;
+	color: var(--primary-mid);
+	font-weight: 700;
+}

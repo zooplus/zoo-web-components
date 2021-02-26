@@ -1,31 +1,38 @@
 import { terser } from 'rollup-plugin-terser';
 import injectInnerHTML from './injectInnerHTML';
 import { watcher, noOpWatcher } from './watcher';
+import fs from 'fs';
 
-export default {
-	input: 'src/components.js',
-	output: {
-		sourcemap: true,
-		format: 'esm',
-		file: getTarget(),
-		name: 'zooWebComponents'
+let dev = process.env.NODE_ENV == 'local';
+
+const plugins = [
+	injectInnerHTML(),
+	dev ? watcher() : noOpWatcher(),
+	dev ? noOpWatcher() : terser({
+		module: true,
+		keep_classnames: true
+	}),
+];
+
+export default [
+	{
+		input: 'src/components.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			file: dev ? 'docs/components/components.js' : 'dist/zoo-web-components.js',
+			name: 'zooWebComponents'
+		},
+		plugins: plugins
 	},
-	plugins: [
-		injectInnerHTML(),
-		process.env.NODE_ENV == 'local' ? watcher() : noOpWatcher(),
-		process.env.NODE_ENV == 'local' ? noOpWatcher() : terser({
-			module: true,
-			keep_classnames: true
-		}),
-	]
-};
-
-function getTarget() {
-	switch(process.env.NODE_ENV) {
-	case 'local':
-	case 'test': 
-		return 'docs/components.js';
-	default:
-		return 'dist/zoo-components-esm.js';
+	{
+		input: 'src/components.js',
+		output: {
+			sourcemap: true,
+			format: 'esm',
+			file: dev ? 'docs/components/components-esm.js' : 'dist/zoo-web-components-esm.js',
+			name: 'zooWebComponents'
+		},
+		plugins: plugins
 	}
-}
+];

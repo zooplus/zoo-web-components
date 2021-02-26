@@ -5,6 +5,7 @@
 	"rules": {
 		"close-order": "error",
 		"svg-focusable": "off",
+		"text-content": "off",
 		"void-style": [
 			"error",
 			{

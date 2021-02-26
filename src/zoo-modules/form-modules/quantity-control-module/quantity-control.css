@@ -1,0 +1,48 @@
+:host {
+	--input-length: 1ch;
+}
+
+div {
+	height: 36px;
+	display: flex;
+}
+
+::slotted(button) {
+	border-width: 0;
+	min-width: 30px;
+	background: var(--primary-mid);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
+	cursor: pointer;
+	stroke-width: 1.5;
+	stroke: #FFF;
+}
+
+::slotted(button[slot="decrease"]) {
+	border-radius: 5px 0 0 5px;
+}
+
+::slotted(button[slot="increase"]) {
+	border-radius: 0 5px 5px 0;
+}
+
+::slotted(button:disabled) {
+	background: #F2F3F4;
+	cursor: not-allowed;
+}
+
+::slotted(input) {
+	width: var(--input-length);
+	min-width: 30px;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0;
+	border: none;
+	color: #555;
+	outline: none;
+	box-sizing: border-box;
+	-moz-appearance: textfield;
+	text-align: center;
+}

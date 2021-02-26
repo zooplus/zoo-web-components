@@ -1,0 +1,102 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	position: relative;
+
+	--border: 0;
+	--check-color: var(--primary-mid);
+}
+
+:host([disabled]) {
+	--check-color: #767676;
+}
+
+:host([highlighted]) {
+	--border: 1px solid var(--check-color);
+}
+
+:host([invalid]) {
+	--check-color: var(--warning-mid);
+	--border: 2px solid var(--warning-mid);
+}
+
+::slotted(input) {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	display: flex;
+	align-self: flex-start;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+	margin: 0;
+	border-radius: 3px;
+	border: var(--border);
+}
+
+svg {
+	border: 1px solid var(--check-color);
+	fill: var(--check-color);
+	border-radius: 3px;
+	pointer-events: none;
+	min-width: 24px;
+	z-index: 1;
+	padding: 1px;
+	box-sizing: border-box;
+}
+
+svg path {
+	display: none;
+}
+
+:host([checked]) svg path {
+	display: flex;
+}
+
+:host(:focus-within) svg {
+	border-width: 2px;
+}
+
+::slotted(input:focus) {
+	border-width: 2px;
+}
+
+:host([checked]) ::slotted(input) {
+	border-width: 2px;
+}
+
+:host([disabled]) svg {
+	background: #F2F3F4;
+}
+
+.checkbox {
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
+	cursor: pointer;
+	align-items: baseline;
+	position: relative;
+}
+
+:host([highlighted]) .checkbox {
+	padding: 11px 15px;
+}
+
+::slotted(label) {
+	display: flex;
+	align-self: center;
+	cursor: pointer;
+	margin-left: 5px;
+	z-index: 1;
+}
+
+::slotted(input:disabled),
+:host([disabled]) ::slotted(label) {
+	cursor: not-allowed;
+}

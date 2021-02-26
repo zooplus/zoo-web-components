@@ -1,10 +1,4 @@
 {
-	"mocha.subdirectory": "/Users/yuriyk/projects/web-components",
-	"mocha.files.glob": "zoo-modules/**/*.js",
-	"mocha.options": "rollup src/test.js -c && serve docs",
-	"mocha.coverage": {
-		"enable": false
-	},
 	"editor.quickSuggestions": null,
 	"javascript.validate.enable": false
 }

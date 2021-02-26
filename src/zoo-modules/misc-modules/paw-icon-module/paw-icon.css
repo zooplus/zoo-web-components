@@ -1,0 +1,37 @@
+svg {
+	display: flex;
+	width: var(--width, 44px);
+	height: var(--height, 44px);
+	fill: var(--icon-color, white);
+}
+
+.fade-in {
+	opacity: 0;
+	animation: toes-fade-in-animation 2.2s infinite ease-in-out;
+}
+
+.fade-in--two {
+	animation-delay: 0.4s;
+}
+
+.fade-in--three {
+	animation-delay: 0.7s;
+}
+
+.fade-in--four {
+	animation-delay: 1s;
+}
+
+@keyframes toes-fade-in-animation {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}

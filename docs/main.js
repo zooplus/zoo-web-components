@@ -1,18 +1,18 @@
-document.getElementById('toast-summoner').onclick = () => {
+document.querySelector('#toast-summoner button').onclick = () => {
 	document.querySelector('#toast').show();
 };
-document.getElementById('modal-summoner').onclick = () => {
+document.querySelector('#modal-summoner button').onclick = () => {
 	document.querySelector('#modal').openModal();
 };
-document.getElementById('modal-closer').onclick = () => {
+document.querySelector('#modal-closer button').onclick = () => {
 	document.body.querySelector('#modal').closeModal();
 	document.body.querySelector('#modalToast').show();
 };
 let prevActiveBtn = document.getElementById('zoo-theme');
 
-document.getElementById('zoo-theme').onclick = () => changeTheme('zoo');
-document.getElementById('grey-theme').onclick = () => changeTheme('grey');
-document.getElementById('random-theme').onclick = () => changeTheme('random');
+document.querySelector('#zoo-theme button').onclick = () => changeTheme('zoo');
+document.querySelector('#grey-theme button').onclick = () => changeTheme('grey');
+document.querySelector('#random-theme button').onclick = () => changeTheme('random');
 
 const changeTheme = pallete => {
 	prevActiveBtn.setAttribute('type', 'primary');
@@ -70,7 +70,7 @@ const randomRgbaString = () => {
 	let r = Math.floor(Math.random() * 255);
 	let g = Math.floor(Math.random() * 255);
 	let b = Math.floor(Math.random() * 255);
-	return {r: r, g: g, b: b};
+	return { r: r, g: g, b: b };
 };
 
 const rgbToHex = (r, g, b) => {
@@ -91,30 +91,30 @@ const lightenDarkenColor = (col, amt) => {
 		usePound = true;
 	}
 
-	var num = parseInt(col,16);
+	var num = parseInt(col, 16);
 
 	var r = (num >> 16) + amt;
 
 	if (r > 255) r = 255;
-	else if  (r < 0) r = 0;
+	else if (r < 0) r = 0;
 
 	var b = ((num >> 8) & 0x00FF) + amt;
 
 	if (b > 255) b = 255;
-	else if  (b < 0) b = 0;
+	else if (b < 0) b = 0;
 
 	var g = (num & 0x0000FF) + amt;
 
 	if (g > 255) g = 255;
 	else if (g < 0) g = 0;
 
-	return (usePound?'#':'') + (g | (b << 8) | (r << 16)).toString(16);
+	return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 };
 
 const handleSortChange = sortState => {
 	let toast = document.createElement('zoo-toast');
 	const text = document.createElement('span');
-	text.innerHTML = sortState 
+	text.innerHTML = sortState
 		? 'Sort state was changed. Property: ' + sortState.property + ', direction: ' + sortState.direction
 		: 'Sort state was changed. Sort object is undefined.';
 	text.slot = 'content';
@@ -140,24 +140,25 @@ document.querySelectorAll('zoo-grid').forEach(grid => {
 
 let today = new Date().toISOString().substr(0, 10);
 let data = [
-	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'},
-	{createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR'}
+	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'DELIVERED', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' },
+	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' }
 ];
 
-const getRow = (d, i, template) => {
+const getRow = (d, i, template, idx) => {
 	const clone = template.cloneNode(true);
 	const row = clone.children[0];
 	// valid
 	const chkbx = document.querySelector('#valid-checkbox').content.cloneNode(true);
 	const input = chkbx.querySelector('input');
 	if (d.status !== 'DELIVERED') {
-		input.setAttribute('disabled', true);
+		input.setAttribute('disabled', '');
 	}
-	input.setAttribute('id', `${i}-checkbox`);
-	chkbx.querySelector('label').setAttribute('for', `${i}-checkbox`);
+	const num = i + idx;
+	input.setAttribute('id', `${num}-checkbox`);
+	chkbx.querySelector('label').setAttribute('for', `${num}-checkbox`);
 	row.appendChild(chkbx);
 
 	// created date
@@ -168,8 +169,10 @@ const getRow = (d, i, template) => {
 	// status
 	const selectTmpl = document.querySelector('#status-select').content.cloneNode(true);
 	const select = selectTmpl.querySelector('select');
+	select.setAttribute('id', `${num}-select`);
+	selectTmpl.querySelector('label').setAttribute('for', `${num}-select`);
 	if (d.status !== 'DELIVERED') {
-		select.setAttribute('disabled', true);
+		select.setAttribute('disabled', '');
 	}
 	row.appendChild(selectTmpl);
 
@@ -196,14 +199,32 @@ const getRow = (d, i, template) => {
 	return clone;
 };
 
-const grids = document.querySelectorAll('zoo-grid.generate');
-data.forEach((d, i) => {
-	const simpleRow = document.querySelector('#simple-row').content;
-	let idx = 0;
-	for (const grid of grids) {
-		const clone = getRow(d, i, simpleRow);
+const grids = document.querySelectorAll('zoo-grid');
+let idx = 0;
+for (const grid of grids) {
+	data.forEach((d, i) => {
+		const simpleRow = document.querySelector('#simple-row').content;
+		const clone = getRow(d, i, simpleRow, idx * data.length);
 		grid.appendChild(clone);
-		if (idx == 0) grid.setAttribute('resizable', true);
-		idx++;
+	});
+	if (idx == 0) grid.setAttribute('resizable', true);
+	idx += 1;
+}
+
+document.querySelector('form').addEventListener('submit', e => {
+	e.preventDefault();
+	const toast = document.createElement('zoo-toast');
+	const content = document.createElement('span');
+	content.slot = 'content';
+	if (e.target.checkValidity()) {
+		content.innerHTML = 'All form inputs are valid!';
+		toast.setAttribute('type', 'success');
+	} else {
+		content.innerHTML = 'Some inputs fail validation, fix them!';
+		toast.setAttribute('type', 'error');
 	}
+	toast.appendChild(content);
+	document.body.appendChild(toast);
+	toast.show();
+	setTimeout(() => toast.remove(), 3150);
 });

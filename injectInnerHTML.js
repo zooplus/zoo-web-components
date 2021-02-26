@@ -14,6 +14,12 @@ export default function injectInnerHTML() {
 				const minifiedHTML = minifyHTML.minify(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
 				const css = fs.readFileSync(cssFile, 'utf8');
 				const minifiedCss = new CleanCSS({ level: { 2: { all: true } } }).minify(css);
+				if (minifiedCss.errors && minifiedCss.errors.length > 0) {
+					console.error(minifiedCss.errors);
+				}
+				if (minifiedCss.warnings && minifiedCss.warnings.length > 0) {
+					console.warn(minifiedCss.warnings);
+				}
 				code = code.replace('super();', `super();this.attachShadow({mode:'open'}).innerHTML=\`<style>${minifiedCss.styles}</style>${minifiedHTML}\`;`);
 				
 				// fs.appendFile('./docs/all.css', minifiedCss.styles, function (err) {

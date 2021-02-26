@@ -13,6 +13,7 @@
 	<noscript>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
 			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<link href="no-js.css" rel="stylesheet">
 	</noscript>
 </head>
 
@@ -53,12 +54,12 @@
 				</zoo-input>
 				<zoo-input>
 					<label for="input-type-number" slot="label">Autocomplete</label>
+					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
+						target="about:blank">Learn your HTML and don't overcomplicate</a>
 					<input id="input-type-number" slot="input" placeholder="input" list="animals" required
 						pattern="[Dd]og|[Cc]at|[Ss]mall [Pp]et|[Bb]ird|[Aa]quatic" />
 					<span slot="info">Possible values: Dog, Cat, Small Pet, Bird, Aquatic</span>
-					<span slot="error">This input field is required and should one of the possible values!</span>
-					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
-						target="about:blank">Learn your HTML and don't overcomplicate</a>
+					<span slot="error">This input field is required and should be one of the possible values!</span>
 				</zoo-input>
 				<datalist id="animals">
 					<option value="Dog">
@@ -69,24 +70,24 @@
 				</datalist>
 				<zoo-input>
 					<label for="input-type-date" slot="label">Input type date</label>
-					<input id="input-type-date" slot="input" type="date" />
-					<span slot="info">Click on input to show context menu with date selection</span>
 					<a slot="link" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native
 						date picker polyfill on Github</a>
+					<input id="input-type-date" slot="input" type="date" />
+					<span slot="info">Click on input to show context menu with date selection</span>
 				</zoo-input>
 				<zoo-input>
 					<label for="input-type-email" slot="label">Input type email</label>
+					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#Basic_validation" target="about:blank">Email validation</a>
 					<input id="input-type-email" slot="input" type="email" placeholder="Enter your email" required/>
 					<span slot="error">This input field should contain a valid email address!</span>
-					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#Basic_validation" target="about:blank">Email validation</a>
 				</zoo-input>
 				<zoo-input>
 					<label for="textarea" slot="label">Textarea</label>
 					<textarea id="textarea" slot="input" placeholder="Textarea"></textarea>
 				</zoo-input>
 				<zoo-select>
-					<a slot="link" href="https://google.com" target="about:blank">Documentation link</a>
 					<label for="multiselect" slot="label">Multiselect</label>
+					<a slot="link" href="https://google.com" target="about:blank">Documentation link</a>
 					<select id="multiselect" slot="select" multiple>
 						<option class="placeholder" value="" disabled selected>Placeholder</option>
 						<option>1</option>

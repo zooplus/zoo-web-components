@@ -1,6 +1,6 @@
 :host {
 	display: grid;
-	grid-gap: 3px 0;
+	grid-gap: 3px;
 	width: 100%;
 	height: max-content;
 	box-sizing: border-box;
@@ -69,4 +69,25 @@ zoo-link {
 	max-width: max-content;
 	justify-self: flex-end;
 	padding: 0;
+}
+
+:host([labelposition="left"]) zoo-link {
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-label,
+:host([labelposition="left"]) .content {
+	display: flex;
+	align-items: center;
+	grid-row: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="status"] {
+	grid-row: 3;
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="alert"] {
+	grid-row: 4;
+	grid-column: 2;
 }

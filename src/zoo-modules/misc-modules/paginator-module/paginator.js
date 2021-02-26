@@ -9,12 +9,14 @@ export class Paginator extends HTMLElement {
 		this.dots = this.shadowRoot.querySelector('#dots').content;
 		this.pages = this.shadowRoot.querySelector('#pages').content;
 
-		this.prev.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')-1));
-		this.next.addEventListener('click', () => this.goToPage(+this.getAttribute('currentpage')+1));
 		this.shadowRoot.addEventListener('click', e => {
-			const target = e.target.getAttribute('page');
-			if (target) {
-				this.goToPage(target);
+			const pageNumber = e.target.getAttribute('page');
+			if (pageNumber) {
+				this.goToPage(pageNumber);
+			} else if (e.target.classList.contains('prev')) {
+				this.goToPage(+this.getAttribute('currentpage')-1);
+			} else if (e.target.classList.contains('next')) {
+				this.goToPage(+this.getAttribute('currentpage')+1);
 			}
 		});
 	}
@@ -55,9 +57,9 @@ export class Paginator extends HTMLElement {
 					pageNode.classList.add('active');
 				}
 				pageNode.innerHTML = page;
-				this.prev.nextSibling.before(pageNode);
+				this.prev.after(pageNode);
 			} else if (page == pageNum-2 || pageNum+2 == page) {
-				this.prev.nextSibling.before(this.dots.cloneNode(true));
+				this.prev.after(this.dots.cloneNode(true));
 			}
 		}
 	}

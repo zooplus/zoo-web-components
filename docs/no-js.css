@@ -1,0 +1,193 @@
+zoo-input input,
+zoo-input textarea {
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 13px 15px;
+	margin: 0;
+	border: 1px solid #767676;
+	border-radius: 5px;
+	color: #555;
+	outline: none;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	grid-column: span 2;
+}
+
+zoo-input input[type="date"],
+zoo-input input[type="time"] {
+	-webkit-logical-height: 48px;
+	max-height: 48px;
+}
+
+zoo-input input::placeholder,
+zoo-input textarea::placeholder {
+	color: #767676;
+}
+
+/* select */
+
+zoo-select select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 13px 25px 13px 15px;
+	border: 1px solid #767676;
+	border-radius: 5px;
+	color: #555;
+	outline: none;
+	box-sizing: border-box;
+	grid-column: span 2;
+}
+
+zoo-select[labelposition="left"] {
+	display: flex;
+	grid-gap: 0 3px;
+}
+
+zoo-select[labelposition="left"] *[slot="label"] {
+	display: flex;
+	align-items: center;
+}
+
+/*checkbox*/
+zoo-checkbox {
+	display: grid;
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	position: relative;
+
+	--border: 0;
+	--check-color: var(--primary-mid);
+}
+
+zoo-checkbox[highlighted] {
+	--border: 1px solid var(--check-color);
+}
+
+zoo-checkbox input:invalid {
+	--border: 2px solid var(--warning-mid);
+}
+
+zoo-checkbox input {
+	display: flex;
+	align-self: flex-start;
+	height: 100%;
+	cursor: pointer;
+	margin: 0;
+	border-radius: 3px;
+	border: var(--border);
+}
+
+zoo-checkbox input:focus {
+	border-width: 2px;
+}
+
+zoo-checkbox label {
+	display: flex;
+	align-self: center;
+	cursor: pointer;
+	margin-left: 5px;
+	z-index: 1;
+}
+
+zoo-checkbox input:disabled {
+	cursor: not-allowed;
+}
+
+
+/*common forms*/
+
+zoo-input, zoo-select {
+	display: grid;
+	grid-gap: 3px 0;
+	width: 100%;
+	height: max-content;
+	box-sizing: border-box;
+}
+zoo-input a,
+zoo-select a {
+	text-align: right;
+	max-width: max-content;
+	justify-self: flex-end;
+	padding: 0;
+}
+
+zoo-input input:disabled,
+zoo-input textarea:disabled,
+zoo-select select:disabled {
+	border: 1px solid #E6E6E6;
+	background: #F2F3F4;
+	color: #767676;
+	cursor: not-allowed;
+}
+
+zoo-input input:focus,
+zoo-input textarea:focus,
+zoo-select select:focus {
+	border: 2px solid #555;
+	padding: 12px 14px;
+}
+
+zoo-input input:invalid,
+zoo-input textarea:invalid,
+zoo-select select:invalid {
+	border: 2px solid var(--warning-mid);
+	padding: 12px 14px;
+}
+
+/*info + error*/
+*[slot="info"],
+*[slot="error"] {
+	padding: 2px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #555;
+	align-items: center;
+	grid-column: span 2;
+}
+
+*[slot="error"] {
+	color: var(--warning-mid);
+	display: none;
+}
+
+zoo-input input:invalid ~ *[slot="error"],
+zoo-input textarea:invalid ~ *[slot="error"],
+zoo-select select:invalid ~ *[slot="error"] {
+	display: flex;
+}
+
+/*link*/
+a[slot="link"] {
+	contain: layout;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding: 0 5px;
+	font-size: 14px;
+	line-height: 16px;
+
+	--color-normal: var(--primary-mid);
+	--color-active: var(--primary-dark);
+}
+
+a[slot="link"] {
+	text-decoration: none;
+	padding: 0 2px;
+	color: var(--color-normal);
+	width: 100%;
+}
+
+a[slot="link"]:hover,
+a[slot="link"]:focus,
+a[slot="link"]:active {
+	color: var(--color-active);
+}

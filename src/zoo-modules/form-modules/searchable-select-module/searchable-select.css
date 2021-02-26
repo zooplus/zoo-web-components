@@ -1,3 +1,11 @@
+:host {
+	display: grid;
+	grid-gap: 3px;
+	width: 100%;
+	height: max-content;
+	box-sizing: border-box;
+}
+
 .cross {
 	display: none;
 	position: absolute;
@@ -26,7 +34,7 @@ zoo-select {
 	border-top: none;
 	position: absolute;
 	z-index: 2;
-	top: 85%;
+	top: 59%;
 	display: none;
 
 	--icons-display: none;
@@ -63,13 +71,6 @@ zoo-preloader {
 	display: flex;
 }
 
-fieldset {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: relative;
-}
-
 ::slotted(*[slot="inputlabel"]),
 ::slotted(*[slot="selectlabel"]) {
 	position: absolute;
@@ -82,61 +83,49 @@ fieldset {
 	border: 0;
 }
 
-legend {
-	padding: 0;
-	width: 100%;
-}
-
-legend zoo-label {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-legend zoo-link {
-	font-weight: initial;
+zoo-link {
 	text-align: right;
 	max-width: max-content;
 	justify-self: flex-end;
 	padding: 0;
 }
 
-/** todo in v9 remove styles for input leaving ::slotted(input) **/
-
-input {
-	width: 100%;
-	font-size: 14px;
-	line-height: 20px;
-	padding: 13px 15px;
-	margin: 0;
-	border: 1px solid #767676;
-	border-radius: 5px;
-	color: #555;
-	outline: none;
-	box-sizing: border-box;
-	overflow: hidden;
-	text-overflow: ellipsis;
+zoo-label,
+zoo-link {
+	grid-row: 1;
 }
 
-input:disabled {
-	border: 1px solid #E6E6E6;
-	background: #F2F3F4;
-	color: #767676;
-	cursor: not-allowed;
+zoo-input {
+	grid-column: span 2;
 }
 
-:host(:focus-within) input,
 :host(:focus-within) ::slotted(input) {
 	border: 2px solid #555;
 	padding: 12px 14px;
 }
 
-:host([invalid]) input,
 :host([invalid]) ::slotted(input) {
 	border: 2px solid var(--warning-mid);
 	padding: 12px 14px;
 }
 
-input::placeholder {
-	color: #767676;
+:host([labelposition="left"]) zoo-link {
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-label,
+:host([labelposition="left"]) zoo-input {
+	display: flex;
+	align-items: center;
+	grid-row: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="status"] {
+	grid-row: 3;
+	grid-column: 2;
+}
+
+:host([labelposition="left"]) zoo-info[role="alert"] {
+	grid-row: 4;
+	grid-column: 2;
 }

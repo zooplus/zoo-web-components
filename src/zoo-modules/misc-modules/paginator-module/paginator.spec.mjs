@@ -14,7 +14,7 @@ describe('Zoo paginator', function () {
 			document.body.innerHTML = `<zoo-paginator currentpage="2" maxpages="3"></zoo-paginator>`;
 			const paginator = document.querySelector('zoo-paginator');
 			const prev = paginator.shadowRoot.querySelector('.prev');
-			prev.dispatchEvent(new Event('click'));
+			prev.click();
 			await new Promise(r => setTimeout(r, 10));
 
 			return paginator.getAttribute('currentpage');
@@ -27,7 +27,7 @@ describe('Zoo paginator', function () {
 			document.body.innerHTML = `<zoo-paginator currentpage="2" maxpages="3"></zoo-paginator>`;
 			const paginator = document.querySelector('zoo-paginator');
 			const next = paginator.shadowRoot.querySelector('.next');
-			next.dispatchEvent(new Event('click'));
+			next.click();
 			await new Promise(r => setTimeout(r, 10));
 
 			return paginator.getAttribute('currentpage');

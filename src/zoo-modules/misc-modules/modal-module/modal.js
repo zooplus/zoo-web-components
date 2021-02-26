@@ -2,6 +2,7 @@
  * @injectHTML
  */
 export class Modal extends HTMLElement {
+
 	constructor() {
 		super();
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
@@ -9,31 +10,56 @@ export class Modal extends HTMLElement {
 		box.addEventListener('click', e => {
 			if (e.target == box) this.closeModal();
 		});
+		// https://github.com/HugoGiraudel/a11y-dialog/blob/main/a11y-dialog.js
+		this.focusableSelectors = [
+			'a[href]:not([tabindex^="-"]):not([inert])',
+			'area[href]:not([tabindex^="-"]):not([inert])',
+			'input:not([disabled]):not([inert])',
+			'select:not([disabled]):not([inert])',
+			'textarea:not([disabled]):not([inert])',
+			'button:not([disabled]):not([inert])',
+			'iframe:not([tabindex^="-"]):not([inert])',
+			'audio[controls]:not([tabindex^="-"]):not([inert])',
+			'video[controls]:not([tabindex^="-"]):not([inert])',
+			'[contenteditable]:not([tabindex^="-"]):not([inert])',
+			'[tabindex]:not([tabindex^="-"]):not([inert])',
+		];
 	}
-	
+
 	connectedCallback() {
-		this.header = this.shadowRoot.querySelector('span');
 		this.hidden = true;
 	}
 
-	// todo remove in v9 headertext
 	static get observedAttributes() {
-		return ['headertext', 'closelabel'];
+		return ['closelabel'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'headertext') this.header.innerHTML = newVal;
-		if (attrName == 'closelabel') this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
+		this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
 	}
 
 	openModal() {
 		this.style.display = 'block';
 		this.toggleModalClass();
-		// todo trap focus inside modal
 		this.shadowRoot.querySelector('button').focus();
 		document.addEventListener('keyup', e => {
 			if (e.key === 'Escape') this.closeModal();
+			if (e.key === 'Tab') this.maintainFocus(e.shiftKey);
 		});
+	}
+
+	maintainFocus(shiftKey) {
+		const button = this.shadowRoot.querySelector('button');
+		const slottedFocusableElements = [...this.querySelectorAll(this.focusableSelectors.join(','))];
+		const focusNotInSlotted = !slottedFocusableElements.some(el => el.isEqualNode(document.activeElement));
+		const focusNotInShadowRoot = !button.isEqualNode(this.shadowRoot.activeElement);
+		if (focusNotInSlotted && focusNotInShadowRoot) {
+			if (shiftKey) {
+				slottedFocusableElements[slottedFocusableElements.length - 1].focus();
+			} else {
+				button.focus();
+			}
+		}
 	}
 
 	closeModal() {

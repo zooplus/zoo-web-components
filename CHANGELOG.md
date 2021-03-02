@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 9.0.1
+`zoo-checkbox` - add support for `indeterminate` state.
+
 ## 9.0.0
 
 - Additions:

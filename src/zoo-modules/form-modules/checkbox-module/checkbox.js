@@ -9,6 +9,7 @@ export class Checkbox extends FormElement {
 		this.observer = new MutationObserver(mutationsList => {
 			for (let mutation of mutationsList) {
 				mutation.target.disabled ? this.setAttribute('disabled', '') : this.removeAttribute('disabled');
+				mutation.target.hasAttribute('indeterminate') ? this.setAttribute('indeterminate', '') : this.removeAttribute('indeterminate');
 			}
 		});
 		this.shadowRoot.querySelector('slot[name="checkbox"]').addEventListener('slotchange', e => {
@@ -18,7 +19,8 @@ export class Checkbox extends FormElement {
 			this.registerElementForValidation(checkbox);
 			if (checkbox.disabled) this.setAttribute('disabled', '');
 			if (checkbox.checked) this.setAttribute('checked', '');
-			this.observer.observe(checkbox, { attributes: true, attributeFilter: ['disabled'] });
+			if (checkbox.hasAttribute('indeterminate')) this.setAttribute('indeterminate', '');
+			this.observer.observe(checkbox, { attributes: true, attributeFilter: ['disabled', 'indeterminate'] });
 		});
 	}
 

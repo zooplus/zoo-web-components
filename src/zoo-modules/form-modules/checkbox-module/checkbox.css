@@ -54,8 +54,20 @@ svg path {
 	display: none;
 }
 
+.indeterminate {
+	display: none;
+}
+
 :host([checked]) svg path {
 	display: flex;
+}
+
+:host([checked][indeterminate]) .indeterminate {
+	display: flex;
+}
+
+:host([checked][indeterminate]) .checked {
+	display: none;
 }
 
 :host(:focus-within) svg {

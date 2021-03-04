@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 9.0.3
+`zoo-searchable-select` - remove grid-gap from internal zoo-input to match height of other components in a single form.
+
 ## 9.0.1
 `zoo-checkbox` - add support for `indeterminate` state.
 

@@ -96,6 +96,7 @@ zoo-link {
 }
 
 zoo-input {
+	grid-gap: 0;
 	grid-column: span 2;
 }
 

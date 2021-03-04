@@ -1,9 +1,9 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "9.0.1",
+	"version": "9.0.3",
 	"main": "dist/zoo-web-components.js",
 	"files": [
-		"*.js"
+		"dist/*.js"
 	],
 	"type": "module",
 	"module": "dist/zoo-web-components-esm.js",

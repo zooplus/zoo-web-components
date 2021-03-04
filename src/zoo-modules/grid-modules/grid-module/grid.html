@@ -6,6 +6,9 @@
 </div>
 <slot name="row" role="rowgroup"></slot>
 <slot name="norecords"></slot>
-<zoo-paginator>
-	<slot name="pagesizeselector" slot="pagesizeselector"></slot>
-</zoo-paginator>
+<div class="footer">
+	<slot name="footer-content"></slot>
+	<zoo-paginator>
+		<slot name="pagesizeselector" slot="pagesizeselector"></slot>
+	</zoo-paginator>
+</div>

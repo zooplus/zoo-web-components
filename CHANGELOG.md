@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 9.0.4
+`zoo-grid` - allow to define additional content via `footer-content` slot in the bottom side of the grid.
+
 ## 9.0.3
 `zoo-searchable-select` - remove grid-gap from internal zoo-input to match height of other components in a single form.
 

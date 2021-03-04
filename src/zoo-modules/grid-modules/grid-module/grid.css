@@ -87,19 +87,31 @@
 	padding: 10px 0;
 }
 
-zoo-paginator {
+.footer {
+	display: flex;
 	position: sticky;
 	bottom: 0;
 	z-index: 2;
 	width: 100%;
-	box-sizing: border-box;
 	background: #FFF;
-	justify-content: flex-end;
-	padding: 10px;
 	border-top: 1px solid #E6E6E6;
+	box-sizing: border-box;
+	padding: 10px;
+}
 
-	--paginator-position: sticky;
-	--right: 10px;
+slot[name="footer-content"] {
+	display: flex;
+	flex-grow: 1;
+}
+
+::slotted(*[slot="footer-content"]) {
+	justify-self: flex-start;
+}
+
+zoo-paginator {
+	position: sticky;
+	right: 10px;
+	justify-content: flex-end;
 }
 
 slot[name="pagesizeselector"] {

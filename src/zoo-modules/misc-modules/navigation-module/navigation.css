@@ -18,6 +18,7 @@ nav {
 	height: auto;
 	width: max-content;
 	background: transparent;
+	padding: 0;
 }
 
 ::slotted(*) {

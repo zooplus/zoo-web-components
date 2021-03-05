@@ -1,12 +1,20 @@
 # CHANGELOG
 
+## 9.0.5
+
+`zoo-searchable-select` - do not allow to click cross icon when select is disabled.
+`zoo-navigation` - remove padding for vertical direction.
+
 ## 9.0.4
+
 `zoo-grid` - allow to define additional content via `footer-content` slot in the bottom side of the grid.
 
 ## 9.0.3
+
 `zoo-searchable-select` - remove grid-gap from internal zoo-input to match height of other components in a single form.
 
 ## 9.0.1
+
 `zoo-checkbox` - add support for `indeterminate` state.
 
 ## 9.0.0

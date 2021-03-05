@@ -12,6 +12,7 @@ export class SearchableSelect extends FormElement {
 			}
 		});
 		this.shadowRoot.querySelector('.cross').addEventListener('click', () => {
+			if (this.select.disabled) return;
 			this.select.value = null;
 			this.select.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
 		});

@@ -217,7 +217,7 @@ class SearchableSelect extends FormElement {
 		if (inputValString) {
 			this.input.value = null;
 			this.tooltip = this.tooltip || this.createTooltip();
-			this.tooltip.innerHTML = inputValString;
+			this.tooltip.textContent = inputValString;
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);
 		} else if (this.tooltip) {
 			this.tooltip.remove();
@@ -450,7 +450,7 @@ class GridHeader extends HTMLElement {
 		if (attrName === 'sort-title') {
 			this.shadowRoot.querySelector('zoo-arrow-icon').setAttribute('title', newVal);
 		} else if (attrName === 'swap-title') {
-			this.shadowRoot.querySelector('.swap title').innerHTML = newVal;
+			this.shadowRoot.querySelector('.swap title').textContent = newVal;
 			this.shadowRoot.querySelector('.swap').setAttribute('title', newVal);
 		}
 	}
@@ -766,7 +766,7 @@ class Paginator extends HTMLElement {
 				if (pageNum == page) {
 					pageNode.classList.add('active');
 				}
-				pageNode.innerHTML = page;
+				pageNode.textContent = page;
 				this.prev.after(pageNode);
 			} else if (page == pageNum-2 || pageNum+2 == page) {
 				this.prev.after(this.dots.cloneNode(true));
@@ -820,7 +820,7 @@ class CrossIcon extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
+		this.shadowRoot.querySelector('svg title').textContent = newVal;
 	}
 }
 
@@ -839,7 +839,7 @@ class ArrowDownIcon extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
+		this.shadowRoot.querySelector('svg title').textContent = newVal;
 	}
 }
 
@@ -858,7 +858,7 @@ class PawIcon extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
+		this.shadowRoot.querySelector('svg title').textContent = newVal;
 	}
 }
 

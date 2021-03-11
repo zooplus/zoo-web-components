@@ -11,7 +11,7 @@ export class ArrowDownIcon extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		this.shadowRoot.querySelector('svg title').innerHTML = newVal;
+		this.shadowRoot.querySelector('svg title').textContent = newVal;
 	}
 }
 

@@ -56,7 +56,7 @@ export class Paginator extends HTMLElement {
 				if (pageNum == page) {
 					pageNode.classList.add('active');
 				}
-				pageNode.innerHTML = page;
+				pageNode.textContent = page;
 				this.prev.after(pageNode);
 			} else if (page == pageNum-2 || pageNum+2 == page) {
 				this.prev.after(this.dots.cloneNode(true));

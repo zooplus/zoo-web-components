@@ -73,7 +73,7 @@ export class SearchableSelect extends FormElement {
 		if (inputValString) {
 			this.input.value = null;
 			this.tooltip = this.tooltip || this.createTooltip();
-			this.tooltip.innerHTML = inputValString;
+			this.tooltip.textContent = inputValString;
 			this.shadowRoot.querySelector('zoo-input').appendChild(this.tooltip);
 		} else if (this.tooltip) {
 			this.tooltip.remove();

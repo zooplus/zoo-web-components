@@ -31,7 +31,7 @@ export class GridHeader extends HTMLElement {
 		if (attrName === 'sort-title') {
 			this.shadowRoot.querySelector('zoo-arrow-icon').setAttribute('title', newVal);
 		} else if (attrName === 'swap-title') {
-			this.shadowRoot.querySelector('.swap title').innerHTML = newVal;
+			this.shadowRoot.querySelector('.swap title').textContent = newVal;
 			this.shadowRoot.querySelector('.swap').setAttribute('title', newVal);
 		}
 	}

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 9.0.6
+
+security fixes in some components.
+
 ## 9.0.5
 
 `zoo-searchable-select` - do not allow to click cross icon when select is disabled.

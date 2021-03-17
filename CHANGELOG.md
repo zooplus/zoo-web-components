@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 9.0.7
+
+`zoo-searchable-select` - hide cross icon when value is selected and select is disabled.
+
 ## 9.0.6
 
 security fixes in some components.

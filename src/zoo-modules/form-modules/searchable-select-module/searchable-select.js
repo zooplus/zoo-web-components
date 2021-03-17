@@ -9,6 +9,12 @@ export class SearchableSelect extends FormElement {
 		this.observer = new MutationObserver(mutationsList => {
 			for (let mutation of mutationsList) {
 				this.input.disabled = mutation.target.disabled;
+				const crossIcon = this.shadowRoot.querySelector('.cross');
+				if (mutation.target.disabled) {
+					crossIcon.classList.add('hidden');
+				} else {
+					crossIcon.classList.remove('hidden');
+				}
 			}
 		});
 		this.shadowRoot.querySelector('.cross').addEventListener('click', () => {

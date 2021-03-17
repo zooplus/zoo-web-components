@@ -17,6 +17,11 @@
 	background: transparent;
 }
 
+.cross.hidden,
+:host([value-selected]) .cross.hidden {
+	display: none;
+}
+
 :host([value-selected]) .cross {
 	display: flex;
 }

@@ -9,8 +9,6 @@ nav {
 	padding: 0 20px;
 	box-sizing: border-box;
 	background: linear-gradient(to right, var(--primary-mid), var(--primary-light));
-	overflow-y: hidden;
-	overflow-x: auto;
 }
 
 ::slotted(*) {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 8.3.4
+
+`zoo-navigation` - fix overflow issue when navigation children have absolutely positioned children.
+
 ## 8.3.3
 
 All form elements (`zoo-input`, `zoo-select` etc) - refactored and fixed appearing error icon when error message was not defined.

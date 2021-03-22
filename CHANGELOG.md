@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 9.0.8
+
+`zoo-navigation` - fix overflow issue when navigation children have absolutely positioned children.
+
 ## 9.0.7
 
 `zoo-searchable-select` - hide cross icon when value is selected and select is disabled.

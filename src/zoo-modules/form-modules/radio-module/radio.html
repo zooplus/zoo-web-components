@@ -1,0 +1,16 @@
+<fieldset>
+    <legend>
+        <zoo-label>
+            <slot name="label"></slot>
+        </zoo-label>
+    </legend>
+    <div class="radio-group">
+        <slot></slot>
+    </div>
+    <zoo-info role="status">
+        <slot name="info"></slot>
+    </zoo-info>
+    <zoo-info role="alert">
+        <slot name="error"></slot>
+    </zoo-info>
+</fieldset>

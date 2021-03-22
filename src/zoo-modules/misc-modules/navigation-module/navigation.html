@@ -1,0 +1,1 @@
+<nav><slot></slot></nav>

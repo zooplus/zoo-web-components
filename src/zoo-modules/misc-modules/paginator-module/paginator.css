@@ -1,0 +1,72 @@
+:host {
+	min-width: inherit;
+	display: none;
+}
+
+.box {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	width: max-content;
+	position: var(--paginator-position, 'initial');
+	right: var(--right, 'unset');
+}
+
+:host([currentpage]) {
+	display: flex;
+}
+
+nav {
+	display: flex;
+	align-items: center;
+	border: 1px solid #E6E6E6;
+	border-radius: 5px;
+	padding: 15px;
+}
+
+button {
+	display: flex;
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.1s;
+	background: transparent;
+	border: 0;
+	padding: 0;
+	font-size: inherit;
+	border-radius: 5px;
+	margin: 0 2px;
+}
+
+button:active {
+	opacity: 0.5;
+}
+
+button:hover,
+button:focus {
+	background: #F2F3F4;
+}
+
+button.hidden {
+	display: none;
+}
+
+.page-element {
+	padding: 4px 8px;
+}
+
+.page-element.active {
+	background: var(--primary-ultralight);
+	color: var(--primary-dark);
+}
+
+zoo-arrow-icon {
+	pointer-events: none;
+}
+
+.prev zoo-arrow-icon {
+	transform: rotate(90deg);
+}
+
+.next zoo-arrow-icon {
+	transform: rotate(-90deg);
+}

@@ -1,0 +1,122 @@
+:root {
+	--primary-mid: #368700;
+	--primary-light: #66B100;
+	--primary-dark: #286400;
+	--primary-ultralight: #EBF4E5;
+	--secondary-mid: #FF6200;
+	--secondary-light: #F80;
+	--secondary-dark: #CC4E00;
+	--info-ultralight: #ECF5FA;
+	--info-mid: #459FD0;
+	--warning-ultralight: #FDE8E9;
+	--warning-mid: #ED1C24;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+	max-width: 1280px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.form-content {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	grid-gap: 20px;
+	margin: 20px auto;
+	padding: 0 10px;
+	max-width: 1280px;
+}
+
+h2 {
+	color: var(--primary-mid);
+}
+
+hr {
+	border-color: var(--primary-mid);
+	margin: 45px 0;
+	opacity: 0.3;
+}
+
+.buttons {
+	max-width: 1280px;
+	margin: 20px auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-gap: 15px;
+	width: 90%;
+	justify-items: center;
+}
+
+.buttons zoo-button {
+	width: 100%;
+}
+
+.buttons .icon-btn {
+	width: max-content;
+}
+
+.icon-btn button svg {
+	fill: white;
+}
+
+#what {
+	color: var(--primary-mid);
+	text-align: center;
+}
+
+.buttons-holder {
+	display: flex;
+	justify-content: flex-end;
+	flex-grow: 1;
+}
+
+.buttons-holder zoo-button {
+	min-width: 120px;
+	margin-left: 15px;
+}
+
+@media only screen and (max-width: 900px) {
+	.buttons-holder {
+		justify-content: initial;
+		overflow-y: none;
+		overflow-x: auto;
+	}
+
+	.form-content {
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	}
+}
+
+h3 {
+	color: var(--primary-mid);
+	text-align: center;
+}
+
+zoo-grid {
+	min-width: 1024px;
+}
+
+.grid-holder {
+	max-width: 1280px;
+	overflow: auto;
+	box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+	width: 95%;
+	margin: 20px auto;
+}
+
+zoo-select[column="3"] {
+	padding-right: 10px;
+}
+
+zoo-input zoo-button button {
+	border-radius: 0 5px 5px 0;
+}
+
+#input-composition {
+	border-radius: 5px 0 0 5px;
+}

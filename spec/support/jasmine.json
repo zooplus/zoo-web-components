@@ -1,0 +1,11 @@
+{
+  "spec_dir": "src/zoo-modules",
+  "spec_files": [
+    "**/*[sS]pec.mjs"
+  ],
+  "helpers": [
+    "helpers/*.mjs"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}

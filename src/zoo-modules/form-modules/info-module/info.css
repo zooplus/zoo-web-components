@@ -1,0 +1,22 @@
+:host {
+	display: none;
+	padding: 2px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #555;
+	align-items: center;
+}
+
+:host([shown]) {
+	display: flex;
+}
+
+:host([role="alert"][shown]:not([invalid])) {
+	display: none;
+}
+
+:host([role="alert"][invalid][shown]) {
+	display: flex;
+
+	--icon-color: var(--warning-mid);
+}

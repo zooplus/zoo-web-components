@@ -1,0 +1,20 @@
+:host {
+	contain: style;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	padding: 0 25px;
+	height: 70px;
+}
+
+::slotted(img) {
+	height: 46px;
+	padding: 5px 25px 5px 0;
+	cursor: pointer;
+}
+
+::slotted(*[slot="headertext"]) {
+	color: var(--primary-mid);
+}

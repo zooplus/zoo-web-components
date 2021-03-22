@@ -1,0 +1,23 @@
+name: CI
+on:
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: install puppeteer libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgbm1
+      - name: Test and build
+        run: |
+          npm install
+          npm run lint
+          npm test
+          npm run build

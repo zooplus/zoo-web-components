@@ -1,0 +1,14 @@
+:host {
+	contain: style;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	background: linear-gradient(to right, var(--primary-mid), var(--primary-light));
+	padding: 10px 30px;
+}
+
+::slotted(zoo-link) {
+	width: max-content;
+}

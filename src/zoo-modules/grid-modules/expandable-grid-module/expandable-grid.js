@@ -3,7 +3,7 @@
  * https://github.com/whatwg/html/issues/6226
  * which leads to https://github.com/WICG/webcomponents/issues/59
  */
-import { debounce } from '../../../../../zoo-web-components/src/zoo-modules/helpers/debounce';
+import {debounce} from '../../helpers/debounce';
 
 export class ZooExpandableGrid extends HTMLElement {
 	constructor() {

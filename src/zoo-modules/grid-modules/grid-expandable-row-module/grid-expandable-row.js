@@ -1,23 +1,19 @@
-import { debounce } from '../../../../../zoo-web-components/src/zoo-modules/helpers/debounce';
-
 /**
  * @injectHTML
  */
-
-const defaultContentHeight = 'auto';
-const expandedStateClassName = 'expanded';
 
 export class GridExpandableRow extends HTMLElement {
 	constructor() {
 		super();
 
-		this.rowDetailsSlot.addEventListener('slotchange', debounce(() => {
+		this.rowDetailsSlot.addEventListener('slotchange', () => {
 			this.setRowContentHeightCSSProperty();
 			this.registerExpanderClickHandler();
-		}));
+		});
 	}
 
 	setRowContentHeightCSSProperty() {
+		const defaultContentHeight = 'auto';
 		const rowContent = this.rowContentSlot.assignedElements()[0];
 		this.style.setProperty(
 			'--grid-row-content-height',
@@ -26,6 +22,7 @@ export class GridExpandableRow extends HTMLElement {
 	}
 
 	registerExpanderClickHandler() {
+		const expandedStateClassName = 'expanded';
 		const rowContent = this.rowContentSlot.assignedElements()[0];
 		this.expander.addEventListener('click', (e) => {
 			if (e.target.outerHTML === e.currentTarget.outerHTML) {

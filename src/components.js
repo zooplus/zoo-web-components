@@ -8,6 +8,7 @@ export { SearchableSelect } from './zoo-modules/form-modules/searchable-select-m
 export { QuantityControl } from './zoo-modules/form-modules/quantity-control-module/quantity-control.js';
 export { ToggleSwitch } from './zoo-modules/form-modules/toggle-switch-module/toggle-switch.js';
 export { Button } from './zoo-modules/form-modules/button-module/button.js';
+export { ButtonGroup } from './zoo-modules/form-modules/button-group-module/button-group.js';
 
 export { ZooGrid } from './zoo-modules/grid-modules/grid-module/grid.js';
 export { GridHeader } from './zoo-modules/grid-modules/grid-header-module/grid-header.js';

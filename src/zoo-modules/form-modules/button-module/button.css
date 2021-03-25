@@ -25,6 +25,11 @@
 	--border: 2px solid var(--color-mid);
 }
 
+:host([type="link"]) {
+	--text-normal: var(--color-mid);
+	--background: transparent;
+}
+
 ::slotted(button) {
 	display: flex;
 	align-items: center;

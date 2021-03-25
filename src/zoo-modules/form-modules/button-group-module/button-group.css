@@ -1,0 +1,15 @@
+.button-group-container {
+	display: none;
+	border: 1px solid #B8B8B8;
+	border-radius: 5px;
+	padding: 2px 0;
+	flex-direction: row;
+	justify-content: flex-end;
+	flex: 1;
+	width: fit-content;
+}
+
+::slotted(zoo-button) {
+	min-width: 50px;
+	padding: 0 2px;
+}

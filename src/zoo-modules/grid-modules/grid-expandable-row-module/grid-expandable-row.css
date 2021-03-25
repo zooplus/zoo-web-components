@@ -1,0 +1,50 @@
+:host {
+    contain: layout;
+    position: relative;
+    display: block;
+}
+
+::slotted(*[slot="row-details"]) {
+    display: grid;
+    grid-template-columns: var(--grid-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    min-height: 50px;
+    font-size: 14px;
+    line-height: 20px;
+    overflow: visible;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+::slotted(*[slot="row-content"]) {
+    min-height: 0;
+    max-height: 0;
+    height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out;
+    background-color: white;
+    border: none;
+    padding: 0 10px;
+}
+
+::slotted(*[slot="row-details"] *[column]) {
+    align-items: center;
+}
+
+::slotted(*[slot="row-content"].expanded) {
+    max-height: var(--grid-row-content-height);
+    height: var(--grid-row-content-height);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 4px;
+}
+
+::slotted(*[slot="row-details"]:hover),
+::slotted(*[slot="row-details"]:focus) {
+    background: #E6E6E6;
+}
+
+:host([resizable]) ::slotted(*[slot="row-details"]) {
+    display: flex;
+}

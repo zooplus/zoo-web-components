@@ -199,6 +199,8 @@ const getRow = (d, i, template, idx) => {
 	return clone;
 };
 
+document.querySelectorAll('zoo-expandable-grid')[0].setAttribute('resizable', true);
+
 const grids = document.querySelectorAll('zoo-grid');
 let idx = 0;
 for (const grid of grids) {

@@ -1,0 +1,14 @@
+<div class="loading-shade">
+	<zoo-spinner></zoo-spinner>
+</div>
+<div class="header-row" role="row">
+	<slot name="headercell"></slot>
+</div>
+<slot name="expandable-row" role="rowgroup"></slot>
+<slot name="norecords"></slot>
+<div class="footer">
+	<slot name="footer-content"></slot>
+	<zoo-paginator>
+		<slot name="pagesizeselector" slot="pagesizeselector"></slot>
+	</zoo-paginator>
+</div>

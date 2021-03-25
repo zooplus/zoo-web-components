@@ -22,15 +22,6 @@
 }
 
 .header-row {
-	min-width: inherit;
-	font-weight: 600;
-	color: #555;
-	box-sizing: border-box;
-	z-index: 2;
-	background: white;
-}
-
-.header-row {
 	display: grid;
 	grid-template-columns: var(--grid-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
 	padding: 5px 10px;
@@ -38,6 +29,12 @@
 	min-height: 50px;
 	font-size: 14px;
 	line-height: 20px;
+	min-width: inherit;
+	font-weight: 600;
+	color: #555;
+	box-sizing: border-box;
+	z-index: 2;
+	background: white;
 }
 
 :host([resizable]) .header-row {

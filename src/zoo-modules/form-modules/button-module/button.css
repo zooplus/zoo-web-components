@@ -25,7 +25,7 @@
 	--border: 2px solid var(--color-mid);
 }
 
-:host([type="link"]) {
+:host([type="transparent"]) {
 	--text-normal: var(--color-mid);
 	--background: transparent;
 }

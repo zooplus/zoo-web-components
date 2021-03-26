@@ -71,7 +71,8 @@
 	position: sticky;
 }
 
-::slotted(*[slot="row"]:nth-child(odd)) {
+::slotted(*[slot="row"]:nth-child(odd)),
+::slotted(*[slot="grid-row"]:nth-child(odd)) {
 	background: #F2F3F4;
 }
 
@@ -117,4 +118,9 @@ zoo-paginator {
 slot[name="pagesizeselector"] {
 	display: block;
 	margin-right: 20px;
+}
+
+:host([disable-evenodd]) ::slotted(*[slot="grid-row"]:nth-child(odd)),
+:host([disable-evenodd]) ::slotted(*[slot="row"]:nth-child(odd)) {
+	background: initial;
 }

@@ -147,7 +147,7 @@ let data = [
 	{ createdDate: today, status: 'READY', maxWeight: '10 kg', deliveryDate: today, noOfPieces: 5, price: '12 EUR' }
 ];
 
-const getRow = (d, i, template, idx) => {
+const getRow = (d, i, template, idx, withEmptyActions) => {
 	const clone = template.cloneNode(true);
 	const row = clone.children[0];
 	// valid
@@ -196,17 +196,21 @@ const getRow = (d, i, template, idx) => {
 	price.innerHTML = d.price;
 	row.appendChild(price);
 
+	if (withEmptyActions) {
+		// actions
+		const actions = document.createElement('div');
+		row.appendChild(actions);
+	}
+
 	return clone;
 };
-
-document.querySelectorAll('zoo-expandable-grid')[0].setAttribute('resizable', true);
 
 const grids = document.querySelectorAll('zoo-grid');
 let idx = 0;
 for (const grid of grids) {
 	data.forEach((d, i) => {
 		const simpleRow = document.querySelector('#simple-row').content;
-		const clone = getRow(d, i, simpleRow, idx * data.length);
+		const clone = getRow(d, i, simpleRow, idx * data.length, idx === 2);
 		grid.appendChild(clone);
 	});
 	if (idx == 0) grid.setAttribute('resizable', true);

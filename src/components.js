@@ -11,8 +11,7 @@ export { Button } from './zoo-modules/form-modules/button-module/button.js';
 
 export { ZooGrid } from './zoo-modules/grid-modules/grid-module/grid.js';
 export { GridHeader } from './zoo-modules/grid-modules/grid-header-module/grid-header.js';
-export { GridExpandableRow } from './zoo-modules/grid-modules/grid-expandable-row-module/grid-expandable-row.js';
-export { ZooExpandableGrid } from './zoo-modules/grid-modules/expandable-grid-module/expandable-grid.js';
+export { GridRow } from './zoo-modules/grid-modules/grid-row-module/grid-row.js';
 
 export { Header } from './zoo-modules/misc-modules/header-module/header.js';
 export { Modal } from './zoo-modules/misc-modules/modal-module/modal.js';

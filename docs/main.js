@@ -234,3 +234,30 @@ document.querySelector('form').addEventListener('submit', e => {
 	toast.show();
 	setTimeout(() => toast.remove(), 3150);
 });
+
+document.querySelector('#row-1-actions .expander').onclick = () => {
+	const rowContent = document.querySelector('#row-1-content');
+	if (rowContent.hasAttribute('expanded')) {
+		rowContent.removeAttribute('expanded');
+	} else {
+		rowContent.setAttribute('expanded', true);
+	}
+};
+
+document.querySelector('#row-2-actions .expander').onclick = () => {
+	const rowContent = document.querySelector('#row-2-content');
+	if (rowContent.hasAttribute('expanded')) {
+		rowContent.removeAttribute('expanded');
+	} else {
+		rowContent.setAttribute('expanded', true);
+	}
+};
+
+document.querySelector('#row-3-actions .expander').onclick = () => {
+	const rowContent = document.querySelector('#row-3-content');
+	if (rowContent.hasAttribute('expanded')) {
+		rowContent.removeAttribute('expanded');
+	} else {
+		rowContent.setAttribute('expanded', true);
+	}
+};

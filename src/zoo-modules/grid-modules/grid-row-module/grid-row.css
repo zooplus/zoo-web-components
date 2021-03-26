@@ -32,7 +32,7 @@
 	align-items: center;
 }
 
-::slotted(*[slot="row-content"].expanded) {
+::slotted(*[slot="row-content"][expanded]) {
 	max-height: var(--grid-row-content-height);
 	height: var(--grid-row-content-height);
 	border-bottom: 2px solid rgba(0, 0, 0, 0.2);

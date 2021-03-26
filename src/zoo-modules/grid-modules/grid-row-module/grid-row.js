@@ -8,7 +8,6 @@ export class GridRow extends HTMLElement {
 
 		this.rowDetailsSlot.addEventListener('slotchange', () => {
 			this.setRowContentHeightCSSProperty();
-			this.registerExpanderClickHandler();
 		});
 	}
 
@@ -20,22 +19,6 @@ export class GridRow extends HTMLElement {
 				'--grid-row-content-height',
 				rowContent.getAttribute('data-height') || defaultContentHeight
 			);
-		}
-	}
-
-	registerExpanderClickHandler() {
-		if (this.expander) {
-			const expandedStateClassName = 'expanded';
-			const rowContent = this.rowContentSlot.assignedElements()[0];
-			this.expander.addEventListener('click', (e) => {
-				if (e.target.outerHTML === e.currentTarget.outerHTML) {
-					if (rowContent.classList.contains(expandedStateClassName)) {
-						rowContent.classList.remove(expandedStateClassName);
-					} else {
-						rowContent.classList.add(expandedStateClassName);
-					}
-				}
-			});
 		}
 	}
 

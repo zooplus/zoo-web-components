@@ -306,11 +306,11 @@
 						<div>2020-05-10</div>
 						<div>10</div>
 						<div>15 EUR</div>
-						<div class="actions">
+						<div id="row-1-actions" class="actions">
 							<span class="expander">Expand</span>
 						</div>
 					</div>
-					<div slot="row-content" data-height="300px">
+					<div id="row-1-content" slot="row-content" data-height="300px" expanded>
 						<div>Content row 1</div>
 					</div>
 				</zoo-grid-row>
@@ -324,11 +324,11 @@
 						<div>2020-05-15</div>
 						<div>1</div>
 						<div>1 EUR</div>
-						<div class="actions">
+						<div id="row-2-actions" class="actions">
 							<span class="expander">Expand</span>
 						</div>
 					</div>
-					<div slot="row-content" data-height="30px">
+					<div id="row-2-content" slot="row-content" data-height="30px">
 						<div>Content row 2</div>
 					</div>
 				</zoo-grid-row>
@@ -342,11 +342,11 @@
 						<div>2020-05-15</div>
 						<div>4</div>
 						<div>7 EUR</div>
-						<div class="actions">
+						<div id="row-3-actions" class="actions">
 							<span class="expander">Expand</span>
 						</div>
 					</div>
-					<div slot="row-content">
+					<div id="row-3-content" slot="row-content">
 						<div>Content row 3</div>
 					</div>
 				</zoo-grid-row>
@@ -367,8 +367,8 @@
 				<div slot="footer-content">
 				</div>
 				<zoo-select labelposition="left" slot="pagesizeselector">
-					<label for="first-grid-page-size" slot="label">Page size</label>
-					<select id="first-grid-page-size" slot="select">
+					<label for="third-grid-page-size" slot="label">Page size</label>
+					<select id="third-grid-page-size" slot="select">
 						<option selected>5</option>
 						<option>10</option>
 						<option>25</option>

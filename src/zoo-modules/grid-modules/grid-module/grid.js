@@ -1,3 +1,4 @@
+import { debounce } from '../../helpers/debounce';
 /**
  * @injectHTML
  * https://github.com/whatwg/html/issues/6226
@@ -7,7 +8,7 @@ export class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
 		const headerSlot = this.shadowRoot.querySelector('slot[name="headercell"]');
-		headerSlot.addEventListener('slotchange', this.debounce(() => {
+		headerSlot.addEventListener('slotchange', debounce(() => {
 			const headers = headerSlot.assignedElements();
 			this.style.setProperty('--grid-column-num', headers.length);
 			headers.forEach((header, i) => {
@@ -19,7 +20,7 @@ export class ZooGrid extends HTMLElement {
 			}
 		}));
 		const rowSlot = this.shadowRoot.querySelector('slot[name="row"]');
-		rowSlot.addEventListener('slotchange', this.debounce(() => {
+		rowSlot.addEventListener('slotchange', debounce(() => {
 			rowSlot.assignedElements().forEach(row => {
 				row.setAttribute('role', 'row');
 				[...row.children].forEach((child, i) => {
@@ -42,7 +43,7 @@ export class ZooGrid extends HTMLElement {
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+			this.resizeObserver = this.resizeObserver || new ResizeObserver(debounce(this.resizeCallback.bind(this)));
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
@@ -59,19 +60,6 @@ export class ZooGrid extends HTMLElement {
 		});
 	}
 
-	debounce(func, wait) {
-		let timeout;
-		return function() {
-			const later = () => {
-				timeout = null;
-				func.apply(this, arguments);
-			};
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-			if (!timeout) func.apply(this, arguments);
-		};
-	}
-
 	handleDraggableHeader(header) {
 		// avoid attaching multiple eventListeners to the same element
 		if (header.hasAttribute('reorderable')) return;
@@ -81,7 +69,7 @@ export class ZooGrid extends HTMLElement {
 
 		header.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', header.getAttribute('column')));
 		// drag enter fires before dragleave, so stagger this function
-		header.addEventListener('dragenter', this.debounce(() => {
+		header.addEventListener('dragenter', debounce(() => {
 			header.classList.add('drag-over');
 			this.prevDraggedOverHeader = header;
 		}));

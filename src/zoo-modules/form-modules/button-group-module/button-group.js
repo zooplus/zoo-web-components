@@ -1,3 +1,4 @@
+import { debounce } from '../../helpers/debounce';
 /**
  * @injectHTML
  */
@@ -7,7 +8,7 @@ export class ButtonGroup extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.buttonGroup.addEventListener('slotchange', this.debounce(() => {
+		this.buttonGroup.addEventListener('slotchange', debounce(() => {
 			this.buttonGroupElements.forEach((button, index) => {
 				if (button.hasAttribute('data-active')) {
 					this.activateButton(button, index);
@@ -54,19 +55,6 @@ export class ButtonGroup extends HTMLElement {
 
 	get inactiveType() {
 		return this.getAttribute('inactive-type');
-	}
-
-	debounce(func, wait) {
-		let timeout;
-		return function() {
-			const later = () => {
-				timeout = null;
-				func.apply(this, arguments);
-			};
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-			if (!timeout) func.apply(this, arguments);
-		};
 	}
 }
 

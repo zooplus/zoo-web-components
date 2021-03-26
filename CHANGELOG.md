@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 9.0.9
+
+`zoo-checkbox` - set or remove attribute based on checked property instead of blindly toggling it on change.
+
 ## 9.0.8
 
 `zoo-navigation` - fix overflow issue when navigation children have absolutely positioned children.

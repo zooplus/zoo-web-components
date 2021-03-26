@@ -15,7 +15,11 @@ export class Checkbox extends FormElement {
 		this.shadowRoot.querySelector('slot[name="checkbox"]').addEventListener('slotchange', e => {
 			let checkbox = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
 			if (!checkbox) return;
-			checkbox.addEventListener('change', () => this.toggleAttribute('checked'));
+			checkbox.addEventListener('change', () => {
+				checkbox.checked
+					? this.setAttribute('checked', '')
+					: this.removeAttribute('checked');
+			});
 			this.registerElementForValidation(checkbox);
 			if (checkbox.disabled) this.setAttribute('disabled', '');
 			if (checkbox.checked) this.setAttribute('checked', '');

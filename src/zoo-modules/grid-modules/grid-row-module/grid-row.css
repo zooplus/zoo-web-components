@@ -18,13 +18,12 @@
 	height: 0;
 	overflow: hidden;
 	background-color: white;
-	border: none;
 	padding: 0 10px;
 	width: 100%;
 }
 
 ::slotted(*[slot="row-content"][expanded]) {
-	height: var(--grid-row-content-height);
+	height: var(--grid-row-content-height, auto);
 	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 	padding: 10px;
 	margin: 4px;

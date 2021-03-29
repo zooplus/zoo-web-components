@@ -40,17 +40,6 @@ export class ZooGrid extends HTMLElement {
 			});
 		}));
 
-		this.gridRows.addEventListener('slotchange', this.debounce(() => {
-			this.gridRowsElements.forEach(row => {
-				const rowDetails = row.shadowRoot.querySelector('slot[name="row-details"]').assignedElements()[0];
-				rowDetails.setAttribute('role', 'row');
-				[...rowDetails.children].forEach((child, i) => {
-					child.setAttribute('column', i+1);
-					child.setAttribute('role', 'cell');
-				});
-			});
-		}));
-
 		this.addEventListener('sortChange', e => {
 			if (this.prevSortedHeader && !e.target.isEqualNode(this.prevSortedHeader)) {
 				this.prevSortedHeader.removeAttribute('sortstate');
@@ -86,9 +75,6 @@ export class ZooGrid extends HTMLElement {
 		if (this.hasAttribute('resizable')) {
 			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
-			this.gridRowsElements.forEach(row => row.setAttribute('resizable', ''));
-		} else if (!this.hasAttribute('resizable')) {
-			this.gridRowsElements.forEach(row => row.removeAttribute('resizable'));
 		}
 	}
 
@@ -148,14 +134,6 @@ export class ZooGrid extends HTMLElement {
 		if (this.resizeObserver) {
 			this.resizeObserver.disconnect();
 		}
-	}
-
-	get gridRows() {
-		return this.shadowRoot.querySelector('slot[name="grid-row"]');
-	}
-
-	get gridRowsElements() {
-		return this.gridRows.assignedElements();
 	}
 }
 

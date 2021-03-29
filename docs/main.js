@@ -235,29 +235,17 @@ document.querySelector('form').addEventListener('submit', e => {
 	setTimeout(() => toast.remove(), 3150);
 });
 
-document.querySelector('#row-1-actions .expander').onclick = () => {
-	const rowContent = document.querySelector('#row-1-content');
-	if (rowContent.hasAttribute('expanded')) {
-		rowContent.removeAttribute('expanded');
-	} else {
-		rowContent.setAttribute('expanded', '');
-	}
+const handleExpandAction = (buttonSelector, contentSelector) => {
+	document.querySelector(buttonSelector).onclick = () => {
+		const rowContent = document.querySelector(contentSelector);
+		if (rowContent.hasAttribute('expanded')) {
+			rowContent.removeAttribute('expanded');
+		} else {
+			rowContent.setAttribute('expanded', '');
+		}
+	};
 };
 
-document.querySelector('#row-2-actions .expander').onclick = () => {
-	const rowContent = document.querySelector('#row-2-content');
-	if (rowContent.hasAttribute('expanded')) {
-		rowContent.removeAttribute('expanded');
-	} else {
-		rowContent.setAttribute('expanded', '');
-	}
-};
-
-document.querySelector('#row-3-actions .expander').onclick = () => {
-	const rowContent = document.querySelector('#row-3-content');
-	if (rowContent.hasAttribute('expanded')) {
-		rowContent.removeAttribute('expanded');
-	} else {
-		rowContent.setAttribute('expanded', '');
-	}
-};
+handleExpandAction('#row-1-actions .expander', '#row-1-content');
+handleExpandAction('#row-2-actions .expander', '#row-2-content');
+handleExpandAction('#row-3-actions .expander', '#row-3-content');

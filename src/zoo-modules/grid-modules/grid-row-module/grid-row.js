@@ -6,13 +6,14 @@ export class GridRow extends HTMLElement {
 	constructor() {
 		super();
 
-		this.rowDetailsSlot.addEventListener('slotchange', () => {
-			this.setRowContentHeightCSSProperty();
-		});
+		this.shadowRoot.querySelector('slot[name="row-details"]')
+			.addEventListener('slotchange', () => {
+				this.setRowContentHeightCSSProperty();
+			});
 	}
 
 	setRowContentHeightCSSProperty() {
-		const rowContent = this.rowContentSlot.assignedElements()[0];
+		const rowContent = this.shadowRoot.querySelector('slot[name="row-content"]').assignedElements()[0];
 		if (rowContent) {
 			const defaultContentHeight = 'auto';
 			this.style.setProperty(
@@ -20,14 +21,6 @@ export class GridRow extends HTMLElement {
 				rowContent.getAttribute('data-height') || defaultContentHeight
 			);
 		}
-	}
-
-	get rowDetailsSlot() {
-		return this.shadowRoot.querySelector('slot[name="row-details"]');
-	}
-
-	get rowContentSlot() {
-		return this.shadowRoot.querySelector('slot[name="row-content"]');
 	}
 }
 

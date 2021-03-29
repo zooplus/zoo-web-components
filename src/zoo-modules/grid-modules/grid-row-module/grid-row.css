@@ -1,7 +1,6 @@
 :host {
 	contain: layout;
 	position: relative;
-	display: block;
 	flex-wrap: wrap;
 
 	--grid-column-sizes: 1fr;

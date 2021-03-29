@@ -46,29 +46,3 @@
 :host([resizable]) ::slotted(*[slot="row-details"]) {
 	display: flex;
 }
-
-.center {
-	animation: center-animate 1s ease infinite alternate;
-}
-
-.right {
-	animation: right-animate 1s ease infinite alternate;
-}
-
-@keyframes right-animate {
-	0% {
-		transform: translateX(140px);
-	}
-	100% {
-		transform: translateX(20px);
-	}
-}
-
-@keyframes center-animate {
-	0% {
-		transform: scaleX(120);
-	}
-	100% {
-		transform: scaleX(0);
-	}
-}

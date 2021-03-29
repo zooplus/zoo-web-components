@@ -99,7 +99,9 @@ h3 {
 
 zoo-grid {
 	min-width: 1024px;
+}
 
+zoo-grid-row {
 	--grid-row-content-height: 150px;
 }
 

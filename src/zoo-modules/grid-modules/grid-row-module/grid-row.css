@@ -10,9 +10,6 @@
 	display: var(--zoo-grid-row-display, grid);
 	grid-template-columns: var(--grid-details-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
 	min-height: 50px;
-	font-size: 14px;
-	line-height: 20px;
-	overflow: visible;
 	align-items: center;
 	box-sizing: border-box;
 	flex: 1 0 100%;

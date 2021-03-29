@@ -11,7 +11,6 @@
 	grid-template-columns: var(--grid-details-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
 	min-height: 50px;
 	align-items: center;
-	box-sizing: border-box;
 	flex: 1 0 100%;
 }
 
@@ -22,10 +21,6 @@
 	border: none;
 	padding: 0 10px;
 	width: 100%;
-}
-
-::slotted(*[slot="row-details"] *[column]) {
-	align-items: center;
 }
 
 ::slotted(*[slot="row-content"][expanded]) {

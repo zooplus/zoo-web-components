@@ -2,19 +2,21 @@
 	contain: layout;
 	position: relative;
 	display: block;
+	--grid-column-sizes: 1fr;
+	flex-wrap: wrap;
 }
 
 ::slotted(*[slot="row-details"]) {
-	display: grid;
-	grid-template-columns: var(--grid-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
+	display: var(--zoo-grid-row-display, grid);
+	grid-template-columns: var(--grid-details-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
 	padding: 5px 10px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	min-height: 50px;
 	font-size: 14px;
 	line-height: 20px;
 	overflow: visible;
 	align-items: center;
 	box-sizing: border-box;
+	flex: 1 0 100%;
 }
 
 ::slotted(*[slot="row-content"]) {
@@ -26,6 +28,7 @@
 	background-color: white;
 	border: none;
 	padding: 0 10px;
+	width: 100%;
 }
 
 ::slotted(*[slot="row-details"] *[column]) {

@@ -54,16 +54,15 @@ export class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
-			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
-			this.gridRowsElements.forEach(row => row.setAttribute('resizable', true));
+		if (attrName == 'resizable') {
+			this.handleResizableAttributeChange();
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
 		} else if (['maxpages', 'currentpage', 'prev-page-title', 'next-page-title'].includes(attrName)) {
 			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}
+
 	resizeCallback(entries) {
 		entries.forEach(entry => {
 			const columnNum = entry.target.getAttribute('column');
@@ -71,6 +70,16 @@ export class ZooGrid extends HTMLElement {
 			this.querySelectorAll(`[column="${columnNum}"]`)
 				.forEach(columnEl => columnEl.style.width = `${width}px`);
 		});
+	}
+
+	handleResizableAttributeChange() {
+		if (this.hasAttribute('resizable')) {
+			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+			this.gridRowsElements.forEach(row => row.setAttribute('resizable', ''));
+		} else if (!this.hasAttribute('resizable')) {
+			this.gridRowsElements.forEach(row => row.removeAttribute('resizable'));
+		}
 	}
 
 	handleDraggableHeader(header) {

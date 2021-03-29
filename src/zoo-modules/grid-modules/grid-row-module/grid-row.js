@@ -29,10 +29,6 @@ export class GridRow extends HTMLElement {
 	get rowContentSlot() {
 		return this.shadowRoot.querySelector('slot[name="row-content"]');
 	}
-
-	get expander() {
-		return this.rowDetailsSlot.assignedElements()[0].querySelector('.actions .expander');
-	}
 }
 
 window.customElements.define('zoo-grid-row', GridRow);

@@ -258,6 +258,6 @@ document.querySelector('#row-3-actions .expander').onclick = () => {
 	if (rowContent.hasAttribute('expanded')) {
 		rowContent.removeAttribute('expanded');
 	} else {
-		rowContent.setAttribute('expanded', true);
+		rowContent.setAttribute('expanded', '');
 	}
 };

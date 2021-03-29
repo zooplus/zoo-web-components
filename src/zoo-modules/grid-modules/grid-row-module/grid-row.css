@@ -19,11 +19,8 @@
 }
 
 ::slotted(*[slot="row-content"]) {
-	min-height: 0;
-	max-height: 0;
 	height: 0;
 	overflow: hidden;
-	transition: max-height 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out;
 	background-color: white;
 	border: none;
 	padding: 0 10px;
@@ -35,7 +32,6 @@
 }
 
 ::slotted(*[slot="row-content"][expanded]) {
-	max-height: var(--grid-row-content-height);
 	height: var(--grid-row-content-height);
 	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 	padding: 10px;
@@ -49,4 +45,30 @@
 
 :host([resizable]) ::slotted(*[slot="row-details"]) {
 	display: flex;
+}
+
+.center {
+	animation: center-animate 1s ease infinite alternate;
+}
+
+.right {
+	animation: right-animate 1s ease infinite alternate;
+}
+
+@keyframes right-animate {
+	0% {
+		transform: translateX(140px);
+	}
+	100% {
+		transform: translateX(20px);
+	}
+}
+
+@keyframes center-animate {
+	0% {
+		transform: scaleX(120);
+	}
+	100% {
+		transform: scaleX(0);
+	}
 }

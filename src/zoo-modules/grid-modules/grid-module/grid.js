@@ -124,9 +124,9 @@ export class ZooGrid extends HTMLElement {
 			.forEach(row => {
 				if (row.tagName === 'ZOO-GRID-ROW') {
 					[...row.shadowRoot.querySelector('slot[name="row-details"]').assignedElements()[0].children]
-						.forEach((child, i) => child.setAttribute('column', i+1))
+						.forEach((child, i) => child.setAttribute('column', i+1));
 				} else {
-					[...row.children].forEach((child, i) => child.setAttribute('column', i+1))
+					[...row.children].forEach((child, i) => child.setAttribute('column', i+1));
 				}
 			});
 	}

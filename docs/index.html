@@ -285,7 +285,7 @@
 
 		<h3>A grid with expandable rows</h3>
 		<div class="grid-holder">
-			<zoo-grid currentpage="3" maxpages="20" reorderable stickyheader>
+			<zoo-grid currentpage="3" maxpages="20" reorderable stickyheader resizable>
 				<zoo-grid-header slot="headercell" swap-title="swap icon">Valid</zoo-grid-header>
 				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate' sorttitle="sort icon" swap-title="swap icon">Created Date
 				</zoo-grid-header>
@@ -297,7 +297,7 @@
 				<zoo-grid-header slot="headercell" swap-title="swap icon">Price</zoo-grid-header>
 				<zoo-grid-header slot="headercell">Actions</zoo-grid-header>
 
-				<zoo-grid-row slot="grid-row">
+				<zoo-grid-row slot="row">
 					<div slot="row-details">
 						<div>Valid</div>
 						<div>2020-05-10</div>
@@ -310,12 +310,12 @@
 							<button type="button" class="expander">Expand</button>
 						</div>
 					</div>
-					<div id="row-1-content" slot="row-content" data-height="300px" expanded>
+					<div id="row-1-content" slot="row-content" data-height="300px">
 						<div>Content row 1</div>
 					</div>
 				</zoo-grid-row>
 
-				<zoo-grid-row slot="grid-row">
+				<zoo-grid-row slot="row">
 					<div slot="row-details">
 						<div>Invalid</div>
 						<div>2020-05-15</div>
@@ -333,7 +333,7 @@
 					</div>
 				</zoo-grid-row>
 
-				<zoo-grid-row slot="grid-row">
+				<zoo-grid-row slot="row">
 					<div slot="row-details">
 						<div>Valid</div>
 						<div>2020-05-20</div>
@@ -351,7 +351,7 @@
 					</div>
 				</zoo-grid-row>
 
-				<zoo-grid-row slot="grid-row">
+				<zoo-grid-row slot="row">
 					<div slot="row-details">
 						<div>Valid</div>
 						<div>2020-05-20</div>

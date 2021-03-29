@@ -240,7 +240,7 @@ document.querySelector('#row-1-actions .expander').onclick = () => {
 	if (rowContent.hasAttribute('expanded')) {
 		rowContent.removeAttribute('expanded');
 	} else {
-		rowContent.setAttribute('expanded', true);
+		rowContent.setAttribute('expanded', '');
 	}
 };
 
@@ -249,7 +249,7 @@ document.querySelector('#row-2-actions .expander').onclick = () => {
 	if (rowContent.hasAttribute('expanded')) {
 		rowContent.removeAttribute('expanded');
 	} else {
-		rowContent.setAttribute('expanded', true);
+		rowContent.setAttribute('expanded', '');
 	}
 };
 

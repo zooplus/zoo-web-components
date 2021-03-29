@@ -18,15 +18,25 @@ export class ZooGrid extends HTMLElement {
 			if (this.hasAttribute('reorderable')) {
 				headers.forEach(header => this.handleDraggableHeader(header));
 			}
+			if (this.hasAttribute('resizable')) {
+				this.handleResizableAttributeChange();
+			}
 		}));
 		const rowSlot = this.shadowRoot.querySelector('slot[name="row"]');
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
 			rowSlot.assignedElements().forEach(row => {
 				row.setAttribute('role', 'row');
-				[...row.children].forEach((child, i) => {
-					child.setAttribute('column', i+1);
-					child.setAttribute('role', 'cell');
-				});
+				if (row.tagName === 'ZOO-GRID-ROW') {
+					[...row.querySelector('*[slot="row-details"]').children].forEach((child, i) => {
+						child.setAttribute('column', i+1);
+						child.setAttribute('role', 'cell');
+					});
+				} else {
+					[...row.children].forEach((child, i) => {
+						child.setAttribute('column', i+1);
+						child.setAttribute('role', 'cell');
+					});
+				}
 			});
 		}));
 
@@ -67,8 +77,8 @@ export class ZooGrid extends HTMLElement {
 		entries.forEach(entry => {
 			const columnNum = entry.target.getAttribute('column');
 			const width = entry.contentRect.width;
-			this.querySelectorAll(`[column="${columnNum}"]`)
-				.forEach(columnEl => columnEl.style.width = `${width}px`);
+			const columns = this.querySelectorAll(`[column="${columnNum}"]`);
+			columns.forEach(columnEl => columnEl.style.width = `${width}px`);
 		});
 	}
 
@@ -111,11 +121,14 @@ export class ZooGrid extends HTMLElement {
 		});
 		// reassign indexes for row cells
 		this.shadowRoot.querySelector('slot[name="row"]').assignedElements()
-			.forEach(row => [...row.children].forEach((child, i) => child.setAttribute('column', i+1)));
-
-		this.gridRowsElements.forEach(row => [
-			...row.shadowRoot.querySelector('slot[name="row-details"]').assignedElements()[0].children
-		].forEach((child, i) => child.setAttribute('column', i+1)));
+			.forEach(row => {
+				if (row.tagName === 'ZOO-GRID-ROW') {
+					[...row.shadowRoot.querySelector('slot[name="row-details"]').assignedElements()[0].children]
+						.forEach((child, i) => child.setAttribute('column', i+1))
+				} else {
+					[...row.children].forEach((child, i) => child.setAttribute('column', i+1))
+				}
+			});
 	}
 
 	debounce(func, wait) {

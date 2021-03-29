@@ -1,7 +1,6 @@
 /**
  * @injectHTML
  */
-
 export class GridRow extends HTMLElement {
 	constructor() {
 		super();

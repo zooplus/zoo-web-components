@@ -34,12 +34,3 @@
 	padding: 10px;
 	margin: 4px;
 }
-
-::slotted(*[slot="row-details"]:hover),
-::slotted(*[slot="row-details"]:focus) {
-	background: #E6E6E6;
-}
-
-:host([resizable]) ::slotted(*[slot="row-details"]) {
-	display: flex;
-}

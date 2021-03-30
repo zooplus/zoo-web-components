@@ -91,7 +91,11 @@ var zooWebComponents = (function (exports) {
 			this.shadowRoot.querySelector('slot[name="checkbox"]').addEventListener('slotchange', e => {
 				let checkbox = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
 				if (!checkbox) return;
-				checkbox.addEventListener('change', () => this.toggleAttribute('checked'));
+				checkbox.addEventListener('change', () => {
+					checkbox.checked
+						? this.setAttribute('checked', '')
+						: this.removeAttribute('checked');
+				});
 				this.registerElementForValidation(checkbox);
 				if (checkbox.disabled) this.setAttribute('disabled', '');
 				if (checkbox.checked) this.setAttribute('checked', '');
@@ -306,7 +310,7 @@ var zooWebComponents = (function (exports) {
 	 */
 	class Button extends HTMLElement {
 		constructor() {
-			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;max-width:330px;min-height:36px;position:relative;--color-light:var(--primary-light);--color-mid:var(--primary-mid);--color-dark:var(--primary-dark);--text-normal:white;--text-active:white;--background:linear-gradient(to right, var(--color-mid), var(--color-light));--border:0}:host([type=secondary]){--color-light:var(--secondary-light);--color-mid:var(--secondary-mid);--color-dark:var(--secondary-dark)}:host([type=hollow]){--text-normal:var(--color-mid);--background:transparent;--border:2px solid var(--color-mid)}::slotted(button){display:flex;align-items:center;justify-content:center;color:var(--text-normal);border:var(--border);border-radius:5px;cursor:pointer;width:100%;min-height:100%;font-size:14px;line-height:20px;font-weight:700;background:var(--background)}::slotted(button:focus),::slotted(button:hover){background:var(--color-mid);color:var(--text-active)}::slotted(button:active){background:var(--color-dark);color:var(--text-active)}::slotted(button:disabled){cursor:not-allowed;--background:#F2F3F4;--color-mid:#F2F3F4;--color-dark:#F2F3F4;--text-normal:#767676;--text-active:#767676;--border:1px solid #E6E6E6}</style><slot></slot>`;
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{display:flex;max-width:330px;min-height:36px;position:relative;--color-light:var(--primary-light);--color-mid:var(--primary-mid);--color-dark:var(--primary-dark);--text-normal:white;--text-active:white;--background:linear-gradient(to right, var(--color-mid), var(--color-light));--border:0}:host([type=secondary]){--color-light:var(--secondary-light);--color-mid:var(--secondary-mid);--color-dark:var(--secondary-dark)}:host([type=hollow]){--text-normal:var(--color-mid);--background:transparent;--border:2px solid var(--color-mid)}:host([type=transparent]){--text-normal:var(--color-mid);--background:transparent}::slotted(button){display:flex;align-items:center;justify-content:center;color:var(--text-normal);border:var(--border);border-radius:5px;cursor:pointer;width:100%;min-height:100%;font-size:14px;line-height:20px;font-weight:700;background:var(--background)}::slotted(button:focus),::slotted(button:hover){background:var(--color-mid);color:var(--text-active)}::slotted(button:active){background:var(--color-dark);color:var(--text-active)}::slotted(button:disabled){cursor:not-allowed;--background:#F2F3F4;--color-mid:#F2F3F4;--color-dark:#F2F3F4;--text-normal:#767676;--text-active:#767676;--border:1px solid #E6E6E6}</style><slot></slot>`;
 		}
 	}
 	window.customElements.define('zoo-button', Button);
@@ -316,9 +320,10 @@ var zooWebComponents = (function (exports) {
 	 * https://github.com/whatwg/html/issues/6226
 	 * which leads to https://github.com/WICG/webcomponents/issues/59
 	 */
+
 	class ZooGrid extends HTMLElement {
 		constructor() {
-			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout;position:relative;display:block}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.footer,.header-row{z-index:2;background:#fff;box-sizing:border-box}:host([loading]) .loading-shade{display:flex}.header-row{min-width:inherit;font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}::slotted([slot=row] [column]){align-items:center}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}.footer{display:flex;position:sticky;bottom:0;width:100%;border-top:1px solid #e6e6e6;padding:10px}slot[name=footer-content]{display:flex;flex-grow:1}::slotted([slot=footer-content]){justify-self:flex-start}zoo-paginator{position:sticky;right:10px;justify-content:flex-end}slot[name=pagesizeselector]{display:block;margin-right:20px}</style><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row" role="row"><slot name="headercell"></slot></div><slot name="row" role="rowgroup"></slot><slot name="norecords"></slot><div class="footer"><slot name="footer-content"></slot><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></div>`;
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout;position:relative;display:block}.loading-shade{display:none;position:absolute;left:0;top:0;right:0;z-index:9998;justify-content:center;height:100%;background:rgba(0,0,0,.15);pointer-events:none}.footer,.header-row{z-index:2;background:#fff;box-sizing:border-box}:host([loading]) .loading-shade{display:flex}.header-row{min-width:inherit;font-weight:600;color:#555}.header-row,::slotted([slot=row]){display:grid;grid-template-columns:var(--grid-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));padding:5px 10px;border-bottom:1px solid rgba(0,0,0,.2);min-height:50px;font-size:14px;line-height:20px}::slotted([slot=row]){overflow:visible;align-items:center;box-sizing:border-box}:host([resizable]){--zoo-grid-row-display:flex}:host([resizable]) .header-row,:host([resizable]) ::slotted([slot=row]){display:flex}:host([resizable]) ::slotted([slot=headercell]){overflow:auto;resize:horizontal;height:inherit}::slotted(.drag-over){box-shadow:inset 0 0 1px 1px rgba(0,0,0,.4)}:host([stickyheader]) .header-row{top:0;position:sticky}::slotted([slot=row]:nth-child(odd)){background:#f2f3f4}::slotted([slot=row]:focus),::slotted([slot=row]:hover){background:#e6e6e6}::slotted([slot=norecords]){color:var(--warning-dark);grid-column:span var(--grid-column-num);text-align:center;padding:10px 0}.footer{display:flex;position:sticky;bottom:0;width:100%;border-top:1px solid #e6e6e6;padding:10px}slot[name=footer-content]{display:flex;flex-grow:1}::slotted([slot=footer-content]){justify-self:flex-start}zoo-paginator{position:sticky;right:10px;justify-content:flex-end}slot[name=pagesizeselector]{display:block;margin-right:20px}</style><div class="loading-shade"><zoo-spinner></zoo-spinner></div><div class="header-row" role="row"><slot name="headercell"></slot></div><slot name="row" role="rowgroup"></slot><slot name="norecords"></slot><div class="footer"><slot name="footer-content"></slot><zoo-paginator><slot name="pagesizeselector" slot="pagesizeselector"></slot></zoo-paginator></div>`;
 			const headerSlot = this.shadowRoot.querySelector('slot[name="headercell"]');
 			headerSlot.addEventListener('slotchange', this.debounce(() => {
 				const headers = headerSlot.assignedElements();
@@ -330,17 +335,28 @@ var zooWebComponents = (function (exports) {
 				if (this.hasAttribute('reorderable')) {
 					headers.forEach(header => this.handleDraggableHeader(header));
 				}
+				if (this.hasAttribute('resizable')) {
+					this.handleResizableAttributeChange();
+				}
 			}));
 			const rowSlot = this.shadowRoot.querySelector('slot[name="row"]');
 			rowSlot.addEventListener('slotchange', this.debounce(() => {
 				rowSlot.assignedElements().forEach(row => {
 					row.setAttribute('role', 'row');
-					[...row.children].forEach((child, i) => {
-						child.setAttribute('column', i+1);
-						child.setAttribute('role', 'cell');
-					});
+					if (row.tagName === 'ZOO-GRID-ROW') {
+						[...row.querySelector('*[slot="row-details"]').children].forEach((child, i) => {
+							child.setAttribute('column', i+1);
+							child.setAttribute('role', 'cell');
+						});
+					} else {
+						[...row.children].forEach((child, i) => {
+							child.setAttribute('column', i+1);
+							child.setAttribute('role', 'cell');
+						});
+					}
 				});
 			}));
+
 			this.addEventListener('sortChange', e => {
 				if (this.prevSortedHeader && !e.target.isEqualNode(this.prevSortedHeader)) {
 					this.prevSortedHeader.removeAttribute('sortstate');
@@ -354,35 +370,29 @@ var zooWebComponents = (function (exports) {
 		}
 
 		attributeChangedCallback(attrName, oldVal, newVal) {
-			if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-				this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
-				this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+			if (attrName == 'resizable') {
+				this.handleResizableAttributeChange();
 			} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 				this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
 			} else if (['maxpages', 'currentpage', 'prev-page-title', 'next-page-title'].includes(attrName)) {
 				this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 			}
 		}
+
 		resizeCallback(entries) {
 			entries.forEach(entry => {
 				const columnNum = entry.target.getAttribute('column');
 				const width = entry.contentRect.width;
-				this.querySelectorAll(`[column="${columnNum}"]`)
-					.forEach(columnEl => columnEl.style.width = `${width}px`);
+				const columns = this.querySelectorAll(`[column="${columnNum}"]`);
+				columns.forEach(columnEl => columnEl.style.width = `${width}px`);
 			});
 		}
 
-		debounce(func, wait) {
-			let timeout;
-			return function() {
-				const later = () => {
-					timeout = null;
-					func.apply(this, arguments);
-				};
-				clearTimeout(timeout);
-				timeout = setTimeout(later, wait);
-				if (!timeout) func.apply(this, arguments);
-			};
+		handleResizableAttributeChange() {
+			if (this.hasAttribute('resizable')) {
+				this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+				this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+			}
 		}
 
 		handleDraggableHeader(header) {
@@ -414,7 +424,27 @@ var zooWebComponents = (function (exports) {
 			});
 			// reassign indexes for row cells
 			this.shadowRoot.querySelector('slot[name="row"]').assignedElements()
-				.forEach(row => [...row.children].forEach((child, i) => child.setAttribute('column', i+1)));
+				.forEach(row => {
+					if (row.tagName === 'ZOO-GRID-ROW') {
+						[...row.shadowRoot.querySelector('slot[name="row-details"]').assignedElements()[0].children]
+							.forEach((child, i) => child.setAttribute('column', i+1));
+					} else {
+						[...row.children].forEach((child, i) => child.setAttribute('column', i+1));
+					}
+				});
+		}
+
+		debounce(func, wait) {
+			let timeout;
+			return function () {
+				const later = () => {
+					timeout = null;
+					func.apply(this, arguments);
+				};
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+				if (!timeout) func.apply(this, arguments);
+			};
 		}
 
 		disconnectedCallback() {
@@ -466,6 +496,17 @@ var zooWebComponents = (function (exports) {
 	}
 
 	window.customElements.define('zoo-grid-header', GridHeader);
+
+	/**
+	 * @injectHTML
+	 */
+	class GridRow extends HTMLElement {
+		constructor() {
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{contain:layout;position:relative;flex-wrap:wrap;--grid-column-sizes:1fr}::slotted([slot=row-details]){display:var(--zoo-grid-row-display,grid);grid-template-columns:var(--grid-details-column-sizes,repeat(var(--grid-column-num),minmax(50px,1fr)));min-height:50px;align-items:center;flex:1 0 100%}::slotted([slot=row-content]){height:0;overflow:hidden;background-color:#fff;padding:0 10px;width:100%}::slotted([slot=row-content][expanded]){height:var(--grid-row-content-height,auto);border-bottom:2px solid rgba(0,0,0,.2);padding:10px;margin:4px}</style><slot name="row-details"></slot><slot name="row-content"></slot>`;
+		}
+	}
+
+	window.customElements.define('zoo-grid-row', GridRow);
 
 	/**
 	 * @injectHTML
@@ -894,6 +935,7 @@ var zooWebComponents = (function (exports) {
 	exports.Feedback = Feedback;
 	exports.Footer = Footer;
 	exports.GridHeader = GridHeader;
+	exports.GridRow = GridRow;
 	exports.Header = Header;
 	exports.InfoMessage = InfoMessage;
 	exports.Input = Input;

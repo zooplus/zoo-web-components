@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 9.1.0
+
+`zoo-grid-row` - new component for `zoo-grid`;
+`zoo-button` - added new type attribute value `transparent`.
+
 ## 9.0.9
 
 `zoo-checkbox` - set or remove attribute based on checked property instead of blindly toggling it on change.

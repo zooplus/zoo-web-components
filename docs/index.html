@@ -200,6 +200,9 @@
 					<zoo-paw-icon title="loading paw icon"></zoo-paw-icon>
 				</button>
 			</zoo-button>
+			<zoo-button type="transparent">
+				<button type="button">Transparent type button that does nothing</button>
+			</zoo-button>
 		</div>
 		<zoo-modal id="modal" closelabel="close modal">
 			<span slot="header">Your basket contains licensed items</span>
@@ -274,6 +277,99 @@
 				<zoo-select labelposition="left" slot="pagesizeselector">
 					<label for="second-grid-page-size" slot="label">Page size</label>
 					<select id="second-grid-page-size" slot="select">
+						<option selected>5</option>
+						<option>10</option>
+						<option>25</option>
+						<option>100</option>
+					</select>
+				</zoo-select>
+			</zoo-grid>
+		</div>
+
+		<h3>A grid with expandable rows</h3>
+		<div class="grid-holder">
+			<zoo-grid currentpage="3" maxpages="20" reorderable stickyheader resizable>
+				<zoo-grid-header slot="headercell" swap-title="swap icon">Valid</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate' sorttitle="sort icon" swap-title="swap icon">Created Date
+				</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status' sorttitle="sort icon" swap-title="swap icon">Status</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swap-title="swap icon">Max Weight</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate' sorttitle="sort icon" swap-title="swap icon">Delivery Date
+				</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swap-title="swap icon"># of pieces</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swap-title="swap icon">Price</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Actions</zoo-grid-header>
+
+				<zoo-grid-row slot="row">
+					<div slot="row-details">
+						<div>Valid</div>
+						<div>2020-05-10</div>
+						<div>Grid Row Expand</div>
+						<div>50kg</div>
+						<div>2020-05-10</div>
+						<div>10</div>
+						<div>15 EUR</div>
+						<div id="row-1-actions" class="actions">
+							<button type="button" class="expander">Expand</button>
+						</div>
+					</div>
+					<div id="row-1-content" slot="row-content">
+						<div>Content row 1</div>
+					</div>
+				</zoo-grid-row>
+
+				<zoo-grid-row slot="row">
+					<div slot="row-details">
+						<div>Invalid</div>
+						<div>2020-05-15</div>
+						<div>Grid Row Expand</div>
+						<div>5kg</div>
+						<div>2020-05-15</div>
+						<div>1</div>
+						<div>1 EUR</div>
+						<div id="row-2-actions" class="actions">
+							<button type="button" class="expander">Expand</button>
+						</div>
+					</div>
+					<div id="row-2-content" slot="row-content">
+						<div>Content row 2</div>
+					</div>
+				</zoo-grid-row>
+
+				<zoo-grid-row slot="row">
+					<div slot="row-details">
+						<div>Valid</div>
+						<div>2020-05-20</div>
+						<div>Grid Row Expand</div>
+						<div>5kg</div>
+						<div>2020-05-15</div>
+						<div>4</div>
+						<div>7 EUR</div>
+						<div id="row-3-actions" class="actions">
+							<button type="button" class="expander">Expand</button>
+						</div>
+					</div>
+					<div id="row-3-content" slot="row-content">
+						<div>Content row 3</div>
+					</div>
+				</zoo-grid-row>
+
+				<zoo-grid-row slot="row">
+					<div slot="row-details">
+						<div>Valid</div>
+						<div>2020-05-20</div>
+						<div>Grid Row No Expand</div>
+						<div>5kg</div>
+						<div>2020-05-15</div>
+						<div>4</div>
+						<div>7 EUR</div>
+						<div></div>
+					</div>
+				</zoo-grid-row>
+
+				<zoo-select labelposition="left" slot="pagesizeselector">
+					<label for="third-grid-page-size" slot="label">Page size</label>
+					<select id="third-grid-page-size" slot="select">
 						<option selected>5</option>
 						<option>10</option>
 						<option>25</option>

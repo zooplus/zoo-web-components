@@ -206,4 +206,53 @@ describe('Zoo grid', function () {
 		});
 		expect(ret).toEqual('');
 	});
+
+	it('should create grid with zoo-grid-row components', async () => {
+		const rowsLength = await page.evaluate(() => {
+			document.body.innerHTML = `
+			<zoo-grid currentpage="3" maxpages="20">
+				<zoo-grid-header slot="headercell">Created date</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Min weight</zoo-grid-header>
+				<zoo-grid-header slot="headercell">Price</zoo-grid-header>
+		
+				<zoo-grid-row slot="row">
+                    <div slot="row-details">
+                        <div>2020-05-20</div>
+                        <div>5kg</div>
+                        <div>3.56</div>
+                    </div>
+                </zoo-grid-row>
+                
+                <zoo-grid-row slot="row">
+                    <div slot="row-details">
+                        <div>2020-05-21</div>
+                        <div>10kg</div>
+                        <div>2.39</div>
+                    </div>
+                </zoo-grid-row>
+                
+                <zoo-grid-row slot="row">
+                    <div slot="row-details">
+                        <div>2020-05-23</div>
+                        <div>56kg</div>
+                        <div>203.42</div>
+                    </div>
+                </zoo-grid-row>
+		
+				<zoo-select labelposition="left" slot="pagesizeselector">
+					<select id="grid-page-size" slot="select">
+						<option selected>5</option>
+						<option>10</option>
+						<option>25</option>
+					</select>
+					<label for="grid-page-size" slot="label">Page Size</label>
+				</zoo-select>
+			</zoo-grid>
+			`;
+			const grid = document.querySelector('zoo-grid');
+			const rows = grid.shadowRoot.querySelector('*[name="row"]').assignedElements();
+			return rows.length;
+		});
+		expect(rowsLength).toEqual(3);
+	});
 });

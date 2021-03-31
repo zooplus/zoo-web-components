@@ -3,6 +3,7 @@
  * https://github.com/whatwg/html/issues/6226
  * which leads to https://github.com/WICG/webcomponents/issues/59
  */
+
 export class ZooGrid extends HTMLElement {
 	constructor() {
 		super();
@@ -17,17 +18,28 @@ export class ZooGrid extends HTMLElement {
 			if (this.hasAttribute('reorderable')) {
 				headers.forEach(header => this.handleDraggableHeader(header));
 			}
+			if (this.hasAttribute('resizable')) {
+				this.handleResizableAttributeChange();
+			}
 		}));
 		const rowSlot = this.shadowRoot.querySelector('slot[name="row"]');
 		rowSlot.addEventListener('slotchange', this.debounce(() => {
 			rowSlot.assignedElements().forEach(row => {
 				row.setAttribute('role', 'row');
-				[...row.children].forEach((child, i) => {
-					child.setAttribute('column', i+1);
-					child.setAttribute('role', 'cell');
-				});
+				if (row.tagName === 'ZOO-GRID-ROW') {
+					[...row.querySelector('*[slot="row-details"]').children].forEach((child, i) => {
+						child.setAttribute('column', i+1);
+						child.setAttribute('role', 'cell');
+					});
+				} else {
+					[...row.children].forEach((child, i) => {
+						child.setAttribute('column', i+1);
+						child.setAttribute('role', 'cell');
+					});
+				}
 			});
 		}));
+
 		this.addEventListener('sortChange', e => {
 			if (this.prevSortedHeader && !e.target.isEqualNode(this.prevSortedHeader)) {
 				this.prevSortedHeader.removeAttribute('sortstate');
@@ -41,35 +53,29 @@ export class ZooGrid extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		if (attrName == 'resizable' && this.hasAttribute('resizable')) {
-			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
-			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+		if (attrName == 'resizable') {
+			this.handleResizableAttributeChange();
 		} else if (attrName == 'reorderable' && this.hasAttribute('reorderable')) {
 			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.handleDraggableHeader(header));
 		} else if (['maxpages', 'currentpage', 'prev-page-title', 'next-page-title'].includes(attrName)) {
 			this.shadowRoot.querySelector('zoo-paginator').setAttribute(attrName, newVal);
 		}
 	}
+
 	resizeCallback(entries) {
 		entries.forEach(entry => {
 			const columnNum = entry.target.getAttribute('column');
 			const width = entry.contentRect.width;
-			this.querySelectorAll(`[column="${columnNum}"]`)
-				.forEach(columnEl => columnEl.style.width = `${width}px`);
+			const columns = this.querySelectorAll(`[column="${columnNum}"]`);
+			columns.forEach(columnEl => columnEl.style.width = `${width}px`);
 		});
 	}
 
-	debounce(func, wait) {
-		let timeout;
-		return function() {
-			const later = () => {
-				timeout = null;
-				func.apply(this, arguments);
-			};
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-			if (!timeout) func.apply(this, arguments);
-		};
+	handleResizableAttributeChange() {
+		if (this.hasAttribute('resizable')) {
+			this.resizeObserver = this.resizeObserver || new ResizeObserver(this.debounce(this.resizeCallback.bind(this)));
+			this.shadowRoot.querySelector('slot[name="headercell"]').assignedElements().forEach(header => this.resizeObserver.observe(header));
+		}
 	}
 
 	handleDraggableHeader(header) {
@@ -101,7 +107,27 @@ export class ZooGrid extends HTMLElement {
 		});
 		// reassign indexes for row cells
 		this.shadowRoot.querySelector('slot[name="row"]').assignedElements()
-			.forEach(row => [...row.children].forEach((child, i) => child.setAttribute('column', i+1)));
+			.forEach(row => {
+				if (row.tagName === 'ZOO-GRID-ROW') {
+					[...row.shadowRoot.querySelector('slot[name="row-details"]').assignedElements()[0].children]
+						.forEach((child, i) => child.setAttribute('column', i+1));
+				} else {
+					[...row.children].forEach((child, i) => child.setAttribute('column', i+1));
+				}
+			});
+	}
+
+	debounce(func, wait) {
+		let timeout;
+		return function () {
+			const later = () => {
+				timeout = null;
+				func.apply(this, arguments);
+			};
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (!timeout) func.apply(this, arguments);
+		};
 	}
 
 	disconnectedCallback() {

@@ -202,13 +202,15 @@ const getRow = (d, i, template, idx) => {
 const grids = document.querySelectorAll('zoo-grid');
 let idx = 0;
 for (const grid of grids) {
-	data.forEach((d, i) => {
-		const simpleRow = document.querySelector('#simple-row').content;
-		const clone = getRow(d, i, simpleRow, idx * data.length);
-		grid.appendChild(clone);
-	});
-	if (idx == 0) grid.setAttribute('resizable', true);
-	idx += 1;
+	if (idx !== 2) {
+		data.forEach((d, i) => {
+			const simpleRow = document.querySelector('#simple-row').content;
+			const clone = getRow(d, i, simpleRow, idx * data.length);
+			grid.appendChild(clone);
+		});
+		if (idx == 0) grid.setAttribute('resizable', true);
+		idx += 1;
+	}
 }
 
 document.querySelector('form').addEventListener('submit', e => {
@@ -228,3 +230,18 @@ document.querySelector('form').addEventListener('submit', e => {
 	toast.show();
 	setTimeout(() => toast.remove(), 3150);
 });
+
+const handleExpandAction = (buttonSelector, contentSelector) => {
+	document.querySelector(buttonSelector).onclick = () => {
+		const rowContent = document.querySelector(contentSelector);
+		if (rowContent.hasAttribute('expanded')) {
+			rowContent.removeAttribute('expanded');
+		} else {
+			rowContent.setAttribute('expanded', '');
+		}
+	};
+};
+
+handleExpandAction('#row-1-actions .expander', '#row-1-content');
+handleExpandAction('#row-2-actions .expander', '#row-2-content');
+handleExpandAction('#row-3-actions .expander', '#row-3-content');

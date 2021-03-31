@@ -12,6 +12,7 @@ export { ButtonGroup } from './zoo-modules/form-modules/button-group-module/butt
 
 export { ZooGrid } from './zoo-modules/grid-modules/grid-module/grid.js';
 export { GridHeader } from './zoo-modules/grid-modules/grid-header-module/grid-header.js';
+export { GridRow } from './zoo-modules/grid-modules/grid-row-module/grid-row.js';
 
 export { Header } from './zoo-modules/misc-modules/header-module/header.js';
 export { Modal } from './zoo-modules/misc-modules/modal-module/modal.js';

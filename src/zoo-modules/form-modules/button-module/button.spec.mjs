@@ -110,4 +110,32 @@ describe('Zoo button', () => {
 		expect(style.background).toEqual('transparent');
 		expect(style.border).toEqual(`2px solid  ${colors.primaryMid}`);
 	});
+
+	it('should create transparent button', async () => {
+		const style = await page.evaluate(() => {
+			document.body.innerHTML = `
+				<zoo-button type="transparent">
+					<button type="button">content</button>
+				</zoo-button>
+			`;
+			const nestedButton = document.body.querySelector('zoo-button').shadowRoot.querySelector('slot').assignedElements()[0];
+			const style = window.getComputedStyle(nestedButton);
+			return {
+				colorLight: style.getPropertyValue('--color-light').trim(),
+				colorMid: style.getPropertyValue('--color-mid').trim(),
+				colorDark: style.getPropertyValue('--color-dark').trim(),
+				textNormal: style.getPropertyValue('--text-normal').trim(),
+				textActive: style.getPropertyValue('--text-active').trim(),
+				background: style.getPropertyValue('--background').trim(),
+				border: style.getPropertyValue('--border').trim()
+			};
+		});
+		expect(style.colorLight).toEqual(colors.primaryLight);
+		expect(style.colorMid).toEqual(colors.primaryMid);
+		expect(style.colorDark).toEqual(colors.primaryDark);
+		expect(style.textNormal).toEqual(colors.primaryMid);
+		expect(style.textActive).toEqual('white');
+		expect(style.background).toEqual('transparent');
+		expect(style.border).toEqual('0');
+	});
 });

@@ -101,6 +101,10 @@ zoo-grid {
 	min-width: 1024px;
 }
 
+zoo-grid-row {
+	--grid-row-content-height: 150px;
+}
+
 .grid-holder {
 	max-width: 1280px;
 	overflow: auto;

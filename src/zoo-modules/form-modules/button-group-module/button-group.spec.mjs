@@ -1,4 +1,4 @@
-fdescribe('Zoo button group', () => {
+describe('Zoo button group', () => {
 	it('should properly set initially active button', async () => {
 		const result = await page.evaluate(async () => {
 			document.body.innerHTML = `

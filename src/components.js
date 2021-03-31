@@ -7,13 +7,13 @@ export { Select } from './zoo-modules/form-modules/select-module/select.js';
 export { SearchableSelect } from './zoo-modules/form-modules/searchable-select-module/searchable-select.js';
 export { QuantityControl } from './zoo-modules/form-modules/quantity-control-module/quantity-control.js';
 export { ToggleSwitch } from './zoo-modules/form-modules/toggle-switch-module/toggle-switch.js';
-export { Button } from './zoo-modules/form-modules/button-module/button.js';
-export { ButtonGroup } from './zoo-modules/form-modules/button-group-module/button-group.js';
 
 export { ZooGrid } from './zoo-modules/grid-modules/grid-module/grid.js';
 export { GridHeader } from './zoo-modules/grid-modules/grid-header-module/grid-header.js';
 export { GridRow } from './zoo-modules/grid-modules/grid-row-module/grid-row.js';
 
+export { Button } from './zoo-modules/misc-modules/button-module/button.js';
+export { ButtonGroup } from './zoo-modules/misc-modules/button-group-module/button-group.js';
 export { Header } from './zoo-modules/misc-modules/header-module/header.js';
 export { Modal } from './zoo-modules/misc-modules/modal-module/modal.js';
 export { Footer } from './zoo-modules/misc-modules/footer-module/footer.js';

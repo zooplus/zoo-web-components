@@ -8,14 +8,10 @@ export class ButtonGroup extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.buttonGroup.addEventListener('slotchange', debounce(() => {
-			this.buttonGroupElements.forEach((button, index) => {
-				if (button.hasAttribute('data-active')) {
-					this.activateButton(button, index);
-				} else {
-					this.deactivateButton(button);
-				}
-
+		const buttonGroup = this.shadowRoot.querySelector('slot[name="buttons"]');
+		buttonGroup.addEventListener('slotchange', debounce(() => {
+			buttonGroup.assignedElements().forEach((button, index) => {
+				this.handleButtonInitialState(button, index);
 				this.registerButtonClickHandler(button, index);
 			});
 
@@ -23,38 +19,34 @@ export class ButtonGroup extends HTMLElement {
 		}));
 	}
 
-	activateButton(button, buttonIndex) {
-		button.setAttribute('type', this.activeType);
-		this.activeIndex = buttonIndex;
-	}
-
-	deactivateButton(button) {
-		button.setAttribute('type', this.inactiveType);
+	handleButtonInitialState(button, buttonIndex) {
+		if (button.hasAttribute('data-active')) {
+			this.activateButton(button, buttonIndex);
+		} else {
+			this.deactivateButton(button);
+		}
 	}
 
 	registerButtonClickHandler(button, buttonIndex) {
+		const buttonGroup = this.shadowRoot.querySelector('slot[name="buttons"]');
+
 		button.addEventListener('click', (ev) => {
 			if (this.activeIndex !== buttonIndex) {
-				this.deactivateButton(this.buttonGroupElements[this.activeIndex]);
+				this.deactivateButton(buttonGroup.assignedElements()[this.activeIndex]);
 				this.activateButton(ev.target.parentNode, buttonIndex);
 			}
 		});
 	}
 
-	get buttonGroup() {
-		return this.shadowRoot.querySelector('slot[name="buttons"]');
+	activateButton(button, buttonIndex) {
+		const activeType = this.getAttribute('active-type');
+		button.setAttribute('type', activeType);
+		this.activeIndex = buttonIndex;
 	}
 
-	get buttonGroupElements() {
-		return this.buttonGroup.assignedElements();
-	}
-
-	get activeType() {
-		return this.getAttribute('active-type');
-	}
-
-	get inactiveType() {
-		return this.getAttribute('inactive-type');
+	deactivateButton(button) {
+		const inactiveType = this.getAttribute('inactive-type');
+		button.setAttribute('type', inactiveType);
 	}
 }
 

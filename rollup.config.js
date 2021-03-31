@@ -17,7 +17,7 @@ const plugins = [
 const createConfig = (filename) => ({
 	input: `src/zoo-modules/${filename}`,
 	output: {
-		file: dev ? `docs/components/${filename}` : `docs/components/${filename}`,
+		file: dev ? `docs/components/${filename}` : `dist/${filename}`,
 		format: 'iife',
 		name: 'filename',
 	},

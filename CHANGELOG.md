@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 9.2.0
+
+New component:
+`zoo-button-group` - a container which holds slotted `zoo-button` components and switches state on click.
+
 ## 9.1.0
 
 `zoo-grid-row` - new component for `zoo-grid`;

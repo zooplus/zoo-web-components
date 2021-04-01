@@ -124,3 +124,8 @@ zoo-input zoo-button button {
 #input-composition {
 	border-radius: 5px 0 0 5px;
 }
+
+.button-group {
+	display: flex;
+	justify-content: center;
+}

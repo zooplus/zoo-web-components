@@ -13,13 +13,13 @@ export class ButtonGroup extends HTMLElement {
 			buttonGroup.assignedElements().forEach((button, index) => {
 				this.handleButtonInitialState(button, index);
 			});
-			this.registerButtonChangeHandler();
-			this.style.display = 'flex';
+			this.style.opacity = '1';
 		}));
+
+		this.registerButtonChangeHandler();
 	}
 
 	handleButtonInitialState(button, buttonIndex) {
-		button.children[0].setAttribute('data-index', buttonIndex);
 		if (button.hasAttribute('data-active')) {
 			this.activateButton(button, buttonIndex);
 		} else {
@@ -42,8 +42,8 @@ export class ButtonGroup extends HTMLElement {
 		const buttonGroup = this.shadowRoot.querySelector('slot');
 
 		this.addEventListener('click', (ev) => {
-			const buttonIndex = ev.target.dataset.index;
-			if (buttonIndex && this.activeIndex !== buttonIndex) {
+			const buttonIndex = buttonGroup.assignedElements().indexOf(ev.target.parentNode);
+			if (buttonIndex > -1 && this.activeIndex !== buttonIndex) {
 				this.deactivateButton(buttonGroup.assignedElements()[this.activeIndex]);
 				this.activateButton(ev.target.parentNode, buttonIndex);
 			}

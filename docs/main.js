@@ -167,14 +167,9 @@ const getRow = (d, i, template, idx) => {
 	row.appendChild(createdDate);
 
 	// status
-	const selectTmpl = document.querySelector('#status-select').content.cloneNode(true);
-	const select = selectTmpl.querySelector('select');
-	select.setAttribute('id', `${num}-select`);
-	selectTmpl.querySelector('label').setAttribute('for', `${num}-select`);
-	if (d.status !== 'DELIVERED') {
-		select.setAttribute('disabled', '');
-	}
-	row.appendChild(selectTmpl);
+	const spanForStatus = document.createElement('span');
+	spanForStatus.textContent = d.status;
+	row.appendChild(spanForStatus);
 
 	// max weight
 	const maxWeight = document.createElement('div');

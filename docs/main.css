@@ -129,3 +129,26 @@ zoo-input zoo-button button {
 	display: flex;
 	justify-content: center;
 }
+
+.grid-footer-content {
+	display: flex;
+	align-items: center;
+}
+
+.grid-footer-content zoo-button {
+	margin-right: 10px;
+}
+
+.filter-row zoo-input input,
+.filter-row zoo-select select {
+	padding: 0 5px;
+	height: 25px;
+}
+
+.filter-row > *:not(button) {
+	padding-right: 5px;
+}
+
+.filter-row input[type="date"]::-webkit-calendar-picker-indicator {
+	margin: 0;
+}

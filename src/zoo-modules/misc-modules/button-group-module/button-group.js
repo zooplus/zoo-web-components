@@ -1,4 +1,4 @@
-import { debounce } from '../../helpers/debounce';
+import { debounce } from '../../helpers/debounce.js';
 /**
  * @injectHTML
  */
@@ -9,14 +9,27 @@ export class ButtonGroup extends HTMLElement {
 
 	connectedCallback() {
 		const buttonGroup = this.shadowRoot.querySelector('slot');
+		this.registerSlotChangeListener(buttonGroup);
+		this.registerButtonChangeHandler(buttonGroup);
+	}
+
+	registerSlotChangeListener(buttonGroup) {
 		buttonGroup.addEventListener('slotchange', debounce(() => {
 			buttonGroup.assignedElements().forEach((button, index) => {
 				this.handleButtonInitialState(button, index);
 			});
 			this.style.opacity = '1';
 		}));
+	}
 
-		this.registerButtonChangeHandler();
+	registerButtonChangeHandler(buttonGroup) {
+		this.addEventListener('click', (ev) => {
+			const buttonIndex = buttonGroup.assignedElements().indexOf(ev.target.parentNode);
+			if (buttonIndex > -1 && this.activeIndex !== buttonIndex) {
+				this.deactivateButton(buttonGroup.assignedElements()[this.activeIndex]);
+				this.activateButton(ev.target.parentNode, buttonIndex);
+			}
+		});
 	}
 
 	handleButtonInitialState(button, buttonIndex) {
@@ -36,18 +49,6 @@ export class ButtonGroup extends HTMLElement {
 	deactivateButton(button) {
 		const inactiveType = this.getAttribute('inactive-type');
 		button.setAttribute('type', inactiveType);
-	}
-
-	registerButtonChangeHandler() {
-		const buttonGroup = this.shadowRoot.querySelector('slot');
-
-		this.addEventListener('click', (ev) => {
-			const buttonIndex = buttonGroup.assignedElements().indexOf(ev.target.parentNode);
-			if (buttonIndex > -1 && this.activeIndex !== buttonIndex) {
-				this.deactivateButton(buttonGroup.assignedElements()[this.activeIndex]);
-				this.activateButton(ev.target.parentNode, buttonIndex);
-			}
-		});
 	}
 }
 

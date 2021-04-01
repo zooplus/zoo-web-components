@@ -1,4 +1,4 @@
-import { debounce } from '../../helpers/debounce';
+import { debounce } from '../../helpers/debounce.js';
 /**
  * @injectHTML
  * https://github.com/whatwg/html/issues/6226

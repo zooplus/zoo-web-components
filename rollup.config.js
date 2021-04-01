@@ -24,26 +24,9 @@ const createConfig = (filename) => ({
 	plugins
 });
 
-export default [
-	{
-		input: 'src/components.js',
-		output: [
-			{
-				sourcemap: true,
-				format: 'iife',
-				dir: dev ? 'docs/components' : 'dist',
-				name: 'zooWebComponents'
-			},
-			{
-				sourcemap: true,
-				format: 'esm',
-				dir: dev ? 'docs/components/esm' : 'dist/esm',
-				preserveModules: true
-			}
-		],
-		plugins: plugins
-	},
-	...[
+const getAdditionalConfigs = () => {
+	if (dev) return [];
+	return [
 		'form-modules/info-module/info.js',
 		'form-modules/label-module/label.js',
 		'form-modules/input-module/input.js',
@@ -76,5 +59,27 @@ export default [
 		'misc-modules/arrow-icon-module/arrow-icon.js',
 		'misc-modules/paw-icon-module/paw-icon.js',
 		'misc-modules/tag-module/tag.js'
-	].map((filename) => createConfig(filename))
+	].map((filename) => createConfig(filename));
+}
+
+export default [
+	{
+		input: 'src/components.js',
+		output: [
+			{
+				sourcemap: true,
+				format: 'iife',
+				dir: dev ? 'docs/components' : 'dist',
+				name: 'zooWebComponents'
+			},
+			{
+				sourcemap: true,
+				format: 'esm',
+				dir: dev ? 'docs/components/esm' : 'dist/esm',
+				preserveModules: true
+			}
+		],
+		plugins: plugins
+	},
+	...getAdditionalConfigs()
 ];

@@ -172,7 +172,7 @@
 		<zoo-toast id="modalToast">
 			<span slot="content">Added to cart!</span>
 		</zoo-toast>
-		<h2>Buttons, modal windows</h2>
+		<h2>Buttons, button groups, modal windows</h2>
 		<div class="buttons">
 			<zoo-button id="toast-summoner">
 				<button type="button">Summon toast!</button>
@@ -206,6 +206,22 @@
 				<button type="button">Transparent type button that does nothing</button>
 			</zoo-button>
 		</div>
+		<div class="button-group">
+			<zoo-button-group active-type="primary" inactive-type="transparent">
+				<zoo-button>
+					<button type="button">Status Pending</button>
+				</zoo-button>
+
+				<zoo-button data-active>
+					<button type="button">Fulfilled</button>
+				</zoo-button>
+
+				<zoo-button>
+					<button type="button">Status Failure</button>
+				</zoo-button>
+			</zoo-button-group>
+		</div>
+
 		<zoo-modal id="modal" closelabel="close modal">
 			<span slot="header">Your basket contains licensed items</span>
 			<div>

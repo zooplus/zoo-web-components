@@ -1,0 +1,14 @@
+:host {
+	display: flex;
+	opacity: 0;
+	border: 1px solid #B8B8B8;
+	border-radius: 5px;
+	padding: 2px 0;
+	justify-content: flex-end;
+	width: fit-content;
+}
+
+::slotted(zoo-button) {
+	min-width: 50px;
+	padding: 0 2px;
+}

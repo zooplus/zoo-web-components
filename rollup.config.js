@@ -64,7 +64,7 @@ const getAdditionalConfigs = () => {
 
 export default [
 	{
-		input: 'src/components.js',
+		input: 'src/zoo-web-components.js',
 		output: [
 			{
 				sourcemap: true,

@@ -27,7 +27,7 @@
 		"stylelint-config-standard": "^21.0.0"
 	},
 	"scripts": {
-		"start": "concurrently -k \"node server.js docs\"  \"cross-env NODE_ENV=local rollup -c -w --watch.clearScreen\"",
+		"start": "concurrently -k \"node server.js docs\"  \"cross-env NODE_ENV=local rollup -c -w\"",
 		"build": "rollup -c",
 		"pretest": "cross-env NODE_ENV=local npm run build",
 		"test": "concurrently -k -s first \"nyc --reporter=lcov --reporter=text-summary jasmine\" \"node server.js docs\"",

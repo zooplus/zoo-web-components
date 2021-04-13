@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 9.2.2
+
+`zoo-link` - fix line-height to comply with styleguide;
+`zoo-button` - added new type `grayscale`, frequently used in situations for nasty visual hack for cookie consent popups.
+
 ## 9.2.1
 
 `zoo-navigation` - remove css containment;

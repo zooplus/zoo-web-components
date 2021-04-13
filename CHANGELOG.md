@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 9.2.1
+
+`zoo-navigation` - remove css containment;
+`zoo-searchable-select` - align nested zoo-link with label.
+
 ## 9.2.0
 
 New component:

@@ -152,3 +152,7 @@ zoo-input zoo-button button {
 .filter-row input[type="date"]::-webkit-calendar-picker-indicator {
 	margin: 0;
 }
+
+zoo-navigation {
+	overflow-y: hidden;
+}

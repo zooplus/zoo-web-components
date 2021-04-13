@@ -89,6 +89,7 @@ zoo-preloader {
 }
 
 zoo-link {
+	align-items: flex-start;
 	text-align: right;
 	max-width: max-content;
 	justify-self: flex-end;

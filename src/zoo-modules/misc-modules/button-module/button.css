@@ -25,6 +25,15 @@
 	--border: 2px solid var(--color-mid);
 }
 
+:host([type="grayscale"]) {
+	--background: transparent;
+	--color-mid: transparent;
+	--color-dark: transparent;
+	--border: 0;
+	--text-normal: #767676;
+	--text-active: #9E9E9E;
+}
+
 :host([type="transparent"]) {
 	--text-normal: var(--color-mid);
 	--background: transparent;

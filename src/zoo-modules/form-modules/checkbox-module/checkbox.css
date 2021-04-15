@@ -56,6 +56,8 @@ svg path {
 
 .indeterminate {
 	display: none;
+	background: var(--check-color);
+	fill: white;
 }
 
 :host([checked]) svg path {

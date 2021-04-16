@@ -20,12 +20,12 @@ npm i @zooplus/zoo-web-components --save
 When there is a tree-shaking mechanism in your build pipeline, you can import only the components that you need, for example:
 
 ```JS
-import { Input, Select, registerComponents } from '@zooplus/zoo-web-components/dist/esm/zoo-web-components.js';
+import { Input, Select, registerComponents } from '@zooplus/zoo-web-components';
 registerComponents(Input, Select);
 
 // or to import everything
 
-import * as zooComponents from  '@zooplus/zoo-web-components/dist/esm/zoo-web-components.js';
+import * as zooComponents from  '@zooplus/zoo-web-components';
 zooComponents.registerComponents(zooComponents);
 ```
 
@@ -42,7 +42,7 @@ In case you don't use any framework and/or any build tool you can import the who
 or only the components that you need, for example:
 
 ```HTML
-<script src="path-to-zooplus-lib/iife/checkbox.js"></script>
+<script src="path-to-zooplus-lib/checkbox.js"></script>
 ```
 
 Note, that IIFE components already include all sub-dependencies needed by the component. For example, the above `zoo-checkbox` requires also a `zoo-info` component, it is already in the same bundle as the checkbox.

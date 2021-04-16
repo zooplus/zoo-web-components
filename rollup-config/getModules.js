@@ -11,7 +11,7 @@ const createConfig = (filePath, plugins) => {
 	return {
 		input: filePath,
 		output: {
-			file: dev ? `docs/components/${shortFileName}` : `dist/iife/${shortFileName}`,
+			file: dev ? `docs/components/${shortFileName}` : `dist/${shortFileName}`,
 			format: 'iife',
 			name: shortName,
 		},

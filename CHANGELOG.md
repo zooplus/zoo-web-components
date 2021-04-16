@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 9.2.3
+
+`zoo-input` - align checkbox with `indeterminate` state with style guide and with standard input type checkbox visuals.
+
 ## 9.2.2
 
 `zoo-link` - fix line-height to comply with styleguide;

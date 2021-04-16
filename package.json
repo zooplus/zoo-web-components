@@ -1,14 +1,14 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "9.3.0",
-	"main": "dist/zoo-web-components.js",
+	"version": "9.3.0-alpha-6",
+	"main": "dist/iife/zoo-web-components.js",
 	"sideEffects": false,
 	"files": [
 		"dist/*.js",
 		"dist/**/*.js"
 	],
 	"type": "module",
-	"module": "dist/zoo-web-components-esm.js",
+	"module": "dist/esm/zoo-web-components.js",
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {

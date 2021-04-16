@@ -7,10 +7,11 @@ let dev = process.env.NODE_ENV == 'local';
 const createConfig = (filePath, plugins) => {
 	const fileName = filePath.replace('./src/zoo-modules/', '');
 	const shortName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.')).split('-').join('')
+	const shortFileName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.length);
 	return {
 		input: filePath,
 		output: {
-			file: dev ? `docs/components/${fileName}` : `dist/${fileName}`,
+			file: dev ? `docs/components/${shortFileName}` : `dist/iife/${shortFileName}`,
 			format: 'iife',
 			name: shortName,
 		},
@@ -24,7 +25,7 @@ function getFiles(nextPath, modules) {
 		const nextDirPath = fs.readdirSync(nextPath);
 		nextDirPath.forEach(filePath => getFiles(`${nextPath}/${filePath}`, modules));
 	} else {
-		if (nextPath.indexOf('-module/') > -1 && nextPath.indexOf('.js') > -1) {
+		if (nextPath.indexOf('.js') > -1) {
 			modules.push(nextPath);
 		}
 	}

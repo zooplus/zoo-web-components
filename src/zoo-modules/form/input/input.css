@@ -55,9 +55,7 @@
 
 .content {
 	display: flex;
-	position: relative;
 	grid-column: span 2;
-	flex: 1;
 }
 
 zoo-info {

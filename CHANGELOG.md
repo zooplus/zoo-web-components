@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.0.0
+
+Make library tree-shakeable. Please refer to the README for more info.
+
 ## 9.2.3
 
 `zoo-input` - align checkbox with `indeterminate` state with style guide and with standard input type checkbox visuals.

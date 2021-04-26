@@ -4,7 +4,7 @@ import fs from 'fs';
 
 let dev = process.env.NODE_ENV == 'local';
 
-const createConfig = (filePath, plugins) => {
+const createConfig = (filePath) => {
 	const fileName = filePath.replace('./src/zoo-modules/', '');
 	const shortName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.')).split('-').join('')
 	const shortFileName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.length);

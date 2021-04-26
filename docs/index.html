@@ -7,8 +7,10 @@
 	<meta name="Description" content="Web components design system.">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Zooplus components</title>
-	<script src="./components/components.js"></script>
-	<!-- <script type="module" src="./components/components-esm.js"></script> -->
+	
+	<script src="./components/zoo-web-components.js"></script>
+	<!-- <script type="module" src="./components/zoo-web-components-esm.js"></script> -->
+	<!-- <script type="module" src="./components/esm/zoo-modules/form/checkbox/checkbox.js"></script> -->
 	<link rel="stylesheet" href="main.css">
 	<noscript>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -254,6 +256,32 @@
 		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 		<div class="grid-holder">
 			<zoo-grid role="grid" stickyheader currentpage="5" maxpages="20" resizable reorderable>
+				<div slot="row" class="filter-row">
+					<div></div>
+					<zoo-input>
+						<input slot="input" type="date">
+					</zoo-input>
+					<zoo-select>
+						<select slot="select">
+						  <option disabled selected>Select an option</option>
+						  <option value='delivered'>Delivered</option>
+						  <option value='ready'>Ready</option>
+						  <option value='packing'>Packing</option>
+						</select>
+					</zoo-select>
+					<zoo-input>
+						<input slot="input" type="number" placeholder="Max weight filter">
+					</zoo-input>
+					<zoo-input>
+						<input slot="input" type="date">
+					</zoo-input>
+					<zoo-input>
+						<input slot="input" type="number" placeholder="Number of pieces filter">
+					</zoo-input>
+					<zoo-input>
+						<input slot="input" type="number" placeholder="Price filter">
+					</zoo-input>
+				</div>
 				<zoo-grid-header slot="headercell" swap-title="swap icon">Valid</zoo-grid-header>
 				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate' sorttitle="sort icon" swap-title="swap icon">Created Date
 				</zoo-grid-header>
@@ -264,7 +292,13 @@
 				<zoo-grid-header slot="headercell" swap-title="swap icon"># of pieces</zoo-grid-header>
 				<zoo-grid-header slot="headercell" swap-title="swap icon">Price</zoo-grid-header>
 
-				<div slot="footer-content">
+				<div slot="footer-content" class="grid-footer-content">
+					<zoo-button>
+						<button type="button">Button 1</button>
+					</zoo-button>
+					<zoo-button>
+						<button type="button">Button 2</button>
+					</zoo-button>
 				</div>
 				<zoo-select labelposition="left" slot="pagesizeselector">
 					<label for="first-grid-page-size" slot="label">Page size</label>
@@ -404,17 +438,6 @@
 				<input checked slot="checkbox" type="checkbox" />
 				<label slot="label">Valid</label>
 			</zoo-checkbox>
-		</template>
-
-		<template id="status-select">
-			<zoo-select>
-				<label slot="label" style="position: absolute; overflow: hidden; clip: rect(0 0 0 0); height: 1px;width: 1px;margin: -1px;padding: 0;border: 0;">Delivery status</label>
-				<select title="Delivery Status" slot="select">
-					<option>DELIVERED</option>
-					<option>READY</option>
-					<option>PACKING</option>
-				</select>
-			</zoo-select>
 		</template>
 		<script src='main.js'></script>
 	</main>

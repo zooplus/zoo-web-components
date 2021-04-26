@@ -2,6 +2,7 @@ import { registerComponents } from '../../common/register-components.js';
 import { FormElement } from '../common/FormElement.js';
 import { InfoMessage } from '../info/info.js';
 import { Label } from '../label/label.js';
+import { Input } from '../input/input.js';
 
 /**
  * @injectHTML
@@ -9,7 +10,7 @@ import { Label } from '../label/label.js';
 export class DateRange extends FormElement {
 	constructor() {
 		super();
-		registerComponents(InfoMessage, Label);
+		registerComponents(InfoMessage, Label, Input);
 		const slottedInputs = {};
 		this.shadowRoot.querySelector('slot[name="date-from"]')
 			.addEventListener('slotchange', e => this.handleAndSaveSlottedInputAs(e, 'dateFrom', slottedInputs));

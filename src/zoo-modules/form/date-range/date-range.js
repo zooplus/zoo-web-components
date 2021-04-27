@@ -16,7 +16,7 @@ export class DateRange extends FormElement {
 			.addEventListener('slotchange', e => this.handleAndSaveSlottedInputAs(e, 'dateFrom', slottedInputs));
 		this.shadowRoot.querySelector('slot[name="date-to"]')
 			.addEventListener('slotchange', e => this.handleAndSaveSlottedInputAs(e, 'dateTo', slottedInputs));
-		this.addEventListener('input', e => {
+		this.addEventListener('input', () => {
 			const dateInputFrom = slottedInputs.dateFrom;
 			const dateInputTo = slottedInputs.dateTo;
 			if (dateInputFrom.value) {

@@ -21,8 +21,7 @@ describe('Zoo date range', function () {
 			dateTo.dispatchEvent(new Event('input', {bubbles: true}));
 			await new Promise(r => setTimeout(r, 10));
 				
-			const invalid = document.querySelector('zoo-date-range').hasAttribute('invalid');
-			return invalid;
+			return document.querySelector('zoo-date-range').hasAttribute('invalid');
 		});
 		expect(invalid).toBeTrue();
 	});
@@ -49,8 +48,7 @@ describe('Zoo date range', function () {
 			dateFrom.dispatchEvent(new Event('input', {bubbles: true}));
 			await new Promise(r => setTimeout(r, 10));
 
-			const invalid = document.querySelector('zoo-date-range').hasAttribute('invalid');
-			return invalid;
+			return document.querySelector('zoo-date-range').hasAttribute('invalid');
 		});
 		expect(invalid).toBeTrue();
 	});

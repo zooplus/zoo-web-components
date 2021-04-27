@@ -19,21 +19,16 @@ export class DateRange extends FormElement {
 		this.addEventListener('input', () => {
 			const dateInputFrom = slottedInputs.dateFrom;
 			const dateInputTo = slottedInputs.dateTo;
-			if (dateInputFrom.value) {
-				dateInputTo.setAttribute('min', dateInputFrom.value);
-			} else {
-				dateInputTo.removeAttribute('min');
-			}
-			if (dateInputTo.value) {
-				dateInputFrom.setAttribute('max', dateInputTo.value);
-			} else {
-				dateInputTo.removeAttribute('max');
+			if (dateInputFrom.value && dateInputTo.value && dateInputFrom.value > dateInputTo.value) {
+				this.setInvalid();
+			} else if (dateInputFrom.validity.valid && dateInputTo.validity.valid) {
+				this.setValid();
 			}
 		});
 	}
 
 	handleAndSaveSlottedInputAs(e, propName, slottedInputs) {
-		let input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
+		const input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
 		slottedInputs[propName] = input;
 		input && this.registerElementForValidation(input);
 	}

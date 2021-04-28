@@ -32,6 +32,11 @@ main {
 	max-width: 1280px;
 }
 
+.form-content h3 {
+	grid-column: 1 / -1;
+	text-align: left;
+}
+
 h2 {
 	color: var(--primary-mid);
 }

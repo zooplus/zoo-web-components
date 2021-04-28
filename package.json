@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "10.0.0",
+	"version": "10.1.0",
 	"main": "dist/zoo-web-components.js",
 	"sideEffects": false,
 	"files": [
@@ -12,7 +12,7 @@
 	"description": "Set of web-components implementing zoo+ style guide",
 	"person": "Yuriy Kravets <yuriy.kravets@zooplus.com>",
 	"devDependencies": {
-		"axe-core": "^4.1.4",
+		"axe-core": "^4.2.0",
 		"clean-css": "^5.1.2",
 		"concurrently": "^6.0.2",
 		"cross-env": "^7.0.3",

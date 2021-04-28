@@ -57,20 +57,27 @@ var zooWebComponents = (function (exports) {
 
 		registerElementForValidation(element) {
 			element.addEventListener('invalid', () => {
-				this.setAttribute('invalid', '');
-				this.setAttribute('aria-invalid', '');
+				this.setInvalid();
 				this.toggleInvalidAttribute(element);
 			});
 			element.addEventListener('input', () => {
 				if (element.checkValidity()) {
-					this.removeAttribute('aria-invalid');
-					this.removeAttribute('invalid');
+					this.setValid();
 				} else {
-					this.setAttribute('aria-invalid', '');
-					this.setAttribute('invalid', '');
+					this.setInvalid();
 				}
 				this.toggleInvalidAttribute(element);
 			});
+		}
+
+		setInvalid() {
+			this.setAttribute('invalid', '');
+			this.setAttribute('aria-invalid', '');
+		}
+
+		setValid() {
+			this.removeAttribute('aria-invalid');
+			this.removeAttribute('invalid');
 		}
 
 		toggleInvalidAttribute(element) {
@@ -101,7 +108,7 @@ var zooWebComponents = (function (exports) {
 	 */
 	class Input extends FormElement {
 		constructor() {
-			super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,zoo-info{grid-column:span 2}:host{display:grid;grid-gap:3px;width:100%;height:max-content;box-sizing:border-box}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}:host([invalid]) ::slotted(input),:host([invalid]) ::slotted(textarea){border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input[type=date]),::slotted(input[type=time]){-webkit-logical-height:48px;max-height:48px}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555;padding:12px 14px}.content{display:flex;position:relative;flex:1}zoo-link{text-align:right;max-width:max-content;justify-self:flex-end;padding:0}:host([labelposition=left]) zoo-link{grid-column:2}:host([labelposition=left]) .content,:host([labelposition=left]) zoo-label{display:flex;align-items:center;grid-row:2}:host([labelposition=left]) zoo-info[role=status]{grid-row:3;grid-column:2}:host([labelposition=left]) zoo-info[role=alert]{grid-row:4;grid-column:2}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><slot name="input"></slot><slot name="additional"></slot></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info>`;
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,zoo-info{grid-column:span 2}:host{display:grid;grid-gap:3px;width:100%;height:max-content;box-sizing:border-box}::slotted(input),::slotted(textarea){width:100%;font-size:14px;line-height:20px;padding:13px 15px;margin:0;border:1px solid #767676;border-radius:5px;color:#555;outline:0;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis}:host([invalid]) ::slotted(input),:host([invalid]) ::slotted(textarea){border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input[type=date]),::slotted(input[type=time]){-webkit-logical-height:48px;max-height:48px}::slotted(input::placeholder),::slotted(textarea::placeholder){color:#767676}::slotted(input:disabled),::slotted(textarea:disabled){border:1px solid #e6e6e6;background:#f2f3f4;color:#767676;cursor:not-allowed}::slotted(input:focus),::slotted(textarea:focus){border:2px solid #555;padding:12px 14px}.content{display:flex}zoo-link{text-align:right;max-width:max-content;justify-self:flex-end;padding:0}:host([labelposition=left]) zoo-link{grid-column:2}:host([labelposition=left]) .content,:host([labelposition=left]) zoo-label{display:flex;align-items:center;grid-row:2}:host([labelposition=left]) zoo-info[role=status]{grid-row:3;grid-column:2}:host([labelposition=left]) zoo-info[role=alert]{grid-row:4;grid-column:2}</style><zoo-label><slot name="label"></slot></zoo-label><zoo-link><slot name="link" slot="anchor"></slot></zoo-link><div class="content"><slot name="input"></slot><slot name="additional"></slot></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info>`;
 			registerComponents(InfoMessage, Label, Link);
 			this.shadowRoot.querySelector('slot[name="input"]').addEventListener('slotchange', e => {
 				let input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
@@ -425,6 +432,39 @@ var zooWebComponents = (function (exports) {
 
 	if (!window.customElements.get('zoo-toggle-switch')) {
 		window.customElements.define('zoo-toggle-switch', ToggleSwitch);
+	}
+
+	/**
+	 * @injectHTML
+	 */
+	class DateRange extends FormElement {
+		constructor() {
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>.content,zoo-info{grid-column:span 2}:host{display:grid;grid-gap:3px;width:100%;height:max-content;box-sizing:border-box}fieldset{border:0;padding:0;margin:0;position:relative}:host([invalid]) ::slotted(input){border:2px solid var(--warning-mid);padding:12px 14px}.content{display:flex;justify-content:space-between}.content zoo-input{width:49%}</style><fieldset><legend><zoo-label><slot name="label"></slot></zoo-label></legend><div class="content"><zoo-input><slot slot="input" name="date-from"></slot></zoo-input><zoo-input><slot slot="input" name="date-to"></slot></zoo-input></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info></fieldset>`;
+			registerComponents(InfoMessage, Label, Input);
+			const slottedInputs = {};
+			this.shadowRoot.querySelector('slot[name="date-from"]')
+				.addEventListener('slotchange', e => this.handleAndSaveSlottedInputAs(e, 'dateFrom', slottedInputs));
+			this.shadowRoot.querySelector('slot[name="date-to"]')
+				.addEventListener('slotchange', e => this.handleAndSaveSlottedInputAs(e, 'dateTo', slottedInputs));
+			this.addEventListener('input', () => {
+				const dateInputFrom = slottedInputs.dateFrom;
+				const dateInputTo = slottedInputs.dateTo;
+				if (dateInputFrom.value && dateInputTo.value && dateInputFrom.value > dateInputTo.value) {
+					this.setInvalid();
+				} else if (dateInputFrom.validity.valid && dateInputTo.validity.valid) {
+					this.setValid();
+				}
+			});
+		}
+
+		handleAndSaveSlottedInputAs(e, propName, slottedInputs) {
+			const input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
+			slottedInputs[propName] = input;
+			input && this.registerElementForValidation(input);
+		}
+	}
+	if (!window.customElements.get('zoo-date-range')) {
+		window.customElements.define('zoo-date-range', DateRange);
 	}
 
 	function debounce(func, wait) {
@@ -1071,6 +1111,7 @@ var zooWebComponents = (function (exports) {
 	exports.CollapsableList = CollapsableList;
 	exports.CollapsableListItem = CollapsableListItem;
 	exports.CrossIcon = CrossIcon;
+	exports.DateRange = DateRange;
 	exports.Feedback = Feedback;
 	exports.Footer = Footer;
 	exports.GridHeader = GridHeader;

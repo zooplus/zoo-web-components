@@ -9,20 +9,27 @@ class FormElement extends HTMLElement {
 
 	registerElementForValidation(element) {
 		element.addEventListener('invalid', () => {
-			this.setAttribute('invalid', '');
-			this.setAttribute('aria-invalid', '');
+			this.setInvalid();
 			this.toggleInvalidAttribute(element);
 		});
 		element.addEventListener('input', () => {
 			if (element.checkValidity()) {
-				this.removeAttribute('aria-invalid');
-				this.removeAttribute('invalid');
+				this.setValid();
 			} else {
-				this.setAttribute('aria-invalid', '');
-				this.setAttribute('invalid', '');
+				this.setInvalid();
 			}
 			this.toggleInvalidAttribute(element);
 		});
+	}
+
+	setInvalid() {
+		this.setAttribute('invalid', '');
+		this.setAttribute('aria-invalid', '');
+	}
+
+	setValid() {
+		this.removeAttribute('aria-invalid');
+		this.removeAttribute('invalid');
 	}
 
 	toggleInvalidAttribute(element) {

@@ -1,0 +1,21 @@
+<fieldset>
+    <legend>
+		<zoo-label>
+			<slot name="label"></slot>
+		</zoo-label>
+	</legend>
+	<div class="content">
+		<zoo-input>
+			<slot slot="input" name="date-from"></slot>
+		</zoo-input>
+		<zoo-input>
+			<slot slot="input" name="date-to"></slot>
+		</zoo-input>
+	</div>
+	<zoo-info role="status">
+		<slot name="info"></slot>
+	</zoo-info>
+	<zoo-info role="alert">
+		<slot name="error"></slot>
+	</zoo-info>
+</fieldset>

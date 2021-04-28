@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 10.1.0
+
+New components:
+`zoo-date-range` - form component that accepts two inputs for setting date-from and date-to with validation between those two values.
+
 ## 10.0.0
 
 Make library tree-shakeable. Please refer to the README for more info.

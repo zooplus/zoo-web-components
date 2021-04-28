@@ -1,0 +1,33 @@
+:host {
+	display: grid;
+	grid-gap: 3px;
+	width: 100%;
+	height: max-content;
+	box-sizing: border-box;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+:host([invalid]) ::slotted(input) {
+	border: 2px solid var(--warning-mid);
+	padding: 12px 14px;
+}
+
+.content {
+	display: flex;
+	justify-content: space-between;
+	grid-column: span 2;
+}
+
+.content zoo-input {
+	width: 49%;
+}
+
+zoo-info {
+	grid-column: span 2;
+}

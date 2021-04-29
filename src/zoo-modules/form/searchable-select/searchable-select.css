@@ -104,6 +104,7 @@ zoo-link {
 zoo-input {
 	grid-gap: 0;
 	grid-column: span 2;
+	position: relative;
 }
 
 :host(:focus-within) ::slotted(input) {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.1.1
+
+fix positioning issue in `zoo-seachable-select` introduced in 10.1.0.
+
 ## 10.1.0
 
 New components:

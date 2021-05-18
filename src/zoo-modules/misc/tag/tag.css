@@ -6,6 +6,15 @@
 	width: max-content;
 	color: var(--color);
 	border-color: var(--color);
+	max-width: 100px;
+	min-height: 46px;
+	border-radius: 3px;
+	border: 1px solid lightgray;
+}
+
+:host(:hover) {
+	background: var(--primary-ultralight);
+	color: var(--primary-dark);
 }
 
 :host([type="info"]) {
@@ -14,22 +23,9 @@
 	border: 1px solid;
 }
 
-:host([type="cloud"]) {
-	min-height: 46px;
-	border-radius: 3px;
-	border: 1px solid lightgray;
-}
-
-:host([type="cloud"]:hover) {
-	background: var(--primary-ultralight);
-	color: var(--primary-dark);
-	border-color: transparent;
-}
-
 ::slotted(*[slot="content"]) {
 	font-size: 12px;
 	line-height: 16px;
-	max-width: 100px;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -41,9 +37,4 @@
 
 ::slotted(*[slot="post"]) {
 	margin-left: 5px;
-}
-
-:host([type="cloud"]) ::slotted(*[slot="pre"]),
-:host([type="cloud"]) ::slotted(*[slot="post"]) {
-	display: none;
 }

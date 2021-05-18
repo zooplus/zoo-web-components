@@ -50,7 +50,7 @@
 				<h3>Input/Textarea</h3>
 				<zoo-input>
 					<label for="input-type-text" slot="label">Input type text</label>
-					<input id="input-type-text" slot="input" type="text" placeholder="input" required
+					<input id="input-type-text" slot="input" type="text" placeholder="Arbitrary text" required
 						pattern="[A-Za-z ]+" />
 					<span slot="info">Additional helpful information for our users</span>
 					<span slot="error">This input field should contain only letters and it is required!</span>
@@ -59,7 +59,7 @@
 					<label for="input-type-number" slot="label">Autocomplete</label>
 					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
 						target="about:blank">Learn your HTML and don't overcomplicate</a>
-					<input id="input-type-number" slot="input" placeholder="input" list="animals" required
+					<input id="input-type-number" slot="input" placeholder="Start typing your pet type" list="animals" required
 						pattern="[Dd]og|[Cc]at|[Ss]mall [Pp]et|[Bb]ird|[Aa]quatic" />
 					<span slot="info">Possible values: Dog, Cat, Small Pet, Bird, Aquatic</span>
 					<span slot="error">This input field is required and should be one of the possible values!</span>
@@ -73,8 +73,6 @@
 				</datalist>
 				<zoo-input>
 					<label for="input-type-date" slot="label">Input type date</label>
-					<a slot="link" href="https://github.com/jcgertig/date-input-polyfill" target="about:blank">Native
-						date picker polyfill on Github</a>
 					<input id="input-type-date" slot="input" type="date" />
 					<span slot="info">Click on input to show context menu with date selection</span>
 				</zoo-input>
@@ -94,6 +92,61 @@
 					<label for="textarea" slot="label">Textarea</label>
 					<textarea id="textarea" slot="input" placeholder="Textarea"></textarea>
 				</zoo-input>
+				<zoo-input-tag>
+					<label for="input-tag" slot="label">Tag input</label>
+					<a slot="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"
+						target="about:blank">some link</a>
+					<input id="input-tag" slot="input" placeholder="Type a tag name"/>
+					<span slot="info">Start typing to see available tags. Tag filtering should be done on client side by listening on 'input' event on slotted input.</span>
+					<span slot="error">At least one tag should be selected!</span>
+					<select slot="select" multiple required>
+						<option value="doge"></option>
+						<option value="catz"></option>
+						<option value="snek"></option>
+						<option value="piggy"></option>
+					</select>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="doge">
+							<div slot="content">
+								<span>doge</span>
+							</div>
+						</zoo-tag>
+						<div slot="description">
+							<span>doge description</span>
+						</div>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="catz">
+							<div slot="content">
+								<span>catz</span>
+							</div>
+						</zoo-tag>
+						<div slot="description">
+							<span>catz description</span>
+						</div>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="snek">
+							<div slot="content">
+								<span>snek</span>
+							</div>
+						</zoo-tag>
+						<div slot="description">
+							<span>snek description</span>
+						</div>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="piggy">
+							<div slot="content">
+								<span>piggy</span>
+							</div>
+						</zoo-tag>
+						<div slot="description">
+							<span>piggy description</span>
+						</div>
+					</zoo-input-tag-option>
+				</zoo-input-tag>
+
 				<h3>Select</h3>
 				<zoo-select>
 					<label for="multiselect" slot="label">Multiselect</label>

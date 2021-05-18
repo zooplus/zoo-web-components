@@ -1,0 +1,12 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+	padding: 5px;
+	overflow: auto;
+	flex-grow: 1;
+}
+
+:host(:hover) {
+	background: var(--primary-ultralight);
+}

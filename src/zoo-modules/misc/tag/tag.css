@@ -7,7 +7,6 @@
 	color: var(--color);
 	border-color: var(--color);
 	max-width: 100px;
-	min-height: 46px;
 	border-radius: 3px;
 	border: 1px solid lightgray;
 }

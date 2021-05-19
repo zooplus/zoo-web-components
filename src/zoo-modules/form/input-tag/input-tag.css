@@ -14,20 +14,17 @@
 #input-wrapper {
 	display: flex;
 	gap: 5px;
-	flex-wrap: wrap;
 	font-size: 14px;
 	line-height: 20px;
 	padding: 13px 15px;
-	margin: 0;
 	border: 1px solid #767676;
 	border-radius: 5px;
 	color: #555;
-	outline: none;
 	box-sizing: border-box;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	grid-column: span 2;
 	position: relative;
+	overflow: visible;
+	z-index: 2;
 }
 
 ::slotted(input) {
@@ -46,16 +43,19 @@ zoo-label {
 	padding: 12px 14px;
 }
 
+:host(:focus-within) #tag-options {
+	border-width: 2px;
+	width: calc(100% + 4px);
+	left: -2px;
+}
+
 :host([invalid]) #input-wrapper {
 	border: 2px solid var(--warning-mid);
 	padding: 12px 14px;
 }
 
-#tag-option-holder {
-	position: relative;
-	display: flex;
-	z-index: 2;
-	grid-column: span 2;
+:host([invalid]) #tag-options {
+	border-color: var(--warning-mid);
 }
 
 #tag-options {
@@ -64,9 +64,14 @@ zoo-label {
 	flex-wrap: wrap;
 	background: white;
 	padding: 5px;
-	border: 1px solid black;
-	border-radius: 3px;
+	border: 1px solid #555;
+	border-radius: 0 0 3px 3px;
 	gap: 5px;
+	left: -1px;
+	top: 38px;
+	border-top: 0;
+	width: calc(100% + 2px);
+	box-sizing: border-box;
 }
 
 :host([show-tags]) #tag-options {
@@ -85,4 +90,8 @@ zoo-cross-icon {
 	cursor: pointer;
 
 	--icon-color: var(--primary-mid);
+}
+
+::slotted(zoo-input-tag-option) {
+	width: 30%;
 }

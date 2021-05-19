@@ -20,3 +20,7 @@
 
 	--icon-color: var(--warning-mid);
 }
+
+zoo-attention-icon {
+	align-self: flex-start;
+}

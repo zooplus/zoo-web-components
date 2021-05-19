@@ -3,6 +3,9 @@
 </zoo-label>
 <div id="input-wrapper">
 	<slot name="input"></slot>
+	<div id="tag-options">
+		<slot name="tag-option"></slot>
+	</div>
 </div>
 <zoo-info role="status">
 	<slot name="info"></slot>
@@ -11,8 +14,3 @@
 	<slot name="error"></slot>
 </zoo-info>
 <slot name="select"></slot>
-<div id="tag-option-holder">
-	<div id="tag-options">
-		<slot name="tag-option"></slot>
-	</div>
-</div>

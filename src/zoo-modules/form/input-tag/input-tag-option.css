@@ -5,6 +5,8 @@
 	padding: 5px;
 	overflow: auto;
 	flex-grow: 1;
+	font-size: 12px;
+	gap: 3px;
 }
 
 :host(:hover) {

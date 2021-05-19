@@ -8,6 +8,7 @@
 
 #input-wrapper {
 	display: flex;
+	align-items: center;
 	gap: 5px;
 	font-size: 14px;
 	line-height: 20px;
@@ -30,6 +31,10 @@
 :host([invalid]) #input-wrapper {
 	border: 2px solid var(--warning-mid);
 	padding: 12px 14px;
+}
+
+#input-wrapper zoo-tag {
+	height: calc(100% - 2px);
 }
 
 ::slotted(input) {

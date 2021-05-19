@@ -6,11 +6,6 @@
 	box-sizing: border-box;
 }
 
-:host([invalid]) #input-wrapper {
-	border: 2px solid var(--warning-mid);
-	padding: 12px 14px;
-}
-
 #input-wrapper {
 	display: flex;
 	gap: 5px;
@@ -27,6 +22,16 @@
 	z-index: 2;
 }
 
+:host(:focus-within) #input-wrapper {
+	border: 2px solid #555;
+	padding: 12px 14px;
+}
+
+:host([invalid]) #input-wrapper {
+	border: 2px solid var(--warning-mid);
+	padding: 12px 14px;
+}
+
 ::slotted(input) {
 	border: 0;
 	min-width: 50px;
@@ -36,26 +41,6 @@
 
 zoo-label {
 	grid-row: 1;
-}
-
-:host(:focus-within) #input-wrapper {
-	border: 2px solid #555;
-	padding: 12px 14px;
-}
-
-:host(:focus-within) #tag-options {
-	border-width: 2px;
-	width: calc(100% + 4px);
-	left: -2px;
-}
-
-:host([invalid]) #input-wrapper {
-	border: 2px solid var(--warning-mid);
-	padding: 12px 14px;
-}
-
-:host([invalid]) #tag-options {
-	border-color: var(--warning-mid);
 }
 
 #tag-options {
@@ -72,6 +57,16 @@ zoo-label {
 	border-top: 0;
 	width: calc(100% + 2px);
 	box-sizing: border-box;
+}
+
+:host(:focus-within) #tag-options {
+	border-width: 2px;
+	width: calc(100% + 4px);
+	left: -2px;
+}
+
+:host([invalid]) #tag-options {
+	border-color: var(--warning-mid);
 }
 
 :host([show-tags]) #tag-options {

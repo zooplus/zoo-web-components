@@ -1,6 +1,3 @@
-
-import { registerComponents } from '../../common/register-components.js';
-
 /**
  * @injectHTML
  */

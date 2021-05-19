@@ -14,14 +14,17 @@ export class InputTag extends FormElement {
 		registerComponents(Input, Select, InputTagOption, CrossIcon);
 		this.inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		this.inputSlot.addEventListener('slotchange', e => {
-			this.input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
-			this.input.addEventListener('input', e => {
-				if (e.target.value) {
-					this.setAttribute('show-tags', '');
-				} else {
-					this.removeAttribute('show-tags');
-				}
-			});
+			const input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
+			if (input) {
+				this.input = input;
+				this.input.addEventListener('input', e => {
+					if (e.target.value) {
+						this.setAttribute('show-tags', '');
+					} else {
+						this.removeAttribute('show-tags');
+					}
+				});
+			}
 		});
 		this.addEventListener('keydown', e => {
 			if (e.key === ' ' && e.target.tagName === 'ZOO-TAG') {

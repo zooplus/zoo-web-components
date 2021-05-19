@@ -1,6 +1,5 @@
 
 import { registerComponents } from '../../common/register-components.js';
-import { CrossIcon } from '../../icon/cross-icon/cross-icon.js';
 
 /**
  * @injectHTML
@@ -8,7 +7,6 @@ import { CrossIcon } from '../../icon/cross-icon/cross-icon.js';
 export class InputTagOption extends HTMLElement {
 	constructor() {
 		super();
-		registerComponents(CrossIcon);
 	}
 }
 if (!window.customElements.get('zoo-input-tag-option')) {

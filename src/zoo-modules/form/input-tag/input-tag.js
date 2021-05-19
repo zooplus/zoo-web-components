@@ -3,6 +3,7 @@ import { Input } from '../input/input.js';
 import { Select } from '../select/select.js';
 import { InputTagOption } from './input-tag-option.js';
 import { FormElement } from '../common/FormElement.js';
+import { CrossIcon } from '../../icon/cross-icon/cross-icon.js';
 
 /**
  * @injectHTML
@@ -10,7 +11,7 @@ import { FormElement } from '../common/FormElement.js';
 export class InputTag extends FormElement {
 	constructor() {
 		super();
-		registerComponents(Input, Select, InputTagOption);
+		registerComponents(Input, Select, InputTagOption, CrossIcon);
 		this.inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		this.inputSlot.addEventListener('slotchange', e => {
 			this.input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
@@ -33,7 +34,7 @@ export class InputTag extends FormElement {
 			this.select && this.registerElementForValidation(this.select);
 		});
 		this.shadowRoot.querySelector('slot[name="tag-option"]').addEventListener('click', e => {
-			this.handleTagSelect(e)
+			this.handleTagSelect(e);
 		});
 	}
 

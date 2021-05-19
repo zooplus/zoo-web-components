@@ -40,6 +40,9 @@
 	min-width: 50px;
 	flex: 1 0 auto;
 	outline: none;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555;
 }
 
 zoo-label {

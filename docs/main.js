@@ -20,31 +20,31 @@ const changeTheme = pallete => {
 	activeBtn.setAttribute('type', 'secondary');
 	prevActiveBtn = activeBtn;
 	switch (pallete) {
-	case 'zoo':
-		setColorVar('--primary-mid', '#3C9700');
-		setColorVar('--primary-light', '#66B100');
-		setColorVar('--primary-dark', '#286400');
-		setColorVar('--primary-ultralight', '#EBF4E5');
-		setColorVar('--secondary-mid', '#FF6200');
-		setColorVar('--secondary-light', '#FF8800');
-		setColorVar('--secondary-dark', '#CC4E00');
-		setColorVar('--info-ultralight', '#ECF5FA');
-		setColorVar('--info-mid', '#459FD0');
-		break;
-	case 'grey':
-		setColorVar('--primary-mid', '#676778');
-		setColorVar('--primary-light', '#838399');
-		setColorVar('--primary-dark', '#565664');
-		setColorVar('--primary-ultralight', '#d3d3e1');
-		setColorVar('--secondary-mid', '#ff3e00');
-		setColorVar('--secondary-light', '#fb7044');
-		setColorVar('--secondary-dark', '#c53100');
-		setColorVar('--info-ultralight', '#d8eefd');
-		setColorVar('--info-mid', '#40b3ff');
-		break;
-	default:
-		generateRandomTheme();
-		break;
+		case 'zoo':
+			setColorVar('--primary-mid', '#3C9700');
+			setColorVar('--primary-light', '#66B100');
+			setColorVar('--primary-dark', '#286400');
+			setColorVar('--primary-ultralight', '#EBF4E5');
+			setColorVar('--secondary-mid', '#FF6200');
+			setColorVar('--secondary-light', '#FF8800');
+			setColorVar('--secondary-dark', '#CC4E00');
+			setColorVar('--info-ultralight', '#ECF5FA');
+			setColorVar('--info-mid', '#459FD0');
+			break;
+		case 'grey':
+			setColorVar('--primary-mid', '#676778');
+			setColorVar('--primary-light', '#838399');
+			setColorVar('--primary-dark', '#565664');
+			setColorVar('--primary-ultralight', '#d3d3e1');
+			setColorVar('--secondary-mid', '#ff3e00');
+			setColorVar('--secondary-light', '#fb7044');
+			setColorVar('--secondary-dark', '#c53100');
+			setColorVar('--info-ultralight', '#d8eefd');
+			setColorVar('--info-mid', '#40b3ff');
+			break;
+		default:
+			generateRandomTheme();
+			break;
 	}
 };
 
@@ -240,3 +240,22 @@ const handleExpandAction = (buttonSelector, contentSelector) => {
 handleExpandAction('#row-1-actions .expander', '#row-1-content');
 handleExpandAction('#row-2-actions .expander', '#row-2-content');
 handleExpandAction('#row-3-actions .expander', '#row-3-content');
+
+const tagInfos = ['dog', 'cat', 'bird', 'aquatic'];
+const inputTag = document.querySelector('zoo-input-tag');
+document.getElementById('input-tag').addEventListener('input', e => {
+	inputTag.querySelectorAll('zoo-input-tag-option').forEach(o => o.style.display = 'none');
+	const noResultsSpan = inputTag.querySelector('*[slot="no-results"]');
+	if (noResultsSpan) noResultsSpan.style.display = 'none';
+	const val = e.target.value;
+	if (!val) return;
+	const matchedTags = tagInfos.filter(i => i.toLowerCase().indexOf(val.toLowerCase()) > -1);
+	const docFrag = document.createDocumentFragment();
+	if (matchedTags && matchedTags.length > 0) {
+		matchedTags.forEach(m => {
+			document.getElementById(`${m}-tag`).style.display = 'flex';
+		});
+	} else {
+		noResultsSpan.style.display = 'flex';
+	}
+});

@@ -8,7 +8,9 @@
 
 #input-wrapper {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
+	height: max-content;
 	gap: 5px;
 	font-size: 14px;
 	line-height: 20px;
@@ -33,10 +35,6 @@
 	padding: 12px 14px;
 }
 
-#input-wrapper zoo-tag {
-	height: calc(100% - 2px);
-}
-
 ::slotted(input) {
 	border: 0;
 	min-width: 50px;
@@ -58,13 +56,14 @@ zoo-label {
 	border-radius: 0 0 3px 3px;
 	gap: 5px;
 	left: -1px;
-	top: 38px;
+	top: 90%;
 	border-top: 0;
 	width: calc(100% + 2px);
 	box-sizing: border-box;
 }
 
-:host(:focus-within) #tag-options {
+:host(:focus-within) #tag-options,
+:host([invalid]) #tag-options {
 	border-width: 2px;
 	width: calc(100% + 4px);
 	left: -2px;
@@ -93,5 +92,5 @@ zoo-cross-icon {
 }
 
 ::slotted(zoo-input-tag-option) {
-	width: 30%;
+	flex: 1 0 30%;
 }

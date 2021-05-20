@@ -47,38 +47,34 @@ export class InputTag extends FormElement {
 		const selectedValue = tag.getAttribute('data-value');
 		const options = [...this.select.querySelectorAll('option')];
 		const matchedOptionIndex = options.findIndex(o => o.value === selectedValue);
-		if (matchedOptionIndex > -1) {
-			if (!this.select.options[matchedOptionIndex].selected) {
-				this.select.options[matchedOptionIndex].selected = true;
-				this.select.options[matchedOptionIndex].setAttribute('selected', '');
-				this.select.dispatchEvent(new Event('input'));
-				this.input.value = '';
-				const clonedTag = tag.cloneNode(true);
-				const crossIcon = document.createElement('zoo-cross-icon');
-				crossIcon.setAttribute('tabindex', 0);
-				crossIcon.setAttribute('slot', 'post');
-				crossIcon.addEventListener('click', () => {
-					clonedTag.remove();
-					this.select.options[matchedOptionIndex].selected = false;
-					this.select.options[matchedOptionIndex].removeAttribute('selected');
-					this.select.dispatchEvent(new Event('input'));
-					this.input.focus();
-				});
-				crossIcon.addEventListener('keydown', e => {
-					if (e.key === ' ') {
-						e.preventDefault();
-						clonedTag.remove();
-						this.select.options[matchedOptionIndex].selected = false;
-						this.select.options[matchedOptionIndex].removeAttribute('selected');
-						this.select.dispatchEvent(new Event('input'));
-						this.input.focus();
-					}
-				});
-				clonedTag.appendChild(crossIcon);
-				this.inputSlot.before(clonedTag);
-			}
+		if (matchedOptionIndex > -1 && !this.select.options[matchedOptionIndex].selected) {
+			this.select.options[matchedOptionIndex].selected = true;
+			this.select.options[matchedOptionIndex].setAttribute('selected', '');
+			this.select.dispatchEvent(new Event('input'));
+			this.input.value = '';
+			const clonedTag = tag.cloneNode(true);
+			const crossIcon = document.createElement('zoo-cross-icon');
+			crossIcon.setAttribute('tabindex', 0);
+			crossIcon.setAttribute('slot', 'post');
+			crossIcon.addEventListener('click', () => this.deselectOption(clonedTag, matchedOptionIndex));
+			crossIcon.addEventListener('keydown', e => {
+				if (e.key === ' ') {
+					e.preventDefault();
+					this.deselectOption(clonedTag, matchedOptionIndex);
+				}
+			});
+			clonedTag.appendChild(crossIcon);
+			this.inputSlot.before(clonedTag);
 		}
 		this.removeAttribute('show-tags');
+		this.input.focus();
+	}
+
+	deselectOption(clonedTag, matchedOptionIndex) {
+		clonedTag.remove();
+		this.select.options[matchedOptionIndex].selected = false;
+		this.select.options[matchedOptionIndex].removeAttribute('selected');
+		this.select.dispatchEvent(new Event('input'));
 		this.input.focus();
 	}
 

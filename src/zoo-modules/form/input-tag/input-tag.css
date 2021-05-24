@@ -1,0 +1,99 @@
+:host {
+	display: grid;
+	grid-gap: 3px;
+	width: 100%;
+	height: max-content;
+	box-sizing: border-box;
+}
+
+#input-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	height: max-content;
+	gap: 5px;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 13px 15px;
+	border: 1px solid #767676;
+	border-radius: 5px;
+	color: #555;
+	box-sizing: border-box;
+	grid-column: span 2;
+	position: relative;
+	overflow: visible;
+	z-index: 2;
+}
+
+:host(:focus-within) #input-wrapper {
+	border: 2px solid #555;
+	padding: 12px 14px;
+}
+
+:host([invalid]) #input-wrapper {
+	border: 2px solid var(--warning-mid);
+	padding: 12px 14px;
+}
+
+::slotted(input) {
+	border: 0;
+	min-width: 50px;
+	flex: 1 0 auto;
+	outline: none;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555;
+}
+
+zoo-label {
+	grid-row: 1;
+}
+
+#tag-options {
+	display: none;
+	position: absolute;
+	flex-wrap: wrap;
+	background: white;
+	padding: 5px;
+	border: 1px solid #555;
+	border-radius: 0 0 3px 3px;
+	gap: 5px;
+	left: -1px;
+	top: 90%;
+	border-top: 0;
+	width: calc(100% + 2px);
+	box-sizing: border-box;
+}
+
+:host(:focus-within) #tag-options,
+:host([invalid]) #tag-options {
+	border-width: 2px;
+	width: calc(100% + 4px);
+	left: -2px;
+}
+
+:host([invalid]) #tag-options {
+	border-color: var(--warning-mid);
+}
+
+:host([show-tags]) #tag-options {
+	display: flex;
+}
+
+::slotted(*[slot="select"]) {
+	display: none;
+}
+
+zoo-info {
+	grid-column: span 2;
+}
+
+zoo-cross-icon {
+	cursor: pointer;
+
+	--icon-color: var(--primary-mid);
+}
+
+::slotted(zoo-input-tag-option) {
+	flex: 1 0 30%;
+}

@@ -137,3 +137,7 @@ zoo-input {
 	grid-row: 4;
 	grid-column: 2;
 }
+
+zoo-info {
+	grid-column: span 2;
+}

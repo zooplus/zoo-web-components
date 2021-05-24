@@ -1,0 +1,13 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+	padding: 5px;
+	overflow: auto;
+	font-size: 12px;
+	gap: 3px;
+}
+
+:host(:hover) {
+	background: var(--primary-ultralight);
+}

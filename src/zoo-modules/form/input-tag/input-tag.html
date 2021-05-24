@@ -1,0 +1,17 @@
+<zoo-label>
+	<slot name="label"></slot>
+</zoo-label>
+<div id="input-wrapper">
+	<slot name="input"></slot>
+	<div id="tag-options">
+		<slot name="tag-option"></slot>
+		<slot name="no-results"></slot>
+	</div>
+</div>
+<zoo-info role="status">
+	<slot name="info"></slot>
+</zoo-info>
+<zoo-info role="alert">
+	<slot name="error"></slot>
+</zoo-info>
+<slot name="select"></slot>

@@ -8,6 +8,7 @@ export { SearchableSelect } from './zoo-modules/form/searchable-select/searchabl
 export { QuantityControl } from './zoo-modules/form/quantity-control/quantity-control.js';
 export { ToggleSwitch } from './zoo-modules/form/toggle-switch/toggle-switch.js';
 export { DateRange } from './zoo-modules/form/date-range/date-range.js';
+export { InputTag } from './zoo-modules/form/input-tag/input-tag.js';
 
 export { ZooGrid } from './zoo-modules/grid/grid/grid.js';
 export { GridHeader } from './zoo-modules/grid/grid-header/grid-header.js';

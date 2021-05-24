@@ -302,6 +302,16 @@
 		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 		<div class="grid-holder">
 			<zoo-grid role="grid" stickyheader currentpage="5" maxpages="20" resizable reorderable>
+				<zoo-grid-header slot="headercell" swap-title="swap icon">Valid</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate' sorttitle="sort icon" swap-title="swap icon">Created Date
+				</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status' sorttitle="sort icon" swap-title="swap icon">Status</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swap-title="swap icon">Max Weight</zoo-grid-header>
+				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate' sorttitle="sort icon" swap-title="swap icon">Delivery Date
+				</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swap-title="swap icon"># of pieces</zoo-grid-header>
+				<zoo-grid-header slot="headercell" swap-title="swap icon">Price</zoo-grid-header>
+
 				<div slot="row" class="filter-row">
 					<div></div>
 					<zoo-input>
@@ -328,16 +338,6 @@
 						<input slot="input" type="number" placeholder="Price filter">
 					</zoo-input>
 				</div>
-				<zoo-grid-header slot="headercell" swap-title="swap icon">Valid</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='createdDate' sorttitle="sort icon" swap-title="swap icon">Created Date
-				</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='status' sorttitle="sort icon" swap-title="swap icon">Status</zoo-grid-header>
-				<zoo-grid-header slot="headercell" swap-title="swap icon">Max Weight</zoo-grid-header>
-				<zoo-grid-header slot="headercell" sortable='true' sortableproperty='deliveryDate' sorttitle="sort icon" swap-title="swap icon">Delivery Date
-				</zoo-grid-header>
-				<zoo-grid-header slot="headercell" swap-title="swap icon"># of pieces</zoo-grid-header>
-				<zoo-grid-header slot="headercell" swap-title="swap icon">Price</zoo-grid-header>
-
 				<div slot="footer-content" class="grid-footer-content">
 					<zoo-button>
 						<button type="button">Button 1</button>

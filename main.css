@@ -161,3 +161,7 @@ zoo-input zoo-button button {
 zoo-navigation {
 	overflow-y: hidden;
 }
+
+zoo-input-tag-option {
+	display: none;
+}

@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 10.2.0
+
+New components:
+`zoo-input-tag` - combination of input and select for selecting options and presenting them as tags with filtering via input.
+
+Fixes:
+`zoo-info` - fix positioning of icon when there's a lot of text.
+`zoo-seachable-select` - stretch info and error slots to full width of component.
+`zoo-tag` - adjust component to be more flexible.
+
 ## 10.1.1
 
 fix positioning issue in `zoo-seachable-select` introduced in 10.1.0.

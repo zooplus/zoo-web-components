@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 10.2.1
+
+`zoo-grid-header` - fix icons width;
+`zoo-input-tag` - fix internal component dependencies;
+update dev dependencies.
+
 ## 10.2.0
 
 New components:

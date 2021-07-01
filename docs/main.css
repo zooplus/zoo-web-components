@@ -63,6 +63,7 @@ hr {
 
 .buttons .icon-btn {
 	width: max-content;
+	min-width: 45px;
 }
 
 .icon-btn button svg {

@@ -7,7 +7,7 @@
 
 button {
 	display: none;
-	width: 22px;
+	width: 24px;
 	opacity: 0;
 	transition: opacity 0.1s;
 	margin-left: 5px;

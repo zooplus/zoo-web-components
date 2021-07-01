@@ -1,9 +1,9 @@
 import { registerComponents } from '../../common/register-components.js';
-import { Input } from '../input/input.js';
-import { Select } from '../select/select.js';
 import { InputTagOption } from './input-tag-option.js';
 import { FormElement } from '../common/FormElement.js';
 import { CrossIcon } from '../../icon/cross-icon/cross-icon.js';
+import { InfoMessage } from '../info/info.js';
+import { Label } from '../label/label.js';
 
 /**
  * @injectHTML
@@ -11,7 +11,7 @@ import { CrossIcon } from '../../icon/cross-icon/cross-icon.js';
 export class InputTag extends FormElement {
 	constructor() {
 		super();
-		registerComponents(Input, Select, InputTagOption, CrossIcon);
+		registerComponents(Label, InfoMessage, InputTagOption, CrossIcon);
 		this.inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 		this.inputSlot.addEventListener('slotchange', e => {
 			const input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');

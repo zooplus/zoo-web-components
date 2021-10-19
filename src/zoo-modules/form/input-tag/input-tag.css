@@ -22,12 +22,15 @@
 	grid-column: span 2;
 	position: relative;
 	overflow: visible;
-	z-index: 2;
 }
 
 :host(:focus-within) #input-wrapper {
 	border: 2px solid #555;
 	padding: 12px 14px;
+}
+
+:host([show-tags]) #input-wrapper {
+	z-index: 2;
 }
 
 :host([invalid]) #input-wrapper {

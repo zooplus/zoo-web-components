@@ -479,12 +479,25 @@ var zooWebComponents = (function (exports) {
 		window.customElements.define('zoo-input-tag-option', InputTagOption);
 	}
 
+	function debounce(func, wait) {
+		let timeout;
+		return function() {
+			const later = () => {
+				timeout = null;
+				func.apply(this, arguments);
+			};
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (!timeout) func.apply(this, arguments);
+		};
+	}
+
 	/**
 	 * @injectHTML
 	 */
 	class InputTag extends FormElement {
 		constructor() {
-			super();this.attachShadow({mode:'open'}).innerHTML=`<style>#input-wrapper,#tag-options{gap:5px;box-sizing:border-box}#input-wrapper,zoo-info{grid-column:span 2}:host{display:grid;grid-gap:3px;width:100%;height:max-content;box-sizing:border-box}#input-wrapper{display:flex;flex-wrap:wrap;align-items:center;height:max-content;font-size:14px;line-height:20px;padding:13px 15px;border:1px solid #767676;border-radius:5px;color:#555;position:relative;overflow:visible;z-index:2}:host(:focus-within) #input-wrapper{border:2px solid #555;padding:12px 14px}:host([invalid]) #input-wrapper{border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input){border:0;min-width:50px;flex:1 0 auto;outline:0;font-size:14px;line-height:20px;color:#555}zoo-label{grid-row:1}#tag-options{display:none;position:absolute;flex-wrap:wrap;background:#fff;padding:5px;border:1px solid #555;border-radius:0 0 3px 3px;left:-1px;top:90%;border-top:0;width:calc(100% + 2px)}:host(:focus-within) #tag-options,:host([invalid]) #tag-options{border-width:2px;width:calc(100% + 4px);left:-2px}:host([invalid]) #tag-options{border-color:var(--warning-mid)}:host([show-tags]) #tag-options{display:flex}::slotted([slot=select]){display:none}zoo-cross-icon{cursor:pointer;--icon-color:var(--primary-mid)}::slotted(zoo-input-tag-option){flex:1 0 30%}</style><zoo-label><slot name="label"></slot></zoo-label><div id="input-wrapper"><slot name="input"></slot><div id="tag-options"><slot name="tag-option"></slot><slot name="no-results"></slot></div></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info><slot name="select"></slot>`;
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>#input-wrapper,#tag-options{gap:5px;box-sizing:border-box}#input-wrapper,zoo-info{grid-column:span 2}:host{display:grid;grid-gap:3px;width:100%;height:max-content;box-sizing:border-box}#input-wrapper{display:flex;flex-wrap:wrap;align-items:center;height:max-content;font-size:14px;line-height:20px;padding:13px 15px;border:1px solid #767676;border-radius:5px;color:#555;position:relative;overflow:visible}:host(:focus-within) #input-wrapper{border:2px solid #555;padding:12px 14px}:host([show-tags]) #input-wrapper{z-index:2}:host([invalid]) #input-wrapper{border:2px solid var(--warning-mid);padding:12px 14px}::slotted(input){border:0;min-width:50px;flex:1 0 auto;outline:0;font-size:14px;line-height:20px;color:#555}zoo-label{grid-row:1}#tag-options{display:none;position:absolute;flex-wrap:wrap;background:#fff;padding:5px;border:1px solid #555;border-radius:0 0 3px 3px;left:-1px;top:90%;border-top:0;width:calc(100% + 2px)}:host(:focus-within) #tag-options,:host([invalid]) #tag-options{border-width:2px;width:calc(100% + 4px);left:-2px}:host([invalid]) #tag-options{border-color:var(--warning-mid)}:host([show-tags]) #tag-options{display:flex}::slotted([slot=select]){display:none}zoo-cross-icon{cursor:pointer;--icon-color:var(--primary-mid)}::slotted(zoo-input-tag-option){flex:1 0 30%}</style><zoo-label><slot name="label"></slot></zoo-label><div id="input-wrapper"><slot name="input"></slot><div id="tag-options"><slot name="tag-option"></slot><slot name="no-results"></slot></div></div><zoo-info role="status"><slot name="info"></slot></zoo-info><zoo-info role="alert"><slot name="error"></slot></zoo-info><slot name="select"></slot>`;
 			registerComponents(Label, InfoMessage, InputTagOption, CrossIcon);
 			this.inputSlot = this.shadowRoot.querySelector('slot[name="input"]');
 			this.inputSlot.addEventListener('slotchange', e => {
@@ -500,6 +513,12 @@ var zooWebComponents = (function (exports) {
 					});
 				}
 			});
+
+			this.tagOptionSlot = this.shadowRoot.querySelector('slot[name="tag-option"]');
+			this.tagOptionSlot.addEventListener('slotchange', debounce(() => {
+				this.handleInitialValues();
+			}));
+
 			this.addEventListener('keydown', e => {
 				if (e.key === ' ' && e.target.tagName === 'ZOO-TAG') {
 					e.preventDefault();
@@ -544,6 +563,24 @@ var zooWebComponents = (function (exports) {
 			this.input.focus();
 		}
 
+		handleInitialValues() {
+			const tagOptions = [...this.children].filter(el => el.tagName === 'ZOO-INPUT-TAG-OPTION');
+			const defaultValues = this.hasAttribute('data-initial-value')
+				? this.getAttribute('data-initial-value')
+					.split(',')
+					.map(value => value.trim())
+				: null;
+			if (tagOptions && defaultValues) {
+				[...tagOptions].forEach((tagOption) => {
+					if (defaultValues.includes([...tagOption.children][0].getAttribute('data-value'))) {
+						this.handleTagSelect({
+							target: tagOption
+						});
+					}
+				});
+			}
+		}
+
 		deselectOption(clonedTag, matchedOptionIndex) {
 			clonedTag.remove();
 			this.select.options[matchedOptionIndex].selected = false;
@@ -563,19 +600,6 @@ var zooWebComponents = (function (exports) {
 	}
 	if (!window.customElements.get('zoo-input-tag')) {
 		window.customElements.define('zoo-input-tag', InputTag);
-	}
-
-	function debounce(func, wait) {
-		let timeout;
-		return function() {
-			const later = () => {
-				timeout = null;
-				func.apply(this, arguments);
-			};
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-			if (!timeout) func.apply(this, arguments);
-		};
 	}
 
 	/**

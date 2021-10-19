@@ -4,6 +4,7 @@ import { FormElement } from '../common/FormElement.js';
 import { CrossIcon } from '../../icon/cross-icon/cross-icon.js';
 import { InfoMessage } from '../info/info.js';
 import { Label } from '../label/label.js';
+import { debounce } from '../../helpers/debounce';
 
 /**
  * @injectHTML
@@ -26,6 +27,12 @@ export class InputTag extends FormElement {
 				});
 			}
 		});
+
+		this.tagOptionSlot = this.shadowRoot.querySelector('slot[name="tag-option"]');
+		this.tagOptionSlot.addEventListener('slotchange', debounce(() => {
+			this.handleInitialValues();
+		}));
+
 		this.addEventListener('keydown', e => {
 			if (e.key === ' ' && e.target.tagName === 'ZOO-TAG') {
 				e.preventDefault();
@@ -68,6 +75,24 @@ export class InputTag extends FormElement {
 		}
 		this.removeAttribute('show-tags');
 		this.input.focus();
+	}
+
+	handleInitialValues() {
+		const tagOptions = [...this.children].filter(el => el.tagName === 'ZOO-INPUT-TAG-OPTION');
+		const defaultValues = this.hasAttribute('data-initial-value')
+			? this.getAttribute('data-initial-value')
+				.split(',')
+				.map(value => value.trim())
+			: null;
+		if (tagOptions && defaultValues) {
+			[...tagOptions].forEach((tagOption) => {
+				if (defaultValues.includes([...tagOption.children][0].getAttribute('data-value'))) {
+					this.handleTagSelect({
+						target: tagOption
+					});
+				}
+			});
+		}
 	}
 
 	deselectOption(clonedTag, matchedOptionIndex) {

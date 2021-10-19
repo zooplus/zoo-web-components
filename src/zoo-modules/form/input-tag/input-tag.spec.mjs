@@ -25,6 +25,40 @@ describe('Zoo input tag', function () {
 		expect(errorDisplay).toEqual('flex');
 	});
 
+	it('should render component with initial values', async () => {
+		const optionsStatus = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-input-tag data-initial-value="Dog">
+					<label for="input-tag" slot="label">Tag input</label>
+					<input id="input-tag" slot="input" placeholder="Type a tag name"/>
+					<span slot="error">At least one tag should be selected!</span>
+					<select slot="select" multiple required>
+						<option value="Dog"></option>
+						<option value="Cat"></option>
+					</select>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="Dog" tabindex="0">
+							<span slot="content">Dog</span>
+						</zoo-tag>
+						<span slot="description">The domestic dog (Canis familiaris or Canis lupus familiaris)[4] is a domesticated descendant of the wolf.</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="cat-tag">
+                        <zoo-tag slot="tag" type="cloud" data-value="Cat" tabindex="0">
+                            <span slot="content">Cat</span>
+                        </zoo-tag>
+                        <span slot="description">The cat (Felis catus) is a domestic species of small carnivorous mammal.</span>
+                    </zoo-input-tag-option>
+				</zoo-input-tag>
+				`;
+			const options = [...document.querySelectorAll('option')];
+			await new Promise(r => setTimeout(r, 10));
+			return options.filter((option) => option.hasAttribute('selected')).map(option => option.value);
+		});
+
+		expect(optionsStatus).toEqual(['Dog']);
+		expect(optionsStatus).not.toContain(['Cat']);
+	});
+
 	it('should not render input error', async () => {
 		const errorDisplay = await page.evaluate(async () => {
 			document.body.innerHTML = `

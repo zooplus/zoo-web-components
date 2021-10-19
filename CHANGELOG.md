@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.2.2
+
+`zoo-input-tag` - added data-initial-value property, fixed components overlapping
+
 ## 10.2.1
 
 `zoo-grid-header` - fix icons width;

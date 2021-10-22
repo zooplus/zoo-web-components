@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 10.3.0
+
+Enhancements:
+`zoo-toggle-switch` - toggle value can be changed on slider click, not only on circle click
+
+Semi-Breaking Changes:
+`zoo-tag` - reverted cloud type changes and added tag type to be used witch zoo-input tag component
+`zoo-input-tag` - changed zoo-tag type to tag
+
 ## 10.2.2
 
 `zoo-input-tag` - added data-initial-value property, fixed components overlapping

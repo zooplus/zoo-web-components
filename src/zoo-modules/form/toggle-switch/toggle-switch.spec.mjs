@@ -39,4 +39,30 @@ describe('Zoo toggle switch', function() {
 		expect(result[0]).toBeFalse();
 		expect(result[1]).toBeTrue();
 	});
+
+	it('should set and then remove invalid attribute from host on wrapper click', async () => {
+		const result = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-toggle-switch>
+					<label for="input-toggle" slot="label">Toggle switch</label>
+					<input id="input-toggle" slot="input" type="checkbox" required/>
+				</zoo-toggle-switch>
+				`;
+			const result = [];
+			const input = document.querySelector('zoo-toggle-switch');
+			await new Promise(r => setTimeout(r, 10));
+			const toggleWrapper = input.shadowRoot.querySelector('.toggle-wrapper');
+			toggleWrapper.click();
+			await new Promise(r => setTimeout(r, 10));
+			result.push(input.hasAttribute('invalid'));
+
+			toggleWrapper.click();
+			await new Promise(r => setTimeout(r, 10));
+			result.push(input.hasAttribute('invalid'));
+
+			return result;
+		});
+		expect(result[0]).toBeFalse();
+		expect(result[1]).toBeTrue();
+	});
 });

@@ -14,6 +14,12 @@ export class ToggleSwitch extends FormElement {
 			const input = [...e.target.assignedElements()].find(el => el.tagName === 'INPUT');
 			if (!input) return;
 			this.registerElementForValidation(input);
+
+			e.target.parentNode.addEventListener('click', (e) => {
+				if (e.target.classList.contains('toggle-wrapper')) {
+					input.click();
+				}
+			});
 		});
 	}
 }

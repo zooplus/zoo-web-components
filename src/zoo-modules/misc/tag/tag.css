@@ -9,6 +9,11 @@
 	max-width: 100px;
 }
 
+:host(:hover) {
+	background: var(--primary-ultralight);
+	color: var(--primary-dark);
+}
+
 :host([type="info"]) {
 	min-height: 20px;
 	border-radius: 10px;
@@ -25,11 +30,6 @@
 	border: 1px solid lightgray;
 }
 
-:host(:hover) {
-	background: var(--primary-ultralight);
-	color: var(--primary-dark);
-}
-
 ::slotted(*[slot="content"]) {
 	font-size: 12px;
 	line-height: 16px;
@@ -37,9 +37,11 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
 ::slotted(*[slot="pre"]) {
 	margin-right: 5px;
 }
+
 ::slotted(*[slot="post"]) {
 	margin-left: 5px;
 }

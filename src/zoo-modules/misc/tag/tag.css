@@ -7,8 +7,6 @@
 	color: var(--color);
 	border-color: var(--color);
 	max-width: 100px;
-	border-radius: 3px;
-	border: 1px solid lightgray;
 }
 
 :host(:hover) {
@@ -20,6 +18,16 @@
 	min-height: 20px;
 	border-radius: 10px;
 	border: 1px solid;
+}
+
+:host([type="cloud"]) {
+	min-height: 46px;
+	border-radius: 3px;
+	border: 1px solid lightgray;
+}
+
+:host([type="tag"]) {
+	border: 1px solid lightgray;
 }
 
 ::slotted(*[slot="content"]) {

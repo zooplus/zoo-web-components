@@ -1,4 +1,4 @@
-fdescribe('Zoo toggle switch', function() {
+describe('Zoo toggle switch', function() {
 	it('should create checkbox', async () => {
 		const inputLabelText = await page.evaluate(() => {
 			document.body.innerHTML = `

@@ -4,6 +4,16 @@
 	flex-direction: column;
 }
 
+:host([border-visible]) {
+	margin: 8px 0;
+}
+
+:host([border-visible]) details {
+	color: var(--primary-dark);
+	border: 1px solid var(--primary-mid);
+	border-radius: 3px;
+}
+
 details[open] {
 	color: var(--primary-dark);
 	border: 1px solid var(--primary-mid);

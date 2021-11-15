@@ -1148,7 +1148,7 @@ var zooWebComponents = (function (exports) {
 	 */
 	class CollapsableListItem extends HTMLElement {
 		constructor() {
-			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{padding:0 10px;display:flex;flex-direction:column}details[open]{color:var(--primary-dark);border:1px solid var(--primary-mid);border-radius:3px}details{padding:10px}summary{cursor:pointer;color:var(--primary-mid);font-weight:700}</style><details><summary><slot name="header"></slot></summary><slot name="content"></slot></details>`;
+			super();this.attachShadow({mode:'open'}).innerHTML=`<style>:host{padding:0 10px;display:flex;flex-direction:column}:host([border-visible]){margin:8px 0}details{padding:10px}:host([border-visible]) details{color:var(--primary-dark);border:1px solid var(--primary-mid);border-radius:3px}details[open]{color:var(--primary-dark);border:1px solid var(--primary-mid);border-radius:3px}summary{cursor:pointer;color:var(--primary-mid);font-weight:700}</style><details><summary><slot name="header"></slot></summary><slot name="content"></slot></details>`;
 			this.details = this.shadowRoot.querySelector('details');
 			this.details.addEventListener('toggle', e => {
 				this.shadowRoot.host.dispatchEvent(new CustomEvent('toggle', {detail: e.target.open, composed: true}));
@@ -1172,11 +1172,19 @@ var zooWebComponents = (function (exports) {
 			registerComponents(CollapsableListItem);
 			const slot = this.shadowRoot.querySelector('slot');
 			slot.addEventListener('slotchange', () => {
-				let items = slot.assignedElements();
+				const items = slot.assignedElements();
+
 				items.forEach(item => item.addEventListener('toggle', e => {
-					if (!e.detail) return;
+					if (!e.detail || this.hasAttribute('disable-autoclose')) return;
 					items.forEach(i => !i.isEqualNode(item) && i.close());
 				}));
+
+
+				items.forEach((item) => {
+					if (item.hasAttribute('opened-by-default')) {
+						item.details.open = true;
+					}
+				});
 			});
 		}
 	}

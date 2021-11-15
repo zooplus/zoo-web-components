@@ -10,11 +10,19 @@ export class CollapsableList extends HTMLElement {
 		registerComponents(CollapsableListItem);
 		const slot = this.shadowRoot.querySelector('slot');
 		slot.addEventListener('slotchange', () => {
-			let items = slot.assignedElements();
+			const items = slot.assignedElements();
+
 			items.forEach(item => item.addEventListener('toggle', e => {
-				if (!e.detail) return;
+				if (!e.detail || this.hasAttribute('disable-autoclose')) return;
 				items.forEach(i => !i.isEqualNode(item) && i.close());
 			}));
+
+
+			items.forEach((item) => {
+				if (item.hasAttribute('opened-by-default')) {
+					item.details.open = true;
+				}
+			});
 		});
 	}
 }

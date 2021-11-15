@@ -303,6 +303,31 @@
 			</div>
 		</zoo-modal>
 		<hr>
+		<h2>Collapsable List</h2>
+		<h3>Default</h3>
+		<zoo-collapsable-list>
+			<zoo-collapsable-list-item>
+				<span slot="header">Header1</span>
+				<div slot="content">content</div>
+			</zoo-collapsable-list-item>
+			<zoo-collapsable-list-item>
+				<span slot="header">Header2</span>
+				<div slot="content">content</div>
+			</zoo-collapsable-list-item>
+		</zoo-collapsable-list>
+		<h3>Auto close turned off, border always visible, opened by default</h3>
+		<zoo-collapsable-list disable-autoclose>
+			<zoo-collapsable-list-item opened-by-default border-visible>
+				<span slot="header">Header1</span>
+				<div slot="content">content</div>
+			</zoo-collapsable-list-item>
+			<zoo-collapsable-list-item opened-by-default border-visible>
+				<span slot="header">Header2</span>
+				<div slot="content">content</div>
+			</zoo-collapsable-list-item>
+		</zoo-collapsable-list>
+
+		<hr>
 		<h2>Data grids</h2>
 		<h3>A grid with pagination, resizing, reorder and sorting.</h3>
 		<div class="grid-holder">

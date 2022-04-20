@@ -1,13 +1,15 @@
 :host {
 	display: none;
 	contain: style;
+
+	--opacity: 0.8;
 }
 
 .box {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, var(--opacity));
 	opacity: 0;
 	transition: opacity 0.3s;
 	z-index: 9999;

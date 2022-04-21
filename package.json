@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "10.3.0",
+	"version": "10.3.1",
 	"main": "dist/zoo-web-components.js",
 	"sideEffects": false,
 	"files": [

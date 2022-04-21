@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.3.1
+
+`zoo-modal` - added property `zoo-modal-opacity` to change background transparency
+
 ## 10.3.0
 
 Enhancements:

@@ -27,7 +27,7 @@ beforeAll(async () => {
 	page.on('console', msg => console.log('PAGE LOG:', msg.text()));
 	await Promise.all([page.coverage.startJSCoverage(), page.coverage.startCSSCoverage()]);
 	
-	await page.goto('http://localhost:5000');
+	await page.goto('http://localhost:5050');
 	await page.addScriptTag( {'url' : 'https://cdn.jsdelivr.net/npm/jasmine-core@3.6.0/lib/jasmine-core/jasmine.js'});
 	await page.addScriptTag( {'url' : 'https://cdn.jsdelivr.net/npm/jasmine-core@3.6.0/lib/jasmine-core/jasmine-html.js'});
 	await page.addScriptTag( {'url' : 'https://cdn.jsdelivr.net/npm/jasmine-core@3.6.0/lib/jasmine-core/boot.js'});

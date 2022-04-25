@@ -1279,5 +1279,5 @@ var zooWebComponents = (function (exports) {
 
 	return exports;
 
-}({}));
+})({});
 //# sourceMappingURL=zoo-web-components.js.map

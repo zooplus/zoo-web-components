@@ -67,7 +67,7 @@
 }
 
 :host([stickyheader]) .header-row {
-	top: var(--grid-header-top, 0);
+	top: var(--grid-stickyheader-position-top, 0);
 	position: sticky;
 }
 

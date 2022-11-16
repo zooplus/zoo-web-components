@@ -2,7 +2,7 @@ import http from 'http';
 import url from 'url';
 import fs from 'fs';
 import path from 'path';
-const port = 5000;
+const port = 5050;
 
 http.createServer(function (req, res) {
 	console.log(`${req.method} ${req.url}`);

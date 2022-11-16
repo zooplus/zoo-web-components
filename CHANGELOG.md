@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.3.2
+
+`zoo-grid` - added property `grid-header-top` to change top position of sticky header
+
 ## 10.3.1
 
 `zoo-modal` - added property `zoo-modal-opacity` to change background transparency

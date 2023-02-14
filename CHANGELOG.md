@@ -1,12 +1,18 @@
 # CHANGELOG
 
+## 10.3.4
+
+`zoo-modal`:
+  - added CSS variable `zoo-modal-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+  - added optional `button-closeable` attribute to prevent closing of modal when clicking on box overlay area
+
 ## 10.3.3
 
-`zoo-grid` - added property `grid-stickyheader-position-top` to change top position of sticky header
+`zoo-grid` - added CSS variable `grid-stickyheader-position-top` to change top position of sticky header
 
 ## 10.3.2
 
-`zoo-modal` - added property `zoo-modal-opacity` to change background transparency
+`zoo-modal` - added CSS variable `zoo-modal-opacity` to change background transparency
 
 ## 10.3.1
 

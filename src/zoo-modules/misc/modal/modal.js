@@ -10,10 +10,13 @@ export class Modal extends HTMLElement {
 		super();
 		registerComponents(CrossIcon);
 		this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal());
+
 		const box = this.shadowRoot.querySelector('.box');
-		box.addEventListener('click', e => {
-			if (e.target == box) this.closeModal();
-		});
+		this.closeModalOnClickHandler = (clickEvent) => {
+			if (clickEvent.target == box) this.closeModal();
+		};
+		box.addEventListener('click', this.closeModalOnClickHandler);
+
 		// https://github.com/HugoGiraudel/a11y-dialog/blob/main/a11y-dialog.js
 		this.focusableSelectors = [
 			'a[href]:not([tabindex^="-"]):not([inert])',
@@ -28,6 +31,11 @@ export class Modal extends HTMLElement {
 			'[contenteditable]:not([tabindex^="-"]):not([inert])',
 			'[tabindex]:not([tabindex^="-"]):not([inert])',
 		];
+
+		this.keyUpEventHandler = (event) => {
+			if (event.key === 'Escape') this.closeModal();
+			if (event.key === 'Tab') this.maintainFocus(event.shiftKey);
+		};
 	}
 
 	connectedCallback() {
@@ -35,21 +43,28 @@ export class Modal extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['closelabel'];
+		return ['closelabel', 'button-closeable'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
+		if (attrName === 'button-closeable') {
+			if (this.hasAttribute('button-closeable')) {
+				const box = this.shadowRoot.querySelector('.box');
+				box.removeEventListener('click', this.closeModalOnClickHandler);
+			} else {
+				this.shadowRoot.querySelector('.box').addEventListener('click', this.closeModalOnClickHandler);
+			}
+
+		} else if (attrName === 'closelabel') {
+			this.shadowRoot.querySelector('zoo-cross-icon').setAttribute('title', newVal);
+		}
 	}
 
 	openModal() {
 		this.style.display = 'block';
 		this.toggleModalClass();
 		this.shadowRoot.querySelector('button').focus();
-		document.addEventListener('keyup', e => {
-			if (e.key === 'Escape') this.closeModal();
-			if (e.key === 'Tab') this.maintainFocus(e.shiftKey);
-		});
+		document.addEventListener('keyup', this.keyUpEventHandler);
 	}
 
 	maintainFocus(shiftKey) {

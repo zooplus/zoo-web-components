@@ -10,7 +10,7 @@
 	background: rgba(0, 0, 0, var(--zoo-modal-opacity, 0.8));
 	opacity: 0;
 	transition: opacity 0.3s;
-	z-index: 9999;
+	z-index: var(--zoo-modal-z-index, 9999);
 	left: 0;
 	top: 0;
 	display: flex;

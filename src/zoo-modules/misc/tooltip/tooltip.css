@@ -2,7 +2,7 @@
 	display: grid;
 	position: absolute;
 	width: max-content;
-	z-index: 9997;
+	z-index: var(--zoo-tooltip-z-index, 9997);
 	pointer-events: none;
 	color: black;
 

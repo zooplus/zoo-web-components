@@ -56,6 +56,25 @@ describe('Zoo modal', function () {
 		expect(modalDisplay).toEqual('none');
 	});
 
+	it('should not close opened modal when button-closeable attribute is set and outer box is clicked', async () => {
+		const modalDisplay = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-modal closelabel="close modal" button-closeable>
+					<span slot="header">header-text</span>
+					<div>content</div>
+				</zoo-modal>
+				`;
+			let modal = document.querySelector('zoo-modal');
+			modal.style.display = 'block';
+
+			const box = modal.shadowRoot.querySelector('.box');
+			box.dispatchEvent(new Event('click'));
+			jasmine.clock().tick(400);
+			return modal.style.display;
+		});
+		expect(modalDisplay).toEqual('block');
+	});
+
 	it('should close opened modal when escape is clicked', async () => {
 		const modalDisplay = await page.evaluate(async () => {
 			document.body.innerHTML = `

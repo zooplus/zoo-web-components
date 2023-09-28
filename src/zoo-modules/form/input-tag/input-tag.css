@@ -57,15 +57,16 @@ zoo-label {
 	position: absolute;
 	flex-wrap: wrap;
 	background: white;
-	padding: 5px;
+	padding: 5px 15px;
 	border: 1px solid #555;
 	border-radius: 0 0 3px 3px;
-	gap: 5px;
 	left: -1px;
 	top: 90%;
 	border-top: 0;
 	width: calc(100% + 2px);
 	box-sizing: border-box;
+	max-height: var(--input-tag-options-max-height, fit-content);
+	overflow: var(--input-tag-options-overflow, auto);
 }
 
 :host(:focus-within) #tag-options,
@@ -98,5 +99,16 @@ zoo-cross-icon {
 }
 
 ::slotted(zoo-input-tag-option) {
-	flex: 1 0 30%;
+	box-sizing: border-box;
+	width: 100%;
 }
+
+::slotted(zoo-input-tag-option:hover),
+::slotted(zoo-input-tag-option[selected]:hover) {
+	background: var(--item-hovered, #E6E6E6);
+}
+
+::slotted(zoo-input-tag-option[selected]) {
+	background: var(--primary-ultralight);
+}
+

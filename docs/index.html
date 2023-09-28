@@ -130,6 +130,36 @@
 					<span slot="no-results">no results</span>
 				</zoo-input-tag>
 
+				<zoo-input-tag show-tags-after-select id="input-tag-custom" data-initial-value="Cat" aria-multiselectable="true">
+					<label for="input-tag" slot="label">Tag input &amp; custom option list</label>
+					<input id="input-tag-custom-input" slot="input" placeholder="Type a tag name"/>
+					<span slot="info">Start typing to see available tags. Tag filtering should be done on client side by listening on 'input' event on slotted input.</span>
+					<span slot="error">At least one tag should be selected!</span>
+					<select slot="select" multiple required>
+						<option value="Dog"></option>
+						<option value="Cat"></option>
+						<option value="Bird"></option>
+						<option value="Aquatic"></option>
+						<option value="Reptile"></option>
+					</select>
+					<zoo-input-tag-option slot="tag-option" id="dog-tagc" tabindex="0">
+						<span slot="tag" data-value="Dog" tag-option-content>🐕 Dog</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="cat-tagc" tabindex="0">
+						<span slot="tag" data-value="Cat" tag-option-content>🐈 Cat</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="bird-tagc" tabindex="0">
+						<span slot="tag" data-value="Bird" tag-option-content>🐦‍⬛ Bird</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="aquatic-tagc" tabindex="0">
+						<span slot="tag" data-value="Aquatic" tag-option-content>🐟 Aquatic</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="reptile-tagc" tabindex="0">
+						<span slot="tag" data-value="Reptile" tag-option-content>🦎 Reptile</span>
+					</zoo-input-tag-option>
+					<span slot="no-results">no results</span>
+				</zoo-input-tag>
+
 				<h3>Select</h3>
 				<zoo-select>
 					<label for="multiselect" slot="label">Multiselect</label>

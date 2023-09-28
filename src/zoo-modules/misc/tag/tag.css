@@ -7,6 +7,7 @@
 	color: var(--color);
 	border-color: var(--color);
 	max-width: 100px;
+	border-radius: 3px;
 }
 
 :host(:hover) {
@@ -32,7 +33,6 @@
 
 ::slotted(*[slot="content"]) {
 	font-size: 12px;
-	line-height: 16px;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

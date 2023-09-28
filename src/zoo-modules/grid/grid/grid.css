@@ -77,7 +77,7 @@
 
 ::slotted(*[slot="row"]:hover),
 ::slotted(*[slot="row"]:focus) {
-	background: #E6E6E6;
+	background: var(--item-hovered, #E6E6E6);
 }
 
 ::slotted(*[slot="norecords"]) {

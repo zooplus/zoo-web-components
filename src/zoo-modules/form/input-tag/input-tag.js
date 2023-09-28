@@ -34,9 +34,10 @@ export class InputTag extends FormElement {
 		}));
 
 		this.addEventListener('keydown', e => {
-			if (e.key === ' ' && e.target.tagName === 'ZOO-TAG') {
+			if ((e.key === ' ' || e.key === 'Enter')
+				&& (e.target.tagName === 'ZOO-TAG' || e.target.tagName === 'ZOO-INPUT-TAG-OPTION')) {
 				e.preventDefault();
-				this.handleTagSelect(e);
+				this.toggleOptionSelect(e);
 			}
 		});
 		this.shadowRoot.querySelector('slot[name="select"]').addEventListener('slotchange', e => {
@@ -44,37 +45,71 @@ export class InputTag extends FormElement {
 			this.select && this.registerElementForValidation(this.select);
 		});
 		this.shadowRoot.querySelector('slot[name="tag-option"]').addEventListener('click', e => {
-			this.handleTagSelect(e);
+			this.toggleOptionSelect(e);
 		});
 	}
 
-	handleTagSelect(e) {
+	toggleOptionSelect(e) {
 		const target = this.getElAsParentBySlotName(e.target, 'tag-option');
-		const tag = target.querySelector('zoo-tag');
-		const selectedValue = tag.getAttribute('data-value');
+		if (target && target.hasAttribute('selected')) {
+			const dataElem = target.querySelector('[data-value]');
+			const tagInInput = this.shadowRoot.querySelector(`zoo-tag[data-value="${dataElem.getAttribute('data-value')}"] zoo-cross-icon`);
+			tagInInput.dispatchEvent(new Event('click'));
+		} else {
+			this.handleTagSelect(target);
+		}
+	}
+
+	handleTagSelect(tagOptionSlot) {
+		const optionElement = tagOptionSlot.querySelector('zoo-tag, [tag-option-content]');
+		const selectedValue = optionElement.getAttribute('data-value');
 		const options = [...this.select.querySelectorAll('option')];
 		const matchedOptionIndex = options.findIndex(o => o.value === selectedValue);
+		const hideOptionsAfterSelect = !this.hasAttribute('show-tags-after-select');
 		if (matchedOptionIndex > -1 && !this.select.options[matchedOptionIndex].selected) {
 			this.select.options[matchedOptionIndex].selected = true;
 			this.select.options[matchedOptionIndex].setAttribute('selected', '');
 			this.select.dispatchEvent(new Event('input'));
-			this.input.value = '';
-			const clonedTag = tag.cloneNode(true);
-			const crossIcon = document.createElement('zoo-cross-icon');
-			crossIcon.setAttribute('tabindex', 0);
-			crossIcon.setAttribute('slot', 'post');
-			crossIcon.addEventListener('click', () => this.deselectOption(clonedTag, matchedOptionIndex));
-			crossIcon.addEventListener('keydown', e => {
-				if (e.key === ' ') {
-					e.preventDefault();
-					this.deselectOption(clonedTag, matchedOptionIndex);
-				}
-			});
-			clonedTag.appendChild(crossIcon);
-			this.inputSlot.before(clonedTag);
+			if (hideOptionsAfterSelect) {
+				this.input.value = '';
+			}
+			optionElement.parentElement.setAttribute('selected', '');
+			optionElement.parentElement.setAttribute('aria-selected', 'true');
+			let tagElementFromSelection = this.createSelectedTagElement(optionElement, matchedOptionIndex);
+			this.inputSlot.before(tagElementFromSelection);
 		}
-		this.removeAttribute('show-tags');
+		if (hideOptionsAfterSelect) {
+			this.removeAttribute('show-tags');
+		}
 		this.input.focus();
+	}
+
+	createSelectedTagElement(selectedOptionElement, matchedOptionIndex) {
+		let tagElementForInput;
+		const dataValue = selectedOptionElement.getAttribute('data-value');
+		if(selectedOptionElement.tagName === 'ZOO-TAG') {
+			tagElementForInput = selectedOptionElement.cloneNode(true);
+		} else {
+			tagElementForInput = document.createElement('ZOO-TAG');
+			tagElementForInput.setAttribute('slot', 'tag');
+			tagElementForInput.setAttribute('type', 'tag');
+			tagElementForInput.setAttribute('data-value', dataValue);
+			tagElementForInput.setAttribute('tabindex', '0');
+			tagElementForInput.insertAdjacentHTML('beforeend', `<span slot="content">${dataValue}</span>`);
+		}
+
+		const crossIcon = document.createElement('zoo-cross-icon');
+		crossIcon.setAttribute('tabindex', '0');
+		crossIcon.setAttribute('slot', 'post');
+		crossIcon.addEventListener('click', () => this.deselectOption(tagElementForInput, matchedOptionIndex, selectedOptionElement));
+		crossIcon.addEventListener('keydown', e => {
+			if (e.key === ' ' || e.key === 'Enter') {
+				e.preventDefault();
+				this.deselectOption(tagElementForInput, matchedOptionIndex, selectedOptionElement);
+			}
+		});
+		tagElementForInput.appendChild(crossIcon);
+		return tagElementForInput;
 	}
 
 	handleInitialValues() {
@@ -87,7 +122,7 @@ export class InputTag extends FormElement {
 		if (tagOptions && defaultValues) {
 			[...tagOptions].forEach((tagOption) => {
 				if (defaultValues.includes([...tagOption.children][0].getAttribute('data-value'))) {
-					this.handleTagSelect({
+					this.toggleOptionSelect({
 						target: tagOption
 					});
 				}
@@ -95,11 +130,15 @@ export class InputTag extends FormElement {
 		}
 	}
 
-	deselectOption(clonedTag, matchedOptionIndex) {
-		clonedTag.remove();
+	deselectOption(tagElementForInput, matchedOptionIndex, selectedOptionElement) {
+		tagElementForInput.remove();
 		this.select.options[matchedOptionIndex].selected = false;
 		this.select.options[matchedOptionIndex].removeAttribute('selected');
 		this.select.dispatchEvent(new Event('input'));
+		if (selectedOptionElement) {
+			selectedOptionElement.parentElement.removeAttribute('selected');
+			selectedOptionElement.parentElement.setAttribute('aria-selected', 'false');
+		}
 		this.input.focus();
 	}
 

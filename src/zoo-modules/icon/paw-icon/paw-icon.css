@@ -1,7 +1,7 @@
 svg {
 	display: flex;
-	width: var(--width, 44px);
-	height: var(--height, 44px);
+	width: var(--icon-width, 44px);
+	height: var(--icon-height, 44px);
 	fill: var(--icon-color, white);
 }
 

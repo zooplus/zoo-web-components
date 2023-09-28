@@ -85,7 +85,7 @@ svg path {
 }
 
 :host([disabled]) svg {
-	background: #F2F3F4;
+	background: var(--input-disabled, #F2F3F4);
 }
 
 .checkbox {

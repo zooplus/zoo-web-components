@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 10.3.5
+
+`zoo-tooltip` - added CSS variable `zoo-tooltip-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+`zoo-toast` - added CSS variable `zoo-toast-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+`zoo-grid` - added CSS variable `zoo-grid-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+`zoo-spinner` - added CSS variable `zoo-spinner-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+
 ## 10.3.4
 
 `zoo-modal`:

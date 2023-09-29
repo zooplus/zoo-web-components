@@ -12,7 +12,7 @@ svg {
 	width: 120px;
 	transform-origin: center center;
 	animation: rotate 2s linear infinite;
-	z-index: 10002;
+	z-index: var(--zoo-spinner-z-index, 10002);
 }
 
 svg circle {

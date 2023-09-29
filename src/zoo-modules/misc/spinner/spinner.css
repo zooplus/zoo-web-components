@@ -4,10 +4,7 @@
 
 svg {
 	position: absolute;
-	left: calc(50% - 60px);
-	top: calc(50% - 60px);
-	right: 0;
-	bottom: 0;
+	inset: calc(50% - 60px) 0 0 calc(50% - 60px);
 	height: 120px;
 	width: 120px;
 	transform-origin: center center;

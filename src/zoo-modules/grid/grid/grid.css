@@ -13,7 +13,7 @@
 	z-index: var(--zoo-grid-z-index, 9998);
 	justify-content: center;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.15);
+	background: rgb(0 0 0 / 15%);
 	pointer-events: none;
 }
 
@@ -35,7 +35,7 @@
 	display: grid;
 	grid-template-columns: var(--grid-column-sizes, repeat(var(--grid-column-num), minmax(50px, 1fr)));
 	padding: 5px 10px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	border-bottom: 1px solid rgb(0 0 0 / 20%);
 	min-height: 50px;
 	font-size: 14px;
 	line-height: 20px;
@@ -63,7 +63,7 @@
 }
 
 ::slotted(.drag-over) {
-	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.4);
+	box-shadow: inset 0 0 1px 1px rgb(0 0 0 / 40%);
 }
 
 :host([stickyheader]) .header-row {

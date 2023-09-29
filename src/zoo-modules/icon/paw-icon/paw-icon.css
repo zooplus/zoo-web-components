@@ -1,7 +1,7 @@
 svg {
 	display: flex;
-	width: var(--width, 44px);
-	height: var(--height, 44px);
+	width: var(--icon-width, 44px);
+	height: var(--icon-height, 44px);
 	fill: var(--icon-color, white);
 }
 
@@ -10,15 +10,15 @@ svg {
 	animation: toes-fade-in-animation 2.2s infinite ease-in-out;
 }
 
-.fade-in--two {
+.fade-in-two {
 	animation-delay: 0.4s;
 }
 
-.fade-in--three {
+.fade-in-three {
 	animation-delay: 0.7s;
 }
 
-.fade-in--four {
+.fade-in-four {
 	animation-delay: 1s;
 }
 

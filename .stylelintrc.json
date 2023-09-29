@@ -1,7 +1,6 @@
 {
 	"extends": "stylelint-config-standard",
 	"rules": {
-		"color-hex-case": "upper",
 		"block-no-empty": null,
 		"color-no-invalid-hex": true,
 		"comment-empty-line-before": [
@@ -13,16 +12,6 @@
 				]
 			}
 		],
-		"declaration-colon-space-after": "always",
-		"indentation": [
-			"tab",
-			{
-				"except": [
-					"value"
-				]
-			}
-		],
-		"max-empty-lines": 2,
 		"rule-empty-line-before": [
 			"always",
 			{

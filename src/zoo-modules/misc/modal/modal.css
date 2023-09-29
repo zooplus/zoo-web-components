@@ -7,7 +7,7 @@
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, var(--zoo-modal-opacity, 0.8));
+	background: rgb(0 0 0 / var(--zoo-modal-opacity, 0.8));
 	opacity: 0;
 	transition: opacity 0.3s;
 	z-index: var(--zoo-modal-z-index, 9999);
@@ -21,7 +21,7 @@
 }
 
 .dialog-content {
-	padding: 0 20px 20px 20px;
+	padding: 0 20px 20px;
 	box-sizing: border-box;
 	background: white;
 	overflow-y: auto;
@@ -32,13 +32,13 @@
 	animation-fill-mode: forwards;
 }
 
-@media only screen and (max-width: 544px) {
+@media only screen and (width <= 544px) {
 	.dialog-content {
 		padding: 25px;
 	}
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (width <= 375px) {
 	.dialog-content {
 		width: 100%;
 		height: 100%;

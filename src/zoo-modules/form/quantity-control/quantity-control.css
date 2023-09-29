@@ -44,7 +44,7 @@ div {
 	color: #555;
 	outline: none;
 	box-sizing: border-box;
-	-moz-appearance: textfield;
+	appearance: textfield;
 	text-align: center;
 }
 

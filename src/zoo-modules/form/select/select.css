@@ -24,7 +24,7 @@ zoo-arrow-icon {
 }
 
 ::slotted(select) {
-	-webkit-appearance: none;
+	appearance: none;
 	width: 100%;
 	font-size: 14px;
 	line-height: 20px;

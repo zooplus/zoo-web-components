@@ -49,7 +49,7 @@ describe('Zoo checkbox', function () {
 			};
 		});
 		expect(style.checkColor).toEqual(colors.primaryMid);
-		expect(style.border).toEqual(`1px solid  ${colors.primaryMid}`);
+		expect(style.border).toEqual(`1px solid ${colors.primaryMid}`);
 	});
 
 	it('should create disabled checkbox', async () => {
@@ -88,7 +88,7 @@ describe('Zoo checkbox', function () {
 			};
 		});
 		expect(style.checkColor).toEqual(colors.warningMid);
-		expect(style.border).toEqual(`2px solid  ${colors.warningMid}`);
+		expect(style.border).toEqual(`2px solid ${colors.warningMid}`);
 	});
 
 	it('should set checked attribute on host when checkbox is checked', async () => {

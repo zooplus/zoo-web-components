@@ -35,7 +35,7 @@
 		"pretest": "cross-env NODE_ENV=local npm run build",
 		"test": "concurrently -k -s first \"nyc --reporter=lcov --reporter=text-summary jasmine\" \"node server.js docs\"",
 		"prepublishOnly": "npm run lint && npm test && npm run build",
-		"lint": "eslint src/**/*.js && stylelint --fix src/**/*.css && html-validate src/**/*.html"
+		"lint": "eslint src/**/*.js && stylelint src/**/*.css && html-validate src/**/*.html"
 	},
 	"repository": {
 		"type": "git",

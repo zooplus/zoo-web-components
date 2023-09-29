@@ -16,17 +16,18 @@
 		"clean-css": "^5.1.5",
 		"concurrently": "^6.2.1",
 		"cross-env": "^7.0.3",
-		"eslint": "^7.32.0",
+		"eslint": "^8.50.0",
+		"eslint-config-prettier": "^9.0.0",
 		"html-minifier": "^4.0.0",
-		"html-validate": "^6.8.0",
+		"html-validate": "^8.4.1",
 		"jasmine": "^3.9.0",
 		"nyc": "^15.1.0",
 		"puppeteer": "^13.6.0",
 		"puppeteer-to-istanbul": "^1.4.0",
 		"rollup": "^2.56.3",
 		"rollup-plugin-terser": "^7.0.2",
-		"stylelint": "^15.6.0",
-		"stylelint-config-standard": "^33.0.0"
+		"stylelint": "^15.10.3",
+		"stylelint-config-standard": "^34.0.0"
 	},
 	"scripts": {
 		"start": "concurrently -k \"node server.js docs\"  \"cross-env NODE_ENV=local rollup -c -w\"",
@@ -34,7 +35,7 @@
 		"pretest": "cross-env NODE_ENV=local npm run build",
 		"test": "concurrently -k -s first \"nyc --reporter=lcov --reporter=text-summary jasmine\" \"node server.js docs\"",
 		"prepublishOnly": "npm run lint && npm test && npm run build",
-		"lint": "eslint src/**/*.js && stylelint src/**/*.css && html-validate src/**/*.html"
+		"lint": "eslint src/**/*.js && stylelint --fix src/**/*.css && html-validate src/**/*.html"
 	},
 	"repository": {
 		"type": "git",

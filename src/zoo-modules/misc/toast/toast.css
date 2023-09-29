@@ -3,7 +3,7 @@
 	top: 20px;
 	right: 20px;
 	position: fixed;
-	z-index: 10001;
+	z-index: var(--zoo-toast-z-index, 10001);
 	contain: layout;
 
 	--color-ultralight: var(--info-ultralight);

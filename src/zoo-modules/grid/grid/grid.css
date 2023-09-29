@@ -10,7 +10,7 @@
 	left: 0;
 	top: 0;
 	right: 0;
-	z-index: 9998;
+	z-index: var(--zoo-grid-z-index, 9998);
 	justify-content: center;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.15);

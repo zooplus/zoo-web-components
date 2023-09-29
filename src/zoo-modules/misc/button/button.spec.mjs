@@ -51,7 +51,7 @@ describe('Zoo button', () => {
 		expect(style.colorDark).toEqual(colors.primaryDark);
 		expect(style.textNormal).toEqual('white');
 		expect(style.textActive).toEqual('white');
-		expect(style.background).toEqual(`linear-gradient(to right,  ${colors.primaryMid},  ${colors.primaryLight})`);
+		expect(style.background).toEqual(`linear-gradient(to right, ${colors.primaryMid}, ${colors.primaryLight})`);
 		expect(style.border).toEqual('0');
 	});
 
@@ -79,7 +79,7 @@ describe('Zoo button', () => {
 		expect(style.colorDark).toEqual(colors.secondaryDark);
 		expect(style.textNormal).toEqual('white');
 		expect(style.textActive).toEqual('white');
-		expect(style.background).toEqual(`linear-gradient(to right,  ${colors.secondaryMid},  ${colors.secondaryLight})`);
+		expect(style.background).toEqual(`linear-gradient(to right, ${colors.secondaryMid}, ${colors.secondaryLight})`);
 		expect(style.border).toEqual('0');
 	});
 
@@ -108,7 +108,7 @@ describe('Zoo button', () => {
 		expect(style.textNormal).toEqual(colors.primaryMid);
 		expect(style.textActive).toEqual('white');
 		expect(style.background).toEqual('transparent');
-		expect(style.border).toEqual(`2px solid  ${colors.primaryMid}`);
+		expect(style.border).toEqual(`2px solid ${colors.primaryMid}`);
 	});
 
 	it('should create transparent button', async () => {

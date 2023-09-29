@@ -7,7 +7,7 @@ import pti from 'puppeteer-to-istanbul';
 beforeAll(async () => {
 	jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 	global.browser = await puppeteer.launch({
-		headless: true,
+		headless: "new",
 		args: ['--no-sandbox', '--disable-setuid-sandbox']
 	});
 	global.page = await browser.newPage();

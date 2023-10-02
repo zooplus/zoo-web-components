@@ -49,7 +49,7 @@
 	position: absolute;
 	width: 16px;
 	height: 16px;
-	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 15px 0 rgb(0 0 0 / 10%);
 	transform: rotate(45deg);
 	z-index: -1;
 	background: white;
@@ -67,7 +67,7 @@
 	background: white;
 	border-radius: 5px;
 	pointer-events: initial;
-	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 15px 0 rgb(0 0 0 / 10%);
 }
 
 .tooltip-content span {

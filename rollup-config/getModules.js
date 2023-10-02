@@ -1,5 +1,4 @@
 import {plugins} from './plugins.js';
-import path from 'path';
 import fs from 'fs';
 
 let dev = process.env.NODE_ENV == 'local';

@@ -10,15 +10,15 @@ svg {
 	animation: toes-fade-in-animation 2.2s infinite ease-in-out;
 }
 
-.fade-in--two {
+.fade-in-two {
 	animation-delay: 0.4s;
 }
 
-.fade-in--three {
+.fade-in-three {
 	animation-delay: 0.7s;
 }
 
-.fade-in--four {
+.fade-in-four {
 	animation-delay: 1s;
 }
 

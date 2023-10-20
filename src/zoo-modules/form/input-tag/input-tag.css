@@ -65,7 +65,7 @@ zoo-label {
 	border: 1px solid #555;
 	border-radius: 0 0 3px 3px;
 	left: -1px;
-	top: 90%;
+	top: calc(90%);
 	border-top: 0;
 	width: calc(100% + 2px);
 	box-sizing: border-box;
@@ -78,6 +78,8 @@ zoo-label {
 	border-width: 2px;
 	width: calc(100% + 4px);
 	left: -2px;
+	padding-left: calc(var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default)) - 1px);
+	padding-right: calc(var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default)) - 1px);
 }
 
 :host([invalid]) #tag-options {

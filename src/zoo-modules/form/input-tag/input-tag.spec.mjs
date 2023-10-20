@@ -183,7 +183,6 @@ describe('Zoo input tag', function () {
 		});
 		expect(ret.optionsStatus.length).toEqual(0);
 		expect(ret.selectedTags.length).toEqual(0);
-
 	});
 
 	it('should toggle tag selection when clicking on option list', async () => {
@@ -299,7 +298,7 @@ describe('Zoo input tag', function () {
 		expect(ret.selectedTagContent).toEqual('Dog content');
 	});
 
-	it('should render clicked option as tag when using custom markup with tag-option-content attribute', async () => {
+	it('should render clicked option as tag when using custom markup with data-option-content attribute', async () => {
 		const ret = await page.evaluate(async () => {
 			document.body.innerHTML = `
 				<zoo-input-tag>
@@ -310,7 +309,7 @@ describe('Zoo input tag', function () {
 						<option value="Dog">Dog</option>
 					</select>
 					<zoo-input-tag-option slot="tag-option">
-						<h5 slot="tag" data-value="Dog" tag-option-content>Dog content</h5>
+						<h5 slot="tag" data-value="Dog" data-option-content>Dog content</h5>
 						<span slot="description">The domestic dog (Canis familiaris or Canis lupus familiaris)[4] is a domesticated descendant of the wolf.</span>
 					</zoo-input-tag-option>
 				</zoo-input-tag>
@@ -441,5 +440,51 @@ describe('Zoo input tag', function () {
 		expect(result.inputValueAfterClick).toEqual('');
 		expect(result.invalidAfterCrossClick).toBeTrue();
 		expect(result.selectValueAfterCrossClick).toEqual('');
+	});
+
+	it('should clear selection by invoking function', async () => {
+		const ret = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-input-tag data-initial-value="Dog">
+					<label for="input-tag" slot="label">Tag input</label>
+					<input id="input-tag" slot="input" placeholder="Type a tag name"/>
+					<span slot="error">At least one tag should be selected!</span>
+					<select slot="select" multiple required>
+						<option value="Dog"></option>
+						<option value="Cat"></option>
+					</select>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="Dog" tabindex="0">
+							<span slot="content">Dog</span>
+						</zoo-tag>
+						<span slot="description">The domestic dog (Canis familiaris or Canis lupus familiaris)[4] is a domesticated descendant of the wolf.</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="cat-tag">
+                        <zoo-tag slot="tag" type="cloud" data-value="Cat" tabindex="0">
+                            <span slot="content">Cat</span>
+                        </zoo-tag>
+                        <span slot="description">The cat (Felis catus) is a domestic species of small carnivorous mammal.</span>
+                    </zoo-input-tag-option>
+				</zoo-input-tag>
+				`;
+			const input = document.querySelector('zoo-input-tag');
+			input.shadowRoot.querySelector('slot[name="tag-option"]').assignedElements()[1].click();
+			await new Promise(r => setTimeout(r, 10));
+
+			input.clearSelection();
+
+			const options = [...document.querySelectorAll('option')];
+			await new Promise(r => setTimeout(r, 10));
+
+			let selectedTags = []
+			input.shadowRoot.querySelectorAll('#input-wrapper zoo-tag').forEach(el=> selectedTags.push(el.textContent.trim()));
+			const optionsStatus = options.filter((option) => option.hasAttribute('selected')).map(option => option.value);
+			return {
+				optionsStatus,
+				selectedTags
+			}
+		});
+		expect(ret.optionsStatus.length).toEqual(0);
+		expect(ret.selectedTags.length).toEqual(0);
 	});
 });

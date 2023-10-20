@@ -61,11 +61,12 @@ export class InputTag extends FormElement {
 	}
 
 	handleTagSelect(tagOptionSlot) {
-		const optionElement = tagOptionSlot.querySelector('zoo-tag, [tag-option-content]');
+		const optionElement = tagOptionSlot.querySelector('zoo-tag, [data-option-content]');
 		const selectedValue = optionElement.getAttribute('data-value');
 		const options = [...this.select.querySelectorAll('option')];
 		const matchedOptionIndex = options.findIndex(o => o.value === selectedValue);
 		const hideOptionsAfterSelect = !this.hasAttribute('show-tags-after-select');
+
 		if (matchedOptionIndex > -1 && !this.select.options[matchedOptionIndex].selected) {
 			this.select.options[matchedOptionIndex].selected = true;
 			this.select.options[matchedOptionIndex].setAttribute('selected', '');
@@ -139,6 +140,23 @@ export class InputTag extends FormElement {
 			selectedOptionElement.parentElement.removeAttribute('selected');
 			selectedOptionElement.parentElement.setAttribute('aria-selected', 'false');
 		}
+		this.input.focus();
+	}
+
+	clearSelection() {
+		this.shadowRoot.querySelectorAll('#input-wrapper > zoo-tag').forEach(el => el.remove());
+		this.select.querySelectorAll(':checked').forEach(option => {
+			option.selected = false;
+			option.removeAttribute('selected');
+		});
+		this.shadowRoot.querySelectorAll('slot[name="tag-option"]').forEach(slot =>
+			slot.assignedElements().forEach(tagOption => {
+				tagOption.removeAttribute('selected');
+				tagOption.setAttribute('aria-selected', 'false');
+			}));
+		this.input.value = '';
+		this.select.dispatchEvent(new Event('input'));
+		this.input.dispatchEvent(new Event('input'));
 		this.input.focus();
 	}
 

@@ -3,13 +3,14 @@
 ## 10.4.0
 
 Semi-Breaking Changes:
- - `zoo-input-tag`: 
-   - `zoo-tag-options` can contain not only `zoo-tag` elements, but custom markup
-   - `zoo-tag-options` are now stacked vertically
-   - `zoo-tag-options` - changed left,right padding to `15px` and removed `5px` gap, `--input-tag-padding-top-bottom` 
-   and `--input-tag-padding-left-right` to control component padding
-   - `--input-tag-options-max-height` CSS variable to control max height of options list overlay
-   - `--input-tag-options-overflow` CSS variable to control options list scrolls
+ - `zoo-input-tag`:
+  - added `clearSelection()` method to programmatically clear current component selection
+  - `zoo-tag-options` can contain not only `zoo-tag` elements, but custom markup
+  - `zoo-tag-options` are now stacked vertically
+  - `zoo-tag-options` - changed left,right padding to `15px` and removed `5px` gap, `--input-tag-padding-top-bottom` 
+  and `--input-tag-padding-left-right` to control component padding
+  - `--input-tag-options-max-height` CSS variable to control max height of options list overlay
+  - `--input-tag-options-overflow` CSS variable to control options list scrolls
  - `zoo-tag` with `type="tag"` uses same border radius as other components
 
  CSS changes:

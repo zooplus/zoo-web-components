@@ -53,7 +53,7 @@ export class InputTag extends FormElement {
 		return [...super.observedAttributes, 'data-initial-value'];
 	}
 
-	attributeChangedCallback(name, oldValue, newValue) {
+	attributeChangedCallback(name, oldValue) {
 		if (name === 'invalid') {
 			super.attributeChangedCallback();
 		} else if (name === 'data-initial-value' && oldValue != null) {
@@ -127,7 +127,7 @@ export class InputTag extends FormElement {
 
 	handleInitialValues() {
 		let tagOptions = [];
-		[].push.apply(tagOptions, this.children)
+		[].push.apply(tagOptions, this.children);
 		tagOptions = tagOptions.filter(el => el.tagName === 'ZOO-INPUT-TAG-OPTION');
 		const defaultValues = this.hasAttribute('data-initial-value')
 			? this.getAttribute('data-initial-value')

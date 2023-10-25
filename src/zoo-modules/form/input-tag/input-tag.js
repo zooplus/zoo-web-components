@@ -55,7 +55,7 @@ export class InputTag extends FormElement {
 			const dataElem = target.querySelector('[data-value]');
 			const tagInInput = this.shadowRoot.querySelector(`zoo-tag[data-value="${dataElem.getAttribute('data-value')}"] zoo-cross-icon`);
 			tagInInput.dispatchEvent(new Event('click'));
-		} else {
+		} else if(target) {
 			this.handleTagSelect(target);
 		}
 	}

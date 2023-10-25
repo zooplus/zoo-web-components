@@ -119,13 +119,12 @@ export class InputTag extends FormElement {
 			? this.getAttribute('data-initial-value')
 				.split(',')
 				.map(value => value.trim())
+				.filter(value => !!value)
 			: null;
-		if (tagOptions && defaultValues) {
-			[...tagOptions].forEach((tagOption) => {
-				if (defaultValues.includes([...tagOption.children][0].getAttribute('data-value'))) {
-					this.toggleOptionSelect({
-						target: tagOption
-					});
+		if (tagOptions && defaultValues && defaultValues.length) {
+			tagOptions.forEach((tagOption) => {
+				if (!tagOption.hasAttribute('selected') && defaultValues.includes([...tagOption.children][0].getAttribute('data-value'))) {
+					this.handleTagSelect(tagOption);
 				}
 			});
 		}

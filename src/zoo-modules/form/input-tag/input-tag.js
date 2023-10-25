@@ -45,7 +45,7 @@ export class InputTag extends FormElement {
 			this.select && this.registerElementForValidation(this.select);
 		});
 		this.shadowRoot.querySelector('slot[name="tag-option"]').addEventListener('click', e => {
-			this.toggleOptionSelect(e);
+			this.toggleOptionSelect(e, true);
 		});
 	}
 
@@ -61,7 +61,7 @@ export class InputTag extends FormElement {
 		}
 	}
 
-	toggleOptionSelect(e) {
+	toggleOptionSelect(e, withFocusOnInput = false) {
 		const target = this.getElAsParentBySlotName(e.target, 'tag-option');
 		if (target && target.hasAttribute('selected')) {
 			const dataElem = target.querySelector('[data-value]');
@@ -69,6 +69,9 @@ export class InputTag extends FormElement {
 			tagInInput.dispatchEvent(new Event('click'));
 		} else if(target) {
 			this.handleTagSelect(target);
+		}
+		if (withFocusOnInput) {
+			this.input.focus();
 		}
 	}
 
@@ -94,7 +97,6 @@ export class InputTag extends FormElement {
 		if (hideOptionsAfterSelect) {
 			this.removeAttribute('show-tags');
 		}
-		this.input.focus();
 	}
 
 	createSelectedTagElement(selectedOptionElement, matchedOptionIndex) {
@@ -153,7 +155,6 @@ export class InputTag extends FormElement {
 			selectedOptionElement.parentElement.removeAttribute('selected');
 			selectedOptionElement.parentElement.setAttribute('aria-selected', 'false');
 		}
-		this.input.focus();
 	}
 
 	clearSelection() {

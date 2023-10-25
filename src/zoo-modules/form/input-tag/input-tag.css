@@ -65,7 +65,7 @@ zoo-label {
 	border: 1px solid #555;
 	border-radius: 0 0 3px 3px;
 	left: -1px;
-	top: calc(90%);
+	top: calc(90% + 2px);
 	border-top: 0;
 	width: calc(100% + 2px);
 	box-sizing: border-box;

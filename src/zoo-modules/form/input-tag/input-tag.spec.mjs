@@ -68,6 +68,65 @@ describe('Zoo input tag', function () {
 		expect(ret.selectedTags).not.toContain('Cat');
 	});
 
+	it('should update initial selection when the attribute changes', async () => {
+		const ret = await page.evaluate(async () => {
+			document.body.innerHTML = `
+				<zoo-input-tag data-initial-value="Dog">
+					<label for="input-tag" slot="label">Tag input</label>
+					<input id="input-tag" slot="input" placeholder="Type a tag name"/>
+					<span slot="error">At least one tag should be selected!</span>
+					<select slot="select" multiple required>
+						<option value="Dog"></option>
+						<option value="Cat"></option>
+					</select>
+					<zoo-input-tag-option slot="tag-option">
+						<zoo-tag slot="tag" type="cloud" data-value="Dog" tabindex="0">
+							<span slot="content">Dog</span>
+						</zoo-tag>
+						<span slot="description">The domestic dog (Canis familiaris or Canis lupus familiaris)[4] is a domesticated descendant of the wolf.</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="cat-tag">
+                        <zoo-tag slot="tag" type="cloud" data-value="Cat" tabindex="0">
+                            <span slot="content">Cat</span>
+                        </zoo-tag>
+                        <span slot="description">The cat (Felis catus) is a domestic species of small carnivorous mammal.</span>
+                    </zoo-input-tag-option>
+				</zoo-input-tag>
+				`;
+			let options = [...document.querySelectorAll('option')];
+			await new Promise(r => setTimeout(r, 10));
+
+			const input = document.querySelector('zoo-input-tag');
+			let selectedTags = []
+			input.shadowRoot.querySelectorAll('#input-wrapper zoo-tag').forEach(el=> selectedTags.push(el.textContent.trim()));
+			const optionsStatus = options.filter((option) => option.hasAttribute('selected')).map(option => option.value);
+
+			input.setAttribute("data-initial-value", "Dog,Cat");
+			await new Promise(r => setTimeout(r, 10));
+
+			let selectedTagsAfter = [];
+			options = [...document.querySelectorAll('option')];
+			input.shadowRoot.querySelectorAll('#input-wrapper zoo-tag').forEach(el=> selectedTagsAfter.push(el.textContent.trim()));
+			const optionsStatusAfter = options.filter((option) => option.hasAttribute('selected')).map(option => option.value);
+
+			return {
+				optionsStatus,
+				selectedTags,
+				selectedTagsAfter,
+				optionsStatusAfter
+			}
+		});
+		expect(ret.optionsStatus).toEqual(['Dog']);
+		expect(ret.optionsStatus).not.toContain('Cat');
+		expect(ret.selectedTags).toContain('Dog');
+		expect(ret.selectedTags).not.toContain('Cat');
+
+		expect(ret.optionsStatusAfter).toContain('Dog');
+		expect(ret.optionsStatusAfter).toContain('Cat');
+		expect(ret.selectedTagsAfter).toContain('Dog');
+		expect(ret.selectedTagsAfter).toContain('Cat');
+	});
+
 	it('should not render input error', async () => {
 		const errorDisplay = await page.evaluate(async () => {
 			document.body.innerHTML = `

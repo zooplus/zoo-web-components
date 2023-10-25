@@ -49,6 +49,18 @@ export class InputTag extends FormElement {
 		});
 	}
 
+	static get observedAttributes() {
+		return [...super.observedAttributes, 'data-initial-value'];
+	}
+
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name === 'invalid') {
+			super.attributeChangedCallback();
+		} else if (name === 'data-initial-value' && oldValue != null) {
+			this.handleInitialValues();
+		}
+	}
+
 	toggleOptionSelect(e) {
 		const target = this.getElAsParentBySlotName(e.target, 'tag-option');
 		if (target && target.hasAttribute('selected')) {
@@ -114,7 +126,9 @@ export class InputTag extends FormElement {
 	}
 
 	handleInitialValues() {
-		const tagOptions = [...this.children].filter(el => el.tagName === 'ZOO-INPUT-TAG-OPTION');
+		let tagOptions = [];
+		[].push.apply(tagOptions, this.children)
+		tagOptions = tagOptions.filter(el => el.tagName === 'ZOO-INPUT-TAG-OPTION');
 		const defaultValues = this.hasAttribute('data-initial-value')
 			? this.getAttribute('data-initial-value')
 				.split(',')

@@ -9,6 +9,7 @@ Semi-Breaking Changes:
   - `zoo-tag-options` are now stacked vertically
   - `zoo-tag-options` - changed left,right padding to `15px` and removed `5px` gap, `--input-tag-padding-top-bottom` 
   and `--input-tag-padding-left-right` to control component padding
+  - selection will be updated when `data-initial-value` attribute changes 
   - `--input-tag-options-max-height` CSS variable to control max height of options list overlay
   - `--input-tag-options-overflow` CSS variable to control options list scrolls
  - `zoo-tag` with `type="tag"` uses same border radius as other components

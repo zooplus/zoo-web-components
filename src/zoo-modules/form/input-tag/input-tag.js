@@ -116,6 +116,8 @@ export class InputTag extends FormElement {
 		const crossIcon = document.createElement('zoo-cross-icon');
 		crossIcon.setAttribute('tabindex', '0');
 		crossIcon.setAttribute('slot', 'post');
+		crossIcon.setAttribute('role', 'button');
+		crossIcon.setAttribute('aria-label', 'Deselect ' + dataValue);
 		crossIcon.addEventListener('click', () => this.deselectOption(tagElementForInput, matchedOptionIndex, selectedOptionElement));
 		crossIcon.addEventListener('keydown', e => {
 			if (e.key === ' ' || e.key === 'Enter') {

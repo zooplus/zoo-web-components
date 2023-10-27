@@ -241,7 +241,7 @@ handleExpandAction('#row-1-actions .expander', '#row-1-content');
 handleExpandAction('#row-2-actions .expander', '#row-2-content');
 handleExpandAction('#row-3-actions .expander', '#row-3-content');
 
-const tagInfos = ['dog', 'cat', 'bird', 'aquatic'];
+const tagInfos = ['dog', 'cat', 'bird', 'aquatic', 'reptile'];
 const inputTag = document.querySelector('zoo-input-tag');
 document.getElementById('input-tag').addEventListener('input', e => {
 	inputTag.querySelectorAll('zoo-input-tag-option').forEach(o => o.style.display = 'none');
@@ -250,7 +250,6 @@ document.getElementById('input-tag').addEventListener('input', e => {
 	const val = e.target.value;
 	if (!val) return;
 	const matchedTags = tagInfos.filter(i => i.toLowerCase().indexOf(val.toLowerCase()) > -1);
-	const docFrag = document.createDocumentFragment();
 	if (matchedTags && matchedTags.length > 0) {
 		matchedTags.forEach(m => {
 			document.getElementById(`${m}-tag`).style.display = 'flex';
@@ -258,4 +257,23 @@ document.getElementById('input-tag').addEventListener('input', e => {
 	} else {
 		noResultsSpan.style.display = 'flex';
 	}
+});
+
+const customTagInput = document.getElementById('input-tag-custom-input');
+document.getElementById('input-tag-custom').addEventListener('input', e => {
+	customTagInput.querySelectorAll('zoo-input-tag-option').forEach(o => o.style.display = 'none');
+	const noResultsSpan = document.getElementById('input-tag-custom').querySelector('*[slot="no-results"]');
+	if (noResultsSpan) noResultsSpan.style.display = 'none';
+	const val = e.target.value;
+	if (!val) return;
+	const matchedTags = tagInfos.filter(i => i.toLowerCase().indexOf(val.toLowerCase()) > -1);
+	if (matchedTags && matchedTags.length > 0) {
+		matchedTags.forEach(m => {
+			document.getElementById(`${m}-tagc`).style.display = 'flex';
+		});
+	} else {
+		noResultsSpan.style.display = 'flex';
+	}
+	const unMatchedTags = tagInfos.filter(i => i.toLowerCase().indexOf(val.toLowerCase()) === -1);
+	unMatchedTags.forEach( m => document.getElementById(`${m}-tagc`).style.display = 'none')
 });

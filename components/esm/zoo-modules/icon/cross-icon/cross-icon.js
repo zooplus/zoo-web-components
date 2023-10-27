@@ -3,7 +3,7 @@
  */
 class CrossIcon extends HTMLElement {
 	constructor() {
-		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--width,24px);height:var(--height,24px);fill:var(--icon-color,black)}</style><svg viewBox="0 0 24 24"><title></title><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>`;
+		super();this.attachShadow({mode:'open'}).innerHTML=`<style>svg{display:flex;width:var(--icon-width,18px);height:var(--icon-height,18px);fill:var(--icon-color,black)}</style><svg viewBox="0 0 24 24"><title></title><path d="M19 6l-1-1-6 6-6-6-1 1 6 6-6 6 1 1 6-6 6 6 1-1-6-6z"/></svg>`;
 	}
 
 	static get observedAttributes() {

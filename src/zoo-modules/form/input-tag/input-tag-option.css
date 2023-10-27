@@ -7,7 +7,3 @@
 	font-size: 12px;
 	gap: 3px;
 }
-
-:host(:hover) {
-	background: var(--primary-ultralight);
-}

@@ -15,7 +15,7 @@ button {
 	border: 0;
 	cursor: pointer;
 	border-radius: 5px;
-	background: #F2F3F4;
+	background: var(--input-disabled, #F2F3F4);
 
 	--icon-color: black;
 }

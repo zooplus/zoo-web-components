@@ -38,7 +38,7 @@ zoo-arrow-icon {
 
 ::slotted(select:disabled) {
 	border: 1px solid #E6E6E6;
-	background: #F2F3F4;
+	background: var(--input-disabled, #F2F3F4);
 	color: #666;
 }
 

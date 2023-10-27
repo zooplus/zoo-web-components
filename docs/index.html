@@ -102,6 +102,7 @@
 						<option value="Cat"></option>
 						<option value="Bird"></option>
 						<option value="Aquatic"></option>
+						<option value="Reptile"></option>
 					</select>
 					<zoo-input-tag-option slot="tag-option" id="dog-tag">
 						<zoo-tag slot="tag" type="tag" data-value="Dog" tabindex="0">
@@ -126,6 +127,42 @@
 							<span slot="content">Bird</span>
 						</zoo-tag>
 						<span slot="description">Birds are a group of warm-blooded vertebrates constituting the class Aves /ˈeɪviːz/, characterised by feathers, toothless beaked jaws, the laying of hard-shelled eggs, a high metabolic rate, a four-chambered heart, and a strong yet lightweight skeleton.</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="reptile-tag">
+						<zoo-tag slot="tag" type="tag" data-value="Reptile" tabindex="0">
+							<span slot="content">Reptile</span>
+						</zoo-tag>
+						<span slot="description">Reptiles, in common parlance, are a group of tetrapods with an ectothermic ('cold-blooded') metabolism and amniotic development.</span>
+					</zoo-input-tag-option>
+					<span slot="no-results">no results</span>
+				</zoo-input-tag>
+
+				<zoo-input-tag show-tags-after-select id="input-tag-custom" data-initial-value="Cat" aria-multiselectable="true">
+					<label for="input-tag" slot="label">Tag input &amp; custom option list</label>
+					<input id="input-tag-custom-input" slot="input" placeholder="Type a tag name"/>
+					<span slot="info">Start typing to see available tags. Tag filtering should be done on client side by listening on 'input' event on slotted input.</span>
+					<span slot="error">At least one tag should be selected!</span>
+					<select slot="select" multiple required>
+						<option value="Dog"></option>
+						<option value="Cat"></option>
+						<option value="Bird"></option>
+						<option value="Aquatic"></option>
+						<option value="Reptile"></option>
+					</select>
+					<zoo-input-tag-option slot="tag-option" id="dog-tagc" tabindex="0">
+						<span slot="tag" data-value="Dog" data-option-content>🐕 Dog</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="cat-tagc" tabindex="0">
+						<span slot="tag" data-value="Cat" data-option-content>🐈 Cat</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="bird-tagc" tabindex="0">
+						<span slot="tag" data-value="Bird" data-option-content>🐦‍⬛ Bird</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="aquatic-tagc" tabindex="0">
+						<span slot="tag" data-value="Aquatic" data-option-content>🐟 Aquatic</span>
+					</zoo-input-tag-option>
+					<zoo-input-tag-option slot="tag-option" id="reptile-tagc" tabindex="0">
+						<span slot="tag" data-value="Reptile" data-option-content>🦎 Reptile</span>
 					</zoo-input-tag-option>
 					<span slot="no-results">no results</span>
 				</zoo-input-tag>

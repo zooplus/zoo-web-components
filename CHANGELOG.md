@@ -1,11 +1,26 @@
 # CHANGELOG
 
-## 10.3.5
+## 10.4.0
 
-`zoo-tooltip` - added CSS variable `zoo-tooltip-z-index` to change predefined z-index in case of conflict with some other 3rd party components
-`zoo-toast` - added CSS variable `zoo-toast-z-index` to change predefined z-index in case of conflict with some other 3rd party components
-`zoo-grid` - added CSS variable `zoo-grid-z-index` to change predefined z-index in case of conflict with some other 3rd party components
-`zoo-spinner` - added CSS variable `zoo-spinner-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+Semi-Breaking Changes:
+ - `zoo-input-tag`:
+  - added `clearSelection()` method to programmatically clear current component selection
+  - `zoo-tag-options` can contain not only `zoo-tag` elements, but custom markup
+  - `zoo-tag-options` are now stacked vertically
+  - `zoo-tag-options` - changed left,right padding to `15px` and removed `5px` gap, `--input-tag-padding-top-bottom` 
+  and `--input-tag-padding-left-right` to control component padding
+  - selection will be updated when `data-initial-value` attribute changes 
+  - `--input-tag-options-max-height` CSS variable to control max height of options list overlay
+  - `--input-tag-options-overflow` CSS variable to control options list scrolls
+ - `zoo-tag` with `type="tag"` uses same border radius as other components
+
+ CSS changes:
+ - `--item-hovered` - new CSS variable to control color of hovered areas in components
+ - `--input-disabled` - new CSS variable to control color of disabled form components
+ - `zoo-tooltip` - new CSS variable `zoo-tooltip-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+ - `zoo-toast` - new CSS variable `zoo-toast-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+ - `zoo-grid` - new CSS variable `zoo-grid-z-index` to change predefined z-index in case of conflict with some other 3rd party components
+ - `zoo-spinner` - new CSS variable `zoo-spinner-z-index` to change predefined z-index in case of conflict with some other 3rd party components
 
 ## 10.3.4
 

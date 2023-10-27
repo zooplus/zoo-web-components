@@ -4,6 +4,10 @@
 	width: 100%;
 	height: max-content;
 	box-sizing: border-box;
+
+	--input-tag-padding-top-bottom-default: 13px;
+	--input-tag-padding-left-right-default: 15px;
+	--input-tag-padding-reduced: calc(var(--input-tag-padding-top-bottom, var(--input-tag-padding-top-bottom-default)) - 1px) calc(var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default)) - 1px);
 }
 
 #input-wrapper {
@@ -14,7 +18,7 @@
 	gap: 5px;
 	font-size: 14px;
 	line-height: 20px;
-	padding: 13px 15px;
+	padding: var(--input-tag-padding-top-bottom, var(--input-tag-padding-top-bottom-default)) var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default));
 	border: 1px solid #767676;
 	border-radius: 5px;
 	color: #555;
@@ -26,7 +30,7 @@
 
 :host(:focus-within) #input-wrapper {
 	border: 2px solid #555;
-	padding: 12px 14px;
+	padding: var(--input-tag-padding-reduced);
 }
 
 :host([show-tags]) #input-wrapper {
@@ -35,7 +39,7 @@
 
 :host([invalid]) #input-wrapper {
 	border: 2px solid var(--warning-mid);
-	padding: 12px 14px;
+	padding: var(--input-tag-padding-reduced);
 }
 
 ::slotted(input) {
@@ -57,15 +61,16 @@ zoo-label {
 	position: absolute;
 	flex-wrap: wrap;
 	background: white;
-	padding: 5px;
+	padding: 5px var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default));
 	border: 1px solid #555;
 	border-radius: 0 0 3px 3px;
-	gap: 5px;
 	left: -1px;
-	top: 90%;
+	top: calc(90% + 2px);
 	border-top: 0;
 	width: calc(100% + 2px);
 	box-sizing: border-box;
+	max-height: var(--input-tag-options-max-height, fit-content);
+	overflow: var(--input-tag-options-overflow, auto);
 }
 
 :host(:focus-within) #tag-options,
@@ -73,6 +78,8 @@ zoo-label {
 	border-width: 2px;
 	width: calc(100% + 4px);
 	left: -2px;
+	padding-left: calc(var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default)) - 1px);
+	padding-right: calc(var(--input-tag-padding-left-right, var(--input-tag-padding-left-right-default)) - 1px);
 }
 
 :host([invalid]) #tag-options {
@@ -98,5 +105,16 @@ zoo-cross-icon {
 }
 
 ::slotted(zoo-input-tag-option) {
-	flex: 1 0 30%;
+	box-sizing: border-box;
+	width: 100%;
 }
+
+::slotted(zoo-input-tag-option:hover),
+::slotted(zoo-input-tag-option[selected]:hover) {
+	background: var(--item-hovered, #E6E6E6);
+}
+
+::slotted(zoo-input-tag-option[selected]) {
+	background: var(--primary-ultralight);
+}
+

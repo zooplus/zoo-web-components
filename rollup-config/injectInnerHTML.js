@@ -1,6 +1,6 @@
 import fs from 'fs';
 import CleanCSS from 'clean-css';
-import minifyHTML from 'html-minifier';
+import { minify } from 'html-minifier-next';
 
 export default function injectInnerHTML() {
 	return {
@@ -11,7 +11,7 @@ export default function injectInnerHTML() {
 				const htmlFile = id.replace('.js', '.html');
 				const cssFile = id.replace('.js', '.css');
 				const html = fs.readFileSync(htmlFile, 'utf8');
-				const minifiedHTML = minifyHTML.minify(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
+				const minifiedHTML = minify(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
 				const css = fs.readFileSync(cssFile, 'utf8');
 				const minifiedCss = new CleanCSS({ level: { 1: { all: true } } }).minify(css);
 				if (minifiedCss.errors && minifiedCss.errors.length > 0) {

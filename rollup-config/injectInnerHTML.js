@@ -13,7 +13,7 @@ export default function injectInnerHTML() {
 				const html = fs.readFileSync(htmlFile, 'utf8');
 				const minifiedHTML = minifyHTML.minify(html, {collapseWhitespace: true, collapseBooleanAttributes: true});
 				const css = fs.readFileSync(cssFile, 'utf8');
-				const minifiedCss = new CleanCSS({ level: { 2: { all: true } } }).minify(css);
+				const minifiedCss = new CleanCSS({ level: { 1: { all: true } } }).minify(css);
 				if (minifiedCss.errors && minifiedCss.errors.length > 0) {
 					console.error(minifiedCss.errors);
 				}

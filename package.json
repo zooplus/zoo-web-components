@@ -1,6 +1,6 @@
 {
 	"name": "@zooplus/zoo-web-components",
-	"version": "10.4.0",
+	"version": "10.4.1",
 	"main": "dist/zoo-web-components.js",
 	"sideEffects": false,
 	"files": [
@@ -22,7 +22,7 @@
 		"html-validate": "^8.4.1",
 		"jasmine": "^3.9.0",
 		"nyc": "^15.1.0",
-		"puppeteer": "^22.11.2",
+		"puppeteer": "^24.36.0",
 		"puppeteer-to-istanbul": "^1.4.0",
 		"rollup": "^3.29.5",
 		"@rollup/plugin-terser": "^0.4.4",

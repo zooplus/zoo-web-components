@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.4.1
+CSS changes:
+ - decreased the level of optimization from 2 to 1 in clean-css (after bumping to 10.4.0 border-bottom color property in grid disapeared)
+ 
 ## 10.4.0
 
 Semi-Breaking Changes:

@@ -1,6 +1,6 @@
 import injectInnerHTML from './injectInnerHTML.js';
 import { watcher, noOpWatcher } from './watcher.js';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 let dev = process.env.NODE_ENV == 'local';
 
